@@ -1,0 +1,124 @@
+/*
+ * media screen break points
+ */
+
+$break-xtraLarge: "screen and (max-width : 1200px)";
+$break-large: "screen and (max-width : 992px)";
+$break-medium: "screen and (max-width : 768px)";
+$break-small: "screen and (max-width : 480px)";
+$break-xtra-small: "screen and (max-width : 320px)";
+
+/*
+ * editor styles
+ */
+
+.ngx-editor {
+    position: relative;
+     ::ng-deep [contenteditable=true]:empty:before {
+        content: attr(placeholder);
+        display: block; // for firefox
+    }
+    .toolbar {
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #ddd;
+        font-size: 0.8rem;
+        padding: 0.2rem;
+        border: 1px solid #ddd;
+        .set {
+            display: inline-block;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            button {
+                background-color: #f5f5f5;
+                background-color: transparent;
+                border: 0;
+                padding: 0.5rem;
+                min-width: 2.5rem;
+                float: left;
+                border-right: 1px solid #ddd;
+                &:hover {
+                    cursor: pointer;
+                    background-color: #e3e3e3;
+                    transition: 0.5s ease;
+                }
+                &:focus,
+                &.focus {
+                    outline: 0;
+                }
+                &:last-child {
+                    border-right: transparent;
+                }
+            }
+        }
+        &.responsive {
+            @media #{$break-large} {
+                .no-lg-device {
+                    display: none;
+                }
+            }
+            @media #{$break-medium} {
+                .no-md-device {
+                    display: none;
+                }
+            }
+            @media #{$break-small} {
+                .no-sm-device {
+                    display: none;
+                }
+            }
+            @media #{$break-xtra-small} {
+                .no-xs-device {
+                    display: none;
+                }
+            }
+        }
+    }
+    .textarea {
+        min-height: 5rem;
+        padding: 0.5rem 0.8rem 1rem 0.8rem;
+        border: 1px solid #ddd;
+        border-top: transparent;
+        resize: vertical;
+        overflow: auto;
+        &:focus,
+        &.focus {
+            outline: 0;
+        }
+         ::ng-deep blockquote {
+            margin-left: 1rem;
+            border-left: 0.2em solid #dfe2e5;
+            padding-left: 0.5rem;
+        }
+        .grabber {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            margin-left: -0.8rem;
+            cursor: s-resize;
+            height: 9px;
+            width: 100%;
+            border-top: 1px solid #f1f1f1;
+            overflow: hidden;
+            background-color: #eff0f1;
+            background-image: url("../../assets/grabber/grabber.png");
+            background-image: url("../../assets/grabber/grabber.svg"), none;
+            background-size: initial;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+    &.fullscreen {
+        z-index: 99999999;
+        width: 98.7%;
+        height: 97%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 8px;
+    }
+}
+
+.hide {
+    display: none !important;
+}

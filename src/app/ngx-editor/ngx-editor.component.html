@@ -1,0 +1,44 @@
+<div class="ngx-editor" id="ngxEditor" [ngClass]="{'fullscreen': fullScreen}" [attr.spellcheck]="spellCheck || config['spellCheck']">
+  <div class="toolbar responsive">
+    <div class="set">
+      <button (click)="executeCommand('bold')" title="Bold"><i class="fa fa-bold" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('italic')" title="Italic"><i class="fa fa-italic" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('underline')" title="Underline"><i class="fa fa-underline" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('strikeThrough')" title="Strikethrough"><i class="fa fa-strikethrough" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('superscript')" title="Superscript"><i class="fa fa-superscript" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('subscript')" title="Subscript"><i class="fa fa-subscript" aria-hidden="true"></i></button>
+    </div>
+    <div class="set no-sm-device">
+      <button (click)="executeCommand('justifyLeft')" title="Justify Left"><i class="fa fa-align-left" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('justifyCenter')" title="Justify Center"><i class="fa fa-align-center" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('justifyRight')" title="Justify Right"><i class="fa fa-align-right" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('justifyFull')" title="Justify"><i class="fa fa-align-justify" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('indent')" title="Indent"><i class="fa fa-indent" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('outdent')" title="Outdent"><i class="fa fa-outdent" aria-hidden="true"></i></button>
+    </div>
+    <div class="set no-md-device">
+      <button (click)="executeCommand('cut')" title="Cut"><i class="fa fa-scissors" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('copy')" title="Copy"><i class="fa fa-files-o" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('delete')" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('removeFormat')" title="Clear Formatting"><i class="fa fa-eraser" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('undo')" title="Undo"><i class="fa fa-undo" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('redo')" title="Redo"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+    </div>
+    <div class="set no-md-device">
+      <button (click)="executeCommand('insertParagraph')" title="Paragraph"><i class="fa fa-paragraph" aria-hidden="true"></i></button>
+      <button (click)="blockQuote()" title="Blockquote"><i class="fa fa-quote-left" aria-hidden="true"></i></button>
+      <button (click)="removeQuote()" title="Remove Blockquote"><i class="fa fa-quote-right" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('insertHorizontalRule')" title="Horizontal Line"><i class="fa fa-minus" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('insertUnorderedList')" title="Unodered List"><i class="fa fa-list-ul" aria-hidden="true"></i></button>
+      <button (click)="executeCommand('insertOrderedList')" title="Ordered List"><i class="fa fa-list-ol" aria-hidden="true"></i></button>
+    </div>
+    <!-- <div class="set no-lg-device">
+      <button (click)="insertHTML('')" title="Code"><i class="fa fa-code" aria-hidden="true"></i></button>
+    </div> -->
+  </div>
+  <div class="textarea" contenteditable="true" [attr.placeholder]="placeholder || config['placeholder']">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, distinctio corrupti. Eaque magni, doloremque aut
+    doloribus quisquam amet ex necessitatibus voluptatem assumenda consequatur quod, fugiat quo hic asperiores provident
+    natus!
+  </div>
+</div>
