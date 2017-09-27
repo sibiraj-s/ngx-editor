@@ -13,9 +13,9 @@ A Simple WYSIWYG Editor for Angular Applications.
 Install via Package managers such as [npm][npm] or [yarn][yarn]
 
 ```bash
-npm install ngx-editor@1.0.0-alpha --save
+npm install ngx-editor@1.0.0-alpha.1 --save
 # or
-yarn add ngx-editor@1.0.0-alpha
+yarn add ngx-editor@1.0.0-alpha.1
 ```
 
 ### Usage

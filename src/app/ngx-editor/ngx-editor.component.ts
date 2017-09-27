@@ -15,7 +15,7 @@ export class NgxEditorComponent implements OnInit {
   /*
    * default configurations
    */
-  _config: JSON;
+  _config: any;
 
   @Input() set config(value: JSON) {
 
@@ -28,12 +28,11 @@ export class NgxEditorComponent implements OnInit {
   }
 
   get config(): JSON {
-    return this._config;
+    return this._config || ngxEditorConfig;
   }
 
   @Input() spellCheck;
   @Input() placeholder;
-
 
   fullScreen = false;
 
@@ -74,5 +73,10 @@ export class NgxEditorComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.spellCheck === false) {
+      this.config['spellCheck'] = this.spellCheck;
+    }
+
+    console.log(this.config)
   }
 }

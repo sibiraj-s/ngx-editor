@@ -1,6 +1,6 @@
 {
   "name": "ngx-editor",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-alpha.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
