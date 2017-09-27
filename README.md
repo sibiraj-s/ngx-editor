@@ -1,7 +1,9 @@
 # NgxEditor
 
 <p align="center">
-  <img src="./icons/ngx-editor.png">
+ <a href="https://github.com/Sibiraj-S/ngx-editor">
+   <img src="https://raw.githubusercontent.com/Sibiraj-S/ngx-editor/master/icons/ngx-editor.png" alt="ngxEditor">
+ </a>
 </p>
 
 A Simple WYSIWYG Editor for Angular Applications.
