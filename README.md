@@ -1,7 +1,7 @@
 # NgxEditor
 
 <p align="center">
-  <img src="./icons/ngx-editor.svg">
+  <img src="./icons/ngx-editor.png">
 </p>
 
 A Simple WYSIWYG Editor for Angular Applications.
@@ -13,9 +13,9 @@ A Simple WYSIWYG Editor for Angular Applications.
 Install via Package managers such as [npm][npm] or [yarn][yarn]
 
 ```bash
-npm install ngx-editor@1.0.0-alpha.1 --save
+npm install ngx-editor@1.0.0-alpha.2 --save
 # or
-yarn add ngx-editor@1.0.0-alpha.1
+yarn add ngx-editor@1.0.0-alpha.2
 ```
 
 ### Usage
@@ -29,7 +29,10 @@ import { NgxEditorModule } from 'ngx-editor'
   imports: [ NgxEditorModule ]
 })
 ```
-In HTML
+
+Import [font-awesome](https://github.com/FortAwesome/Font-Awesome) into your application
+
+Then in HTML
 
 ```html
 <app-ngx-editor [placeholder]="'Enter text here...'"></app-ngx-editor>

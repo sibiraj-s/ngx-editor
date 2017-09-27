@@ -7,7 +7,7 @@ rm -rf dist/
 
 # copy icons to build directory
 mkdir build/icons/
-cp -r icons/ngx-editor.svg build/icons/
+cp -r icons/ngx-editor.png build/icons/
 
 # delete unwanted folders
 rm -rf .ng_build

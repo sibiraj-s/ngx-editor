@@ -4,10 +4,7 @@ import { ngxEditorConfig } from './ngx-editor.defaults';
 @Component({
   selector: 'app-ngx-editor',
   templateUrl: './ngx-editor.component.html',
-  styleUrls: [
-    './ngx-editor.component.scss',
-    '../../../node_modules/font-awesome/css/font-awesome.css'
-  ]
+  styleUrls: ['./ngx-editor.component.scss']
 })
 
 export class NgxEditorComponent implements OnInit {
