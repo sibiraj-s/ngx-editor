@@ -9,9 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:prod": "ng build --prod && sh scripts/build.sh",
-    "prenpm:publish": "yarn run build:prod",
-    "npm:publish": "sh scripts/publish.sh"
+    "build:prod": "ng build --prod && sh scripts/build.sh"
   },
   "dependencies": {
     "@angular/animations": "^4.4.3",
