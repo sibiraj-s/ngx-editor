@@ -13,7 +13,6 @@
     "prenpm:publish": "yarn run build:prod",
     "npm:publish": "sh scripts/publish.sh"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^4.4.3",
     "@angular/common": "^4.4.3",
