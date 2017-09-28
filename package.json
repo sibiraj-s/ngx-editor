@@ -11,6 +11,14 @@
     "e2e": "ng e2e",
     "build:prod": "ng build --prod && sh scripts/build.sh"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sibiraj-S/ngx-editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sibiraj-S/ngx-editor/issues"
+  },
+  "homepage": "https://github.com/Sibiraj-S/ngx-editor",
   "dependencies": {
     "@angular/animations": "^4.4.3",
     "@angular/common": "^4.4.3",
