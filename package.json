@@ -13,6 +13,12 @@
     "build:prod": "ng build --prod && sh scripts/build.sh",
     "precommit": "ng test --watch false && yarn run build:prod"
   },
+  "keywords": [
+    "angular-editor",
+    "angular-wysiwyg-editor",
+    "wysiwyg-editor",
+    "ngx-editor"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sibiraj-S/ngx-editor.git"
