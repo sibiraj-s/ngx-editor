@@ -7,10 +7,17 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'app';
+  title = 'ngx-editor';
 
   editorConfig = {
     spellCheck: false
   };
+
+  importCode = `
+import { NgxEditorModule } from 'ngx-editor';
+
+@NgModule({
+  imports: [ NgxEditorModule ]
+})`;
 
 }

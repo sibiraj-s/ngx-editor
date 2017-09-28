@@ -81,6 +81,7 @@ $break-xtra-small: "screen and (max-width : 320px)";
         border-top: transparent;
         resize: vertical;
         overflow: auto;
+        background-color: #fff;
         &:focus,
         &.focus {
             outline: 0;

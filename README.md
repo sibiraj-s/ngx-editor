@@ -2,11 +2,10 @@
 
 <p align="center">
  <a href="https://github.com/Sibiraj-S/ngx-editor">
-   <img src="https://raw.githubusercontent.com/Sibiraj-S/ngx-editor/master/icons/ngx-editor.png" alt="ngxEditor">
+   <img src="https://raw.githubusercontent.com/Sibiraj-S/ngx-editor/master/src/assets/icons/ngx-editor.png" alt="ngxEditor">
  </a>
+  <p align="center">A Simple WYSIWYG Editor for Angular2+ Applications.</p>
 </p>
-
-A Simple WYSIWYG Editor for Angular Applications.
 
 ## Getting Started
 
@@ -15,9 +14,9 @@ A Simple WYSIWYG Editor for Angular Applications.
 Install via Package managers such as [npm][npm] or [yarn][yarn]
 
 ```bash
-npm install ngx-editor@1.0.0-alpha.2 --save
+npm install ngx-editor@1.0.0-alpha.3 --save
 # or
-yarn add ngx-editor@1.0.0-alpha.2
+yarn add ngx-editor@1.0.0-alpha.3
 ```
 
 ### Usage
@@ -25,7 +24,7 @@ yarn add ngx-editor@1.0.0-alpha.2
 Import `ngx-editor` module
 
 ```typescript
-import { NgxEditorModule } from 'ngx-editor'
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   imports: [ NgxEditorModule ]
@@ -39,3 +38,7 @@ Then in HTML
 ```html
 <app-ngx-editor [placeholder]="'Enter text here...'"></app-ngx-editor>
 ```
+
+[npm]: https://www.npmjs.com/
+[yarn]: https://yarnpkg.com/lang/en/
+[github]: https://sibiraj-s.github.io/

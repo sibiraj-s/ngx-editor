@@ -1,1 +1,42 @@
-<app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'"></app-ngx-editor>
+<div class="container">
+    <div class="logo">
+        <img src="assets/icons/ngx-editor.svg" alt="ngx-Editor">
+        <h6>A Simple WYSIWYG Editor for Angular2+ Applications.</h6>
+        <h6>(v1.0.0-alpha.3)</h6>
+    </div>
+    <div class="editor">
+        <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'"></app-ngx-editor>
+    </div>
+    <div class="information">
+        <h3> Getting Started </h3>
+
+        <h4> Installation </h4>
+
+        <p>Install via Package managers such as <a href="https://www.npmjs.com/" target="_blank">npm</a> or <a href="https://yarnpkg.com/lang/en/"
+                target="_blank">yarn</a></p>
+
+        <pre>
+
+npm install ngx-editor@1.0.0-alpha.3 --save
+# or
+yarn add ngx-editor@1.0.0-alpha.3 
+        </pre>
+
+        <h4>Usage</h4>
+
+        <p>Import
+            <mark>ngx-editor</mark> module</p>
+
+        <pre><code [innerHTML]="importCode"></code>
+       </pre>
+
+        <p>Import <a href="https://github.com/FortAwesome/Font-Awesome">font-awesome</a> into your application</p>
+        <p>Then in HTML</p>
+
+        <pre>
+
+&lt;app-ngx-editor [placeholder]="'Enter text here...'" &gt;  &lt;app-ngx-editor &gt;
+       </pre>
+
+    </div>
+</div>

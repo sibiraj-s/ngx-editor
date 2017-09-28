@@ -35,11 +35,6 @@ export class NgxEditorComponent implements OnInit {
 
   constructor() { }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    // resize event
-  }
-
   executeCommand(commandName) {
     const isExecuted = document.execCommand(commandName, false, null);
   }
@@ -56,13 +51,6 @@ export class NgxEditorComponent implements OnInit {
   }
 
   /*
-   * insert HTML
-   */
-  insertHTML(html) {
-
-  }
-
-  /*
    * toggle full screen
    */
   toggleFullScreen() {
@@ -73,7 +61,6 @@ export class NgxEditorComponent implements OnInit {
     if (this.spellCheck === false) {
       this.config['spellCheck'] = this.spellCheck;
     }
-
-    console.log(this.config)
   }
+
 }
