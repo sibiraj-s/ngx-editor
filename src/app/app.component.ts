@@ -13,7 +13,7 @@ export class AppComponent {
     spellCheck: false
   };
 
-  htmlContent = '<span>WYSIWYG Editor for Angular2+ Application</span>';
+  htmlContent = '<span>WYSIWYG Editor for Angular Applications.</span>';
 
   importCode = `
 import { NgxEditorModule } from 'ngx-editor';
