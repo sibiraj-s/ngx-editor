@@ -1,4 +1,5 @@
 export const ngxEditorConfig = {
+  editable: true,
   spellcheck: true,
   translate: 'yes',
   placeholder: 'Enter text here...',

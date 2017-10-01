@@ -45,7 +45,7 @@ export class NgxEditorComponent implements OnInit {
     return this._html;
   }
 
-
+  @Input() editable: boolean;
   @Input() spellcheck: boolean;
   @Input() placeholder: string;
   @Input() translate: string;
@@ -84,6 +84,10 @@ export class NgxEditorComponent implements OnInit {
   ngOnInit() {
     if (this.spellcheck === false) {
       this.config['spellcheck'] = false;
+    }
+
+    if (this.editable === false) {
+      this.config['editable'] = false;
     }
 
     this.element.nativeElement.getElementsByClassName('textarea')[0].innerHTML = this.html;

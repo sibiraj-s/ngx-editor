@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'ngx-editor';
 
   editorConfig = {
+    editable: true,
     spellcheck: false,
     placeholder: 'Enter text here...',
     translate: 'no'
