@@ -4,8 +4,8 @@
  <a href="https://github.com/Sibiraj-S/ngx-editor">
    <img src="https://raw.githubusercontent.com/Sibiraj-S/ngx-editor/master/src/assets/icons/ngx-editor.png" alt="ngxEditor">
  </a>
-  <p align="center">A Simple WYSIWYG Editor for Angular2+ Applications.</p>
 </p>
+<p align="center">A Simple WYSIWYG Editor for Angular2+ Applications.</p>
 
 ## Getting Started
 
@@ -14,9 +14,9 @@
 Install via Package managers such as [npm][npm] or [yarn][yarn]
 
 ```bash
-npm install ngx-editor@1.0.0-alpha.3 --save
+npm install ngx-editor@1.0.0-beta.1 --save
 # or
-yarn add ngx-editor@1.0.0-alpha.3
+yarn add ngx-editor@1.0.0-beta.1
 ```
 
 ### Usage
@@ -36,7 +36,7 @@ Import [font-awesome](https://github.com/FortAwesome/Font-Awesome) into your app
 Then in HTML
 
 ```html
-<app-ngx-editor [placeholder]="'Enter text here...'"></app-ngx-editor>
+<app-ngx-editor [placeholder]="'Enter text here...'" [(html)]="htmlContent"></app-ngx-editor>
 ```
 
 [npm]: https://www.npmjs.com/

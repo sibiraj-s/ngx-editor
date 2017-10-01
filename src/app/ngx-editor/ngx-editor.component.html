@@ -32,9 +32,6 @@
       <button (click)="executeCommand('insertUnorderedList')" title="Unodered List"><i class="fa fa-list-ul" aria-hidden="true"></i></button>
       <button (click)="executeCommand('insertOrderedList')" title="Ordered List"><i class="fa fa-list-ol" aria-hidden="true"></i></button>
     </div>
-    <!-- <div class="set no-lg-device">
-      <button (click)="insertHTML('')" title="Code"><i class="fa fa-code" aria-hidden="true"></i></button>
-    </div> -->
   </div>
-  <div class="textarea" contenteditable="true" [attr.placeholder]="placeholder || config['placeholder']"></div>
+  <div class="textarea" contenteditable="true" [attr.placeholder]="placeholder || config['placeholder']" (input)="html = $event.target.innerHTML;htmlContentChange($event.target.innerHTML)"></div>
 </div>

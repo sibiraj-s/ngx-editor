@@ -2,10 +2,13 @@
     <div class="logo">
         <img src="assets/icons/ngx-editor.svg" alt="ngx-Editor">
         <h6>A Simple WYSIWYG Editor for Angular2+ Applications.</h6>
-        <h6>(v1.0.0-alpha.3)</h6>
+        <h6>(v1.0.0-beta.1)</h6>
     </div>
     <div class="editor">
-        <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'"></app-ngx-editor>
+        <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [(html)]="htmlContent"></app-ngx-editor>
+    </div>
+    <div class="html" *ngIf="htmlContent">
+        {{htmlContent}}
     </div>
     <div class="information">
         <h3> Getting Started </h3>
@@ -17,9 +20,9 @@
 
         <pre>
 
-npm install ngx-editor@1.0.0-alpha.3 --save
+npm install ngx-editor@1.0.0-beta.1 --save
 # or
-yarn add ngx-editor@1.0.0-alpha.3 
+yarn add ngx-editor@1.0.0-beta.1
         </pre>
 
         <h4>Usage</h4>
@@ -35,7 +38,7 @@ yarn add ngx-editor@1.0.0-alpha.3
 
         <pre>
 
-&lt;app-ngx-editor [placeholder]="'Enter text here...'" &gt;  &lt;app-ngx-editor &gt;
+&lt;app-ngx-editor [placeholder]="'Enter text here...'" [(html)]="htmlContent"&gt;  &lt;/app-ngx-editor&gt;
        </pre>
 
     </div>
