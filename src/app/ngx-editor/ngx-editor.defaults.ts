@@ -1,5 +1,6 @@
 export const ngxEditorConfig = {
-  spellCheck: true,
+  spellcheck: true,
+  translate: 'yes',
   placeholder: 'Enter text here...',
   toolbar: {
     text: ['fontFamily', 'fontSize', 'bold', 'italic', 'underline', 'strikeThrough', 'superscript', 'subscript'],

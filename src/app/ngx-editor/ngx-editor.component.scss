@@ -109,15 +109,6 @@ $break-xtra-small: "screen and (max-width : 320px)";
             background-position: center;
         }
     }
-    &.fullscreen {
-        z-index: 99999999;
-        width: 98.7%;
-        height: 97%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 8px;
-    }
 }
 
 .hide {

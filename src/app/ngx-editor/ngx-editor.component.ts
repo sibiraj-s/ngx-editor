@@ -46,11 +46,9 @@ export class NgxEditorComponent implements OnInit {
   }
 
 
-  @Input() spellCheck;
-  @Input() placeholder;
-
-  fullScreen = false;
-
+  @Input() spellcheck: boolean;
+  @Input() placeholder: string;
+  @Input() translate: string;
 
   /*
    * update html on changes in content editable
@@ -84,8 +82,8 @@ export class NgxEditorComponent implements OnInit {
    * ngOnInit
    */
   ngOnInit() {
-    if (this.spellCheck === false) {
-      this.config['spellCheck'] = this.spellCheck;
+    if (this.spellcheck === false) {
+      this.config['spellcheck'] = false;
     }
 
     this.element.nativeElement.getElementsByClassName('textarea')[0].innerHTML = this.html;

@@ -1,4 +1,4 @@
-<div class="ngx-editor" id="ngxEditor" [ngClass]="{'fullscreen': fullScreen}" [attr.spellcheck]="config['spellCheck']">
+<div class="ngx-editor" id="ngxEditor">
   <div class="toolbar responsive">
     <div class="set">
       <button (click)="executeCommand('bold')" title="Bold"><i class="fa fa-bold" aria-hidden="true"></i></button>
@@ -33,5 +33,6 @@
       <button (click)="executeCommand('insertOrderedList')" title="Ordered List"><i class="fa fa-list-ol" aria-hidden="true"></i></button>
     </div>
   </div>
-  <div class="textarea" contenteditable="true" [attr.placeholder]="placeholder || config['placeholder']" (input)="html = $event.target.innerHTML;htmlContentChange($event.target.innerHTML)"></div>
+  <div class="textarea" contenteditable="true" [attr.placeholder]="placeholder || config['placeholder']" (input)="html = $event.target.innerHTML; htmlContentChange($event.target.innerHTML)"
+    [attr.translate]="translate || config['translate']" [attr.spellcheck]="config['spellcheck']"></div>
 </div>

@@ -10,16 +10,11 @@ export class AppComponent {
   title = 'ngx-editor';
 
   editorConfig = {
-    spellCheck: false
+    spellcheck: false,
+    placeholder: 'Enter text here...',
+    translate: 'no'
   };
 
   htmlContent = '<span>WYSIWYG Editor for Angular Applications.</span>';
-
-  importCode = `
-import { NgxEditorModule } from 'ngx-editor';
-
-@NgModule({
-  imports: [ NgxEditorModule ]
-})`;
 
 }

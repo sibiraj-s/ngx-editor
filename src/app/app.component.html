@@ -2,44 +2,20 @@
     <div class="logo">
         <img src="assets/icons/ngx-editor.svg" alt="ngx-Editor">
         <h6>WYSIWYG Editor for Angular Applications.</h6>
-        <h6>(v1.0.0-beta.1)</h6>
+        <p>(v1.0.0-beta.1)</p>
+        <a class="github-button" href="https://github.com/Sibiraj-S" aria-label="Follow @Sibiraj-S on GitHub">Follow @Sibiraj-S</a>
+        <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/fork" aria-label="Fork Sibiraj-S/ngx-editor on GitHub">Fork</a>
+        <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor" aria-label="Star Sibiraj-S/ngx-editor on GitHub">Star</a>
+        <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/issues" data-show-count="true" aria-label="Issue Sibiraj-S/ngx-editor on GitHub">Issue</a>
+        <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/archive/master.zip" aria-label="Download Sibiraj-S/ngx-editor on GitHub">Download</a>
     </div>
+
     <div class="editor">
-        <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [(html)]="htmlContent"></app-ngx-editor>
+        <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(html)]="htmlContent"></app-ngx-editor>
     </div>
+
+    <h6>HTML Output</h6>
     <div class="html" *ngIf="htmlContent">
         {{htmlContent}}
-    </div>
-    <div class="information">
-        <h3> Getting Started </h3>
-
-        <h4> Installation </h4>
-
-        <p>Install via Package managers such as <a href="https://www.npmjs.com/" target="_blank">npm</a> or <a href="https://yarnpkg.com/lang/en/"
-                target="_blank">yarn</a></p>
-
-        <pre>
-
-npm install ngx-editor@1.0.0-beta.1 --save
-# or
-yarn add ngx-editor@1.0.0-beta.1
-        </pre>
-
-        <h4>Usage</h4>
-
-        <p>Import
-            <mark>ngx-editor</mark> module</p>
-
-        <pre><code [innerHTML]="importCode"></code>
-       </pre>
-
-        <p>Import <a href="https://github.com/FortAwesome/Font-Awesome">font-awesome</a> into your application</p>
-        <p>Then in HTML</p>
-
-        <pre>
-
-&lt;app-ngx-editor [placeholder]="'Enter text here...'" [(html)]="htmlContent"&gt;  &lt;/app-ngx-editor&gt;
-       </pre>
-
     </div>
 </div>
