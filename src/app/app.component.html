@@ -14,8 +14,10 @@
         <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(html)]="htmlContent"></app-ngx-editor>
     </div>
 
-    <h6>HTML Output</h6>
-    <div class="html" *ngIf="htmlContent">
-        {{htmlContent}}
+    <div *ngIf="htmlContent">
+        <h6>HTML Output</h6>
+        <div class="html">
+            {{htmlContent}}
+        </div>
     </div>
 </div>
