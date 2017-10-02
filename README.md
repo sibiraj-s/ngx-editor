@@ -39,6 +39,10 @@ Then in HTML
 <app-ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true" [(html)]="htmlContent"></app-ngx-editor>
 ```
 
+### Documentation
+Check [wiki][wiki] for more information 
+
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
 [github]: https://sibiraj-s.github.io/
+[wiki]:https://github.com/Sibiraj-S/ngx-editor/wiki/ngxEditor
