@@ -18,7 +18,9 @@
     "angular-editor",
     "angular-wysiwyg-editor",
     "wysiwyg-editor",
-    "ngx-editor"
+    "ngx-editor",
+    "angular2-wysiwyg-editor",
+    "angular4-wysiwyg-editor"
   ],
   "repository": {
     "type": "git",
