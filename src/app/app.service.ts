@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AppService {
 
-  private releaseURL = 'https://api.github.com/repos/Sibiraj-S/ngx-editor/releases';
+  private releaseURL = 'https://api.github.com/repos/Sibiraj-S/ngx-editor/releases/latest';
 
   constructor(private _http: HttpClient) { }
 
@@ -15,7 +15,7 @@ export class AppService {
     return this._http.get(this.releaseURL)
       .map((response) => {
         if (response && response['length'] !== 0) {
-          return response[0];
+          return response;
         } else {
           return [];
         }
