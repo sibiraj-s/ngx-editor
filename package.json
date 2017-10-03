@@ -11,6 +11,7 @@
     "e2e": "ng e2e",
     "docs": "ng build --prod --output-path docs --base-href ngx-editor",
     "build": "ng build --prod && sh scripts/build.sh",
+    "travis-test": "ng test --watch false",
     "precommit": "ng test --watch false && yarn run build",
     "cz": "git-cz"
   },
