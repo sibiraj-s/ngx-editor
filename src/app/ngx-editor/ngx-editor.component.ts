@@ -79,17 +79,22 @@ export class NgxEditorComponent implements OnInit {
   }
 
   /*
+   * return values for attributes that accepts boolean
+   */
+  getBooleanProperty(value) {
+    if (this[value] === false) {
+      return false;
+    }
+    if (this[value] === undefined) {
+      return this.config[value];
+    }
+    return true;
+  }
+
+  /*
    * ngOnInit
    */
   ngOnInit() {
-    if (this.spellcheck === false) {
-      this.config['spellcheck'] = false;
-    }
-
-    if (this.editable === false) {
-      this.config['editable'] = false;
-    }
-
     this.element.nativeElement.getElementsByClassName('textarea')[0].innerHTML = this.html || '';
   }
 

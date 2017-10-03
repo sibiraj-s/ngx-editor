@@ -33,7 +33,7 @@
       <button (click)="executeCommand('insertOrderedList')" title="Ordered List"><i class="fa fa-list-ol" aria-hidden="true"></i></button>
     </div>
   </div>
-  <div class="textarea" [attr.contenteditable]="editable || config['editable']" [attr.placeholder]="placeholder || config['placeholder']"
+  <div class="textarea" [attr.contenteditable]="getBooleanProperty('editable')" [attr.placeholder]="placeholder || config['placeholder']"
     (input)="html = $event.target.innerHTML; htmlContentChange($event.target.innerHTML)" [attr.translate]="translate || config['translate']"
-    [attr.spellcheck]="config['spellcheck']"></div>
+    [attr.spellcheck]="getBooleanProperty('spellcheck')"></div>
 </div>
