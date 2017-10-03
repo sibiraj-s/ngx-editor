@@ -14,9 +14,9 @@
 Install via Package managers such as [npm][npm] or [yarn][yarn]
 
 ```bash
-npm install ngx-editor@1.0.0-beta.2 --save
+npm install ngx-editor@1.0.0-beta.3 --save
 # or
-yarn add ngx-editor@1.0.0-beta.2
+yarn add ngx-editor@1.0.0-beta.3
 ```
 
 ### Usage

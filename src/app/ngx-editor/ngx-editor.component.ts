@@ -90,7 +90,7 @@ export class NgxEditorComponent implements OnInit {
       this.config['editable'] = false;
     }
 
-    this.element.nativeElement.getElementsByClassName('textarea')[0].innerHTML = this.html;
+    this.element.nativeElement.getElementsByClassName('textarea')[0].innerHTML = this.html || '';
   }
 
 }

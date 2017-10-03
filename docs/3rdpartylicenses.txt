@@ -67,14 +67,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-@angular/core@4.4.3
+@angular/core@4.4.4
 MIT
 MIT
 
-@angular/platform-browser@4.4.3
+@angular/platform-browser@4.4.4
 MIT
 MIT
 
-@angular/common@4.4.3
+@angular/common@4.4.4
 MIT
 MIT
