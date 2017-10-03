@@ -1,4 +1,4 @@
-<div class="ngx-editor" id="ngxEditor">
+<div class="ngx-editor" id="ngxEditor" [style.width]="config['width']" [style.minWidth]="config['minWidth']">
   <div class="toolbar">
     <div class="set">
       <button *ngIf="canEnableToolbarOptions('bold')" (click)="executeCommand('bold')" title="Bold"><i class="fa fa-bold" aria-hidden="true"></i></button>
