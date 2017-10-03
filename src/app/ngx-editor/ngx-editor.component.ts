@@ -49,7 +49,8 @@ export class NgxEditorComponent implements OnInit {
   @Input() spellcheck: boolean;
   @Input() placeholder: string;
   @Input() translate: string;
-
+  @Input() height: string;
+  @Input() minHeight: string;
   /*
    * update html on changes in content editable
    */
@@ -85,10 +86,12 @@ export class NgxEditorComponent implements OnInit {
     if (this[value] === false) {
       return false;
     }
-    if (this[value] === undefined) {
+    else if (this[value] === undefined) {
       return this.config[value];
     }
-    return true;
+    else {
+      return true;
+    }
   }
 
   /*
