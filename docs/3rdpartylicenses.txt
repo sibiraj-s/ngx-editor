@@ -71,10 +71,10 @@ THE SOFTWARE.
 MIT
 MIT
 
-@angular/platform-browser@4.4.4
+@angular/common@4.4.4
 MIT
 MIT
 
-@angular/common@4.4.4
+@angular/platform-browser@4.4.4
 MIT
 MIT
