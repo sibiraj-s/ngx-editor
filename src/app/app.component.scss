@@ -1,22 +1,23 @@
 .container {
     padding-top: 1rem;
+    .block {
+        margin-bottom: 1rem;
+    }
     .logo {
         text-align: center;
-        margin-bottom: 1rem;
         img {
             margin-bottom: 0.3rem;
         }
     }
-    .editor {
-        margin-bottom: 1rem;
-    }
-    .html {
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        padding: 0.5rem;
-        background-color: #f1f1f1;
-        max-height: 10rem;
-        overflow: auto;
+    .htmlblock {
+        .html {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.5rem;
+            background-color: #f1f1f1;
+            max-height: 10rem;
+            overflow: auto;
+        }
     }
 }
 

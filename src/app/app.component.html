@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="logo">
+    <div class="logo block">
         <img src="assets/icons/ngx-editor.svg" alt="ngx-Editor">
         <h6>WYSIWYG Editor for Angular Applications.</h6>
         <p>({{latestRelease['name']}})</p>
@@ -10,14 +10,18 @@
         <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/archive/master.zip" aria-label="Download Sibiraj-S/ngx-editor on GitHub">Download</a>
     </div>
 
-    <div class="editor">
+    <div class="editor block">
         <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(html)]="htmlContent"></app-ngx-editor>
     </div>
 
-    <div *ngIf="htmlContent">
+    <div *ngIf="htmlContent" class="htmlblock block">
         <h6>HTML Output</h6>
         <div class="html">
             {{htmlContent}}
         </div>
+    </div>
+    <div class="information block">
+        <h6>Documentation</h6>
+        <p>Check <a href="https://github.com/Sibiraj-S/ngx-editor/wiki/ngxEditor">wiki</a> for more information</p>
     </div>
 </div>
