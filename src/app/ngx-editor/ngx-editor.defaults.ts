@@ -2,7 +2,7 @@ export const ngxEditorConfig = {
   editable: true,
   spellcheck: true,
   height: 'auto',
-  minHeight: '0rem',
+  minHeight: '0',
   translate: 'yes',
   placeholder: 'Enter text here...',
   toolbar: [
