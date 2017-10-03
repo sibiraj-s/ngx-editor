@@ -3,6 +3,8 @@ export const ngxEditorConfig = {
   spellcheck: true,
   height: 'auto',
   minHeight: '0',
+  width: 'auto',
+  minWidth: '0',
   translate: 'yes',
   placeholder: 'Enter text here...',
   toolbar: [

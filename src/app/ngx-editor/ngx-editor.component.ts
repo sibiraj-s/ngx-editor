@@ -21,6 +21,8 @@ export class NgxEditorComponent implements OnInit {
   @Input() translate: string;
   @Input() height: string;
   @Input() minHeight: string;
+  @Input() width: string;
+  @Input() minWidth: string;
   @Input() toolbar: any;
 
   /*
