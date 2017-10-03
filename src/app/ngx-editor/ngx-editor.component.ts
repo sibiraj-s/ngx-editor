@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter } from '@angular/core';
 import { ngxEditorConfig } from './ngx-editor.defaults';
+import * as Utils from "./ngx-editor.utils";
 
 @Component({
   selector: 'app-ngx-editor',
@@ -11,9 +12,6 @@ export class NgxEditorComponent implements OnInit {
 
   @Output() htmlChange = new EventEmitter();
 
-  /*
-   * default configurations
-   */
   _config: any;
   _html: any;
 
@@ -83,15 +81,14 @@ export class NgxEditorComponent implements OnInit {
    * return values for attributes that accepts boolean
    */
   getBooleanProperty(value) {
-    if (this[value] === false) {
-      return false;
-    }
-    else if (this[value] === undefined) {
-      return this.config[value];
-    }
-    else {
-      return true;
-    }
+    return Utils.getBooleanProperty(value, this.config);
+  }
+
+  /*
+   * enable or diable toolbar based on configuration
+   */
+  canEnableToolbarOptions(value) {
+    return Utils.canEnableToolbarOptions(value, this.config['toolbar']);
   }
 
   /*

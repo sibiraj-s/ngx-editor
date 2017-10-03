@@ -51,28 +51,6 @@ $break-xtra-small: "screen and (max-width : 320px)";
                 }
             }
         }
-        &.responsive {
-            @media #{$break-large} {
-                .no-lg-device {
-                    display: none;
-                }
-            }
-            @media #{$break-medium} {
-                .no-md-device {
-                    display: none;
-                }
-            }
-            @media #{$break-small} {
-                .no-sm-device {
-                    display: none;
-                }
-            }
-            @media #{$break-xtra-small} {
-                .no-xs-device {
-                    display: none;
-                }
-            }
-        }
     }
     .textarea {
         min-height: 5rem;
