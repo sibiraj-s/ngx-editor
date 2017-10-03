@@ -33,7 +33,6 @@
       <button *ngIf="canEnableToolbarOptions('unorderedList')" (click)="executeCommand('insertOrderedList')" title="Ordered List"><i class="fa fa-list-ol" aria-hidden="true"></i></button>
     </div>
   </div>
-  <div class="textarea" [attr.contenteditable]="getBooleanProperty('editable')" [attr.placeholder]="placeholder || config['placeholder']"
-    (input)="html = $event.target.innerHTML; htmlContentChange($event.target.innerHTML)" [attr.translate]="translate || config['translate']"
-    [attr.spellcheck]="getBooleanProperty('spellcheck')" [style.height]="height || config['height']" [style.minHeight]="minHeight || config['minHeight']"></div>
+  <div class="textarea" [attr.contenteditable]="config['editable']" [attr.placeholder]="config['placeholder']" (input)="html = $event.target.innerHTML; htmlContentChange($event.target.innerHTML)"
+    [attr.translate]="config['translate']" [attr.spellcheck]="config['spellcheck']" [style.height]="config['height']" [style.minHeight]="minHeight || config['minHeight']"></div>
 </div>

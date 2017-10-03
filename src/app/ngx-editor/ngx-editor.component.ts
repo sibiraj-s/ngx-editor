@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter } from '@angular/core';
 import { ngxEditorConfig } from './ngx-editor.defaults';
-import * as Utils from "./ngx-editor.utils";
+import * as Utils from './ngx-editor.utils';
 
 @Component({
   selector: 'app-ngx-editor',
@@ -15,6 +15,14 @@ export class NgxEditorComponent implements OnInit {
   _config: any;
   _html: any;
 
+  @Input() editable: boolean;
+  @Input() spellcheck: boolean;
+  @Input() placeholder: string;
+  @Input() translate: string;
+  @Input() height: string;
+  @Input() minHeight: string;
+  @Input() toolbar: any;
+
   /*
    * set default values
    */
@@ -24,8 +32,13 @@ export class NgxEditorComponent implements OnInit {
   set config(value: JSON) {
 
     for (const i in ngxEditorConfig) {
-      if (!value.hasOwnProperty(i)) {
-        value[i] = ngxEditorConfig[i];
+      if (i) {
+        if (this[i]) {
+          value[i] = this[i];
+        }
+        if (!value.hasOwnProperty(i)) {
+          value[i] = ngxEditorConfig[i];
+        }
       }
     }
     this._config = value;
@@ -43,12 +56,7 @@ export class NgxEditorComponent implements OnInit {
     return this._html;
   }
 
-  @Input() editable: boolean;
-  @Input() spellcheck: boolean;
-  @Input() placeholder: string;
-  @Input() translate: string;
-  @Input() height: string;
-  @Input() minHeight: string;
+
   /*
    * update html on changes in content editable
    */
@@ -75,13 +83,6 @@ export class NgxEditorComponent implements OnInit {
 
   removeQuote() {
     document.execCommand('formatBlock', false, 'div');
-  }
-
-  /*
-   * return values for attributes that accepts boolean
-   */
-  getBooleanProperty(value) {
-    return Utils.getBooleanProperty(value, this.config);
   }
 
   /*

@@ -15,10 +15,10 @@ export class AppComponent implements OnInit {
   editorConfig = {
     editable: true,
     spellcheck: false,
-    height: "5rem",
-    minHeight: "2rem",
-    placeholder: "Enter text here...",
-    translate: "no"
+    height: '5rem',
+    minHeight: '2rem',
+    placeholder: 'Enter text here...',
+    translate: 'no'
   };
 
   htmlContent = '<span>WYSIWYG Editor for Angular Applications.</span>';
