@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o --port 5000 --host 0.0.0.0",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
