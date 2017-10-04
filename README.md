@@ -1,11 +1,22 @@
 # NgxEditor
 
 <p align="center">
- <a href="https://github.com/Sibiraj-S/ngx-editor">
+  <a href="https://github.com/Sibiraj-S/ngx-editor">
    <img src="https://raw.githubusercontent.com/Sibiraj-S/ngx-editor/master/src/assets/icons/ngx-editor.png" alt="ngxEditor">
- </a>
+  </a>
 </p>
 <p align="center">A Simple WYSIWYG Editor for Angular2+ Applications.</p>
+<p align="center">
+  <a href="https://travis-ci.org/Sibiraj-S/ngx-editor">
+    <img alt="Build Status" src="https://travis-ci.org/Sibiraj-S/ngx-editor.svg?branch=master">
+  </a>
+  <a href="https://www.npmjs.com/package/ngx-editor">
+    <img alt="npm version" src="https://img.shields.io/npm/v/ngx-editor.svg">
+  </a>
+  <a href="https://www.npmjs.com/package/ngx-editor">
+    <img alt="npm" src="https://img.shields.io/npm/dm/ngx-editor.svg">
+  </a>
+</p>
 
 ## Getting Started
 
