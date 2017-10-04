@@ -16,6 +16,9 @@
   <a href="https://www.npmjs.com/package/ngx-editor">
     <img alt="npm" src="https://img.shields.io/npm/dm/ngx-editor.svg">
   </a>
+  <a href="https://github.com/Sibiraj-S/ngx-editor/blob/master/LICENSE">
+    <img alt="licence" src="https://img.shields.io/npm/l/ngx-editor.svg">
+  </a>
 </p>
 
 ## Getting Started
