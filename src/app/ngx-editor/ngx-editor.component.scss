@@ -46,9 +46,7 @@
         min-height: 5rem;
         padding: 0.5rem 0.8rem 1rem 0.8rem;
         border: 1px solid #ddd;
-        border-top: transparent;
-        resize: vertical;
-        overflow: auto;
+        border-top: transparent !important;
         background-color: #fff;
         &:focus,
         &.focus {
