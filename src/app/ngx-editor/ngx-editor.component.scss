@@ -59,23 +59,6 @@
             border-left: 0.2em solid #dfe2e5;
             padding-left: 0.5rem;
         }
-        .grabber {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            margin-left: -0.8rem;
-            cursor: s-resize;
-            height: 9px;
-            width: 100%;
-            border-top: 1px solid #f1f1f1;
-            overflow: hidden;
-            background-color: #eff0f1;
-            background-image: url("../../assets/grabber/grabber.png");
-            background-image: url("../../assets/grabber/grabber.svg"), none;
-            background-size: initial;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
     }
 }
 
