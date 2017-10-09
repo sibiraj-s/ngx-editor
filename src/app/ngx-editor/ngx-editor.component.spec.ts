@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NgxEditorComponent } from './ngx-editor.component';
+import { NgxGrippieComponent } from './ngx-grippie/ngx-grippie.component';
 
 describe('NgxEditorComponent', () => {
   let component: NgxEditorComponent;
@@ -8,7 +9,7 @@ describe('NgxEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NgxEditorComponent]
+      declarations: [NgxEditorComponent, NgxGrippieComponent]
     })
       .compileComponents();
   }));
