@@ -1,0 +1,13 @@
+.grippie {
+    height: 9px;
+    background-color: #f1f1f1;
+    position: relative;
+    text-align: center;
+    cursor: s-resize;
+    border: 1px solid #ddd;
+    border-top: transparent;
+    svg {
+        position: absolute;
+        top: 1.5px;
+    }
+}

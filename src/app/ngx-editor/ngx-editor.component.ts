@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter } from '@angular/core';
+import { Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter, ViewChild } from '@angular/core';
 import { ngxEditorConfig } from './ngx-editor.defaults';
 import * as Utils from './ngx-editor.utils';
 
@@ -12,8 +12,11 @@ export class NgxEditorComponent implements OnInit {
 
   @Output() htmlChange = new EventEmitter();
 
+  @ViewChild('ngxTextArea') textArea: any;
+
   _config: any;
   _html: any;
+  _resizer: string;
 
   @Input() editable: boolean;
   @Input() spellcheck: boolean;
@@ -25,9 +28,20 @@ export class NgxEditorComponent implements OnInit {
   @Input() minWidth: string;
   @Input() toolbar: any;
 
-  /*
-   * set default values
-   */
+  // set resizer
+  @Input()
+  set resizer(value: string) {
+    console.log(value);
+    if (value === 'basic') {
+      this._resizer = value;
+    }
+    else {
+      this._resizer = 'stack'
+    }
+  }
+  get resizer(): string {
+    return this._resizer || 'stack';
+  }
 
   // set configuration
   @Input()
@@ -58,7 +72,6 @@ export class NgxEditorComponent implements OnInit {
     return this._html;
   }
 
-
   /*
    * update html on changes in content editable
    */
@@ -70,7 +83,7 @@ export class NgxEditorComponent implements OnInit {
     }
   }
 
-  constructor(private element: ElementRef) { }
+  constructor() { }
 
   executeCommand(commandName) {
     const isExecuted = document.execCommand(commandName, false, null);
@@ -95,10 +108,30 @@ export class NgxEditorComponent implements OnInit {
   }
 
   /*
+   * resizing text area
+   */
+  resizeTextArea(offsetY) {
+    let newHeight = parseInt(this.height);
+    newHeight += offsetY;
+    this.height = newHeight + 'px';
+    this.textArea.nativeElement.style.height = this.height;
+  }
+
+  // return vertical if the element is the resizer property is set to basic
+  canResize() {
+    if (this.resizer === 'basic') {
+      return 'vertical';
+    }
+    return false;
+  }
+
+  /*
    * ngOnInit
    */
   ngOnInit() {
-    this.element.nativeElement.getElementsByClassName('textarea')[0].innerHTML = this.html || '';
+    this.textArea.nativeElement.innerHTML = this.html || '';
+
+    this.height = this.height || this.textArea.nativeElement.offsetHeight;
   }
 
 }
