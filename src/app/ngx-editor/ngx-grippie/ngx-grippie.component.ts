@@ -6,6 +6,7 @@ import { NgxEditorComponent } from '../ngx-editor.component';
   templateUrl: './ngx-grippie.component.html',
   styleUrls: ['./ngx-grippie.component.scss']
 })
+
 export class NgxGrippieComponent {
 
   height: number;
@@ -35,6 +36,5 @@ export class NgxGrippieComponent {
     this.oldY = event.clientY;
     event.preventDefault();
   }
-
 
 }
