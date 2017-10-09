@@ -48,6 +48,8 @@
         border: 1px solid #ddd;
         border-top: transparent !important;
         background-color: #fff;
+        overflow: auto;
+        resize: vertical;
         &:focus,
         &.focus {
             outline: 0;
