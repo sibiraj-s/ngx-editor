@@ -106,15 +106,21 @@ export class NgxEditorComponent implements OnInit {
   createLink() {
     const selection = document.getSelection();
 
-    if (selection['type'] === 'None') {
-      this.createMessage('No selection made');
-    } else {
-      const linkURL = prompt('Enter URL', 'http://');
+    if (selection.anchorNode.parentElement.tagName === 'A') {
+      const linkURL = prompt('Enter URL', selection.anchorNode.parentElement.getAttribute('href'))
       if (linkURL) {
         document.execCommand('createLink', false, linkURL);
       }
+    } else {
+      if (selection['type'] === 'None') {
+        this.createMessage('No selection made');
+      } else {
+        const linkURL = prompt('Enter URL', 'http://');
+        if (linkURL) {
+          document.execCommand('createLink', false, linkURL);
+        }
+      }
     }
-
   }
 
   /*
