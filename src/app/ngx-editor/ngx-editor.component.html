@@ -1,4 +1,6 @@
 <div class="ngx-editor" id="ngxEditor" [style.width]="config['width']" [style.minWidth]="config['minWidth']">
+
+  <!-- toolbar -->
   <div class="ngx-toolbar">
     <div class="ngx-toolbar-set">
       <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('bold')" (click)="executeCommand('bold')" title="Bold">
@@ -91,9 +93,22 @@
         <i class="fa fa-list-ol" aria-hidden="true"></i>
       </button>
     </div>
+    <div class="ngx-toolbar-set">
+      <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" (click)="createLink()" title="Insert Link">
+        <i class="fa fa-link" aria-hidden="true"></i>
+      </button>
+    </div>
   </div>
+
+  <!-- text area -->
   <div class="ngx-editor-textarea" [attr.contenteditable]="config['editable']" [attr.placeholder]="config['placeholder']" (input)="html = $event.target.innerHTML; htmlContentChange($event.target.innerHTML)"
     [attr.translate]="config['translate']" [attr.spellcheck]="config['spellcheck']" [style.height]="config['height']" [style.minHeight]="minHeight || config['minHeight']"
     [style.resize]="canResize()" #ngxTextArea></div>
+
+  <!-- message box -->
+  <div class="ngx-editor-message" *ngIf="ngxMessage" (dblclick)="clearMessage()">
+    {{ngxMessage}}
+  </div>
+
   <app-ngx-grippie *ngIf="resizer === 'stack'"></app-ngx-grippie>
 </div>

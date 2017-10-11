@@ -29,8 +29,8 @@
                 border-right: 1px solid #ddd;
                 &:hover {
                     cursor: pointer;
-                    background-color: #e3e3e3;
-                    transition: 0.5s ease;
+                    background-color: #f1f1f1;
+                    transition: 0.2s ease;
                 }
                 &:focus,
                 &.focus {
@@ -38,6 +38,14 @@
                 }
                 &:last-child {
                     border-right: transparent;
+                }
+                &:first-child {
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                }
+                &:last-child {
+                    border-top-right-radius: 5px;
+                    border-bottom-right-radius: 5px;
                 }
             }
         }
@@ -58,5 +66,14 @@
             border-left: 0.2em solid #dfe2e5;
             padding-left: 0.5rem;
         }
+    }
+    .ngx-editor-message {
+        font-size: 80%;
+        background-color: #f1f1f1;
+        border: 1px solid #ddd;
+        border-top: transparent;
+        padding: 0 0.5rem;
+        padding-bottom: 0.1rem;
+        transition: 0.5s ease-in;
     }
 }

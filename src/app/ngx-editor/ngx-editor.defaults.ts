@@ -11,6 +11,7 @@ export const ngxEditorConfig = {
     ['bold', 'italic', 'underline', 'strikeThrough', 'superscript', 'subscript'],
     ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'indent', 'outdent'],
     ['cut', 'copy', 'delete', 'removeFormat', 'undo', 'redo'],
-    ['paragraph', 'blockquote', 'removeBlockquote', 'horizontalLine', 'orderedList', 'unorderedList']
+    ['paragraph', 'blockquote', 'removeBlockquote', 'horizontalLine', 'orderedList', 'unorderedList'],
+    ['link']
   ]
 };

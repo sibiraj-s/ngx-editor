@@ -17,6 +17,7 @@ export class NgxEditorComponent implements OnInit {
   _config: any;
   _html: any;
   _resizer: string;
+  ngxMessage: string;
 
   @Input() editable: boolean;
   @Input() spellcheck: boolean;
@@ -85,19 +86,49 @@ export class NgxEditorComponent implements OnInit {
 
   constructor() { }
 
+  /*
+   * editor actions
+   */
   executeCommand(commandName) {
-    const isExecuted = document.execCommand(commandName, false, null);
+    document.execCommand(commandName, false, null);
   }
 
-  /*
-   * blockquote
-   */
+  // blockquote
   blockQuote() {
     document.execCommand('formatBlock', false, '<blockquote>');
   }
 
   removeQuote() {
     document.execCommand('formatBlock', false, 'div');
+  }
+
+  // insert link
+  createLink() {
+    const selection = document.getSelection();
+
+    if (selection['type'] === 'None') {
+      this.createMessage('No selection made');
+    } else {
+      const linkURL = prompt('Enter URL', 'http://');
+      if (linkURL) {
+        document.execCommand('createLink', false, linkURL);
+      }
+    }
+
+  }
+
+  /*
+   * message box
+   */
+  createMessage(message) {
+    this.ngxMessage = message;
+    setTimeout(() => {
+      this.clearMessage();
+    }, 5000)
+  }
+
+  clearMessage() {
+    this.ngxMessage = undefined;
   }
 
   /*
