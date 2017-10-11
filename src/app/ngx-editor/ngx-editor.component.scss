@@ -47,6 +47,11 @@
                     border-top-right-radius: 5px;
                     border-bottom-right-radius: 5px;
                 }
+                &:disabled {
+                    background-color: #f5f5f5;
+                    pointer-events: none;
+                    cursor: not-allowed;
+                }
             }
         }
     }

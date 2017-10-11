@@ -18,6 +18,7 @@ export class NgxEditorComponent implements OnInit {
   _html: any;
   _resizer: string;
   ngxMessage: string;
+  enableToolbar = false;
 
   @Input() editable: boolean;
   @Input() spellcheck: boolean;
@@ -145,6 +146,17 @@ export class NgxEditorComponent implements OnInit {
 
   clearMessage() {
     this.ngxMessage = undefined;
+  }
+
+  /*
+   * focus event
+   */
+  onFocus() {
+    this.enableToolbar = true;
+  }
+
+  onFocusOut() {
+    this.enableToolbar = false;
   }
 
   /*
