@@ -84,7 +84,7 @@ export class NgxEditorComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor(private _element: ElementRef) { }
 
   /*
    * editor actions
@@ -155,8 +155,12 @@ export class NgxEditorComponent implements OnInit {
     this.enableToolbar = true;
   }
 
-  onFocusOut() {
-    this.enableToolbar = false;
+  @HostListener('document:click', ['$event']) onDocumentClick(event) {
+    if (this._element.nativeElement.contains(event.target)) {
+      this.enableToolbar = true;
+    } else {
+      this.enableToolbar = false;
+    }
   }
 
   /*
