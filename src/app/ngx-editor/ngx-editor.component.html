@@ -106,6 +106,10 @@
         [disabled]="!enableToolbar">
         <i class="fa fa-link" aria-hidden="true"></i>
       </button>
+      <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unlink')" (click)="executeCommand('unlink')" title="Unlink"
+        [disabled]="!enableToolbar">
+        <i class="fa fa-chain-broken" aria-hidden="true"></i>
+      </button>
       <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="insertImage()" title="Insert Image" [disabled]="!enableToolbar">
         <i class="fa fa-picture-o" aria-hidden="true"></i>
       </button>
