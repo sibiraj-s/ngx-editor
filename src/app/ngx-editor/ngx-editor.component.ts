@@ -35,9 +35,8 @@ export class NgxEditorComponent implements OnInit {
     console.log(value);
     if (value === 'basic') {
       this._resizer = value;
-    }
-    else {
-      this._resizer = 'stack'
+    } else {
+      this._resizer = 'stack';
     }
   }
   get resizer(): string {
@@ -107,7 +106,7 @@ export class NgxEditorComponent implements OnInit {
     const selection = document.getSelection();
 
     if (selection.anchorNode.parentElement.tagName === 'A') {
-      const linkURL = prompt('Enter URL', selection.anchorNode.parentElement.getAttribute('href'))
+      const linkURL = prompt('Enter URL', selection.anchorNode.parentElement.getAttribute('href'));
       if (linkURL) {
         document.execCommand('createLink', false, linkURL);
       }
@@ -123,6 +122,17 @@ export class NgxEditorComponent implements OnInit {
     }
   }
 
+  // insert image
+  insertImage() {
+    const imageURI = prompt('Enter URL', 'http://');
+    if (imageURI) {
+      const inserted = document.execCommand('insertImage', false, imageURI);
+      if (!inserted) {
+        this.createMessage('Invalid URL');
+      }
+    }
+  }
+
   /*
    * message box
    */
@@ -130,7 +140,7 @@ export class NgxEditorComponent implements OnInit {
     this.ngxMessage = message;
     setTimeout(() => {
       this.clearMessage();
-    }, 5000)
+    }, 5000);
   }
 
   clearMessage() {
@@ -148,7 +158,7 @@ export class NgxEditorComponent implements OnInit {
    * resizing text area
    */
   resizeTextArea(offsetY) {
-    let newHeight = parseInt(this.height);
+    let newHeight = parseInt(this.height, 10);
     newHeight += offsetY;
     this.height = newHeight + 'px';
     this.textArea.nativeElement.style.height = this.height;
@@ -169,6 +179,8 @@ export class NgxEditorComponent implements OnInit {
     this.textArea.nativeElement.innerHTML = this.html || '';
 
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
+
+    document.execCommand('enableObjectResizing', true, true);
   }
 
 }

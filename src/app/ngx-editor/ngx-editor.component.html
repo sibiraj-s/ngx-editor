@@ -97,6 +97,9 @@
       <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" (click)="createLink()" title="Insert/Edit Link">
         <i class="fa fa-link" aria-hidden="true"></i>
       </button>
+      <button class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="insertImage()" title="Insert Image">
+        <i class="fa fa-picture-o" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
 

@@ -22,7 +22,7 @@ export class NgxGrippieComponent {
       return;
     }
 
-    this._editorComponent.resizeTextArea(event.clientY - this.oldY)
+    this._editorComponent.resizeTextArea(event.clientY - this.oldY);
     this.oldY = event.clientY;
   }
 
