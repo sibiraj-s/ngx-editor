@@ -1,6 +1,6 @@
 {
   "name": "ngx-editor",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "WYSIWYG Editor for Angular Applications",
   "license": "MIT",
   "scripts": {
@@ -43,18 +43,18 @@
     "@angular/platform-browser-dynamic": "^4.4.4",
     "@angular/router": "^4.4.4",
     "bootstrap": "4.0.0-beta",
-    "core-js": "^2.5.1",
+    "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
-    "rxjs": "^5.4.3",
-    "zone.js": "^0.8.18"
+    "rxjs": "^5.4.2",
+    "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "1.4.6",
+    "@angular/cli": "1.4.9",
     "@angular/compiler-cli": "^4.4.4",
     "@angular/language-service": "^4.4.4",
     "@types/jasmine": "~2.6.0",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "~8.0.32",
+    "@types/node": "~6.0.60",
     "codelyzer": "~3.2.0",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.0.0",
@@ -70,9 +70,9 @@
     "ng-packagr": "^1.4.1",
     "protractor": "~5.1.2",
     "rimraf": "^2.6.2",
-    "ts-node": "~3.3.0",
+    "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.5.3"
+    "typescript": "~2.3.3"
   },
   "config": {
     "commitizen": {
