@@ -125,7 +125,7 @@ export class NgxEditorComponent implements OnInit {
 
   // insert image
   insertImage() {
-    const imageURI = prompt('Enter URL', 'http://');
+    const imageURI = prompt('Enter Image URL', 'http://');
     if (imageURI) {
       const inserted = document.execCommand('insertImage', false, imageURI);
       if (!inserted) {
