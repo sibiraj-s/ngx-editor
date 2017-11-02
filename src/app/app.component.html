@@ -1,29 +1,29 @@
 <div class="container">
-    <div class="logo block">
-        <img src="assets/icons/ngx-editor.svg" alt="ngx-Editor">
-        <h6>WYSIWYG Editor for Angular Applications.</h6>
-        <p>(Currently -
-            <a href="https://github.com/Sibiraj-S/ngx-editor/releases/latest">{{latestRelease['name']}}</a>) </p>
-        <a class="github-button" href="https://github.com/Sibiraj-S" aria-label="Follow @Sibiraj-S on GitHub">Follow @Sibiraj-S</a>
-        <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/fork" aria-label="Fork Sibiraj-S/ngx-editor on GitHub">Fork</a>
-        <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor" aria-label="Star Sibiraj-S/ngx-editor on GitHub">Star</a>
-        <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/issues" data-show-count="true" aria-label="Issue Sibiraj-S/ngx-editor on GitHub">Issue</a>
-        <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/archive/master.zip" aria-label="Download Sibiraj-S/ngx-editor on GitHub">Download</a>
-    </div>
+  <div class="logo block">
+    <img src="assets/icons/ngx-editor.svg" alt="ngx-Editor">
+    <h6>WYSIWYG Editor for Angular Applications.</h6>
+    <p>(Currently -
+      <a href="https://github.com/Sibiraj-S/ngx-editor/releases/latest">{{latestRelease['name']}}</a>) </p>
+    <a class="github-button" href="https://github.com/Sibiraj-S" aria-label="Follow @Sibiraj-S on GitHub">Follow @Sibiraj-S</a>
+    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/fork" aria-label="Fork Sibiraj-S/ngx-editor on GitHub">Fork</a>
+    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor" aria-label="Star Sibiraj-S/ngx-editor on GitHub">Star</a>
+    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/issues" data-show-count="true" aria-label="Issue Sibiraj-S/ngx-editor on GitHub">Issue</a>
+    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/archive/master.zip" aria-label="Download Sibiraj-S/ngx-editor on GitHub">Download</a>
+  </div>
 
-    <div class="editor block">
-        <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(html)]="htmlContent"></app-ngx-editor>
-    </div>
+  <div class="editor block">
+    <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(html)]="htmlContent"></app-ngx-editor>
+  </div>
 
-    <div *ngIf="htmlContent" class="htmlblock block">
-        <h6>HTML Output</h6>
-        <div class="html">
-            {{htmlContent}}
-        </div>
+  <div *ngIf="htmlContent" class="htmlblock block">
+    <h6>HTML Output</h6>
+    <div class="html">
+      {{htmlContent}}
     </div>
-    <div class="information block">
-        <h6>Documentation</h6>
-        <p>Check
-            <a href="https://github.com/Sibiraj-S/ngx-editor/wiki/ngxEditor">wiki</a> for more information</p>
-    </div>
+  </div>
+  <div class="information block">
+    <h6>Documentation</h6>
+    <p>Check
+      <a href="https://github.com/Sibiraj-S/ngx-editor/wiki/ngxEditor">wiki</a> for more information</p>
+  </div>
 </div>

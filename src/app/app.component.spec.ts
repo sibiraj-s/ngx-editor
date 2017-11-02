@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NgxEditorModule, HttpClientModule],
+      imports: [HttpClientModule, NgxEditorModule],
       declarations: [
         AppComponent
       ],
@@ -23,8 +23,8 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('ngx-editor');
-  }));
 
+  }));
   it('should render title in a h1 tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();

@@ -7,14 +7,8 @@ import { NgxGrippieComponent } from './ngx-grippie/ngx-grippie.component';
   imports: [
     CommonModule
   ],
-  declarations: [
-    NgxEditorComponent,
-    NgxGrippieComponent
-  ],
-  exports: [
-    NgxEditorComponent,
-    NgxGrippieComponent
-  ]
+  declarations: [NgxEditorComponent, NgxGrippieComponent],
+  exports: [NgxEditorComponent, NgxGrippieComponent]
 })
 
 export class NgxEditorModule { }
