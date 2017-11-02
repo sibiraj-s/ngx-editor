@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-
 import { NgxEditorModule } from './ngx-editor/ngx-editor.module';
 
 @NgModule({
@@ -12,8 +11,8 @@ import { NgxEditorModule } from './ngx-editor/ngx-editor.module';
   ],
   imports: [
     BrowserModule,
-    NgxEditorModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
