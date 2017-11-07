@@ -156,7 +156,7 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/tsc-wrapped@^4.2.0":
+"@angular/tsc-wrapped@^4.4.5":
   version "4.4.6"
   resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-4.4.6.tgz#16787cbbf50bdc7e738123b19c32527f244e178d"
   dependencies:
@@ -1132,7 +1132,7 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@2.11.x, commander@^2.9.0, commander@~2.11.0:
+commander@2.11.x, commander@^2.11.0, commander@^2.9.0, commander@~2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
 
@@ -4153,20 +4153,21 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-ng-packagr@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-1.4.1.tgz#c2a7211cf683d9c99bc79e8ed0204145f7cf04b7"
+ng-packagr@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-1.5.0.tgz#1becf7a1e87d406397a6ca2b4414b0af8348e28a"
   dependencies:
-    "@angular/tsc-wrapped" "^4.2.0"
+    "@angular/tsc-wrapped" "^4.4.5"
     "@ngtools/json-schema" "^1.1.0"
     autoprefixer "^7.1.1"
     browserslist "^2.1.5"
+    commander "^2.11.0"
     cpx "^1.5.0"
+    fs-extra "^4.0.2"
     glob "^7.1.2"
     gulp-inline-ng2-template "^4.0.0"
     less "^2.7.2"
     lodash "^4.17.4"
-    minimist "^1.2.0"
     node-sass "^4.5.3"
     postcss "^6.0.2"
     read-file "^0.2.0"
@@ -4177,7 +4178,7 @@ ng-packagr@^1.4.1:
     sorcery "^0.10.0"
     stylus "^0.54.5"
     ts-node "^3.0.4"
-    typescript "^2.3.2"
+    typescript "^2.3.4"
     uglify-js "^3.0.7"
     vinyl-fs "^2.4.4"
 
@@ -6400,7 +6401,7 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@^2.3.2, typescript@^2.3.3:
+typescript@^2.3.3, typescript@^2.3.4:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.6.1.tgz#ef39cdea27abac0b500242d6726ab90e0c846631"
 
