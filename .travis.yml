@@ -18,4 +18,4 @@ before_script:
   - yarn install
 
 script:
-  - yarn run travis-test
+  - yarn run test:single-run

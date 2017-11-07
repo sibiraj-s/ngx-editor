@@ -10,9 +10,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "docs": "ng build --prod --output-path docs --base-href ngx-editor",
-    "build": "ng build --prod && sh scripts/build.sh",
-    "travis-test": "ng test --watch false",
-    "precommit": "ng test --watch false && yarn run build",
+    "build": "ng build --prod",
+    "build:package": "ng build --prod && sh scripts/build.sh",
+    "test:single-run": "ng test --watch false",
+    "precommit": "ng test --watch false && yarn run build:package",
     "cz": "git-cz",
     "release": "sh scripts/release.sh"
   },
