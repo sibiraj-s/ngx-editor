@@ -1,5 +1,5 @@
-import { Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter, ViewChild } from '@angular/core';
-import { ngxEditorConfig } from './ngx-editor.defaults';
+import {Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter, ViewChild} from '@angular/core';
+import {ngxEditorConfig} from './ngx-editor.defaults';
 import {CommandExecutor} from './command-executor';
 
 @Component({
@@ -19,7 +19,7 @@ export class NgxEditorComponent implements OnInit {
   _resizer: string;
   ngxMessage: string;
   enableToolbar = false;
-  commandExecutor = new CommandExecutor(document);
+  commandExecutor = new CommandExecutor();
 
   @Input() editable: boolean;
   @Input() spellcheck: boolean;
@@ -41,6 +41,7 @@ export class NgxEditorComponent implements OnInit {
       this._resizer = 'stack';
     }
   }
+
   get resizer(): string {
     return this._resizer || 'stack';
   }
@@ -61,6 +62,7 @@ export class NgxEditorComponent implements OnInit {
     }
     this._config = value;
   }
+
   get config(): JSON {
     return this._config || ngxEditorConfig;
   }
@@ -70,6 +72,7 @@ export class NgxEditorComponent implements OnInit {
   set html(value: any) {
     this._html = value;
   }
+
   get html(): any {
     return this._html;
   }
@@ -85,14 +88,9 @@ export class NgxEditorComponent implements OnInit {
     }
   }
 
-  constructor(private _element: ElementRef) { }
-
-  /*
-   * editor actions
-   */
-  executeCommand(commandName) {
-    this.commandExecutor.execute(commandName);
+  constructor(private _element: ElementRef) {
   }
+
   /*
    * message box
    */
@@ -114,7 +112,8 @@ export class NgxEditorComponent implements OnInit {
     this.enableToolbar = true;
   }
 
-  @HostListener('document:click', ['$event']) onDocumentClick(event) {
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event) {
     if (this._element.nativeElement.contains(event.target)) {
       this.enableToolbar = true;
     } else {
@@ -148,7 +147,17 @@ export class NgxEditorComponent implements OnInit {
 
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
 
-    document.execCommand('enableObjectResizing', true, true);
+    this.executeCommand('enableObjectResizing');
   }
 
+  /*
+ * editor actions
+ */
+  executeCommand(commandName) {
+    try {
+      this.commandExecutor.execute(commandName);
+    } catch (error) {
+      this.ngxMessage = error && error.message;
+    }
+  }
 }
