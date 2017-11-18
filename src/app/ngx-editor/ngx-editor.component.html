@@ -7,9 +7,6 @@
     [style.resize]="canResize()" (focus)="onFocus()" #ngxTextArea></div>
 
   <!-- message box -->
-  <div class="ngx-editor-message" *ngIf="ngxMessage" (dblclick)="clearMessage()">
-    {{ngxMessage}}
-  </div>
-
+  <app-ngx-editor-message *ngIf="ngxMessage" [ngxMessage]="ngxMessage"></app-ngx-editor-message>
   <app-ngx-grippie *ngIf="resizer === 'stack'"></app-ngx-grippie>
 </div>
