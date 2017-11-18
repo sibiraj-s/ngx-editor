@@ -1,6 +1,5 @@
 import { Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter, ViewChild } from '@angular/core';
 import { ngxEditorConfig } from './ngx-editor.defaults';
-import * as Utils from './ngx-editor.utils';
 
 @Component({
   selector: 'app-ngx-editor',
@@ -161,13 +160,6 @@ export class NgxEditorComponent implements OnInit {
     } else {
       this.enableToolbar = false;
     }
-  }
-
-  /*
-   * enable or diable toolbar based on configuration
-   */
-  canEnableToolbarOptions(value) {
-    return Utils.canEnableToolbarOptions(value, this.config['toolbar']);
   }
 
   /*

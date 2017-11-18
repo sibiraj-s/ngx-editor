@@ -13,7 +13,6 @@
     "build": "ng build --prod",
     "build:package": "ng build --prod && sh scripts/build.sh",
     "test:single-run": "ng test --watch false",
-    "precommit": "ng test --watch false && yarn run build:package",
     "cz": "git-cz",
     "release": "sh scripts/release.sh"
   },
