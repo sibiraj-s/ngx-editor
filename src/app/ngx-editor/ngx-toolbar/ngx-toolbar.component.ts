@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import * as Utils from './ngx-editor.utils';
 
 @Component({
@@ -10,6 +10,7 @@ export class NgxToolbarComponent {
 
   @Input() config: any;
   @Input() enableToolbar = false;
+  @Output('triggerCommand') _triggerCommand = new EventEmitter();
 
   constructor() {
   }
@@ -19,5 +20,9 @@ export class NgxToolbarComponent {
  */
   canEnableToolbarOptions(value) {
     return Utils.canEnableToolbarOptions(value, this.config['toolbar']);
+  }
+
+  triggerCommand(command: string): void {
+    this._triggerCommand.emit(command);
   }
 }
