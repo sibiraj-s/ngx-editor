@@ -114,11 +114,7 @@ export class NgxEditorComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event) {
-    if (this._element.nativeElement.contains(event.target)) {
-      this.enableToolbar = true;
-    } else {
-      this.enableToolbar = false;
-    }
+    this.enableToolbar = !!this._element.nativeElement.contains(event.target);
   }
 
   /*
