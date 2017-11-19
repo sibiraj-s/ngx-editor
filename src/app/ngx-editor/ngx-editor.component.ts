@@ -91,16 +91,6 @@ export class NgxEditorComponent implements OnInit {
   constructor(private _element: ElementRef) {
   }
 
-  /*
-   * message box
-   */
-  createMessage(message) {
-    this.ngxMessage = message;
-    setTimeout(() => {
-      this.clearMessage();
-    }, 5000);
-  }
-
   clearMessage() {
     this.ngxMessage = undefined;
   }
@@ -153,7 +143,17 @@ export class NgxEditorComponent implements OnInit {
     try {
       this.commandExecutor.execute(commandName);
     } catch (error) {
-      this.ngxMessage = error && error.message;
+      this.createMessage(error.message);
     }
+  }
+
+  /*
+ * message box
+ */
+  createMessage(message) {
+    this.ngxMessage = message;
+    setTimeout(() => {
+      this.clearMessage();
+    }, 5000);
   }
 }
