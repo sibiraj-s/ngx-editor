@@ -1,3 +1,6 @@
+import {Injectable} from '@angular/core';
+
+@Injectable()
 export class CommandExecutor {
   public execute(command: string): void {
     if (command === 'enableObjectResizing') {
@@ -28,18 +31,17 @@ export class CommandExecutor {
     document.execCommand(command, false, null);
   }
 
-  insertImage() {
+  private insertImage() {
     const imageURI = prompt('Enter Image URL', 'http://');
     if (imageURI) {
       const inserted = document.execCommand('insertImage', false, imageURI);
-      console.log('inserted', inserted)
       if (!inserted) {
         throw new Error('Invalid URL');
       }
     }
   }
 
-  createLink() {
+  private createLink() {
     const selection = document.getSelection();
 
     if (selection.anchorNode.parentElement.tagName === 'A') {

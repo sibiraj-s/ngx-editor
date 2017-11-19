@@ -5,6 +5,7 @@ import { NgxGrippieComponent } from './ngx-grippie/ngx-grippie.component';
 import { NgxToolbarComponent } from './ngx-toolbar/ngx-toolbar.component';
 import { NgxEditorMessageComponent } from './ngx-editor-message/ngx-editor-message.component';
 import {MessageService} from './ngx-editor-message/message.service';
+import {CommandExecutor} from './command-executor';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import {MessageService} from './ngx-editor-message/message.service';
   ],
   declarations: [NgxEditorComponent, NgxGrippieComponent, NgxToolbarComponent, NgxEditorMessageComponent],
   exports: [NgxEditorComponent, NgxGrippieComponent],
-  providers: [MessageService]
+  providers: [CommandExecutor, MessageService]
 })
 
 export class NgxEditorModule { }

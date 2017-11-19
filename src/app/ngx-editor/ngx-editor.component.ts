@@ -1,7 +1,7 @@
 import {Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter, ViewChild} from '@angular/core';
 import {ngxEditorConfig} from './ngx-editor.defaults';
 import {CommandExecutor} from './command-executor';
-import {MessageService} from "./ngx-editor-message/message.service";
+import {MessageService} from './ngx-editor-message/message.service';
 
 @Component({
   selector: 'app-ngx-editor',
@@ -19,7 +19,6 @@ export class NgxEditorComponent implements OnInit {
   _html: any;
   _resizer: string;
   enableToolbar = false;
-  commandExecutor = new CommandExecutor();
 
   @Input() editable: boolean;
   @Input() spellcheck: boolean;
@@ -88,7 +87,7 @@ export class NgxEditorComponent implements OnInit {
     }
   }
 
-  constructor(private _element: ElementRef, private messageService: MessageService) {
+  constructor(private _element: ElementRef, private messageService: MessageService, private commandExecutor: CommandExecutor) {
   }
 
   /*
