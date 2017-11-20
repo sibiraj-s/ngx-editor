@@ -131,11 +131,10 @@ export class NgxEditorComponent implements OnInit {
     this.executeCommand('enableObjectResizing');
   }
 
-  /*
+/*
  * editor actions
  */
   executeCommand(commandName) {
-    this.messageService.send(commandName);
      try {
        this.commandExecutor.execute(commandName);
      } catch (error) {
