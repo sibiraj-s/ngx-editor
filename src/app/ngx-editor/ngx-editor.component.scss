@@ -4,9 +4,11 @@
 
 .ngx-editor {
     position: relative;
-     ::ng-deep [contenteditable=true]:empty:before {
+
+    ::ng-deep [contenteditable=true]:empty:before {
         content: attr(placeholder);
         display: block; // for firefox
+   
     }
 
     .ngx-editor-textarea {
@@ -16,11 +18,13 @@
         border-top: transparent !important;
         background-color: #fff;
         overflow: auto;
+
         &:focus,
         &.focus {
             outline: 0;
         }
-         ::ng-deep blockquote {
+
+        ::ng-deep blockquote {
             margin-left: 1rem;
             border-left: 0.2em solid #dfe2e5;
             padding-left: 0.5rem;

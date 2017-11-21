@@ -1,7 +1,7 @@
-import {Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter, ViewChild} from '@angular/core';
-import {ngxEditorConfig} from './ngx-editor.defaults';
-import {CommandExecutor} from './command-executor';
-import {MessageService} from './ngx-editor-message/message.service';
+import { Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter, ViewChild } from '@angular/core';
+import { ngxEditorConfig } from './ngx-editor.defaults';
+import { CommandExecutor } from './command-executor';
+import { MessageService } from './ngx-editor-message/message.service';
 
 @Component({
   selector: 'app-ngx-editor',
@@ -31,8 +31,7 @@ export class NgxEditorComponent implements OnInit {
   @Input() toolbar: any;
 
   // set resizer
-  @Input()
-  set resizer(value: string) {
+  @Input() set resizer(value: string) {
     console.log(value);
     if (value === 'basic') {
       this._resizer = value;
@@ -46,8 +45,7 @@ export class NgxEditorComponent implements OnInit {
   }
 
   // set configuration
-  @Input()
-  set config(value: JSON) {
+  @Input() set config(value: JSON) {
 
     for (const i in ngxEditorConfig) {
       if (i) {
@@ -131,14 +129,14 @@ export class NgxEditorComponent implements OnInit {
     this.executeCommand('enableObjectResizing');
   }
 
-/*
- * editor actions
- */
+  /*
+   * editor actions
+   */
   executeCommand(commandName) {
-     try {
-       this.commandExecutor.execute(commandName);
-     } catch (error) {
-       this.messageService.send(error.message);
-     }
+    try {
+      this.commandExecutor.execute(commandName);
+    } catch (error) {
+      this.messageService.send(error.message);
+    }
   }
 }

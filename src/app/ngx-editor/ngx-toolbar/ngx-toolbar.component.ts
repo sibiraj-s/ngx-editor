@@ -13,8 +13,7 @@ export class NgxToolbarComponent {
   @Input() enableToolbar = false;
   @Output('triggerCommand') _triggerCommand = new EventEmitter();
 
-  constructor() {
-  }
+  constructor() { }
 
   /*
  * enable or diable toolbar based on configuration
