@@ -12,16 +12,16 @@ export class MessageService {
 
   constructor() { }
 
-  messages(): Observable<string> {
+  getMessage(): Observable<string> {
     return this.message.asObservable();
   }
 
-  send(message: string) {
+  sendMessage(message: string) {
     this.message.next(message);
-    this.clearMessageOn(FIVE_SECONDS);
+    this.clearMessageIn(FIVE_SECONDS);
   }
 
-  private clearMessageOn(milliseconds: number): void {
+  private clearMessageIn(milliseconds: number): void {
     setTimeout(() => {
       this.message.next(undefined);
     }, milliseconds);

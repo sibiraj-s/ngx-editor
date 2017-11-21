@@ -1,4 +1,5 @@
-import { Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, HostListener, ElementRef, EventEmitter } from '@angular/core';
+
 import { ngxEditorConfig } from './ngx-editor.defaults';
 import { CommandExecutorService } from './common/services/command-executor.service';
 import { MessageService } from './common/services/message.service';
@@ -32,7 +33,6 @@ export class NgxEditorComponent implements OnInit {
 
   // set resizer
   @Input() set resizer(value: string) {
-    console.log(value);
     if (value === 'basic') {
       this._resizer = value;
     } else {
@@ -65,8 +65,7 @@ export class NgxEditorComponent implements OnInit {
   }
 
   // set HTML value
-  @Input()
-  set html(value: any) {
+  @Input() set html(value: any) {
     this._html = value;
   }
 
@@ -77,7 +76,7 @@ export class NgxEditorComponent implements OnInit {
   /*
    * update html on changes in content editable
    */
-  htmlContentChange(value) {
+  htmlContentChange(value: string) {
     if (value === '<br>') {
       this.htmlChange.emit('');
     } else {
@@ -87,8 +86,8 @@ export class NgxEditorComponent implements OnInit {
 
   constructor(
     private _element: ElementRef,
-    private messageService: MessageService,
-    private commandExecutor: CommandExecutorService) { }
+    private _messageService: MessageService,
+    private _commandExecutor: CommandExecutorService) { }
 
   /*
    * focus event
@@ -97,15 +96,14 @@ export class NgxEditorComponent implements OnInit {
     this.enableToolbar = true;
   }
 
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event) {
+  @HostListener('document:click', ['$event']) onDocumentClick(event) {
     this.enableToolbar = !!this._element.nativeElement.contains(event.target);
   }
 
   /*
    * resizing text area
    */
-  resizeTextArea(offsetY) {
+  resizeTextArea(offsetY: number) {
     let newHeight = parseInt(this.height, 10);
     newHeight += offsetY;
     this.height = newHeight + 'px';
@@ -134,11 +132,11 @@ export class NgxEditorComponent implements OnInit {
   /*
    * editor actions
    */
-  executeCommand(commandName) {
+  executeCommand(commandName: string) {
     try {
-      this.commandExecutor.execute(commandName);
+      this._commandExecutor.execute(commandName);
     } catch (error) {
-      this.messageService.send(error.message);
+      this._messageService.sendMessage(error.message);
     }
   }
 }

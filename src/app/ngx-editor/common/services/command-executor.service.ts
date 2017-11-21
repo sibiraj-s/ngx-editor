@@ -4,18 +4,19 @@ import { Injectable } from '@angular/core';
 export class CommandExecutorService {
 
   public execute(command: string): void {
+
     if (command === 'enableObjectResizing') {
       document.execCommand('enableObjectResizing', true, true);
       return;
     }
 
-    if (command === 'removeBlockquote') {
-      document.execCommand('formatBlock', false, 'div');
+    if (command === 'blockquote') {
+      document.execCommand('formatBlock', false, '<blockquote>');
       return;
     }
 
-    if (command === 'blockquote') {
-      document.execCommand('formatBlock', false, '<blockquote>');
+    if (command === 'removeBlockquote') {
+      document.execCommand('formatBlock', false, 'div');
       return;
     }
 

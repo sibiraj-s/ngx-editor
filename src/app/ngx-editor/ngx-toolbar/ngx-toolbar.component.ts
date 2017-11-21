@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import * as Utils from './ngx-editor.utils';
 
 @Component({
@@ -16,8 +16,8 @@ export class NgxToolbarComponent {
   constructor() { }
 
   /*
- * enable or diable toolbar based on configuration
- */
+   * enable or diable toolbar based on configuration
+   */
   canEnableToolbarOptions(value) {
     return Utils.canEnableToolbarOptions(value, this.config['toolbar']);
   }
