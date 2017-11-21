@@ -11,7 +11,7 @@ export class NgxToolbarComponent {
 
   @Input() config: any;
   @Input() enableToolbar = false;
-  @Output('triggerCommand') _triggerCommand = new EventEmitter();
+  @Output() execute = new EventEmitter();
 
   constructor() { }
 
@@ -23,6 +23,6 @@ export class NgxToolbarComponent {
   }
 
   triggerCommand(command: string): void {
-    this._triggerCommand.emit(command);
+    this.execute.emit(command);
   }
 }
