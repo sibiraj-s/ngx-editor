@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class CommandExecutor {
+export class CommandExecutorService {
 
   public execute(command: string): void {
     if (command === 'enableObjectResizing') {
@@ -61,4 +61,5 @@ export class CommandExecutor {
       }
     }
   }
+
 }

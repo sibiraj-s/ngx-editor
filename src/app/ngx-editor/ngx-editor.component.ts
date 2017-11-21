@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter, ViewChild } from '@angular/core';
 import { ngxEditorConfig } from './ngx-editor.defaults';
-import { CommandExecutor } from './common/services/command-executor';
+import { CommandExecutorService } from './common/services/command-executor.service';
 import { MessageService } from './common/services/message.service';
 
 @Component({
@@ -85,8 +85,10 @@ export class NgxEditorComponent implements OnInit {
     }
   }
 
-  constructor(private _element: ElementRef, private messageService: MessageService, private commandExecutor: CommandExecutor) {
-  }
+  constructor(
+    private _element: ElementRef,
+    private messageService: MessageService,
+    private commandExecutor: CommandExecutorService) { }
 
   /*
    * focus event

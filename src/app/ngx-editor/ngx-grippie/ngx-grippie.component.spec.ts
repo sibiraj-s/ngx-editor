@@ -4,7 +4,7 @@ import { ElementRef } from '@angular/core';
 import { NgxGrippieComponent } from './ngx-grippie.component';
 import { NgxEditorComponent } from '../ngx-editor.component';
 import { MessageService } from '../common/services/message.service';
-import { CommandExecutor } from '../common/services/command-executor';
+import { CommandExecutorService } from '../common/services/command-executor.service';
 
 export class MockElementRef extends ElementRef {
   constructor() { super(null); }
@@ -20,7 +20,7 @@ describe('NgxGrippieComponent', () => {
       providers: [
         NgxEditorComponent,
         MessageService,
-        CommandExecutor,
+        CommandExecutorService,
         { provide: ElementRef, useClass: MockElementRef }]
     })
       .compileComponents();

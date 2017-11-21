@@ -7,6 +7,7 @@ const FIVE_SECONDS = 5000;
 
 @Injectable()
 export class MessageService {
+
   private message: Subject<string> = new Subject();
 
   constructor() { }
@@ -25,4 +26,5 @@ export class MessageService {
       this.message.next(undefined);
     }, milliseconds);
   }
+
 }
