@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter, ViewChild } from '@angular/core';
 import { ngxEditorConfig } from './ngx-editor.defaults';
-import { CommandExecutor } from './command-executor';
+import { CommandExecutor } from './common/services/command-executor';
 import { MessageService } from './ngx-editor-message/message.service';
 
 @Component({
