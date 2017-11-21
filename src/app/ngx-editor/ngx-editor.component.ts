@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter, ViewChild } from '@angular/core';
 import { ngxEditorConfig } from './ngx-editor.defaults';
 import { CommandExecutor } from './common/services/command-executor';
-import { MessageService } from './ngx-editor-message/message.service';
+import { MessageService } from './common/services/message.service';
 
 @Component({
   selector: 'app-ngx-editor',

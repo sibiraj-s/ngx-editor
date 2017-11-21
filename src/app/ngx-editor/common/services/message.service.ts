@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 const FIVE_SECONDS = 5000;
 
@@ -9,8 +9,7 @@ const FIVE_SECONDS = 5000;
 export class MessageService {
   private message: Subject<string> = new Subject();
 
-  constructor() {
-  }
+  constructor() { }
 
   messages(): Observable<string> {
     return this.message.asObservable();
