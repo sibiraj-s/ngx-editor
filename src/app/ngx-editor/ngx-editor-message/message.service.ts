@@ -1,10 +1,9 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 const FIVE_SECONDS = 5000;
-
 
 @Injectable()
 export class MessageService {

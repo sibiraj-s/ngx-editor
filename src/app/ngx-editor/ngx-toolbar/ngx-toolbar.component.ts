@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import * as Utils from './ngx-editor.utils';
 
 @Component({
@@ -6,6 +6,7 @@ import * as Utils from './ngx-editor.utils';
   templateUrl: './ngx-toolbar.component.html',
   styleUrls: ['./ngx-toolbar.component.scss']
 })
+
 export class NgxToolbarComponent {
 
   @Input() config: any;

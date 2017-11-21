@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NgxEditorMessageComponent } from './ngx-editor-message.component';
+import { MessageService } from './message.service';
 
 describe('NgxEditorMessageComponent', () => {
   let component: NgxEditorMessageComponent;
@@ -8,9 +9,10 @@ describe('NgxEditorMessageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NgxEditorMessageComponent ]
+      providers: [MessageService],
+      declarations: [NgxEditorMessageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

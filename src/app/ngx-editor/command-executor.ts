@@ -1,7 +1,8 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class CommandExecutor {
+
   public execute(command: string): void {
     if (command === 'enableObjectResizing') {
       document.execCommand('enableObjectResizing', true, true);
