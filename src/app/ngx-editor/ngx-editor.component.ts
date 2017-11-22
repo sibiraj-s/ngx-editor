@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, ViewChild, HostListener, ElementRef, EventEmitter } from '@angular/core';
 
-import { ngxEditorConfig } from './ngx-editor.defaults';
+import { ngxEditorConfig } from './common/ngx-editor.defaults';
 import { CommandExecutorService } from './common/services/command-executor.service';
 import { MessageService } from './common/services/message.service';
+import * as Utils from './common/utils/ngx-editor.utils';
 
 @Component({
   selector: 'app-ngx-editor',
@@ -11,15 +12,6 @@ import { MessageService } from './common/services/message.service';
 })
 
 export class NgxEditorComponent implements OnInit {
-
-  @Output() htmlChange = new EventEmitter();
-
-  @ViewChild('ngxTextArea') textArea: any;
-
-  _config: any;
-  _html: any;
-  _resizer: string;
-  enableToolbar = false;
 
   @Input() editable: boolean;
   @Input() spellcheck: boolean;
@@ -30,48 +22,16 @@ export class NgxEditorComponent implements OnInit {
   @Input() width: string;
   @Input() minWidth: string;
   @Input() toolbar: any;
+  @Input() html = '';
+  @Input() resizer = 'stack';
+  @Input() config = ngxEditorConfig;
 
-  // set resizer
-  @Input() set resizer(value: string) {
-    if (value === 'basic') {
-      this._resizer = value;
-    } else {
-      this._resizer = 'stack';
-    }
-  }
+  @Output() htmlChange = new EventEmitter();
 
-  get resizer(): string {
-    return this._resizer || 'stack';
-  }
+  @ViewChild('ngxTextArea') textArea: any;
 
-  // set configuration
-  @Input() set config(value: JSON) {
-
-    for (const i in ngxEditorConfig) {
-      if (i) {
-        if (this[i]) {
-          value[i] = this[i];
-        }
-        if (!value.hasOwnProperty(i)) {
-          value[i] = ngxEditorConfig[i];
-        }
-      }
-    }
-    this._config = value;
-  }
-
-  get config(): JSON {
-    return this._config || ngxEditorConfig;
-  }
-
-  // set HTML value
-  @Input() set html(value: any) {
-    this._html = value;
-  }
-
-  get html(): any {
-    return this._html;
-  }
+  enableToolbar = false;
+  Utils = Utils;
 
   /*
    * update html on changes in content editable
@@ -90,7 +50,7 @@ export class NgxEditorComponent implements OnInit {
     private _commandExecutor: CommandExecutorService) { }
 
   /*
-   * focus event
+   * events
    */
   onFocus() {
     this.enableToolbar = true;
@@ -110,28 +70,10 @@ export class NgxEditorComponent implements OnInit {
     this.textArea.nativeElement.style.height = this.height;
   }
 
-  // return vertical if the element is the resizer property is set to basic
-  canResize() {
-    if (this.resizer === 'basic') {
-      return 'vertical';
-    }
-    return false;
-  }
 
   /*
-   * ngOnInit
-   */
-  ngOnInit() {
-    this.textArea.nativeElement.innerHTML = this.html || '';
-
-    this.height = this.height || this.textArea.nativeElement.offsetHeight;
-
-    this.executeCommand('enableObjectResizing');
-  }
-
-  /*
-   * editor actions
-   */
+  * editor actions
+  */
   executeCommand(commandName: string) {
     try {
       this._commandExecutor.execute(commandName);
@@ -139,4 +81,16 @@ export class NgxEditorComponent implements OnInit {
       this._messageService.sendMessage(error.message);
     }
   }
+
+  ngOnInit() {
+    // set configuartion
+    this.config = Utils.getEditorConfiguration(this.config, ngxEditorConfig);
+
+    this.textArea.nativeElement.innerHTML = this.html || '';
+
+    this.height = this.height || this.textArea.nativeElement.offsetHeight;
+
+    this.executeCommand('enableObjectResizing');
+  }
+
 }
