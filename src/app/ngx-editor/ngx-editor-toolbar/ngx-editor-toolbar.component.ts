@@ -1,13 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import * as Utils from './ngx-editor.utils';
+import * as Utils from '../common/utils/ngx-editor.utils';
 
 @Component({
-  selector: 'app-ngx-toolbar',
-  templateUrl: './ngx-toolbar.component.html',
-  styleUrls: ['./ngx-toolbar.component.scss']
+  selector: 'app-ngx-editor-toolbar',
+  templateUrl: './ngx-editor-toolbar.component.html',
+  styleUrls: ['./ngx-editor-toolbar.component.scss']
 })
 
-export class NgxToolbarComponent {
+export class NgxEditorToolbarComponent {
 
   @Input() config: any;
   @Input() enableToolbar = false;
@@ -25,4 +25,5 @@ export class NgxToolbarComponent {
   triggerCommand(command: string): void {
     this.execute.emit(command);
   }
+
 }
