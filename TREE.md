@@ -11,32 +11,33 @@
 │   ├── app
 │   │   ├── ngx-editor
 │   │   │   ├── common
-│   │   │   │   └── services
-│   │   │   │       ├── command-executor.service.spec.ts
-│   │   │   │       ├── command-executor.service.ts
-│   │   │   │       ├── message.service.spec.ts
-│   │   │   │       └── message.service.ts
+│   │   │   │   ├── services
+│   │   │   │   │   ├── command-executor.service.spec.ts
+│   │   │   │   │   ├── command-executor.service.ts
+│   │   │   │   │   ├── message.service.spec.ts
+│   │   │   │   │   └── message.service.ts
+│   │   │   │   ├── utils
+│   │   │   │   │   └── ngx-editor.utils.ts
+│   │   │   │   └── ngx-editor.defaults.ts
 │   │   │   ├── ngx-editor-message
 │   │   │   │   ├── ngx-editor-message.component.html
 │   │   │   │   ├── ngx-editor-message.component.scss
 │   │   │   │   ├── ngx-editor-message.component.spec.ts
 │   │   │   │   └── ngx-editor-message.component.ts
+│   │   │   ├── ngx-editor-toolbar
+│   │   │   │   ├── ngx-editor-toolbar.component.html
+│   │   │   │   ├── ngx-editor-toolbar.component.scss
+│   │   │   │   ├── ngx-editor-toolbar.component.spec.ts
+│   │   │   │   └── ngx-editor-toolbar.component.ts
 │   │   │   ├── ngx-grippie
 │   │   │   │   ├── ngx-grippie.component.html
 │   │   │   │   ├── ngx-grippie.component.scss
 │   │   │   │   ├── ngx-grippie.component.spec.ts
 │   │   │   │   └── ngx-grippie.component.ts
-│   │   │   ├── ngx-toolbar
-│   │   │   │   ├── ngx-editor.utils.ts
-│   │   │   │   ├── ngx-toolbar.component.html
-│   │   │   │   ├── ngx-toolbar.component.scss
-│   │   │   │   ├── ngx-toolbar.component.spec.ts
-│   │   │   │   └── ngx-toolbar.component.ts
 │   │   │   ├── ngx-editor.component.html
 │   │   │   ├── ngx-editor.component.scss
 │   │   │   ├── ngx-editor.component.spec.ts
 │   │   │   ├── ngx-editor.component.ts
-│   │   │   ├── ngx-editor.defaults.ts
 │   │   │   └── ngx-editor.module.ts
 │   │   ├── app.component.html
 │   │   ├── app.component.scss
