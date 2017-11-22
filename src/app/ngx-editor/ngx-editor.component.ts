@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, ViewChild, HostListener, ElementRef, EventEmitter } from '@angular/core';
 
-import { ngxEditorConfig } from './common/ngx-editor.defaults';
 import { CommandExecutorService } from './common/services/command-executor.service';
 import { MessageService } from './common/services/message.service';
+
+import { ngxEditorConfig } from './common/ngx-editor.defaults';
 import * as Utils from './common/utils/ngx-editor.utils';
 
 @Component({
@@ -26,26 +27,15 @@ export class NgxEditorComponent implements OnInit {
   @Input() resizer = 'stack';
   @Input() config = ngxEditorConfig;
 
-  @Output() htmlChange = new EventEmitter();
-
   @ViewChild('ngxTextArea') textArea: any;
+
+  @Output() htmlChange: EventEmitter<string> = new EventEmitter<string>();
 
   enableToolbar = false;
   Utils = Utils;
 
-  /*
-   * update html on changes in content editable
-   */
-  htmlContentChange(value: string) {
-    if (value === '<br>') {
-      this.htmlChange.emit('');
-    } else {
-      this.htmlChange.emit(value);
-    }
-  }
-
   constructor(
-    private _element: ElementRef,
+    private _elementRef: ElementRef,
     private _messageService: MessageService,
     private _commandExecutor: CommandExecutorService) { }
 
@@ -57,7 +47,11 @@ export class NgxEditorComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event']) onDocumentClick(event) {
-    this.enableToolbar = !!this._element.nativeElement.contains(event.target);
+    this.enableToolbar = !!this._elementRef.nativeElement.contains(event.target);
+  }
+
+  onContentChange(value) {
+    this.htmlChange.emit(value);
   }
 
   /*
@@ -70,7 +64,6 @@ export class NgxEditorComponent implements OnInit {
     this.textArea.nativeElement.style.height = this.height;
   }
 
-
   /*
   * editor actions
   */
@@ -82,13 +75,18 @@ export class NgxEditorComponent implements OnInit {
     }
   }
 
+  // update view
+  refreshContent() {
+    this.textArea.nativeElement.innerHTML = this.html || '';
+  }
+
   ngOnInit() {
     // set configuartion
     this.config = Utils.getEditorConfiguration(this.config, ngxEditorConfig);
 
-    this.textArea.nativeElement.innerHTML = this.html || '';
-
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
+
+    this.refreshContent();
 
     this.executeCommand('enableObjectResizing');
   }
