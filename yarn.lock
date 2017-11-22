@@ -4123,9 +4123,9 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-ng-packagr@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-1.5.0.tgz#1becf7a1e87d406397a6ca2b4414b0af8348e28a"
+ng-packagr@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-1.6.0.tgz#935ff56b070925376df840bb87d4e64e0aeb1cf5"
   dependencies:
     "@angular/tsc-wrapped" "^4.4.5"
     "@ngtools/json-schema" "^1.1.0"
@@ -4142,13 +4142,12 @@ ng-packagr@^1.5.0:
     postcss "^6.0.2"
     read-file "^0.2.0"
     rimraf "^2.6.1"
-    rollup "^0.50.0"
+    rollup "^0.51.0"
     rollup-plugin-commonjs "^8.2.1"
     rollup-plugin-node-resolve "^3.0.0"
     sorcery "^0.10.0"
     stylus "^0.54.5"
     ts-node "^3.0.4"
-    typescript "^2.3.4"
     uglify-js "^3.0.7"
     vinyl-fs "^2.4.4"
 
@@ -5480,9 +5479,9 @@ rollup-pluginutils@^2.0.1:
     estree-walker "^0.3.0"
     micromatch "^2.3.11"
 
-rollup@^0.50.0:
-  version "0.50.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.50.0.tgz#4c158f4e780e6cb33ff0dbfc184a52cc58cd5f3b"
+rollup@^0.51.0:
+  version "0.51.8"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.51.8.tgz#58bd0b642885f4770b5f93cc64f14e4233c2236d"
 
 run-async@^2.2.0:
   version "2.3.0"
@@ -6371,7 +6370,7 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@^2.3.3, typescript@^2.3.4:
+typescript@^2.3.3:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.6.1.tgz#ef39cdea27abac0b500242d6726ab90e0c846631"
 
