@@ -1,6 +1,8 @@
-import { Component, OnInit, HostListener, Input, Output, ElementRef, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, HostListener, ElementRef, EventEmitter } from '@angular/core';
+
 import { ngxEditorConfig } from './ngx-editor.defaults';
-import * as Utils from './ngx-editor.utils';
+import { CommandExecutorService } from './common/services/command-executor.service';
+import { MessageService } from './common/services/message.service';
 
 @Component({
   selector: 'app-ngx-editor',
@@ -17,7 +19,6 @@ export class NgxEditorComponent implements OnInit {
   _config: any;
   _html: any;
   _resizer: string;
-  ngxMessage: string;
   enableToolbar = false;
 
   @Input() editable: boolean;
@@ -31,22 +32,20 @@ export class NgxEditorComponent implements OnInit {
   @Input() toolbar: any;
 
   // set resizer
-  @Input()
-  set resizer(value: string) {
-    console.log(value);
+  @Input() set resizer(value: string) {
     if (value === 'basic') {
       this._resizer = value;
     } else {
       this._resizer = 'stack';
     }
   }
+
   get resizer(): string {
     return this._resizer || 'stack';
   }
 
   // set configuration
-  @Input()
-  set config(value: JSON) {
+  @Input() set config(value: JSON) {
 
     for (const i in ngxEditorConfig) {
       if (i) {
@@ -60,15 +59,16 @@ export class NgxEditorComponent implements OnInit {
     }
     this._config = value;
   }
+
   get config(): JSON {
     return this._config || ngxEditorConfig;
   }
 
   // set HTML value
-  @Input()
-  set html(value: any) {
+  @Input() set html(value: any) {
     this._html = value;
   }
+
   get html(): any {
     return this._html;
   }
@@ -76,7 +76,7 @@ export class NgxEditorComponent implements OnInit {
   /*
    * update html on changes in content editable
    */
-  htmlContentChange(value) {
+  htmlContentChange(value: string) {
     if (value === '<br>') {
       this.htmlChange.emit('');
     } else {
@@ -84,69 +84,10 @@ export class NgxEditorComponent implements OnInit {
     }
   }
 
-  constructor(private _element: ElementRef) { }
-
-  /*
-   * editor actions
-   */
-  executeCommand(commandName) {
-    document.execCommand(commandName, false, null);
-  }
-
-  // blockquote
-  blockQuote() {
-    document.execCommand('formatBlock', false, '<blockquote>');
-  }
-
-  removeQuote() {
-    document.execCommand('formatBlock', false, 'div');
-  }
-
-  // insert link
-  createLink() {
-    const selection = document.getSelection();
-
-    if (selection.anchorNode.parentElement.tagName === 'A') {
-      const linkURL = prompt('Enter URL', selection.anchorNode.parentElement.getAttribute('href'));
-      if (linkURL) {
-        document.execCommand('createLink', false, linkURL);
-      }
-    } else {
-      if (selection['type'] === 'None') {
-        this.createMessage('No selection made');
-      } else {
-        const linkURL = prompt('Enter URL', 'http://');
-        if (linkURL) {
-          document.execCommand('createLink', false, linkURL);
-        }
-      }
-    }
-  }
-
-  // insert image
-  insertImage() {
-    const imageURI = prompt('Enter Image URL', 'http://');
-    if (imageURI) {
-      const inserted = document.execCommand('insertImage', false, imageURI);
-      if (!inserted) {
-        this.createMessage('Invalid URL');
-      }
-    }
-  }
-
-  /*
-   * message box
-   */
-  createMessage(message) {
-    this.ngxMessage = message;
-    setTimeout(() => {
-      this.clearMessage();
-    }, 5000);
-  }
-
-  clearMessage() {
-    this.ngxMessage = undefined;
-  }
+  constructor(
+    private _element: ElementRef,
+    private _messageService: MessageService,
+    private _commandExecutor: CommandExecutorService) { }
 
   /*
    * focus event
@@ -156,24 +97,13 @@ export class NgxEditorComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event']) onDocumentClick(event) {
-    if (this._element.nativeElement.contains(event.target)) {
-      this.enableToolbar = true;
-    } else {
-      this.enableToolbar = false;
-    }
-  }
-
-  /*
-   * enable or diable toolbar based on configuration
-   */
-  canEnableToolbarOptions(value) {
-    return Utils.canEnableToolbarOptions(value, this.config['toolbar']);
+    this.enableToolbar = !!this._element.nativeElement.contains(event.target);
   }
 
   /*
    * resizing text area
    */
-  resizeTextArea(offsetY) {
+  resizeTextArea(offsetY: number) {
     let newHeight = parseInt(this.height, 10);
     newHeight += offsetY;
     this.height = newHeight + 'px';
@@ -196,7 +126,17 @@ export class NgxEditorComponent implements OnInit {
 
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
 
-    document.execCommand('enableObjectResizing', true, true);
+    this.executeCommand('enableObjectResizing');
   }
 
+  /*
+   * editor actions
+   */
+  executeCommand(commandName: string) {
+    try {
+      this._commandExecutor.execute(commandName);
+    } catch (error) {
+      this._messageService.sendMessage(error.message);
+    }
+  }
 }

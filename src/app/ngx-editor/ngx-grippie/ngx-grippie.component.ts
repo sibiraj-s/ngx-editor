@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, EventEmitter } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { NgxEditorComponent } from '../ngx-editor.component';
 
 @Component({
@@ -15,8 +15,7 @@ export class NgxGrippieComponent {
 
   constructor(private _editorComponent: NgxEditorComponent) { }
 
-  @HostListener('document:mousemove', ['$event'])
-  onMouseMove(event: MouseEvent) {
+  @HostListener('document:mousemove', ['$event']) onMouseMove(event: MouseEvent) {
 
     if (!this.grabber) {
       return;
@@ -26,8 +25,7 @@ export class NgxGrippieComponent {
     this.oldY = event.clientY;
   }
 
-  @HostListener('document:mouseup', ['$event'])
-  onMouseUp(event: MouseEvent) {
+  @HostListener('document:mouseup', ['$event']) onMouseUp(event: MouseEvent) {
     this.grabber = false;
   }
 
