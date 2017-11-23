@@ -32,14 +32,14 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/cli@1.5.3":
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-1.5.3.tgz#9d98abbfdf42706853dfeb10f33410adf6b8038b"
+"@angular/cli@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-1.5.4.tgz#3eebfa0c6f8a4ea7a05d9462e55db9f150a3a015"
   dependencies:
     "@angular-devkit/build-optimizer" "~0.0.31"
     "@angular-devkit/schematics" "~0.0.34"
     "@ngtools/json-schema" "1.1.0"
-    "@ngtools/webpack" "1.8.3"
+    "@ngtools/webpack" "1.8.4"
     "@schematics/angular" "~0.1.0"
     autoprefixer "^6.5.3"
     chalk "~2.2.0"
@@ -167,9 +167,9 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@ngtools/json-schema/-/json-schema-1.1.0.tgz#c3a0c544d62392acc2813a42c8a0dc6f58f86922"
 
-"@ngtools/webpack@1.8.3":
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-1.8.3.tgz#8bafa749fc2626d11e146899e5b14e3e85bc787f"
+"@ngtools/webpack@1.8.4":
+  version "1.8.4"
+  resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-1.8.4.tgz#345b726b9fa827b05ca1daadb6d7e29592ca5947"
   dependencies:
     chalk "~2.2.0"
     enhanced-resolve "^3.1.0"
@@ -1070,9 +1070,9 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-codelyzer@~3.2.0:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-3.2.2.tgz#abbd4e5956c435677740846e5858c915f89679c3"
+codelyzer@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-4.0.1.tgz#0bb4cf52a325b257790f4980bb3c63833db10789"
   dependencies:
     app-root-path "^2.0.1"
     css-selector-tokenizer "^0.7.0"
