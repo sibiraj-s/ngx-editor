@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CommandExecutorService {
 
-  public execute(command: string): void {
+  execute(command: string): void {
 
     if (command === 'enableObjectResizing') {
       document.execCommand('enableObjectResizing', true, true);
@@ -33,7 +33,7 @@ export class CommandExecutorService {
     document.execCommand(command, false, null);
   }
 
-  private insertImage() {
+  private insertImage(): void {
     const imageURI = prompt('Enter Image URL', 'http://');
     if (imageURI) {
       const inserted = document.execCommand('insertImage', false, imageURI);
@@ -41,9 +41,10 @@ export class CommandExecutorService {
         throw new Error('Invalid URL');
       }
     }
+    return;
   }
 
-  private createLink() {
+  private createLink(): void {
     const selection = document.getSelection();
 
     if (selection.anchorNode.parentElement.tagName === 'A') {
@@ -61,6 +62,7 @@ export class CommandExecutorService {
         }
       }
     }
+    return;
   }
 
 }

@@ -16,7 +16,7 @@ import { CommandExecutorService } from './common/services/command-executor.servi
     CommonModule
   ],
   declarations: [NgxEditorComponent, NgxGrippieComponent, NgxEditorMessageComponent, NgxEditorToolbarComponent],
-  exports: [NgxEditorComponent, NgxGrippieComponent, NgxEditorToolbarComponent],
+  exports: [NgxEditorComponent],
   providers: [CommandExecutorService, MessageService]
 })
 
