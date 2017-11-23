@@ -50,13 +50,13 @@
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "1.5.3",
+    "@angular/cli": "1.5.4",
     "@angular/compiler-cli": "^5.0.0",
     "@angular/language-service": "^5.0.0",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
-    "codelyzer": "~3.2.0",
+    "codelyzer": "~4.0.1",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.1.0",
     "husky": "^0.14.3",
