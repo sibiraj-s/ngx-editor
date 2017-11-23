@@ -31,7 +31,7 @@ export function getEditorConfiguration(value, ngxEditorConfig): any {
 }
 
 // return vertical if the element is the resizer property is set to basic
-export function canResize(resizer: string) {
+export function canResize(resizer: string): any {
     if (resizer === 'basic') {
         return 'vertical';
     }

@@ -11,14 +11,14 @@ export class NgxEditorToolbarComponent {
 
   @Input() config: any;
   @Input() enableToolbar = false;
-  @Output() execute = new EventEmitter();
+  @Output() execute: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
   /*
    * enable or diable toolbar based on configuration
    */
-  canEnableToolbarOptions(value) {
+  canEnableToolbarOptions(value): boolean {
     return Utils.canEnableToolbarOptions(value, this.config['toolbar']);
   }
 

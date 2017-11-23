@@ -102,7 +102,7 @@ export class NgxEditorComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     // set configuartion
-    this.config = Utils.getEditorConfiguration(this.config, ngxEditorConfig);
+    this.config = this.Utils.getEditorConfiguration(this.config, ngxEditorConfig);
 
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
 

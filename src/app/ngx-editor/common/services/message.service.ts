@@ -16,15 +16,17 @@ export class MessageService {
     return this.message.asObservable();
   }
 
-  sendMessage(message: string) {
+  sendMessage(message: string): void {
     this.message.next(message);
     this.clearMessageIn(FIVE_SECONDS);
+    return;
   }
 
   private clearMessageIn(milliseconds: number): void {
     setTimeout(() => {
       this.message.next(undefined);
     }, milliseconds);
+    return;
   }
 
 }
