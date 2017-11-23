@@ -5,7 +5,7 @@
   <!-- text area -->
   <div class="ngx-editor-textarea" [attr.contenteditable]="config['editable']" [attr.placeholder]="config['placeholder']" (input)="onContentChange($event.target.innerHTML)"
     [attr.translate]="config['translate']" [attr.spellcheck]="config['spellcheck']" [style.height]="config['height']" [style.minHeight]="config['minHeight']"
-    [style.resize]="Utils?.canResize(resizer)" (focus)="onFocus()" #ngxTextArea></div>
+    [style.resize]="Utils?.canResize(resizer)" (focus)="onFocus()" (blur)="onBlur($event.target.innerHTML)" #ngxTextArea></div>
 
   <app-ngx-editor-message></app-ngx-editor-message>
 
