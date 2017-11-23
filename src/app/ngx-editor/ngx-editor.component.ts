@@ -1,4 +1,7 @@
-import { Component, OnInit, Input, Output, ViewChild, HostListener, ElementRef, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, OnChanges, Input,
+  Output, ViewChild, HostListener, ElementRef, EventEmitter, SimpleChanges
+} from '@angular/core';
 
 import { CommandExecutorService } from './common/services/command-executor.service';
 import { MessageService } from './common/services/message.service';
@@ -12,7 +15,7 @@ import * as Utils from './common/utils/ngx-editor.utils';
   styleUrls: ['./ngx-editor.component.scss']
 })
 
-export class NgxEditorComponent implements OnInit {
+export class NgxEditorComponent implements OnInit, OnChanges {
 
   @Input() editable: boolean;
   @Input() spellcheck: boolean;
@@ -33,6 +36,7 @@ export class NgxEditorComponent implements OnInit {
 
   enableToolbar = false;
   Utils = Utils;
+  lastViewModel: any;
 
   constructor(
     private _elementRef: ElementRef,
@@ -42,42 +46,58 @@ export class NgxEditorComponent implements OnInit {
   /*
    * events
    */
-  onFocus() {
+  onFocus(): void {
     this.enableToolbar = true;
+    return;
   }
 
   @HostListener('document:click', ['$event']) onDocumentClick(event) {
     this.enableToolbar = !!this._elementRef.nativeElement.contains(event.target);
   }
 
-  onContentChange(value) {
-    this.htmlChange.emit(value);
+  onContentChange(html): void {
+    this.update(html);
+    return;
+  }
+
+  onBlur(html): void {
+    this.update(html);
+    return;
   }
 
   /*
    * resizing text area
    */
-  resizeTextArea(offsetY: number) {
+  resizeTextArea(offsetY: number): void {
     let newHeight = parseInt(this.height, 10);
     newHeight += offsetY;
     this.height = newHeight + 'px';
     this.textArea.nativeElement.style.height = this.height;
+    return;
   }
 
   /*
   * editor actions
   */
-  executeCommand(commandName: string) {
+  executeCommand(commandName: string): void {
     try {
       this._commandExecutor.execute(commandName);
     } catch (error) {
       this._messageService.sendMessage(error.message);
     }
+    return;
   }
 
   // update view
-  refreshContent() {
+  refreshView(): void {
     this.textArea.nativeElement.innerHTML = this.html || '';
+    return;
+  }
+
+  update(value): void {
+    this.lastViewModel = value;
+    this.htmlChange.emit(value);
+    return;
   }
 
   ngOnInit() {
@@ -86,9 +106,13 @@ export class NgxEditorComponent implements OnInit {
 
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
 
-    this.refreshContent();
-
     this.executeCommand('enableObjectResizing');
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.lastViewModel !== changes.html.currentValue) {
+      this.refreshView();
+    }
   }
 
 }
