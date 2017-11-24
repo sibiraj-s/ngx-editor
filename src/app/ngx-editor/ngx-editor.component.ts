@@ -1,7 +1,9 @@
 import {
-  Component, OnInit, OnChanges, Input,
-  Output, ViewChild, HostListener, ElementRef, EventEmitter, SimpleChanges
+  Component, OnInit, Input, Output,
+  ViewChild, HostListener, ElementRef, EventEmitter,
+  Renderer2, forwardRef
 } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 import { CommandExecutorService } from './common/services/command-executor.service';
 import { MessageService } from './common/services/message.service';
@@ -12,10 +14,17 @@ import * as Utils from './common/utils/ngx-editor.utils';
 @Component({
   selector: 'app-ngx-editor',
   templateUrl: './ngx-editor.component.html',
-  styleUrls: ['./ngx-editor.component.scss']
+  styleUrls: ['./ngx-editor.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NgxEditorComponent),
+      multi: true
+    }
+  ]
 })
 
-export class NgxEditorComponent implements OnInit, OnChanges {
+export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
   @Input() editable: boolean;
   @Input() spellcheck: boolean;
@@ -26,22 +35,23 @@ export class NgxEditorComponent implements OnInit, OnChanges {
   @Input() width: string;
   @Input() minWidth: string;
   @Input() toolbar: any;
-  @Input() html = '';
   @Input() resizer = 'stack';
   @Input() config = ngxEditorConfig;
 
   @ViewChild('ngxTextArea') textArea: any;
 
-  @Output() htmlChange: EventEmitter<string> = new EventEmitter<string>();
-
   enableToolbar = false;
   Utils = Utils;
-  lastViewModel: any;
+
+  private lastViewModel: any = '';
+  private onChange: (value: string) => void;
+  private onTouched: () => void;
 
   constructor(
     private _elementRef: ElementRef,
     private _messageService: MessageService,
-    private _commandExecutor: CommandExecutorService) { }
+    private _commandExecutor: CommandExecutorService,
+    private _renderer: Renderer2) { }
 
   /*
    * events
@@ -56,12 +66,20 @@ export class NgxEditorComponent implements OnInit, OnChanges {
   }
 
   onContentChange(html): void {
-    this.update(html);
+
+    if (typeof this.onChange === 'function') {
+      this.onChange(html);
+    }
+
     return;
   }
 
-  onBlur(html): void {
-    this.update(html);
+  onBlur(): void {
+
+    if (typeof this.onTouched === 'function') {
+      this.onTouched();
+    }
+
     return;
   }
 
@@ -88,15 +106,39 @@ export class NgxEditorComponent implements OnInit, OnChanges {
     return;
   }
 
-  // update view
-  refreshView(): void {
-    this.textArea.nativeElement.innerHTML = this.html || '';
-    return;
+  /*
+   * Write a new value to the element.
+   */
+  writeValue(value: any): void {
+    if (value === undefined) {
+      return;
+    }
+
+    this.refreshView(value);
   }
 
-  update(value): void {
-    this.lastViewModel = value;
-    this.htmlChange.emit(value);
+  /*
+   * Set the function to be called
+   * when the control receives a change event.
+   */
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  /*
+   * Set the function to be called
+   * when the control receives a touch event.
+   */
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  /*
+   * refresh view/HTML of the editor
+   */
+  refreshView(value): void {
+    const normalizedValue = value == null ? '' : value;
+    this._renderer.setProperty(this.textArea.nativeElement, 'innerHTML', normalizedValue);
     return;
   }
 
@@ -107,14 +149,6 @@ export class NgxEditorComponent implements OnInit, OnChanges {
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
 
     this.executeCommand('enableObjectResizing');
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.html) {
-      if (this.lastViewModel !== changes.html.currentValue) {
-        this.refreshView();
-      }
-    }
   }
 
 }
