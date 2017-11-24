@@ -1,14 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ElementRef } from '@angular/core';
+import { ElementRef, Renderer2 } from '@angular/core';
 
 import { NgxGrippieComponent } from './ngx-grippie.component';
 import { NgxEditorComponent } from '../ngx-editor.component';
 import { MessageService } from '../common/services/message.service';
 import { CommandExecutorService } from '../common/services/command-executor.service';
-
-export class MockElementRef extends ElementRef {
-  constructor() { super(null); }
-}
 
 describe('NgxGrippieComponent', () => {
   let component: NgxGrippieComponent;
@@ -21,7 +17,9 @@ describe('NgxGrippieComponent', () => {
         NgxEditorComponent,
         MessageService,
         CommandExecutorService,
-        { provide: ElementRef, useClass: MockElementRef }]
+        { provide: ElementRef, useValue: this.elementRef },
+        { provide: Renderer2, useValue: this.renderer }
+      ]
     })
       .compileComponents();
   }));
