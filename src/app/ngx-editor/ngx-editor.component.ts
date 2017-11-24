@@ -110,8 +110,10 @@ export class NgxEditorComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.lastViewModel !== changes.html.currentValue) {
-      this.refreshView();
+    if (changes.html) {
+      if (this.lastViewModel !== changes.html.currentValue) {
+        this.refreshView();
+      }
     }
   }
 
