@@ -4,18 +4,19 @@
   "description": "WYSIWYG Editor for Angular Applications",
   "license": "MIT",
   "scripts": {
+    "build": "ng build --prod && yarn run lint",
+    "build:package": "sh scripts/build.sh",
+    "cz": "git-cz",
+    "docs": "ng build --prod --output-path docs --base-href ngx-editor",
+    "e2e": "ng e2e",
+    "lint": "ng lint",
     "ng": "ng",
+    "postbuild": "yarn run build:package",
+    "precommit": "yarn run test:single-run && yarn run lint",
+    "release": "sh scripts/release.sh",
     "start": "ng serve --aot -o --port 5000 --host 0.0.0.0",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "docs": "ng build --prod --output-path docs --base-href ngx-editor",
-    "build": "ng build --prod",
-    "build:package": "yarn run build && sh scripts/build.sh",
-    "test:single-run": "ng test --watch false",
-    "precommit": "yarn run test:single-run && yarn run lint && yarn run build:package",
-    "cz": "git-cz",
-    "release": "sh scripts/release.sh"
+    "test:single-run": "ng test --watch false"
   },
   "keywords": [
     "angular-editor",
