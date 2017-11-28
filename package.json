@@ -4,7 +4,7 @@
   "description": "WYSIWYG Editor for Angular Applications",
   "license": "MIT",
   "scripts": {
-    "build": "ng build --prod && yarn run lint",
+    "build": "ng build --prod",
     "build:package": "sh scripts/build.sh",
     "cz": "git-cz",
     "docs": "ng build --prod --output-path docs --base-href ngx-editor",
@@ -12,6 +12,7 @@
     "lint": "ng lint",
     "ng": "ng",
     "postbuild": "yarn run build:package",
+    "prebuild": "yarn run lint",
     "precommit": "yarn run test:single-run && yarn run lint",
     "release": "sh scripts/release.sh",
     "start": "ng serve --aot -o --port 5000 --host 0.0.0.0",
