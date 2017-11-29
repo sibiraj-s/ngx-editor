@@ -56,6 +56,7 @@ Then in HTML
 For `ngModel` to work, You must import `FromsModule` from `@angular/forms`
 
 ### Documentation
+
 Check [wiki][wiki] for more information 
 
 [npm]: https://www.npmjs.com/
