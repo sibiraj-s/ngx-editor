@@ -13,7 +13,7 @@
     "ng": "ng",
     "postbuild": "yarn run build:package",
     "prebuild": "yarn run lint",
-    "precommit": "yarn run test:single-run && yarn run lint",
+    "precommit": "yarn run lint && yarn run test:single-run",
     "prerelease": "yarn run build",
     "release": "sh ./scripts/release.sh",
     "start": "ng serve --aot -o --port 5000 --host 0.0.0.0",
