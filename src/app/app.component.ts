@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from './app.service';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,11 @@ import { AppService } from './app.service';
   providers: [AppService]
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+
   title = 'ngx-editor';
   latestRelease: any = {};
+  private subscription: Subject<any> = new Subject();
 
   editorConfig = {
     editable: true,
@@ -26,16 +29,20 @@ export class AppComponent implements OnInit {
   constructor(private _appService: AppService) { }
 
   getLatestRelease() {
-    this._appService.getLatestRelease().subscribe(
+    this.subscription = this._appService.getLatestRelease().subscribe(
       data => this.latestRelease = data,
       error => { console.log(error); },
       () => {
-        // console.log('latest release: ' + this.latestRelease['name']);
+        console.log('latest release: ' + this.latestRelease['name']);
       });
   }
 
   ngOnInit() {
     this.getLatestRelease();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

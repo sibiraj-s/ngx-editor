@@ -9,10 +9,10 @@ export class AppService {
 
   constructor(private _http: HttpClient) { }
 
-  getLatestRelease() {
+  getLatestRelease(): any {
 
     return this._http.get(this.releaseURL)
-      .map((response) => {
+      .map((response: any) => {
         if (response && response['length'] !== 0) {
           return response;
         } else {
