@@ -2,12 +2,16 @@
 export function canEnableToolbarOptions(value: string, toolbar: any): boolean {
 
     if (value) {
+
         if (toolbar['length'] === 0) {
             return true;
         } else {
-            return toolbar.find(array => {
-                return array.includes(value);
+
+            const found = toolbar.filter(array => {
+                return array.indexOf(value) !== -1;
             });
+
+            return found.length ? true : false;
         }
     } else {
         return false;
