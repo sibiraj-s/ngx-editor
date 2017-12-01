@@ -7,18 +7,18 @@
     "build": "ng build --prod",
     "build:package": "sh ./scripts/build.sh",
     "cz": "git-cz",
-    "docs": "ng build --prod --output-path docs --base-href ngx-editor",
+    "docs": "yarn run lint && ng build --prod --output-path docs --base-href ngx-editor",
     "e2e": "ng e2e",
     "lint": "ng lint",
     "ng": "ng",
     "postbuild": "yarn run build:package",
     "prebuild": "yarn run lint",
-    "precommit": "yarn run lint && yarn run test:single-run",
+    "precommit": "yarn run test:single-run",
     "prerelease": "yarn run build",
     "release": "sh ./scripts/release.sh",
     "start": "ng serve --aot -o --port 5000 --host 0.0.0.0",
     "test": "ng test",
-    "test:single-run": "ng test --watch false"
+    "test:single-run": "yarn run lint && ng test --watch false"
   },
   "keywords": [
     "angular-editor",
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@angular/animations": "^5.0.0",
-    "@angular/cli": "1.5.4",
+    "@angular/cli": "1.5.5",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
     "@angular/compiler-cli": "^5.0.0",
