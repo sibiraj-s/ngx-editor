@@ -142,9 +142,26 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     return;
   }
 
+  /*
+   * return a json containing input params
+   */
+  getCollectiveParams(): any {
+    return {
+      editable: this.editable,
+      spellcheck: this.spellcheck,
+      placeholder: this.placeholder,
+      translate: this.translate,
+      height: this.height,
+      minHeight: this.minHeight,
+      width: this.width,
+      minWidth: this.minWidth,
+      toolbar: this.toolbar
+    };
+  }
+
   ngOnInit() {
     // set configuartion
-    this.config = this.Utils.getEditorConfiguration(this.config, ngxEditorConfig);
+    this.config = this.Utils.getEditorConfiguration(this.config, ngxEditorConfig, this.getCollectiveParams());
 
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
 
