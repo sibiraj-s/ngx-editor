@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - 8
-
+  
 branches:
   only:
   - master
@@ -9,13 +9,13 @@ branches:
 addons:
   chrome: stable
 
-before_install:
-  - yarn global add @angular/cli
+install:
+  - npm install
 
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  - yarn install
 
 script:
-  - yarn run test:single-run
+  - npm run test:single-run
+
