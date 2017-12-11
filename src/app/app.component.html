@@ -12,7 +12,7 @@
   </div>
 
   <div class="editor block">
-    <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>
+    <app-ngx-editor [config]="editorConfig" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>
   </div>
 
   <div *ngIf="htmlContent" class="htmlblock block">
@@ -22,7 +22,6 @@
     </div>
   </div>
   <div class="information block">
-    <h6>Documentation</h6>
     <p>Check
       <a href="https://github.com/Sibiraj-S/ngx-editor/wiki/ngxEditor">wiki</a> for more information</p>
   </div>

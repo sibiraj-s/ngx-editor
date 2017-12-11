@@ -20,11 +20,11 @@ export class AppComponent implements OnInit, OnDestroy {
     spellcheck: false,
     height: '5rem',
     minHeight: '2rem',
-    placeholder: 'Enter text here...',
+    placeholder: 'Type something. Test the Editor... ヽ(^。^)丿',
     translate: 'no'
   };
 
-  htmlContent = '<span>WYSIWYG Editor for Angular Applications.</span>';
+  htmlContent = '';
 
   constructor(private _appService: AppService) { }
 
