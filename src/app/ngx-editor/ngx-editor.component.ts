@@ -37,6 +37,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   @Input() toolbar: any;
   @Input() resizer = 'stack';
   @Input() config = ngxEditorConfig;
+  @Input() showToolbar = true;
 
   @ViewChild('ngxTextArea') textArea: any;
 

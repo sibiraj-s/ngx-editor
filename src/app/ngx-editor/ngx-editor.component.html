@@ -1,6 +1,6 @@
 <div class="ngx-editor" id="ngxEditor" [style.width]="config['width']" [style.minWidth]="config['minWidth']">
 
-  <app-ngx-editor-toolbar [config]="config" [enableToolbar]="enableToolbar" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>
+  <app-ngx-editor-toolbar [config]="config" [enableToolbar]="enableToolbar" [showToolbar]="showToolbar" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>
 
   <!-- text area -->
   <div class="ngx-editor-textarea" [attr.contenteditable]="config['editable']" [attr.placeholder]="config['placeholder']" (input)="onContentChange($event.target.innerHTML)"
