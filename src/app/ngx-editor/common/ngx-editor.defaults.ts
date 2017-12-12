@@ -7,6 +7,8 @@ export const ngxEditorConfig = {
     minWidth: '0',
     translate: 'yes',
     placeholder: 'Enter text here...',
+    overflowX: 'hidden',
+    overflowY: 'auto',
     toolbar: [
         ['bold', 'italic', 'underline', 'strikeThrough', 'superscript', 'subscript'],
         ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'indent', 'outdent'],
