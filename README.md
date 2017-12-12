@@ -53,7 +53,7 @@ Then in HTML
 <app-ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>
 ```
 
-For `ngModel` to work, You must import `FromsModule` from `@angular/forms`
+For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
 
 ### Documentation
 
