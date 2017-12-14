@@ -17,7 +17,8 @@
         border: 1px solid #ddd;
         border-top: transparent !important;
         background-color: #fff;
-        overflow: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
 
         &:focus,
         &.focus {
