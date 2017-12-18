@@ -8,7 +8,8 @@
     ::ng-deep [contenteditable=true]:empty:before {
         content: attr(placeholder);
         display: block; // for firefox
-   
+        color: #868e96;
+        opacity: 1;
     }
 
     .ngx-editor-textarea {
