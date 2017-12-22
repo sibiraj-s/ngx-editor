@@ -900,10 +900,6 @@ export class AppComponent implements OnInit, OnDestroy {
       {{ htmlContent }}
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class&#x3D;&quot;information block&quot;&gt;
-    &lt;p&gt;Check
-      &lt;a href&#x3D;&quot;https://github.com/Sibiraj-S/ngx-editor/wiki/ngxEditor&quot;&gt;wiki&lt;/a&gt; for more information&lt;/p&gt;
-  &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -931,7 +927,7 @@ export class AppComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container">  <div class="logo block">    <img src="assets/icons/ngx-editor.svg" alt="ngx-Editor">    <h6>WYSIWYG Editor for Angular Applications.</h6>    <p>(Currently -      <a href="https://github.com/Sibiraj-S/ngx-editor/releases/latest">{{ latestRelease[\'name\'] }}</a>) </p>    <a class="github-button" href="https://github.com/Sibiraj-S" aria-label="Follow @Sibiraj-S on GitHub">Follow @Sibiraj-S</a>    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/fork" aria-label="Fork Sibiraj-S/ngx-editor on GitHub">Fork</a>    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor" aria-label="Star Sibiraj-S/ngx-editor on GitHub">Star</a>    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/issues" data-show-count="true" aria-label="Issue Sibiraj-S/ngx-editor on GitHub">Issue</a>    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/archive/master.zip" aria-label="Download Sibiraj-S/ngx-editor on GitHub">Download</a>  </div>  <div class="editor block">    <app-ngx-editor [config]="editorConfig" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>  </div>  <div *ngIf="htmlContent" class="htmlblock block">    <h6>HTML Output</h6>    <div class="html">      {{ htmlContent }}    </div>  </div>  <div class="information block">    <p>Check      <a href="https://github.com/Sibiraj-S/ngx-editor/wiki/ngxEditor">wiki</a> for more information</p>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container">  <div class="logo block">    <img src="assets/icons/ngx-editor.svg" alt="ngx-Editor">    <h6>WYSIWYG Editor for Angular Applications.</h6>    <p>(Currently -      <a href="https://github.com/Sibiraj-S/ngx-editor/releases/latest">{{ latestRelease[\'name\'] }}</a>) </p>    <a class="github-button" href="https://github.com/Sibiraj-S" aria-label="Follow @Sibiraj-S on GitHub">Follow @Sibiraj-S</a>    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/fork" aria-label="Fork Sibiraj-S/ngx-editor on GitHub">Fork</a>    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor" aria-label="Star Sibiraj-S/ngx-editor on GitHub">Star</a>    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/issues" data-show-count="true" aria-label="Issue Sibiraj-S/ngx-editor on GitHub">Issue</a>    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/archive/master.zip" aria-label="Download Sibiraj-S/ngx-editor on GitHub">Download</a>  </div>  <div class="editor block">    <app-ngx-editor [config]="editorConfig" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>  </div>  <div *ngIf="htmlContent" class="htmlblock block">    <h6>HTML Output</h6>    <div class="html">      {{ htmlContent }}    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'NgxEditorComponent', 'selector': 'app-ngx-editor'},{'name': 'NgxEditorMessageComponent', 'selector': 'app-ngx-editor-message'},{'name': 'NgxEditorToolbarComponent', 'selector': 'app-ngx-editor-toolbar'},{'name': 'NgxGrippieComponent', 'selector': 'app-ngx-grippie'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};

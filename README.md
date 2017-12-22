@@ -55,6 +55,10 @@ Then in HTML
 
 For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
 
+### Demo
+
+Demo at stackblitz [ngx-editor](https://ngx-editor.stackblitz.io/)
+
 ### Documentation
 
 Check [wiki][wiki] for more information
