@@ -16,7 +16,7 @@ export class NgxEditorToolbarComponent {
 
   constructor() { }
 
-  /*
+  /**
    * enable or diable toolbar based on configuration
    */
   canEnableToolbarOptions(value): boolean {

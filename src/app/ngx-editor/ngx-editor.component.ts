@@ -54,7 +54,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     private _commandExecutor: CommandExecutorService,
     private _renderer: Renderer2) { }
 
-  /*
+  /**
    * events
    */
   onFocus(): void {
@@ -84,7 +84,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     return;
   }
 
-  /*
+  /**
    * resizing text area
    */
   resizeTextArea(offsetY: number): void {
@@ -95,7 +95,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     return;
   }
 
-  /*
+  /**
   * editor actions
   */
   executeCommand(commandName: string): void {
@@ -107,7 +107,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     return;
   }
 
-  /*
+  /**
    * Write a new value to the element.
    */
   writeValue(value: any): void {
@@ -118,7 +118,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     this.refreshView(value);
   }
 
-  /*
+  /**
    * Set the function to be called
    * when the control receives a change event.
    */
@@ -126,7 +126,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     this.onChange = fn;
   }
 
-  /*
+  /**
    * Set the function to be called
    * when the control receives a touch event.
    */
@@ -134,7 +134,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  /*
+  /**
    * refresh view/HTML of the editor
    */
   refreshView(value): void {
@@ -143,7 +143,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     return;
   }
 
-  /*
+  /**
    * return a json containing input params
    */
   getCollectiveParams(): any {
@@ -161,7 +161,9 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    // set configuartion
+    /**
+     * set configuartion
+     */
     this.config = this.Utils.getEditorConfiguration(this.config, ngxEditorConfig, this.getCollectiveParams());
 
     this.height = this.height || this.textArea.nativeElement.offsetHeight;

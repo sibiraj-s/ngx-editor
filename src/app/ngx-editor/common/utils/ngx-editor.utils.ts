@@ -1,4 +1,6 @@
-// enable or disable toolbar based on configuration
+/**
+ * enable or disable toolbar based on configuration
+ */
 export function canEnableToolbarOptions(value: string, toolbar: any): boolean {
 
     if (value) {
@@ -18,7 +20,9 @@ export function canEnableToolbarOptions(value: string, toolbar: any): boolean {
     }
 }
 
-// set editor configuration
+/**
+ * set editor configuration
+ */
 export function getEditorConfiguration(value, ngxEditorConfig, input): any {
 
     for (const i in ngxEditorConfig) {
@@ -34,7 +38,9 @@ export function getEditorConfiguration(value, ngxEditorConfig, input): any {
     return value;
 }
 
-// return vertical if the element is the resizer property is set to basic
+/**
+ * return vertical if the element is the resizer property is set to basic
+ */
 export function canResize(resizer: string): any {
     if (resizer === 'basic') {
         return 'vertical';
