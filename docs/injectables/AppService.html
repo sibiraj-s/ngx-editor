@@ -420,7 +420,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>Performs HTTP requests</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -458,7 +459,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/app.service.ts:12</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/app.service.ts:16</a></div>
                                         </td>
                                     </tr>
             
@@ -529,6 +530,10 @@ export class AppService {
 
   private releaseURL &#x3D; &#x27;https://api.github.com/repos/Sibiraj-S/ngx-editor/releases/latest&#x27;;
 
+  /**
+   *
+   * @param _http Performs HTTP requests
+   */
   constructor(private _http: HttpClient) { }
 
   getLatestRelease(): any {

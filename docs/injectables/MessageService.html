@@ -439,12 +439,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/ngx-editor/common/services/message.service.ts:25</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/ngx-editor/common/services/message.service.ts:35</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>a short interval to clear message</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -465,7 +467,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>time in seconds in which the message has to be cleared</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -542,12 +545,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/ngx-editor/common/services/message.service.ts:19</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/ngx-editor/common/services/message.service.ts:24</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>sends message to the editor</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -568,7 +573,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>message to be sent</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -657,12 +663,22 @@ export class MessageService {
     return this.message.asObservable();
   }
 
+  /**
+   * sends message to the editor
+   *
+   * @param message message to be sent
+   */
   sendMessage(message: string): void {
     this.message.next(message);
     this.clearMessageIn(FIVE_SECONDS);
     return;
   }
 
+  /**
+   * a short interval to clear message
+   *
+   * @param milliseconds time in seconds in which the message has to be cleared
+   */
   private clearMessageIn(milliseconds: number): void {
     setTimeout(() &#x3D;&gt; {
       this.message.next(undefined);

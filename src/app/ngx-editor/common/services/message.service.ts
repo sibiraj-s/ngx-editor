@@ -16,12 +16,22 @@ export class MessageService {
     return this.message.asObservable();
   }
 
+  /**
+   * sends message to the editor
+   *
+   * @param message message to be sent
+   */
   sendMessage(message: string): void {
     this.message.next(message);
     this.clearMessageIn(FIVE_SECONDS);
     return;
   }
 
+  /**
+   * a short interval to clear message
+   *
+   * @param milliseconds time in seconds in which the message has to be cleared
+   */
   private clearMessageIn(milliseconds: number): void {
     setTimeout(() => {
       this.message.next(undefined);
