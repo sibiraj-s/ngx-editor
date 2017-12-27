@@ -407,7 +407,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:47</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:52</a></div>
                                         </td>
                                     </tr>
             
@@ -444,12 +444,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:6</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:11</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>executes command from the toolbar</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -470,7 +472,8 @@
                                                               </td>
                                                               <td>
                                                               </td>
-                                                              <td></td>
+                                                              <td><p>command to be executed</p>
+            </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -512,7 +515,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:36</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:41</a></div>
                                         </td>
                                     </tr>
             
@@ -539,6 +542,11 @@
 @Injectable()
 export class CommandExecutorService {
 
+  /**
+   * executes command from the toolbar
+   *
+   * @param command command to be executed
+   */
   execute(command: string): void {
 
     if (command &#x3D;&#x3D;&#x3D; &#x27;enableObjectResizing&#x27;) {

@@ -26,6 +26,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   htmlContent = '';
 
+  /**
+   *
+   * @param _appService service for app component
+   */
   constructor(private _appService: AppService) { }
 
   getLatestRelease() {

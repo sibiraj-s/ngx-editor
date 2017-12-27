@@ -3,6 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CommandExecutorService {
 
+  /**
+   * executes command from the toolbar
+   *
+   * @param command command to be executed
+   */
   execute(command: string): void {
 
     if (command === 'enableObjectResizing') {

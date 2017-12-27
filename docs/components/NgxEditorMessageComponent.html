@@ -462,7 +462,8 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>service to send message to the editor</p>
+    </td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -504,12 +505,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/ngx-editor/ngx-editor-message/ngx-editor-message.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/ngx-editor/ngx-editor-message/ngx-editor-message.component.ts:26</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>clears editor message</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -579,12 +582,20 @@ export class NgxEditorMessageComponent {
 
   ngxMessage &#x3D; &#x27;&#x27;;
 
+  /**
+   *
+   * @param _messageService service to send message to the editor
+   */
   constructor(private _messageService: MessageService) {
     this._messageService.getMessage().subscribe((message: string) &#x3D;&gt; this.ngxMessage &#x3D; message);
   }
 
-  clearMessage() {
+  /**
+   * clears editor message
+   */
+  clearMessage(): void {
     this.ngxMessage &#x3D; undefined;
+    return;
   }
 }
 </code></pre>

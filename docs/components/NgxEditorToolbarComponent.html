@@ -585,7 +585,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:24</a></div>
                                 </td>
                             </tr>
     
@@ -612,7 +612,8 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>toolbar buttons</p>
+    </td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -652,12 +653,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:33</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>triggers command from the toolbar to be executed</p>
+    </div>
     
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -678,7 +681,8 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>command to be executed</p>
+    </td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -723,11 +727,18 @@ export class NgxEditorToolbarComponent {
 
   /**
    * enable or diable toolbar based on configuration
+   *
+   * @param value toolbar buttons
    */
   canEnableToolbarOptions(value): boolean {
     return Utils.canEnableToolbarOptions(value, this.config[&#x27;toolbar&#x27;]);
   }
 
+  /**
+   * triggers command from the toolbar to be executed
+   *
+   * @param command command to be executed
+   */
   triggerCommand(command: string): void {
     this.execute.emit(command);
   }

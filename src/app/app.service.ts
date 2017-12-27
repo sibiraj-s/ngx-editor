@@ -7,6 +7,10 @@ export class AppService {
 
   private releaseURL = 'https://api.github.com/repos/Sibiraj-S/ngx-editor/releases/latest';
 
+  /**
+   *
+   * @param _http Performs HTTP requests
+   */
   constructor(private _http: HttpClient) { }
 
   getLatestRelease(): any {

@@ -13,6 +13,10 @@ export class NgxGrippieComponent {
   oldY = 0;
   grabber = false;
 
+  /**
+   *
+   * @param _editorComponent editor component
+   */
   constructor(private _editorComponent: NgxEditorComponent) { }
 
   @HostListener('document:mousemove', ['$event']) onMouseMove(event: MouseEvent) {

@@ -474,7 +474,8 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>editor component</p>
+    </td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -516,7 +517,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:22</a></div>
                                 </td>
                             </tr>
     
@@ -549,7 +550,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:32</a></div>
                                 </td>
                             </tr>
     
@@ -582,7 +583,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:36</a></div>
                                 </td>
                             </tr>
     
@@ -717,6 +718,10 @@ export class NgxGrippieComponent {
   oldY &#x3D; 0;
   grabber &#x3D; false;
 
+  /**
+   *
+   * @param _editorComponent editor component
+   */
   constructor(private _editorComponent: NgxEditorComponent) { }
 
   @HostListener(&#x27;document:mousemove&#x27;, [&#x27;$event&#x27;]) onMouseMove(event: MouseEvent) {
