@@ -11,14 +11,9 @@ import { NgxEditorToolbarComponent } from './ngx-editor-toolbar/ngx-editor-toolb
 import { MessageService } from './common/services/message.service';
 import { CommandExecutorService } from './common/services/command-executor.service';
 
-// external modules
-import { PopoverModule } from 'ngx-bootstrap';
-
-
 @NgModule({
   imports: [
-    CommonModule,
-    PopoverModule.forRoot()
+    CommonModule
   ],
   declarations: [NgxEditorComponent, NgxGrippieComponent, NgxEditorMessageComponent, NgxEditorToolbarComponent],
   exports: [NgxEditorComponent],

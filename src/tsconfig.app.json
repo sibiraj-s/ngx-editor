@@ -8,6 +8,9 @@
   },
   "exclude": [
     "test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "app.module.ts",
+    "app.component.ts",
+    "app.service.ts"
   ]
 }
