@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>&#x27;NgxEditor&#x27;</title>
+        <title>NgxEditor</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">&#x27;NgxEditor&#x27;</a>
+            <a href="../" class="navbar-brand">NgxEditor</a>
             <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
         </div>
 
@@ -26,7 +26,7 @@
                 <ul class="list">
             
                     <li class="title">
-                        <a href="../index.html">&#x27;NgxEditor&#x27;</a>
+                        <a href="../index.html">NgxEditor</a>
                     </li>
             
                     <li class="divider"></li>
@@ -71,9 +71,6 @@
                                 id="xs-modules-links"
                             >
                                 <li class="link">
-                                    <a href="../modules/AppModule.html" >AppModule</a>
-                                </li>
-                                <li class="link">
                                     <a href="../modules/NgxEditorModule.html" >NgxEditorModule</a>
                                 </li>
                         </ul>
@@ -91,13 +88,13 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/AppComponent.html" >AppComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/NgxEditorComponent.html" >NgxEditorComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NgxEditorMessageComponent.html" >NgxEditorMessageComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/NgxEditorToolbarComponent.html" >NgxEditorToolbarComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NgxGrippieComponent.html"  data-type="entity-link" class="active" >NgxGrippieComponent</a>
@@ -166,7 +163,7 @@
                        <ul class="list">
                    
                            <li class="title">
-                               <a href="../index.html">&#x27;NgxEditor&#x27;</a>
+                               <a href="../index.html">NgxEditor</a>
                            </li>
                    
                            <li class="divider"></li>
@@ -214,9 +211,6 @@
                                        id="modules-links"
                    >
                                        <li class="link">
-                                           <a href="../modules/AppModule.html" >AppModule</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../modules/NgxEditorModule.html" >NgxEditorModule</a>
                                        </li>
                                </ul>
@@ -234,13 +228,13 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/AppComponent.html" >AppComponent</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../components/NgxEditorComponent.html" >NgxEditorComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NgxEditorMessageComponent.html" >NgxEditorMessageComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/NgxEditorToolbarComponent.html" >NgxEditorToolbarComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NgxGrippieComponent.html"  data-type="entity-link" class="active" >NgxGrippieComponent</a>
@@ -462,7 +456,8 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>editor component</p>
+    </td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -504,7 +499,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:22</a></div>
                                 </td>
                             </tr>
     
@@ -537,7 +532,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:32</a></div>
                                 </td>
                             </tr>
     
@@ -570,7 +565,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:36</a></div>
                                 </td>
                             </tr>
     
@@ -705,6 +700,10 @@ export class NgxGrippieComponent {
   oldY &#x3D; 0;
   grabber &#x3D; false;
 
+  /**
+   *
+   * @param _editorComponent editor component
+   */
   constructor(private _editorComponent: NgxEditorComponent) { }
 
   @HostListener(&#x27;document:mousemove&#x27;, [&#x27;$event&#x27;]) onMouseMove(event: MouseEvent) {
@@ -768,7 +767,7 @@ export class NgxGrippieComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="ngx-editor-grippie">  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="651.6 235 26 5"    width="26" height="5">    <g id="sprites">      <path d=" M 651.6 235 L 653.6 235 L 653.6 237 L 651.6 237 M 654.6 238 L 656.6 238 L 656.6 240 L 654.6 240 M 660.6 238 L 662.6 238 L 662.6 240 L 660.6 240 M 666.6 238 L 668.6 238 L 668.6 240 L 666.6 240 M 672.6 238 L 674.6 238 L 674.6 240 L 672.6 240 M 657.6 235 L 659.6 235 L 659.6 237 L 657.6 237 M 663.6 235 L 665.6 235 L 665.6 237 L 663.6 237 M 669.6 235 L 671.6 235 L 671.6 237 L 669.6 237 M 675.6 235 L 677.6 235 L 677.6 237 L 675.6 237"        fill="rgb(147,153,159)" />    </g>  </svg></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'NgxEditorComponent', 'selector': 'app-ngx-editor'},{'name': 'NgxEditorMessageComponent', 'selector': 'app-ngx-editor-message'},{'name': 'NgxGrippieComponent', 'selector': 'app-ngx-grippie'}];
+    var COMPONENTS = [{'name': 'NgxEditorComponent', 'selector': 'app-ngx-editor'},{'name': 'NgxEditorMessageComponent', 'selector': 'app-ngx-editor-message'},{'name': 'NgxEditorToolbarComponent', 'selector': 'app-ngx-editor-toolbar'},{'name': 'NgxGrippieComponent', 'selector': 'app-ngx-grippie'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NgxGrippieComponent'};
 </script>

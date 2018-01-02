@@ -18,11 +18,18 @@ export class NgxEditorToolbarComponent {
 
   /**
    * enable or diable toolbar based on configuration
+   *
+   * @param value toolbar buttons
    */
   canEnableToolbarOptions(value): boolean {
     return Utils.canEnableToolbarOptions(value, this.config['toolbar']);
   }
 
+  /**
+   * triggers command from the toolbar to be executed
+   *
+   * @param command command to be executed
+   */
   triggerCommand(command: string): void {
     this.execute.emit(command);
   }

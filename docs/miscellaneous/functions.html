@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>&#x27;NgxEditor&#x27;</title>
+        <title>NgxEditor</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">&#x27;NgxEditor&#x27;</a>
+            <a href="../" class="navbar-brand">NgxEditor</a>
             <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
         </div>
 
@@ -26,7 +26,7 @@
                 <ul class="list">
             
                     <li class="title">
-                        <a href="../index.html">&#x27;NgxEditor&#x27;</a>
+                        <a href="../index.html">NgxEditor</a>
                     </li>
             
                     <li class="divider"></li>
@@ -71,9 +71,6 @@
                                 id="xs-modules-links"
                             >
                                 <li class="link">
-                                    <a href="../modules/AppModule.html" >AppModule</a>
-                                </li>
-                                <li class="link">
                                     <a href="../modules/NgxEditorModule.html" >NgxEditorModule</a>
                                 </li>
                         </ul>
@@ -91,13 +88,13 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/AppComponent.html" >AppComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/NgxEditorComponent.html" >NgxEditorComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NgxEditorMessageComponent.html" >NgxEditorMessageComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/NgxEditorToolbarComponent.html" >NgxEditorToolbarComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NgxGrippieComponent.html" >NgxGrippieComponent</a>
@@ -166,7 +163,7 @@
                        <ul class="list">
                    
                            <li class="title">
-                               <a href="../index.html">&#x27;NgxEditor&#x27;</a>
+                               <a href="../index.html">NgxEditor</a>
                            </li>
                    
                            <li class="divider"></li>
@@ -214,9 +211,6 @@
                                        id="modules-links"
                    >
                                        <li class="link">
-                                           <a href="../modules/AppModule.html" >AppModule</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../modules/NgxEditorModule.html" >NgxEditorModule</a>
                                        </li>
                                </ul>
@@ -234,13 +228,13 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/AppComponent.html" >AppComponent</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../components/NgxEditorComponent.html" >NgxEditorComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NgxEditorMessageComponent.html" >NgxEditorMessageComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/NgxEditorToolbarComponent.html" >NgxEditorToolbarComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NgxGrippieComponent.html" >NgxGrippieComponent</a>
@@ -388,7 +382,8 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>toolbar item</p>
+    </td>
                                                     </tr>
                                                     <tr>
                                                       <td>toolbar</td>
@@ -397,7 +392,8 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>toolbar configuration object</p>
+    </td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -453,7 +449,8 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>type of resizer, either basic or stack</p>
+    </td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -479,7 +476,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>getEditorConfiguration(value: , ngxEditorConfig: , input: )</code>
+    <code>getEditorConfiguration(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, ngxEditorConfig: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, input: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                         </td>
                     </tr>
     
@@ -505,26 +502,32 @@
                                                     <tr>
                                                       <td>value</td>
                                                       <td>
+                                                              <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>configuration via [config] property</p>
+    </td>
                                                     </tr>
                                                     <tr>
                                                       <td>ngxEditorConfig</td>
                                                       <td>
+                                                              <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>default editor configuration</p>
+    </td>
                                                     </tr>
                                                     <tr>
                                                       <td>input</td>
                                                       <td>
+                                                              <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>direct configuration inputs via directives</p>
+    </td>
                                                     </tr>
                                             </tbody>
                                         </table>

@@ -12,11 +12,19 @@ export class NgxEditorMessageComponent {
 
   ngxMessage = '';
 
+  /**
+   *
+   * @param _messageService service to send message to the editor
+   */
   constructor(private _messageService: MessageService) {
     this._messageService.getMessage().subscribe((message: string) => this.ngxMessage = message);
   }
 
-  clearMessage() {
+  /**
+   * clears editor message
+   */
+  clearMessage(): void {
     this.ngxMessage = undefined;
+    return;
   }
 }

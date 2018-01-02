@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>&#x27;NgxEditor&#x27;</title>
+        <title>NgxEditor</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">&#x27;NgxEditor&#x27;</a>
+            <a href="../" class="navbar-brand">NgxEditor</a>
             <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
         </div>
 
@@ -26,7 +26,7 @@
                 <ul class="list">
             
                     <li class="title">
-                        <a href="../index.html">&#x27;NgxEditor&#x27;</a>
+                        <a href="../index.html">NgxEditor</a>
                     </li>
             
                     <li class="divider"></li>
@@ -71,9 +71,6 @@
                                 id="xs-modules-links"
                             >
                                 <li class="link">
-                                    <a href="../modules/AppModule.html" >AppModule</a>
-                                </li>
-                                <li class="link">
                                     <a href="../modules/NgxEditorModule.html" >NgxEditorModule</a>
                                 </li>
                         </ul>
@@ -91,13 +88,13 @@
                                 id="xs-components-links"
                             >
                                 <li class="link">
-                                    <a href="../components/AppComponent.html" >AppComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/NgxEditorComponent.html" >NgxEditorComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NgxEditorMessageComponent.html"  data-type="entity-link" class="active" >NgxEditorMessageComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/NgxEditorToolbarComponent.html" >NgxEditorToolbarComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NgxGrippieComponent.html" >NgxGrippieComponent</a>
@@ -166,7 +163,7 @@
                        <ul class="list">
                    
                            <li class="title">
-                               <a href="../index.html">&#x27;NgxEditor&#x27;</a>
+                               <a href="../index.html">NgxEditor</a>
                            </li>
                    
                            <li class="divider"></li>
@@ -214,9 +211,6 @@
                                        id="modules-links"
                    >
                                        <li class="link">
-                                           <a href="../modules/AppModule.html" >AppModule</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../modules/NgxEditorModule.html" >NgxEditorModule</a>
                                        </li>
                                </ul>
@@ -234,13 +228,13 @@
                                        id="components-links"
                    >
                                        <li class="link">
-                                           <a href="../components/AppComponent.html" >AppComponent</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../components/NgxEditorComponent.html" >NgxEditorComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NgxEditorMessageComponent.html"  data-type="entity-link" class="active" >NgxEditorMessageComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/NgxEditorToolbarComponent.html" >NgxEditorToolbarComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NgxGrippieComponent.html" >NgxGrippieComponent</a>
@@ -450,7 +444,8 @@
                                                       </td>
                                                       <td>
                                                       </td>
-                                                      <td></td>
+                                                      <td><p>service to send message to the editor</p>
+    </td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -492,12 +487,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/ngx-editor/ngx-editor-message/ngx-editor-message.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/ngx-editor/ngx-editor-message/ngx-editor-message.component.ts:26</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>clears editor message</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -567,12 +564,20 @@ export class NgxEditorMessageComponent {
 
   ngxMessage &#x3D; &#x27;&#x27;;
 
+  /**
+   *
+   * @param _messageService service to send message to the editor
+   */
   constructor(private _messageService: MessageService) {
     this._messageService.getMessage().subscribe((message: string) &#x3D;&gt; this.ngxMessage &#x3D; message);
   }
 
-  clearMessage() {
+  /**
+   * clears editor message
+   */
+  clearMessage(): void {
     this.ngxMessage &#x3D; undefined;
+    return;
   }
 }
 </code></pre>
@@ -609,7 +614,7 @@ export class NgxEditorMessageComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="ngx-editor-message" *ngIf="ngxMessage" (dblclick)="clearMessage()">  {{ ngxMessage }}</div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'NgxEditorComponent', 'selector': 'app-ngx-editor'},{'name': 'NgxEditorMessageComponent', 'selector': 'app-ngx-editor-message'},{'name': 'NgxGrippieComponent', 'selector': 'app-ngx-grippie'}];
+    var COMPONENTS = [{'name': 'NgxEditorComponent', 'selector': 'app-ngx-editor'},{'name': 'NgxEditorMessageComponent', 'selector': 'app-ngx-editor-message'},{'name': 'NgxEditorToolbarComponent', 'selector': 'app-ngx-editor-toolbar'},{'name': 'NgxGrippieComponent', 'selector': 'app-ngx-grippie'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NgxEditorMessageComponent'};
 </script>

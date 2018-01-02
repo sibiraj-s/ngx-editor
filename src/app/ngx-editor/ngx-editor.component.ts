@@ -48,6 +48,13 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   private onChange: (value: string) => void;
   private onTouched: () => void;
 
+  /**
+   *
+   * @param _elementRef  api to access dom element
+   * @param _messageService service to send message to the editor message component
+   * @param _commandExecutor executes command from the toolbar
+   * @param _renderer access and manipulate the dom element
+   */
   constructor(
     private _elementRef: ElementRef,
     private _messageService: MessageService,
@@ -66,7 +73,11 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     this.enableToolbar = !!this._elementRef.nativeElement.contains(event.target);
   }
 
-  onContentChange(html): void {
+  /**
+   *
+   * @param html html string from contenteditable
+   */
+  onContentChange(html: string): void {
 
     if (typeof this.onChange === 'function') {
       this.onChange(html);
@@ -86,6 +97,8 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
   /**
    * resizing text area
+   *
+   * @param offsetY vertical height of the eidtable portion of the editor
    */
   resizeTextArea(offsetY: number): void {
     let newHeight = parseInt(this.height, 10);
@@ -96,8 +109,10 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   /**
-  * editor actions
-  */
+   * editor actions, i.e., executes command from toolbar
+   *
+   * @param commandName name of the command to be executed
+   */
   executeCommand(commandName: string): void {
     try {
       this._commandExecutor.execute(commandName);
@@ -109,6 +124,8 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
   /**
    * Write a new value to the element.
+   *
+   * @param value value to be executed when there is a change in contenteditable
    */
   writeValue(value: any): void {
     if (value === undefined) {
@@ -121,6 +138,8 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   /**
    * Set the function to be called
    * when the control receives a change event.
+   *
+   * @param fn a function
    */
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -129,6 +148,8 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   /**
    * Set the function to be called
    * when the control receives a touch event.
+   *
+   * @param fn a function
    */
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
@@ -136,8 +157,10 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
   /**
    * refresh view/HTML of the editor
+   *
+   * @param value html string from the editor
    */
-  refreshView(value): void {
+  refreshView(value: string): void {
     const normalizedValue = value == null ? '' : value;
     this._renderer.setProperty(this.textArea.nativeElement, 'innerHTML', normalizedValue);
     return;
