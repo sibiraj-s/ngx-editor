@@ -47,6 +47,8 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   private lastViewModel: any = '';
   private onChange: (value: string) => void;
   private onTouched: () => void;
+  @Output() blur = new EventEmitter();
+  @Output() focus = new EventEmitter();
 
   /**
    *
@@ -66,6 +68,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    */
   onFocus(): void {
     this.enableToolbar = true;
+    this.focus.emit();
     return;
   }
 
@@ -91,7 +94,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     if (typeof this.onTouched === 'function') {
       this.onTouched();
     }
-
+    this.blur.emit();
     return;
   }
 
