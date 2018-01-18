@@ -10,8 +10,6 @@ import * as Utils from '../common/utils/ngx-editor.utils';
 export class NgxEditorToolbarComponent {
 
   @Input() config: any;
-  @Input() enableToolbar = false;
-  @Input() showToolbar = true;
   @Output() execute: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }

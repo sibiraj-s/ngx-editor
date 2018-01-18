@@ -34,14 +34,17 @@ export function getEditorConfiguration(value: any, ngxEditorConfig: any, input: 
 
     for (const i in ngxEditorConfig) {
         if (i) {
-            if (input[i]) {
+
+            if (input[i] !== undefined) {
                 value[i] = input[i];
             }
+
             if (!value.hasOwnProperty(i)) {
                 value[i] = ngxEditorConfig[i];
             }
         }
     }
+
     return value;
 }
 

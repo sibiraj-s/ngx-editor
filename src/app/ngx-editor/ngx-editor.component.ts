@@ -38,8 +38,14 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   @Input() minWidth: string;
   @Input() toolbar: any;
   @Input() resizer = 'stack';
+  /**
+   * The config property is a JSON object
+   *
+   * All avaibale inputs inputs can be provided in the configuration as JSON
+   */
   @Input() config = ngxEditorConfig;
-  @Input() showToolbar = true;
+  @Input() showToolbar: boolean;
+  @Input() enableToolbar: boolean;
 
   @Output() blur = new EventEmitter();
   @Output() focus = new EventEmitter();
@@ -48,7 +54,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   @ViewChild('ngxCodeEditor') codeEditor: any;
   @ViewChild('ngxWrapper') ngxWrapper: any;
 
-  enableToolbar = false;
   Utils = Utils;
   codeEditorMode = false;
 
@@ -116,7 +121,13 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     newHeight += offsetY;
     this.height = newHeight + 'px';
     this.textArea.nativeElement.style.height = this.height;
-    this.ngxCodeMirror.setSize('100%', this.height);
+
+    /**
+     * update code-editor height only on editor mode
+     */
+    if (this.codeEditorMode) {
+      this.ngxCodeMirror.setSize('100%', this.height);
+    }
     return;
   }
 
@@ -244,6 +255,8 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
       minHeight: this.minHeight,
       width: this.width,
       minWidth: this.minWidth,
+      enableToolbar: this.enableToolbar,
+      showToolbar: this.showToolbar,
       toolbar: this.toolbar
     };
   }
