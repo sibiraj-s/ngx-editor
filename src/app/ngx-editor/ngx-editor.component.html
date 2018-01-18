@@ -3,12 +3,17 @@
   <app-ngx-editor-toolbar [config]="config" [enableToolbar]="enableToolbar" [showToolbar]="showToolbar" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>
 
   <!-- text area -->
-  <div class="ngx-editor-textarea" [attr.contenteditable]="config['editable']" [attr.placeholder]="config['placeholder']" (input)="onContentChange($event.target.innerHTML)"
-    [attr.translate]="config['translate']" [attr.spellcheck]="config['spellcheck']" [style.height]="config['height']" [style.minHeight]="config['minHeight']"
-    [style.resize]="Utils?.canResize(resizer)" (focus)="onFocus()" (blur)="onBlur()" #ngxTextArea></div>
+  <div class="ngx-wrapper" #ngxWrapper>
+    <div class="ngx-editor-textarea" [attr.contenteditable]="config['editable']" (input)="onContentChange($event.target.innerHTML)"
+      [attr.translate]="config['translate']" [attr.spellcheck]="config['spellcheck']" [style.height]="config['height']" [style.minHeight]="config['minHeight']"
+      [style.resize]="Utils?.canResize(resizer)" (focus)="onFocus()" (blur)="onBlur()" #ngxTextArea></div>
+
+    <span class="ngx-editor-placeholder">{{ config['placeholder'] }}</span>
+  </div>
+
+  <textarea #ngxCodeEditor [hidden]="true"></textarea>
 
   <app-ngx-editor-message></app-ngx-editor-message>
-
   <app-ngx-grippie *ngIf="resizer === 'stack'"></app-ngx-grippie>
 
 </div>

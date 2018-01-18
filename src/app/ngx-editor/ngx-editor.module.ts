@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 // components
 import { NgxEditorComponent } from './ngx-editor.component';
@@ -12,9 +13,7 @@ import { MessageService } from './common/services/message.service';
 import { CommandExecutorService } from './common/services/command-executor.service';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule, FormsModule],
   declarations: [NgxEditorComponent, NgxGrippieComponent, NgxEditorMessageComponent, NgxEditorToolbarComponent],
   exports: [NgxEditorComponent],
   providers: [CommandExecutorService, MessageService]

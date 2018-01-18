@@ -4,11 +4,13 @@ import {
   Renderer2, forwardRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import * as CodeMirror from 'codemirror';
+import 'codemirror/mode/xml/xml.js';
 
 import { CommandExecutorService } from './common/services/command-executor.service';
 import { MessageService } from './common/services/message.service';
 
-import { ngxEditorConfig } from './common/ngx-editor.defaults';
+import { ngxEditorConfig, codeMirrorConfig } from './common/ngx-editor.defaults';
 import * as Utils from './common/utils/ngx-editor.utils';
 
 @Component({
@@ -43,11 +45,15 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   @Output() focus = new EventEmitter();
 
   @ViewChild('ngxTextArea') textArea: any;
+  @ViewChild('ngxCodeEditor') codeEditor: any;
+  @ViewChild('ngxWrapper') ngxWrapper: any;
 
   enableToolbar = false;
   Utils = Utils;
+  codeEditorMode = false;
 
   private lastViewModel: any = '';
+  private ngxCodeMirror: any = undefined;
   private onChange: (value: string) => void;
   private onTouched: () => void;
 
@@ -85,6 +91,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
     if (typeof this.onChange === 'function') {
       this.onChange(html);
+      this.monitorEditor(html);
     }
 
     return;
@@ -109,6 +116,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     newHeight += offsetY;
     this.height = newHeight + 'px';
     this.textArea.nativeElement.style.height = this.height;
+    this.ngxCodeMirror.setSize('100%', this.height);
     return;
   }
 
@@ -118,11 +126,18 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param commandName name of the command to be executed
    */
   executeCommand(commandName: string): void {
+
+    if (commandName === 'code') {
+      this.toggleCodeEditor();
+      return;
+    }
+
     try {
       this._commandExecutor.execute(commandName);
     } catch (error) {
       this._messageService.sendMessage(error.message);
     }
+
     return;
   }
 
@@ -132,11 +147,13 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param value value to be executed when there is a change in contenteditable
    */
   writeValue(value: any): void {
-    if (value === undefined) {
+
+    if (!!value) {
       return;
     }
 
     this.refreshView(value);
+    this.monitorEditor(value);
   }
 
   /**
@@ -170,6 +187,50 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     return;
   }
 
+
+  /**
+   * toggle between codeview and editor
+   */
+  toggleCodeEditor(): void {
+    this.codeEditorMode = !this.codeEditorMode;
+
+    if (this.codeEditorMode) {
+
+      this.ngxCodeMirror = CodeMirror.fromTextArea(this.codeEditor.nativeElement, codeMirrorConfig);
+      this._renderer.setStyle(this.textArea.nativeElement, 'display', 'none');
+
+      /** set value of the code editor */
+      this.ngxCodeMirror.setValue(this.textArea.nativeElement.innerHTML);
+
+      /** sets height of the code editor as same as the height of the textArea */
+      this.ngxCodeMirror.setSize('100%', this.height);
+
+    } else {
+
+      /** remove/ destroy code editor */
+      this.ngxCodeMirror.toTextArea();
+      this._renderer.setStyle(this.textArea.nativeElement, 'display', 'block');
+
+      /** update the model value and html content on the contenteditable */
+      this.refreshView(this.ngxCodeMirror.getValue());
+      this.onContentChange(this.ngxCodeMirror.getValue());
+
+    }
+    return;
+  }
+
+  /**
+   * monitor text area changes
+   */
+  monitorEditor(value: any): void {
+    if (!value || value === '<br>' || value === '') {
+      this._renderer.addClass(this.ngxWrapper.nativeElement, 'show-placeholder');
+    } else {
+      this._renderer.removeClass(this.ngxWrapper.nativeElement, 'show-placeholder');
+    }
+    return;
+  }
+
   /**
    * return a json containing input params
    */
@@ -196,6 +257,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
 
     this.executeCommand('enableObjectResizing');
+
   }
 
 }

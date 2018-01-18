@@ -117,4 +117,10 @@
       <i class="fa fa-picture-o" aria-hidden="true"></i>
     </button>
   </div>
+  <div class="ngx-toolbar-set">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('code')" (click)="triggerCommand('code')"
+      title="View Code" [disabled]="!enableToolbar">
+      <i class="fa fa-code" aria-hidden="true"></i>
+    </button>
+  </div>
 </div>

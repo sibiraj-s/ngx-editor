@@ -62,6 +62,7 @@
     "@types/node": "~6.0.60",
     "bootstrap": "^4.0.0-beta.2",
     "codelyzer": "^4.0.1",
+    "codemirror": "^5.33.0",
     "commitizen": "^2.9.6",
     "core-js": "^2.4.1",
     "cz-conventional-changelog": "^2.1.0",
