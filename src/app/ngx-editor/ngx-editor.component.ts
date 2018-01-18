@@ -28,33 +28,86 @@ import * as Utils from './common/utils/ngx-editor.utils';
 
 export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
+  /**
+   * Specifies weather the textarea to be editable or not
+   */
   @Input() editable: boolean;
+  /**
+   * The spellcheck property specifies whether the element is to have its spelling and grammar checked or not.
+   */
   @Input() spellcheck: boolean;
+  /**
+   * Placeholder for the textArea
+   */
   @Input() placeholder: string;
+  /**
+   * The translate property specifies whether the content of an element should be translated or not.
+   *
+   * Check https://www.w3schools.com/tags/att_global_translate.asp for more information and browser support
+   */
   @Input() translate: string;
+  /**
+   * Sets height of the editor
+   */
   @Input() height: string;
+  /**
+   * Sets minimum height for the editor
+   */
   @Input() minHeight: string;
+  /**
+   * Sets Width of the editor
+   */
   @Input() width: string;
+  /**
+   * Sets minimum width of the editor
+   */
   @Input() minWidth: string;
-  @Input() toolbar: any;
+  /**
+   * Toolbar accepts an array which specifies the options to be enabled for the toolbar
+   *
+   * Check ngxEditorConfig for toolbar configuration
+   *
+   * Passing an empty array will enable all toolbar
+   */
+  @Input() toolbar: Object;
+  /**
+   * The editor can be resized vertically.
+   *
+   * `basic` resizer enables the html5 reszier. Check here https://www.w3schools.com/cssref/css3_pr_resize.asp
+   *
+   * `stack` resizer enable a resizer that looks like as if in https://stackoverflow.com
+   */
   @Input() resizer = 'stack';
   /**
    * The config property is a JSON object
    *
    * All avaibale inputs inputs can be provided in the configuration as JSON
+   * inputs provided directly are considered as top priority
    */
   @Input() config = ngxEditorConfig;
+  /**
+   * Weather to show or hide toolbar
+   */
   @Input() showToolbar: boolean;
+  /**
+   * Weather to enable or disable the toolbar
+   */
   @Input() enableToolbar: boolean;
 
-  @Output() blur = new EventEmitter();
-  @Output() focus = new EventEmitter();
+  /**
+   * emits `blur` event when focused out from the textarea
+   */
+  @Output() blur: EventEmitter<string> = new EventEmitter<string>();
+  /**
+   * emits `focus` event when focused in to the textarea
+   */
+  @Output() focus: EventEmitter<string> = new EventEmitter<string>();
 
   @ViewChild('ngxTextArea') textArea: any;
   @ViewChild('ngxCodeEditor') codeEditor: any;
   @ViewChild('ngxWrapper') ngxWrapper: any;
 
-  Utils = Utils;
+  Utils: any = Utils;
   codeEditorMode = false;
 
   private lastViewModel: any = '';
@@ -80,16 +133,16 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    */
   onFocus(): void {
     this.enableToolbar = true;
-    this.focus.emit();
+    this.focus.emit('focus');
     return;
   }
 
-  @HostListener('document:click', ['$event']) onDocumentClick(event) {
+  @HostListener('document:click', ['$event']) onDocumentClick(event: MouseEvent) {
     this.enableToolbar = !!this._elementRef.nativeElement.contains(event.target);
   }
 
   /**
-   *
+   * Executed from the contenteditable section while the input property changes
    * @param html html string from contenteditable
    */
   onContentChange(html: string): void {
@@ -107,7 +160,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     if (typeof this.onTouched === 'function') {
       this.onTouched();
     }
-    this.blur.emit();
+    this.blur.emit('blur');
     return;
   }
 
@@ -243,7 +296,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   /**
-   * return a json containing input params
+   * returns a json containing input params
    */
   getCollectiveParams(): any {
     return {

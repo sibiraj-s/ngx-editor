@@ -63,8 +63,6 @@ Demo at stackblitz [ngx-editor](https://ngx-editor.stackblitz.io/)
 
 Documentation is auto-generated using [compodoc][compodoc], and can be viewed here: [https://sibiraj-s.github.io/ngx-editor/](https://sibiraj-s.github.io/ngx-editor/)
 
-Wiki [here][wiki]
-
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
 [github]: https://sibiraj-s.github.io/

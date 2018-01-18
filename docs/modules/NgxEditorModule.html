@@ -542,6 +542,7 @@
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
 
 // components
 import { NgxEditorComponent } from &#x27;./ngx-editor.component&#x27;;
@@ -553,15 +554,8 @@ import { NgxEditorToolbarComponent } from &#x27;./ngx-editor-toolbar/ngx-editor-
 import { MessageService } from &#x27;./common/services/message.service&#x27;;
 import { CommandExecutorService } from &#x27;./common/services/command-executor.service&#x27;;
 
-// external modules
-import { PopoverModule } from &#x27;ngx-bootstrap&#x27;;
-
-
 @NgModule({
-  imports: [
-    CommonModule,
-    PopoverModule.forRoot()
-  ],
+  imports: [CommonModule, FormsModule],
   declarations: [NgxEditorComponent, NgxGrippieComponent, NgxEditorMessageComponent, NgxEditorToolbarComponent],
   exports: [NgxEditorComponent],
   providers: [CommandExecutorService, MessageService]

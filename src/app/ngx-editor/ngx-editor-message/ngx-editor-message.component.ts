@@ -10,10 +10,9 @@ import { MessageService } from '../common/services/message.service';
 
 export class NgxEditorMessageComponent {
 
-  ngxMessage = '';
+  ngxMessage = undefined;
 
   /**
-   *
    * @param _messageService service to send message to the editor
    */
   constructor(private _messageService: MessageService) {
