@@ -1,6 +1,6 @@
 {
   "name": "ngx-editor",
-  "version": "3.3.0-rc.1",
+  "version": "3.3.0-rc.2",
   "description": "WYSIWYG Editor for Angular Applications",
   "license": "MIT",
   "scripts": {
@@ -41,9 +41,7 @@
     "@angular/core": "^5.0.0",
     "@angular/forms": "^5.0.0",
     "font-awesome": "^4.7.0",
-    "rxjs": "^5.5.2"
-  },
-  "dependencies": {
+    "rxjs": "^5.5.2",
     "codemirror": "^5.33.0"
   },
   "devDependencies": {
@@ -65,6 +63,7 @@
     "@types/node": "~6.0.60",
     "bootstrap": "^4.0.0",
     "codelyzer": "^4.0.1",
+    "codemirror": "^5.33.0",
     "commitizen": "^2.9.6",
     "core-js": "^2.4.1",
     "cz-conventional-changelog": "^2.1.0",
