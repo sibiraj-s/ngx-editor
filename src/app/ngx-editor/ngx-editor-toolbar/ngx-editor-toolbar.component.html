@@ -1,120 +1,126 @@
-<div class="ngx-toolbar" *ngIf="showToolbar">
+<div class="ngx-toolbar" *ngIf="config['showToolbar']">
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('bold')" (click)="triggerCommand('bold')"
-      title="Bold" [disabled]="!enableToolbar">
+      title="Bold" [disabled]="!config['enableToolbar']">
       <i class="fa fa-bold" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('italic')" (click)="triggerCommand('italic')"
-      title="Italic" [disabled]="!enableToolbar">
+      title="Italic" [disabled]="!config['enableToolbar']">
       <i class="fa fa-italic" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('underline')" (click)="triggerCommand('underline')"
-      title="Underline" [disabled]="!enableToolbar">
+      title="Underline" [disabled]="!config['enableToolbar']">
       <i class="fa fa-underline" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('strikeThrough')" (click)="triggerCommand('strikeThrough')"
-      title="Strikethrough" [disabled]="!enableToolbar">
+      title="Strikethrough" [disabled]="!config['enableToolbar']">
       <i class="fa fa-strikethrough" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('superscript')" (click)="triggerCommand('superscript')"
-      title="Superscript" [disabled]="!enableToolbar">
+      title="Superscript" [disabled]="!config['enableToolbar']">
       <i class="fa fa-superscript" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('subscript')" (click)="triggerCommand('subscript')"
-      title="Subscript" [disabled]="!enableToolbar">
+      title="Subscript" [disabled]="!config['enableToolbar']">
       <i class="fa fa-subscript" aria-hidden="true"></i>
     </button>
   </div>
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('justifyLeft')" (click)="triggerCommand('justifyLeft')"
-      title="Justify Left" [disabled]="!enableToolbar">
+      title="Justify Left" [disabled]="!config['enableToolbar']">
       <i class="fa fa-align-left" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('justifyCenter')" (click)="triggerCommand('justifyCenter')"
-      title="Justify Center" [disabled]="!enableToolbar">
+      title="Justify Center" [disabled]="!config['enableToolbar']">
       <i class="fa fa-align-center" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('justifyRight')" (click)="triggerCommand('justifyRight')"
-      title="Justify Right" [disabled]="!enableToolbar">
+      title="Justify Right" [disabled]="!config['enableToolbar']">
       <i class="fa fa-align-right" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('justifyFull')" (click)="triggerCommand('justifyFull')"
-      title="Justify" [disabled]="!enableToolbar">
+      title="Justify" [disabled]="!config['enableToolbar']">
       <i class="fa fa-align-justify" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('indent')" (click)="triggerCommand('indent')"
-      title="Indent" [disabled]="!enableToolbar">
+      title="Indent" [disabled]="!config['enableToolbar']">
       <i class="fa fa-indent" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('outdent')" (click)="triggerCommand('outdent')"
-      title="Outdent" [disabled]="!enableToolbar">
+      title="Outdent" [disabled]="!config['enableToolbar']">
       <i class="fa fa-outdent" aria-hidden="true"></i>
     </button>
   </div>
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('cut')" (click)="triggerCommand('cut')" title="Cut"
-      [disabled]="!enableToolbar">
+      [disabled]="!config['enableToolbar']">
       <i class="fa fa-scissors" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('copy')" (click)="triggerCommand('copy')"
-      title="Copy" [disabled]="!enableToolbar">
+      title="Copy" [disabled]="!config['enableToolbar']">
       <i class="fa fa-files-o" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('delete')" (click)="triggerCommand('delete')"
-      title="Delete" [disabled]="!enableToolbar">
+      title="Delete" [disabled]="!config['enableToolbar']">
       <i class="fa fa-trash" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('removeFormat')" (click)="triggerCommand('removeFormat')"
-      title="Clear Formatting" [disabled]="!enableToolbar">
+      title="Clear Formatting" [disabled]="!config['enableToolbar']">
       <i class="fa fa-eraser" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('undo')" (click)="triggerCommand('undo')"
-      title="Undo" [disabled]="!enableToolbar">
+      title="Undo" [disabled]="!config['enableToolbar']">
       <i class="fa fa-undo" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('redo')" (click)="triggerCommand('redo')"
-      title="Redo" [disabled]="!enableToolbar">
+      title="Redo" [disabled]="!config['enableToolbar']">
       <i class="fa fa-repeat" aria-hidden="true"></i>
     </button>
   </div>
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('paragraph')" (click)="triggerCommand('insertParagraph')"
-      title="Paragraph" [disabled]="!enableToolbar">
+      title="Paragraph" [disabled]="!config['enableToolbar']">
       <i class="fa fa-paragraph" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('blockquote')" (click)="triggerCommand('blockquote')"
-      title="Blockquote" [disabled]="!enableToolbar">
+      title="Blockquote" [disabled]="!config['enableToolbar']">
       <i class="fa fa-quote-left" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('removeBlockquote')" (click)="triggerCommand('removeBlockquote')"
-      title="Remove Blockquote" [disabled]="!enableToolbar">
+      title="Remove Blockquote" [disabled]="!config['enableToolbar']">
       <i class="fa fa-quote-right" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('horizontalLine')" (click)="triggerCommand('insertHorizontalRule')"
-      title="Horizontal Line" [disabled]="!enableToolbar">
+      title="Horizontal Line" [disabled]="!config['enableToolbar']">
       <i class="fa fa-minus" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('orderedList')" (click)="triggerCommand('insertUnorderedList')"
-      title="Unodered List" [disabled]="!enableToolbar">
+      title="Unodered List" [disabled]="!config['enableToolbar']">
       <i class="fa fa-list-ul" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unorderedList')" (click)="triggerCommand('insertOrderedList')"
-      title="Ordered List" [disabled]="!enableToolbar">
+      title="Ordered List" [disabled]="!config['enableToolbar']">
       <i class="fa fa-list-ol" aria-hidden="true"></i>
     </button>
   </div>
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" (click)="triggerCommand('link')"
-      title="Insert/Edit Link" [disabled]="!enableToolbar">
+      title="Insert/Edit Link" [disabled]="!config['enableToolbar']">
       <i class="fa fa-link" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unlink')" (click)="triggerCommand('unlink')"
-      title="Unlink" [disabled]="!enableToolbar">
+      title="Unlink" [disabled]="!config['enableToolbar']">
       <i class="fa fa-chain-broken" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="triggerCommand('image')"
-      title="Insert Image" [disabled]="!enableToolbar">
+      title="Insert Image" [disabled]="!config['enableToolbar']">
       <i class="fa fa-picture-o" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="ngx-toolbar-set">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('code')" (click)="triggerCommand('code')"
+      title="View Code" [disabled]="!config['enableToolbar']">
+      <i class="fa fa-code" aria-hidden="true"></i>
     </button>
   </div>
 </div>

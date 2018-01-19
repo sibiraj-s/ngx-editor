@@ -402,7 +402,13 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#enableToolbar">enableToolbar</a>
+                                <a href="#codeEditor">codeEditor</a>
+                            </li>
+                            <li>
+                                <a href="#codeEditorMode">codeEditorMode</a>
+                            </li>
+                            <li>
+                                <a href="#ngxWrapper">ngxWrapper</a>
                             </li>
                             <li>
                                 <a href="#textArea">textArea</a>
@@ -428,6 +434,9 @@
                                 <a href="#getCollectiveParams">getCollectiveParams</a>
                             </li>
                             <li>
+                                <a href="#monitorEditor">monitorEditor</a>
+                            </li>
+                            <li>
                                 <a href="#onBlur">onBlur</a>
                             </li>
                             <li>
@@ -449,6 +458,9 @@
                                 <a href="#resizeTextArea">resizeTextArea</a>
                             </li>
                             <li>
+                                <a href="#toggleCodeEditor">toggleCodeEditor</a>
+                            </li>
+                            <li>
                                 <a href="#writeValue">writeValue</a>
                             </li>
                         </ul>
@@ -467,6 +479,9 @@
                             </li>
                             <li>
                                 <a href="#editable">editable</a>
+                            </li>
+                            <li>
+                                <a href="#enableToolbar">enableToolbar</a>
                             </li>
                             <li>
                                 <a href="#height">height</a>
@@ -503,6 +518,23 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#blur">blur</a>
+                            </li>
+                            <li>
+                                <a href="#focus">focus</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <h6><b>HostListeners</b></h6>
                     </td>
                 </tr>
@@ -530,7 +562,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:116</a></div>
                                 </td>
                             </tr>
     
@@ -607,6 +639,10 @@
                             <code>config</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>The config property is a JSON object</p>
+<p>All avaibale inputs inputs can be provided in the configuration as JSON
+inputs provided directly are considered as top priority</p>
+</div>
                             <p>
                               <em>Default value: </em><code>ngxEditorConfig</code>
                             </p>
@@ -614,7 +650,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:87</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -627,50 +663,10 @@
                             <code>editable</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>Specifies weather the textarea to be editable or not</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:29</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="height"></a>
-                            <code>height</code>
-                        </td>
-                        <td class="col-md-10">
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:33</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="minHeight"></a>
-                            <code>minHeight</code>
-                        </td>
-                        <td class="col-md-10">
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                               </p>
                         </td>
@@ -686,10 +682,35 @@
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <a name="minWidth"></a>
-                            <code>minWidth</code>
+                            <a name="enableToolbar"></a>
+                            <code>enableToolbar</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>Weather to enable or disable the toolbar</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:95</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="height"></a>
+                            <code>height</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Sets height of the editor</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
@@ -698,7 +719,53 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:52</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="minHeight"></a>
+                            <code>minHeight</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Sets minimum height for the editor</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:56</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="minWidth"></a>
+                            <code>minWidth</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Sets minimum width of the editor</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:64</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -711,6 +778,8 @@
                             <code>placeholder</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>Placeholder for the textArea</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
@@ -719,7 +788,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:42</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -732,9 +801,59 @@
                             <code>resizer</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>The editor can be resized vertically.</p>
+<p><code>basic</code> resizer enables the html5 reszier. Check here <a href="https://www.w3schools.com/cssref/css3_pr_resize.asp">https://www.w3schools.com/cssref/css3_pr_resize.asp</a></p>
+<p><code>stack</code> resizer enable a resizer that looks like as if in <a href="https://stackoverflow.com">https://stackoverflow.com</a></p>
+</div>
                             <p>
                               <em>Default value: </em><code>&#x27;stack&#x27;</code>
                             </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:80</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="showToolbar"></a>
+                            <code>showToolbar</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>Weather to show or hide toolbar</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:91</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="spellcheck"></a>
+                            <code>spellcheck</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>The spellcheck property specifies whether the element is to have its spelling and grammar checked or not.</p>
+</div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
                         </td>
                     </tr>
                             <tr>
@@ -748,60 +867,23 @@
                 <tbody>
                     <tr>
                         <td class="col-md-2">
-                            <a name="showToolbar"></a>
-                            <code>showToolbar</code>
-                        </td>
-                        <td class="col-md-10">
-                            <p>
-                              <em>Default value: </em><code>true</code>
-                            </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:40</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="spellcheck"></a>
-                            <code>spellcheck</code>
-                        </td>
-                        <td class="col-md-10">
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:30</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
                             <a name="toolbar"></a>
                             <code>toolbar</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>Toolbar accepts an array which specifies the options to be enabled for the toolbar</p>
+<p>Check ngxEditorConfig for toolbar configuration</p>
+<p>Passing an empty array will enable all toolbar</p>
+</div>
                               <p>
-                                <em>Type:</em>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank" >Object</a></code>
 
                               </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:72</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -814,6 +896,9 @@
                             <code>translate</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>The translate property specifies whether the content of an element should be translated or not.</p>
+<p>Check <a href="https://www.w3schools.com/tags/att_global_translate.asp">https://www.w3schools.com/tags/att_global_translate.asp</a> for more information and browser support</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
@@ -822,7 +907,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:48</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -835,6 +920,8 @@
                             <code>width</code>
                         </td>
                         <td class="col-md-10">
+                            <div><p>Sets Width of the editor</p>
+</div>
                               <p>
                                 <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
@@ -843,13 +930,58 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:60</a></div>
                                 </td>
                             </tr>
                 </tbody>
             </table>
     </section>
 
+    <section>
+        <h3 id="outputs">Outputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="blur"></a>
+                            <code>blur</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>emits <code>blur</code> event when focused out from the textarea</p>
+</div>
+                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;string&gt;</code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:100</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="focus"></a>
+                            <code>focus</code>
+                        </td>
+                        <td class="col-md-10">
+                            <div><p>emits <code>focus</code> event when focused in to the textarea</p>
+</div>
+                            <em><code>$event</code> type:</em>    <code>EventEmitter&lt;string&gt;</code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:104</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+    </section>
 
 
     <section>
@@ -873,14 +1005,14 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>document:click(event: )</code>
+    <code>document:click(event: MouseEvent)</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:140</a></div>
                                 </td>
                             </tr>
     
@@ -915,7 +1047,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:192</a></div>
                                 </td>
                             </tr>
     
@@ -984,19 +1116,87 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:172</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="301" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:301</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>return a json containing input params</p>
+                                <div class="io-description"><p>returns a json containing input params</p>
     </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
     
                                 </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="monitorEditor"></a>
+                            <span class="name">
+                                <b>
+                                monitorEditor
+                                </b>
+                                <a href="#monitorEditor"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>monitorEditor(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:289</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>monitor text area changes</p>
+    </div>
+    
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Type</td>
+                                                    <td>Optional</td>
+                                                    <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                      <td>value</td>
+                                                      <td>
+                                                              <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -1023,7 +1223,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:158</a></div>
                                 </td>
                             </tr>
     
@@ -1060,12 +1260,14 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:148</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Executed from the contenteditable section while the input property changes</p>
+    </div>
     
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -1127,7 +1329,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:134</a></div>
                                 </td>
                             </tr>
     
@@ -1166,7 +1368,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:163</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="248" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:248</a></div>
                                 </td>
                             </tr>
     
@@ -1235,7 +1437,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:229</a></div>
                                 </td>
                             </tr>
     
@@ -1305,7 +1507,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:154</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:239</a></div>
                                 </td>
                             </tr>
     
@@ -1375,7 +1577,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:172</a></div>
                                 </td>
                             </tr>
     
@@ -1426,6 +1628,45 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <a name="toggleCodeEditor"></a>
+                            <span class="name">
+                                <b>
+                                toggleCodeEditor
+                                </b>
+                                <a href="#toggleCodeEditor"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>toggleCodeEditor()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="258" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:258</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>toggle between codeview and editor</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <a name="writeValue"></a>
                             <span class="name">
                                 <b>
@@ -1444,7 +1685,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:213</a></div>
                                 </td>
                             </tr>
     
@@ -1502,18 +1743,57 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="enableToolbar"></a>
+                            <a name="codeEditor"></a>
                             <span class="name">
                                 <b>
-                                enableToolbar
+                                codeEditor
                                 </b>
-                                <a href="#enableToolbar"><span class="fa fa-link"></span></a>
+                                <a href="#codeEditor"><span class="fa fa-link"></span></a>
                             </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>enableToolbar:     <code></code>
+                            <code>codeEditor:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>ViewChild</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:107</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="codeEditorMode"></a>
+                            <span class="name">
+                                <b>
+                                codeEditorMode
+                                </b>
+                                <a href="#codeEditorMode"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>codeEditorMode:     <code></code>
     </code>
                         </td>
                     </tr>
@@ -1524,7 +1804,46 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:111</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="ngxWrapper"></a>
+                            <span class="name">
+                                <b>
+                                ngxWrapper
+                                </b>
+                                <a href="#ngxWrapper"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>ngxWrapper:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>ViewChild</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:108</a></div>
                                 </td>
                             </tr>
     
@@ -1563,7 +1882,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:106</a></div>
                                 </td>
                             </tr>
     
@@ -1585,10 +1904,16 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>Utils:     <code></code>
+                            <code>Utils:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
     </code>
                         </td>
                     </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+    
+                            </td>
+                        </tr>
                         <tr>
                             <td class="col-md-4">
                                 <i>Default value : </i><code>Utils</code>
@@ -1596,7 +1921,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:110</a></div>
                                 </td>
                             </tr>
     
@@ -1615,11 +1940,13 @@
   Renderer2, forwardRef
 } from &#x27;@angular/core&#x27;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &#x27;@angular/forms&#x27;;
+import * as CodeMirror from &#x27;codemirror&#x27;;
+import &#x27;codemirror/mode/xml/xml.js&#x27;;
 
 import { CommandExecutorService } from &#x27;./common/services/command-executor.service&#x27;;
 import { MessageService } from &#x27;./common/services/message.service&#x27;;
 
-import { ngxEditorConfig } from &#x27;./common/ngx-editor.defaults&#x27;;
+import { ngxEditorConfig, codeMirrorConfig } from &#x27;./common/ngx-editor.defaults&#x27;;
 import * as Utils from &#x27;./common/utils/ngx-editor.utils&#x27;;
 
 @Component({
@@ -1637,25 +1964,90 @@ import * as Utils from &#x27;./common/utils/ngx-editor.utils&#x27;;
 
 export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
+  /**
+   * Specifies weather the textarea to be editable or not
+   */
   @Input() editable: boolean;
+  /**
+   * The spellcheck property specifies whether the element is to have its spelling and grammar checked or not.
+   */
   @Input() spellcheck: boolean;
+  /**
+   * Placeholder for the textArea
+   */
   @Input() placeholder: string;
+  /**
+   * The translate property specifies whether the content of an element should be translated or not.
+   *
+   * Check https://www.w3schools.com/tags/att_global_translate.asp for more information and browser support
+   */
   @Input() translate: string;
+  /**
+   * Sets height of the editor
+   */
   @Input() height: string;
+  /**
+   * Sets minimum height for the editor
+   */
   @Input() minHeight: string;
+  /**
+   * Sets Width of the editor
+   */
   @Input() width: string;
+  /**
+   * Sets minimum width of the editor
+   */
   @Input() minWidth: string;
-  @Input() toolbar: any;
+  /**
+   * Toolbar accepts an array which specifies the options to be enabled for the toolbar
+   *
+   * Check ngxEditorConfig for toolbar configuration
+   *
+   * Passing an empty array will enable all toolbar
+   */
+  @Input() toolbar: Object;
+  /**
+   * The editor can be resized vertically.
+   *
+   * &#x60;basic&#x60; resizer enables the html5 reszier. Check here https://www.w3schools.com/cssref/css3_pr_resize.asp
+   *
+   * &#x60;stack&#x60; resizer enable a resizer that looks like as if in https://stackoverflow.com
+   */
   @Input() resizer &#x3D; &#x27;stack&#x27;;
+  /**
+   * The config property is a JSON object
+   *
+   * All avaibale inputs inputs can be provided in the configuration as JSON
+   * inputs provided directly are considered as top priority
+   */
   @Input() config &#x3D; ngxEditorConfig;
-  @Input() showToolbar &#x3D; true;
+  /**
+   * Weather to show or hide toolbar
+   */
+  @Input() showToolbar: boolean;
+  /**
+   * Weather to enable or disable the toolbar
+   */
+  @Input() enableToolbar: boolean;
+
+  /**
+   * emits &#x60;blur&#x60; event when focused out from the textarea
+   */
+  @Output() blur: EventEmitter&lt;string&gt; &#x3D; new EventEmitter&lt;string&gt;();
+  /**
+   * emits &#x60;focus&#x60; event when focused in to the textarea
+   */
+  @Output() focus: EventEmitter&lt;string&gt; &#x3D; new EventEmitter&lt;string&gt;();
 
   @ViewChild(&#x27;ngxTextArea&#x27;) textArea: any;
+  @ViewChild(&#x27;ngxCodeEditor&#x27;) codeEditor: any;
+  @ViewChild(&#x27;ngxWrapper&#x27;) ngxWrapper: any;
 
-  enableToolbar &#x3D; false;
-  Utils &#x3D; Utils;
+  Utils: any &#x3D; Utils;
+  codeEditorMode &#x3D; false;
 
   private lastViewModel: any &#x3D; &#x27;&#x27;;
+  private ngxCodeMirror: any &#x3D; undefined;
   private onChange: (value: string) &#x3D;&gt; void;
   private onTouched: () &#x3D;&gt; void;
 
@@ -1677,21 +2069,23 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    */
   onFocus(): void {
     this.enableToolbar &#x3D; true;
+    this.focus.emit(&#x27;focus&#x27;);
     return;
   }
 
-  @HostListener(&#x27;document:click&#x27;, [&#x27;$event&#x27;]) onDocumentClick(event) {
+  @HostListener(&#x27;document:click&#x27;, [&#x27;$event&#x27;]) onDocumentClick(event: MouseEvent) {
     this.enableToolbar &#x3D; !!this._elementRef.nativeElement.contains(event.target);
   }
 
   /**
-   *
+   * Executed from the contenteditable section while the input property changes
    * @param html html string from contenteditable
    */
   onContentChange(html: string): void {
 
     if (typeof this.onChange &#x3D;&#x3D;&#x3D; &#x27;function&#x27;) {
       this.onChange(html);
+      this.monitorEditor(html);
     }
 
     return;
@@ -1702,7 +2096,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     if (typeof this.onTouched &#x3D;&#x3D;&#x3D; &#x27;function&#x27;) {
       this.onTouched();
     }
-
+    this.blur.emit(&#x27;blur&#x27;);
     return;
   }
 
@@ -1716,6 +2110,13 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     newHeight +&#x3D; offsetY;
     this.height &#x3D; newHeight + &#x27;px&#x27;;
     this.textArea.nativeElement.style.height &#x3D; this.height;
+
+    /**
+     * update code-editor height only on editor mode
+     */
+    if (this.codeEditorMode) {
+      this.ngxCodeMirror.setSize(&#x27;100%&#x27;, this.height);
+    }
     return;
   }
 
@@ -1725,11 +2126,18 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param commandName name of the command to be executed
    */
   executeCommand(commandName: string): void {
+
+    if (commandName &#x3D;&#x3D;&#x3D; &#x27;code&#x27;) {
+      this.toggleCodeEditor();
+      return;
+    }
+
     try {
       this._commandExecutor.execute(commandName);
     } catch (error) {
       this._messageService.sendMessage(error.message);
     }
+
     return;
   }
 
@@ -1739,11 +2147,13 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param value value to be executed when there is a change in contenteditable
    */
   writeValue(value: any): void {
-    if (value &#x3D;&#x3D;&#x3D; undefined) {
+
+    if (!!value) {
       return;
     }
 
     this.refreshView(value);
+    this.monitorEditor(value);
   }
 
   /**
@@ -1777,8 +2187,52 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     return;
   }
 
+
   /**
-   * return a json containing input params
+   * toggle between codeview and editor
+   */
+  toggleCodeEditor(): void {
+    this.codeEditorMode &#x3D; !this.codeEditorMode;
+
+    if (this.codeEditorMode) {
+
+      this.ngxCodeMirror &#x3D; CodeMirror.fromTextArea(this.codeEditor.nativeElement, codeMirrorConfig);
+      this._renderer.setStyle(this.textArea.nativeElement, &#x27;display&#x27;, &#x27;none&#x27;);
+
+      /** set value of the code editor */
+      this.ngxCodeMirror.setValue(this.textArea.nativeElement.innerHTML);
+
+      /** sets height of the code editor as same as the height of the textArea */
+      this.ngxCodeMirror.setSize(&#x27;100%&#x27;, this.height);
+
+    } else {
+
+      /** remove/ destroy code editor */
+      this.ngxCodeMirror.toTextArea();
+      this._renderer.setStyle(this.textArea.nativeElement, &#x27;display&#x27;, &#x27;block&#x27;);
+
+      /** update the model value and html content on the contenteditable */
+      this.refreshView(this.ngxCodeMirror.getValue());
+      this.onContentChange(this.ngxCodeMirror.getValue());
+
+    }
+    return;
+  }
+
+  /**
+   * monitor text area changes
+   */
+  monitorEditor(value: any): void {
+    if (!value || value &#x3D;&#x3D;&#x3D; &#x27;&lt;br&gt;&#x27; || value &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+      this._renderer.addClass(this.ngxWrapper.nativeElement, &#x27;show-placeholder&#x27;);
+    } else {
+      this._renderer.removeClass(this.ngxWrapper.nativeElement, &#x27;show-placeholder&#x27;);
+    }
+    return;
+  }
+
+  /**
+   * returns a json containing input params
    */
   getCollectiveParams(): any {
     return {
@@ -1790,6 +2244,8 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
       minHeight: this.minHeight,
       width: this.width,
       minWidth: this.minWidth,
+      enableToolbar: this.enableToolbar,
+      showToolbar: this.showToolbar,
       toolbar: this.toolbar
     };
   }
@@ -1803,6 +2259,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     this.height &#x3D; this.height || this.textArea.nativeElement.offsetHeight;
 
     this.executeCommand(&#x27;enableObjectResizing&#x27;);
+
   }
 
 }
@@ -1812,15 +2269,20 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     <div class="tab-pane fade" id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;ngx-editor&quot; id&#x3D;&quot;ngxEditor&quot; [style.width]&#x3D;&quot;config[&#x27;width&#x27;]&quot; [style.minWidth]&#x3D;&quot;config[&#x27;minWidth&#x27;]&quot;&gt;
 
-  &lt;app-ngx-editor-toolbar [config]&#x3D;&quot;config&quot; [enableToolbar]&#x3D;&quot;enableToolbar&quot; [showToolbar]&#x3D;&quot;showToolbar&quot; (execute)&#x3D;&quot;executeCommand($event)&quot;&gt;&lt;/app-ngx-editor-toolbar&gt;
+  &lt;app-ngx-editor-toolbar [config]&#x3D;&quot;config&quot; (execute)&#x3D;&quot;executeCommand($event)&quot;&gt;&lt;/app-ngx-editor-toolbar&gt;
 
   &lt;!-- text area --&gt;
-  &lt;div class&#x3D;&quot;ngx-editor-textarea&quot; [attr.contenteditable]&#x3D;&quot;config[&#x27;editable&#x27;]&quot; [attr.placeholder]&#x3D;&quot;config[&#x27;placeholder&#x27;]&quot; (input)&#x3D;&quot;onContentChange($event.target.innerHTML)&quot;
-    [attr.translate]&#x3D;&quot;config[&#x27;translate&#x27;]&quot; [attr.spellcheck]&#x3D;&quot;config[&#x27;spellcheck&#x27;]&quot; [style.height]&#x3D;&quot;config[&#x27;height&#x27;]&quot; [style.minHeight]&#x3D;&quot;config[&#x27;minHeight&#x27;]&quot;
-    [style.resize]&#x3D;&quot;Utils?.canResize(resizer)&quot; (focus)&#x3D;&quot;onFocus()&quot; (blur)&#x3D;&quot;onBlur()&quot; #ngxTextArea&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;ngx-wrapper&quot; #ngxWrapper&gt;
+    &lt;div class&#x3D;&quot;ngx-editor-textarea&quot; [attr.contenteditable]&#x3D;&quot;config[&#x27;editable&#x27;]&quot; (input)&#x3D;&quot;onContentChange($event.target.innerHTML)&quot;
+      [attr.translate]&#x3D;&quot;config[&#x27;translate&#x27;]&quot; [attr.spellcheck]&#x3D;&quot;config[&#x27;spellcheck&#x27;]&quot; [style.height]&#x3D;&quot;config[&#x27;height&#x27;]&quot; [style.minHeight]&#x3D;&quot;config[&#x27;minHeight&#x27;]&quot;
+      [style.resize]&#x3D;&quot;Utils?.canResize(resizer)&quot; (focus)&#x3D;&quot;onFocus()&quot; (blur)&#x3D;&quot;onBlur()&quot; #ngxTextArea&gt;&lt;/div&gt;
+
+    &lt;span class&#x3D;&quot;ngx-editor-placeholder&quot;&gt;{{ config[&#x27;placeholder&#x27;] }}&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;textarea #ngxCodeEditor [hidden]&#x3D;&quot;true&quot;&gt;&lt;/textarea&gt;
 
   &lt;app-ngx-editor-message&gt;&lt;/app-ngx-editor-message&gt;
-
   &lt;app-ngx-grippie *ngIf&#x3D;&quot;resizer &#x3D;&#x3D;&#x3D; &#x27;stack&#x27;&quot;&gt;&lt;/app-ngx-grippie&gt;
 
 &lt;/div&gt;
@@ -1850,7 +2312,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="ngx-editor" id="ngxEditor" [style.width]="config[\'width\']" [style.minWidth]="config[\'minWidth\']">  <app-ngx-editor-toolbar [config]="config" [enableToolbar]="enableToolbar" [showToolbar]="showToolbar" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>  <!-- text area -->  <div class="ngx-editor-textarea" [attr.contenteditable]="config[\'editable\']" [attr.placeholder]="config[\'placeholder\']" (input)="onContentChange($event.target.innerHTML)"    [attr.translate]="config[\'translate\']" [attr.spellcheck]="config[\'spellcheck\']" [style.height]="config[\'height\']" [style.minHeight]="config[\'minHeight\']"    [style.resize]="Utils?.canResize(resizer)" (focus)="onFocus()" (blur)="onBlur()" #ngxTextArea></div>  <app-ngx-editor-message></app-ngx-editor-message>  <app-ngx-grippie *ngIf="resizer === \'stack\'"></app-ngx-grippie></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="ngx-editor" id="ngxEditor" [style.width]="config[\'width\']" [style.minWidth]="config[\'minWidth\']">  <app-ngx-editor-toolbar [config]="config" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>  <!-- text area -->  <div class="ngx-wrapper" #ngxWrapper>    <div class="ngx-editor-textarea" [attr.contenteditable]="config[\'editable\']" (input)="onContentChange($event.target.innerHTML)"      [attr.translate]="config[\'translate\']" [attr.spellcheck]="config[\'spellcheck\']" [style.height]="config[\'height\']" [style.minHeight]="config[\'minHeight\']"      [style.resize]="Utils?.canResize(resizer)" (focus)="onFocus()" (blur)="onBlur()" #ngxTextArea></div>    <span class="ngx-editor-placeholder">{{ config[\'placeholder\'] }}</span>  </div>  <textarea #ngxCodeEditor [hidden]="true"></textarea>  <app-ngx-editor-message></app-ngx-editor-message>  <app-ngx-grippie *ngIf="resizer === \'stack\'"></app-ngx-grippie></div></div>'
     var COMPONENTS = [{'name': 'NgxEditorComponent', 'selector': 'app-ngx-editor'},{'name': 'NgxEditorMessageComponent', 'selector': 'app-ngx-editor-message'},{'name': 'NgxEditorToolbarComponent', 'selector': 'app-ngx-editor-toolbar'},{'name': 'NgxGrippieComponent', 'selector': 'app-ngx-grippie'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NgxEditorComponent'};

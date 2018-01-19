@@ -9,9 +9,13 @@ import * as Utils from '../common/utils/ngx-editor.utils';
 
 export class NgxEditorToolbarComponent {
 
+  /**
+   * Editor configuration
+   */
   @Input() config: any;
-  @Input() enableToolbar = false;
-  @Input() showToolbar = true;
+  /**
+   * Emits an event when a toolbar button is clicked
+   */
   @Output() execute: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
@@ -19,16 +23,16 @@ export class NgxEditorToolbarComponent {
   /**
    * enable or diable toolbar based on configuration
    *
-   * @param value toolbar buttons
+   * @param value name of the toolbar buttons
    */
   canEnableToolbarOptions(value): boolean {
     return Utils.canEnableToolbarOptions(value, this.config['toolbar']);
   }
 
   /**
-   * triggers command from the toolbar to be executed
+   * triggers command from the toolbar to be executed and emits an event
    *
-   * @param command command to be executed
+   * @param command name of the command to be executed
    */
   triggerCommand(command: string): void {
     this.execute.emit(command);

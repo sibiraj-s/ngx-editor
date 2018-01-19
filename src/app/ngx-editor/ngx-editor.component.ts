@@ -4,11 +4,13 @@ import {
   Renderer2, forwardRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import * as CodeMirror from 'codemirror';
+import 'codemirror/mode/xml/xml.js';
 
 import { CommandExecutorService } from './common/services/command-executor.service';
 import { MessageService } from './common/services/message.service';
 
-import { ngxEditorConfig } from './common/ngx-editor.defaults';
+import { ngxEditorConfig, codeMirrorConfig } from './common/ngx-editor.defaults';
 import * as Utils from './common/utils/ngx-editor.utils';
 
 @Component({
@@ -26,28 +28,90 @@ import * as Utils from './common/utils/ngx-editor.utils';
 
 export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
+  /**
+   * Specifies weather the textarea to be editable or not
+   */
   @Input() editable: boolean;
+  /**
+   * The spellcheck property specifies whether the element is to have its spelling and grammar checked or not.
+   */
   @Input() spellcheck: boolean;
+  /**
+   * Placeholder for the textArea
+   */
   @Input() placeholder: string;
+  /**
+   * The translate property specifies whether the content of an element should be translated or not.
+   *
+   * Check https://www.w3schools.com/tags/att_global_translate.asp for more information and browser support
+   */
   @Input() translate: string;
+  /**
+   * Sets height of the editor
+   */
   @Input() height: string;
+  /**
+   * Sets minimum height for the editor
+   */
   @Input() minHeight: string;
+  /**
+   * Sets Width of the editor
+   */
   @Input() width: string;
+  /**
+   * Sets minimum width of the editor
+   */
   @Input() minWidth: string;
-  @Input() toolbar: any;
+  /**
+   * Toolbar accepts an array which specifies the options to be enabled for the toolbar
+   *
+   * Check ngxEditorConfig for toolbar configuration
+   *
+   * Passing an empty array will enable all toolbar
+   */
+  @Input() toolbar: Object;
+  /**
+   * The editor can be resized vertically.
+   *
+   * `basic` resizer enables the html5 reszier. Check here https://www.w3schools.com/cssref/css3_pr_resize.asp
+   *
+   * `stack` resizer enable a resizer that looks like as if in https://stackoverflow.com
+   */
   @Input() resizer = 'stack';
+  /**
+   * The config property is a JSON object
+   *
+   * All avaibale inputs inputs can be provided in the configuration as JSON
+   * inputs provided directly are considered as top priority
+   */
   @Input() config = ngxEditorConfig;
-  @Input() showToolbar = true;
+  /**
+   * Weather to show or hide toolbar
+   */
+  @Input() showToolbar: boolean;
+  /**
+   * Weather to enable or disable the toolbar
+   */
+  @Input() enableToolbar: boolean;
 
-  @Output() blur = new EventEmitter();
-  @Output() focus = new EventEmitter();
+  /**
+   * emits `blur` event when focused out from the textarea
+   */
+  @Output() blur: EventEmitter<string> = new EventEmitter<string>();
+  /**
+   * emits `focus` event when focused in to the textarea
+   */
+  @Output() focus: EventEmitter<string> = new EventEmitter<string>();
 
   @ViewChild('ngxTextArea') textArea: any;
+  @ViewChild('ngxCodeEditor') codeEditor: any;
+  @ViewChild('ngxWrapper') ngxWrapper: any;
 
-  enableToolbar = false;
-  Utils = Utils;
+  Utils: any = Utils;
+  codeEditorMode = false;
 
   private lastViewModel: any = '';
+  private ngxCodeMirror: any = undefined;
   private onChange: (value: string) => void;
   private onTouched: () => void;
 
@@ -69,22 +133,23 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    */
   onFocus(): void {
     this.enableToolbar = true;
-    this.focus.emit();
+    this.focus.emit('focus');
     return;
   }
 
-  @HostListener('document:click', ['$event']) onDocumentClick(event) {
+  @HostListener('document:click', ['$event']) onDocumentClick(event: MouseEvent) {
     this.enableToolbar = !!this._elementRef.nativeElement.contains(event.target);
   }
 
   /**
-   *
+   * Executed from the contenteditable section while the input property changes
    * @param html html string from contenteditable
    */
   onContentChange(html: string): void {
 
     if (typeof this.onChange === 'function') {
       this.onChange(html);
+      this.monitorEditor(html);
     }
 
     return;
@@ -95,7 +160,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     if (typeof this.onTouched === 'function') {
       this.onTouched();
     }
-    this.blur.emit();
+    this.blur.emit('blur');
     return;
   }
 
@@ -109,6 +174,13 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     newHeight += offsetY;
     this.height = newHeight + 'px';
     this.textArea.nativeElement.style.height = this.height;
+
+    /**
+     * update code-editor height only on editor mode
+     */
+    if (this.codeEditorMode) {
+      this.ngxCodeMirror.setSize('100%', this.height);
+    }
     return;
   }
 
@@ -118,11 +190,18 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param commandName name of the command to be executed
    */
   executeCommand(commandName: string): void {
+
+    if (commandName === 'code') {
+      this.toggleCodeEditor();
+      return;
+    }
+
     try {
       this._commandExecutor.execute(commandName);
     } catch (error) {
       this._messageService.sendMessage(error.message);
     }
+
     return;
   }
 
@@ -132,11 +211,13 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param value value to be executed when there is a change in contenteditable
    */
   writeValue(value: any): void {
-    if (value === undefined) {
+
+    if (!!value) {
       return;
     }
 
     this.refreshView(value);
+    this.monitorEditor(value);
   }
 
   /**
@@ -170,8 +251,52 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     return;
   }
 
+
   /**
-   * return a json containing input params
+   * toggle between codeview and editor
+   */
+  toggleCodeEditor(): void {
+    this.codeEditorMode = !this.codeEditorMode;
+
+    if (this.codeEditorMode) {
+
+      this.ngxCodeMirror = CodeMirror.fromTextArea(this.codeEditor.nativeElement, codeMirrorConfig);
+      this._renderer.setStyle(this.textArea.nativeElement, 'display', 'none');
+
+      /** set value of the code editor */
+      this.ngxCodeMirror.setValue(this.textArea.nativeElement.innerHTML);
+
+      /** sets height of the code editor as same as the height of the textArea */
+      this.ngxCodeMirror.setSize('100%', this.height);
+
+    } else {
+
+      /** remove/ destroy code editor */
+      this.ngxCodeMirror.toTextArea();
+      this._renderer.setStyle(this.textArea.nativeElement, 'display', 'block');
+
+      /** update the model value and html content on the contenteditable */
+      this.refreshView(this.ngxCodeMirror.getValue());
+      this.onContentChange(this.ngxCodeMirror.getValue());
+
+    }
+    return;
+  }
+
+  /**
+   * monitor text area changes
+   */
+  monitorEditor(value: any): void {
+    if (!value || value === '<br>' || value === '') {
+      this._renderer.addClass(this.ngxWrapper.nativeElement, 'show-placeholder');
+    } else {
+      this._renderer.removeClass(this.ngxWrapper.nativeElement, 'show-placeholder');
+    }
+    return;
+  }
+
+  /**
+   * returns a json containing input params
    */
   getCollectiveParams(): any {
     return {
@@ -183,6 +308,8 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
       minHeight: this.minHeight,
       width: this.width,
       minWidth: this.minWidth,
+      enableToolbar: this.enableToolbar,
+      showToolbar: this.showToolbar,
       toolbar: this.toolbar
     };
   }
@@ -196,6 +323,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
 
     this.executeCommand('enableObjectResizing');
+
   }
 
 }
