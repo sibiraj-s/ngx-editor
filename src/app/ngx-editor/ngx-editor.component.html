@@ -8,7 +8,7 @@
       [attr.translate]="config['translate']" [attr.spellcheck]="config['spellcheck']" [style.height]="config['height']" [style.minHeight]="config['minHeight']"
       [style.resize]="Utils?.canResize(resizer)" (focus)="onFocus()" (blur)="onBlur()" #ngxTextArea></div>
 
-    <span class="ngx-editor-placeholder">{{ config['placeholder'] }}</span>
+    <span class="ngx-editor-placeholder">{{ placeholder || config['placeholder'] }}</span>
   </div>
 
   <textarea #ngxCodeEditor [hidden]="true"></textarea>
