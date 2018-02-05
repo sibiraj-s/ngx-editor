@@ -211,13 +211,13 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param value value to be executed when there is a change in contenteditable
    */
   writeValue(value: any): void {
+    this.monitorEditor(value);
 
-    if (!!value) {
+    if (value === null || value === undefined || value === '') {
       return;
     }
 
     this.refreshView(value);
-    this.monitorEditor(value);
   }
 
   /**
