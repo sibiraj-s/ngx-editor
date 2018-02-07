@@ -24,8 +24,8 @@ script:
 
 jobs:
   include:
-    - stage: Lint
+    - stage: lint
       script: npm run lint
-    - stage: Test
+    - stage: test
       script: npm run test:single-run
 
