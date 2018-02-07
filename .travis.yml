@@ -22,3 +22,10 @@ before_script:
 script:
   - npm run test:single-run
 
+jobs:
+  include:
+    - stage: Lint
+      script: npm run lint
+    - stage: Test
+      script: npm run test:single-run
+

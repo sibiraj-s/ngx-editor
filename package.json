@@ -13,12 +13,12 @@
     "ng": "ng",
     "postbuild": "npm run build:package",
     "prebuild": "npm run lint",
-    "precommit": "npm run test:single-run",
+    "precommit": "npm run lint && npm run test:single-run",
     "prerelease": "npm run build",
     "release": "sh ./scripts/release.sh",
     "start": "ng serve --aot -o --port 5000 --host 0.0.0.0",
     "test": "ng test",
-    "test:single-run": "npm run lint && ng test --watch false"
+    "test:single-run": "ng test --watch false"
   },
   "keywords": [
     "angular-editor",
