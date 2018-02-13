@@ -104,8 +104,8 @@
     </button>
   </div>
   <div class="ngx-toolbar-set">
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" popoverTitle="Insert Link" [popover]="insertLinkTemplate"
-      title="Insert/Edit Link" #urlPopover="bs-popover" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" (click)="buildUrlForm()" popoverTitle="Insert Link"
+      [popover]="insertLinkTemplate" title="Insert/Edit Link" #urlPopover="bs-popover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-link" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unlink')" (click)="triggerCommand('unlink')"
