@@ -75,6 +75,9 @@ export class NgxEditorToolbarComponent implements OnInit {
       this._messageService.sendMessage(error.message);
     }
 
+    /** reset form to default */
+    this.buildUrlForm();
+    /** close inset URL pop up */
     this.urlPopover.hide();
   }
 
