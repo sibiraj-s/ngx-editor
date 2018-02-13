@@ -51,3 +51,41 @@
         }
     }
 }
+
+::ng-deep .ngxe-popover-form {
+    min-width: 15rem;
+
+    .form-group {
+        label {
+            display: none;
+            margin: 0;
+        }
+
+        .form-control-sm {
+            width: 100%;
+            outline: none;
+            border: none;
+            border-bottom: solid 1px #bdbdbd;
+            border-radius: 0;
+            margin-bottom: 1px;
+            padding-left: 0;
+            padding-right: 0;
+
+            &:focus, &:active {
+                border-bottom: 2px solid #1e88e5;
+                box-shadow: none;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .form-check {
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        &:focus {
+            box-shadow: none !important;
+        }
+    }
+}

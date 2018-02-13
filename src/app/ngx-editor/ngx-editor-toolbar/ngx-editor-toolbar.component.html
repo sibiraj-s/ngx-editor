@@ -104,8 +104,8 @@
     </button>
   </div>
   <div class="ngx-toolbar-set">
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" (click)="triggerCommand('link')"
-      title="Insert/Edit Link" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" popoverTitle="Insert Link" [popover]="insertLinkTemplate"
+      title="Insert/Edit Link" #urlPopover="bs-popover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-link" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unlink')" (click)="triggerCommand('unlink')"
@@ -124,3 +124,23 @@
     </button>
   </div>
 </div>
+
+<!-- Popover templates -->
+<ng-template #insertLinkTemplate>
+  <form class="ngxe-popover-form" [formGroup]="urlForm" (ngSubmit)="urlForm.valid && insertLink()" autocomplete="off">
+    <div class="form-group">
+      <label for="urlInput" class="small">URL</label>
+      <input type="text" class="form-control-sm" id="URLInput" aria-describedby="emailHelp" placeholder="URL" formControlName="urlLink"
+        required>
+    </div>
+    <div class="form-group">
+      <label for="urlTextInput" class="small">Text</label>
+      <input type="text" class="form-control-sm" id="urlTextInput" placeholder="Text" formControlName="urlText" required>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="urlNewTab" formControlName="urlNewTab">
+      <label class="form-check-label" for="urlNewTab">Open in new tab</label>
+    </div>
+    <button type="submit" class="btn-primary btn-sm btn">Submit</button>
+  </form>
+</ng-template>
