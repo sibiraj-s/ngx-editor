@@ -1,7 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxEditorToolbarComponent } from './ngx-editor-toolbar.component';
 import { ngxEditorConfig } from '../common/ngx-editor.defaults';
+import { PopoverModule } from 'ngx-bootstrap';
+import { CommandExecutorService } from '../common/services/command-executor.service';
+import { MessageService } from '../common/services/message.service';
 
 describe('NgxEditorToolbarComponent', () => {
   let component: NgxEditorToolbarComponent;
@@ -9,7 +12,9 @@ describe('NgxEditorToolbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NgxEditorToolbarComponent]
+      imports: [FormsModule, ReactiveFormsModule, PopoverModule.forRoot()],
+      declarations: [NgxEditorToolbarComponent],
+      providers: [CommandExecutorService, MessageService]
     })
       .compileComponents();
   }));

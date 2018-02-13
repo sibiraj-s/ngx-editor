@@ -157,6 +157,9 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
   onBlur(): void {
 
+    /** save selection if focussed out */
+    this._commandExecutor.savedSelection = Utils.saveSelection();
+
     if (typeof this.onTouched === 'function') {
       this.onTouched();
     }
