@@ -68,10 +68,16 @@
                                 id="xs-additional-pages"
                             >
                                 <li class="link ">
+                                    <a href="../additional-documentation/prerequisites.html" >Prerequisites</a>
+                                </li>
+                                <li class="link ">
                                     <a href="../additional-documentation/configuration.html" >Configuration</a>
                                 </li>
                                 <li class="link ">
                                     <a href="../additional-documentation/toolbar.html" >Toolbar</a>
+                                </li>
+                                <li class="link ">
+                                    <a href="../additional-documentation/image-uploader.html" >Image Uploader</a>
                                 </li>
                                 <li class="link ">
                                     <a href="../additional-documentation/code-editor.html" >Code Editor</a>
@@ -233,10 +239,16 @@
                                        id="additional-pages"
                    >
                                        <li class="link ">
+                                           <a href="../additional-documentation/prerequisites.html" >Prerequisites</a>
+                                       </li>
+                                       <li class="link ">
                                            <a href="../additional-documentation/configuration.html" >Configuration</a>
                                        </li>
                                        <li class="link ">
                                            <a href="../additional-documentation/toolbar.html" >Toolbar</a>
+                                       </li>
+                                       <li class="link ">
+                                           <a href="../additional-documentation/image-uploader.html" >Image Uploader</a>
                                        </li>
                                        <li class="link ">
                                            <a href="../additional-documentation/code-editor.html" >Code Editor</a>
@@ -415,7 +427,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/ngx-editor/common/services/message.service.ts:11</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/ngx-editor/common/services/message.service.ts:13</a></div>
                                         </td>
                                     </tr>
             
@@ -450,12 +462,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/ngx-editor/common/services/message.service.ts:15</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/ngx-editor/common/services/message.service.ts:18</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>returns the message sent by the editor </p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
@@ -487,7 +501,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/ngx-editor/common/services/message.service.ts:24</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/ngx-editor/common/services/message.service.ts:27</a></div>
                                         </td>
                                     </tr>
             
@@ -502,26 +516,28 @@
                                                     <thead>
                                                         <tr>
                                                             <td>Name</td>
-                                                            <td>Type</td>
+                                                                <td>Type</td>
                                                             <td>Optional</td>
-                                                            <td>Default value</td>
-                                                            <td>Description</td>
+                                                                <td>Description</td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                             <tr>
-                                                              <td>message</td>
-                                                              <td>
-                                                                      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                              </td>
-                                                              <td>
-                                                                  no
-                                                              </td>
-                                                              <td>
-                                                                  <code></code>
-                                                              </td>
-                                                              <td><p>message to be sent</p>
-            </td>
+                                                                <td>message</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><p>message to be sent</p>
+            </code>
+                                                                    </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -551,15 +567,18 @@ import { Subject } from &#x27;rxjs/Subject&#x27;;
 import { Observable } from &#x27;rxjs/Observable&#x27;;
 import &#x27;rxjs/add/operator/map&#x27;;
 
-const FIVE_SECONDS &#x3D; 5000;
+/** time in which the message has to be cleared */
+const DURATION &#x3D; 7000;
 
 @Injectable()
 export class MessageService {
 
+  /** variable to hold the user message */
   private message: Subject&lt;string&gt; &#x3D; new Subject();
 
   constructor() { }
 
+  /** returns the message sent by the editor */
   getMessage(): Observable&lt;string&gt; {
     return this.message.asObservable();
   }
@@ -571,7 +590,7 @@ export class MessageService {
    */
   sendMessage(message: string): void {
     this.message.next(message);
-    this.clearMessageIn(FIVE_SECONDS);
+    this.clearMessageIn(DURATION);
     return;
   }
 

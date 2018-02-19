@@ -68,10 +68,16 @@
                                 id="xs-additional-pages"
                             >
                                 <li class="link ">
+                                    <a href="../additional-documentation/prerequisites.html" >Prerequisites</a>
+                                </li>
+                                <li class="link ">
                                     <a href="../additional-documentation/configuration.html" >Configuration</a>
                                 </li>
                                 <li class="link ">
                                     <a href="../additional-documentation/toolbar.html" >Toolbar</a>
+                                </li>
+                                <li class="link ">
+                                    <a href="../additional-documentation/image-uploader.html" >Image Uploader</a>
                                 </li>
                                 <li class="link ">
                                     <a href="../additional-documentation/code-editor.html" >Code Editor</a>
@@ -233,10 +239,16 @@
                                        id="additional-pages"
                    >
                                        <li class="link ">
+                                           <a href="../additional-documentation/prerequisites.html" >Prerequisites</a>
+                                       </li>
+                                       <li class="link ">
                                            <a href="../additional-documentation/configuration.html" >Configuration</a>
                                        </li>
                                        <li class="link ">
                                            <a href="../additional-documentation/toolbar.html" >Toolbar</a>
+                                       </li>
+                                       <li class="link ">
+                                           <a href="../additional-documentation/image-uploader.html" >Image Uploader</a>
                                        </li>
                                        <li class="link ">
                                            <a href="../additional-documentation/code-editor.html" >Code Editor</a>
@@ -411,6 +423,12 @@
                                     <li>
                                         <a href="#execute">execute</a>
                                     </li>
+                                    <li>
+                                        <a href="#insertImage">insertImage</a>
+                                    </li>
+                                    <li>
+                                        <a href="#uploadImage">uploadImage</a>
+                                    </li>
                                 </ul>
                             </td>
                         </tr>
@@ -418,6 +436,75 @@
                 </table>
             </section>
 
+            <section>
+                <h3 id="constructor">Constructor</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+            <code>constructor(_http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, _messageService: <a href="../injectables/MessageService.html">MessageService</a>)</code>
+                                </td>
+                            </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:11</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div>
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                                <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>_http</td>
+                                                              
+                                                                    <td>
+                                                                                <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                                    </td>
+                                                              
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+                                                                    <td>
+                                                                            <code><p>HTTP Client for making http requests</p>
+            </code>
+                                                                    </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>_messageService</td>
+                                                              
+                                                                    <td>
+                                                                                <code><a href="../injectables/MessageService.html" target="_self" >MessageService</a></code>
+                                                                    </td>
+                                                              
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+                                                                    <td>
+                                                                            <code><p>Message service sends message to the editor</p>
+            </code>
+                                                                    </td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
 
             <section>
                 
@@ -446,12 +533,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:76</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:101</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>inserts link in the editor</p>
+            </div>
             
                                         <div class="io-description">
                                                 <b>Parameters :</b>
@@ -459,25 +548,28 @@
                                                     <thead>
                                                         <tr>
                                                             <td>Name</td>
-                                                            <td>Type</td>
+                                                                <td>Type</td>
                                                             <td>Optional</td>
-                                                            <td>Default value</td>
-                                                            <td>Description</td>
+                                                                <td>Description</td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                             <tr>
-                                                              <td>params</td>
-                                                              <td>
-                                                                      <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                                              </td>
-                                                              <td>
-                                                                  no
-                                                              </td>
-                                                              <td>
-                                                                  <code></code>
-                                                              </td>
-                                                              <td></td>
+                                                                <td>params</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><p>parameters that holds the information for the link</p>
+            </code>
+                                                                    </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -517,7 +609,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:14</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:25</a></div>
                                         </td>
                                     </tr>
             
@@ -532,26 +624,28 @@
                                                     <thead>
                                                         <tr>
                                                             <td>Name</td>
-                                                            <td>Type</td>
+                                                                <td>Type</td>
                                                             <td>Optional</td>
-                                                            <td>Default value</td>
-                                                            <td>Description</td>
+                                                                <td>Description</td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                             <tr>
-                                                              <td>command</td>
-                                                              <td>
-                                                                      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                              </td>
-                                                              <td>
-                                                                  no
-                                                              </td>
-                                                              <td>
-                                                                  <code></code>
-                                                              </td>
-                                                              <td><p>command to be executed</p>
-            </td>
+                                                                <td>command</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><p>command to be executed</p>
+            </code>
+                                                                    </td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -560,6 +654,175 @@
                                         </div>
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="insertImage"></a>
+                                    <span class="name">
+                                        <b>
+                                        insertImage
+                                        </b>
+                                        <a href="#insertImage"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>insertImage(imageURI: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:50</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>inserts image in the editor</p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                                <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>imageURI</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><p>url of the image to be inserted</p>
+            </code>
+                                                                    </td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="uploadImage"></a>
+                                    <span class="name">
+                                        <b>
+                                        uploadImage
+                                        </b>
+                                        <a href="#uploadImage"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>uploadImage(file: File, endPoint: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:73</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>uploads image to the server</p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                                <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>file</td>
+                                                                
+                                                                    <td>
+                                                                                <code>File</code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><p>file that has to be uploaded</p>
+            </code>
+                                                                    </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>endPoint</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><p>enpoint to which the image has to be uploaded</p>
+            </code>
+                                                                    </td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
             
                                         </div>
                                             <div class="io-description">
@@ -608,10 +871,16 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:7</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:11</a></div>
                                         </td>
                                     </tr>
             
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>saves the selection from the editor when focussed out </p>
+            </div>
+                                </td>
+                            </tr>
             
                         </tbody>
                     </table>
@@ -622,12 +891,23 @@
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { HttpClient, HttpRequest } from &#x27;@angular/common/http&#x27;;
+import { MessageService } from &#x27;./message.service&#x27;;
 import * as Utils from &#x27;../utils/ngx-editor.utils&#x27;;
+import { map, tap, last, catchError } from &#x27;rxjs/operators&#x27;;
 
 @Injectable()
 export class CommandExecutorService {
 
+  /** saves the selection from the editor when focussed out */
   savedSelection: any &#x3D; undefined;
+
+  /**
+   *
+   * @param _http HTTP Client for making http requests
+   * @param _messageService Message service sends message to the editor
+   */
+  constructor(private _http: HttpClient, private _messageService: MessageService) { }
 
   /**
    * executes command from the toolbar
@@ -651,51 +931,65 @@ export class CommandExecutorService {
       return;
     }
 
-    // if (command &#x3D;&#x3D;&#x3D; &#x27;link&#x27;) {
-    //   this.createLink();
-    //   return;
-    // }
-
-    if (command &#x3D;&#x3D;&#x3D; &#x27;image&#x27;) {
-      this.insertImage();
-      return;
-    }
-
     document.execCommand(command, false, null);
   }
 
-  private insertImage(): void {
-    const imageURI &#x3D; prompt(&#x27;Enter Image URL&#x27;, &#x27;http://&#x27;);
-    if (imageURI) {
-      const inserted &#x3D; document.execCommand(&#x27;insertImage&#x27;, false, imageURI);
-      if (!inserted) {
-        throw new Error(&#x27;Invalid URL&#x27;);
+  /**
+   * inserts image in the editor
+   *
+   * @param imageURI url of the image to be inserted
+   */
+  insertImage(imageURI: string): void {
+    if (this.savedSelection) {
+      if (imageURI) {
+        const restored &#x3D; Utils.restoreSelection(this.savedSelection);
+        if (restored) {
+          const inserted &#x3D; document.execCommand(&#x27;insertImage&#x27;, false, imageURI);
+          if (!inserted) {
+            throw new Error(&#x27;Invalid URL&#x27;);
+          }
+        }
       }
+    } else {
+      throw new Error(&#x27;Range out of the editor&#x27;);
     }
     return;
   }
 
-  // private createLink(): void {
-  //   const selection &#x3D; document.getSelection();
+  /**
+   * uploads image to the server
+   *
+   * @param file file that has to be uploaded
+   * @param endPoint enpoint to which the image has to be uploaded
+   */
+  uploadImage(file: File, endPoint: string): any {
 
-  //   if (selection.anchorNode.parentElement.tagName &#x3D;&#x3D;&#x3D; &#x27;A&#x27;) {
-  //     const linkURL &#x3D; prompt(&#x27;Enter URL&#x27;, selection.anchorNode.parentElement.getAttribute(&#x27;href&#x27;));
-  //     if (linkURL) {
-  //       document.execCommand(&#x27;createLink&#x27;, false, linkURL);
-  //     }
-  //   } else {
-  //     if (selection[&#x27;type&#x27;] &#x3D;&#x3D;&#x3D; &#x27;None&#x27;) {
-  //       throw new Error(&#x27;No selection made&#x27;);
-  //     } else {
-  //       const linkURL &#x3D; prompt(&#x27;Enter URL&#x27;, &#x27;http://&#x27;);
-  //       if (linkURL) {
-  //         document.execCommand(&#x27;createLink&#x27;, false, linkURL);
-  //       }
-  //     }
-  //   }
-  //   return;
-  // }
+    if (!endPoint) {
+      throw new Error(&#x27;Image Endpoint isn&#x60;t provided or invalid&#x27;);
+    }
 
+    const formData: FormData &#x3D; new FormData();
+
+    if (file) {
+
+      formData.append(&#x27;file&#x27;, file);
+
+      const req &#x3D; new HttpRequest(&#x27;POST&#x27;, endPoint, formData, {
+        reportProgress: true
+      });
+
+      return this._http.request(req);
+
+    } else {
+      throw new Error(&#x27;Invalid Image&#x27;);
+    }
+  }
+
+  /**
+   * inserts link in the editor
+   *
+   * @param params parameters that holds the information for the link
+   */
   createLink(params: any): void {
 
     if (this.savedSelection) {

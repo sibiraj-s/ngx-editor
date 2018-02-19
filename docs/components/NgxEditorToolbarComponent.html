@@ -68,10 +68,16 @@
                                 id="xs-additional-pages"
                             >
                                 <li class="link ">
+                                    <a href="../additional-documentation/prerequisites.html" >Prerequisites</a>
+                                </li>
+                                <li class="link ">
                                     <a href="../additional-documentation/configuration.html" >Configuration</a>
                                 </li>
                                 <li class="link ">
                                     <a href="../additional-documentation/toolbar.html" >Toolbar</a>
+                                </li>
+                                <li class="link ">
+                                    <a href="../additional-documentation/image-uploader.html" >Image Uploader</a>
                                 </li>
                                 <li class="link ">
                                     <a href="../additional-documentation/code-editor.html" >Code Editor</a>
@@ -233,10 +239,16 @@
                                        id="additional-pages"
                    >
                                        <li class="link ">
+                                           <a href="../additional-documentation/prerequisites.html" >Prerequisites</a>
+                                       </li>
+                                       <li class="link ">
                                            <a href="../additional-documentation/configuration.html" >Configuration</a>
                                        </li>
                                        <li class="link ">
                                            <a href="../additional-documentation/toolbar.html" >Toolbar</a>
+                                       </li>
+                                       <li class="link ">
+                                           <a href="../additional-documentation/image-uploader.html" >Image Uploader</a>
                                        </li>
                                        <li class="link ">
                                            <a href="../additional-documentation/code-editor.html" >Code Editor</a>
@@ -449,6 +461,21 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#imageForm">imageForm</a>
+                            </li>
+                            <li>
+                                <a href="#imagePopover">imagePopover</a>
+                            </li>
+                            <li>
+                                <a href="#isUploading">isUploading</a>
+                            </li>
+                            <li>
+                                <a href="#updloadPercentage">updloadPercentage</a>
+                            </li>
+                            <li>
+                                <a href="#uploadComplete">uploadComplete</a>
+                            </li>
+                            <li>
                                 <a href="#urlForm">urlForm</a>
                             </li>
                             <li>
@@ -466,13 +493,22 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#buildInsertImageForm">buildInsertImageForm</a>
+                            </li>
+                            <li>
                                 <a href="#buildUrlForm">buildUrlForm</a>
                             </li>
                             <li>
                                 <a href="#canEnableToolbarOptions">canEnableToolbarOptions</a>
                             </li>
                             <li>
+                                <a href="#insertImage">insertImage</a>
+                            </li>
+                            <li>
                                 <a href="#insertLink">insertLink</a>
+                            </li>
+                            <li>
+                                <a href="#onFileChange">onFileChange</a>
                             </li>
                             <li>
                                 <a href="#triggerCommand">triggerCommand</a>
@@ -523,7 +559,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:38</a></div>
                                 </td>
                             </tr>
     
@@ -535,51 +571,58 @@
                                             <thead>
                                                 <tr>
                                                     <td>Name</td>
-                                                    <td>Type</td>
+                                                        <td>Type</td>
                                                     <td>Optional</td>
-                                                    <td>Description</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>_popOverConfig</td>
-                                                      <td>
-                                                                <code>PopoverConfig</code>
-                                                      </td>
-                                                      <td>
-                                                            no
-                                                      </td>
-                                                      <td></td>
+                                                        <td>_popOverConfig</td>
+                                                      
+                                                            <td>
+                                                                        <code>PopoverConfig</code>
+                                                            </td>
+                                                      
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
                                                     </tr>
                                                     <tr>
-                                                      <td>_formBuilder</td>
-                                                      <td>
-                                                                <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
-                                                      </td>
-                                                      <td>
-                                                            no
-                                                      </td>
-                                                      <td></td>
+                                                        <td>_formBuilder</td>
+                                                      
+                                                            <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                            </td>
+                                                      
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
                                                     </tr>
                                                     <tr>
-                                                      <td>_messageService</td>
-                                                      <td>
-                                                                <code><a href="../injectables/MessageService.html" target="_self" >MessageService</a></code>
-                                                      </td>
-                                                      <td>
-                                                            no
-                                                      </td>
-                                                      <td></td>
+                                                        <td>_messageService</td>
+                                                      
+                                                            <td>
+                                                                        <code><a href="../injectables/MessageService.html" target="_self" >MessageService</a></code>
+                                                            </td>
+                                                      
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
                                                     </tr>
                                                     <tr>
-                                                      <td>_commandExecutorService</td>
-                                                      <td>
-                                                                <code><a href="../injectables/CommandExecutorService.html" target="_self" >CommandExecutorService</a></code>
-                                                      </td>
-                                                      <td>
-                                                            no
-                                                      </td>
-                                                      <td></td>
+                                                        <td>_commandExecutorService</td>
+                                                      
+                                                            <td>
+                                                                        <code><a href="../injectables/CommandExecutorService.html" target="_self" >CommandExecutorService</a></code>
+                                                            </td>
+                                                      
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -610,7 +653,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:32</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -635,7 +678,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:38</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -649,6 +692,45 @@
             <h3 id="methods">
                 Methods
             </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="buildInsertImageForm"></a>
+                            <span class="name">
+                                <b>
+                                buildInsertImageForm
+                                </b>
+                                <a href="#buildInsertImageForm"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>buildInsertImageForm()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:103</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>create insert image form</p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -671,7 +753,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:70</a></div>
                                 </td>
                             </tr>
     
@@ -710,7 +792,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:54</a></div>
                                 </td>
                             </tr>
     
@@ -725,25 +807,24 @@
                                             <thead>
                                                 <tr>
                                                     <td>Name</td>
-                                                    <td>Type</td>
                                                     <td>Optional</td>
-                                                    <td>Default value</td>
-                                                    <td>Description</td>
+                                                        <td>Description</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>value</td>
-                                                      <td>
-                                                      </td>
-                                                      <td>
-                                                          no
-                                                      </td>
-                                                      <td>
-                                                          <code></code>
-                                                      </td>
-                                                      <td><p>name of the toolbar buttons</p>
-    </td>
+                                                        <td>value</td>
+                                                        
+                                                        
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
+    
+                                                            <td>
+                                                                    <code><p>name of the toolbar buttons</p>
+    </code>
+                                                            </td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -757,6 +838,45 @@
                                     <div class="io-description">
                                         
                                     </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="insertImage"></a>
+                            <span class="name">
+                                <b>
+                                insertImage
+                                </b>
+                                <a href="#insertImage"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>insertImage()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:154</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>insert image in the editor </p>
+    </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
                         </td>
                     </tr>
                 </tbody>
@@ -783,19 +903,91 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:84</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>insert link</p>
+                                <div class="io-description"><p>inserts link in the editor</p>
     </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
     
                                 </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="onFileChange"></a>
+                            <span class="name">
+                                <b>
+                                onFileChange
+                                </b>
+                                <a href="#onFileChange"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>onFileChange(e: )</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:117</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Executed when file is selected</p>
+    </div>
+    
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                        <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                        <td>e</td>
+                                                        
+                                                        
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
+    
+                                                            <td>
+                                                                    <code><p>onChange event</p>
+    </code>
+                                                            </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                                    <div class="io-description">
+                                        
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -822,7 +1014,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:63</a></div>
                                 </td>
                             </tr>
     
@@ -837,26 +1029,28 @@
                                             <thead>
                                                 <tr>
                                                     <td>Name</td>
-                                                    <td>Type</td>
+                                                        <td>Type</td>
                                                     <td>Optional</td>
-                                                    <td>Default value</td>
-                                                    <td>Description</td>
+                                                        <td>Description</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>command</td>
-                                                      <td>
-                                                              <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                      </td>
-                                                      <td>
-                                                          no
-                                                      </td>
-                                                      <td>
-                                                          <code></code>
-                                                      </td>
-                                                      <td><p>name of the command to be executed</p>
-    </td>
+                                                        <td>command</td>
+                                                        
+                                                            <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            </td>
+                                                        
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
+    
+                                                            <td>
+                                                                    <code><p>name of the command to be executed</p>
+    </code>
+                                                            </td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -885,6 +1079,202 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <a name="imageForm"></a>
+                            <span class="name">
+                                <b>
+                                imageForm
+                                </b>
+                                <a href="#imageForm"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>imageForm:     <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+    
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:21</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>holds values of the insert image form </p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="imagePopover"></a>
+                            <span class="name">
+                                <b>
+                                imagePopover
+                                </b>
+                                <a href="#imagePopover"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>imagePopover:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>ViewChild</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:34</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="isUploading"></a>
+                            <span class="name">
+                                <b>
+                                isUploading
+                                </b>
+                                <a href="#isUploading"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>isUploading:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>false</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:27</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>set to true when the image is being uploaded </p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="updloadPercentage"></a>
+                            <span class="name">
+                                <b>
+                                updloadPercentage
+                                </b>
+                                <a href="#updloadPercentage"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>updloadPercentage:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>0</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:25</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>upload percentage </p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="uploadComplete"></a>
+                            <span class="name">
+                                <b>
+                                uploadComplete
+                                </b>
+                                <a href="#uploadComplete"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>uploadComplete:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>true</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:23</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>set to false when image is being uploaded </p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <a name="urlForm"></a>
                             <span class="name">
                                 <b>
@@ -908,10 +1298,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:19</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>holds values of the insert link form </p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -941,7 +1337,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/ngx-editor/ngx-editor-toolbar/ngx-editor-toolbar.component.ts:33</a></div>
                                 </td>
                             </tr>
     
@@ -956,6 +1352,7 @@
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers"><code class="language-typescript">import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
 import { FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
+import { HttpEvent, HttpEventType, HttpResponse } from &#x27;@angular/common/http&#x27;;
 import { PopoverConfig } from &#x27;ngx-bootstrap&#x27;;
 import { CommandExecutorService } from &#x27;../common/services/command-executor.service&#x27;;
 import { MessageService } from &#x27;../common/services/message.service&#x27;;
@@ -970,13 +1367,23 @@ import * as Utils from &#x27;../common/utils/ngx-editor.utils&#x27;;
 
 export class NgxEditorToolbarComponent implements OnInit {
 
+  /** holds values of the insert link form */
   urlForm: FormGroup;
+  /** holds values of the insert image form */
+  imageForm: FormGroup;
+  /** set to false when image is being uploaded */
+  uploadComplete &#x3D; true;
+  /** upload percentage */
+  updloadPercentage &#x3D; 0;
+  /** set to true when the image is being uploaded */
+  isUploading &#x3D; false;
 
   /**
    * Editor configuration
    */
   @Input() config: any;
   @ViewChild(&#x27;urlPopover&#x27;) urlPopover;
+  @ViewChild(&#x27;imagePopover&#x27;) imagePopover;
   /**
    * Emits an event when a toolbar button is clicked
    */
@@ -1013,17 +1420,20 @@ export class NgxEditorToolbarComponent implements OnInit {
    * create URL insert form
    */
   buildUrlForm(): void {
+
     this.urlForm &#x3D; this._formBuilder.group({
       urlLink: [&#x27;&#x27;, [Validators.required]],
       urlText: [&#x27;&#x27;, [Validators.required]],
       urlNewTab: [true]
     });
+
+    return;
   }
 
   /**
-   * insert link
+   * inserts link in the editor
    */
-  insertLink() {
+  insertLink(): void {
 
     try {
       this._commandExecutorService.createLink(this.urlForm.value);
@@ -1031,11 +1441,84 @@ export class NgxEditorToolbarComponent implements OnInit {
       this._messageService.sendMessage(error.message);
     }
 
+    /** reset form to default */
+    this.buildUrlForm();
+    /** close inset URL pop up */
     this.urlPopover.hide();
+
+    return;
+  }
+
+  /**
+   * create insert image form
+   */
+  buildInsertImageForm(): void {
+
+    this.imageForm &#x3D; this._formBuilder.group({
+      imageUrl: [&#x27;&#x27;, [Validators.required]]
+    });
+
+    return;
+  }
+
+  /**
+   * Executed when file is selected
+   *
+   * @param e onChange event
+   */
+  onFileChange(e): void {
+
+    this.uploadComplete &#x3D; false;
+    this.isUploading &#x3D; true;
+
+    if (e.target.files.length &gt; 0) {
+      const file &#x3D; e.target.files[0];
+
+      try {
+        this._commandExecutorService.uploadImage(file, this.config.imageEndPoint).subscribe(event &#x3D;&gt; {
+
+          if (event.type) {
+            this.updloadPercentage &#x3D; Math.round(100 * event.loaded / event.total);
+          }
+
+          if (event instanceof HttpResponse) {
+            try {
+              this._commandExecutorService.insertImage(event.body.url);
+            } catch (error) {
+              this._messageService.sendMessage(error.message);
+            }
+            this.uploadComplete &#x3D; true;
+            this.isUploading &#x3D; false;
+          }
+        });
+      } catch (error) {
+        this._messageService.sendMessage(error.message);
+        this.uploadComplete &#x3D; true;
+        this.isUploading &#x3D; false;
+      }
+
+    }
+
+    return;
+  }
+
+  /** insert image in the editor */
+  insertImage(): void {
+    try {
+      this._commandExecutorService.insertImage(this.imageForm.value.imageUrl);
+    } catch (error) {
+      this._messageService.sendMessage(error.message);
+    }
+
+    /** reset form to default */
+    this.buildInsertImageForm();
+    /** close inset URL pop up */
+    this.imagePopover.hide();
   }
 
   ngOnInit() {
     this.buildUrlForm();
+    this.buildInsertImageForm();
   }
 
 }
@@ -1149,16 +1632,16 @@ export class NgxEditorToolbarComponent implements OnInit {
     &lt;/button&gt;
   &lt;/div&gt;
   &lt;div class&#x3D;&quot;ngx-toolbar-set&quot;&gt;
-    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;ngx-editor-button&quot; *ngIf&#x3D;&quot;canEnableToolbarOptions(&#x27;link&#x27;)&quot; popoverTitle&#x3D;&quot;Insert Link&quot; [popover]&#x3D;&quot;insertLinkTemplate&quot;
-      title&#x3D;&quot;Insert/Edit Link&quot; #urlPopover&#x3D;&quot;bs-popover&quot; [disabled]&#x3D;&quot;!config[&#x27;enableToolbar&#x27;]&quot;&gt;
+    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;ngx-editor-button&quot; *ngIf&#x3D;&quot;canEnableToolbarOptions(&#x27;link&#x27;)&quot; (click)&#x3D;&quot;buildUrlForm()&quot; [popover]&#x3D;&quot;insertLinkTemplate&quot;
+      title&#x3D;&quot;Insert Link&quot; #urlPopover&#x3D;&quot;bs-popover&quot; [disabled]&#x3D;&quot;!config[&#x27;enableToolbar&#x27;]&quot;&gt;
       &lt;i class&#x3D;&quot;fa fa-link&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
     &lt;/button&gt;
     &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;ngx-editor-button&quot; *ngIf&#x3D;&quot;canEnableToolbarOptions(&#x27;unlink&#x27;)&quot; (click)&#x3D;&quot;triggerCommand(&#x27;unlink&#x27;)&quot;
       title&#x3D;&quot;Unlink&quot; [disabled]&#x3D;&quot;!config[&#x27;enableToolbar&#x27;]&quot;&gt;
       &lt;i class&#x3D;&quot;fa fa-chain-broken&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
     &lt;/button&gt;
-    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;ngx-editor-button&quot; *ngIf&#x3D;&quot;canEnableToolbarOptions(&#x27;image&#x27;)&quot; (click)&#x3D;&quot;triggerCommand(&#x27;image&#x27;)&quot;
-      title&#x3D;&quot;Insert Image&quot; [disabled]&#x3D;&quot;!config[&#x27;enableToolbar&#x27;]&quot;&gt;
+    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;ngx-editor-button&quot; *ngIf&#x3D;&quot;canEnableToolbarOptions(&#x27;image&#x27;)&quot; (click)&#x3D;&quot;buildInsertImageForm()&quot;
+      title&#x3D;&quot;Insert Image&quot; [popover]&#x3D;&quot;insertImageTemplate&quot; #imagePopover&#x3D;&quot;bs-popover&quot; [disabled]&#x3D;&quot;!config[&#x27;enableToolbar&#x27;]&quot;&gt;
       &lt;i class&#x3D;&quot;fa fa-picture-o&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
     &lt;/button&gt;
   &lt;/div&gt;
@@ -1170,24 +1653,69 @@ export class NgxEditorToolbarComponent implements OnInit {
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Popover templates --&gt;
+&lt;!-- URL Popover template --&gt;
 &lt;ng-template #insertLinkTemplate&gt;
-  &lt;form class&#x3D;&quot;ngxe-popover-form&quot; [formGroup]&#x3D;&quot;urlForm&quot; (ngSubmit)&#x3D;&quot;urlForm.valid &amp;&amp; insertLink()&quot; autocomplete&#x3D;&quot;off&quot;&gt;
-    &lt;div class&#x3D;&quot;form-group&quot;&gt;
-      &lt;label for&#x3D;&quot;urlInput&quot; class&#x3D;&quot;small&quot;&gt;URL&lt;/label&gt;
-      &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control-sm&quot; id&#x3D;&quot;URLInput&quot; aria-describedby&#x3D;&quot;emailHelp&quot; placeholder&#x3D;&quot;URL&quot; formControlName&#x3D;&quot;urlLink&quot;
-        required&gt;
+  &lt;div class&#x3D;&quot;ngxe-popover-form extra-gt&quot;&gt;
+    &lt;form [formGroup]&#x3D;&quot;urlForm&quot; (ngSubmit)&#x3D;&quot;urlForm.valid &amp;&amp; insertLink()&quot; autocomplete&#x3D;&quot;off&quot;&gt;
+      &lt;div class&#x3D;&quot;form-group&quot;&gt;
+        &lt;label for&#x3D;&quot;urlInput&quot; class&#x3D;&quot;small&quot;&gt;URL&lt;/label&gt;
+        &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control-sm&quot; id&#x3D;&quot;URLInput&quot; placeholder&#x3D;&quot;URL&quot; formControlName&#x3D;&quot;urlLink&quot; required&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;form-group&quot;&gt;
+        &lt;label for&#x3D;&quot;urlTextInput&quot; class&#x3D;&quot;small&quot;&gt;Text&lt;/label&gt;
+        &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control-sm&quot; id&#x3D;&quot;urlTextInput&quot; placeholder&#x3D;&quot;Text&quot; formControlName&#x3D;&quot;urlText&quot; required&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;form-check&quot;&gt;
+        &lt;input type&#x3D;&quot;checkbox&quot; class&#x3D;&quot;form-check-input&quot; id&#x3D;&quot;urlNewTab&quot; formControlName&#x3D;&quot;urlNewTab&quot;&gt;
+        &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;urlNewTab&quot;&gt;Open in new tab&lt;/label&gt;
+      &lt;/div&gt;
+      &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn-primary btn-sm btn&quot;&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+
+&lt;!-- Image Uploader Popover template --&gt;
+&lt;ng-template #insertImageTemplate&gt;
+  &lt;div class&#x3D;&quot;ngxe-popover-form image-ctnr&quot;&gt;
+    &lt;div class&#x3D;&quot;imgc-topbar&quot;&gt;
+      &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn&quot; (click)&#x3D;&quot;isImageUploader &#x3D; true&quot;&gt;
+        &lt;i class&#x3D;&quot;fa fa-upload&quot;&gt;&lt;/i&gt;
+      &lt;/button&gt;
+      &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn&quot; (click)&#x3D;&quot;isImageUploader &#x3D; false&quot;&gt;
+        &lt;i class&#x3D;&quot;fa fa-link&quot;&gt;&lt;/i&gt;
+      &lt;/button&gt;
     &lt;/div&gt;
-    &lt;div class&#x3D;&quot;form-group&quot;&gt;
-      &lt;label for&#x3D;&quot;urlTextInput&quot; class&#x3D;&quot;small&quot;&gt;Text&lt;/label&gt;
-      &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control-sm&quot; id&#x3D;&quot;urlTextInput&quot; placeholder&#x3D;&quot;Text&quot; formControlName&#x3D;&quot;urlText&quot; required&gt;
+    &lt;div class&#x3D;&quot;imgc-ctnt&quot;&gt;
+      &lt;div *ngIf&#x3D;&quot;isImageUploader; else insertImageLink&quot;&gt; &lt;/div&gt;
+      &lt;div *ngIf&#x3D;&quot;!isImageUploader; else imageUploder&quot;&gt; &lt;/div&gt;
+      &lt;ng-template #imageUploder&gt;
+        &lt;div class&#x3D;&quot;ngx-insert-img-ph&quot;&gt;
+          &lt;p *ngIf&#x3D;&quot;uploadComplete&quot;&gt;Choose Image&lt;/p&gt;
+          &lt;p *ngIf&#x3D;&quot;!uploadComplete&quot;&gt;
+            &lt;span&gt;Uploading Image&lt;/span&gt;
+            &lt;br&gt;
+            &lt;span&gt;{{ updloadPercentage }} %&lt;/span&gt;
+          &lt;/p&gt;
+          &lt;div class&#x3D;&quot;ngxe-img-upl-frm&quot;&gt;
+            &lt;input type&#x3D;&quot;file&quot; (change)&#x3D;&quot;onFileChange($event)&quot; accept&#x3D;&quot;image/*&quot; [disabled]&#x3D;&quot;isUploading&quot; [style.cursor]&#x3D;&quot;isUploading ? &#x27;not-allowed&#x27;: &#x27;allowed&#x27;&quot;&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/ng-template&gt;
+      &lt;ng-template #insertImageLink&gt;
+        &lt;form class&#x3D;&quot;extra-gt&quot; [formGroup]&#x3D;&quot;imageForm&quot; (ngSubmit)&#x3D;&quot;imageForm.valid &amp;&amp; insertImage()&quot; autocomplete&#x3D;&quot;off&quot;&gt;
+          &lt;div class&#x3D;&quot;form-group&quot;&gt;
+            &lt;label for&#x3D;&quot;imageURLInput&quot; class&#x3D;&quot;small&quot;&gt;URL&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control-sm&quot; id&#x3D;&quot;imageURLInput&quot; placeholder&#x3D;&quot;URL&quot; formControlName&#x3D;&quot;imageUrl&quot; required&gt;
+          &lt;/div&gt;
+          &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn-primary btn-sm btn&quot;&gt;Submit&lt;/button&gt;
+        &lt;/form&gt;
+      &lt;/ng-template&gt;
+      &lt;div class&#x3D;&quot;progress&quot; *ngIf&#x3D;&quot;!uploadComplete&quot;&gt;
+        &lt;div class&#x3D;&quot;progress-bar progress-bar-striped progress-bar-animated bg-success&quot; [ngClass]&#x3D;&quot;{&#x27;bg-danger&#x27;: updloadPercentage&lt;20, &#x27;bg-warning&#x27;: updloadPercentage&lt;50, &#x27;bg-success&#x27;: updloadPercentage&gt;&#x3D;100}&quot;
+          [style.width.%]&#x3D;&quot;updloadPercentage&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class&#x3D;&quot;form-check&quot;&gt;
-      &lt;input type&#x3D;&quot;checkbox&quot; class&#x3D;&quot;form-check-input&quot; id&#x3D;&quot;urlNewTab&quot; formControlName&#x3D;&quot;urlNewTab&quot;&gt;
-      &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;urlNewTab&quot;&gt;Open in new tab&lt;/label&gt;
-    &lt;/div&gt;
-    &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn-primary btn-sm btn&quot;&gt;Submit&lt;/button&gt;
-  &lt;/form&gt;
+  &lt;/div&gt;
 &lt;/ng-template&gt;
 </code></pre>
     </div>
@@ -1215,7 +1743,7 @@ export class NgxEditorToolbarComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="ngx-toolbar" *ngIf="config[\'showToolbar\']">  <div class="ngx-toolbar-set">    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'bold\')" (click)="triggerCommand(\'bold\')"      title="Bold" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-bold" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'italic\')" (click)="triggerCommand(\'italic\')"      title="Italic" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-italic" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'underline\')" (click)="triggerCommand(\'underline\')"      title="Underline" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-underline" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'strikeThrough\')" (click)="triggerCommand(\'strikeThrough\')"      title="Strikethrough" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-strikethrough" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'superscript\')" (click)="triggerCommand(\'superscript\')"      title="Superscript" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-superscript" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'subscript\')" (click)="triggerCommand(\'subscript\')"      title="Subscript" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-subscript" aria-hidden="true"></i>    </button>  </div>  <div class="ngx-toolbar-set">    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'justifyLeft\')" (click)="triggerCommand(\'justifyLeft\')"      title="Justify Left" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-align-left" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'justifyCenter\')" (click)="triggerCommand(\'justifyCenter\')"      title="Justify Center" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-align-center" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'justifyRight\')" (click)="triggerCommand(\'justifyRight\')"      title="Justify Right" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-align-right" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'justifyFull\')" (click)="triggerCommand(\'justifyFull\')"      title="Justify" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-align-justify" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'indent\')" (click)="triggerCommand(\'indent\')"      title="Indent" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-indent" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'outdent\')" (click)="triggerCommand(\'outdent\')"      title="Outdent" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-outdent" aria-hidden="true"></i>    </button>  </div>  <div class="ngx-toolbar-set">    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'cut\')" (click)="triggerCommand(\'cut\')" title="Cut"      [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-scissors" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'copy\')" (click)="triggerCommand(\'copy\')"      title="Copy" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-files-o" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'delete\')" (click)="triggerCommand(\'delete\')"      title="Delete" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-trash" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'removeFormat\')" (click)="triggerCommand(\'removeFormat\')"      title="Clear Formatting" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-eraser" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'undo\')" (click)="triggerCommand(\'undo\')"      title="Undo" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-undo" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'redo\')" (click)="triggerCommand(\'redo\')"      title="Redo" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-repeat" aria-hidden="true"></i>    </button>  </div>  <div class="ngx-toolbar-set">    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'paragraph\')" (click)="triggerCommand(\'insertParagraph\')"      title="Paragraph" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-paragraph" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'blockquote\')" (click)="triggerCommand(\'blockquote\')"      title="Blockquote" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-quote-left" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'removeBlockquote\')" (click)="triggerCommand(\'removeBlockquote\')"      title="Remove Blockquote" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-quote-right" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'horizontalLine\')" (click)="triggerCommand(\'insertHorizontalRule\')"      title="Horizontal Line" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-minus" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'orderedList\')" (click)="triggerCommand(\'insertUnorderedList\')"      title="Unodered List" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-list-ul" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'unorderedList\')" (click)="triggerCommand(\'insertOrderedList\')"      title="Ordered List" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-list-ol" aria-hidden="true"></i>    </button>  </div>  <div class="ngx-toolbar-set">    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'link\')" popoverTitle="Insert Link" [popover]="insertLinkTemplate"      title="Insert/Edit Link" #urlPopover="bs-popover" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-link" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'unlink\')" (click)="triggerCommand(\'unlink\')"      title="Unlink" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-chain-broken" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'image\')" (click)="triggerCommand(\'image\')"      title="Insert Image" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-picture-o" aria-hidden="true"></i>    </button>  </div>  <div class="ngx-toolbar-set">    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'code\')" (click)="triggerCommand(\'code\')"      title="View Code" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-code" aria-hidden="true"></i>    </button>  </div></div><!-- Popover templates --><ng-template #insertLinkTemplate>  <form class="ngxe-popover-form" [formGroup]="urlForm" (ngSubmit)="urlForm.valid && insertLink()" autocomplete="off">    <div class="form-group">      <label for="urlInput" class="small">URL</label>      <input type="text" class="form-control-sm" id="URLInput" aria-describedby="emailHelp" placeholder="URL" formControlName="urlLink"        required>    </div>    <div class="form-group">      <label for="urlTextInput" class="small">Text</label>      <input type="text" class="form-control-sm" id="urlTextInput" placeholder="Text" formControlName="urlText" required>    </div>    <div class="form-check">      <input type="checkbox" class="form-check-input" id="urlNewTab" formControlName="urlNewTab">      <label class="form-check-label" for="urlNewTab">Open in new tab</label>    </div>    <button type="submit" class="btn-primary btn-sm btn">Submit</button>  </form></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="ngx-toolbar" *ngIf="config[\'showToolbar\']">  <div class="ngx-toolbar-set">    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'bold\')" (click)="triggerCommand(\'bold\')"      title="Bold" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-bold" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'italic\')" (click)="triggerCommand(\'italic\')"      title="Italic" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-italic" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'underline\')" (click)="triggerCommand(\'underline\')"      title="Underline" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-underline" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'strikeThrough\')" (click)="triggerCommand(\'strikeThrough\')"      title="Strikethrough" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-strikethrough" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'superscript\')" (click)="triggerCommand(\'superscript\')"      title="Superscript" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-superscript" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'subscript\')" (click)="triggerCommand(\'subscript\')"      title="Subscript" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-subscript" aria-hidden="true"></i>    </button>  </div>  <div class="ngx-toolbar-set">    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'justifyLeft\')" (click)="triggerCommand(\'justifyLeft\')"      title="Justify Left" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-align-left" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'justifyCenter\')" (click)="triggerCommand(\'justifyCenter\')"      title="Justify Center" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-align-center" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'justifyRight\')" (click)="triggerCommand(\'justifyRight\')"      title="Justify Right" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-align-right" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'justifyFull\')" (click)="triggerCommand(\'justifyFull\')"      title="Justify" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-align-justify" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'indent\')" (click)="triggerCommand(\'indent\')"      title="Indent" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-indent" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'outdent\')" (click)="triggerCommand(\'outdent\')"      title="Outdent" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-outdent" aria-hidden="true"></i>    </button>  </div>  <div class="ngx-toolbar-set">    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'cut\')" (click)="triggerCommand(\'cut\')" title="Cut"      [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-scissors" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'copy\')" (click)="triggerCommand(\'copy\')"      title="Copy" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-files-o" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'delete\')" (click)="triggerCommand(\'delete\')"      title="Delete" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-trash" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'removeFormat\')" (click)="triggerCommand(\'removeFormat\')"      title="Clear Formatting" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-eraser" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'undo\')" (click)="triggerCommand(\'undo\')"      title="Undo" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-undo" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'redo\')" (click)="triggerCommand(\'redo\')"      title="Redo" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-repeat" aria-hidden="true"></i>    </button>  </div>  <div class="ngx-toolbar-set">    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'paragraph\')" (click)="triggerCommand(\'insertParagraph\')"      title="Paragraph" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-paragraph" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'blockquote\')" (click)="triggerCommand(\'blockquote\')"      title="Blockquote" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-quote-left" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'removeBlockquote\')" (click)="triggerCommand(\'removeBlockquote\')"      title="Remove Blockquote" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-quote-right" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'horizontalLine\')" (click)="triggerCommand(\'insertHorizontalRule\')"      title="Horizontal Line" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-minus" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'orderedList\')" (click)="triggerCommand(\'insertUnorderedList\')"      title="Unodered List" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-list-ul" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'unorderedList\')" (click)="triggerCommand(\'insertOrderedList\')"      title="Ordered List" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-list-ol" aria-hidden="true"></i>    </button>  </div>  <div class="ngx-toolbar-set">    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'link\')" (click)="buildUrlForm()" [popover]="insertLinkTemplate"      title="Insert Link" #urlPopover="bs-popover" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-link" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'unlink\')" (click)="triggerCommand(\'unlink\')"      title="Unlink" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-chain-broken" aria-hidden="true"></i>    </button>    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'image\')" (click)="buildInsertImageForm()"      title="Insert Image" [popover]="insertImageTemplate" #imagePopover="bs-popover" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-picture-o" aria-hidden="true"></i>    </button>  </div>  <div class="ngx-toolbar-set">    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions(\'code\')" (click)="triggerCommand(\'code\')"      title="View Code" [disabled]="!config[\'enableToolbar\']">      <i class="fa fa-code" aria-hidden="true"></i>    </button>  </div></div><!-- URL Popover template --><ng-template #insertLinkTemplate>  <div class="ngxe-popover-form extra-gt">    <form [formGroup]="urlForm" (ngSubmit)="urlForm.valid && insertLink()" autocomplete="off">      <div class="form-group">        <label for="urlInput" class="small">URL</label>        <input type="text" class="form-control-sm" id="URLInput" placeholder="URL" formControlName="urlLink" required>      </div>      <div class="form-group">        <label for="urlTextInput" class="small">Text</label>        <input type="text" class="form-control-sm" id="urlTextInput" placeholder="Text" formControlName="urlText" required>      </div>      <div class="form-check">        <input type="checkbox" class="form-check-input" id="urlNewTab" formControlName="urlNewTab">        <label class="form-check-label" for="urlNewTab">Open in new tab</label>      </div>      <button type="submit" class="btn-primary btn-sm btn">Submit</button>    </form>  </div></ng-template><!-- Image Uploader Popover template --><ng-template #insertImageTemplate>  <div class="ngxe-popover-form image-ctnr">    <div class="imgc-topbar">      <button type="button" class="btn" (click)="isImageUploader = true">        <i class="fa fa-upload"></i>      </button>      <button type="button" class="btn" (click)="isImageUploader = false">        <i class="fa fa-link"></i>      </button>    </div>    <div class="imgc-ctnt">      <div *ngIf="isImageUploader; else insertImageLink"> </div>      <div *ngIf="!isImageUploader; else imageUploder"> </div>      <ng-template #imageUploder>        <div class="ngx-insert-img-ph">          <p *ngIf="uploadComplete">Choose Image</p>          <p *ngIf="!uploadComplete">            <span>Uploading Image</span>            <br>            <span>{{ updloadPercentage }} %</span>          </p>          <div class="ngxe-img-upl-frm">            <input type="file" (change)="onFileChange($event)" accept="image/*" [disabled]="isUploading" [style.cursor]="isUploading ? \'not-allowed\': \'allowed\'">          </div>        </div>      </ng-template>      <ng-template #insertImageLink>        <form class="extra-gt" [formGroup]="imageForm" (ngSubmit)="imageForm.valid && insertImage()" autocomplete="off">          <div class="form-group">            <label for="imageURLInput" class="small">URL</label>            <input type="text" class="form-control-sm" id="imageURLInput" placeholder="URL" formControlName="imageUrl" required>          </div>          <button type="submit" class="btn-primary btn-sm btn">Submit</button>        </form>      </ng-template>      <div class="progress" *ngIf="!uploadComplete">        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [ngClass]="{\'bg-danger\': updloadPercentage<20, \'bg-warning\': updloadPercentage<50, \'bg-success\': updloadPercentage>=100}"          [style.width.%]="updloadPercentage"></div>      </div>    </div>  </div></ng-template></div>'
     var COMPONENTS = [{'name': 'NgxEditorComponent', 'selector': 'app-ngx-editor'},{'name': 'NgxEditorMessageComponent', 'selector': 'app-ngx-editor-message'},{'name': 'NgxEditorToolbarComponent', 'selector': 'app-ngx-editor-toolbar'},{'name': 'NgxGrippieComponent', 'selector': 'app-ngx-grippie'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NgxEditorToolbarComponent'};

@@ -7,7 +7,7 @@
     "build": "ng build --prod",
     "build:package": "sh ./scripts/build.sh",
     "cz": "git-cz",
-    "docs": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -n \"NgxEditor\" --includes \"./extras\" --disableCoverage --disablePrivate --disableInternal --disableLifeCycleHooks --disableProtected --hideGenerator --customFavicon src/favicon.ico --output docs",
+    "docs": "./node_modules/.bin/compodoc --tsconfig=\"src/tsconfig.app.json\" -n \"NgxEditor\" --includes \"./extras\" --disableCoverage --disablePrivate --disableInternal --disableLifeCycleHooks --disableProtected --hideGenerator --customFavicon=\"src/favicon.ico\" --output=\"docs/\"",
     "e2e": "ng e2e",
     "lint": "ng lint",
     "ng": "ng",
@@ -17,6 +17,7 @@
     "prerelease": "npm run build",
     "release": "sh ./scripts/release.sh",
     "start": "ng serve --aot -o --port 5000 --host 0.0.0.0",
+    "serve:docs": "./node_modules/.bin/compodoc --serve --open --output=\"docs/\"",
     "test": "ng test",
     "test:single-run": "ng test --watch false"
   },

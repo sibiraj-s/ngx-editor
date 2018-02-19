@@ -9,16 +9,26 @@ import { NgxEditorComponent } from '../ngx-editor.component';
 
 export class NgxGrippieComponent {
 
+  /** height of the editor */
   height: number;
+  /** previous value befor resizing the editor */
   oldY = 0;
+  /** set to true on mousedown event */
   grabber = false;
 
   /**
+   * Constructor
    *
-   * @param _editorComponent editor component
+   * @param _editorComponent Editor component
    */
   constructor(private _editorComponent: NgxEditorComponent) { }
 
+  /**
+   *
+   * @param event Mouseevent
+   *
+   * Update the height of the editor when the grabber is dragged
+   */
   @HostListener('document:mousemove', ['$event']) onMouseMove(event: MouseEvent) {
 
     if (!this.grabber) {
@@ -29,6 +39,12 @@ export class NgxGrippieComponent {
     this.oldY = event.clientY;
   }
 
+  /**
+   *
+   * @param event Mouseevent
+   *
+   * set the grabber to false on mouse up action
+   */
   @HostListener('document:mouseup', ['$event']) onMouseUp(event: MouseEvent) {
     this.grabber = false;
   }
