@@ -3,7 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-const FIVE_SECONDS = 5000;
+const FIVE_SECONDS = 7000;
 
 @Injectable()
 export class MessageService {

@@ -7,3 +7,4 @@ rm -rf dist/
 
 # delete unwanted folders
 rm -rf .ng_build
+rm -rf .ng_pkg_build
