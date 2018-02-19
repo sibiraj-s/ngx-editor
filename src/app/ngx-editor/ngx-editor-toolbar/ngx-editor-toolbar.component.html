@@ -104,16 +104,16 @@
     </button>
   </div>
   <div class="ngx-toolbar-set">
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" (click)="buildUrlForm()" popoverTitle="Insert Link"
-      [popover]="insertLinkTemplate" title="Insert/Edit Link" #urlPopover="bs-popover" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" (click)="buildUrlForm()" [popover]="insertLinkTemplate"
+      title="Insert Link" #urlPopover="bs-popover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-link" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unlink')" (click)="triggerCommand('unlink')"
       title="Unlink" [disabled]="!config['enableToolbar']">
       <i class="fa fa-chain-broken" aria-hidden="true"></i>
     </button>
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="triggerCommand('image')"
-      title="Insert Image" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="buildInsertImageForm()"
+      title="Insert Image" [popover]="insertImageTemplate" #imagePopover="bs-popover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-picture-o" aria-hidden="true"></i>
     </button>
   </div>
@@ -125,22 +125,67 @@
   </div>
 </div>
 
-<!-- Popover templates -->
+<!-- URL Popover template -->
 <ng-template #insertLinkTemplate>
-  <form class="ngxe-popover-form" [formGroup]="urlForm" (ngSubmit)="urlForm.valid && insertLink()" autocomplete="off">
-    <div class="form-group">
-      <label for="urlInput" class="small">URL</label>
-      <input type="text" class="form-control-sm" id="URLInput" aria-describedby="emailHelp" placeholder="URL" formControlName="urlLink"
-        required>
+  <div class="ngxe-popover-form extra-gt">
+    <form [formGroup]="urlForm" (ngSubmit)="urlForm.valid && insertLink()" autocomplete="off">
+      <div class="form-group">
+        <label for="urlInput" class="small">URL</label>
+        <input type="text" class="form-control-sm" id="URLInput" placeholder="URL" formControlName="urlLink" required>
+      </div>
+      <div class="form-group">
+        <label for="urlTextInput" class="small">Text</label>
+        <input type="text" class="form-control-sm" id="urlTextInput" placeholder="Text" formControlName="urlText" required>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="urlNewTab" formControlName="urlNewTab">
+        <label class="form-check-label" for="urlNewTab">Open in new tab</label>
+      </div>
+      <button type="submit" class="btn-primary btn-sm btn">Submit</button>
+    </form>
+  </div>
+</ng-template>
+
+<!-- Image Uploader Popover template -->
+<ng-template #insertImageTemplate>
+  <div class="ngxe-popover-form image-ctnr">
+    <div class="imgc-topbar">
+      <button type="button" class="btn" (click)="isImageUploader = true">
+        <i class="fa fa-upload"></i>
+      </button>
+      <button type="button" class="btn" (click)="isImageUploader = false">
+        <i class="fa fa-link"></i>
+      </button>
     </div>
-    <div class="form-group">
-      <label for="urlTextInput" class="small">Text</label>
-      <input type="text" class="form-control-sm" id="urlTextInput" placeholder="Text" formControlName="urlText" required>
+    <div class="imgc-ctnt">
+      <div *ngIf="isImageUploader; else insertImageLink"> </div>
+      <div *ngIf="!isImageUploader; else imageUploder"> </div>
+      <ng-template #imageUploder>
+        <div class="ngx-insert-img-ph">
+          <p *ngIf="uploadComplete">Choose Image</p>
+          <p *ngIf="!uploadComplete">
+            <span>Uploading Image</span>
+            <br>
+            <span>{{ updloadPercentage }} %</span>
+          </p>
+          <div class="ngxe-img-upl-frm">
+            <input type="file" (change)="onFileChange($event)" accept="image/*" [disabled]="isUploading" [style.cursor]="isUploading ? 'not-allowed': 'allowed'">
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #insertImageLink>
+        <form class="extra-gt" [formGroup]="imageForm" (ngSubmit)="imageForm.valid && insertImage()" autocomplete="off">
+          <div class="form-group">
+            <label for="imageURLInput" class="small">URL</label>
+            <input type="text" class="form-control-sm" id="imageURLInput" placeholder="URL" formControlName="imageUrl" required>
+          </div>
+          <button type="submit" class="btn-primary btn-sm btn">Submit</button>
+        </form>
+      </ng-template>
+      <div class="progress" *ngIf="!uploadComplete">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [ngClass]="{'bg-danger': updloadPercentage<20, 'bg-warning': updloadPercentage<50, 'bg-success': updloadPercentage>=100}"
+          [style.width.%]="updloadPercentage"></div>
+      </div>
     </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="urlNewTab" formControlName="urlNewTab">
-      <label class="form-check-label" for="urlNewTab">Open in new tab</label>
-    </div>
-    <button type="submit" class="btn-primary btn-sm btn">Submit</button>
-  </form>
+  </div>
 </ng-template>

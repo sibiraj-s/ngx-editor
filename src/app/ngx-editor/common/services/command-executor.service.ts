@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpRequest } from '@angular/common/http';
+import { MessageService } from './message.service';
 import * as Utils from '../utils/ngx-editor.utils';
+import { map, tap, last, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class CommandExecutorService {
 
   savedSelection: any = undefined;
+
+  constructor(private _http: HttpClient, private _messageService: MessageService) { }
 
   /**
    * executes command from the toolbar
@@ -28,50 +33,48 @@ export class CommandExecutorService {
       return;
     }
 
-    // if (command === 'link') {
-    //   this.createLink();
-    //   return;
-    // }
-
-    if (command === 'image') {
-      this.insertImage();
-      return;
-    }
-
     document.execCommand(command, false, null);
   }
 
-  private insertImage(): void {
-    const imageURI = prompt('Enter Image URL', 'http://');
-    if (imageURI) {
-      const inserted = document.execCommand('insertImage', false, imageURI);
-      if (!inserted) {
-        throw new Error('Invalid URL');
+  insertImage(imageURI: string): void {
+    if (this.savedSelection) {
+      if (imageURI) {
+        const restored = Utils.restoreSelection(this.savedSelection);
+        if (restored) {
+          const inserted = document.execCommand('insertImage', false, imageURI);
+          if (!inserted) {
+            throw new Error('Invalid URL');
+          }
+        }
       }
+    } else {
+      throw new Error('Range out of the editor');
     }
     return;
   }
 
-  // private createLink(): void {
-  //   const selection = document.getSelection();
+  uploadImage(file: File, endPoint: string): any {
 
-  //   if (selection.anchorNode.parentElement.tagName === 'A') {
-  //     const linkURL = prompt('Enter URL', selection.anchorNode.parentElement.getAttribute('href'));
-  //     if (linkURL) {
-  //       document.execCommand('createLink', false, linkURL);
-  //     }
-  //   } else {
-  //     if (selection['type'] === 'None') {
-  //       throw new Error('No selection made');
-  //     } else {
-  //       const linkURL = prompt('Enter URL', 'http://');
-  //       if (linkURL) {
-  //         document.execCommand('createLink', false, linkURL);
-  //       }
-  //     }
-  //   }
-  //   return;
-  // }
+    if (!endPoint) {
+      throw new Error('Image Endpoint isn`t provided or invalid');
+    }
+
+    const formData: FormData = new FormData();
+
+    if (file) {
+
+      formData.append('file', file);
+
+      const req = new HttpRequest('POST', endPoint, formData, {
+        reportProgress: true
+      });
+
+      return this._http.request(req);
+
+    } else {
+      throw new Error('Invalid Image');
+    }
+  }
 
   createLink(params: any): void {
 

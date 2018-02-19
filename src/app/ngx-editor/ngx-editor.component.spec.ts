@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NgxEditorComponent } from './ngx-editor.component';
 import { NgxGrippieComponent } from './ngx-grippie/ngx-grippie.component';
 import { NgxEditorToolbarComponent } from './ngx-editor-toolbar/ngx-editor-toolbar.component';
@@ -14,7 +15,7 @@ describe('NgxEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, PopoverModule.forRoot()],
+      imports: [FormsModule, ReactiveFormsModule, PopoverModule.forRoot(), HttpClientModule],
       providers: [MessageService, CommandExecutorService],
       declarations: [NgxEditorComponent,
         NgxGrippieComponent,

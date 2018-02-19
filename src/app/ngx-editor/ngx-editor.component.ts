@@ -28,17 +28,11 @@ import * as Utils from './common/utils/ngx-editor.utils';
 
 export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
-  /**
-   * Specifies weather the textarea to be editable or not
-   */
+  /** Specifies weather the textarea to be editable or not */
   @Input() editable: boolean;
-  /**
-   * The spellcheck property specifies whether the element is to have its spelling and grammar checked or not.
-   */
+  /** The spellcheck property specifies whether the element is to have its spelling and grammar checked or not. */
   @Input() spellcheck: boolean;
-  /**
-   * Placeholder for the textArea
-   */
+  /** Placeholder for the textArea */
   @Input() placeholder: string;
   /**
    * The translate property specifies whether the content of an element should be translated or not.
@@ -46,21 +40,13 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * Check https://www.w3schools.com/tags/att_global_translate.asp for more information and browser support
    */
   @Input() translate: string;
-  /**
-   * Sets height of the editor
-   */
+  /** Sets height of the editor */
   @Input() height: string;
-  /**
-   * Sets minimum height for the editor
-   */
+  /** Sets minimum height for the editor */
   @Input() minHeight: string;
-  /**
-   * Sets Width of the editor
-   */
+  /** Sets Width of the editor */
   @Input() width: string;
-  /**
-   * Sets minimum width of the editor
-   */
+  /** Sets minimum width of the editor */
   @Input() minWidth: string;
   /**
    * Toolbar accepts an array which specifies the options to be enabled for the toolbar
@@ -85,22 +71,16 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * inputs provided directly are considered as top priority
    */
   @Input() config = ngxEditorConfig;
-  /**
-   * Weather to show or hide toolbar
-   */
+  /** Weather to show or hide toolbar */
   @Input() showToolbar: boolean;
-  /**
-   * Weather to enable or disable the toolbar
-   */
+  /** Weather to enable or disable the toolbar */
   @Input() enableToolbar: boolean;
+  /** Endpoint for which the image to be uploaded */
+  @Input() imageEndPoint: string;
 
-  /**
-   * emits `blur` event when focused out from the textarea
-   */
+  /** emits `blur` event when focused out from the textarea */
   @Output() blur: EventEmitter<string> = new EventEmitter<string>();
-  /**
-   * emits `focus` event when focused in to the textarea
-   */
+  /** emits `focus` event when focused in to the textarea */
   @Output() focus: EventEmitter<string> = new EventEmitter<string>();
 
   @ViewChild('ngxTextArea') textArea: any;
@@ -313,6 +293,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
       minWidth: this.minWidth,
       enableToolbar: this.enableToolbar,
       showToolbar: this.showToolbar,
+      imageEndPoint: this.imageEndPoint,
       toolbar: this.toolbar
     };
   }
