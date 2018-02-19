@@ -5,7 +5,8 @@
     "lib": {
         "entryFile": "./src/public_api.ts",
         "umdModuleIds": {
-            "codemirror": "./node_modules/codemirror/lib/codemirror"
+            "codemirror": "codemirror",
+            "ngx-bootstrap": "ngx-bootstrap"
         }
     }
 }
