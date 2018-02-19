@@ -24,6 +24,7 @@ The config property is a JSON object.
     "enableToolbar": true,
     "showToolbar": true,
     "placeholder": "Enter text here...",
+    "imageEndPoint": "",
     "toolbar": [
         ["bold", "italic", "underline", "strikeThrough", "superscript", "subscript"],
         ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull", "indent", "outdent"],

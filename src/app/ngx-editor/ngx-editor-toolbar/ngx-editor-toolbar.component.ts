@@ -15,11 +15,15 @@ import * as Utils from '../common/utils/ngx-editor.utils';
 
 export class NgxEditorToolbarComponent implements OnInit {
 
+  /** holds values of the insert link form */
   urlForm: FormGroup;
+  /** holds values of the insert image form */
   imageForm: FormGroup;
-  isImageUploader = true;
+  /** set to false when image is being uploaded */
   uploadComplete = true;
+  /** upload percentage */
   updloadPercentage = 0;
+  /** set to true when the image is being uploaded */
   isUploading = false;
 
   /**
@@ -75,7 +79,7 @@ export class NgxEditorToolbarComponent implements OnInit {
   }
 
   /**
-   * insert link
+   * inserts link in the editor
    */
   insertLink(): void {
 
@@ -105,6 +109,11 @@ export class NgxEditorToolbarComponent implements OnInit {
     return;
   }
 
+  /**
+   * Executed when file is selected
+   *
+   * @param e onChange event
+   */
   onFileChange(e): void {
 
     this.uploadComplete = false;
@@ -141,6 +150,7 @@ export class NgxEditorToolbarComponent implements OnInit {
     return;
   }
 
+  /** insert image in the editor */
   insertImage(): void {
     try {
       this._commandExecutorService.insertImage(this.imageForm.value.imageUrl);
