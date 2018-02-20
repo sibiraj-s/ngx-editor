@@ -55,11 +55,18 @@ Then in HTML
 
 For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
 
-### Demo
+## Compatibility
+
+* Google Chrome
+* Microsoft Edge
+* Mozilla Firefox
+* Opera
+
+## Demo
 
 Demo at stackblitz [ngx-editor](https://ngx-editor.stackblitz.io/)
 
-### Documentation
+## Documentation
 
 Documentation is auto-generated using [compodoc][compodoc], and can be viewed here: [https://sibiraj-s.github.io/ngx-editor/](https://sibiraj-s.github.io/ngx-editor/)
 
