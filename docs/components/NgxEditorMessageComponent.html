@@ -68,10 +68,16 @@
                                 id="xs-additional-pages"
                             >
                                 <li class="link ">
+                                    <a href="../additional-documentation/prerequisites.html" >Prerequisites</a>
+                                </li>
+                                <li class="link ">
                                     <a href="../additional-documentation/configuration.html" >Configuration</a>
                                 </li>
                                 <li class="link ">
                                     <a href="../additional-documentation/toolbar.html" >Toolbar</a>
+                                </li>
+                                <li class="link ">
+                                    <a href="../additional-documentation/image-uploader.html" >Image Uploader</a>
                                 </li>
                                 <li class="link ">
                                     <a href="../additional-documentation/code-editor.html" >Code Editor</a>
@@ -233,10 +239,16 @@
                                        id="additional-pages"
                    >
                                        <li class="link ">
+                                           <a href="../additional-documentation/prerequisites.html" >Prerequisites</a>
+                                       </li>
+                                       <li class="link ">
                                            <a href="../additional-documentation/configuration.html" >Configuration</a>
                                        </li>
                                        <li class="link ">
                                            <a href="../additional-documentation/toolbar.html" >Toolbar</a>
+                                       </li>
+                                       <li class="link ">
+                                           <a href="../additional-documentation/image-uploader.html" >Image Uploader</a>
                                        </li>
                                        <li class="link ">
                                            <a href="../additional-documentation/code-editor.html" >Code Editor</a>
@@ -469,7 +481,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/ngx-editor/ngx-editor-message/ngx-editor-message.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/ngx-editor/ngx-editor-message/ngx-editor-message.component.ts:14</a></div>
                                 </td>
                             </tr>
     
@@ -481,22 +493,27 @@
                                             <thead>
                                                 <tr>
                                                     <td>Name</td>
-                                                    <td>Type</td>
+                                                        <td>Type</td>
                                                     <td>Optional</td>
-                                                    <td>Description</td>
+                                                        <td>Description</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>_messageService</td>
-                                                      <td>
-                                                                <code><a href="../injectables/MessageService.html" target="_self" >MessageService</a></code>
-                                                      </td>
-                                                      <td>
-                                                            no
-                                                      </td>
-                                                      <td><p>service to send message to the editor</p>
-    </td>
+                                                        <td>_messageService</td>
+                                                      
+                                                            <td>
+                                                                        <code><a href="../injectables/MessageService.html" target="_self" >MessageService</a></code>
+                                                            </td>
+                                                      
+                                                        <td>
+                                                                no
+                                                        </td>
+                                                        
+                                                            <td>
+                                                                    <code><p>service to send message to the editor</p>
+    </code>
+                                                            </td>
                                                     </tr>
                                             </tbody>
                                         </table>
@@ -538,7 +555,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/ngx-editor/ngx-editor-message/ngx-editor-message.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/ngx-editor/ngx-editor-message/ngx-editor-message.component.ts:26</a></div>
                                 </td>
                             </tr>
     
@@ -588,10 +605,16 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/ngx-editor/ngx-editor-message/ngx-editor-message.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/ngx-editor/ngx-editor-message/ngx-editor-message.component.ts:14</a></div>
                                 </td>
                             </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>property that holds the message to be displayed on the editor </p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -613,6 +636,7 @@ import { MessageService } from &#x27;../common/services/message.service&#x27;;
 
 export class NgxEditorMessageComponent {
 
+  /** property that holds the message to be displayed on the editor */
   ngxMessage &#x3D; undefined;
 
   /**

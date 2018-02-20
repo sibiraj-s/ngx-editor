@@ -68,10 +68,16 @@
                                 id="xs-additional-pages"
                             >
                                 <li class="link ">
+                                    <a href="../additional-documentation/prerequisites.html" >Prerequisites</a>
+                                </li>
+                                <li class="link ">
                                     <a href="../additional-documentation/configuration.html" >Configuration</a>
                                 </li>
                                 <li class="link ">
                                     <a href="../additional-documentation/toolbar.html" >Toolbar</a>
+                                </li>
+                                <li class="link ">
+                                    <a href="../additional-documentation/image-uploader.html" >Image Uploader</a>
                                 </li>
                                 <li class="link ">
                                     <a href="../additional-documentation/code-editor.html" >Code Editor</a>
@@ -233,10 +239,16 @@
                                        id="additional-pages"
                    >
                                        <li class="link ">
+                                           <a href="../additional-documentation/prerequisites.html" >Prerequisites</a>
+                                       </li>
+                                       <li class="link ">
                                            <a href="../additional-documentation/configuration.html" >Configuration</a>
                                        </li>
                                        <li class="link ">
                                            <a href="../additional-documentation/toolbar.html" >Toolbar</a>
+                                       </li>
+                                       <li class="link ">
+                                           <a href="../additional-documentation/image-uploader.html" >Image Uploader</a>
                                        </li>
                                        <li class="link ">
                                            <a href="../additional-documentation/code-editor.html" >Code Editor</a>
@@ -375,13 +387,13 @@
                             <a href="#codeMirrorConfig">codeMirrorConfig</a>
                         </li>
                         <li>
-                            <a href="#environment">environment</a>
+                            <a href="#DURATION">DURATION</a>
                         </li>
                         <li>
                             <a href="#environment">environment</a>
                         </li>
                         <li>
-                            <a href="#FIVE_SECONDS">FIVE_SECONDS</a>
+                            <a href="#environment">environment</a>
                         </li>
                         <li>
                             <a href="#ngxEditorConfig">ngxEditorConfig</a>
@@ -479,6 +491,7 @@
         enableToolbar: true,
         showToolbar: true,
         placeholder: &#x27;Enter text here...&#x27;,
+        imageEndPoint: &#x27;&#x27;,
         toolbar: [
             [&#x27;bold&#x27;, &#x27;italic&#x27;, &#x27;underline&#x27;, &#x27;strikeThrough&#x27;, &#x27;superscript&#x27;, &#x27;subscript&#x27;],
             [&#x27;justifyLeft&#x27;, &#x27;justifyCenter&#x27;, &#x27;justifyRight&#x27;, &#x27;justifyFull&#x27;, &#x27;indent&#x27;, &#x27;outdent&#x27;],
@@ -494,6 +507,49 @@
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>toolbar default configuration</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+    </section>
+    <h3>src/app/ngx-editor/common/services/message.service.ts</h3>
+    <section>
+        <h3></h3>        <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="DURATION"></a>
+                            <span class="name">
+                                <b>
+                                DURATION
+                                </b>
+                                <a href="#DURATION"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>DURATION:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>7000</code>
+                            </td>
+                        </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>time in which the message has to be cleared </p>
     </div>
                         </td>
                     </tr>
@@ -536,6 +592,12 @@
                             </td>
                         </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>environment variables for production </p>
+    </div>
+                        </td>
+                    </tr>
     
                 </tbody>
             </table>
@@ -575,43 +637,15 @@
                             </td>
                         </tr>
     
-    
-                </tbody>
-            </table>
-    </section>
-    <h3>src/app/ngx-editor/common/services/message.service.ts</h3>
-    <section>
-        <h3></h3>        <table class="table table-sm table-bordered">
-                <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="FIVE_SECONDS"></a>
-                            <span class="name">
-                                <b>
-                                FIVE_SECONDS
-                                </b>
-                                <a href="#FIVE_SECONDS"><span class="fa fa-link"></span></a>
-                            </span>
+                            <div class="io-description"><p>The file contents for the current environment will overwrite these during build.
+    The build system defaults to the dev environment which uses <code>environment.ts</code>, but if you do
+    <code>ng build --env=prod</code> then <code>environment.prod.ts</code> will be used instead.
+    The list of which env maps to which file can be found in <code>.angular-cli.json</code>.</p>
+    </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>FIVE_SECONDS:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-    </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-    
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Default value : </i><code>5000</code>
-                            </td>
-                        </tr>
-    
     
                 </tbody>
             </table>

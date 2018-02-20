@@ -7,8 +7,14 @@ import { map, tap, last, catchError } from 'rxjs/operators';
 @Injectable()
 export class CommandExecutorService {
 
+  /** saves the selection from the editor when focussed out */
   savedSelection: any = undefined;
 
+  /**
+   *
+   * @param _http HTTP Client for making http requests
+   * @param _messageService Message service sends message to the editor
+   */
   constructor(private _http: HttpClient, private _messageService: MessageService) { }
 
   /**
@@ -36,6 +42,11 @@ export class CommandExecutorService {
     document.execCommand(command, false, null);
   }
 
+  /**
+   * inserts image in the editor
+   *
+   * @param imageURI url of the image to be inserted
+   */
   insertImage(imageURI: string): void {
     if (this.savedSelection) {
       if (imageURI) {
@@ -53,6 +64,12 @@ export class CommandExecutorService {
     return;
   }
 
+  /**
+   * uploads image to the server
+   *
+   * @param file file that has to be uploaded
+   * @param endPoint enpoint to which the image has to be uploaded
+   */
   uploadImage(file: File, endPoint: string): any {
 
     if (!endPoint) {
@@ -76,6 +93,11 @@ export class CommandExecutorService {
     }
   }
 
+  /**
+   * inserts link in the editor
+   *
+   * @param params parameters that holds the information for the link
+   */
   createLink(params: any): void {
 
     if (this.savedSelection) {
