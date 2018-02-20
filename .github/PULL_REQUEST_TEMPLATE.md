@@ -1,8 +1,8 @@
 # I'm submitting a...
 
--[ ] Bug Fix
--[ ] Feature
--[ ] Other (Refactoring, Added tests, Documentation, ...)
+- [ ] Bug Fix
+- [ ] Feature
+- [ ] Other (Refactoring, Added tests, Documentation, ...)
 
 ### Checklist
 
