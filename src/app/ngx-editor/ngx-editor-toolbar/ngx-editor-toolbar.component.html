@@ -94,11 +94,11 @@
       title="Horizontal Line" [disabled]="!config['enableToolbar']">
       <i class="fa fa-minus" aria-hidden="true"></i>
     </button>
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('orderedList')" (click)="triggerCommand('insertUnorderedList')"
-      title="Unodered List" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unorderedList')" (click)="triggerCommand('insertUnorderedList')"
+      title="Unordered List" [disabled]="!config['enableToolbar']">
       <i class="fa fa-list-ul" aria-hidden="true"></i>
     </button>
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unorderedList')" (click)="triggerCommand('insertOrderedList')"
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('orderedList')" (click)="triggerCommand('insertOrderedList')"
       title="Ordered List" [disabled]="!config['enableToolbar']">
       <i class="fa fa-list-ol" aria-hidden="true"></i>
     </button>
