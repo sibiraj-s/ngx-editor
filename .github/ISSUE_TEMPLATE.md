@@ -2,6 +2,7 @@
 
 - [ ] Regression (a behavior that used to work and stopped working in a new release)
 - [ ] Bug report
+- [ ] Enhancement
 - [ ] Feature request
 - [ ] Documentation issue or request
 
