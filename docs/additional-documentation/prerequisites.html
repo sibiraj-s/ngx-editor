@@ -377,12 +377,14 @@
 <h2 id="peer-dependencies">Peer Dependencies</h2>
 <p>You must install all the following <code>peerDependencies</code> in order for `ngx-editor to work</p>
 <ul>
-<li><a href="https://codemirror.net/">CodeMirror</a></li>
-<li><a href="https://fontawesome.com/v4.7.0/">FontAwesome</a></li>
-<li><a href="https://getbootstrap.com/">Bootstrap</a></li>
-<li><a href="https://valor-software.com/ngx-bootstrap/">NgxBootstrap</a></li>
+<li><a href="https://codemirror.net/">CodeMirror</a> - Code Edit/Preview</li>
+<li><a href="https://fontawesome.com/v4.7.0/">FontAwesome</a> - Toolbar icons</li>
+<li><a href="https://valor-software.com/ngx-bootstrap/">NgxBootstrap</a> - Popover</li>
 </ul>
-<p><code>Bootstrap</code> is a temporary dependency and it will be removed sooner.</p>
+<h2 id="note">Note</h2>
+<ul>
+<li><code>CodeMirror</code> and <code>ngx-bootstrap</code> are mandatory peerDependency which needs to be installed and there is no need for them to be imported.</li>
+</ul>
 <h2 id="stylesheets">Stylesheets</h2>
 <p>Import codemirror`s css into your project</p>
 <pre class="line-numbers"><code class="language-bash">node_modules/codemirror/lib/codemirror.css</code></pre><h2 id="modules">Modules</h2>
