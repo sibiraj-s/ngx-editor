@@ -1,3 +1,7 @@
+@import "./src/assets/styles/_popover";
+@import "./src/assets/styles/_buttons";
+@import "./src/assets/styles/_forms";
+
 .ngx-toolbar {
     background-color: #f5f5f5;
     font-size: 0.8rem;
@@ -115,6 +119,7 @@
 
             button {
                 background-color: transparent;
+                border-radius: 0;
 
                 &:hover {
                     cursor: pointer;

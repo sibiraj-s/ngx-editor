@@ -4,6 +4,7 @@
     "dest": "./build/",
     "lib": {
         "entryFile": "./src/public_api.ts",
+        "comments": "none",
         "umdModuleIds": {
             "codemirror": "codemirror",
             "ngx-bootstrap": "ngx-bootstrap"
