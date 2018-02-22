@@ -112,7 +112,6 @@ export class CommandExecutorService {
           if (restored) {
             document.execCommand('insertHTML', false, newUrl);
           }
-          document.execCommand('insertHTML', false, newUrl);
         } else {
           throw new Error('Only new links can be inserted. You cannot edit URL`s');
         }
