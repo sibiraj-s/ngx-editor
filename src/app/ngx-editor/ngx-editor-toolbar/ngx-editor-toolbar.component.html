@@ -156,10 +156,10 @@
 <ng-template #insertImageTemplate>
   <div class="ngxe-popover imgc-ctnr">
     <div class="imgc-topbar btn-ctnr">
-      <button type="button" class="btn" (click)="isImageUploader = true">
+      <button type="button" class="btn" [ngClass]="{active: isImageUploader}" (click)="isImageUploader = true">
         <i class="fa fa-upload"></i>
       </button>
-      <button type="button" class="btn" (click)="isImageUploader = false">
+      <button type="button" class="btn" [ngClass]="{active: !isImageUploader}" (click)="isImageUploader = false">
         <i class="fa fa-link"></i>
       </button>
     </div>
@@ -200,8 +200,8 @@
 <ng-template #insertColorTemplate>
   <div class="ngxe-popover imgc-ctnr">
     <div class="imgc-topbar two-tabs">
-      <span (click)="selectedColorTab ='textColor'">Text</span>
-      <span (click)="selectedColorTab ='backgroundColor'">Background</span>
+      <span (click)="selectedColorTab ='textColor'" [ngClass]="{active: selectedColorTab ==='textColor'}">Text</span>
+      <span (click)="selectedColorTab ='backgroundColor'" [ngClass]="{active: selectedColorTab ==='backgroundColor'}">Background</span>
     </div>
     <div class="imgc-ctnt is-color extra-gt1">
       <form autocomplete="off">
