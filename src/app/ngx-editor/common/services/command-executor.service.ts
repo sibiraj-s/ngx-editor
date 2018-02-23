@@ -128,4 +128,26 @@ export class CommandExecutorService {
     return;
   }
 
+  /**
+   * insert color either font or background
+   */
+  insertColor(color: string, where: string): void {
+
+    if (this.savedSelection) {
+      const restored = Utils.restoreSelection(this.savedSelection);
+      if (restored) {
+        if (where === 'textColor') {
+          document.execCommand('foreColor', false, color);
+        } else {
+          document.execCommand('hiliteColor', false, color);
+        }
+      }
+
+    } else {
+      throw new Error('Range out of the editor');
+    }
+
+    return;
+  }
+
 }

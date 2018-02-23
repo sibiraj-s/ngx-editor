@@ -61,11 +61,20 @@
     border-top-left-radius: 0;
 }
 
-::ng-deep .ngxe-popover-form {
+::ng-deep .ngxe-popover {
     min-width: 15rem;
+    white-space: nowrap;
 
     &.extra-gt, .extra-gt {
-        padding-top: 0.5rem;
+        padding-top: 0.5rem !important;
+    }
+
+    &.extra-gt1, .extra-gt1 {
+        padding-top: 0.75rem !important;
+    }
+
+    &.extra-gt2, .extra-gt2 {
+        padding-top: 1rem !important;
     }
 
     .form-group {
@@ -110,21 +119,36 @@
         }
     }
 
-    &.image-ctnr {
+    &.imgc-ctnr {
         margin: -0.5rem -0.75rem;
 
         .imgc-topbar {
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 1px 1px rgba(0, 0, 0, 0.16);
-            border-bottom: 0px;
+            border-bottom: 0;
 
-            button {
-                background-color: transparent;
-                border-radius: 0;
+            &.btn-ctnr {
+                button {
+                    background-color: transparent;
+                    border-radius: 0;
 
-                &:hover {
-                    cursor: pointer;
-                    background-color: #f1f1f1;
-                    transition: 0.2s ease;
+                    &:hover {
+                        cursor: pointer;
+                        background-color: #f1f1f1;
+                        transition: 0.2s ease;
+                    }
+                }
+            }
+
+            &.two-tabs {
+                span {
+                    width: 50%;
+                    text-align: center;
+                    display: inline-block;
+                    padding: 0.4rem 0;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
         }
@@ -132,46 +156,48 @@
         .imgc-ctnt {
             padding: 0.5rem;
 
-            .progress {
-                height: 0.5rem;
-                margin: 0.5rem -0.5rem -0.6rem -0.5rem;
-            }
-
-            p {
-                margin: 0;
-            }
-
-            .ngx-insert-img-ph {
-                border: dashed 2px #bdbdbd;
-                padding: 1.8rem 0;
-                position: relative;
-                letter-spacing: 1px;
-                text-align: center;
-
-                &:hover {
-                    background: #ebebeb;
+            &.is-image {
+                .progress {
+                    height: 0.5rem;
+                    margin: 0.5rem -0.5rem -0.6rem -0.5rem;
                 }
 
-                .ngxe-img-upl-frm {
-                    opacity: 0;
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    z-index: 2147483640;
-                    overflow: hidden;
+                p {
                     margin: 0;
-                    padding: 0;
-                    width: 100%;
+                }
 
-                    input {
-                        cursor: pointer;
+                .ngx-insert-img-ph {
+                    border: dashed 2px #bdbdbd;
+                    padding: 1.8rem 0;
+                    position: relative;
+                    letter-spacing: 1px;
+                    text-align: center;
+
+                    &:hover {
+                        background: #ebebeb;
+                    }
+
+                    .ngxe-img-upl-frm {
+                        opacity: 0;
                         position: absolute;
-                        right: 0px;
-                        top: 0px;
-                        bottom: 0px;
-                        margin: 0px;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        z-index: 2147483640;
+                        overflow: hidden;
+                        margin: 0;
+                        padding: 0;
+                        width: 100%;
+
+                        input {
+                            cursor: pointer;
+                            position: absolute;
+                            right: 0px;
+                            top: 0px;
+                            bottom: 0px;
+                            margin: 0px;
+                        }
                     }
                 }
             }

@@ -26,6 +26,12 @@
     </button>
   </div>
   <div class="ngx-toolbar-set">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('color')" title="Color Picker" [popover]="insertColorTemplate"
+      #colorPopover="bs-popover" [disabled]="!config['enableToolbar']">
+      <i class="fa fa-tint" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('justifyLeft')" (click)="triggerCommand('justifyLeft')"
       title="Justify Left" [disabled]="!config['enableToolbar']">
       <i class="fa fa-align-left" aria-hidden="true"></i>
@@ -127,7 +133,7 @@
 
 <!-- URL Popover template -->
 <ng-template #insertLinkTemplate>
-  <div class="ngxe-popover-form extra-gt">
+  <div class="ngxe-popover extra-gt">
     <form [formGroup]="urlForm" (ngSubmit)="urlForm.valid && insertLink()" autocomplete="off">
       <div class="form-group">
         <label for="urlInput" class="small">URL</label>
@@ -148,8 +154,8 @@
 
 <!-- Image Uploader Popover template -->
 <ng-template #insertImageTemplate>
-  <div class="ngxe-popover-form image-ctnr">
-    <div class="imgc-topbar">
+  <div class="ngxe-popover imgc-ctnr">
+    <div class="imgc-topbar btn-ctnr">
       <button type="button" class="btn" (click)="isImageUploader = true">
         <i class="fa fa-upload"></i>
       </button>
@@ -157,7 +163,7 @@
         <i class="fa fa-link"></i>
       </button>
     </div>
-    <div class="imgc-ctnt">
+    <div class="imgc-ctnt is-image">
       <div *ngIf="isImageUploader; else insertImageLink"> </div>
       <div *ngIf="!isImageUploader; else imageUploder"> </div>
       <ng-template #imageUploder>
@@ -186,6 +192,25 @@
         <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [ngClass]="{'bg-danger': updloadPercentage<20, 'bg-warning': updloadPercentage<50, 'bg-success': updloadPercentage>=100}"
           [style.width.%]="updloadPercentage"></div>
       </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Insert color template -->
+<ng-template #insertColorTemplate>
+  <div class="ngxe-popover imgc-ctnr">
+    <div class="imgc-topbar two-tabs">
+      <span (click)="selectedColorTab ='textColor'">Text</span>
+      <span (click)="selectedColorTab ='backgroundColor'">Background</span>
+    </div>
+    <div class="imgc-ctnt is-color extra-gt1">
+      <form autocomplete="off">
+        <div class="form-group">
+          <label for="hexInput" class="small">Hex Color</label>
+          <input type="text" class="form-control-sm" id="hexInput" name="hexInput" placeholder="HEX Color" [(ngModel)]="hexColor" required>
+        </div>
+        <button type="submit" class="btn-primary btn-sm btn" max-length="7" (click)="insertColor(hexColor, selectedColorTab)">Submit</button>
+      </form>
     </div>
   </div>
 </ng-template>
