@@ -15,6 +15,7 @@ export const ngxEditorConfig = {
     imageEndPoint: '',
     toolbar: [
         ['bold', 'italic', 'underline', 'strikeThrough', 'superscript', 'subscript'],
+        ['color'],
         ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'indent', 'outdent'],
         ['cut', 'copy', 'delete', 'removeFormat', 'undo', 'redo'],
         ['paragraph', 'blockquote', 'removeBlockquote', 'horizontalLine', 'orderedList', 'unorderedList'],

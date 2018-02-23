@@ -25,6 +25,8 @@ export class NgxEditorToolbarComponent implements OnInit {
   updloadPercentage = 0;
   /** set to true when the image is being uploaded */
   isUploading = false;
+  /** which tab to active for color insetion */
+  selectedColorTab = 'textColor';
 
   /**
    * Editor configuration
@@ -162,6 +164,18 @@ export class NgxEditorToolbarComponent implements OnInit {
     this.buildInsertImageForm();
     /** close inset URL pop up */
     this.imagePopover.hide();
+  }
+
+  /** inser text/background color */
+  insertColor(color: string, where: string): void {
+
+    try {
+      this._commandExecutorService.insertColor(color, where);
+    } catch (error) {
+      this._messageService.sendMessage(error.message);
+    }
+
+    return;
   }
 
   ngOnInit() {
