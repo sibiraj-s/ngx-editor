@@ -12,6 +12,14 @@
         "file": "docs/toolbar.md"
     },
     {
+        "title": "Font Size",
+        "file": "docs/font-size.md"
+    },
+    {
+        "title": "Colors",
+        "file": "docs/colors.md"
+    },
+    {
         "title": "Image Uploader",
         "file": "docs/image-uploader.md"
     },
@@ -22,5 +30,9 @@
     {
         "title": "Resizer",
         "file": "docs/resizer.md"
+    },
+    {
+        "title": "Errors",
+        "file": "docs/errors.md"
     }
 ]

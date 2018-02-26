@@ -77,6 +77,12 @@
                                     <a href="../additional-documentation/toolbar.html" >Toolbar</a>
                                 </li>
                                 <li class="link ">
+                                    <a href="../additional-documentation/font-size.html" >Font Size</a>
+                                </li>
+                                <li class="link ">
+                                    <a href="../additional-documentation/colors.html" >Colors</a>
+                                </li>
+                                <li class="link ">
                                     <a href="../additional-documentation/image-uploader.html" >Image Uploader</a>
                                 </li>
                                 <li class="link ">
@@ -84,6 +90,9 @@
                                 </li>
                                 <li class="link ">
                                     <a href="../additional-documentation/resizer.html" >Resizer</a>
+                                </li>
+                                <li class="link ">
+                                    <a href="../additional-documentation/errors.html" >Errors</a>
                                 </li>
                         </ul>
                     </li>
@@ -248,6 +257,12 @@
                                            <a href="../additional-documentation/toolbar.html" >Toolbar</a>
                                        </li>
                                        <li class="link ">
+                                           <a href="../additional-documentation/font-size.html" >Font Size</a>
+                                       </li>
+                                       <li class="link ">
+                                           <a href="../additional-documentation/colors.html" >Colors</a>
+                                       </li>
+                                       <li class="link ">
                                            <a href="../additional-documentation/image-uploader.html" >Image Uploader</a>
                                        </li>
                                        <li class="link ">
@@ -255,6 +270,9 @@
                                        </li>
                                        <li class="link ">
                                            <a href="../additional-documentation/resizer.html" >Resizer</a>
+                                       </li>
+                                       <li class="link ">
+                                           <a href="../additional-documentation/errors.html" >Errors</a>
                                        </li>
                                </ul>
                            </li>
@@ -424,7 +442,13 @@
                                         <a href="#execute">execute</a>
                                     </li>
                                     <li>
+                                        <a href="#insertColor">insertColor</a>
+                                    </li>
+                                    <li>
                                         <a href="#insertImage">insertImage</a>
+                                    </li>
+                                    <li>
+                                        <a href="#setFontSize">setFontSize</a>
                                     </li>
                                     <li>
                                         <a href="#uploadImage">uploadImage</a>
@@ -667,6 +691,90 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <a name="insertColor"></a>
+                                    <span class="name">
+                                        <b>
+                                        insertColor
+                                        </b>
+                                        <a href="#insertColor"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>insertColor(color: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, where: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:134</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>insert color either font or background</p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>color</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                            </tr>
+                                                            <tr>
+                                                                <td>where</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <a name="insertImage"></a>
                                     <span class="name">
                                         <b>
@@ -722,6 +830,77 @@
                                                                             <code><p>url of the image to be inserted</p>
             </code>
                                                                     </td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="setFontSize"></a>
+                                    <span class="name">
+                                        <b>
+                                        setFontSize
+                                        </b>
+                                        <a href="#setFontSize"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>setFontSize(fontSize: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:154</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>set font size for text </p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>fontSize</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -1002,7 +1181,7 @@ export class CommandExecutorService {
         if (document.getSelection().type !&#x3D;&#x3D; &#x27;Range&#x27;) {
           const restored &#x3D; Utils.restoreSelection(this.savedSelection);
           if (restored) {
-            document.execCommand(&#x27;insertHTML&#x27;, false, newUrl);
+            this.insertHtml(newUrl);
           }
         } else {
           throw new Error(&#x27;Only new links can be inserted. You cannot edit URL&#x60;s&#x27;);
@@ -1018,6 +1197,101 @@ export class CommandExecutorService {
     }
 
     return;
+  }
+
+  /**
+   * insert color either font or background
+   */
+  insertColor(color: string, where: string): void {
+
+    if (this.savedSelection) {
+      const restored &#x3D; Utils.restoreSelection(this.savedSelection);
+      if (restored &amp;&amp; this.checkSelection()) {
+        if (where &#x3D;&#x3D;&#x3D; &#x27;textColor&#x27;) {
+          document.execCommand(&#x27;foreColor&#x27;, false, color);
+        } else {
+          document.execCommand(&#x27;hiliteColor&#x27;, false, color);
+        }
+      }
+
+    } else {
+      throw new Error(&#x27;Range out of the editor&#x27;);
+    }
+
+    return;
+  }
+
+  /** set font size for text */
+  setFontSize(fontSize: string): void {
+
+    if (this.savedSelection &amp;&amp; this.checkSelection()) {
+      const deletedValue &#x3D; this.deleteAndGetElement();
+
+      if (deletedValue) {
+
+        const restored &#x3D; Utils.restoreSelection(this.savedSelection);
+
+        if (restored) {
+          if (this.isNumeric(fontSize)) {
+            const fontPx &#x3D; &#x27;&lt;span style&#x3D;&quot;font-size: &#x27; + fontSize + &#x27;px;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/spanp&gt;&#x27;;
+            this.insertHtml(fontPx);
+          } else {
+            const font &#x3D; &#x27;&lt;span style&#x3D;&quot;font-size: &#x27; + fontSize + &#x27;;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/span&gt;&#x27;;
+            this.insertHtml(font);
+          }
+        }
+      }
+
+    } else {
+      throw new Error(&#x27;Range out of the editor&#x27;);
+    }
+  }
+
+  /** insert HTML */
+  private insertHtml(html: string): void {
+
+    const isHTMLInserted &#x3D; document.execCommand(&#x27;insertHTML&#x27;, false, html);
+
+    if (!isHTMLInserted) {
+      throw new Error(&#x27;Unable to perform the operation&#x27;);
+    }
+
+    return;
+  }
+
+  /**
+   * check whether the value is a number or string
+   * if number return true
+   * else return false
+   */
+  private isNumeric(value: any): boolean {
+    return /^-{0,1}\d+$/.test(value);
+  }
+
+  /** delete the text at selected range and return the value */
+  private deleteAndGetElement(): any {
+
+    let slectedText;
+
+    if (this.savedSelection) {
+      slectedText &#x3D; this.savedSelection.toString();
+      this.savedSelection.deleteContents();
+      return slectedText;
+    }
+
+    return false;
+
+  }
+
+  private checkSelection(): any {
+
+    const slectedText &#x3D; this.savedSelection.toString();
+
+    if (slectedText.length &#x3D;&#x3D;&#x3D; 0) {
+      throw new Error(&#x27;No Selection Made&#x27;);
+    }
+
+    return true;
   }
 
 }
