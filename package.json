@@ -7,7 +7,7 @@
     "build": "ng build --prod",
     "build:package": "sh ./scripts/build.sh",
     "cz": "git-cz",
-    "docs": "./node_modules/.bin/compodoc --tsconfig=\"src/tsconfig.app.json\" -n \"NgxEditor\" --includes \"./extras\" --disableCoverage --disablePrivate --disableInternal --disableLifeCycleHooks --disableProtected --hideGenerator --customFavicon=\"src/favicon.ico\" --output=\"docs/\"",
+    "docs": "./node_modules/.bin/compodoc --tsconfig=\"src/tsconfig.app.json\" -n \"NgxEditor\" --includes \"./extras\" --disableCoverage --disablePrivate --disableInternal --disableLifeCycleHooks --disableProtected --hideGenerator --customFavicon=\"src/favicon.ico\" --output=\"docs/\" --includesName=\"Wiki\"",
     "e2e": "ng e2e",
     "lint": "ng lint",
     "ng": "ng",
