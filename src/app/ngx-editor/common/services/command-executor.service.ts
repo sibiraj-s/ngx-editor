@@ -135,7 +135,7 @@ export class CommandExecutorService {
 
     if (this.savedSelection) {
       const restored = Utils.restoreSelection(this.savedSelection);
-      if (restored) {
+      if (restored && this.checkSelection()) {
         if (where === 'textColor') {
           document.execCommand('foreColor', false, color);
         } else {
@@ -160,7 +160,7 @@ export class CommandExecutorService {
 
         const restored = Utils.restoreSelection(this.savedSelection);
 
-        if (restored) {
+        if (restored && this.checkSelection()) {
           if (this.isNumeric(fontSize)) {
             const fontPx = '<span style="font-size: ' + fontSize + 'px;">' + deletedValue + '</spanp>';
             this.insertHtml(fontPx);
@@ -169,8 +169,6 @@ export class CommandExecutorService {
             this.insertHtml(font);
           }
         }
-      } else {
-
       }
 
     } else {
@@ -212,6 +210,19 @@ export class CommandExecutorService {
 
     return false;
 
+  }
+
+  private checkSelection(): any {
+
+    const slectedText = this.savedSelection.toString();
+
+    console.log(slectedText);
+
+    if (slectedText.length === 0) {
+      throw new Error('No Selection Made');
+    }
+
+    return true;
   }
 
 }
