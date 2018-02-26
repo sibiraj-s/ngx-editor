@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # remove existing builds
 rm -rf build/
 rm -rf dist/
