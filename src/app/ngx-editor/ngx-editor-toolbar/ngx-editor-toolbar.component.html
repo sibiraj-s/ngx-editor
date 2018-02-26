@@ -26,12 +26,12 @@
     </button>
   </div>
   <div class="ngx-toolbar-set">
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontSize')" title="Font Size" [popover]="fontSizeTemplate"
-      #fontSizePopover="bs-popover" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontSize')" (click)="fontSize = ''" title="Font Size"
+      [popover]="fontSizeTemplate" #fontSizePopover="bs-popover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-text-height" aria-hidden="true"></i>
     </button>
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('color')" title="Color Picker" [popover]="insertColorTemplate"
-      #colorPopover="bs-popover" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('color')" (click)="hexColor = ''" title="Color Picker"
+      [popover]="insertColorTemplate" #colorPopover="bs-popover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-tint" aria-hidden="true"></i>
     </button>
   </div>
