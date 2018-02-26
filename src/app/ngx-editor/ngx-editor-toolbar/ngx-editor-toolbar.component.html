@@ -26,6 +26,10 @@
     </button>
   </div>
   <div class="ngx-toolbar-set">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontSize')" title="Font Size" [popover]="fontSizeTemplate"
+      #urlPopover="bs-popover" [disabled]="!config['enableToolbar']">
+      <i class="fa fa-text-height" aria-hidden="true"></i>
+    </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('color')" title="Color Picker" [popover]="insertColorTemplate"
       #colorPopover="bs-popover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-tint" aria-hidden="true"></i>
@@ -207,10 +211,25 @@
       <form autocomplete="off">
         <div class="form-group">
           <label for="hexInput" class="small">Hex Color</label>
-          <input type="text" class="form-control-sm" id="hexInput" name="hexInput" placeholder="HEX Color" [(ngModel)]="hexColor" required>
+          <input type="text" class="form-control-sm" id="hexInput" name="hexInput" maxlength="7" placeholder="HEX Color" [(ngModel)]="hexColor"
+            required>
         </div>
-        <button type="submit" class="btn-primary btn-sm btn" max-length="7" (click)="insertColor(hexColor, selectedColorTab)">Submit</button>
+        <button type="submit" class="btn-primary btn-sm btn" (click)="insertColor(hexColor, selectedColorTab)">Submit</button>
       </form>
     </div>
+  </div>
+</ng-template>
+
+<!-- font size template -->
+<ng-template #fontSizeTemplate>
+  <div class="ngxe-popover extra-gt1">
+    <form autocomplete="off">
+      <div class="form-group">
+        <label for="fontSize" class="small">Font Size</label>
+        <input type="text" class="form-control-sm" id="fontSize" name="fontSize" placeholder="Font size in px/rem" [(ngModel)]="fontSize"
+          required>
+      </div>
+      <button type="submit" class="btn-primary btn-sm btn" (click)="setFontSize(fontSize)">Submit</button>
+    </form>
   </div>
 </ng-template>

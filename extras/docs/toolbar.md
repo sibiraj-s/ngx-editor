@@ -5,6 +5,7 @@ Toolbar option is an array of arrays. The default is
 ```JSON
 [
     ["bold", "italic", "underline", "strikeThrough", "superscript", "subscript"],
+    ["fontSize", "color"],
     ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull", "indent", "outdent"],
     ["cut", "copy", "delete", "removeFormat", "undo", "redo"],
     ["paragraph", "blockquote", "removeBlockquote", "horizontalLine", "orderedList", "unorderedList"],
