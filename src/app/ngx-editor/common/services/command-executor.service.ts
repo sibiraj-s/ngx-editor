@@ -153,14 +153,14 @@ export class CommandExecutorService {
   /** set font size for text */
   setFontSize(fontSize: string): void {
 
-    if (this.savedSelection) {
+    if (this.savedSelection && this.checkSelection()) {
       const deletedValue = this.deleteAndGetElement();
 
       if (deletedValue) {
 
         const restored = Utils.restoreSelection(this.savedSelection);
 
-        if (restored && this.checkSelection()) {
+        if (restored) {
           if (this.isNumeric(fontSize)) {
             const fontPx = '<span style="font-size: ' + fontSize + 'px;">' + deletedValue + '</spanp>';
             this.insertHtml(fontPx);
@@ -212,11 +212,10 @@ export class CommandExecutorService {
 
   }
 
+  /** check any slection is made or not */
   private checkSelection(): any {
 
     const slectedText = this.savedSelection.toString();
-
-    console.log(slectedText);
 
     if (slectedText.length === 0) {
       throw new Error('No Selection Made');
