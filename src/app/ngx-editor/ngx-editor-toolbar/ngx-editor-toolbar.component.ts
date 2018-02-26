@@ -34,6 +34,8 @@ export class NgxEditorToolbarComponent implements OnInit {
   @Input() config: any;
   @ViewChild('urlPopover') urlPopover;
   @ViewChild('imagePopover') imagePopover;
+  @ViewChild('fontSizePopover') fontSizePopover;
+  @ViewChild('colorPopover') colorPopover;
   /**
    * Emits an event when a toolbar button is clicked
    */
@@ -164,6 +166,8 @@ export class NgxEditorToolbarComponent implements OnInit {
     this.buildInsertImageForm();
     /** close inset URL pop up */
     this.imagePopover.hide();
+
+    return;
   }
 
   /** inser text/background color */
@@ -175,6 +179,7 @@ export class NgxEditorToolbarComponent implements OnInit {
       this._messageService.sendMessage(error.message);
     }
 
+    this.colorPopover.hide();
     return;
   }
 
@@ -186,6 +191,8 @@ export class NgxEditorToolbarComponent implements OnInit {
     } catch (error) {
       this._messageService.sendMessage(error.message);
     }
+
+    this.fontSizePopover.hide();
     return;
   }
 
