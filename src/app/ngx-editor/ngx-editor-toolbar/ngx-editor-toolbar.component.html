@@ -214,7 +214,7 @@
           <input type="text" class="form-control-sm" id="hexInput" name="hexInput" maxlength="7" placeholder="HEX Color" [(ngModel)]="hexColor"
             required>
         </div>
-        <button type="submit" class="btn-primary btn-sm btn" (click)="insertColor(hexColor, selectedColorTab)">Submit</button>
+        <button type="button" class="btn-primary btn-sm btn" (click)="insertColor(hexColor, selectedColorTab)">Submit</button>
       </form>
     </div>
   </div>
@@ -229,7 +229,7 @@
         <input type="text" class="form-control-sm" id="fontSize" name="fontSize" placeholder="Font size in px/rem" [(ngModel)]="fontSize"
           required>
       </div>
-      <button type="submit" class="btn-primary btn-sm btn" (click)="setFontSize(fontSize)">Submit</button>
+      <button type="button" class="btn-primary btn-sm btn" (click)="setFontSize(fontSize)">Submit</button>
     </form>
   </div>
 </ng-template>
