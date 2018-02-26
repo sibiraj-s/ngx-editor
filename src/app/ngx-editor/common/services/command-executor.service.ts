@@ -110,7 +110,7 @@ export class CommandExecutorService {
         if (document.getSelection().type !== 'Range') {
           const restored = Utils.restoreSelection(this.savedSelection);
           if (restored) {
-            document.execCommand('insertHTML', false, newUrl);
+            this.insertHtml(newUrl);
           }
         } else {
           throw new Error('Only new links can be inserted. You cannot edit URL`s');
@@ -148,6 +148,70 @@ export class CommandExecutorService {
     }
 
     return;
+  }
+
+  /** set font size for text */
+  setFontSize(fontSize: string): void {
+
+    if (this.savedSelection) {
+      const deletedValue = this.deleteAndGetElement();
+
+      if (deletedValue) {
+
+        const restored = Utils.restoreSelection(this.savedSelection);
+
+        if (restored) {
+          if (this.isNumeric(fontSize)) {
+            const fontPx = '<span style="font-size: ' + fontSize + 'px;">' + deletedValue + '</spanp>';
+            this.insertHtml(fontPx);
+          } else {
+            const font = '<span style="font-size: ' + fontSize + ';">' + deletedValue + '</span>';
+            this.insertHtml(font);
+          }
+        }
+      } else {
+
+      }
+
+    } else {
+      throw new Error('Range out of the editor');
+    }
+  }
+
+  /** insert HTML */
+  private insertHtml(html: string): void {
+
+    const isHTMLInserted = document.execCommand('insertHTML', false, html);
+
+    if (!isHTMLInserted) {
+      throw new Error('Unable to perform the operation');
+    }
+
+    return;
+  }
+
+  /**
+   * check whether the value is a number or string
+   * if number return true
+   * else return false
+   */
+  private isNumeric(value: any): boolean {
+    return /^-{0,1}\d+$/.test(value);
+  }
+
+  /** delete the text at selected range and return the value */
+  private deleteAndGetElement(): any {
+
+    let slectedText;
+
+    if (this.savedSelection) {
+      slectedText = this.savedSelection.toString();
+      this.savedSelection.deleteContents();
+      return slectedText;
+    }
+
+    return false;
+
   }
 
 }
