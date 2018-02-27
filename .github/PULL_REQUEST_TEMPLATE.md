@@ -1,3 +1,6 @@
+<!-- Make sure your title is clear -->
+<!-- To mark a task, use [x]. -->
+
 # I'm submitting a...
 
 - [ ] Bug Fix
@@ -22,3 +25,11 @@ _for features, please describe how to use the new feature_
 
 - [ ] Yes
 - [ ] No
+
+### Does this PR affects any existing issues?
+
+- [ ] Yes
+- [ ] No
+
+_if yes mention the issue number and what kind of change it is_
+_for example: closes #1, fixes #1, etc.,_
