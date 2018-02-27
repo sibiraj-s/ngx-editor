@@ -27,11 +27,11 @@
   </div>
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontSize')" (click)="fontSize = ''" title="Font Size"
-      [popover]="fontSizeTemplate" #fontSizePopover="bs-popover" [disabled]="!config['enableToolbar']">
+      [popover]="fontSizeTemplate" #fontSizePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-text-height" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('color')" (click)="hexColor = ''" title="Color Picker"
-      [popover]="insertColorTemplate" #colorPopover="bs-popover" [disabled]="!config['enableToolbar']">
+      [popover]="insertColorTemplate" #colorPopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-tint" aria-hidden="true"></i>
     </button>
   </div>
@@ -115,7 +115,7 @@
   </div>
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" (click)="buildUrlForm()" [popover]="insertLinkTemplate"
-      title="Insert Link" #urlPopover="bs-popover" [disabled]="!config['enableToolbar']">
+      title="Insert Link" #urlPopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-link" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unlink')" (click)="triggerCommand('unlink')"
@@ -123,7 +123,7 @@
       <i class="fa fa-chain-broken" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="buildInsertImageForm()"
-      title="Insert Image" [popover]="insertImageTemplate" #imagePopover="bs-popover" [disabled]="!config['enableToolbar']">
+      title="Insert Image" [popover]="insertImageTemplate" #imagePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-picture-o" aria-hidden="true"></i>
     </button>
   </div>
