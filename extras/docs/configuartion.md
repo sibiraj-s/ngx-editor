@@ -33,6 +33,7 @@ The config property is a JSON object.
         ["paragraph", "blockquote", "removeBlockquote", "horizontalLine", "orderedList", "unorderedList"],
         ["link", "unlink", "image"],
         ["code"]
-    ]
+    ],
+    "toolbarFontSize": "0.8rem"
 }
 ```
