@@ -21,7 +21,8 @@ export const ngxEditorConfig = {
         ['paragraph', 'blockquote', 'removeBlockquote', 'horizontalLine', 'orderedList', 'unorderedList'],
         ['link', 'unlink', 'image'],
         ['code']
-    ]
+    ],
+    toolbarFontSize: '0.8rem'
 };
 
 /**
