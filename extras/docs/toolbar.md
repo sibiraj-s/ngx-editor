@@ -28,3 +28,7 @@ Toolbar is provided with the editor configuration as
 ```
 
 Providing empty toolbar array will enable all default buttons
+
+## Font size
+The toolbar font size can be configured via the config object passed to ngx-editor.
+Use standard CSS font size values.
