@@ -31,6 +31,6 @@ export const codeMirrorConfig = {
     lineNumbers: true,
     gutter: true,
     lineWrapping: true,
-    mode: 'xml',
+    mode: 'htmlmixed',
     htmlMode: true
 };
