@@ -12,7 +12,7 @@ import { Subject } from 'rxjs/Subject';
 export class AppComponent implements OnInit, OnDestroy {
 
   title = 'ngx-editor';
-  latestRelease: any = {};
+  latestRelease: any = [];
   private subscription: Subject<any> = new Subject();
 
   editorConfig = {
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   getLatestRelease() {
     this.subscription = this._appService.getLatestRelease().subscribe(
-      data => this.latestRelease = data,
+      data => this.latestRelease = data[0],
       error => { console.log(error); },
       () => {
         console.log('latest release: ' + this.latestRelease['name']);

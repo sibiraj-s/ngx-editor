@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AppService {
 
-  private releaseURL = 'https://api.github.com/repos/Sibiraj-S/ngx-editor/releases/latest';
+  private releaseURL = 'https://api.github.com/repos/Sibiraj-S/ngx-editor/releases';
 
   /**
    *
