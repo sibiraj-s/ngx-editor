@@ -517,16 +517,16 @@
                                 <a href="#monitorEditor">monitorEditor</a>
                             </li>
                             <li>
-                                <a href="#onBlur">onBlur</a>
-                            </li>
-                            <li>
                                 <a href="#onContentChange">onContentChange</a>
                             </li>
                             <li>
                                 <a href="#onEditorFocus">onEditorFocus</a>
                             </li>
                             <li>
-                                <a href="#onFocus">onFocus</a>
+                                <a href="#onTextAreaBlur">onTextAreaBlur</a>
+                            </li>
+                            <li>
+                                <a href="#onTextAreaFocus">onTextAreaFocus</a>
                             </li>
                             <li>
                                 <a href="#refreshView">refreshView</a>
@@ -1348,43 +1348,6 @@ inputs provided directly are considered as top priority</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="onBlur"></a>
-                            <span class="name">
-                                <b>
-                                onBlur
-                                </b>
-                                <a href="#onBlur"><span class="fa fa-link"></span></a>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>onBlur()</code>
-                        </td>
-                    </tr>
-    
-    
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:143</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-    
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-    
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
                             <a name="onContentChange"></a>
                             <span class="name">
                                 <b>
@@ -1500,18 +1463,55 @@ inputs provided directly are considered as top priority</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="onFocus"></a>
+                            <a name="onTextAreaBlur"></a>
                             <span class="name">
                                 <b>
-                                onFocus
+                                onTextAreaBlur
                                 </b>
-                                <a href="#onFocus"><span class="fa fa-link"></span></a>
+                                <a href="#onTextAreaBlur"><span class="fa fa-link"></span></a>
                             </span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>onFocus()</code>
+    <code>onTextAreaBlur()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/ngx-editor/ngx-editor.component.ts:143</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="onTextAreaFocus"></a>
+                            <span class="name">
+                                <b>
+                                onTextAreaFocus
+                                </b>
+                                <a href="#onTextAreaFocus"><span class="fa fa-link"></span></a>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>onTextAreaFocus()</code>
                         </td>
                     </tr>
     
@@ -2271,7 +2271,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   /**
    * events
    */
-  onFocus(): void {
+  onTextAreaFocus(): void {
     this.enableToolbar &#x3D; true;
     this.focus.emit(&#x27;focus&#x27;);
     return;
@@ -2300,7 +2300,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     return;
   }
 
-  onBlur(): void {
+  onTextAreaBlur(): void {
 
     /** save selection if focussed out */
     this._commandExecutor.savedSelection &#x3D; Utils.saveSelection();
@@ -2489,7 +2489,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   &lt;div class&#x3D;&quot;ngx-wrapper&quot; #ngxWrapper&gt;
     &lt;div class&#x3D;&quot;ngx-editor-textarea&quot; [attr.contenteditable]&#x3D;&quot;config[&#x27;editable&#x27;]&quot; (input)&#x3D;&quot;onContentChange($event.target.innerHTML)&quot;
       [attr.translate]&#x3D;&quot;config[&#x27;translate&#x27;]&quot; [attr.spellcheck]&#x3D;&quot;config[&#x27;spellcheck&#x27;]&quot; [style.height]&#x3D;&quot;config[&#x27;height&#x27;]&quot; [style.minHeight]&#x3D;&quot;config[&#x27;minHeight&#x27;]&quot;
-      [style.resize]&#x3D;&quot;Utils?.canResize(resizer)&quot; (focus)&#x3D;&quot;onFocus()&quot; (blur)&#x3D;&quot;onBlur()&quot; #ngxTextArea&gt;&lt;/div&gt;
+      [style.resize]&#x3D;&quot;Utils?.canResize(resizer)&quot; (focus)&#x3D;&quot;onTextAreaFocus()&quot; (blur)&#x3D;&quot;onTextAreaBlur()&quot; #ngxTextArea&gt;&lt;/div&gt;
 
     &lt;span class&#x3D;&quot;ngx-editor-placeholder&quot;&gt;{{ placeholder || config[&#x27;placeholder&#x27;] }}&lt;/span&gt;
   &lt;/div&gt;
@@ -2526,7 +2526,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="ngx-editor" id="ngxEditor" [style.width]="config[\'width\']" [style.minWidth]="config[\'minWidth\']" tabindex="0"  (focus)="onEditorFocus()">  <app-ngx-editor-toolbar [config]="config" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>  <!-- text area -->  <div class="ngx-wrapper" #ngxWrapper>    <div class="ngx-editor-textarea" [attr.contenteditable]="config[\'editable\']" (input)="onContentChange($event.target.innerHTML)"      [attr.translate]="config[\'translate\']" [attr.spellcheck]="config[\'spellcheck\']" [style.height]="config[\'height\']" [style.minHeight]="config[\'minHeight\']"      [style.resize]="Utils?.canResize(resizer)" (focus)="onFocus()" (blur)="onBlur()" #ngxTextArea></div>    <span class="ngx-editor-placeholder">{{ placeholder || config[\'placeholder\'] }}</span>  </div>  <textarea #ngxCodeEditor [hidden]="true"></textarea>  <app-ngx-editor-message></app-ngx-editor-message>  <app-ngx-grippie *ngIf="resizer === \'stack\'"></app-ngx-grippie></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="ngx-editor" id="ngxEditor" [style.width]="config[\'width\']" [style.minWidth]="config[\'minWidth\']" tabindex="0"  (focus)="onEditorFocus()">  <app-ngx-editor-toolbar [config]="config" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>  <!-- text area -->  <div class="ngx-wrapper" #ngxWrapper>    <div class="ngx-editor-textarea" [attr.contenteditable]="config[\'editable\']" (input)="onContentChange($event.target.innerHTML)"      [attr.translate]="config[\'translate\']" [attr.spellcheck]="config[\'spellcheck\']" [style.height]="config[\'height\']" [style.minHeight]="config[\'minHeight\']"      [style.resize]="Utils?.canResize(resizer)" (focus)="onTextAreaFocus()" (blur)="onTextAreaBlur()" #ngxTextArea></div>    <span class="ngx-editor-placeholder">{{ placeholder || config[\'placeholder\'] }}</span>  </div>  <textarea #ngxCodeEditor [hidden]="true"></textarea>  <app-ngx-editor-message></app-ngx-editor-message>  <app-ngx-grippie *ngIf="resizer === \'stack\'"></app-ngx-grippie></div></div>'
     var COMPONENTS = [{'name': 'NgxEditorComponent', 'selector': 'app-ngx-editor'},{'name': 'NgxEditorMessageComponent', 'selector': 'app-ngx-editor-message'},{'name': 'NgxEditorToolbarComponent', 'selector': 'app-ngx-editor-toolbar'},{'name': 'NgxGrippieComponent', 'selector': 'app-ngx-grippie'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NgxEditorComponent'};
