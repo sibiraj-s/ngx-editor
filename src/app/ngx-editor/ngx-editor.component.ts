@@ -111,7 +111,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   /**
    * events
    */
-  onFocus(): void {
+  onTextAreaFocus(): void {
     this.enableToolbar = true;
     this.focus.emit('focus');
     return;
@@ -140,7 +140,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     return;
   }
 
-  onBlur(): void {
+  onTextAreaBlur(): void {
 
     /** save selection if focussed out */
     this._commandExecutor.savedSelection = Utils.saveSelection();
