@@ -117,6 +117,11 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     return;
   }
 
+  /** focus the text area when the editor is focussed */
+  onEditorFocus() {
+    this.textArea.nativeElement.focus();
+  }
+
   @HostListener('document:click', ['$event']) onDocumentClick(event: MouseEvent) {
     this.enableToolbar = !!this._elementRef.nativeElement.contains(event.target);
   }

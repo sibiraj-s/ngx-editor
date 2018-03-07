@@ -1,4 +1,5 @@
-<div class="ngx-editor" id="ngxEditor" [style.width]="config['width']" [style.minWidth]="config['minWidth']">
+<div class="ngx-editor" id="ngxEditor" [style.width]="config['width']" [style.minWidth]="config['minWidth']" tabindex="0"
+  (focus)="onEditorFocus()">
 
   <app-ngx-editor-toolbar [config]="config" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>
 
