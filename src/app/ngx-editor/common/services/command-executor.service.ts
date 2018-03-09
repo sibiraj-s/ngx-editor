@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
-import { MessageService } from './message.service';
 import * as Utils from '../utils/ngx-editor.utils';
-import { map, tap, last, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class CommandExecutorService {
@@ -13,9 +11,8 @@ export class CommandExecutorService {
   /**
    *
    * @param _http HTTP Client for making http requests
-   * @param _messageService Message service sends message to the editor
    */
-  constructor(private _http: HttpClient, private _messageService: MessageService) { }
+  constructor(private _http: HttpClient) { }
 
   /**
    * executes command from the toolbar

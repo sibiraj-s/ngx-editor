@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { NgxEditorComponent } from '../ngx-editor.component';
 
 @Component({

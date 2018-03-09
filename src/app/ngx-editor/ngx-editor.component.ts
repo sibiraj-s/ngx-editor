@@ -90,7 +90,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   Utils: any = Utils;
   codeEditorMode = false;
 
-  private lastViewModel: any = '';
   private ngxCodeMirror: any = undefined;
   private onChange: (value: string) => void;
   private onTouched: () => void;
@@ -239,7 +238,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     return;
   }
 
-
   /**
    * toggle between codeview and editor
    */
@@ -249,7 +247,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     if (this.codeEditorMode) {
 
       this.ngxCodeMirror = CodeMirror.fromTextArea(this.codeEditor.nativeElement, codeMirrorConfig);
-      this._renderer.setStyle(this.textArea.nativeElement, 'display', 'none');
 
       /** set value of the code editor */
       this.ngxCodeMirror.setValue(this.textArea.nativeElement.innerHTML);
@@ -261,7 +258,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
       /** remove/ destroy code editor */
       this.ngxCodeMirror.toTextArea();
-      this._renderer.setStyle(this.textArea.nativeElement, 'display', 'block');
 
       /** update the model value and html content on the contenteditable */
       this.refreshView(this.ngxCodeMirror.getValue());
