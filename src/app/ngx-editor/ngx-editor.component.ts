@@ -133,7 +133,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
     if (typeof this.onChange === 'function') {
       this.onChange(html);
-      this.monitorEditor(html);
+      this.togglePlaceholder(html);
     }
 
     return;
@@ -198,10 +198,11 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param value value to be executed when there is a change in contenteditable
    */
   writeValue(value: any): void {
-    this.monitorEditor(value);
 
-    if (value === null || value === undefined || value === '') {
-      return;
+    this.togglePlaceholder(value);
+
+    if (value === null || value === undefined || value === '' || value === '<br>') {
+      value = null;
     }
 
     this.refreshView(value);
@@ -233,7 +234,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param value html string from the editor
    */
   refreshView(value: string): void {
-    const normalizedValue = value == null ? '' : value;
+    const normalizedValue = value === null ? '' : value;
     this._renderer.setProperty(this.textArea.nativeElement, 'innerHTML', normalizedValue);
     return;
   }
@@ -268,9 +269,11 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   /**
-   * monitor text area changes
+   * toggles placeholder based on input string
+   *
+   * @param value A HTML string from the editor
    */
-  monitorEditor(value: any): void {
+  togglePlaceholder(value: any): void {
     if (!value || value === '<br>' || value === '') {
       this._renderer.addClass(this.ngxWrapper.nativeElement, 'show-placeholder');
     } else {
