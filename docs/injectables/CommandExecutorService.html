@@ -466,12 +466,12 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-            <code>constructor(_http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, _messageService: <a href="../injectables/MessageService.html">MessageService</a>)</code>
+            <code>constructor(_http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
                                 </td>
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:11</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:9</a></div>
                                         </td>
                                     </tr>
             
@@ -502,22 +502,6 @@
                                                                 
                                                                     <td>
                                                                             <code><p>HTTP Client for making http requests</p>
-            </code>
-                                                                    </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>_messageService</td>
-                                                              
-                                                                    <td>
-                                                                                <code><a href="../injectables/MessageService.html" target="_self" >MessageService</a></code>
-                                                                    </td>
-                                                              
-                                                                <td>
-                                                                        no
-                                                                </td>
-                                                                
-                                                                    <td>
-                                                                            <code><p>Message service sends message to the editor</p>
             </code>
                                                                     </td>
                                                             </tr>
@@ -557,7 +541,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:101</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:98</a></div>
                                         </td>
                                     </tr>
             
@@ -633,7 +617,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:25</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:22</a></div>
                                         </td>
                                     </tr>
             
@@ -709,7 +693,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:134</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:131</a></div>
                                         </td>
                                     </tr>
             
@@ -793,7 +777,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:50</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:47</a></div>
                                         </td>
                                     </tr>
             
@@ -869,7 +853,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:154</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:151</a></div>
                                         </td>
                                     </tr>
             
@@ -940,7 +924,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:73</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:70</a></div>
                                         </td>
                                     </tr>
             
@@ -1050,7 +1034,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:11</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:9</a></div>
                                         </td>
                                     </tr>
             
@@ -1071,9 +1055,7 @@
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { HttpClient, HttpRequest } from &#x27;@angular/common/http&#x27;;
-import { MessageService } from &#x27;./message.service&#x27;;
 import * as Utils from &#x27;../utils/ngx-editor.utils&#x27;;
-import { map, tap, last, catchError } from &#x27;rxjs/operators&#x27;;
 
 @Injectable()
 export class CommandExecutorService {
@@ -1084,9 +1066,8 @@ export class CommandExecutorService {
   /**
    *
    * @param _http HTTP Client for making http requests
-   * @param _messageService Message service sends message to the editor
    */
-  constructor(private _http: HttpClient, private _messageService: MessageService) { }
+  constructor(private _http: HttpClient) { }
 
   /**
    * executes command from the toolbar
