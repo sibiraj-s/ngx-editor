@@ -6,6 +6,7 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import * as CodeMirror from 'codemirror';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
+import 'codemirror/addon/display/placeholder.js';
 
 import { CommandExecutorService } from './common/services/command-executor.service';
 import { MessageService } from './common/services/message.service';
