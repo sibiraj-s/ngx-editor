@@ -19,6 +19,8 @@ export class NgxEditorToolbarComponent implements OnInit {
   urlForm: FormGroup;
   /** holds values of the insert image form */
   imageForm: FormGroup;
+  /** holds values of the insert video form */
+  videoForm: FormGroup;
   /** set to false when image is being uploaded */
   uploadComplete = true;
   /** upload percentage */
@@ -34,6 +36,7 @@ export class NgxEditorToolbarComponent implements OnInit {
   @Input() config: any;
   @ViewChild('urlPopover') urlPopover;
   @ViewChild('imagePopover') imagePopover;
+  @ViewChild('videoPopover') videoPopover;
   @ViewChild('fontSizePopover') fontSizePopover;
   @ViewChild('colorPopover') colorPopover;
   /**
@@ -114,6 +117,20 @@ export class NgxEditorToolbarComponent implements OnInit {
   }
 
   /**
+   * create insert image form
+   */
+  buildVideoForm(): void {
+
+    this.videoForm = this._formBuilder.group({
+      videoUrl: ['', [Validators.required]],
+      height: [''],
+      width: ['']
+    });
+
+    return;
+  }
+
+  /**
    * Executed when file is selected
    *
    * @param e onChange event
@@ -166,6 +183,22 @@ export class NgxEditorToolbarComponent implements OnInit {
     this.buildInsertImageForm();
     /** close inset URL pop up */
     this.imagePopover.hide();
+
+    return;
+  }
+
+  /** insert image in the editor */
+  insertVideo(): void {
+    try {
+      this._commandExecutorService.insertVideo(this.videoForm.value);
+    } catch (error) {
+      this._messageService.sendMessage(error.message);
+    }
+
+    /** reset form to default */
+    this.buildVideoForm();
+    /** close inset URL pop up */
+    this.videoPopover.hide();
 
     return;
   }

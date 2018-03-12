@@ -126,6 +126,10 @@
       title="Insert Image" [popover]="insertImageTemplate" #imagePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-picture-o" aria-hidden="true"></i>
     </button>
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('video')" (click)="buildVideoForm()" title="Insert Video"
+      [popover]="insertVideoTemplate" #videoPopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
+      <i class="fa fa-youtube-play" aria-hidden="true"></i>
+    </button>
   </div>
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('code')" (click)="triggerCommand('code')"
@@ -196,6 +200,36 @@
         <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" [ngClass]="{'bg-danger': updloadPercentage<20, 'bg-warning': updloadPercentage<50, 'bg-success': updloadPercentage>=100}"
           [style.width.%]="updloadPercentage"></div>
       </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<!-- Insert Video Popover template -->
+<ng-template #insertVideoTemplate>
+  <div class="ngxe-popover imgc-ctnr">
+    <div class="imgc-topbar btn-ctnr">
+      <button type="button" class="btn active">
+        <i class="fa fa-link"></i>
+      </button>
+    </div>
+    <div class="imgc-ctnt is-image">
+      <form class="extra-gt" [formGroup]="videoForm" (ngSubmit)="videoForm.valid && insertVideo()" autocomplete="off">
+        <div class="form-group">
+          <label for="videoURLInput" class="small">URL</label>
+          <input type="text" class="form-control-sm" id="videoURLInput" placeholder="URL" formControlName="videoUrl" required>
+        </div>
+        <div class="row form-group">
+          <div class="col">
+            <input type="text" class="form-control-sm" formControlName="height" placeholder="height (px)" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+          </div>
+          <div class="col">
+            <input type="text" class="form-control-sm" formControlName="width" placeholder="width (px)" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+          </div>
+          <label class="small">Height/Width</label>
+        </div>
+        <button type="submit" class="btn-primary btn-sm btn">Submit</button>
+      </form>
     </div>
   </div>
 </ng-template>

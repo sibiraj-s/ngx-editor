@@ -24,6 +24,10 @@
         "file": "docs/image-uploader.md"
     },
     {
+        "title": "Insert Video",
+        "file": "docs/video.md"
+    },
+    {
         "title": "Code Editor",
         "file": "docs/code-editor.md"
     },
