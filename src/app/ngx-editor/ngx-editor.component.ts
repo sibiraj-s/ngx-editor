@@ -5,20 +5,8 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import * as CodeMirror from 'codemirror';
-
-if (CodeMirror instanceof Function) {
-  import('codemirror/addon/display/placeholder.js')
-    .then(() => {
-      console.log('CodeMirror: Placeholder addon loaded');
-    });
-
-  import('codemirror/mode/htmlmixed/htmlmixed.js')
-    .then(() => {
-      console.log('CodeMirror: HTML Mixed plugin loaded');
-    });
-} else {
-  console.log('CodeMirror not installed');
-}
+import 'codemirror/addon/display/placeholder.js';
+import 'codemirror/mode/htmlmixed/htmlmixed.js';
 
 import { CommandExecutorService } from './common/services/command-executor.service';
 import { MessageService } from './common/services/message.service';
