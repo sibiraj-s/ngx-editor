@@ -57,5 +57,9 @@
     ::ng-deep .CodeMirror {
         border: 1px solid #ddd;
         z-index: 2;
+
+        .CodeMirror-placeholder{
+            color: #6c757d;
+        }
     }
 }
