@@ -27,7 +27,7 @@ export class CommandExecutorService {
     }
 
     if (command === 'blockquote') {
-      document.execCommand('formatBlock', false, '<blockquote>');
+      document.execCommand('formatBlock', false, 'blockquote');
       return;
     }
 
@@ -37,6 +37,7 @@ export class CommandExecutorService {
     }
 
     document.execCommand(command, false, null);
+    return;
   }
 
   /**
@@ -59,6 +60,60 @@ export class CommandExecutorService {
       throw new Error('Range out of the editor');
     }
     return;
+  }
+
+  /**
+ * inserts image in the editor
+ *
+ * @param videParams url of the image to be inserted
+ */
+  insertVideo(videParams: any): void {
+    if (this.savedSelection) {
+      if (videParams) {
+        const restored = Utils.restoreSelection(this.savedSelection);
+        if (restored) {
+          if (this.isYoutubeLink(videParams.videoUrl)) {
+            const youtubeURL = '<iframe width="' + videParams.width + '" height="' + videParams.height + '"'
+              + 'src="' + videParams.videoUrl + '"></iframe>';
+            this.insertHtml(youtubeURL);
+          } else if (this.checkTagSupportInBrowser('video')) {
+
+            if (this.isValidURL(videParams.videoUrl)) {
+              const videoSrc = '<video width="' + videParams.width + '" height="' + videParams.height + '"'
+                + ' controls="true"><source src="' + videParams.videoUrl + '"></video>';
+              this.insertHtml(videoSrc);
+            } else {
+              throw new Error('Invalid video URL');
+            }
+
+          } else {
+            throw new Error('Unable to insert video');
+          }
+        }
+      }
+    } else {
+      throw new Error('Range out of the editor');
+    }
+    return;
+  }
+
+  /**
+   * checks the input url is a valid youtube URL or not
+   *
+   * @param url Youtue URL
+   */
+  private isYoutubeLink(url: string): boolean {
+    const ytRegExp = /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/;
+    return ytRegExp.test(url);
+  }
+
+  /**
+   * check whether the string is a valid url or not
+   * @param url url
+   */
+  private isValidURL(url: string) {
+    const urlRegExp = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    return urlRegExp.test(url);
   }
 
   /**
@@ -127,6 +182,9 @@ export class CommandExecutorService {
 
   /**
    * insert color either font or background
+   *
+   * @param color color to be inserted
+   * @param where where the color has to be inserted either text/background
    */
   insertColor(color: string, where: string): void {
 
@@ -147,7 +205,11 @@ export class CommandExecutorService {
     return;
   }
 
-  /** set font size for text */
+  /**
+   * set font size for text
+   *
+   * @param fontSize font-size to be set
+   */
   setFontSize(fontSize: string): void {
 
     if (this.savedSelection && this.checkSelection()) {
@@ -219,6 +281,15 @@ export class CommandExecutorService {
     }
 
     return true;
+  }
+
+  /**
+   * check tag is supported by browser or not
+   *
+   * @param tag HTML tag
+   */
+  private checkTagSupportInBrowser(tag: string): boolean {
+    return !(document.createElement(tag) instanceof HTMLUnknownElement);
   }
 
 }
