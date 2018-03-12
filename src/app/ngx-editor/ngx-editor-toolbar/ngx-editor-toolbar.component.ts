@@ -107,7 +107,7 @@ export class NgxEditorToolbarComponent implements OnInit {
   /**
    * create insert image form
    */
-  buildInsertImageForm(): void {
+  buildImageForm(): void {
 
     this.imageForm = this._formBuilder.group({
       imageUrl: ['', [Validators.required]]
@@ -180,7 +180,7 @@ export class NgxEditorToolbarComponent implements OnInit {
     }
 
     /** reset form to default */
-    this.buildInsertImageForm();
+    this.buildImageForm();
     /** close inset URL pop up */
     this.imagePopover.hide();
 
@@ -231,7 +231,8 @@ export class NgxEditorToolbarComponent implements OnInit {
 
   ngOnInit() {
     this.buildUrlForm();
-    this.buildInsertImageForm();
+    this.buildImageForm();
+    this.buildVideoForm();
   }
 
 }

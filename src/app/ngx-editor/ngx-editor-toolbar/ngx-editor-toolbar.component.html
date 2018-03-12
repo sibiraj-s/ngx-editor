@@ -122,8 +122,8 @@
       title="Unlink" [disabled]="!config['enableToolbar']">
       <i class="fa fa-chain-broken" aria-hidden="true"></i>
     </button>
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="buildInsertImageForm()"
-      title="Insert Image" [popover]="insertImageTemplate" #imagePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="buildImageForm()" title="Insert Image"
+      [popover]="insertImageTemplate" #imagePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-picture-o" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('video')" (click)="buildVideoForm()" title="Insert Video"
