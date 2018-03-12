@@ -32,5 +32,6 @@ export const codeMirrorConfig = {
     gutter: true,
     lineWrapping: true,
     mode: 'htmlmixed',
+    autofocus: true,
     htmlMode: true
 };
