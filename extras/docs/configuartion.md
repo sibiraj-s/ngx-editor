@@ -27,7 +27,7 @@ The config property is a JSON object.
     "imageEndPoint": "",
     "toolbar": [
         ["bold", "italic", "underline", "strikeThrough", "superscript", "subscript"],
-        ["fontSize", "color"],
+        ["fontName", "fontSize", "color"],
         ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull", "indent", "outdent"],
         ["cut", "copy", "delete", "removeFormat", "undo", "redo"],
         ["paragraph", "blockquote", "removeBlockquote", "horizontalLine", "orderedList", "unorderedList"],

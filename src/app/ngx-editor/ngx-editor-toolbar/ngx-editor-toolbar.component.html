@@ -26,6 +26,10 @@
     </button>
   </div>
   <div class="ngx-toolbar-set">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontName')" (click)="fontSize = ''" title="Font Size"
+      [popover]="fontNameTemplate" #fontSizePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
+      <i class="fa fa-font" aria-hidden="true"></i>
+    </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontSize')" (click)="fontSize = ''" title="Font Size"
       [popover]="fontSizeTemplate" #fontSizePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-text-height" aria-hidden="true"></i>
@@ -264,6 +268,20 @@
           required>
       </div>
       <button type="button" class="btn-primary btn-sm btn" (click)="setFontSize(fontSize)">Submit</button>
+    </form>
+  </div>
+</ng-template>
+
+<!-- font family/name template -->
+<ng-template #fontNameTemplate>
+  <div class="ngxe-popover extra-gt1">
+    <form autocomplete="off">
+      <div class="form-group">
+        <label for="fontSize" class="small">Font Size</label>
+        <input type="text" class="form-control-sm" id="fontSize" name="fontName" placeholder="Ex: `Times New Roman`, Times, serif"
+          [(ngModel)]="fontName" required>
+      </div>
+      <button type="button" class="btn-primary btn-sm btn" (click)="setFontName(fontName)">Submit</button>
     </form>
   </div>
 </ng-template>

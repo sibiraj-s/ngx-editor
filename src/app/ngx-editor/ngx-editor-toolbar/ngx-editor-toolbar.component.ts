@@ -229,6 +229,19 @@ export class NgxEditorToolbarComponent implements OnInit {
     return;
   }
 
+  /** set font Name/family */
+  setFontName(fontName: string): void {
+
+    try {
+      this._commandExecutorService.setFontName(fontName);
+    } catch (error) {
+      this._messageService.sendMessage(error.message);
+    }
+
+    this.fontSizePopover.hide();
+    return;
+  }
+
   ngOnInit() {
     this.buildUrlForm();
     this.buildImageForm();
