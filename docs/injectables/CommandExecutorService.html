@@ -457,6 +457,9 @@
                                         <a href="#insertVideo">insertVideo</a>
                                     </li>
                                     <li>
+                                        <a href="#setFontName">setFontName</a>
+                                    </li>
+                                    <li>
                                         <a href="#setFontSize">setFontSize</a>
                                     </li>
                                     <li>
@@ -929,6 +932,82 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <a name="setFontName"></a>
+                                    <span class="name">
+                                        <b>
+                                        setFontName
+                                        </b>
+                                        <a href="#setFontName"><span class="fa fa-link"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>setFontName(fontName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                                <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:243</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>set font name/family for text</p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                                <td>Type</td>
+                                                            <td>Optional</td>
+                                                                <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>fontName</td>
+                                                                
+                                                                    <td>
+                                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    </td>
+                                                                
+                                                                <td>
+                                                                        no
+                                                                </td>
+                                                                
+            
+                                                                    <td>
+                                                                            <code><p>font-family to be set</p>
+            </code>
+                                                                    </td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <a name="setFontSize"></a>
                                     <span class="name">
                                         <b>
@@ -1378,8 +1457,38 @@ export class CommandExecutorService {
             const fontPx &#x3D; &#x27;&lt;span style&#x3D;&quot;font-size: &#x27; + fontSize + &#x27;px;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/spanp&gt;&#x27;;
             this.insertHtml(fontPx);
           } else {
-            const font &#x3D; &#x27;&lt;span style&#x3D;&quot;font-size: &#x27; + fontSize + &#x27;;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/span&gt;&#x27;;
-            this.insertHtml(font);
+            const fontPx &#x3D; &#x27;&lt;span style&#x3D;&quot;font-size: &#x27; + fontSize + &#x27;;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/span&gt;&#x27;;
+            this.insertHtml(fontPx);
+          }
+        }
+      }
+
+    } else {
+      throw new Error(&#x27;Range out of the editor&#x27;);
+    }
+  }
+
+  /**
+   * set font name/family for text
+   *
+   * @param fontName font-family to be set
+   */
+  setFontName(fontName: string): void {
+
+    if (this.savedSelection &amp;&amp; this.checkSelection()) {
+      const deletedValue &#x3D; this.deleteAndGetElement();
+
+      if (deletedValue) {
+
+        const restored &#x3D; Utils.restoreSelection(this.savedSelection);
+
+        if (restored) {
+          if (this.isNumeric(fontName)) {
+            const fontFamily &#x3D; &#x27;&lt;span style&#x3D;&quot;font-family: &#x27; + fontName + &#x27;px;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/spanp&gt;&#x27;;
+            this.insertHtml(fontFamily);
+          } else {
+            const fontFamily &#x3D; &#x27;&lt;span style&#x3D;&quot;font-family: &#x27; + fontName + &#x27;;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/span&gt;&#x27;;
+            this.insertHtml(fontFamily);
           }
         }
       }

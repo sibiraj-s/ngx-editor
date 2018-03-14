@@ -224,8 +224,38 @@ export class CommandExecutorService {
             const fontPx = '<span style="font-size: ' + fontSize + 'px;">' + deletedValue + '</spanp>';
             this.insertHtml(fontPx);
           } else {
-            const font = '<span style="font-size: ' + fontSize + ';">' + deletedValue + '</span>';
-            this.insertHtml(font);
+            const fontPx = '<span style="font-size: ' + fontSize + ';">' + deletedValue + '</span>';
+            this.insertHtml(fontPx);
+          }
+        }
+      }
+
+    } else {
+      throw new Error('Range out of the editor');
+    }
+  }
+
+  /**
+   * set font name/family for text
+   *
+   * @param fontName font-family to be set
+   */
+  setFontName(fontName: string): void {
+
+    if (this.savedSelection && this.checkSelection()) {
+      const deletedValue = this.deleteAndGetElement();
+
+      if (deletedValue) {
+
+        const restored = Utils.restoreSelection(this.savedSelection);
+
+        if (restored) {
+          if (this.isNumeric(fontName)) {
+            const fontFamily = '<span style="font-family: ' + fontName + 'px;">' + deletedValue + '</spanp>';
+            this.insertHtml(fontFamily);
+          } else {
+            const fontFamily = '<span style="font-family: ' + fontName + ';">' + deletedValue + '</span>';
+            this.insertHtml(fontFamily);
           }
         }
       }
