@@ -26,8 +26,8 @@
     </button>
   </div>
   <div class="ngx-toolbar-set">
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontName')" (click)="fontSize = ''" title="Font Size"
-      [popover]="fontNameTemplate" #fontSizePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontName')" (click)="fontName = ''" title="Font Family"
+      [popover]="fontNameTemplate" #fontNamePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
       <i class="fa fa-font" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontSize')" (click)="fontSize = ''" title="Font Size"
@@ -225,10 +225,10 @@
         </div>
         <div class="row form-group">
           <div class="col">
-            <input type="text" class="form-control-sm" formControlName="height" placeholder="height (px)" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+            <input type="text" class="form-control-sm" formControlName="height" placeholder="height (px)" (keypress)="onlyNumbers($event)">
           </div>
           <div class="col">
-            <input type="text" class="form-control-sm" formControlName="width" placeholder="width (px)" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+            <input type="text" class="form-control-sm" formControlName="width" placeholder="width (px)" (keypress)="onlyNumbers($event)">
           </div>
           <label class="small">Height/Width</label>
         </div>

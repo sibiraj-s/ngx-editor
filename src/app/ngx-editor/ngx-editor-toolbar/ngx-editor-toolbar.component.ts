@@ -29,6 +29,14 @@ export class NgxEditorToolbarComponent implements OnInit {
   isUploading = false;
   /** which tab to active for color insetion */
   selectedColorTab = 'textColor';
+  /** font family name */
+  fontName = '';
+  /** font size */
+  fontSize = '';
+  /** hex color code */
+  hexColor = '';
+  /** show/hide image uploader */
+  isImageUploader = false;
 
   /**
    * Editor configuration
@@ -240,6 +248,15 @@ export class NgxEditorToolbarComponent implements OnInit {
 
     this.fontSizePopover.hide();
     return;
+  }
+
+  /**
+   * allow only numbers
+   *
+   * @param event keypress event
+   */
+  onlyNumbers(event: KeyboardEvent): boolean {
+    return event.charCode >= 48 && event.charCode <= 57;
   }
 
   ngOnInit() {

@@ -553,7 +553,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:153</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:157</a></div>
                                         </td>
                                     </tr>
             
@@ -705,7 +705,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:189</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:193</a></div>
                                         </td>
                                     </tr>
             
@@ -798,7 +798,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:48</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:52</a></div>
                                         </td>
                                     </tr>
             
@@ -874,7 +874,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:70</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:74</a></div>
                                         </td>
                                     </tr>
             
@@ -950,7 +950,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:243</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:247</a></div>
                                         </td>
                                     </tr>
             
@@ -1026,7 +1026,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:213</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:217</a></div>
                                         </td>
                                     </tr>
             
@@ -1102,7 +1102,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:125</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/ngx-editor/common/services/command-executor.service.ts:129</a></div>
                                         </td>
                                     </tr>
             
@@ -1253,6 +1253,10 @@ export class CommandExecutorService {
    * @param command command to be executed
    */
   execute(command: string): void {
+
+    if (!this.savedSelection &amp;&amp; command !&#x3D;&#x3D; &#x27;enableObjectResizing&#x27;) {
+      throw new Error(&#x27;Range out of Editor&#x27;);
+    }
 
     if (command &#x3D;&#x3D;&#x3D; &#x27;enableObjectResizing&#x27;) {
       document.execCommand(&#x27;enableObjectResizing&#x27;, true, true);
@@ -1454,7 +1458,7 @@ export class CommandExecutorService {
 
         if (restored) {
           if (this.isNumeric(fontSize)) {
-            const fontPx &#x3D; &#x27;&lt;span style&#x3D;&quot;font-size: &#x27; + fontSize + &#x27;px;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/spanp&gt;&#x27;;
+            const fontPx &#x3D; &#x27;&lt;span style&#x3D;&quot;font-size: &#x27; + fontSize + &#x27;px;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/span&gt;&#x27;;
             this.insertHtml(fontPx);
           } else {
             const fontPx &#x3D; &#x27;&lt;span style&#x3D;&quot;font-size: &#x27; + fontSize + &#x27;;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/span&gt;&#x27;;
@@ -1484,7 +1488,7 @@ export class CommandExecutorService {
 
         if (restored) {
           if (this.isNumeric(fontName)) {
-            const fontFamily &#x3D; &#x27;&lt;span style&#x3D;&quot;font-family: &#x27; + fontName + &#x27;px;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/spanp&gt;&#x27;;
+            const fontFamily &#x3D; &#x27;&lt;span style&#x3D;&quot;font-family: &#x27; + fontName + &#x27;px;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/span&gt;&#x27;;
             this.insertHtml(fontFamily);
           } else {
             const fontFamily &#x3D; &#x27;&lt;span style&#x3D;&quot;font-family: &#x27; + fontName + &#x27;;&quot;&gt;&#x27; + deletedValue + &#x27;&lt;/span&gt;&#x27;;
