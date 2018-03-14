@@ -1,7 +1,6 @@
 import {
-  Component, OnInit, Input, Output,
-  ViewChild, HostListener, ElementRef, EventEmitter,
-  Renderer2, forwardRef
+  Component, OnInit, Input, Output, ViewChild,
+  EventEmitter, Renderer2, forwardRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import * as CodeMirror from 'codemirror';
@@ -96,14 +95,11 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   private onTouched: () => void;
 
   /**
-   *
-   * @param _elementRef  api to access dom element
    * @param _messageService service to send message to the editor message component
    * @param _commandExecutor executes command from the toolbar
    * @param _renderer access and manipulate the dom element
    */
   constructor(
-    private _elementRef: ElementRef,
     private _messageService: MessageService,
     private _commandExecutor: CommandExecutorService,
     private _renderer: Renderer2) { }
@@ -112,7 +108,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * events
    */
   onTextAreaFocus(): void {
-    this.enableToolbar = true;
     this.focus.emit('focus');
     return;
   }
@@ -120,10 +115,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   /** focus the text area when the editor is focussed */
   onEditorFocus() {
     this.textArea.nativeElement.focus();
-  }
-
-  @HostListener('document:click', ['$event']) onDocumentClick(event: MouseEvent) {
-    this.enableToolbar = !!this._elementRef.nativeElement.contains(event.target);
   }
 
   /**

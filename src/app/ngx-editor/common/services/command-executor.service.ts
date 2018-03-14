@@ -21,6 +21,10 @@ export class CommandExecutorService {
    */
   execute(command: string): void {
 
+    if (!this.savedSelection && command !== 'enableObjectResizing') {
+      throw new Error('Range out of Editor');
+    }
+
     if (command === 'enableObjectResizing') {
       document.execCommand('enableObjectResizing', true, true);
       return;
