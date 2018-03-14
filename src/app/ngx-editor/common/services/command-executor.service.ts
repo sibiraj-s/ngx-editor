@@ -225,7 +225,7 @@ export class CommandExecutorService {
 
         if (restored) {
           if (this.isNumeric(fontSize)) {
-            const fontPx = '<span style="font-size: ' + fontSize + 'px;">' + deletedValue + '</spanp>';
+            const fontPx = '<span style="font-size: ' + fontSize + 'px;">' + deletedValue + '</span>';
             this.insertHtml(fontPx);
           } else {
             const fontPx = '<span style="font-size: ' + fontSize + ';">' + deletedValue + '</span>';
@@ -255,7 +255,7 @@ export class CommandExecutorService {
 
         if (restored) {
           if (this.isNumeric(fontName)) {
-            const fontFamily = '<span style="font-family: ' + fontName + 'px;">' + deletedValue + '</spanp>';
+            const fontFamily = '<span style="font-family: ' + fontName + 'px;">' + deletedValue + '</span>';
             this.insertHtml(fontFamily);
           } else {
             const fontFamily = '<span style="font-family: ' + fontName + ';">' + deletedValue + '</span>';
