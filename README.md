@@ -55,7 +55,17 @@ Then in HTML
 
 For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
 
+#### PeerDependencies
+
+`ngx-editor` depeneds on the following libraries to work.
+
+* [Font-Awesome v4.7.0](https://github.com/FortAwesome/Font-Awesome/tree/fa-4)
+* [CodeMirror](https://github.com/codemirror/codemirror)
+* [Ngx-Bootstrap](https://github.com/valor-software/ngx-bootstrap)
+
 ## Compatibility
+
+All Evergreen-Browsers are supported
 
 * Google Chrome
 * Microsoft Edge
