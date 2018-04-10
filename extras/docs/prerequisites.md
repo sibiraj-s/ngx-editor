@@ -5,7 +5,7 @@
 You must install all the following `peerDependencies` in order for `ngx-editor to work
 
 * [CodeMirror](https://codemirror.net/) - Code Edit/Preview
-* [FontAwesome](https://fontawesome.com/v4.7.0/) - Toolbar icons
+* [FontAwesome v4.7.0](https://fontawesome.com/v4.7.0/) - Toolbar icons
 * [NgxBootstrap](https://valor-software.com/ngx-bootstrap/) - Popover
 
 ## Note
