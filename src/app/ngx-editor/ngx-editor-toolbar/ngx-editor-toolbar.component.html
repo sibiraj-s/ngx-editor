@@ -68,11 +68,11 @@
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('cut')" (click)="triggerCommand('cut')" title="Cut"
       [disabled]="!config['enableToolbar']">
-      <i class="fa fa-scissors" aria-hidden="true"></i>
+      <i class="fa fa-cut" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('copy')" (click)="triggerCommand('copy')"
       title="Copy" [disabled]="!config['enableToolbar']">
-      <i class="fa fa-files-o" aria-hidden="true"></i>
+      <i class="fa fa-copy" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('delete')" (click)="triggerCommand('delete')"
       title="Delete" [disabled]="!config['enableToolbar']">
@@ -88,7 +88,7 @@
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('redo')" (click)="triggerCommand('redo')"
       title="Redo" [disabled]="!config['enableToolbar']">
-      <i class="fa fa-repeat" aria-hidden="true"></i>
+      <i class="fa fa-redo" aria-hidden="true"></i>
     </button>
   </div>
   <div class="ngx-toolbar-set">
@@ -124,15 +124,15 @@
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unlink')" (click)="triggerCommand('unlink')"
       title="Unlink" [disabled]="!config['enableToolbar']">
-      <i class="fa fa-chain-broken" aria-hidden="true"></i>
+      <i class="fa fa-unlink" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="buildImageForm()" title="Insert Image"
       [popover]="insertImageTemplate" #imagePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
-      <i class="fa fa-picture-o" aria-hidden="true"></i>
+      <i class="fa fa-image" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('video')" (click)="buildVideoForm()" title="Insert Video"
       [popover]="insertVideoTemplate" #videoPopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
-      <i class="fa fa-youtube-play" aria-hidden="true"></i>
+      <i class="fa fa-play" aria-hidden="true"></i>
     </button>
   </div>
   <div class="ngx-toolbar-set">
