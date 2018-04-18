@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
   /**
    * @param _appService service for app component
    */
-  constructor(private _appService: AppService) { }
+  constructor(private _appService: AppService) {}
 
   getLatestRelease() {
     this.subscription = this._appService.getLatestRelease().subscribe(
