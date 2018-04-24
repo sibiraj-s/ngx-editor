@@ -42,6 +42,7 @@ export class NgxEditorToolbarComponent implements OnInit {
    * Editor configuration
    */
   @Input() config: any;
+  @Input() fontawesome: 'fa' | 'fal' | 'far' | 'fas';
   @ViewChild('urlPopover') urlPopover;
   @ViewChild('imagePopover') imagePopover;
   @ViewChild('videoPopover') videoPopover;

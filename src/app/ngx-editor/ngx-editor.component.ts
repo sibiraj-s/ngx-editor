@@ -57,6 +57,17 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    */
   @Input() toolbar: Object;
   /**
+   * Toolbar font-awesome kind:
+   * Pro version:
+   * fal - stands for font-awesome LIGHT
+   * far - stands for font-awesome REGULAR
+   * fas - stands for font-awesome SOLID
+   * Free:
+   * fa - stands for default font-awesome
+   * @default 'fa'
+   */
+  @Input() fontawesome: 'fa' | 'fal' | 'far' | 'fas' = 'fa';
+  /**
    * The editor can be resized vertically.
    *
    * `basic` resizer enables the html5 reszier. Check here https://www.w3schools.com/cssref/css3_pr_resize.asp
