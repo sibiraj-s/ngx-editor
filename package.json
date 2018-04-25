@@ -41,7 +41,6 @@
     "@angular/common": "^5.2.0",
     "@angular/core": "^5.2.0",
     "@angular/forms": "^5.2.0",
-    "codemirror": "^5.36.0",
     "font-awesome": "^4.7.0",
     "ngx-bootstrap": "^2.0.3",
     "rxjs": "^5.5.6"
@@ -65,7 +64,6 @@
     "@types/node": "~6.0.60",
     "bootstrap": "^4.1.0",
     "codelyzer": "^4.0.1",
-    "codemirror": "^5.36.0",
     "commitizen": "^2.9.6",
     "core-js": "^2.4.1",
     "cz-conventional-changelog": "^2.1.0",
