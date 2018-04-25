@@ -4,15 +4,13 @@
   <app-ngx-editor-toolbar [config]="config" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>
 
   <!-- text area -->
-  <div class="ngx-wrapper" [hidden]="codeEditorMode" #ngxWrapper>
+  <div class="ngx-wrapper" #ngxWrapper>
     <div class="ngx-editor-textarea" [attr.contenteditable]="config['editable']" (input)="onContentChange($event.target.innerHTML)"
       [attr.translate]="config['translate']" [attr.spellcheck]="config['spellcheck']" [style.height]="config['height']" [style.minHeight]="config['minHeight']"
       [style.resize]="Utils?.canResize(resizer)" (focus)="onTextAreaFocus()" (blur)="onTextAreaBlur()" #ngxTextArea></div>
 
     <span class="ngx-editor-placeholder">{{ placeholder || config['placeholder'] }}</span>
   </div>
-
-  <textarea [attr.placeholder]="placeholder || config['placeholder']" [hidden]="true" #ngxCodeEditor></textarea>
 
   <app-ngx-editor-message></app-ngx-editor-message>
   <app-ngx-grippie *ngIf="resizer === 'stack'"></app-ngx-grippie>

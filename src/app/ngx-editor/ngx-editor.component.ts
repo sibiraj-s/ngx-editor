@@ -3,14 +3,11 @@ import {
   EventEmitter, Renderer2, forwardRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import * as CodeMirror from 'codemirror';
-import 'codemirror/addon/display/placeholder.js';
-import 'codemirror/mode/htmlmixed/htmlmixed.js';
 
 import { CommandExecutorService } from './common/services/command-executor.service';
 import { MessageService } from './common/services/message.service';
 
-import { ngxEditorConfig, codeMirrorConfig } from './common/ngx-editor.defaults';
+import { ngxEditorConfig } from './common/ngx-editor.defaults';
 import * as Utils from './common/utils/ngx-editor.utils';
 
 @Component({
@@ -84,13 +81,10 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   @Output() focus: EventEmitter<string> = new EventEmitter<string>();
 
   @ViewChild('ngxTextArea') textArea: any;
-  @ViewChild('ngxCodeEditor') codeEditor: any;
   @ViewChild('ngxWrapper') ngxWrapper: any;
 
   Utils: any = Utils;
-  codeEditorMode = false;
 
-  private ngxCodeMirror: any = undefined;
   private onChange: (value: string) => void;
   private onTouched: () => void;
 
@@ -153,13 +147,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     newHeight += offsetY;
     this.height = newHeight + 'px';
     this.textArea.nativeElement.style.height = this.height;
-
-    /**
-     * update code-editor height only on editor mode
-     */
-    if (this.codeEditorMode) {
-      this.ngxCodeMirror.setSize('100%', this.height);
-    }
     return;
   }
 
@@ -169,11 +156,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param commandName name of the command to be executed
    */
   executeCommand(commandName: string): void {
-
-    if (commandName === 'code') {
-      this.toggleCodeEditor();
-      return;
-    }
 
     try {
       this._commandExecutor.execute(commandName);
@@ -228,35 +210,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   refreshView(value: string): void {
     const normalizedValue = value === null ? '' : value;
     this._renderer.setProperty(this.textArea.nativeElement, 'innerHTML', normalizedValue);
-    return;
-  }
-
-  /**
-   * toggle between codeview and editor
-   */
-  toggleCodeEditor(): void {
-    this.codeEditorMode = !this.codeEditorMode;
-
-    if (this.codeEditorMode) {
-
-      this.ngxCodeMirror = CodeMirror.fromTextArea(this.codeEditor.nativeElement, codeMirrorConfig);
-
-      /** set value of the code editor */
-      this.ngxCodeMirror.setValue(this.textArea.nativeElement.innerHTML);
-
-      /** sets height of the code editor as same as the height of the textArea */
-      this.ngxCodeMirror.setSize('100%', this.height);
-
-    } else {
-
-      /** remove/ destroy code editor */
-      this.ngxCodeMirror.toTextArea();
-
-      /** update the model value and html content on the contenteditable */
-      this.refreshView(this.ngxCodeMirror.getValue());
-      this.onContentChange(this.ngxCodeMirror.getValue());
-
-    }
     return;
   }
 
