@@ -40,6 +40,11 @@ export class CommandExecutorService {
       return;
     }
 
+    if (command === 'insertParagraph') {
+      document.execCommand('formatBlock', false, 'p');
+      return;
+    }
+    
     document.execCommand(command, false, null);
     return;
   }
