@@ -243,10 +243,14 @@
       <form autocomplete="off">
         <div class="form-group">
           <label for="hexInput" class="small">Hex Color</label>
-          <input type="text" class="form-control-sm" id="hexInput" name="hexInput" maxlength="7" placeholder="HEX Color" [(ngModel)]="hexColor"
-            required>
+          <div class="color-list">
+            <div class="color-box" *ngFor="let color of colors; let i = index;">
+              <div *ngFor="let c of color; let j = index">
+                <h4 class="color" [ngStyle]="getColor(i, j)" (click)="insertColor(colors[i][j], selectedColorTab)" data-toggle="tooltip" data-placement="bottom" title="{{colors[i][j]}}"><span>■</span></h4>
+              </div>
+            </div>
+          </div>
         </div>
-        <button type="button" class="btn-primary btn-sm btn" (click)="insertColor(hexColor, selectedColorTab)">Submit</button>
       </form>
     </div>
   </div>
@@ -258,10 +262,10 @@
     <form autocomplete="off">
       <div class="form-group">
         <label for="fontSize" class="small">Font Size</label>
-        <input type="text" class="form-control-sm" id="fontSize" name="fontSize" placeholder="Font size in px/rem" [(ngModel)]="fontSize"
-          required>
+        <div class="size-list">
+          <div class="size" [ngStyle]="getSize(size)" *ngFor="let size of sizes; let i = index" (click)="setFontSize(size)"><span>apple({{ size }})</span></div>
+        </div>
       </div>
-      <button type="button" class="btn-primary btn-sm btn" (click)="setFontSize(fontSize)">Submit</button>
     </form>
   </div>
 </ng-template>

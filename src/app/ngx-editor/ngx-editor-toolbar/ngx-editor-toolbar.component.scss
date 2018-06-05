@@ -71,6 +71,22 @@
 
     &.extra-gt1, .extra-gt1 {
         padding-top: 0.75rem !important;
+
+        .size-list {
+
+            .size {
+                border-bottom: 1px solid black;
+                margin-bottom: 0.5rem;
+            }
+
+            .size span {
+                margin-bottom: 0.1rem;
+            }
+
+            .size:hover {
+                color: #E76363;
+            }
+        }
     }
 
     &.extra-gt2, .extra-gt2 {
@@ -210,6 +226,38 @@
                             top: 0px;
                             bottom: 0px;
                             margin: 0px;
+                        }
+                    }
+                }
+            }
+
+            &.is-color {
+
+                .color-list {
+
+                    .color-box {
+                        display: flex;
+                        justify-content: center;
+                        
+                        .color {
+                            margin-right: 0.3rem;
+                            margin-left: 0.3rem;
+                            margin-bottom: 0.1rem;
+
+                            transform: scale(1);
+                            -webkit-transform: scale(1);
+                            -moz-transform: scale(1);
+                            -ms-transform: scale(1);
+                            -o-transform: scale(1);
+                            transition: all 0.2s ease-in-out;
+                        }
+
+                        .color:hover {
+                            transform: scale(1.4);
+                            -webkit-transform: scale(1.4);
+                            -moz-transform: scale(1.4);
+                            -ms-transform: scale(1.4);
+                            -o-transform: scale(1.4);
                         }
                     }
                 }
