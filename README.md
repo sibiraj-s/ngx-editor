@@ -1,86 +1,27 @@
 # NgxEditor
 
-<p align="center">
-  <a href="https://github.com/Sibiraj-S/ngx-editor">
-   <img src="https://raw.githubusercontent.com/Sibiraj-S/ngx-editor/master/src/assets/icons/ngx-editor.png" alt="ngxEditor">
-  </a>
-</p>
-<p align="center">A Simple WYSIWYG Editor for Angular5+ Applications.</p>
-<p align="center">
-  <a href="https://travis-ci.org/Sibiraj-S/ngx-editor">
-    <img alt="Build Status" src="https://travis-ci.org/Sibiraj-S/ngx-editor.svg?branch=master">
-  </a>
-  <a href="https://www.npmjs.com/package/ngx-editor">
-    <img alt="npm version" src="https://img.shields.io/npm/v/ngx-editor.svg">
-  </a>
-  <a href="https://www.npmjs.com/package/ngx-editor">
-    <img alt="npm" src="https://img.shields.io/npm/dm/ngx-editor.svg">
-  </a>
-  <a href="https://github.com/Sibiraj-S/ngx-editor/blob/master/LICENSE">
-    <img alt="licence" src="https://img.shields.io/npm/l/ngx-editor.svg">
-  </a>
-</p>
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.5.
 
-## Getting Started
+## Development server
 
-### Installation
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Install via Package managers such as [npm][npm] or [yarn][yarn]
+## Code scaffolding
 
-```bash
-npm install ngx-editor --save
-# or
-yarn add ngx-editor
-```
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-### Usage
+## Build
 
-Import `ngx-editor` module
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-```typescript
-import { NgxEditorModule } from 'ngx-editor';
+## Running unit tests
 
-@NgModule({
-  imports: [ NgxEditorModule ]
-})
-```
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-Import [font-awesome](https://github.com/FortAwesome/Font-Awesome) into your application
+## Running end-to-end tests
 
-Then in HTML
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-```html
-<app-ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>
-```
+## Further help
 
-For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
-
-#### PeerDependencies
-
-`ngx-editor` depeneds on the following libraries to work.
-
-* [Font-Awesome v4.7.0](https://github.com/FortAwesome/Font-Awesome/tree/fa-4)
-* [Ngx-Bootstrap](https://github.com/valor-software/ngx-bootstrap)
-
-## Compatibility
-
-All Evergreen-Browsers are supported
-
-* Google Chrome
-* Microsoft Edge
-* Mozilla Firefox
-* Opera
-
-## Demo
-
-Demo at stackblitz [ngx-editor](https://ngx-editor.stackblitz.io/)
-
-## Documentation
-
-Documentation is auto-generated using [compodoc][compodoc], and can be viewed here: [https://sibiraj-s.github.io/ngx-editor/](https://sibiraj-s.github.io/ngx-editor/)
-
-[npm]: https://www.npmjs.com/
-[yarn]: https://yarnpkg.com/lang/en/
-[github]: https://sibiraj-s.github.io/
-[wiki]:https://github.com/Sibiraj-S/ngx-editor/wiki/ngxEditor
-[compodoc]: https://compodoc.github.io/website/
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
