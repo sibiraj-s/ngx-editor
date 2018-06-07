@@ -39,7 +39,7 @@
   "homepage": "https://github.com/Sibiraj-S/ngx-editor",
   "peerDependencies": {
     "font-awesome": "^4.7.0",
-    "ngx-bootstrap": "^2.0.3"
+    "ngx-bootstrap": "^3.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.6",
@@ -74,7 +74,7 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-packagr": "^2.4.2",
-    "ngx-bootstrap": "^2.0.4",
+    "ngx-bootstrap": "^3.0.0",
     "protractor": "~5.1.2",
     "rxjs": "^6.2.0",
     "ts-node": "~4.1.0",
