@@ -477,7 +477,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>NgxGrippieComponent</li>
+  <li>AppComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -502,11 +502,18 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts</code>
+    <code>src/app/app.component.ts</code>
 </p>
 
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
 
 
 <section>
@@ -522,23 +529,29 @@
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code><a href="../injectables/AppService.html" target="_self" >AppService</a></code>
+                </td>
+            </tr>
 
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-ngx-grippie</code></td>
+                <td class="col-md-9"><code>app-root</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>ngx-grippie.component.scss</code></td>
+                <td class="col-md-9"><code>app.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./ngx-grippie.component.html</code></td>
+                <td class="col-md-9"><code>./app.component.html</code></td>
             </tr>
 
 
@@ -559,42 +572,39 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#grabber">grabber</a>
+                                <a href="#editorConfig">editorConfig</a>
                             </li>
                             <li>
-                                <a href="#height">height</a>
+                                <a href="#htmlContent">htmlContent</a>
                             </li>
                             <li>
-                                <a href="#oldY">oldY</a>
+                                <a href="#latestRelease">latestRelease</a>
+                            </li>
+                            <li>
+                                <a href="#title">title</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
-
-
-
-
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>HostListeners</b></h6>
+                        <h6><b>Methods</b></h6>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#document:mousemove">document:mousemove</a>
-                            </li>
-                            <li>
-                                <a href="#document:mouseup">document:mouseup</a>
-                            </li>
-                            <li>
-                                <a href="#mousedown">mousedown</a>
+                                <a href="#getLatestRelease">getLatestRelease</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+
+
+
+
 
         </tbody>
     </table>
@@ -606,19 +616,17 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(_editorComponent: <a href="../components/NgxEditorComponent.html">NgxEditorComponent</a>)</code>
+<code>constructor(_appService: <a href="../injectables/AppService.html">AppService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/app.component.ts:27</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Constructor</p>
-</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -632,10 +640,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                    <td>_editorComponent</td>
+                                                    <td>_appService</td>
                                                   
                                                         <td>
-                                                                    <code><a href="../components/NgxEditorComponent.html" target="_self" >NgxEditorComponent</a></code>
+                                                                    <code><a href="../injectables/AppService.html" target="_self" >AppService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -643,7 +651,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>Editor component</p>
+                                                                <code><p>service for app component</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -659,108 +667,50 @@
 
 
 
+
     <section>
-    <h3>HostListeners</h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="document:mousemove"></a>
-                        <span class="name">
-                            <b>
-                            document:mousemove
-                            </b>
-                            <a href="#document:mousemove"><span class="fa fa-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Arguments : </i><code>'$event' </code>
-                        </td>
-                    </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>document:mousemove(event: MouseEvent)</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:32</a></div>
-                            </td>
-                        </tr>
-
-            </tbody>
-        </table>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="document:mouseup"></a>
+                        <a name="getLatestRelease"></a>
                         <span class="name">
                             <b>
-                            document:mouseup
+                            getLatestRelease
                             </b>
-                            <a href="#document:mouseup"><span class="fa fa-link"></span></a>
+                            <a href="#getLatestRelease"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Arguments : </i><code>'$event' </code>
-                        </td>
-                    </tr>
                 <tr>
                     <td class="col-md-4">
-<code>document:mouseup(event: MouseEvent)</code>
+<code>getLatestRelease()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/app.component.ts:34</a></div>
                             </td>
                         </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="mousedown"></a>
-                        <span class="name">
-                            <b>
-                            mousedown
-                            </b>
-                            <a href="#mousedown"><span class="fa fa-link"></span></a>
-                        </span>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Arguments : </i><code>'$event' </code>
-                        </td>
-                    </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>mousedown(event: MouseEvent, resizer?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank">Function</a>)</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:52</a></div>
-                            </td>
-                        </tr>
-
             </tbody>
         </table>
 </section>
-
 
     <section>
     
@@ -771,38 +721,45 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="grabber"></a>
+                        <a name="editorConfig"></a>
                         <span class="name">
                             <b>
-                            grabber
+                            editorConfig
                             </b>
-                            <a href="#grabber"><span class="fa fa-link"></span></a>
+                            <a href="#editorConfig"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>grabber:     <code></code>
+                        <code>editorConfig:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    editable: true,
+    spellcheck: false,
+    height: &#x27;10rem&#x27;,
+    minHeight: &#x27;5rem&#x27;,
+    placeholder: &#x27;Type something. Test the Editor... ヽ(^。^)丿&#x27;,
+    translate: &#x27;no&#x27;
+  }</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/app.component.ts:18</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>set to true on mousedown event </p>
-</div>
-                    </td>
-                </tr>
 
             </tbody>
         </table>
@@ -810,39 +767,38 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="height"></a>
+                        <a name="htmlContent"></a>
                         <span class="name">
                             <b>
-                            height
+                            htmlContent
                             </b>
-                            <a href="#height"><span class="fa fa-link"></span></a>
+                            <a href="#htmlContent"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>height:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                        <code>htmlContent:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;&#x27;</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/app.component.ts:27</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>height of the editor </p>
-</div>
-                    </td>
-                </tr>
 
             </tbody>
         </table>
@@ -850,44 +806,77 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="oldY"></a>
+                        <a name="latestRelease"></a>
                         <span class="name">
                             <b>
-                            oldY
+                            latestRelease
                             </b>
-                            <a href="#oldY"><span class="fa fa-link"></span></a>
+                            <a href="#latestRelease"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>oldY:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                        <code>latestRelease:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>0</code>
+                            <i>Default value : </i><code>[]</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/ngx-editor/ngx-grippie/ngx-grippie.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/app.component.ts:15</a></div>
                             </td>
                         </tr>
 
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>previous value befor resizing the editor </p>
-</div>
+                        <a name="title"></a>
+                        <span class="name">
+                            <b>
+                            title
+                            </b>
+                            <a href="#title"><span class="fa fa-link"></span></a>
+                        </span>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>title:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;ngx-editor&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/app.component.ts:14</a></div>
+                            </td>
+                        </tr>
+
 
             </tbody>
         </table>
@@ -897,61 +886,54 @@
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, HostListener } from &#x27;@angular/core&#x27;;
-import { NgxEditorComponent } from &#x27;../ngx-editor.component&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy } from &#x27;@angular/core&#x27;;
+import { AppService } from &#x27;./app.service&#x27;;
+import { Subject } from &#x27;rxjs&#x27;;
 
 @Component({
-  selector: &#x27;app-ngx-grippie&#x27;,
-  templateUrl: &#x27;./ngx-grippie.component.html&#x27;,
-  styleUrls: [&#x27;./ngx-grippie.component.scss&#x27;]
+  selector: &#x27;app-root&#x27;,
+  templateUrl: &#x27;./app.component.html&#x27;,
+  styleUrls: [&#x27;./app.component.scss&#x27;],
+  providers: [AppService]
 })
 
-export class NgxGrippieComponent {
+export class AppComponent implements OnInit, OnDestroy {
 
-  /** height of the editor */
-  height: number;
-  /** previous value befor resizing the editor */
-  oldY &#x3D; 0;
-  /** set to true on mousedown event */
-  grabber &#x3D; false;
+  title &#x3D; &#x27;ngx-editor&#x27;;
+  latestRelease: any &#x3D; [];
+  private subscription: Subject&lt;any&gt; &#x3D; new Subject();
+
+  editorConfig &#x3D; {
+    editable: true,
+    spellcheck: false,
+    height: &#x27;10rem&#x27;,
+    minHeight: &#x27;5rem&#x27;,
+    placeholder: &#x27;Type something. Test the Editor... ヽ(^。^)丿&#x27;,
+    translate: &#x27;no&#x27;
+  };
+
+  htmlContent &#x3D; &#x27;&#x27;;
 
   /**
-   * Constructor
-   *
-   * @param _editorComponent Editor component
+   * @param _appService service for app component
    */
-  constructor(private _editorComponent: NgxEditorComponent) { }
+  constructor(private _appService: AppService) { }
 
-  /**
-   *
-   * @param event Mouseevent
-   *
-   * Update the height of the editor when the grabber is dragged
-   */
-  @HostListener(&#x27;document:mousemove&#x27;, [&#x27;$event&#x27;]) onMouseMove(event: MouseEvent) {
-
-    if (!this.grabber) {
-      return;
-    }
-
-    this._editorComponent.resizeTextArea(event.clientY - this.oldY);
-    this.oldY &#x3D; event.clientY;
+  getLatestRelease() {
+    this.subscription &#x3D; this._appService.getLatestRelease().subscribe(
+      data &#x3D;&gt; this.latestRelease &#x3D; data[0],
+      error &#x3D;&gt; { console.log(error); },
+      () &#x3D;&gt; {
+        console.log(&#x27;latest release: &#x27; + this.latestRelease[&#x27;name&#x27;]);
+      });
   }
 
-  /**
-   *
-   * @param event Mouseevent
-   *
-   * set the grabber to false on mouse up action
-   */
-  @HostListener(&#x27;document:mouseup&#x27;, [&#x27;$event&#x27;]) onMouseUp(event: MouseEvent) {
-    this.grabber &#x3D; false;
+  ngOnInit() {
+    this.getLatestRelease();
   }
 
-  @HostListener(&#x27;mousedown&#x27;, [&#x27;$event&#x27;]) onResize(event: MouseEvent, resizer?: Function) {
-    this.grabber &#x3D; true;
-    this.oldY &#x3D; event.clientY;
-    event.preventDefault();
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
@@ -959,14 +941,29 @@ export class NgxGrippieComponent {
     </div>
 
     <div class="tab-pane fade" id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;ngx-editor-grippie&quot;&gt;
-  &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink&#x3D;&quot;http://www.w3.org/1999/xlink&quot; style&#x3D;&quot;isolation:isolate&quot; viewBox&#x3D;&quot;651.6 235 26 5&quot;
-    width&#x3D;&quot;26&quot; height&#x3D;&quot;5&quot;&gt;
-    &lt;g id&#x3D;&quot;sprites&quot;&gt;
-      &lt;path d&#x3D;&quot; M 651.6 235 L 653.6 235 L 653.6 237 L 651.6 237 M 654.6 238 L 656.6 238 L 656.6 240 L 654.6 240 M 660.6 238 L 662.6 238 L 662.6 240 L 660.6 240 M 666.6 238 L 668.6 238 L 668.6 240 L 666.6 240 M 672.6 238 L 674.6 238 L 674.6 240 L 672.6 240 M 657.6 235 L 659.6 235 L 659.6 237 L 657.6 237 M 663.6 235 L 665.6 235 L 665.6 237 L 663.6 237 M 669.6 235 L 671.6 235 L 671.6 237 L 669.6 237 M 675.6 235 L 677.6 235 L 677.6 237 L 675.6 237&quot;
-        fill&#x3D;&quot;rgb(147,153,159)&quot; /&gt;
-    &lt;/g&gt;
-  &lt;/svg&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
+  &lt;div class&#x3D;&quot;logo block&quot;&gt;
+    &lt;img src&#x3D;&quot;assets/icons/ngx-editor.svg&quot; alt&#x3D;&quot;ngx-Editor&quot;&gt;
+    &lt;h6&gt;A Simple WYSIWYG Editor for Angular6+ Applications.&lt;/h6&gt;
+    &lt;p&gt;(Currently -
+      &lt;a href&#x3D;&quot;https://github.com/Sibiraj-S/ngx-editor/releases/{{ latestRelease[&#x27;name&#x27;] }}&quot; target&#x3D;&quot;_blank&quot;&gt;{{ latestRelease[&#x27;name&#x27;] }}&lt;/a&gt;) &lt;/p&gt;
+    &lt;a class&#x3D;&quot;github-button&quot; href&#x3D;&quot;https://github.com/Sibiraj-S&quot; aria-label&#x3D;&quot;Follow @Sibiraj-S on GitHub&quot;&gt;Follow @Sibiraj-S&lt;/a&gt;
+    &lt;a class&#x3D;&quot;github-button&quot; href&#x3D;&quot;https://github.com/Sibiraj-S/ngx-editor/fork&quot; aria-label&#x3D;&quot;Fork Sibiraj-S/ngx-editor on GitHub&quot;&gt;Fork&lt;/a&gt;
+    &lt;a class&#x3D;&quot;github-button&quot; href&#x3D;&quot;https://github.com/Sibiraj-S/ngx-editor&quot; aria-label&#x3D;&quot;Star Sibiraj-S/ngx-editor on GitHub&quot;&gt;Star&lt;/a&gt;
+    &lt;a class&#x3D;&quot;github-button&quot; href&#x3D;&quot;https://github.com/Sibiraj-S/ngx-editor/issues&quot; data-show-count&#x3D;&quot;true&quot; aria-label&#x3D;&quot;Issue Sibiraj-S/ngx-editor on GitHub&quot;&gt;Issue&lt;/a&gt;
+    &lt;a class&#x3D;&quot;github-button&quot; href&#x3D;&quot;https://github.com/Sibiraj-S/ngx-editor/archive/master.zip&quot; aria-label&#x3D;&quot;Download Sibiraj-S/ngx-editor on GitHub&quot;&gt;Download&lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;editor block&quot;&gt;
+    &lt;app-ngx-editor [config]&#x3D;&quot;editorConfig&quot; [spellcheck]&#x3D;&quot;true&quot; [(ngModel)]&#x3D;&quot;htmlContent&quot;&gt;&lt;/app-ngx-editor&gt;
+  &lt;/div&gt;
+
+  &lt;div *ngIf&#x3D;&quot;htmlContent&quot; class&#x3D;&quot;htmlblock block&quot;&gt;
+    &lt;h6&gt;HTML Output&lt;/h6&gt;
+    &lt;div class&#x3D;&quot;html&quot;&gt;
+      {{ htmlContent }}
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -994,10 +991,10 @@ export class NgxGrippieComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="ngx-editor-grippie">  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="651.6 235 26 5"    width="26" height="5">    <g id="sprites">      <path d=" M 651.6 235 L 653.6 235 L 653.6 237 L 651.6 237 M 654.6 238 L 656.6 238 L 656.6 240 L 654.6 240 M 660.6 238 L 662.6 238 L 662.6 240 L 660.6 240 M 666.6 238 L 668.6 238 L 668.6 240 L 666.6 240 M 672.6 238 L 674.6 238 L 674.6 240 L 672.6 240 M 657.6 235 L 659.6 235 L 659.6 237 L 657.6 237 M 663.6 235 L 665.6 235 L 665.6 237 L 663.6 237 M 669.6 235 L 671.6 235 L 671.6 237 L 669.6 237 M 675.6 235 L 677.6 235 L 677.6 237 L 675.6 237"        fill="rgb(147,153,159)" />    </g>  </svg></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container">  <div class="logo block">    <img src="assets/icons/ngx-editor.svg" alt="ngx-Editor">    <h6>A Simple WYSIWYG Editor for Angular6+ Applications.</h6>    <p>(Currently -      <a href="https://github.com/Sibiraj-S/ngx-editor/releases/{{ latestRelease[\'name\'] }}" target="_blank">{{ latestRelease[\'name\'] }}</a>) </p>    <a class="github-button" href="https://github.com/Sibiraj-S" aria-label="Follow @Sibiraj-S on GitHub">Follow @Sibiraj-S</a>    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/fork" aria-label="Fork Sibiraj-S/ngx-editor on GitHub">Fork</a>    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor" aria-label="Star Sibiraj-S/ngx-editor on GitHub">Star</a>    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/issues" data-show-count="true" aria-label="Issue Sibiraj-S/ngx-editor on GitHub">Issue</a>    <a class="github-button" href="https://github.com/Sibiraj-S/ngx-editor/archive/master.zip" aria-label="Download Sibiraj-S/ngx-editor on GitHub">Download</a>  </div>  <div class="editor block">    <app-ngx-editor [config]="editorConfig" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>  </div>  <div *ngIf="htmlContent" class="htmlblock block">    <h6>HTML Output</h6>    <div class="html">      {{ htmlContent }}    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'NgxEditorComponent', 'selector': 'app-ngx-editor'},{'name': 'NgxEditorMessageComponent', 'selector': 'app-ngx-editor-message'},{'name': 'NgxEditorToolbarComponent', 'selector': 'app-ngx-editor-toolbar'},{'name': 'NgxGrippieComponent', 'selector': 'app-ngx-grippie'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'NgxGrippieComponent'};
+    var ACTUAL_COMPONENT = {'name': 'AppComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -1036,7 +1033,7 @@ export class NgxGrippieComponent {
 
         <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_URL = 'NgxGrippieComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppComponent.html';
         </script>
 
        <script src="../js/search/search.js"></script>
