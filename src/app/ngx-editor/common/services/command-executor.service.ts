@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import * as Utils from '../utils/ngx-editor.utils';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable()
 export class CommandExecutorService {
@@ -11,8 +12,9 @@ export class CommandExecutorService {
   /**
    *
    * @param _http HTTP Client for making http requests
+   * @param _document HTTP Client for getting results of execCommand
    */
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, @Inject(DOCUMENT) private _document: any) { }
 
   /**
    * executes command from the toolbar
@@ -26,21 +28,21 @@ export class CommandExecutorService {
     }
 
     if (command === 'enableObjectResizing') {
-      document.execCommand('enableObjectResizing', true, true);
+      this._document.execCommand('enableObjectResizing', true, true);
       return;
     }
 
     if (command === 'blockquote') {
-      document.execCommand('formatBlock', false, 'blockquote');
+      this._document.execCommand('formatBlock', false, 'blockquote');
       return;
     }
 
     if (command === 'removeBlockquote') {
-      document.execCommand('formatBlock', false, 'div');
+      this._document.execCommand('formatBlock', false, 'div');
       return;
     }
 
-    document.execCommand(command, false, null);
+    this._document.execCommand(command, false, null);
     return;
   }
 
@@ -54,7 +56,7 @@ export class CommandExecutorService {
       if (imageURI) {
         const restored = Utils.restoreSelection(this.savedSelection);
         if (restored) {
-          const inserted = document.execCommand('insertImage', false, imageURI);
+          const inserted = this._document.execCommand('insertImage', false, imageURI);
           if (!inserted) {
             throw new Error('Invalid URL');
           }
@@ -163,7 +165,7 @@ export class CommandExecutorService {
       if (params.urlNewTab) {
         const newUrl = '<a href="' + params.urlLink + '" target="_blank">' + params.urlText + '</a>';
 
-        if (document.getSelection().type !== 'Range') {
+        if (this._document.getSelection().type !== 'Range') {
           const restored = Utils.restoreSelection(this.savedSelection);
           if (restored) {
             this.insertHtml(newUrl);
@@ -174,7 +176,7 @@ export class CommandExecutorService {
       } else {
         const restored = Utils.restoreSelection(this.savedSelection);
         if (restored) {
-          document.execCommand('createLink', false, params.urlLink);
+          this._document.execCommand('createLink', false, params.urlLink);
         }
       }
     } else {
@@ -196,9 +198,9 @@ export class CommandExecutorService {
       const restored = Utils.restoreSelection(this.savedSelection);
       if (restored && this.checkSelection()) {
         if (where === 'textColor') {
-          document.execCommand('foreColor', false, color);
+          this._document.execCommand('foreColor', false, color);
         } else {
-          document.execCommand('hiliteColor', false, color);
+          this._document.execCommand('hiliteColor', false, color);
         }
       }
 
@@ -272,7 +274,7 @@ export class CommandExecutorService {
   /** insert HTML */
   private insertHtml(html: string): void {
 
-    const isHTMLInserted = document.execCommand('insertHTML', false, html);
+    const isHTMLInserted = this._document.execCommand('insertHTML', false, html);
 
     if (!isHTMLInserted) {
       throw new Error('Unable to perform the operation');
@@ -323,7 +325,7 @@ export class CommandExecutorService {
    * @param tag HTML tag
    */
   private checkTagSupportInBrowser(tag: string): boolean {
-    return !(document.createElement(tag) instanceof HTMLUnknownElement);
+    return !(this._document.createElement(tag) instanceof HTMLUnknownElement);
   }
 
 }
