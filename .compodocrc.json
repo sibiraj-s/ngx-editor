@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/@compodoc/compodoc/src/config/schema.json",
+  "name": "NgxEditor",
+  "output": "./docs/",
+  "tsconfig": "./src/tsconfig.app.json",
+  "customFavicon": "./src/favicon.ico",
+  "includes": "./extras",
+  "includesName": "Wiki",
+  "disableLifeCycleHooks": true,
+  "disablePrivate": true,
+  "disableProtected": true,
+  "disableInternal": true,
+  "disableCoverage": true,
+  "hideGenerator": true
+}

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Subject, Observable } from 'rxjs';
+
 
 /** time in which the message has to be cleared */
 const DURATION = 7000;

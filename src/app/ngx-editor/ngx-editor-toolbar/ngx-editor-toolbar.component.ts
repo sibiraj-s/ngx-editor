@@ -250,15 +250,6 @@ export class NgxEditorToolbarComponent implements OnInit {
     return;
   }
 
-  /**
-   * allow only numbers
-   *
-   * @param event keypress event
-   */
-  onlyNumbers(event: KeyboardEvent): boolean {
-    return event.charCode >= 48 && event.charCode <= 57;
-  }
-
   ngOnInit() {
     this.buildUrlForm();
     this.buildImageForm();

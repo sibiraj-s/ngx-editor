@@ -1,12 +1,12 @@
 {
-    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
-    "workingDirectory": "./.ng_pkg_build",
-    "dest": "./build/",
-    "lib": {
-        "entryFile": "./src/public_api.ts",
-        "comments": "none",
-        "umdModuleIds": {
-            "ngx-bootstrap": "ngx-bootstrap"
-        }
+  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+  "workingDirectory": "./.ng_pkg_build",
+  "dest": "./build/",
+  "lib": {
+    "entryFile": "./src/public_api.ts",
+    "comments": "none",
+    "umdModuleIds": {
+      "ngx-bootstrap": "ngx-bootstrap"
     }
+  }
 }

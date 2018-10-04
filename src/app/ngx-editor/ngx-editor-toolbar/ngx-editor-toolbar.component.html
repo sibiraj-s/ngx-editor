@@ -26,16 +26,19 @@
     </button>
   </div>
   <div class="ngx-toolbar-set">
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontName')" (click)="fontName = ''" title="Font Family"
-      [popover]="fontNameTemplate" #fontNamePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontName')" (click)="fontName = ''"
+      title="Font Family" [popover]="fontNameTemplate" #fontNamePopover="bs-popover" containerClass="ngxePopover"
+      [disabled]="!config['enableToolbar']">
       <i class="fa fa-font" aria-hidden="true"></i>
     </button>
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontSize')" (click)="fontSize = ''" title="Font Size"
-      [popover]="fontSizeTemplate" #fontSizePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontSize')" (click)="fontSize = ''"
+      title="Font Size" [popover]="fontSizeTemplate" #fontSizePopover="bs-popover" containerClass="ngxePopover"
+      [disabled]="!config['enableToolbar']">
       <i class="fa fa-text-height" aria-hidden="true"></i>
     </button>
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('color')" (click)="hexColor = ''" title="Color Picker"
-      [popover]="insertColorTemplate" #colorPopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('color')" (click)="hexColor = ''"
+      title="Color Picker" [popover]="insertColorTemplate" #colorPopover="bs-popover" containerClass="ngxePopover"
+      [disabled]="!config['enableToolbar']">
       <i class="fa fa-tint" aria-hidden="true"></i>
     </button>
   </div>
@@ -66,8 +69,8 @@
     </button>
   </div>
   <div class="ngx-toolbar-set">
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('cut')" (click)="triggerCommand('cut')" title="Cut"
-      [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('cut')" (click)="triggerCommand('cut')"
+      title="Cut" [disabled]="!config['enableToolbar']">
       <i class="fa fa-scissors" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('copy')" (click)="triggerCommand('copy')"
@@ -118,20 +121,23 @@
     </button>
   </div>
   <div class="ngx-toolbar-set">
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" (click)="buildUrlForm()" [popover]="insertLinkTemplate"
-      title="Insert Link" #urlPopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" (click)="buildUrlForm()"
+      [popover]="insertLinkTemplate" title="Insert Link" #urlPopover="bs-popover" containerClass="ngxePopover"
+      [disabled]="!config['enableToolbar']">
       <i class="fa fa-link" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unlink')" (click)="triggerCommand('unlink')"
       title="Unlink" [disabled]="!config['enableToolbar']">
       <i class="fa fa-chain-broken" aria-hidden="true"></i>
     </button>
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="buildImageForm()" title="Insert Image"
-      [popover]="insertImageTemplate" #imagePopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="buildImageForm()"
+      title="Insert Image" [popover]="insertImageTemplate" #imagePopover="bs-popover" containerClass="ngxePopover"
+      [disabled]="!config['enableToolbar']">
       <i class="fa fa-picture-o" aria-hidden="true"></i>
     </button>
-    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('video')" (click)="buildVideoForm()" title="Insert Video"
-      [popover]="insertVideoTemplate" #videoPopover="bs-popover" containerClass="ngxePopover" [disabled]="!config['enableToolbar']">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('video')" (click)="buildVideoForm()"
+      title="Insert Video" [popover]="insertVideoTemplate" #videoPopover="bs-popover" containerClass="ngxePopover"
+      [disabled]="!config['enableToolbar']">
       <i class="fa fa-youtube-play" aria-hidden="true"></i>
     </button>
   </div>
@@ -147,7 +153,8 @@
       </div>
       <div class="form-group">
         <label for="urlTextInput" class="small">Text</label>
-        <input type="text" class="form-control-sm" id="urlTextInput" placeholder="Text" formControlName="urlText" required>
+        <input type="text" class="form-control-sm" id="urlTextInput" placeholder="Text" formControlName="urlText"
+          required>
       </div>
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="urlNewTab" formControlName="urlNewTab">
@@ -189,7 +196,8 @@
         <form class="extra-gt" [formGroup]="imageForm" (ngSubmit)="imageForm.valid && insertImage()" autocomplete="off">
           <div class="form-group">
             <label for="imageURLInput" class="small">URL</label>
-            <input type="text" class="form-control-sm" id="imageURLInput" placeholder="URL" formControlName="imageUrl" required>
+            <input type="text" class="form-control-sm" id="imageURLInput" placeholder="URL" formControlName="imageUrl"
+              required>
           </div>
           <button type="submit" class="btn-primary btn-sm btn">Submit</button>
         </form>
@@ -215,14 +223,15 @@
       <form class="extra-gt" [formGroup]="videoForm" (ngSubmit)="videoForm.valid && insertVideo()" autocomplete="off">
         <div class="form-group">
           <label for="videoURLInput" class="small">URL</label>
-          <input type="text" class="form-control-sm" id="videoURLInput" placeholder="URL" formControlName="videoUrl" required>
+          <input type="text" class="form-control-sm" id="videoURLInput" placeholder="URL" formControlName="videoUrl"
+            required>
         </div>
         <div class="row form-group">
           <div class="col">
-            <input type="text" class="form-control-sm" formControlName="height" placeholder="height (px)" (keypress)="onlyNumbers($event)">
+            <input type="text" class="form-control-sm" formControlName="height" placeholder="height (px)" pattern="[0-9]">
           </div>
           <div class="col">
-            <input type="text" class="form-control-sm" formControlName="width" placeholder="width (px)" (keypress)="onlyNumbers($event)">
+            <input type="text" class="form-control-sm" formControlName="width" placeholder="width (px)" pattern="[0-9]">
           </div>
           <label class="small">Height/Width</label>
         </div>
@@ -243,8 +252,8 @@
       <form autocomplete="off">
         <div class="form-group">
           <label for="hexInput" class="small">Hex Color</label>
-          <input type="text" class="form-control-sm" id="hexInput" name="hexInput" maxlength="7" placeholder="HEX Color" [(ngModel)]="hexColor"
-            required>
+          <input type="text" class="form-control-sm" id="hexInput" name="hexInput" maxlength="7" placeholder="HEX Color"
+            [(ngModel)]="hexColor" required>
         </div>
         <button type="button" class="btn-primary btn-sm btn" (click)="insertColor(hexColor, selectedColorTab)">Submit</button>
       </form>
@@ -258,8 +267,8 @@
     <form autocomplete="off">
       <div class="form-group">
         <label for="fontSize" class="small">Font Size</label>
-        <input type="text" class="form-control-sm" id="fontSize" name="fontSize" placeholder="Font size in px/rem" [(ngModel)]="fontSize"
-          required>
+        <input type="text" class="form-control-sm" id="fontSize" name="fontSize" placeholder="Font size in px/rem"
+          [(ngModel)]="fontSize" required>
       </div>
       <button type="button" class="btn-primary btn-sm btn" (click)="setFontSize(fontSize)">Submit</button>
     </form>
