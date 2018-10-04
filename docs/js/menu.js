@@ -2,13 +2,34 @@ document.addEventListener('DOMContentLoaded', function() {
     var menuCollapsed = false,
         mobileMenu = document.getElementById('mobile-menu');
 
+    var localContextInUrl = '';
+    
+    if (COMPODOC_CURRENT_PAGE_CONTEXT !== '') {
+        localContextInUrl = localContextInUrl;
+        switch (COMPODOC_CURRENT_PAGE_CONTEXT) {
+            case 'additional-page':
+                localContextInUrl = 'additional-documentation'
+                break;
+            case 'class':
+                localContextInUrl = 'classes'
+                break;
+            case 'miscellaneous-functions':
+            case 'miscellaneous-variables':
+            case 'miscellaneous-typealiases':
+            case 'miscellaneous-enumerations':
+                localContextInUrl = 'miscellaneous';
+            default:
+                break;
+        }
+    }
+
     function hasClass(el, cls) {
         return el.className && new RegExp("(\\s|^)" + cls + "(\\s|$)").test(el.className);
     }
 
     var processLink = function(link, url) {
         if (url.charAt(0) !== '.') {
-            let prefix = '';
+            var prefix = '';
             switch(COMPODOC_CURRENT_PAGE_DEPTH) {
                 case 5:
                     prefix = '../../../../../';
@@ -37,11 +58,16 @@ document.addEventListener('DOMContentLoaded', function() {
         for (var i = 0; i < links.length; i++) {
             var link = links[i];
             var linkHref = link.getAttribute('href');
-            if (linkHref.toLowerCase().indexOf(COMPODOC_CURRENT_PAGE_URL.toLowerCase()) !== -1 && link.innerHTML.indexOf('Getting started') == -1 && !dontAddClass) {
-                link.classList.add('active');
+            if (linkHref) {
+                var linkHrefFile = linkHref.substr(linkHref.lastIndexOf('/') + 1, linkHref.length);
+                if (linkHrefFile.toLowerCase() === COMPODOC_CURRENT_PAGE_URL.toLowerCase()
+                    && link.innerHTML.indexOf('Getting started') == -1 
+                    && !dontAddClass
+                    && linkHref.toLowerCase().indexOf(localContextInUrl.toLowerCase()) !== -1 ) {
+                    link.classList.add('active');
+                }
+                processLink(link, linkHref);
             }
-            processLink(link, linkHref);
-
         }
     }
     var chapterLinks = document.querySelectorAll('[data-type="chapter-link"]');
@@ -57,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entityLogo) {
                 var url = entityLogo.getAttribute('data-src');
                 if (url.charAt(0) !== '.') {
-                    let prefix = '';
+                    var prefix = '';
                     switch(COMPODOC_CURRENT_PAGE_DEPTH) {
                         case 5:
                             prefix = '../../../../../';
@@ -98,8 +124,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // collapse menu
         var classnameMenuToggler = document.getElementsByClassName('menu-toggler'),
-            faAngleUpClass = 'fa-angle-up',
-            faAngleDownClass = 'fa-angle-down',
+            faAngleUpClass = 'ion-ios-arrow-up',
+            faAngleDownClass = 'ion-ios-arrow-down',
             toggleItemMenu = function(e) {
                 var element = $(e.target),
                     parent = element[0].parentNode,
