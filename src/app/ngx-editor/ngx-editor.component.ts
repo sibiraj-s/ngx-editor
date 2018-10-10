@@ -113,7 +113,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * Executed from the contenteditable section while the input property changes
    * @param html html string from contenteditable
    */
-  onContentChange(innerHTML: string, innerText: string): void {
+  onContentChange(innerHTML: string): void {
     if (typeof this.onChange === 'function') {
       this.onChange(innerHTML);
       this.togglePlaceholder(innerHTML);
