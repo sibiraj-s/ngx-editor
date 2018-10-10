@@ -14,13 +14,11 @@ import * as Utils from './common/utils/ngx-editor.utils';
   selector: 'app-ngx-editor',
   templateUrl: './ngx-editor.component.html',
   styleUrls: ['./ngx-editor.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => NgxEditorComponent),
-      multi: true
-    }
-  ]
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => NgxEditorComponent),
+    multi: true
+  }]
 })
 
 export class NgxEditorComponent implements OnInit, ControlValueAccessor {
@@ -115,11 +113,10 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * Executed from the contenteditable section while the input property changes
    * @param html html string from contenteditable
    */
-  onContentChange(html: string): void {
-
+  onContentChange(innerHTML: string, innerText: string): void {
     if (typeof this.onChange === 'function') {
-      this.onChange(html);
-      this.togglePlaceholder(html);
+      this.onChange(innerHTML);
+      this.togglePlaceholder(innerHTML);
     }
 
     return;
