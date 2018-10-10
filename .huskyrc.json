@@ -1,5 +1,5 @@
 {
   "hooks": {
-    "pre-commit": "npm run lint && npm run test:single-run"
+    "pre-commit": "npm run lint:scripts && npm run lint && npm run test:single-run"
   }
 }
