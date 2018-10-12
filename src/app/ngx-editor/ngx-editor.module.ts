@@ -13,7 +13,7 @@ import { CommandExecutorService } from './common/services/command-executor.servi
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, PopoverModule.forRoot()],
   declarations: [NgxEditorComponent, NgxGrippieComponent, NgxEditorMessageComponent, NgxEditorToolbarComponent],
-  exports: [NgxEditorComponent, PopoverModule],
+  exports: [NgxEditorComponent],
   providers: [CommandExecutorService, MessageService]
 })
 
