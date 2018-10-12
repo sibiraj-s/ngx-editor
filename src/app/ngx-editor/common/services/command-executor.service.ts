@@ -4,7 +4,6 @@ import * as Utils from '../utils/ngx-editor.utils';
 
 @Injectable()
 export class CommandExecutorService {
-
   /** saves the selection from the editor when focussed out */
   savedSelection: any = undefined;
 
@@ -20,28 +19,23 @@ export class CommandExecutorService {
    * @param command command to be executed
    */
   execute(command: string): void {
-
     if (!this.savedSelection && command !== 'enableObjectResizing') {
       throw new Error('Range out of Editor');
     }
 
     if (command === 'enableObjectResizing') {
       document.execCommand('enableObjectResizing', true);
-      return;
     }
 
     if (command === 'blockquote') {
       document.execCommand('formatBlock', false, 'blockquote');
-      return;
     }
 
     if (command === 'removeBlockquote') {
       document.execCommand('formatBlock', false, 'div');
-      return;
     }
 
     document.execCommand(command, false, null);
-    return;
   }
 
   /**
@@ -63,7 +57,6 @@ export class CommandExecutorService {
     } else {
       throw new Error('Range out of the editor');
     }
-    return;
   }
 
   /**
@@ -98,7 +91,6 @@ export class CommandExecutorService {
     } else {
       throw new Error('Range out of the editor');
     }
-    return;
   }
 
   /**
@@ -127,7 +119,6 @@ export class CommandExecutorService {
    * @param endPoint enpoint to which the image has to be uploaded
    */
   uploadImage(file: File, endPoint: string): any {
-
     if (!endPoint) {
       throw new Error('Image Endpoint isn`t provided or invalid');
     }
@@ -155,7 +146,6 @@ export class CommandExecutorService {
    * @param params parameters that holds the information for the link
    */
   createLink(params: any): void {
-
     if (this.savedSelection) {
       /**
        * check whether the saved selection contains a range or plain selection
@@ -180,8 +170,6 @@ export class CommandExecutorService {
     } else {
       throw new Error('Range out of the editor');
     }
-
-    return;
   }
 
   /**
@@ -191,7 +179,6 @@ export class CommandExecutorService {
    * @param where where the color has to be inserted either text/background
    */
   insertColor(color: string, where: string): void {
-
     if (this.savedSelection) {
       const restored = Utils.restoreSelection(this.savedSelection);
       if (restored && this.checkSelection()) {
@@ -201,12 +188,9 @@ export class CommandExecutorService {
           document.execCommand('hiliteColor', false, color);
         }
       }
-
     } else {
       throw new Error('Range out of the editor');
     }
-
-    return;
   }
 
   /**
@@ -215,12 +199,10 @@ export class CommandExecutorService {
    * @param fontSize font-size to be set
    */
   setFontSize(fontSize: string): void {
-
     if (this.savedSelection && this.checkSelection()) {
       const deletedValue = this.deleteAndGetElement();
 
       if (deletedValue) {
-
         const restored = Utils.restoreSelection(this.savedSelection);
 
         if (restored) {
@@ -233,7 +215,6 @@ export class CommandExecutorService {
           }
         }
       }
-
     } else {
       throw new Error('Range out of the editor');
     }
@@ -245,12 +226,10 @@ export class CommandExecutorService {
    * @param fontName font-family to be set
    */
   setFontName(fontName: string): void {
-
     if (this.savedSelection && this.checkSelection()) {
       const deletedValue = this.deleteAndGetElement();
 
       if (deletedValue) {
-
         const restored = Utils.restoreSelection(this.savedSelection);
 
         if (restored) {
@@ -263,7 +242,6 @@ export class CommandExecutorService {
           }
         }
       }
-
     } else {
       throw new Error('Range out of the editor');
     }
@@ -271,14 +249,11 @@ export class CommandExecutorService {
 
   /** insert HTML */
   private insertHtml(html: string): void {
-
     const isHTMLInserted = document.execCommand('insertHTML', false, html);
 
     if (!isHTMLInserted) {
       throw new Error('Unable to perform the operation');
     }
-
-    return;
   }
 
   /**
@@ -292,7 +267,6 @@ export class CommandExecutorService {
 
   /** delete the text at selected range and return the value */
   private deleteAndGetElement(): any {
-
     let slectedText;
 
     if (this.savedSelection) {
@@ -302,12 +276,10 @@ export class CommandExecutorService {
     }
 
     return false;
-
   }
 
   /** check any slection is made or not */
   private checkSelection(): any {
-
     const slectedText = this.savedSelection.toString();
 
     if (slectedText.length === 0) {

@@ -14,7 +14,6 @@ import * as Utils from '../common/utils/ngx-editor.utils';
 })
 
 export class NgxEditorToolbarComponent implements OnInit {
-
   /** holds values of the insert link form */
   urlForm: FormGroup;
   /** holds values of the insert image form */
@@ -83,21 +82,17 @@ export class NgxEditorToolbarComponent implements OnInit {
    * create URL insert form
    */
   buildUrlForm(): void {
-
     this.urlForm = this._formBuilder.group({
       urlLink: ['', [Validators.required]],
       urlText: ['', [Validators.required]],
       urlNewTab: [true]
     });
-
-    return;
   }
 
   /**
    * inserts link in the editor
    */
   insertLink(): void {
-
     try {
       this._commandExecutorService.createLink(this.urlForm.value);
     } catch (error) {
@@ -108,34 +103,26 @@ export class NgxEditorToolbarComponent implements OnInit {
     this.buildUrlForm();
     /** close inset URL pop up */
     this.urlPopover.hide();
-
-    return;
   }
 
   /**
    * create insert image form
    */
   buildImageForm(): void {
-
     this.imageForm = this._formBuilder.group({
       imageUrl: ['', [Validators.required]]
     });
-
-    return;
   }
 
   /**
    * create insert image form
    */
   buildVideoForm(): void {
-
     this.videoForm = this._formBuilder.group({
       videoUrl: ['', [Validators.required]],
       height: [''],
       width: ['']
     });
-
-    return;
   }
 
   /**
@@ -144,7 +131,6 @@ export class NgxEditorToolbarComponent implements OnInit {
    * @param e onChange event
    */
   onFileChange(e): void {
-
     this.uploadComplete = false;
     this.isUploading = true;
 
@@ -173,10 +159,7 @@ export class NgxEditorToolbarComponent implements OnInit {
         this.uploadComplete = true;
         this.isUploading = false;
       }
-
     }
-
-    return;
   }
 
   /** insert image in the editor */
@@ -191,8 +174,6 @@ export class NgxEditorToolbarComponent implements OnInit {
     this.buildImageForm();
     /** close inset URL pop up */
     this.imagePopover.hide();
-
-    return;
   }
 
   /** insert image in the editor */
@@ -207,13 +188,10 @@ export class NgxEditorToolbarComponent implements OnInit {
     this.buildVideoForm();
     /** close inset URL pop up */
     this.videoPopover.hide();
-
-    return;
   }
 
   /** inser text/background color */
   insertColor(color: string, where: string): void {
-
     try {
       this._commandExecutorService.insertColor(color, where);
     } catch (error) {
@@ -221,12 +199,10 @@ export class NgxEditorToolbarComponent implements OnInit {
     }
 
     this.colorPopover.hide();
-    return;
   }
 
   /** set font size */
   setFontSize(fontSize: string): void {
-
     try {
       this._commandExecutorService.setFontSize(fontSize);
     } catch (error) {
@@ -234,12 +210,10 @@ export class NgxEditorToolbarComponent implements OnInit {
     }
 
     this.fontSizePopover.hide();
-    return;
   }
 
   /** set font Name/family */
   setFontName(fontName: string): void {
-
     try {
       this._commandExecutorService.setFontName(fontName);
     } catch (error) {
@@ -247,7 +221,6 @@ export class NgxEditorToolbarComponent implements OnInit {
     }
 
     this.fontSizePopover.hide();
-    return;
   }
 
   ngOnInit() {
@@ -255,5 +228,4 @@ export class NgxEditorToolbarComponent implements OnInit {
     this.buildImageForm();
     this.buildVideoForm();
   }
-
 }

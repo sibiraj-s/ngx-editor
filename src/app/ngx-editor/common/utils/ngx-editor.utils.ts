@@ -5,13 +5,10 @@
  * @param toolbar toolbar configuration object
  */
 export function canEnableToolbarOptions(value: string, toolbar: any): boolean {
-
   if (value) {
-
     if (toolbar['length'] === 0) {
       return true;
     } else {
-
       const found = toolbar.filter(array => {
         return array.indexOf(value) !== -1;
       });
@@ -31,14 +28,11 @@ export function canEnableToolbarOptions(value: string, toolbar: any): boolean {
  * @param input direct configuration inputs via directives
  */
 export function getEditorConfiguration(value: any, ngxEditorConfig: any, input: any): any {
-
   for (const i in ngxEditorConfig) {
     if (i) {
-
       if (input[i] !== undefined) {
         value[i] = input[i];
       }
-
       if (!value.hasOwnProperty(i)) {
         value[i] = ngxEditorConfig[i];
       }

@@ -7,7 +7,6 @@ const DURATION = 7000;
 
 @Injectable()
 export class MessageService {
-
   /** variable to hold the user message */
   private message: Subject<string> = new Subject();
 
@@ -26,7 +25,6 @@ export class MessageService {
   sendMessage(message: string): void {
     this.message.next(message);
     this.clearMessageIn(DURATION);
-    return;
   }
 
   /**
@@ -38,7 +36,5 @@ export class MessageService {
     setTimeout(() => {
       this.message.next(undefined);
     }, milliseconds);
-    return;
   }
-
 }

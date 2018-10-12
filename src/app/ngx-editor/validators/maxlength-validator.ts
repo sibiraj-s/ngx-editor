@@ -36,5 +36,4 @@ export function MaxLengthValidator(maxlength: number, options?: IMaxLengthValida
     }
     return null;
   };
-
 }

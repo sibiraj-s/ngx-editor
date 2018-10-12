@@ -34,5 +34,4 @@ describe('NgxGrippieComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });

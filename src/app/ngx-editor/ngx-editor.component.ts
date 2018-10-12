@@ -22,7 +22,6 @@ import * as Utils from './common/utils/ngx-editor.utils';
 })
 
 export class NgxEditorComponent implements OnInit, ControlValueAccessor {
-
   /** Specifies weather the textarea to be editable or not */
   @Input() editable: boolean;
   /** The spellcheck property specifies whether the element is to have its spelling and grammar checked or not. */
@@ -101,7 +100,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    */
   onTextAreaFocus(): void {
     this.focus.emit('focus');
-    return;
   }
 
   /** focus the text area when the editor is focussed */
@@ -118,12 +116,9 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
       this.onChange(innerHTML);
       this.togglePlaceholder(innerHTML);
     }
-
-    return;
   }
 
   onTextAreaBlur(): void {
-
     /** save selection if focussed out */
     this._commandExecutor.savedSelection = Utils.saveSelection();
 
@@ -131,7 +126,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
       this.onTouched();
     }
     this.blur.emit('blur');
-    return;
   }
 
   /**
@@ -144,7 +138,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     newHeight += offsetY;
     this.height = newHeight + 'px';
     this.textArea.nativeElement.style.height = this.height;
-    return;
   }
 
   /**
@@ -153,14 +146,11 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param commandName name of the command to be executed
    */
   executeCommand(commandName: string): void {
-
     try {
       this._commandExecutor.execute(commandName);
     } catch (error) {
       this._messageService.sendMessage(error.message);
     }
-
-    return;
   }
 
   /**
@@ -169,7 +159,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param value value to be executed when there is a change in contenteditable
    */
   writeValue(value: any): void {
-
     this.togglePlaceholder(value);
 
     if (value === null || value === undefined || value === '' || value === '<br>') {
@@ -207,7 +196,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   refreshView(value: string): void {
     const normalizedValue = value === null ? '' : value;
     this._renderer.setProperty(this.textArea.nativeElement, 'innerHTML', normalizedValue);
-    return;
   }
 
   /**
@@ -221,7 +209,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     } else {
       this._renderer.removeClass(this.ngxWrapper.nativeElement, 'show-placeholder');
     }
-    return;
   }
 
   /**
@@ -253,7 +240,5 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
 
     this.executeCommand('enableObjectResizing');
-
   }
-
 }

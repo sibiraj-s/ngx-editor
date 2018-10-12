@@ -8,7 +8,6 @@ import { NgxEditorComponent } from '../ngx-editor.component';
 })
 
 export class NgxGrippieComponent {
-
   /** height of the editor */
   height: number;
   /** previous value befor resizing the editor */
@@ -30,7 +29,6 @@ export class NgxGrippieComponent {
    * Update the height of the editor when the grabber is dragged
    */
   @HostListener('document:mousemove', ['$event']) onMouseMove(event: MouseEvent) {
-
     if (!this.grabber) {
       return;
     }
