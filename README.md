@@ -45,8 +45,6 @@ import { NgxEditorModule } from 'ngx-editor';
 })
 ```
 
-Import [font-awesome](https://github.com/FortAwesome/Font-Awesome) into your application
-
 Then in HTML
 
 ```html
@@ -57,9 +55,8 @@ For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
 
 #### PeerDependencies
 
-`ngx-editor` depeneds on the following libraries to work.
+`ngx-editor` depends on the following library to work.
 
-* [Font-Awesome v4.7.0](https://github.com/FortAwesome/Font-Awesome/tree/fa-4)
 * [Ngx-Bootstrap](https://github.com/valor-software/ngx-bootstrap)
 
 ## Compatibility
