@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PopoverModule } from 'ngx-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxEditorComponent } from './ngx-editor.component';
 import { NgxGrippieComponent } from './ngx-grippie/ngx-grippie.component';
 import { NgxEditorMessageComponent } from './ngx-editor-message/ngx-editor-message.component';
@@ -11,7 +12,7 @@ import { MessageService } from './common/services/message.service';
 import { CommandExecutorService } from './common/services/command-executor.service';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, PopoverModule.forRoot()],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, PopoverModule.forRoot(), FontAwesomeModule],
   declarations: [NgxEditorComponent, NgxGrippieComponent, NgxEditorMessageComponent, NgxEditorToolbarComponent],
   exports: [NgxEditorComponent, PopoverModule],
   providers: [CommandExecutorService, MessageService]

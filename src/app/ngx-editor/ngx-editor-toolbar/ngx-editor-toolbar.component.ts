@@ -2,6 +2,11 @@ import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angu
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 import { PopoverConfig } from 'ngx-bootstrap';
+import { faBold, faItalic, faUnderline, faStrikethrough, faSuperscript, faSubscript, faFont,
+  faTextHeight, faTint, faAlignLeft, faAlignCenter, faAlignRight, faAlignJustify, faIndent,
+  faOutdent, faCut, faCopy, faTrash, faEraser, faUndo, faRedo, faParagraph, faQuoteLeft,
+  faQuoteRight, faMinus, faListUl, faListOl, faLink, faUnlink, faImage, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { CommandExecutorService } from '../common/services/command-executor.service';
 import { MessageService } from '../common/services/message.service';
 import * as Utils from '../common/utils/ngx-editor.utils';
@@ -27,7 +32,7 @@ export class NgxEditorToolbarComponent implements OnInit {
   updloadPercentage = 0;
   /** set to true when the image is being uploaded */
   isUploading = false;
-  /** which tab to active for color insetion */
+  /** which tab to active for color insertion */
   selectedColorTab = 'textColor';
   /** font family name */
   fontName = '';
@@ -37,6 +42,40 @@ export class NgxEditorToolbarComponent implements OnInit {
   hexColor = '';
   /** show/hide image uploader */
   isImageUploader = false;
+
+  /** Make font-awesome icons available */
+  faBold = faBold;
+  faItalic = faItalic;
+  faUnderline = faUnderline;
+  faStrikethrough = faStrikethrough;
+  faSuperscript = faSuperscript;
+  faSubscript = faSubscript;
+  faFont = faFont;
+  faTextHeight = faTextHeight;
+  faTint = faTint;
+  faAlignLeft = faAlignLeft;
+  faAlignCenter = faAlignCenter;
+  faAlignRight = faAlignRight;
+  faAlignJustify = faAlignJustify;
+  faIndent = faIndent;
+  faOutdent = faOutdent;
+  faCut = faCut;
+  faCopy = faCopy;
+  faTrash = faTrash;
+  faEraser = faEraser;
+  faUndo = faUndo;
+  faRedo = faRedo;
+  faParagraph = faParagraph;
+  faQuoteLeft = faQuoteLeft;
+  faQuoteRight = faQuoteRight;
+  faMinus = faMinus;
+  faListUl = faListUl;
+  faListOl = faListOl;
+  faLink = faLink;
+  faUnlink = faUnlink;
+  faImage = faImage;
+  faUpload = faUpload;
+  faYoutube = faYoutube;
 
   /**
    * Editor configuration

@@ -6,6 +6,7 @@ import { NgxGrippieComponent } from './ngx-grippie/ngx-grippie.component';
 import { NgxEditorToolbarComponent } from './ngx-editor-toolbar/ngx-editor-toolbar.component';
 import { NgxEditorMessageComponent } from './ngx-editor-message/ngx-editor-message.component';
 import { PopoverModule } from 'ngx-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MessageService } from './common/services/message.service';
 import { CommandExecutorService } from './common/services/command-executor.service';
 
@@ -15,7 +16,7 @@ describe('NgxEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, PopoverModule.forRoot(), HttpClientModule],
+      imports: [FormsModule, ReactiveFormsModule, PopoverModule.forRoot(), HttpClientModule, FontAwesomeModule],
       providers: [MessageService, CommandExecutorService],
       declarations: [NgxEditorComponent,
         NgxGrippieComponent,

@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxEditorToolbarComponent } from './ngx-editor-toolbar.component';
 import { ngxEditorConfig } from '../common/ngx-editor.defaults';
 import { PopoverModule } from 'ngx-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommandExecutorService } from '../common/services/command-executor.service';
 import { MessageService } from '../common/services/message.service';
 
@@ -13,7 +14,7 @@ describe('NgxEditorToolbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, PopoverModule.forRoot(), HttpClientModule],
+      imports: [FormsModule, ReactiveFormsModule, PopoverModule.forRoot(), HttpClientModule, FontAwesomeModule],
       declarations: [NgxEditorToolbarComponent],
       providers: [CommandExecutorService, MessageService]
     })
