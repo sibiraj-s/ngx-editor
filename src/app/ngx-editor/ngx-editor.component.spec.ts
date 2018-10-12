@@ -35,5 +35,4 @@ describe('NgxEditorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });
