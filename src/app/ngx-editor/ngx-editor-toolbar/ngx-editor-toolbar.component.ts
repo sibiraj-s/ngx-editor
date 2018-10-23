@@ -232,7 +232,7 @@ export class NgxEditorToolbarComponent implements OnInit {
   }
 
   toggleH1() {
-    if(!this.wasH1Pressed) {
+    if (!this.wasH1Pressed) {
       this.execute.emit('h1');
     } else {
       this.execute.emit('clear');
