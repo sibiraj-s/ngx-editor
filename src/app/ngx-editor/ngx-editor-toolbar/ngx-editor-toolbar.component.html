@@ -1,5 +1,9 @@
 <div class="ngx-toolbar" *ngIf="config['showToolbar']">
   <div class="ngx-toolbar-set">
+    <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('h1')" (click)="toggleH1()"
+            title="H1" [disabled]="!config['enableToolbar']">
+      <i class="fa fa-h1" aria-hidden="true"></i>
+    </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('bold')" (click)="triggerCommand('bold')"
       title="Bold" [disabled]="!config['enableToolbar']">
       <i class="fa fa-bold" aria-hidden="true"></i>

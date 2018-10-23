@@ -37,6 +37,8 @@ export class NgxEditorToolbarComponent implements OnInit {
   /** show/hide image uploader */
   isImageUploader = false;
 
+  wasH1Pressed = false;
+
   /**
    * Editor configuration
    */
@@ -227,5 +229,14 @@ export class NgxEditorToolbarComponent implements OnInit {
     this.buildUrlForm();
     this.buildImageForm();
     this.buildVideoForm();
+  }
+
+  toggleH1() {
+    if(!this.wasH1Pressed) {
+      this.execute.emit('h1');
+    } else {
+      this.execute.emit('clear');
+    }
+    this.wasH1Pressed = !this.wasH1Pressed;
   }
 }
