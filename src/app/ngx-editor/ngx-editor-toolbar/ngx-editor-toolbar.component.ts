@@ -231,9 +231,9 @@ export class NgxEditorToolbarComponent implements OnInit {
     this.buildVideoForm();
   }
 
-  toggleH1() {
+  toggleHeading(heading: string) {
     if (!this.wasH1Pressed) {
-      this.execute.emit('h1');
+      this.execute.emit(heading);
     } else {
       this.execute.emit('clear');
     }

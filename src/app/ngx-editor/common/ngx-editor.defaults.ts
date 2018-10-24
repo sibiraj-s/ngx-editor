@@ -14,7 +14,7 @@ export const ngxEditorConfig = {
   placeholder: 'Enter text here...',
   imageEndPoint: '',
   toolbar: [
-    ['h1', 'bold', 'italic', 'underline', 'strikeThrough', 'superscript', 'subscript'],
+    ['h1', 'h2', 'h3', 'bold', 'italic', 'underline', 'strikeThrough', 'superscript', 'subscript'],
     ['fontName', 'fontSize', 'color'],
     ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'indent', 'outdent'],
     ['cut', 'copy', 'delete', 'removeFormat', 'undo', 'redo'],
