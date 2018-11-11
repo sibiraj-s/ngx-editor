@@ -5,7 +5,7 @@
    <img src="https://raw.githubusercontent.com/sibiraj-s/ngx-editor/master/src/assets/icons/ngx-editor.png" alt="ngxEditor">
   </a>
 </p>
-<p align="center">A Simple WYSIWYG Editor for Angular 6 Applications.</p>
+<p align="center">A Simple WYSIWYG Editor for Angular 7 Applications.</p>
 <p align="center">
   <a href="https://travis-ci.org/sibiraj-s/ngx-editor">
     <img alt="Build Status" src="https://travis-ci.org/sibiraj-s/ngx-editor.svg?branch=master">
