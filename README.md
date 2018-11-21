@@ -5,6 +5,10 @@ My forked version's features
   
   Added pre code insertion 
    
+   
+   <img src='https://raw.githubusercontent.com/unosbaghaie/ngx-editor/master/extras/prism.png'/>
+   
+   
 </p>
 
 And to upload set `imageEndPoint`
