@@ -1,5 +1,13 @@
 # NgxEditor
 
+My forked version's features
+<p>
+  
+  Added pre code insertion 
+  
+</p>
+
+
 <p align="center">
   <a href="https://github.com/sibiraj-s/ngx-editor">
    <img src="https://raw.githubusercontent.com/sibiraj-s/ngx-editor/master/src/assets/icons/ngx-editor.png" alt="ngxEditor">
