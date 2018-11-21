@@ -27,9 +27,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./src/assets/prism/prism.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./src/assets/prism/prism.min.js"
+            ]
           },
           "configurations": {
             "production": {

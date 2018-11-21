@@ -1,10 +1,16 @@
 import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
+
 import { PopoverConfig } from 'ngx-bootstrap';
 import { CommandExecutorService } from '../common/services/command-executor.service';
 import { MessageService } from '../common/services/message.service';
 import * as Utils from '../common/utils/ngx-editor.utils';
+
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { SourceCodeDialogComponent } from '../source-code-dialog/source-code-dialog.component';
+import {SourceCodeData } from '../common/models/source-code-data';
+
 
 @Component({
   selector: 'app-ngx-editor-toolbar',
@@ -12,7 +18,6 @@ import * as Utils from '../common/utils/ngx-editor.utils';
   styleUrls: ['./ngx-editor-toolbar.component.scss'],
   providers: [PopoverConfig]
 })
-
 export class NgxEditorToolbarComponent implements OnInit {
   /** holds values of the insert link form */
   urlForm: FormGroup;
@@ -20,6 +25,8 @@ export class NgxEditorToolbarComponent implements OnInit {
   imageForm: FormGroup;
   /** holds values of the insert video form */
   videoForm: FormGroup;
+  /** holds values of the insert code form */
+  codeForm: FormGroup;
   /** set to false when image is being uploaded */
   uploadComplete = true;
   /** upload percentage */
@@ -37,6 +44,8 @@ export class NgxEditorToolbarComponent implements OnInit {
   /** show/hide image uploader */
   isImageUploader = false;
 
+  sourceCodeData: SourceCodeData;
+
   /**
    * Editor configuration
    */
@@ -44,6 +53,7 @@ export class NgxEditorToolbarComponent implements OnInit {
   @ViewChild('urlPopover') urlPopover;
   @ViewChild('imagePopover') imagePopover;
   @ViewChild('videoPopover') videoPopover;
+  @ViewChild('codePopover') codePopover;
   @ViewChild('fontSizePopover') fontSizePopover;
   @ViewChild('colorPopover') colorPopover;
   /**
@@ -51,10 +61,13 @@ export class NgxEditorToolbarComponent implements OnInit {
    */
   @Output() execute: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private _popOverConfig: PopoverConfig,
+  constructor(
+    public dialog: MatDialog,
+    private _popOverConfig: PopoverConfig,
     private _formBuilder: FormBuilder,
     private _messageService: MessageService,
-    private _commandExecutorService: CommandExecutorService) {
+    private _commandExecutorService: CommandExecutorService
+  ) {
     this._popOverConfig.outsideClick = true;
     this._popOverConfig.placement = 'bottom';
     this._popOverConfig.container = 'body';
@@ -126,6 +139,25 @@ export class NgxEditorToolbarComponent implements OnInit {
   }
 
   /**
+   * create insert code form
+   */
+  buildPreCodeForm(): void {
+
+    const dialogRef = this.dialog.open(SourceCodeDialogComponent, {
+      width: '500px',
+      data: { sourceCode: '', language: '' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.sourceCodeData = result;
+
+      this._commandExecutorService.insertPreCode(this.sourceCodeData.sourceCode, this.sourceCodeData.language);
+
+    });
+  }
+
+  /**
    * Executed when file is selected
    *
    * @param e onChange event
@@ -138,22 +170,27 @@ export class NgxEditorToolbarComponent implements OnInit {
       const file = e.target.files[0];
 
       try {
-        this._commandExecutorService.uploadImage(file, this.config.imageEndPoint).subscribe(event => {
+        this._commandExecutorService
+          .uploadImage(file, this.config.imageEndPoint)
+          .subscribe(event => {
+            debugger;
+            if (event.type) {
 
-          if (event.type) {
-            this.updloadPercentage = Math.round(100 * event.loaded / event.total);
-          }
-
-          if (event instanceof HttpResponse) {
-            try {
-              this._commandExecutorService.insertImage(event.body.url);
-            } catch (error) {
-              this._messageService.sendMessage(error.message);
+              this.updloadPercentage = Math.round(
+                (100 * event.loaded) / event.total
+              );
             }
-            this.uploadComplete = true;
-            this.isUploading = false;
-          }
-        });
+
+            if (event instanceof HttpResponse) {
+              try {
+                this._commandExecutorService.insertImage(event.body.url);
+              } catch (error) {
+                this._messageService.sendMessage(error.message);
+              }
+              this.uploadComplete = true;
+              this.isUploading = false;
+            }
+          });
       } catch (error) {
         this._messageService.sendMessage(error.message);
         this.uploadComplete = true;

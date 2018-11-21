@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>  </h1>
+<div mat-dialog-content>
+  <p>Paste your code here? </p>
+
+  <div class="row">
+
+    <div class="col">
+         <textarea style="width: 100%" rows="10" [(ngModel)]="data.sourceCode"></textarea>
+    </div>
+
+  </div>
+
+<div class="row">
+
+  <label class="small"> Language: </label>
+  <select name="languages" [(ngModel)]="data.language">
+    <option value="csharp">csharp</option>
+    <option value="clike">clike</option>
+    <option value="html">html</option>
+    <option value="JavaScript">JavaScript</option>
+    <option value="swift">swift</option>
+    <option value="html">html</option>
+    <option value="css">css</option>
+  </select>
+
+
+</div>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()"> Cancel </button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

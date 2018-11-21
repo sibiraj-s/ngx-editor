@@ -1,0 +1,1 @@
+git config --global user.email unos.bm65@gmail.com

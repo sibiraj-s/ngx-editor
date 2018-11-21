@@ -13,13 +13,10 @@
   </div>
 
   <div class="editor block">
-    <app-ngx-editor [config]="editorConfig" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>
+    <app-ngx-editor [config]="editorConfig" [spellcheck]="true" [(ngModel)]="htmlContent" (ngModelChange)="myChange($event)" ></app-ngx-editor>
   </div>
 
-  <div *ngIf="htmlContent" class="htmlblock block">
-    <h6>HTML Output</h6>
-    <div class="html">
-      {{ htmlContent }}
-    </div>
-  </div>
+
+<div [innerHTML]="htmlContent"></div>
+
 </div>
