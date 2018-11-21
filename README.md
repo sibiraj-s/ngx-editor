@@ -4,8 +4,101 @@ My forked version's features
 <p>
   
   Added pre code insertion 
-  
+   
 </p>
+
+And to upload set `imageEndPoint`
+
+```
+
+  editorConfig = {
+    editable: true,
+    spellcheck: false,
+    height: "10rem",
+    minHeight: "5rem",
+    placeholder: "Type something. Test the Editor... ヽ(^。^)丿",
+    translate: "no",
+    imageEndPoint: "https://localhost:44364/api/MyControllerName/UploadFile"
+  };
+
+```
+then 
+
+```
+[HttpPost, Route("UploadFile")]
+        public IActionResult UploadFile(IFormFile file
+          )
+        {
+
+            byte[] fileBytes = null;
+            if (file != null)
+            {
+
+                try
+                {
+                    var fileStream = file.OpenReadStream();
+                    System.Drawing.Image imgInput = System.Drawing.Image.FromStream(fileStream);
+                    System.Drawing.Graphics gInput = System.Drawing.Graphics.FromImage(imgInput);
+                    var thisFormat = imgInput.RawFormat;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("file content is not image");
+                }
+
+
+                var uploadsRootFolder = Path.Combine(hostingEnvironment.WebRootPath, "uploads\\images");
+                if (!Directory.Exists(uploadsRootFolder))
+                {
+                    Directory.CreateDirectory(uploadsRootFolder);
+                }
+
+                if (file == null || file.Length == 0)
+                {
+                    throw new Exception("file is null");
+                }
+
+                //var filePath = Path.Combine(uploadsRootFolder, Guid.NewGuid() + file.FileName);
+                var fileName = Guid.NewGuid() + "_" + file.FileName;
+                var filePath = Path.Combine(uploadsRootFolder, fileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                    fileStream.Flush();
+                    fileStream.Close();
+                }
+
+
+               
+
+                // 4 MB
+                var allowedFileSize = 4 * 1048576;
+                if (file.Length > allowedFileSize)
+                    throw new Exception("File size exceeded");
+
+                return Ok(new { url  = "https://localhost:44364/api/MyControllerName/GetFile?name=" + fileName });
+
+            }
+
+            return Ok();
+        }
+```
+and to get the Image
+
+```
+ [HttpGet, Route("GetFile")]
+        public IActionResult GetFile([FromQuery] string name)
+        {
+
+            var uploadsRootFolder = Path.Combine(hostingEnvironment.WebRootPath, "uploads\\images");
+            var fileName = Path.GetFileName(name);
+            var filePath = Path.Combine(uploadsRootFolder, fileName);
+
+            return PhysicalFile(filePath, "image/png", true);
+
+        }
+```
+
 
 
 <p align="center">
