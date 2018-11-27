@@ -1,6 +1,15 @@
 # NgxEditor
 
 My forked version's features
+
+
+<p>
+  
+Add Inline editor support
+   
+   <img src='https://raw.githubusercontent.com/unosbaghaie/ngx-editor/master/extras/inline.png'/>
+</p>
+
 <p>
   
   Added pre code insertion 
