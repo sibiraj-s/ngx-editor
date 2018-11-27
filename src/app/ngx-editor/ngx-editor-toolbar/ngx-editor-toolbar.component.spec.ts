@@ -6,7 +6,7 @@ import { ngxEditorConfig } from '../common/ngx-editor.defaults';
 import { PopoverModule } from 'ngx-bootstrap';
 import { CommandExecutorService } from '../common/services/command-executor.service';
 import { MessageService } from '../common/services/message.service';
-import { MatFormFieldModule, MatDialogModule } from "@angular/material";
+import { MatFormFieldModule, MatDialogModule } from '@angular/material';
 
 describe('NgxEditorToolbarComponent', () => {
   let component: NgxEditorToolbarComponent;

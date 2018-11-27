@@ -14,4 +14,9 @@ export class SourceCodeDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  public onNoClick() {
+    this.dialogRef.close();
+  }
+
 }

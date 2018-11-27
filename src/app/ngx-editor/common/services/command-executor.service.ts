@@ -19,20 +19,20 @@ export class CommandExecutorService {
    * @param command command to be executed
    */
   execute(command: string): void {
-    if (!this.savedSelection && command !== "enableObjectResizing") {
-      throw new Error("Range out of Editor");
+    if (!this.savedSelection && command !== 'enableObjectResizing') {
+      throw new Error('Range out of Editor');
     }
 
-    if (command === "enableObjectResizing") {
-      document.execCommand("enableObjectResizing", true);
+    if (command === 'enableObjectResizing') {
+      document.execCommand('enableObjectResizing', true);
     }
 
-    if (command === "blockquote") {
-      document.execCommand("formatBlock", false, "blockquote");
+    if (command === 'blockquote') {
+      document.execCommand('formatBlock', false, 'blockquote');
     }
 
-    if (command === "removeBlockquote") {
-      document.execCommand("formatBlock", false, "div");
+    if (command === 'removeBlockquote') {
+      document.execCommand('formatBlock', false, 'div');
     }
 
     document.execCommand(command, false, null);
@@ -68,14 +68,14 @@ export class CommandExecutorService {
         const restored = Utils.restoreSelection(this.savedSelection);
         if (restored) {
           alert(imageURI);
-          const inserted = document.execCommand("insertImage", false, imageURI);
+          const inserted = document.execCommand('insertImage', false, imageURI);
           if (!inserted) {
-            throw new Error("Invalid URL");
+            throw new Error('Invalid URL');
           }
         }
       }
     } else {
-      throw new Error("Range out of the editor");
+      throw new Error('Range out of the editor');
     }
   }
 
@@ -100,7 +100,7 @@ export class CommandExecutorService {
               videParams.videoUrl +
               '"></iframe>';
             this.insertHtml(youtubeURL);
-          } else if (this.checkTagSupportInBrowser("video")) {
+          } else if (this.checkTagSupportInBrowser('video')) {
             if (this.isValidURL(videParams.videoUrl)) {
               const videoSrc =
                 '<video width="' +
@@ -113,15 +113,15 @@ export class CommandExecutorService {
                 '"></video>';
               this.insertHtml(videoSrc);
             } else {
-              throw new Error("Invalid video URL");
+              throw new Error('Invalid video URL');
             }
           } else {
-            throw new Error("Unable to insert video");
+            throw new Error('Unable to insert video');
           }
         }
       }
     } else {
-      throw new Error("Range out of the editor");
+      throw new Error('Range out of the editor');
     }
   }
 
@@ -151,23 +151,23 @@ export class CommandExecutorService {
    * @param endPoint enpoint to which the image has to be uploaded
    */
   uploadImage(file: File, endPoint: string): any {
-    debugger;
+
     if (!endPoint) {
-      throw new Error("Image Endpoint isn`t provided or invalid");
+      throw new Error('Image Endpoint isn`t provided or invalid');
     }
 
     const formData: FormData = new FormData();
 
     if (file) {
-      formData.append("file", file);
+      formData.append('file', file);
 
-      const req = new HttpRequest("POST", endPoint, formData, {
+      const req = new HttpRequest('POST', endPoint, formData, {
         reportProgress: true
       });
 
       return this._http.request(req);
     } else {
-      throw new Error("Invalid Image");
+      throw new Error('Invalid Image');
     }
   }
 
@@ -187,26 +187,26 @@ export class CommandExecutorService {
           params.urlLink +
           '" target="_blank">' +
           params.urlText +
-          "</a>";
+          '</a>';
 
-        if (document.getSelection().type !== "Range") {
+        if (document.getSelection().type !== 'Range') {
           const restored = Utils.restoreSelection(this.savedSelection);
           if (restored) {
             this.insertHtml(newUrl);
           }
         } else {
           throw new Error(
-            "Only new links can be inserted. You cannot edit URL`s"
+            'Only new links can be inserted. You cannot edit URL`s'
           );
         }
       } else {
         const restored = Utils.restoreSelection(this.savedSelection);
         if (restored) {
-          document.execCommand("createLink", false, params.urlLink);
+          document.execCommand('createLink', false, params.urlLink);
         }
       }
     } else {
-      throw new Error("Range out of the editor");
+      throw new Error('Range out of the editor');
     }
   }
 
@@ -220,14 +220,14 @@ export class CommandExecutorService {
     if (this.savedSelection) {
       const restored = Utils.restoreSelection(this.savedSelection);
       if (restored && this.checkSelection()) {
-        if (where === "textColor") {
-          document.execCommand("foreColor", false, color);
+        if (where === 'textColor') {
+          document.execCommand('foreColor', false, color);
         } else {
-          document.execCommand("hiliteColor", false, color);
+          document.execCommand('hiliteColor', false, color);
         }
       }
     } else {
-      throw new Error("Range out of the editor");
+      throw new Error('Range out of the editor');
     }
   }
 
@@ -250,7 +250,7 @@ export class CommandExecutorService {
               fontSize +
               'px;">' +
               deletedValue +
-              "</span>";
+              '</span>';
             this.insertHtml(fontPx);
           } else {
             const fontPx =
@@ -258,13 +258,13 @@ export class CommandExecutorService {
               fontSize +
               ';">' +
               deletedValue +
-              "</span>";
+              '</span>';
             this.insertHtml(fontPx);
           }
         }
       }
     } else {
-      throw new Error("Range out of the editor");
+      throw new Error('Range out of the editor');
     }
   }
 
@@ -287,7 +287,7 @@ export class CommandExecutorService {
               fontName +
               'px;">' +
               deletedValue +
-              "</span>";
+              '</span>';
             this.insertHtml(fontFamily);
           } else {
             const fontFamily =
@@ -295,22 +295,22 @@ export class CommandExecutorService {
               fontName +
               ';">' +
               deletedValue +
-              "</span>";
+              '</span>';
             this.insertHtml(fontFamily);
           }
         }
       }
     } else {
-      throw new Error("Range out of the editor");
+      throw new Error('Range out of the editor');
     }
   }
 
   /** insert HTML */
   private insertHtml(html: string): void {
-    const isHTMLInserted = document.execCommand("insertHTML", false, html);
+    const isHTMLInserted = document.execCommand('insertHTML', false, html);
 
     if (!isHTMLInserted) {
-      throw new Error("Unable to perform the operation");
+      throw new Error('Unable to perform the operation');
     }
   }
 
@@ -341,7 +341,7 @@ export class CommandExecutorService {
     const slectedText = this.savedSelection.toString();
 
     if (slectedText.length === 0) {
-      throw new Error("No Selection Made");
+      throw new Error('No Selection Made');
     }
 
     return true;

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NgxEditorModule } from './ngx-editor/ngx-editor.module';
 import { HttpClientModule } from '@angular/common/http';
-import { MatFormFieldModule, MatDialogModule } from "@angular/material";
+import { MatFormFieldModule, MatDialogModule } from '@angular/material';
 
 describe('AppComponent', () => {
 
