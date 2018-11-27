@@ -35,7 +35,7 @@ And to upload set `imageEndPoint`
   };
 
 ```
-then 
+then in asp.net core 2.1
 
 ```
 [HttpPost, Route("UploadFile")]
