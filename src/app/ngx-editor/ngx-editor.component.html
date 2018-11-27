@@ -1,19 +1,30 @@
 <div class="ngx-editor" id="ngxEditor" [style.width]="config['width']" [style.minWidth]="config['minWidth']" tabindex="0"
   (focus)="onEditorFocus()">
 
-  <app-ngx-editor-toolbar [config]="config" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>
+  <app-ngx-editor-toolbar
+  *ngIf="isVisible"
+  (mouseenter) ="toolbarMouseEnter()"
+  (mouseleave) ="toolbarMouseLeave()"
+  [config]="config" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>
 
   <!-- text area -->
-  <div class="ngx-wrapper" #ngxWrapper>
+  <div
+  (mouseenter) ="textAreaMouseEnter()"
+  class="ngx-wrapper"
+  #ngxWrapper>
     <div class="ngx-editor-textarea" [attr.contenteditable]="config['editable']" (input)="onContentChange($event.target.innerHTML)"
       [attr.translate]="config['translate']" [attr.spellcheck]="config['spellcheck']" [style.height]="config['height']"
       [style.minHeight]="config['minHeight']" [style.resize]="Utils?.canResize(resizer)" (focus)="onTextAreaFocus()"
-      (blur)="onTextAreaBlur()" #ngxTextArea></div>
+      (blur)="onTextAreaBlur()" #ngxTextArea>
+    
+    </div>
 
     <span class="ngx-editor-placeholder">{{ placeholder || config['placeholder'] }}</span>
+
   </div>
 
-  <app-ngx-editor-message></app-ngx-editor-message>
-  <app-ngx-grippie *ngIf="resizer === 'stack'"></app-ngx-grippie>
+
+  <app-ngx-editor-message *ngIf="!inline"></app-ngx-editor-message>
+  <app-ngx-grippie *ngIf="!inline && resizer == 'stack'"></app-ngx-grippie>
 
 </div>

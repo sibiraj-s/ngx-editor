@@ -13,10 +13,70 @@
   </div>
 
   <div class="editor block">
-    <app-ngx-editor [config]="editorConfig" [spellcheck]="true" [(ngModel)]="htmlContent" (ngModelChange)="myChange($event)" ></app-ngx-editor>
+    <app-ngx-editor
+    [config]="editorConfig"
+    [spellcheck]="true"
+    [(ngModel)]="htmlContent"
+    (ngModelChange)="myChange($event)"></app-ngx-editor>
   </div>
 
 
 <div [innerHTML]="htmlContent"></div>
+<br>
+
+<div class="row">
+
+<div class="col">
+  <div class="editor block">
+    <app-ngx-editor
+    [inline]="true"
+    [inlineText]="inlineText1"
+    [config]="editorConfig2"
+    [spellcheck]="true"
+    [(ngModel)]="inlineHtmlContent1"
+    (ngModelChange)="inlineMyChange($event)">
+ inline text is here
+  </app-ngx-editor>
+  </div>
+  </div>
+  <div class="col">
+    <div [innerHTML]="inlineHtmlContent1"></div>
+  </div>
+</div>
+
+
+
+<div class="row">
+
+  <div class="col">
+    <div class="editor block">
+      <app-ngx-editor
+      [inline]="true"
+       [inlineText]="inlineText2"
+       [config]="editorConfig2"
+        [spellcheck]="true"
+        [(ngModel)]="inlineHtmlContent2"
+        (ngModelChange)="inlineMyChange($event)"></app-ngx-editor>
+    </div>
+  </div>
+
+  <div class="col">
+    <div [innerHTML]="inlineHtmlContent2"></div>
+  </div>
+
+</div>
+
+
+
+
+<!-- <div [config]="editorConfig" app-ngx-inline-editor-attr htmlValue='here is a lot of text that I want to enable inline editing'>
+  test is here
+</div>
+
+
+<div [config]="editorConfig"  app-ngx-inline-editor-attr htmlValue='sample 2'>
+
+</div> -->
+
 
 </div>

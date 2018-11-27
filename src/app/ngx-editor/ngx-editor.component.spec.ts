@@ -8,6 +8,7 @@ import { NgxEditorMessageComponent } from './ngx-editor-message/ngx-editor-messa
 import { PopoverModule } from 'ngx-bootstrap';
 import { MessageService } from './common/services/message.service';
 import { CommandExecutorService } from './common/services/command-executor.service';
+import { MatFormFieldModule, MatDialogModule } from '@angular/material';
 
 describe('NgxEditorComponent', () => {
   let component: NgxEditorComponent;
@@ -15,15 +16,21 @@ describe('NgxEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, PopoverModule.forRoot(), HttpClientModule],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        PopoverModule.forRoot(),
+        HttpClientModule
+      ],
       providers: [MessageService, CommandExecutorService],
-      declarations: [NgxEditorComponent,
+      declarations: [
+        NgxEditorComponent,
         NgxGrippieComponent,
         NgxEditorToolbarComponent,
         NgxEditorMessageComponent
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

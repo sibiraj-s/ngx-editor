@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NgxEditorModule } from './ngx-editor/ngx-editor.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule, MatDialogModule } from "@angular/material";
 
 describe('AppComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, HttpClientModule, NgxEditorModule],
+      imports: [FormsModule, HttpClientModule, NgxEditorModule, MatDialogModule],
       declarations: [
         AppComponent
       ],
@@ -33,6 +34,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
+
     expect(compiled.querySelector('h6').textContent).toContain('A Simple WYSIWYG Editor for Angular 6 Applications.');
   });
 });

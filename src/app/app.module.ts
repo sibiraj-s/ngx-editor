@@ -6,10 +6,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NgxEditorModule } from './ngx-editor/ngx-editor.module';
+
 import { SourceCodeDialogComponent } from './ngx-editor/source-code-dialog/source-code-dialog.component';
 
 import {
-  MatFormFieldModule, MatDialogModule,
+  MatFormFieldModule, MatDialogModule
 } from '@angular/material';
 
 
