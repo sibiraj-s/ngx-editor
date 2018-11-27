@@ -1,6 +1,15 @@
 # NgxEditor
 
 My forked version's features
+
+
+<p>
+  
+Added Inline editor support
+   
+   <img src='https://raw.githubusercontent.com/unosbaghaie/ngx-editor/master/extras/inline.png'/>
+</p>
+
 <p>
   
   Added pre code insertion 
@@ -26,7 +35,7 @@ And to upload set `imageEndPoint`
   };
 
 ```
-then 
+then in asp.net core 2.1
 
 ```
 [HttpPost, Route("UploadFile")]
