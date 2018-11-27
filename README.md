@@ -5,6 +5,12 @@ My forked version's features
 
 <p>
   
+Updated to angular 7.1.0
+   
+</p>
+
+<p>
+  
 Added Inline editor support
    
    <img src='https://raw.githubusercontent.com/unosbaghaie/ngx-editor/master/extras/inline.png'/>
