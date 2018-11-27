@@ -5,7 +5,7 @@ My forked version's features
 
 <p>
   
-Add Inline editor support
+Added Inline editor support
    
    <img src='https://raw.githubusercontent.com/unosbaghaie/ngx-editor/master/extras/inline.png'/>
 </p>
