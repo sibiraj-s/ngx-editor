@@ -249,40 +249,6 @@
 </ng-template>
 
 
-<!-- Insert Code Popover template -->
-<ng-template #insertCodeTemplate>
-  <div style="width: 750px;" class="ngxe-popover imgc-ctnr">
-    <div class="imgc-topbar btn-ctnr">
-      <button type="button" class="btn active">
-        <i class="fa fa-link"></i>
-      </button>
-    </div>
-    <div class="imgc-ctnt is-image">
-      <form class="extra-gt" [formGroup]="videoForm" (ngSubmit)="videoForm.valid && insertVideo()" autocomplete="off">
-        <div class="form-group">
-
-          <label for="videoURLInput" class="small">URL</label>
-          <textarea type="text" class="form-control-sm" id="SourceCode" placeholder="Source code" formControlName="sourceCode" required>
-          </textarea>
-
-        </div>
-        <div class="row form-group">
-          <select name="languages">
-            <option value="csharp">csharp</option>
-            <option value="typescript">typescript</option>
-            <option value="java">java</option>
-            <option value="swift">swift</option>
-            <option value="html">html</option>
-            <option value="css">css</option>
-          </select>
-          <label class="small"> Language:  </label>
-        </div>
-        <button type="submit" class="btn-primary btn-sm btn">Submit</button>
-      </form>
-    </div>
-  </div>
-</ng-template>
-
 <!-- Insert color template -->
 <ng-template #insertColorTemplate>
   <div class="ngxe-popover imgc-ctnr">

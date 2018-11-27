@@ -11,9 +11,9 @@ import { ngxEditorConfig } from './common/ngx-editor.defaults';
 import * as Utils from './common/utils/ngx-editor.utils';
 
 @Component({
-  selector: 'app-ngx-editor',
-  templateUrl: './ngx-editor.component.html',
-  styleUrls: ['./ngx-editor.component.scss'],
+  selector: "app-ngx-editor",
+  templateUrl: "./ngx-editor.component.html",
+  styleUrls: ["./ngx-editor.component.scss"],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -58,7 +58,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    *
    * `stack` resizer enable a resizer that looks like as if in https://stackoverflow.com
    */
-  @Input() resizer = 'stack';
+  @Input() resizer = "stack";
   /**
    * The config property is a JSON object
    *
@@ -73,9 +73,15 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   /** Endpoint for which the image to be uploaded */
   @Input() imageEndPoint: string;
 
+  /** to help to detect if mouse is over on toolbar */
   isMouseOver = false;
+
+  /** to manage toolbar, message and grippie visibilities  */
   isVisible = true;
+
+  /** set editor is inline */
   @Input() inline: boolean;
+  /** if editor is inline, default text can be passed in inlineText */
   @Input() inlineText: string;
 
   /** emits `blur` event when focused out from the textarea */
@@ -83,8 +89,8 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   /** emits `focus` event when focused in to the textarea */
   @Output() focus: EventEmitter<string> = new EventEmitter<string>();
 
-  @ViewChild('ngxTextArea') textArea: any;
-  @ViewChild('ngxWrapper') ngxWrapper: any;
+  @ViewChild("ngxTextArea") textArea: any;
+  @ViewChild("ngxWrapper") ngxWrapper: any;
 
   Utils: any = Utils;
 
@@ -130,7 +136,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * events
    */
   onTextAreaFocus(): void {
-    this.focus.emit('focus');
+    this.focus.emit("focus");
     if (this.inline === true) {
       this.isVisible = true;
     }
@@ -146,7 +152,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param html html string from contenteditable
    */
   onContentChange(innerHTML: string): void {
-    if (typeof this.onChange === 'function') {
+    if (typeof this.onChange === "function") {
       this.onChange(innerHTML);
       this.togglePlaceholder(innerHTML);
     }
@@ -156,10 +162,10 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     /** save selection if focussed out */
     this._commandExecutor.savedSelection = Utils.saveSelection();
 
-    if (typeof this.onTouched === 'function') {
+    if (typeof this.onTouched === "function") {
       this.onTouched();
     }
-    this.blur.emit('blur');
+    this.blur.emit("blur");
 
     if (this.inline === true && this.isMouseOver === false) {
       this.isVisible = false;
@@ -174,7 +180,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   resizeTextArea(offsetY: number): void {
     let newHeight = parseInt(this.height, 10);
     newHeight += offsetY;
-    this.height = newHeight + 'px';
+    this.height = newHeight + "px";
     this.textArea.nativeElement.style.height = this.height;
   }
 
@@ -202,8 +208,8 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     if (
       value === null ||
       value === undefined ||
-      value === '' ||
-      value === '<br>'
+      value === "" ||
+      value === "<br>"
     ) {
       value = null;
     }
@@ -237,16 +243,14 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param value html string from the editor
    */
   refreshView(value: string): void {
-
-    if (this.inline === false){
-      const normalizedValue = value === null ? '' : value;
+    if (this.inline === false) {
+      const normalizedValue = value === null ? "" : value;
       this._renderer.setProperty(
         this.textArea.nativeElement,
-        'innerHTML',
+        "innerHTML",
         normalizedValue
       );
     }
-
   }
 
   /**
@@ -255,15 +259,15 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    * @param value A HTML string from the editor
    */
   togglePlaceholder(value: any): void {
-    if (!value || value === '<br>' || value === '') {
+    if (!value || value === "<br>" || value === "") {
       this._renderer.addClass(
         this.ngxWrapper.nativeElement,
-        'show-placeholder'
+        "show-placeholder"
       );
     } else {
       this._renderer.removeClass(
         this.ngxWrapper.nativeElement,
-        'show-placeholder'
+        "show-placeholder"
       );
     }
   }
@@ -291,11 +295,10 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {
     if (this.inline === true) {
       this.isVisible = false;
-
     }
-    if (this.inline ) {
+    if (this.inline) {
       this.textArea.nativeElement.innerHTML = this.inlineText;
-      this.placeholder = '';
+      this.placeholder = "";
     }
 
     /**
@@ -309,6 +312,6 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
     this.height = this.height || this.textArea.nativeElement.offsetHeight;
 
-    this.executeCommand('enableObjectResizing');
+    this.executeCommand("enableObjectResizing");
   }
 }
