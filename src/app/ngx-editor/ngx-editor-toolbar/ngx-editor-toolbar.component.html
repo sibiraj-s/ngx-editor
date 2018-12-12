@@ -1,142 +1,142 @@
 <div class="ngx-toolbar" *ngIf="config['showToolbar']">
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('bold')" (click)="triggerCommand('bold')"
-      title="Bold" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['bold']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-bold" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('italic')" (click)="triggerCommand('italic')"
-      title="Italic" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['italic']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-italic" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('underline')" (click)="triggerCommand('underline')"
-      title="Underline" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['underline']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-underline" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('strikeThrough')" (click)="triggerCommand('strikeThrough')"
-      title="Strikethrough" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['strikeThrough']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-strikethrough" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('superscript')" (click)="triggerCommand('superscript')"
-      title="Superscript" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['superscript']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-superscript" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('subscript')" (click)="triggerCommand('subscript')"
-      title="Subscript" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['subscript']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-subscript" aria-hidden="true"></i>
     </button>
   </div>
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontName')" (click)="fontName = ''"
-      title="Font Family" [popover]="fontNameTemplate" #fontNamePopover="bs-popover" containerClass="ngxePopover"
+      title="{{config.toolbarTitle['fontName']}}" [popover]="fontNameTemplate" #fontNamePopover="bs-popover" containerClass="ngxePopover"
       [disabled]="!config['enableToolbar']">
       <i class="fa fa-font" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('fontSize')" (click)="fontSize = ''"
-      title="Font Size" [popover]="fontSizeTemplate" #fontSizePopover="bs-popover" containerClass="ngxePopover"
+      title="{{config.toolbarTitle['fontSize']}}" [popover]="fontSizeTemplate" #fontSizePopover="bs-popover" containerClass="ngxePopover"
       [disabled]="!config['enableToolbar']">
       <i class="fa fa-text-height" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('color')" (click)="hexColor = ''"
-      title="Color Picker" [popover]="insertColorTemplate" #colorPopover="bs-popover" containerClass="ngxePopover"
+      title="{{config.toolbarTitle['color']}}" [popover]="insertColorTemplate" #colorPopover="bs-popover" containerClass="ngxePopover"
       [disabled]="!config['enableToolbar']">
       <i class="fa fa-tint" aria-hidden="true"></i>
     </button>
   </div>
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('justifyLeft')" (click)="triggerCommand('justifyLeft')"
-      title="Justify Left" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['justifyLeft']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-align-left" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('justifyCenter')" (click)="triggerCommand('justifyCenter')"
-      title="Justify Center" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['justifyCenter']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-align-center" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('justifyRight')" (click)="triggerCommand('justifyRight')"
-      title="Justify Right" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['justifyRight']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-align-right" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('justifyFull')" (click)="triggerCommand('justifyFull')"
-      title="Justify" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['justifyFull']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-align-justify" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('indent')" (click)="triggerCommand('indent')"
-      title="Indent" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['indent']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-indent" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('outdent')" (click)="triggerCommand('outdent')"
-      title="Outdent" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['outdent']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-outdent" aria-hidden="true"></i>
     </button>
   </div>
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('cut')" (click)="triggerCommand('cut')"
-      title="Cut" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['cut']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-scissors" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('copy')" (click)="triggerCommand('copy')"
-      title="Copy" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['copy']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-files-o" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('delete')" (click)="triggerCommand('delete')"
-      title="Delete" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['delete']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-trash" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('removeFormat')" (click)="triggerCommand('removeFormat')"
-      title="Clear Formatting" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['removeFormat']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-eraser" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('undo')" (click)="triggerCommand('undo')"
-      title="Undo" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['undo']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-undo" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('redo')" (click)="triggerCommand('redo')"
-      title="Redo" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['redo']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-repeat" aria-hidden="true"></i>
     </button>
   </div>
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('paragraph')" (click)="triggerCommand('insertParagraph')"
-      title="Paragraph" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['paragraph']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-paragraph" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('blockquote')" (click)="triggerCommand('blockquote')"
-      title="Blockquote" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['blockquote']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-quote-left" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('removeBlockquote')" (click)="triggerCommand('removeBlockquote')"
-      title="Remove Blockquote" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['removeBlockquote']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-quote-right" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('horizontalLine')" (click)="triggerCommand('insertHorizontalRule')"
-      title="Horizontal Line" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['horizontalLine']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-minus" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unorderedList')" (click)="triggerCommand('insertUnorderedList')"
-      title="Unordered List" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['unorderedList']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-list-ul" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('orderedList')" (click)="triggerCommand('insertOrderedList')"
-      title="Ordered List" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['orderedList']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-list-ol" aria-hidden="true"></i>
     </button>
   </div>
   <div class="ngx-toolbar-set">
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('link')" (click)="buildUrlForm()"
-      [popover]="insertLinkTemplate" title="Insert Link" #urlPopover="bs-popover" containerClass="ngxePopover"
+      [popover]="insertLinkTemplate" title="{{config.toolbarTitle['link']}}" #urlPopover="bs-popover" containerClass="ngxePopover"
       [disabled]="!config['enableToolbar']">
       <i class="fa fa-link" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('unlink')" (click)="triggerCommand('unlink')"
-      title="Unlink" [disabled]="!config['enableToolbar']">
+      title="{{config.toolbarTitle['unlink']}}" [disabled]="!config['enableToolbar']">
       <i class="fa fa-chain-broken" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('image')" (click)="buildImageForm()"
-      title="Insert Image" [popover]="insertImageTemplate" #imagePopover="bs-popover" containerClass="ngxePopover"
+      title="{{config.toolbarTitle['image']}}" [popover]="insertImageTemplate" #imagePopover="bs-popover" containerClass="ngxePopover"
       [disabled]="!config['enableToolbar']">
       <i class="fa fa-picture-o" aria-hidden="true"></i>
     </button>
     <button type="button" class="ngx-editor-button" *ngIf="canEnableToolbarOptions('video')" (click)="buildVideoForm()"
-      title="Insert Video" [popover]="insertVideoTemplate" #videoPopover="bs-popover" containerClass="ngxePopover"
+      title="{{config.toolbarTitle['video']}}" [popover]="insertVideoTemplate" #videoPopover="bs-popover" containerClass="ngxePopover"
       [disabled]="!config['enableToolbar']">
       <i class="fa fa-youtube-play" aria-hidden="true"></i>
     </button>
@@ -148,19 +148,19 @@
   <div class="ngxe-popover extra-gt">
     <form [formGroup]="urlForm" (ngSubmit)="urlForm.valid && insertLink()" autocomplete="off">
       <div class="form-group">
-        <label for="urlInput" class="small">URL</label>
-        <input type="text" class="form-control-sm" id="URLInput" placeholder="URL" formControlName="urlLink" required>
+        <label for="urlInput" class="small">{{config.toolbarTitle['URLInput']}}</label>
+        <input type="text" class="form-control-sm" id="URLInput" placeholder="{{config.toolbarTitle['URLInput']}}" formControlName="urlLink" required>
       </div>
       <div class="form-group">
-        <label for="urlTextInput" class="small">Text</label>
-        <input type="text" class="form-control-sm" id="urlTextInput" placeholder="Text" formControlName="urlText"
+        <label for="urlTextInput" class="small">{{config.toolbarTitle['urlTextInput']}}</label>
+        <input type="text" class="form-control-sm" id="urlTextInput" placeholder="{{config.toolbarTitle['urlTextInput']}}" formControlName="urlText"
           required>
       </div>
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="urlNewTab" formControlName="urlNewTab">
-        <label class="form-check-label" for="urlNewTab">Open in new tab</label>
+        <label class="form-check-label" for="urlNewTab">{{config.toolbarTitle['urlNewTab']}}</label>
       </div>
-      <button type="submit" class="btn-primary btn-sm btn">Submit</button>
+      <button type="submit" class="btn-primary btn-sm btn">{{config.toolbarTitle['linkSubmit']}}</button>
     </form>
   </div>
 </ng-template>
@@ -181,9 +181,9 @@
       <div *ngIf="!isImageUploader; else imageUploder"> </div>
       <ng-template #imageUploder>
         <div class="ngx-insert-img-ph">
-          <p *ngIf="uploadComplete">Choose Image</p>
+          <p *ngIf="uploadComplete">{{config.toolbarTitle['chooseImage']}}</p>
           <p *ngIf="!uploadComplete">
-            <span>Uploading Image</span>
+            <span>{{config.toolbarTitle['uploadingimage']}}</span>
             <br>
             <span>{{ updloadPercentage }} %</span>
           </p>
@@ -195,11 +195,11 @@
       <ng-template #insertImageLink>
         <form class="extra-gt" [formGroup]="imageForm" (ngSubmit)="imageForm.valid && insertImage()" autocomplete="off">
           <div class="form-group">
-            <label for="imageURLInput" class="small">URL</label>
-            <input type="text" class="form-control-sm" id="imageURLInput" placeholder="URL" formControlName="imageUrl"
+            <label for="imageURLInput" class="small">{{config.toolbarTitle['imageURLInput']}}</label>
+            <input type="text" class="form-control-sm" id="imageURLInput" placeholder="{{config.toolbarTitle['imageURLInput']}}" formControlName="imageUrl"
               required>
           </div>
-          <button type="submit" class="btn-primary btn-sm btn">Submit</button>
+          <button type="submit" class="btn-primary btn-sm btn">{{config.toolbarTitle['imageSubmit']}}</button>
         </form>
       </ng-template>
       <div class="progress" *ngIf="!uploadComplete">
@@ -222,20 +222,20 @@
     <div class="imgc-ctnt is-image">
       <form class="extra-gt" [formGroup]="videoForm" (ngSubmit)="videoForm.valid && insertVideo()" autocomplete="off">
         <div class="form-group">
-          <label for="videoURLInput" class="small">URL</label>
-          <input type="text" class="form-control-sm" id="videoURLInput" placeholder="URL" formControlName="videoUrl"
+          <label for="videoURLInput" class="small">{{config.toolbarTitle['videoURLInput']}}</label>
+          <input type="text" class="form-control-sm" id="videoURLInput" placeholder="{{config.toolbarTitle['videoURLInput']}}" formControlName="videoUrl"
             required>
         </div>
         <div class="row form-group">
           <div class="col">
-            <input type="text" class="form-control-sm" formControlName="height" placeholder="height (px)" pattern="[0-9]">
+            <input type="text" class="form-control-sm" formControlName="height" placeholder="{{config.toolbarTitle['height']}}" pattern="[0-9]">
           </div>
           <div class="col">
-            <input type="text" class="form-control-sm" formControlName="width" placeholder="width (px)" pattern="[0-9]">
+            <input type="text" class="form-control-sm" formControlName="width" placeholder="{{config.toolbarTitle['width']}}" pattern="[0-9]">
           </div>
-          <label class="small">Height/Width</label>
+          <label class="small">{{config.toolbarTitle['heightwidth']}}</label>
         </div>
-        <button type="submit" class="btn-primary btn-sm btn">Submit</button>
+        <button type="submit" class="btn-primary btn-sm btn">{{config.toolbarTitle['videoSubmit']}}</button>
       </form>
     </div>
   </div>
@@ -245,17 +245,17 @@
 <ng-template #insertColorTemplate>
   <div class="ngxe-popover imgc-ctnr">
     <div class="imgc-topbar two-tabs">
-      <span (click)="selectedColorTab ='textColor'" [ngClass]="{active: selectedColorTab ==='textColor'}">Text</span>
-      <span (click)="selectedColorTab ='backgroundColor'" [ngClass]="{active: selectedColorTab ==='backgroundColor'}">Background</span>
+      <span (click)="selectedColorTab ='textColor'" [ngClass]="{active: selectedColorTab ==='textColor'}">{{config.toolbarTitle['textColor']}}</span>
+      <span (click)="selectedColorTab ='backgroundColor'" [ngClass]="{active: selectedColorTab ==='backgroundColor'}">{{config.toolbarTitle['backgroundColor']}}</span>
     </div>
     <div class="imgc-ctnt is-color extra-gt1">
       <form autocomplete="off">
         <div class="form-group">
-          <label for="hexInput" class="small">Hex Color</label>
-          <input type="text" class="form-control-sm" id="hexInput" name="hexInput" maxlength="7" placeholder="HEX Color"
+          <label for="hexInput" class="small">{{config.toolbarTitle['hexInput']}}</label>
+          <input type="text" class="form-control-sm" id="hexInput" name="hexInput" maxlength="7" placeholder="{{config.toolbarTitle['hexInput']}}"
             [(ngModel)]="hexColor" required>
         </div>
-        <button type="button" class="btn-primary btn-sm btn" (click)="insertColor(hexColor, selectedColorTab)">Submit</button>
+        <button type="button" class="btn-primary btn-sm btn" (click)="insertColor(hexColor, selectedColorTab)">{{config.toolbarTitle['hexSubmit']}}</button>
       </form>
     </div>
   </div>
@@ -266,11 +266,11 @@
   <div class="ngxe-popover extra-gt1">
     <form autocomplete="off">
       <div class="form-group">
-        <label for="fontSize" class="small">Font Size</label>
-        <input type="text" class="form-control-sm" id="fontSize" name="fontSize" placeholder="Font size in px/rem"
+        <label for="fontSize" class="small">{{config.toolbarTitle['fontSize']}}</label>
+        <input type="text" class="form-control-sm" id="fontSize" name="fontSize" placeholder="{{config.toolbarTitle['fontSize']}} (px/rem)"
           [(ngModel)]="fontSize" required>
       </div>
-      <button type="button" class="btn-primary btn-sm btn" (click)="setFontSize(fontSize)">Submit</button>
+      <button type="button" class="btn-primary btn-sm btn" (click)="setFontSize(fontSize)">{{config.toolbarTitle['fontSubmit']}}</button>
     </form>
   </div>
 </ng-template>
@@ -280,11 +280,11 @@
   <div class="ngxe-popover extra-gt1">
     <form autocomplete="off">
       <div class="form-group">
-        <label for="fontSize" class="small">Font Size</label>
-        <input type="text" class="form-control-sm" id="fontSize" name="fontName" placeholder="Ex: 'Times New Roman', Times, serif"
+        <label for="fontSize" class="small">{{config.toolbarTitle['fontName']}}</label>
+        <input type="text" class="form-control-sm" id="fontSize" name="fontName" placeholder="{{config.toolbarTitle['example']}} 'Times New Roman', Times, serif"
           [(ngModel)]="fontName" required>
       </div>
-      <button type="button" class="btn-primary btn-sm btn" (click)="setFontName(fontName)">Submit</button>
+      <button type="button" class="btn-primary btn-sm btn" (click)="setFontName(fontName)">{{config.toolbarTitle['fontSubmit']}}</button>
     </form>
   </div>
 </ng-template>
