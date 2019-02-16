@@ -84,3 +84,20 @@ Documentation is auto-generated using [compodoc][compodoc], and can be viewed he
 [github]: https://sibiraj-s.github.io/
 [wiki]:https://github.com/sibiraj-s/ngx-editor/wiki/ngxEditor
 [compodoc]: https://compodoc.github.io/website/
+
+## Font Awesome v5.6.3 compatibility
+
+Simply add this to your global website CSS file:
+/* FONT AWESOME 5.6.3 COMPATIBILITY CSS */
+.ngx-editor-button i.fa-repeat:before {
+  content: "\f01e"
+}
+.ngx-editor-button i.fa-files-o:before {
+  content: "\f0c5"
+}
+.ngx-editor-button i.fa-scissors:before {
+  content: "\f0c4"
+}
+.ngx-editor-button i.fa-chain-broken:before {
+  content: "\f127"
+}
