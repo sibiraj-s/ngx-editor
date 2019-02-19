@@ -50,6 +50,10 @@ export class NgxEditorToolbarComponent implements OnInit {
    * Emits an event when a toolbar button is clicked
    */
   @Output() execute: EventEmitter<string> = new EventEmitter<string>();
+  /**
+   * Emits an event then an image is selected
+   */
+  @Output() uploadImage: EventEmitter<HTMLInputElement> = new EventEmitter<HTMLInputElement>();
 
   constructor(private _popOverConfig: PopoverConfig,
     private _formBuilder: FormBuilder,
@@ -137,27 +141,32 @@ export class NgxEditorToolbarComponent implements OnInit {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
 
-      try {
-        this._commandExecutorService.uploadImage(file, this.config.imageEndPoint).subscribe(event => {
-
-          if (event.type) {
-            this.updloadPercentage = Math.round(100 * event.loaded / event.total);
-          }
-
-          if (event instanceof HttpResponse) {
-            try {
-              this._commandExecutorService.insertImage(event.body.url);
-            } catch (error) {
-              this._messageService.sendMessage(error.message);
-            }
-            this.uploadComplete = true;
-            this.isUploading = false;
-          }
-        });
-      } catch (error) {
-        this._messageService.sendMessage(error.message);
+      if (!this.config.imageEndPoint) {
+        this.uploadImage.emit(file);
         this.uploadComplete = true;
         this.isUploading = false;
+      } else {
+        try {
+          this._commandExecutorService.uploadImage(file, this.config.imageEndPoint).subscribe(event => {
+            if (event.type) {
+              this.updloadPercentage = Math.round(100 * event.loaded / event.total);
+            }
+
+            if (event instanceof HttpResponse) {
+              try {
+                this._commandExecutorService.insertImage(event.body.url);
+              } catch (error) {
+                this._messageService.sendMessage(error.message);
+              }
+              this.uploadComplete = true;
+              this.isUploading = false;
+            }
+          });
+        } catch (error) {
+          this._messageService.sendMessage(error.message);
+          this.uploadComplete = true;
+          this.isUploading = false;
+        }
       }
     }
   }

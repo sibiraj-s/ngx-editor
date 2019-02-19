@@ -76,6 +76,8 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   @Output() blur: EventEmitter<string> = new EventEmitter<string>();
   /** emits `focus` event when focused in to the textarea */
   @Output() focus: EventEmitter<string> = new EventEmitter<string>();
+  /** emits `uploadImage` event when image is selected */
+  @Output() uploadImage: EventEmitter<HTMLInputElement> = new EventEmitter<HTMLInputElement>();
 
   @ViewChild('ngxTextArea') textArea: any;
   @ViewChild('ngxWrapper') ngxWrapper: any;
@@ -126,6 +128,14 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
       this.onTouched();
     }
     this.blur.emit('blur');
+  }
+
+  /**
+   * Executed when the image from the disc is selected
+   * @param image uploaded file object
+   */
+  onUploadImage(image: HTMLInputElement): void {
+    this.uploadImage.emit(image);
   }
 
   /**
