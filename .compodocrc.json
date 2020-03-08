@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@compodoc/compodoc/src/config/schema.json",
   "name": "NgxEditor",
   "output": "./docs/",
-  "tsconfig": "./src/tsconfig.app.json",
+  "tsconfig": "./tsconfig.docs.json",
   "customFavicon": "./src/favicon.ico",
   "includes": "./extras",
   "includesName": "Wiki",

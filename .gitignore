@@ -4,14 +4,15 @@
 /dist
 /tmp
 /out-tsc
-/.ng_build
-/.ng_pkg_build
-/build
-build.tgz
-/docs
+# Only exists if Bazel was run
+/bazel-out
 
 # dependencies
 /node_modules
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
 
 # IDEs and editors
 /.idea
@@ -28,6 +29,7 @@ build.tgz
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.history/*
 
 # misc
 /.sass-cache
@@ -42,3 +44,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Output directories
+build/
+docs/

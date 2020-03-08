@@ -18,9 +18,9 @@ export class NgxGrippieComponent {
   /**
    * Constructor
    *
-   * @param _editorComponent Editor component
+   * @param editorComponent Editor component
    */
-  constructor(private _editorComponent: NgxEditorComponent) { }
+  constructor(private editorComponent: NgxEditorComponent) { }
 
   /**
    *
@@ -33,7 +33,7 @@ export class NgxGrippieComponent {
       return;
     }
 
-    this._editorComponent.resizeTextArea(event.clientY - this.oldY);
+    this.editorComponent.resizeTextArea(event.clientY - this.oldY);
     this.oldY = event.clientY;
   }
 
@@ -47,10 +47,9 @@ export class NgxGrippieComponent {
     this.grabber = false;
   }
 
-  @HostListener('mousedown', ['$event']) onResize(event: MouseEvent, resizer?: Function) {
+  @HostListener('mousedown', ['$event']) onResize(event: MouseEvent) {
     this.grabber = true;
     this.oldY = event.clientY;
     event.preventDefault();
   }
-
 }
