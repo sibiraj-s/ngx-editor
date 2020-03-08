@@ -51,13 +51,15 @@ export class NgxEditorToolbarComponent implements OnInit {
    */
   @Output() execute: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private _popOverConfig: PopoverConfig,
-    private _formBuilder: FormBuilder,
-    private _messageService: MessageService,
-    private _commandExecutorService: CommandExecutorService) {
-    this._popOverConfig.outsideClick = true;
-    this._popOverConfig.placement = 'bottom';
-    this._popOverConfig.container = 'body';
+  constructor(
+    private popOverConfig: PopoverConfig,
+    private formBuilder: FormBuilder,
+    private messageService: MessageService,
+    private commandExecutorService: CommandExecutorService
+  ) {
+    this.popOverConfig.outsideClick = true;
+    this.popOverConfig.placement = 'bottom';
+    this.popOverConfig.container = 'body';
   }
 
   /**
@@ -65,8 +67,8 @@ export class NgxEditorToolbarComponent implements OnInit {
    *
    * @param value name of the toolbar buttons
    */
-  canEnableToolbarOptions(value): boolean {
-    return Utils.canEnableToolbarOptions(value, this.config['toolbar']);
+  canEnableToolbarOptions(value: string): boolean {
+    return Utils.canEnableToolbarOptions(value, this.config.toolbar);
   }
 
   /**
@@ -82,7 +84,7 @@ export class NgxEditorToolbarComponent implements OnInit {
    * create URL insert form
    */
   buildUrlForm(): void {
-    this.urlForm = this._formBuilder.group({
+    this.urlForm = this.formBuilder.group({
       urlLink: ['', [Validators.required]],
       urlText: ['', [Validators.required]],
       urlNewTab: [true]
@@ -94,9 +96,9 @@ export class NgxEditorToolbarComponent implements OnInit {
    */
   insertLink(): void {
     try {
-      this._commandExecutorService.createLink(this.urlForm.value);
+      this.commandExecutorService.createLink(this.urlForm.value);
     } catch (error) {
-      this._messageService.sendMessage(error.message);
+      this.messageService.sendMessage(error.message);
     }
 
     /** reset form to default */
@@ -109,7 +111,7 @@ export class NgxEditorToolbarComponent implements OnInit {
    * create insert image form
    */
   buildImageForm(): void {
-    this.imageForm = this._formBuilder.group({
+    this.imageForm = this.formBuilder.group({
       imageUrl: ['', [Validators.required]]
     });
   }
@@ -118,7 +120,7 @@ export class NgxEditorToolbarComponent implements OnInit {
    * create insert image form
    */
   buildVideoForm(): void {
-    this.videoForm = this._formBuilder.group({
+    this.videoForm = this.formBuilder.group({
       videoUrl: ['', [Validators.required]],
       height: [''],
       width: ['']
@@ -138,7 +140,7 @@ export class NgxEditorToolbarComponent implements OnInit {
       const file = e.target.files[0];
 
       try {
-        this._commandExecutorService.uploadImage(file, this.config.imageEndPoint).subscribe(event => {
+        this.commandExecutorService.uploadImage(file, this.config.imageEndPoint).subscribe(event => {
 
           if (event.type) {
             this.updloadPercentage = Math.round(100 * event.loaded / event.total);
@@ -146,16 +148,16 @@ export class NgxEditorToolbarComponent implements OnInit {
 
           if (event instanceof HttpResponse) {
             try {
-              this._commandExecutorService.insertImage(event.body.url);
+              this.commandExecutorService.insertImage(event.body.url);
             } catch (error) {
-              this._messageService.sendMessage(error.message);
+              this.messageService.sendMessage(error.message);
             }
             this.uploadComplete = true;
             this.isUploading = false;
           }
         });
       } catch (error) {
-        this._messageService.sendMessage(error.message);
+        this.messageService.sendMessage(error.message);
         this.uploadComplete = true;
         this.isUploading = false;
       }
@@ -165,9 +167,9 @@ export class NgxEditorToolbarComponent implements OnInit {
   /** insert image in the editor */
   insertImage(): void {
     try {
-      this._commandExecutorService.insertImage(this.imageForm.value.imageUrl);
+      this.commandExecutorService.insertImage(this.imageForm.value.imageUrl);
     } catch (error) {
-      this._messageService.sendMessage(error.message);
+      this.messageService.sendMessage(error.message);
     }
 
     /** reset form to default */
@@ -179,9 +181,9 @@ export class NgxEditorToolbarComponent implements OnInit {
   /** insert image in the editor */
   insertVideo(): void {
     try {
-      this._commandExecutorService.insertVideo(this.videoForm.value);
+      this.commandExecutorService.insertVideo(this.videoForm.value);
     } catch (error) {
-      this._messageService.sendMessage(error.message);
+      this.messageService.sendMessage(error.message);
     }
 
     /** reset form to default */
@@ -193,9 +195,9 @@ export class NgxEditorToolbarComponent implements OnInit {
   /** inser text/background color */
   insertColor(color: string, where: string): void {
     try {
-      this._commandExecutorService.insertColor(color, where);
+      this.commandExecutorService.insertColor(color, where);
     } catch (error) {
-      this._messageService.sendMessage(error.message);
+      this.messageService.sendMessage(error.message);
     }
 
     this.colorPopover.hide();
@@ -204,9 +206,9 @@ export class NgxEditorToolbarComponent implements OnInit {
   /** set font size */
   setFontSize(fontSize: string): void {
     try {
-      this._commandExecutorService.setFontSize(fontSize);
+      this.commandExecutorService.setFontSize(fontSize);
     } catch (error) {
-      this._messageService.sendMessage(error.message);
+      this.messageService.sendMessage(error.message);
     }
 
     this.fontSizePopover.hide();
@@ -215,9 +217,9 @@ export class NgxEditorToolbarComponent implements OnInit {
   /** set font Name/family */
   setFontName(fontName: string): void {
     try {
-      this._commandExecutorService.setFontName(fontName);
+      this.commandExecutorService.setFontName(fontName);
     } catch (error) {
-      this._messageService.sendMessage(error.message);
+      this.messageService.sendMessage(error.message);
     }
 
     this.fontSizePopover.hide();

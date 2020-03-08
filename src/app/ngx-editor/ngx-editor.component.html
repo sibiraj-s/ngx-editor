@@ -1,5 +1,5 @@
 <div class="ngx-editor" id="ngxEditor" [style.width]="config['width']" [style.minWidth]="config['minWidth']" tabindex="0"
-  (focus)="onEditorFocus()">
+  (focus)="onEditorFocus()" #ngxEditor>
 
   <app-ngx-editor-toolbar [config]="config" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>
 
@@ -8,7 +8,7 @@
     <div class="ngx-editor-textarea" [attr.contenteditable]="config['editable']" (input)="onContentChange($event.target.innerHTML)"
       [attr.translate]="config['translate']" [attr.spellcheck]="config['spellcheck']" [style.height]="config['height']"
       [style.minHeight]="config['minHeight']" [style.resize]="Utils?.canResize(resizer)" (focus)="onTextAreaFocus()"
-      (blur)="onTextAreaBlur()" #ngxTextArea></div>
+      (blur)="onTextAreaBlur()" #ngxTextarea></div>
 
     <span class="ngx-editor-placeholder">{{ placeholder || config['placeholder'] }}</span>
   </div>

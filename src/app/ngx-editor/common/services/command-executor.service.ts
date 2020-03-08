@@ -9,9 +9,9 @@ export class CommandExecutorService {
 
   /**
    *
-   * @param _http HTTP Client for making http requests
+   * @param http HTTP Client for making http requests
    */
-  constructor(private _http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   /**
    * executes command from the toolbar
@@ -60,10 +60,10 @@ export class CommandExecutorService {
   }
 
   /**
- * inserts image in the editor
- *
- * @param videParams url of the image to be inserted
- */
+   * inserts image in the editor
+   *
+   * @param videParams url of the image to be inserted
+   */
   insertVideo(videParams: any): void {
     if (this.savedSelection) {
       if (videParams) {
@@ -133,7 +133,7 @@ export class CommandExecutorService {
         reportProgress: true
       });
 
-      return this._http.request(req);
+      return this.http.request(req);
 
     } else {
       throw new Error('Invalid Image');

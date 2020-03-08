@@ -1,6 +1,6 @@
 import {
   Component, OnInit, Input, Output, ViewChild,
-  EventEmitter, Renderer2, forwardRef
+  EventEmitter, Renderer2, forwardRef, ElementRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -26,7 +26,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   @Input() editable: boolean;
   /** The spellcheck property specifies whether the element is to have its spelling and grammar checked or not. */
   @Input() spellcheck: boolean;
-  /** Placeholder for the textArea */
+  /** Placeholder for the textarea */
   @Input() placeholder: string;
   /**
    * The translate property specifies whether the content of an element should be translated or not.
@@ -49,7 +49,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    *
    * Passing an empty array will enable all toolbar
    */
-  @Input() toolbar: Object;
+  @Input() toolbar: object;
   /**
    * The editor can be resized vertically.
    *
@@ -73,12 +73,12 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   @Input() imageEndPoint: string;
 
   /** emits `blur` event when focused out from the textarea */
-  @Output() blur: EventEmitter<string> = new EventEmitter<string>();
+  @Output() editorBlur: EventEmitter<string> = new EventEmitter<string>();
   /** emits `focus` event when focused in to the textarea */
-  @Output() focus: EventEmitter<string> = new EventEmitter<string>();
+  @Output() editorFocus: EventEmitter<string> = new EventEmitter<string>();
 
-  @ViewChild('ngxTextArea') textArea: any;
-  @ViewChild('ngxWrapper') ngxWrapper: any;
+  @ViewChild('ngxTextarea', { static: true }) textarea: ElementRef;
+  @ViewChild('ngxWrapper', { static: true }) ngxWrapper: ElementRef;
 
   Utils: any = Utils;
 
@@ -86,25 +86,25 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   private onTouched: () => void;
 
   /**
-   * @param _messageService service to send message to the editor message component
-   * @param _commandExecutor executes command from the toolbar
-   * @param _renderer access and manipulate the dom element
+   * @param messageService service to send message to the editor message component
+   * @param commandExecutor executes command from the toolbar
+   * @param renderer access and manipulate the dom element
    */
   constructor(
-    private _messageService: MessageService,
-    private _commandExecutor: CommandExecutorService,
-    private _renderer: Renderer2) { }
+    private messageService: MessageService,
+    private commandExecutor: CommandExecutorService,
+    private renderer: Renderer2) { }
 
   /**
    * events
    */
   onTextAreaFocus(): void {
-    this.focus.emit('focus');
+    this.editorFocus.emit('focus');
   }
 
   /** focus the text area when the editor is focussed */
   onEditorFocus() {
-    this.textArea.nativeElement.focus();
+    this.textarea.nativeElement.focus();
   }
 
   /**
@@ -120,12 +120,12 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
 
   onTextAreaBlur(): void {
     /** save selection if focussed out */
-    this._commandExecutor.savedSelection = Utils.saveSelection();
+    this.commandExecutor.savedSelection = Utils.saveSelection();
 
     if (typeof this.onTouched === 'function') {
       this.onTouched();
     }
-    this.blur.emit('blur');
+    this.editorBlur.emit('blur');
   }
 
   /**
@@ -137,7 +137,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     let newHeight = parseInt(this.height, 10);
     newHeight += offsetY;
     this.height = newHeight + 'px';
-    this.textArea.nativeElement.style.height = this.height;
+    this.textarea.nativeElement.style.height = this.height;
   }
 
   /**
@@ -147,9 +147,9 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    */
   executeCommand(commandName: string): void {
     try {
-      this._commandExecutor.execute(commandName);
+      this.commandExecutor.execute(commandName);
     } catch (error) {
-      this._messageService.sendMessage(error.message);
+      this.messageService.sendMessage(error.message);
     }
   }
 
@@ -195,7 +195,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    */
   refreshView(value: string): void {
     const normalizedValue = value === null ? '' : value;
-    this._renderer.setProperty(this.textArea.nativeElement, 'innerHTML', normalizedValue);
+    this.renderer.setProperty(this.textarea.nativeElement, 'innerHTML', normalizedValue);
   }
 
   /**
@@ -205,9 +205,9 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
    */
   togglePlaceholder(value: any): void {
     if (!value || value === '<br>' || value === '') {
-      this._renderer.addClass(this.ngxWrapper.nativeElement, 'show-placeholder');
+      this.renderer.addClass(this.ngxWrapper.nativeElement, 'show-placeholder');
     } else {
-      this._renderer.removeClass(this.ngxWrapper.nativeElement, 'show-placeholder');
+      this.renderer.removeClass(this.ngxWrapper.nativeElement, 'show-placeholder');
     }
   }
 
@@ -237,7 +237,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
      */
     this.config = this.Utils.getEditorConfiguration(this.config, ngxEditorConfig, this.getCollectiveParams());
 
-    this.height = this.height || this.textArea.nativeElement.offsetHeight;
+    this.height = this.height || this.textarea.nativeElement.offsetHeight;
 
     this.executeCommand('enableObjectResizing');
   }
