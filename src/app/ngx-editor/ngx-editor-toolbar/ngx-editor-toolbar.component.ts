@@ -7,7 +7,7 @@ import { MessageService } from '../common/services/message.service';
 import * as Utils from '../common/utils/ngx-editor.utils';
 
 @Component({
-  selector: 'app-ngx-editor-toolbar',
+  selector: 'ngx-editor-toolbar',
   templateUrl: './ngx-editor-toolbar.component.html',
   styleUrls: ['./ngx-editor-toolbar.component.scss'],
   providers: [PopoverConfig]

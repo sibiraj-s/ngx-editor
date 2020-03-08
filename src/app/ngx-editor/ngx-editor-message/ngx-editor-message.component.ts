@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { MessageService } from '../common/services/message.service';
 
 @Component({
-  selector: 'app-ngx-editor-message',
+  selector: 'ngx-editor-message',
   templateUrl: './ngx-editor-message.component.html',
   styleUrls: ['./ngx-editor-message.component.scss']
 })
