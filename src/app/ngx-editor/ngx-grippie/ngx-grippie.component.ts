@@ -2,7 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { NgxEditorComponent } from '../ngx-editor.component';
 
 @Component({
-  selector: 'app-ngx-grippie',
+  selector: 'ngx-grippie',
   templateUrl: './ngx-grippie.component.html',
   styleUrls: ['./ngx-grippie.component.scss']
 })

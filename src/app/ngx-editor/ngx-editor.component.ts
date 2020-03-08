@@ -11,7 +11,7 @@ import { ngxEditorConfig } from './common/ngx-editor.defaults';
 import * as Utils from './common/utils/ngx-editor.utils';
 
 @Component({
-  selector: 'app-ngx-editor',
+  selector: 'ngx-editor',
   templateUrl: './ngx-editor.component.html',
   styleUrls: ['./ngx-editor.component.scss'],
   providers: [{
