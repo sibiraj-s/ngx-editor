@@ -1,7 +1,7 @@
 <div class="ngx-editor" id="ngxEditor" [style.width]="config['width']" [style.minWidth]="config['minWidth']" tabindex="0"
   (focus)="onEditorFocus()" #ngxEditor>
 
-  <app-ngx-editor-toolbar [config]="config" (execute)="executeCommand($event)"></app-ngx-editor-toolbar>
+  <ngx-editor-toolbar [config]="config" (execute)="executeCommand($event)"></ngx-editor-toolbar>
 
   <!-- text area -->
   <div class="ngx-wrapper" #ngxWrapper>
@@ -13,7 +13,7 @@
     <span class="ngx-editor-placeholder">{{ placeholder || config['placeholder'] }}</span>
   </div>
 
-  <app-ngx-editor-message></app-ngx-editor-message>
-  <app-ngx-grippie *ngIf="resizer === 'stack'"></app-ngx-grippie>
+  <ngx-editor-message></ngx-editor-message>
+  <ngx-grippie *ngIf="resizer === 'stack'"></ngx-grippie>
 
 </div>

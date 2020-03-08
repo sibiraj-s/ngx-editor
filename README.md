@@ -50,7 +50,7 @@ Import [font-awesome](https://github.com/FortAwesome/Font-Awesome) into your app
 Then in HTML
 
 ```html
-<app-ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>
+<ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></ngx-editor>
 ```
 
 For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
