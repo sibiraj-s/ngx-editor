@@ -128,14 +128,31 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
     this.editorBlur.emit('blur');
   }
 
+  getComputedTextareaStyles() {
+    const computedStyle = getComputedStyle(this.textarea.nativeElement);
+
+    return {
+      height: parseInt(computedStyle.height, 10),
+      maxHeight: parseInt(computedStyle.maxHeight, 10),
+      minHeight: parseInt(computedStyle.minHeight, 10),
+      original: computedStyle
+    };
+  }
+
   /**
    * resizing text area
    *
    * @param offsetY vertical height of the eidtable portion of the editor
    */
   resizeTextArea(offsetY: number): void {
-    let newHeight = parseInt(this.height, 10);
-    newHeight += offsetY;
+    const { height, maxHeight, minHeight } = this.getComputedTextareaStyles();
+
+    const newHeight = height + offsetY;
+
+    if (newHeight < minHeight || newHeight > maxHeight) {
+      return;
+    }
+
     this.height = newHeight + 'px';
     this.textarea.nativeElement.style.height = this.height;
   }
@@ -232,12 +249,7 @@ export class NgxEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    /**
-     * set configuartion
-     */
     this.config = this.Utils.getEditorConfiguration(this.config, ngxEditorConfig, this.getCollectiveParams());
-
-    this.height = this.height || this.textarea.nativeElement.offsetHeight;
 
     this.executeCommand('enableObjectResizing');
   }
