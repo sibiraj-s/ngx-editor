@@ -6,7 +6,7 @@
  */
 export function canEnableToolbarOptions(value: string, toolbar: any): boolean {
   if (value) {
-    if (toolbar['length'] === 0) {
+    if (toolbar.length === 0) {
       return true;
     } else {
       const found = toolbar.filter(array => {
