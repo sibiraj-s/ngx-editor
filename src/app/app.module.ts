@@ -14,7 +14,6 @@ import { NgxEditorModule } from './ngx-editor/ngx-editor.module';
     FormsModule,
     NgxEditorModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 

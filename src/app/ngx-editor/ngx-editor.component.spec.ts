@@ -1,8 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { NgxEditorComponent } from './ngx-editor.component';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
+import { NgxEditorComponent } from './ngx-editor.component';
 
 describe('NgxEditorComponent', () => {
   let component: NgxEditorComponent;
@@ -10,13 +11,11 @@ describe('NgxEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, HttpClientModule],
-      providers: [],
+      imports: [FormsModule],
       declarations: [
         NgxEditorComponent,
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -25,7 +24,15 @@ describe('NgxEditorComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the editor component correctly', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the editor component', () => {
+    expect(true).toBeTrue();
+
+    const compiled: DebugElement = fixture.debugElement;
+    // expect menubar to be rendered
+    expect(compiled.query(By.css('.NgxEditor-MenuBar'))).toBeDefined();
   });
 });
