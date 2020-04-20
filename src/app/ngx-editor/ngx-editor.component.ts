@@ -1,256 +1,109 @@
 import {
-  Component, OnInit, Input, Output, ViewChild,
-  EventEmitter, Renderer2, forwardRef, ElementRef
+  Component, ViewChild, ElementRef,
+  Input, forwardRef, AfterViewInit, OnDestroy, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
-import { CommandExecutorService } from './common/services/command-executor.service';
-import { MessageService } from './common/services/message.service';
+import { EditorState, Transaction } from 'prosemirror-state';
+import { EditorView } from 'prosemirror-view';
+import { Node as ProsemirrorNode } from 'prosemirror-model';
+import { schema } from 'prosemirror-schema-basic';
 
-import { ngxEditorConfig } from './common/ngx-editor.defaults';
-import * as Utils from './common/utils/ngx-editor.utils';
+import { Config, ComputedOptions } from './types';
+
+import { getPlugins } from './utils/plugins';
+import computeOptions from './utils/computeOptions';
 
 @Component({
   selector: 'ngx-editor',
-  templateUrl: './ngx-editor.component.html',
-  styleUrls: ['./ngx-editor.component.scss'],
+  templateUrl: 'ngx-editor.component.html',
+  styleUrls: ['ngx-editor.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => NgxEditorComponent),
     multi: true
-  }]
+  }],
+  encapsulation: ViewEncapsulation.None
 })
 
-export class NgxEditorComponent implements OnInit, ControlValueAccessor {
-  /** Specifies weather the textarea to be editable or not */
-  @Input() editable: boolean;
-  /** The spellcheck property specifies whether the element is to have its spelling and grammar checked or not. */
-  @Input() spellcheck: boolean;
-  /** Placeholder for the textarea */
-  @Input() placeholder: string;
-  /**
-   * The translate property specifies whether the content of an element should be translated or not.
-   *
-   * Check https://www.w3schools.com/tags/att_global_translate.asp for more information and browser support
-   */
-  @Input() translate: string;
-  /** Sets height of the editor */
-  @Input() height: string;
-  /** Sets minimum height for the editor */
-  @Input() minHeight: string;
-  /** Sets Width of the editor */
-  @Input() width: string;
-  /** Sets minimum width of the editor */
-  @Input() minWidth: string;
-  /**
-   * Toolbar accepts an array which specifies the options to be enabled for the toolbar
-   *
-   * Check ngxEditorConfig for toolbar configuration
-   *
-   * Passing an empty array will enable all toolbar
-   */
-  @Input() toolbar: object;
-  /**
-   * The editor can be resized vertically.
-   *
-   * `basic` resizer enables the html5 reszier. Check here https://www.w3schools.com/cssref/css3_pr_resize.asp
-   *
-   * `stack` resizer enable a resizer that looks like as if in https://stackoverflow.com
-   */
-  @Input() resizer = 'stack';
-  /**
-   * The config property is a JSON object
-   *
-   * All avaibale inputs inputs can be provided in the configuration as JSON
-   * inputs provided directly are considered as top priority
-   */
-  @Input() config = ngxEditorConfig;
-  /** Weather to show or hide toolbar */
-  @Input() showToolbar: boolean;
-  /** Weather to enable or disable the toolbar */
-  @Input() enableToolbar: boolean;
-  /** Endpoint for which the image to be uploaded */
-  @Input() imageEndPoint: string;
+export class NgxEditorComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('ngxEditor', { static: true }) ngxEditor: ElementRef;
 
-  /** emits `blur` event when focused out from the textarea */
-  @Output() editorBlur: EventEmitter<string> = new EventEmitter<string>();
-  /** emits `focus` event when focused in to the textarea */
-  @Output() editorFocus: EventEmitter<string> = new EventEmitter<string>();
+  @Input() placeholder = 'Type here...';
+  @Input() config: Config;
 
-  @ViewChild('ngxTextarea', { static: true }) textarea: ElementRef;
-  @ViewChild('ngxWrapper', { static: true }) ngxWrapper: ElementRef;
+  private view: EditorView;
+  private onChange: (value: object) => void;
 
-  Utils: any = Utils;
+  private options: ComputedOptions;
 
-  private onChange: (value: string) => void;
-  private onTouched: () => void;
-
-  /**
-   * @param messageService service to send message to the editor message component
-   * @param commandExecutor executes command from the toolbar
-   * @param renderer access and manipulate the dom element
-   */
-  constructor(
-    private messageService: MessageService,
-    private commandExecutor: CommandExecutorService,
-    private renderer: Renderer2) { }
-
-  /**
-   * events
-   */
-  onTextAreaFocus(): void {
-    this.editorFocus.emit('focus');
-  }
-
-  /** focus the text area when the editor is focussed */
-  onEditorFocus() {
-    this.textarea.nativeElement.focus();
-  }
-
-  /**
-   * Executed from the contenteditable section while the input property changes
-   * @param html html string from contenteditable
-   */
-  onContentChange(innerHTML: string): void {
-    if (typeof this.onChange === 'function') {
-      this.onChange(innerHTML);
-      this.togglePlaceholder(innerHTML);
-    }
-  }
-
-  onTextAreaBlur(): void {
-    /** save selection if focussed out */
-    this.commandExecutor.savedSelection = Utils.saveSelection();
-
-    if (typeof this.onTouched === 'function') {
-      this.onTouched();
-    }
-    this.editorBlur.emit('blur');
-  }
-
-  getComputedTextareaStyles() {
-    const computedStyle = getComputedStyle(this.textarea.nativeElement);
-
-    return {
-      height: parseInt(computedStyle.height, 10),
-      maxHeight: parseInt(computedStyle.maxHeight, 10),
-      minHeight: parseInt(computedStyle.minHeight, 10),
-      original: computedStyle
-    };
-  }
-
-  /**
-   * resizing text area
-   *
-   * @param offsetY vertical height of the eidtable portion of the editor
-   */
-  resizeTextArea(offsetY: number): void {
-    const { height, maxHeight, minHeight } = this.getComputedTextareaStyles();
-
-    const newHeight = height + offsetY;
-
-    if (newHeight < minHeight || newHeight > maxHeight) {
+  writeValue(value: object | null) {
+    if (!value) {
       return;
     }
 
-    this.height = newHeight + 'px';
-    this.textarea.nativeElement.style.height = this.height;
+    this.updateContent(value);
   }
 
-  /**
-   * editor actions, i.e., executes command from toolbar
-   *
-   * @param commandName name of the command to be executed
-   */
-  executeCommand(commandName: string): void {
-    try {
-      this.commandExecutor.execute(commandName);
-    } catch (error) {
-      this.messageService.sendMessage(error.message);
-    }
-  }
-
-  /**
-   * Write a new value to the element.
-   *
-   * @param value value to be executed when there is a change in contenteditable
-   */
-  writeValue(value: any): void {
-    this.togglePlaceholder(value);
-
-    if (value === null || value === undefined || value === '' || value === '<br>') {
-      value = null;
-    }
-
-    this.refreshView(value);
-  }
-
-  /**
-   * Set the function to be called
-   * when the control receives a change event.
-   *
-   * @param fn a function
-   */
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  /**
-   * Set the function to be called
-   * when the control receives a touch event.
-   *
-   * @param fn a function
-   */
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+  registerOnTouched(): void { }
+
+  private parseDoc(contentJson: object): ProsemirrorNode {
+    return schema.nodeFromJSON(contentJson);
   }
 
-  /**
-   * refresh view/HTML of the editor
-   *
-   * @param value html string from the editor
-   */
-  refreshView(value: string): void {
-    const normalizedValue = value === null ? '' : value;
-    this.renderer.setProperty(this.textarea.nativeElement, 'innerHTML', normalizedValue);
-  }
+  private updateContent(value: object) {
+    try {
+      const doc = this.parseDoc(value);
 
-  /**
-   * toggles placeholder based on input string
-   *
-   * @param value A HTML string from the editor
-   */
-  togglePlaceholder(value: any): void {
-    if (!value || value === '<br>' || value === '') {
-      this.renderer.addClass(this.ngxWrapper.nativeElement, 'show-placeholder');
-    } else {
-      this.renderer.removeClass(this.ngxWrapper.nativeElement, 'show-placeholder');
+      const state = this.view.state;
+      const tr = state.tr;
+      tr.replaceWith(0, state.doc.content.size, doc);
+      this.view.dispatch(tr);
+    } catch (err) {
+      console.error('Unable to update document.', err);
     }
   }
 
-  /**
-   * returns a json containing input params
-   */
-  getCollectiveParams(): any {
-    return {
-      editable: this.editable,
-      spellcheck: this.spellcheck,
-      placeholder: this.placeholder,
-      translate: this.translate,
-      height: this.height,
-      minHeight: this.minHeight,
-      width: this.width,
-      minWidth: this.minWidth,
-      enableToolbar: this.enableToolbar,
-      showToolbar: this.showToolbar,
-      imageEndPoint: this.imageEndPoint,
-      toolbar: this.toolbar
-    };
+  private handleTransactions(tr: Transaction) {
+    const { state } = this.view.state.applyTransaction(tr);
+
+    this.view.updateState(state);
+
+    if (tr.docChanged) {
+      const json = state.doc.toJSON();
+      this.onChange(json);
+    }
+  }
+
+  createEditor() {
+    this.view = new EditorView(this.ngxEditor.nativeElement, {
+      state: EditorState.create({
+        schema,
+        plugins: getPlugins(this.options),
+      }),
+      dispatchTransaction: this.handleTransactions.bind(this),
+      attributes: {
+        class: 'NgxEditor-Content'
+      },
+    });
   }
 
   ngOnInit() {
-    this.config = this.Utils.getEditorConfiguration(this.config, ngxEditorConfig, this.getCollectiveParams());
+   this.options = computeOptions({
+     placeholder: this.placeholder,
+     config: this.config
+   });
+  }
 
-    this.executeCommand('enableObjectResizing');
+  ngAfterViewInit() {
+    this.createEditor();
+  }
+
+  ngOnDestroy() {
+    this.view.destroy();
   }
 }

@@ -33,43 +33,45 @@ npm install ngx-editor --save
 yarn add ngx-editor
 ```
 
+#### PeerDependencies
+
+- prosemirror-state
+- prosemirror-view
+- prosemirror-schema-basic
+- prosemirror-commands
+- prosemirror-history
+- prosemirror-keymap
+
 ### Usage
 
 Import `ngx-editor` module
 
-```typescript
+```ts
 import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
-  imports: [ NgxEditorModule ]
+  imports: [NgxEditorModule],
 })
-```
 
-Import [font-awesome](https://github.com/FortAwesome/Font-Awesome) into your application
+export class AppModule {}
+```
 
 Then in HTML
 
 ```html
-<ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></ngx-editor>
+<ngx-editor [(ngModel)]="value"></ngx-editor>
 ```
 
 For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
-
-#### PeerDependencies
-
-`ngx-editor` depeneds on the following libraries to work.
-
-* [Font-Awesome v4.7.0](https://github.com/FortAwesome/Font-Awesome/tree/fa-4)
-* [Ngx-Bootstrap](https://github.com/valor-software/ngx-bootstrap)
 
 ## Compatibility
 
 All Evergreen-Browsers are supported
 
-* Google Chrome
-* Microsoft Edge
-* Mozilla Firefox
-* Opera
+- Google Chrome
+- Microsoft Edge
+- Mozilla Firefox
+- Opera
 
 ## Demo
 
@@ -82,5 +84,5 @@ Documentation is auto-generated using [compodoc][compodoc], and can be viewed he
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
 [github]: https://sibiraj-s.github.io/
-[wiki]:https://github.com/sibiraj-s/ngx-editor/wiki/ngxEditor
+[wiki]: https://github.com/sibiraj-s/ngx-editor/wiki/ngxEditor
 [compodoc]: https://compodoc.github.io/website/
