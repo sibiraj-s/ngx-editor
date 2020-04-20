@@ -1,25 +1,20 @@
 <div class="container">
-  <div class="logo block">
-    <img src="assets/icons/ngx-editor.svg" alt="ngx-Editor">
-    <h6>A Simple WYSIWYG Editor for Angular 6 Applications.</h6>
-    <div class="github-buttons">
-      <a class="github-button" href="https://github.com/sibiraj-s" aria-label="Follow @sibiraj-s on GitHub">Follow
-        @sibiraj-s</a>
-      <a class="github-button" href="https://github.com/sibiraj-s/ngx-editor/fork" aria-label="Fork sibiraj-s/ngx-editor on GitHub">Fork</a>
-      <a class="github-button" href="https://github.com/sibiraj-s/ngx-editor" aria-label="Star sibiraj-s/ngx-editor on GitHub">Star</a>
-      <a class="github-button" href="https://github.com/sibiraj-s/ngx-editor/issues" data-show-count="true" aria-label="Issue sibiraj-s/ngx-editor on GitHub">Issue</a>
-      <a class="github-button" href="https://github.com/sibiraj-s/ngx-editor/archive/master.zip" aria-label="Download sibiraj-s/ngx-editor on GitHub">Download</a>
+  <div class="content">
+    <div class="display">
+      <div class="logo">
+        <img src="../assets/icons/ngx-editor.svg" />
+        <div class="subtitle">A Simple WYSIWYG Editor for Angular Applications.</div>
+      </div>
+      <div class="badges" *ngIf="isProdMode">
+        <img src="https://badgen.net/npm/v/ngx-editor" />
+        <img src="https://badgen.net/npm/dm/ngx-editor" />
+        <img src="https://badgen.net/npm/dt/ngx-editor" />
+        <img src="https://badgen.net/npm/license/ngx-editor" />
+      </div>
     </div>
-  </div>
-
-  <div class="editor block">
-    <ngx-editor [config]="editorConfig" [spellcheck]="true" [(ngModel)]="htmlContent"></ngx-editor>
-  </div>
-
-  <div *ngIf="htmlContent" class="htmlblock block">
-    <h6>HTML Output</h6>
-    <div class="html">
-      {{ htmlContent }}
+    <div class="editor">
+      <ngx-editor [placeholder]="placeholder" [ngModel]="editorContent" (ngModelChange)="editorContentChange($event)">
+      </ngx-editor>
     </div>
   </div>
 </div>

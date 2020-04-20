@@ -1,56 +1,62 @@
-.ngx-editor {
-  position: relative;
+@import "prosemirror-view//style/prosemirror.css";
 
-  ::ng-deep [contenteditable="true"]:empty:before {
-    content: attr(placeholder);
-    display: block; // for firefox
-    color: #868e96;
-    opacity: 1;
-  }
+.ProseMirror {
+  outline: none;
+}
 
-  .ngx-wrapper {
-    position: relative;
+$icon-size: 30px;
 
-    .ngx-editor-textarea {
-      min-height: 5rem;
-      padding: 0.5rem 0.8rem 1rem 0.8rem;
-      border: 1px solid #ddd;
-      background-color: transparent;
-      overflow-x: hidden;
-      overflow-y: auto;
-      z-index: 2;
-      position: relative;
+.NgxEditor-Wrapper {
+  background: white;
+  color: black;
+  background-clip: padding-box;
+  border-radius: 4px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
 
-      &:focus,
-      &.focus {
-        outline: 0;
-      }
+.NgxEditor-MenuBar {
+  display: flex;
+  padding: .2rem;
+  border-bottom: 1px solid #ddd;
 
-      ::ng-deep blockquote {
-        margin-left: 1rem;
-        border-left: 0.2em solid #dfe2e5;
-        padding-left: 0.5rem;
-      }
+  .NgxEditor-MenuItem {
+    height: $icon-size;
+    width: $icon-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease-in-out;
+    border-radius: 4px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #f1f1f1;
     }
 
-    ::ng-deep p {
-      margin-bottom: 0;
-    }
+    &.NgxEditor-MenuItem__active {
 
-    .ngx-editor-placeholder {
-      display: none;
-      position: absolute;
-      top: 0;
-      padding: 0.5rem 0.8rem 1rem 0.9rem;
-      z-index: 1;
-      color: #6c757d;
-      opacity: 1;
-    }
-
-    &.show-placeholder {
-      .ngx-editor-placeholder {
-        display: block;
+      svg {
+        fill: #06c;
       }
     }
   }
+
+  .NgxEditor-MenuItem__Seperator {
+    border-left: 1px solid #ccc;
+    margin: 0 5px;
+  }
+}
+
+.NgxEditor-Content {
+  padding: .5rem;
+
+  p {
+    margin: 0;
+    margin-bottom: 0.7rem;
+  }
+}
+
+.NgxEditor-Placeholder {
+  color: #6c757d;
+  opacity: 1;
 }

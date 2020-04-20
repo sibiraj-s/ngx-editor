@@ -1,23 +1,22 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss']
 })
 
 export class AppComponent {
-  title = 'ngx-editor';
+  placeholder = 'Type something here...';
+  isProdMode = environment.production;
 
-  editorConfig = {
-    editable: true,
-    spellcheck: false,
-    height: '10rem',
-    minHeight: '5rem',
-    placeholder: 'Type something. Test the Editor... ヽ(^。^)丿',
-    translate: 'no'
+  editorContent: object = {
+    type: 'doc',
+    content: []
   };
 
-  htmlContent = '';
+  editorContentChange(e: object) {
+    this.editorContent = e;
+  }
 }
