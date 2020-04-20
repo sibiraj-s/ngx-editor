@@ -4,7 +4,16 @@
   "lib": {
     "entryFile": "./public_api.ts",
     "umdModuleIds": {
-      "ngx-bootstrap": "ngx-bootstrap"
+      "prosemirror-state": "prosemirrorState",
+      "prosemirror-view": "prosemirrorView",
+      "prosemirror-schema-basic": "prosemirrorSchemaBasic",
+      "prosemirror-history": "prosemirrorHistory",
+      "prosemirror-keymap": "prosemirrorKeymap",
+      "prosemirror-commands": "prosemirrorCommands",
+      "classnames": "classNames"
     }
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "classnames"
+  ]
 }

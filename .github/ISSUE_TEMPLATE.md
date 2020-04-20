@@ -26,7 +26,7 @@ angular: x.x.x
 ### Browser
 
 - [ ] Chrome - x.x.x
-- [ ]  Mozilla Firefox - x.x.x
+- [ ] Mozilla Firefox - x.x.x
 - [ ] Opera - x.x.x
 - [ ] Microsoft Edge - x.x.x
 

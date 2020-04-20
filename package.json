@@ -3,6 +3,9 @@
   "version": "4.1.0",
   "description": "WYSIWYG Editor for Angular Applications",
   "license": "MIT",
+  "repository": "https://github.com/sibiraj-s/ngx-editor.git",
+  "bugs": "https://github.com/sibiraj-s/ngx-editor/issues",
+  "homepage": "https://github.com/sibiraj-s/ngx-editor",
   "scripts": {
     "build": "ng build --prod",
     "build:package": "sh ./scripts/build.sh",
@@ -27,24 +30,22 @@
     "angular-wysiwyg-editor",
     "wysiwyg-editor",
     "ngx-editor",
-    "angular2-wysiwyg-editor",
-    "angular4-wysiwyg-editor"
+    "prosemirror"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sibiraj-s/ngx-editor.git"
-  },
-  "bugs": {
-    "url": "https://github.com/sibiraj-s/ngx-editor/issues"
-  },
-  "homepage": "https://github.com/sibiraj-s/ngx-editor",
   "peerDependencies": {
     "@angular/common": "~9.0.5",
     "@angular/core": "~9.0.5",
     "@angular/forms": "~9.0.5",
-    "font-awesome": "^4.7.0",
-    "ngx-bootstrap": "^5.5.0",
+    "prosemirror-commands": "^1.1.0",
+    "prosemirror-history": "^1.1.0",
+    "prosemirror-keymap": "^1.1.0",
+    "prosemirror-schema-basic": "^1.1.0",
+    "prosemirror-state": "^1.3.0",
+    "prosemirror-view": "^1.14.0",
     "rxjs": "~6.5.4"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.5",
@@ -63,13 +64,18 @@
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
-    "bootstrap": "^4.4.1",
+    "@types/prosemirror-commands": "^1.0.1",
+    "@types/prosemirror-history": "^1.0.1",
+    "@types/prosemirror-keymap": "^1.0.1",
+    "@types/prosemirror-model": "^1.7.2",
+    "@types/prosemirror-schema-basic": "^1.0.1",
+    "@types/prosemirror-state": "^1.2.3",
+    "@types/prosemirror-view": "^1.11.4",
     "chalk": "^3.0.0",
     "codelyzer": "~5.1.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
-    "font-awesome": "^4.7.0",
     "gh-pages": "^2.2.0",
     "husky": "^4.2.3",
     "inquirer": "^7.0.6",
@@ -81,7 +87,12 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
     "ng-packagr": "^9.0.2",
-    "ngx-bootstrap": "^5.5.0",
+    "prosemirror-commands": "^1.1.4",
+    "prosemirror-history": "^1.1.3",
+    "prosemirror-keymap": "^1.1.3",
+    "prosemirror-schema-basic": "^1.1.2",
+    "prosemirror-state": "^1.3.3",
+    "prosemirror-view": "^1.14.6",
     "protractor": "~5.4.3",
     "rxjs": "~6.5.4",
     "ts-node": "~8.3.0",
