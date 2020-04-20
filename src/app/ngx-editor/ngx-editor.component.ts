@@ -1,6 +1,6 @@
 import {
   Component, ViewChild, ElementRef,
-  Input, forwardRef, AfterViewInit, OnDestroy, OnInit, ViewEncapsulation
+  Input, forwardRef, OnDestroy, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -26,7 +26,7 @@ import computeOptions from './utils/computeOptions';
   encapsulation: ViewEncapsulation.None
 })
 
-export class NgxEditorComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
+export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestroy {
   @ViewChild('ngxEditor', { static: true }) ngxEditor: ElementRef;
 
   @Input() placeholder = 'Type here...';
@@ -97,10 +97,8 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, AfterVi
      placeholder: this.placeholder,
      config: this.config
    });
-  }
 
-  ngAfterViewInit() {
-    this.createEditor();
+   this.createEditor();
   }
 
   ngOnDestroy() {

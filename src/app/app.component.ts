@@ -16,7 +16,7 @@ export class AppComponent {
     content: []
   };
 
-  editorContentChange(e: object) {
-    this.editorContent = e;
+  editorContentChange(doc: object) {
+    this.editorContent = doc;
   }
 }
