@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Tests
+    name: Karma unit tests
     runs-on: ubuntu-latest
 
     strategy:
