@@ -9,6 +9,6 @@ describe('ngx-editor App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('A Simple WYSIWYG Editor for Angular 6 Applications.');
+    expect(page.getParagraphText()).toEqual('A Simple WYSIWYG Editor for Angular Applications.');
   });
 });
