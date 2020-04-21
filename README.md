@@ -8,16 +8,19 @@
 <p align="center">A Simple WYSIWYG Editor for Angular 6 Applications.</p>
 <p align="center">
   <a href="https://travis-ci.org/sibiraj-s/ngx-editor">
-    <img alt="Build Status" src="https://travis-ci.org/sibiraj-s/ngx-editor.svg?branch=master">
+    <img alt="Tests" src="https://github.com/sibiraj-s/ngx-editor/workflows/Tests/badge.svg">
   </a>
   <a href="https://www.npmjs.com/package/ngx-editor">
-    <img alt="npm version" src="https://img.shields.io/npm/v/ngx-editor.svg">
+    <img alt="npm version" src="https://badgen.net/npm/v/ngx-editor">
   </a>
   <a href="https://www.npmjs.com/package/ngx-editor">
-    <img alt="npm" src="https://img.shields.io/npm/dm/ngx-editor.svg">
+    <img alt="npm" src="https://badgen.net/npm/dm/ngx-editor">
+  </a>
+  <a href="https://www.npmjs.com/package/ngx-editor">
+    <img alt="npm" src="https://badgen.net/npm/dt/ngx-editor">
   </a>
   <a href="https://github.com/sibiraj-s/ngx-editor/blob/master/LICENSE">
-    <img alt="licence" src="https://img.shields.io/npm/l/ngx-editor.svg">
+    <img alt="licence" src="https://badgen.net/npm/license/ngx-editor">
   </a>
 </p>
 
