@@ -1,0 +1,37 @@
+name: Tests
+
+on:
+  push:
+    branches: master
+
+env:
+  CI: true
+  NODE_VERSION: 12
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - run: node --version
+      - run: npm --version
+
+      - name: NPM Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NODE_ENV: production
+          
+      - name: Test
+        run: npm run test
