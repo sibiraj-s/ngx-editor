@@ -1,0 +1,36 @@
+name: gh-pages
+
+on:
+  push:
+    branches: master
+
+env:
+  NODE_VERSION: 12
+
+jobs:
+  test:
+    name: Publish to gh-pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - run: node --version
+      - run: npm --version
+
+      - name: NPM Install
+        run: npm ci
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "Sibiraj"
+          git config --global user.email "20282546+sibiraj-s@users.noreply.github.com"
+
+      - name: Publish to gh-pages branch
+        run: npm run publish:docs

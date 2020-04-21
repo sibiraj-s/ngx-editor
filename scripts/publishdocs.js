@@ -5,7 +5,7 @@ const packageJson = require('../package.json');
 
 const ghPagesOptions = {
   branch: 'gh-pages',
-  message: `docs: ${packageJson.name} v${packageJson.version}`
+  message: `docs: update ${new Date().toISOString()}`
 };
 
 inquirer.prompt([
