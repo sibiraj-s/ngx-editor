@@ -27,12 +27,14 @@ async function publish() {
       if (!answers.publishDocs) {
         return;
       }
+    } else {
+      console.log('CI detected. Skipping prompt.');
     }
 
     await publishAsync('docs', ghPagesOptions);
     console.log(chalk.green(`\nDocumentation published successfully to ${chalk.cyan('\'gh-pages\'')} \n`));
   } catch (err) {
-    chalk.red('Unable to publish docs. Error: ', err);
+    console.log(chalk.red('Unable to publish docs. Error:'), err);
   }
 }
 
