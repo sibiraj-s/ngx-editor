@@ -31,6 +31,7 @@ jobs:
         run: |
           git config --global user.name "Sibiraj"
           git config --global user.email "20282546+sibiraj-s@users.noreply.github.com"
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/sibiraj-s/ngx-editor.git
 
       - name: Publish to gh-pages branch
         run: npm run publish:docs
