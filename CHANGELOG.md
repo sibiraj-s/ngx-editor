@@ -14,7 +14,7 @@ All notable changes to this project will be documented in this file.
 
 ## v5.0.0-alpha (2020-04-22)
 
-The package is a entirely rewritten with prosemirror as default editor. Most of the options are removed and will be added eventually in upcoming releases.
+The package is entirely rewritten with prosemirror as default editor. Most of the options are removed and will be added eventually in upcoming releases.
 
 #### Features
 
