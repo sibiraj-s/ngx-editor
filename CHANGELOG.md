@@ -12,6 +12,24 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha (2020-04-22)
+
+The package is a entirely rewritten with prosemirror as default editor. Most of the options are removed and will be added eventually in upcoming releases.
+
+#### Features
+
+- use prosemirror as default editor ([f17d0ef](https://github.com/Sibiraj-S/ngx-editor/commit/f17d0ef))
+
+#### Breaking Changes
+
+- remove `app` prefix from the component ([bbe3daa](https://github.com/Sibiraj-S/ngx-editor/commit/bbe3daa))
+- upgrade to angular 9 ([b280769](https://github.com/Sibiraj-S/ngx-editor/commit/b280769))
+
+#### Internal
+
+- migrate from travis-ci to github actions ([2afb2ec](https://github.com/Sibiraj-S/ngx-editor/commit/2afb2ec))
+- update devDependencies ([fd3ee1a](https://github.com/Sibiraj-S/ngx-editor/commit/fd3ee1a))
+
 ## v4.1.0 (2018-10-21)
 
 #### Dependency Updates
