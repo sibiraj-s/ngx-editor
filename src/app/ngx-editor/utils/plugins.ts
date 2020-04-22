@@ -12,17 +12,17 @@ import placeholder from '../plugins/placeholder';
 const isMacOs = /Mac/.test(navigator.platform);
 
 function getHistoryKeyMap() {
-  const historyMap = new Map();
+  const historyMap = {};
 
-  historyMap.set('Mod-z', undo);
+  historyMap['Mod-z'] = undo;
 
   if (isMacOs) {
-    historyMap.set('Shift-Mod-z', redo);
+    historyMap['Shift-Mod-z'] = redo;
   } else {
-    historyMap.set('Mod-y', redo);
+    historyMap['Mod-y'] = redo;
   }
 
-  return Object.fromEntries(historyMap);
+  return historyMap;
 }
 
 export const getPlugins = (options: ComputedOptions): Plugin[] => {
