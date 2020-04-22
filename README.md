@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/sibiraj-s/ngx-editor">
-   <img src="https://raw.githubusercontent.com/sibiraj-s/ngx-editor/master/src/assets/icons/ngx-editor.png" alt="ngxEditor">
+   <img src="./sketch/ngx-editor.png" alt="ngxEditor">
   </a>
 </p>
 <p align="center">A Simple WYSIWYG Editor for Angular 6 Applications.</p>

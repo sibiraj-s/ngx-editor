@@ -1,8 +1,8 @@
 {
-  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "./build/",
+  "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../dist/ngx-editor",
   "lib": {
-    "entryFile": "./public_api.ts",
+    "entryFile": "./public-api.ts",
     "umdModuleIds": {
       "prosemirror-state": "prosemirrorState",
       "prosemirror-view": "prosemirrorView",

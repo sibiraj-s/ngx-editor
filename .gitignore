@@ -46,5 +46,4 @@ testem.log
 Thumbs.db
 
 # Output directories
-build/
-docs/
+/docs

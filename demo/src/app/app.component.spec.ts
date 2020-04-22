@@ -1,9 +1,9 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { NgxEditorModule } from 'ngx-editor';
 
 import { AppComponent } from './app.component';
-import { NgxEditorModule } from './ngx-editor/ngx-editor.module';
 import { DebugElement } from '@angular/core';
 
 describe('AppComponent', () => {
