@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # publish to npm
-npm publish build/
+npm publish dist/ngx-editor/

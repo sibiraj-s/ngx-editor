@@ -3,13 +3,14 @@
   "name": "NgxEditor",
   "output": "./docs/",
   "tsconfig": "./tsconfig.docs.json",
-  "customFavicon": "./src/favicon.ico",
-  "includes": "./extras",
+  "customFavicon": "./demo/src/favicon.ico",
+  "includes": "./wiki",
   "includesName": "Wiki",
   "disableLifeCycleHooks": true,
   "disablePrivate": true,
   "disableProtected": true,
   "disableInternal": true,
   "disableCoverage": true,
-  "hideGenerator": true
+  "hideGenerator": true,
+  "assetsFolder": "sketch"
 }
