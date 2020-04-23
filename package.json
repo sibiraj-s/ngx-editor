@@ -30,35 +30,26 @@
     "ngx-editor",
     "prosemirror"
   ],
-  "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
-    "@angular/forms": "^9.0.0",
-    "prosemirror-commands": "^1.1.0",
-    "prosemirror-history": "^1.1.0",
-    "prosemirror-keymap": "^1.1.0",
-    "prosemirror-schema-basic": "^1.1.0",
-    "prosemirror-state": "^1.3.0",
-    "prosemirror-view": "^1.14.0",
-    "rxjs": "^6.5.0"
-  },
   "dependencies": {
-    "classnames": "^2.2.6"
+    "@angular/animations": "~9.1.1",
+    "@angular/common": "~9.1.1",
+    "@angular/compiler": "~9.1.1",
+    "@angular/core": "~9.1.1",
+    "@angular/forms": "~9.1.1",
+    "@angular/platform-browser": "~9.1.1",
+    "@angular/platform-browser-dynamic": "~9.1.1",
+    "@angular/router": "~9.1.1",
+    "classnames": "^2.2.6",
+    "rxjs": "~6.5.4",
+    "tslib": "^1.10.0",
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.1",
     "@angular-devkit/build-ng-packagr": "~0.901.1",
-    "@angular/animations": "~9.1.1",
     "@angular/cli": "~9.1.1",
-    "@angular/common": "~9.1.1",
-    "@angular/compiler": "~9.1.1",
     "@angular/compiler-cli": "~9.1.1",
-    "@angular/core": "^9.1.1",
-    "@angular/forms": "~9.1.1",
     "@angular/language-service": "~9.1.1",
-    "@angular/platform-browser": "~9.1.1",
-    "@angular/platform-browser-dynamic": "~9.1.1",
-    "@angular/router": "~9.1.1",
     "@compodoc/compodoc": "^1.1.11",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
@@ -71,7 +62,7 @@
     "@types/prosemirror-state": "^1.2.3",
     "@types/prosemirror-view": "^1.11.4",
     "chalk": "^4.0.0",
-    "codelyzer": "~5.1.2",
+    "codelyzer": "^5.1.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
@@ -93,10 +84,8 @@
     "prosemirror-state": "^1.3.3",
     "prosemirror-view": "^1.14.7",
     "protractor": "~5.4.3",
-    "rxjs": "~6.5.4",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.8.3",
-    "zone.js": "~0.10.2"
+    "typescript": "~3.8.3"
   }
 }
