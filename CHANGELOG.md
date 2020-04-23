@@ -9,8 +9,19 @@ All notable changes to this project will be documented in this file.
 > - Performance Improvements
 > - Dependency Updates
 > - Breaking Changes
+> - Enhancements
 > - Documentation
 > - Internal
+
+## v5.0.0-alpha.1 (2020-04-23)
+
+#### Breaking Changes
+
+- fix issues with ivy compiler ([30b513c](https://github.com/Sibiraj-S/ngx-editor/commit/30b513c))
+
+#### Enhancements
+
+- remove unwanted dependencies ([94374c4](https://github.com/Sibiraj-S/ngx-editor/commit/94374c4))
 
 ## v5.0.0-alpha (2020-04-22)
 
