@@ -9,11 +9,7 @@
       "prosemirror-schema-basic": "prosemirrorSchemaBasic",
       "prosemirror-history": "prosemirrorHistory",
       "prosemirror-keymap": "prosemirrorKeymap",
-      "prosemirror-commands": "prosemirrorCommands",
-      "classnames": "classNames"
+      "prosemirror-commands": "prosemirrorCommands"
     }
-  },
-  "whitelistedNonPeerDependencies": [
-    "classnames"
-  ]
+  }
 }
