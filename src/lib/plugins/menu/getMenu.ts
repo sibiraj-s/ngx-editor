@@ -1,6 +1,5 @@
 import { toggleMark } from 'prosemirror-commands';
 import { schema } from 'prosemirror-schema-basic';
-import classNames from 'classnames';
 
 import { getIconSvg } from '../../utils/icons';
 import { MENU_ITEM_CLASSNAME } from './constants';
@@ -8,7 +7,10 @@ import { MenuItem, Toolbar } from '../../types';
 
 function getMenuDom(name: string): HTMLElement {
   const div = document.createElement('div');
-  div.className = classNames(MENU_ITEM_CLASSNAME, `${MENU_ITEM_CLASSNAME}__${name}`);
+
+  div.classList.add(MENU_ITEM_CLASSNAME);
+  div.classList.add(`${MENU_ITEM_CLASSNAME}__${name}`);
+
   div.title = name;
 
   div.innerHTML = getIconSvg(name);
@@ -18,7 +20,7 @@ function getMenuDom(name: string): HTMLElement {
 
 function getSeperatorDom(): HTMLElement {
   const div = document.createElement('div');
-  div.className = classNames(`${MENU_ITEM_CLASSNAME}__Seperator`);
+  div.className = `${MENU_ITEM_CLASSNAME}__Seperator`;
   return div;
 }
 
