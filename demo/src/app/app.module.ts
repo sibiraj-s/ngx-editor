@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { NgxEditorModule } from '../../../src/lib/ngx-editor.module';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
