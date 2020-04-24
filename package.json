@@ -12,7 +12,7 @@
     "prebuild": "npm run lint",
     "prerelease": "npm run build:lib",
     "publish:docs": "npm run build:docs && node ./scripts/publishdocs.js",
-    "postbuild": "node ./scripts/postbuild.js",
+    "postbuild:lib": "node ./scripts/postbuild.js",
     "release": "sh ./scripts/release.sh",
     "start:demo": "ng serve demo --aot --open --port 5002 --host 0.0.0.0",
     "serve:docs": "compodoc --serve --watch --open --output=\"docs/\"",
