@@ -1,38 +1,14 @@
 [
-    {
-        "title": "Prerequisites",
-        "file": "docs/prerequisites.md"
-    },
-    {
-        "title": "Configuration",
-        "file": "docs/configuartion.md"
-    },
-    {
-        "title": "Toolbar",
-        "file": "docs/toolbar.md"
-    },
-    {
-        "title": "Font Size",
-        "file": "docs/font-size.md"
-    },
-    {
-        "title": "Colors",
-        "file": "docs/colors.md"
-    },
-    {
-        "title": "Image Uploader",
-        "file": "docs/image-uploader.md"
-    },
-    {
-        "title": "Insert Video",
-        "file": "docs/video.md"
-    },
-    {
-        "title": "Resizer",
-        "file": "docs/resizer.md"
-    },
-    {
-        "title": "Errors",
-        "file": "docs/errors.md"
-    }
+  {
+    "title": "Prerequisites",
+    "file": "content/prerequisites.md"
+  },
+  {
+    "title": "Configuration",
+    "file": "content/configuartion.md"
+  },
+  {
+    "title": "NgModel Binding",
+    "file": "content/ng-model.md"
+  }
 ]

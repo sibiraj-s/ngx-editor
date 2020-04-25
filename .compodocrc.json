@@ -11,6 +11,5 @@
   "disableProtected": true,
   "disableInternal": true,
   "disableCoverage": true,
-  "hideGenerator": true,
   "assetsFolder": "sketch"
 }
