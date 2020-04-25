@@ -14,7 +14,7 @@
     "publish:docs": "npm run build:docs && node ./scripts/publishdocs.js",
     "postbuild:lib": "node ./scripts/postbuild.js",
     "release": "sh ./scripts/release.sh",
-    "start:demo": "ng serve demo --aot --open --port 5002 --host 0.0.0.0",
+    "serve:demo": "ng serve demo --aot --open --port 5002 --host 0.0.0.0",
     "serve:docs": "compodoc --serve --watch --open --output=\"docs/\"",
     "test:demo": "ng test demo --browsers ChromeHeadless --watch false",
     "test:lib": "ng test ngx-editor --browsers ChromeHeadless --watch false",

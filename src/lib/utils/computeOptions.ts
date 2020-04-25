@@ -28,7 +28,7 @@ const getToolbar = (config: Config): Toolbar => {
   return toolbar;
 };
 
-// prefer attributes than config
+// prefer attributes to config
 const computeOptions = (options: Options): ComputedOptions => {
   const computedOptions = {} as ComputedOptions;
 
