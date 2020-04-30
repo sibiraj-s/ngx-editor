@@ -13,6 +13,13 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.2 (2020-04-30)
+
+#### Bug Fixes
+
+- fix issues with custom config ([613ec52](https://github.com/Sibiraj-S/ngx-editor/commit/613ec52))
+- remove empty DOM wrapper around the editor ([5f176e1](https://github.com/Sibiraj-S/ngx-editor/commit/5f176e1))
+
 ## v5.0.0-alpha.1 (2020-04-23)
 
 #### Breaking Changes
