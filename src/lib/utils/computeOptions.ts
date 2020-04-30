@@ -32,7 +32,7 @@ const getToolbar = (config: Config): Toolbar => {
 const computeOptions = (options: Options): ComputedOptions => {
   const computedOptions = {} as ComputedOptions;
 
-  const config = Object.assign({}, options.config, defaultConfig);
+  const config = Object.assign({}, defaultConfig, options.config);
 
   computedOptions.toolbar = getToolbar(config);
 
