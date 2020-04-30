@@ -1,0 +1,33 @@
+name: NPM Publish
+
+env:
+  NODE_VERSION: 12
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{env.NODE_VERSION}}
+      - run: npm ci
+      - run: npm test
+
+  publish-npm:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{env.NODE_VERSION}}
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm run release
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
