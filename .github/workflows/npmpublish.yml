@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: ${{env.NODE_VERSION}}
       - run: npm ci
-      - run: npm test
+      - run: npm run test:lib
 
   publish-npm:
     needs: test
