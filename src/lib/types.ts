@@ -4,13 +4,16 @@ export interface Config {
   toolbar: boolean | Toolbar;
 }
 
-export interface MenuItem {
+export interface MenuItemMeta {
   key: string;
+  icon: string;
+  type: 'mark' | 'node';
   command?: any;
-  dom: HTMLElement;
 }
 
 export interface ComputedOptions extends Config {
   placeholder: string;
   toolbar: Toolbar;
 }
+
+export type KeyMap = { [key: string]: any };
