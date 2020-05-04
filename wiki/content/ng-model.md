@@ -19,8 +19,8 @@ class AppComponent {
 ## Generate HTML from JSON
 
 ```ts
-import { schema } from "prosemirror-schema-basic";
 import { DOMSerializer } from "prosemirror-model";
+import { schema } from "ngx-editor";
 
 const contentNode = schema.nodeFromJSON(jsonDoc);
 

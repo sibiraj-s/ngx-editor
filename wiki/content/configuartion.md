@@ -14,7 +14,10 @@ The config property is a JSON object.
 
 ```json
 {
-  "toolbar": [["bold", "italic", "code"]]
+  "toolbar": [
+    ["bold", "italic", "code"],
+    ["ordered_list", "bullet_list"]
+  ]
 }
 ```
 

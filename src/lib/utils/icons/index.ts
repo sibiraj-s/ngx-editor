@@ -3,6 +3,8 @@
 import bold from './bold';
 import italic from './italic';
 import code from './code';
+import orderedList from './ordered_list';
+import bulletList from './bullet_list';
 
 const height = 20;
 const width = 20;
@@ -10,7 +12,9 @@ const width = 20;
 const icons = {
   bold,
   italic,
-  code
+  code,
+  ordered_list: orderedList,
+  bullet_list: bulletList
 };
 
 // Helper function to create menu icons

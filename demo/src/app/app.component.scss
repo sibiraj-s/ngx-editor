@@ -1,5 +1,7 @@
 .container {
-  width: 900px;
+  width: 100%;
+  max-width: 900px;
+  min-width: 320px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -18,6 +20,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-align: center;
       }
 
       .badges {

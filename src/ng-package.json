@@ -6,10 +6,25 @@
     "umdModuleIds": {
       "prosemirror-state": "prosemirrorState",
       "prosemirror-view": "prosemirrorView",
+      "prosemirror-model": "prosemirrorModel",
       "prosemirror-schema-basic": "prosemirrorSchemaBasic",
+      "prosemirror-schema-list": "prosemirrorSchemaList",
       "prosemirror-history": "prosemirrorHistory",
       "prosemirror-keymap": "prosemirrorKeymap",
-      "prosemirror-commands": "prosemirrorCommands"
+      "prosemirror-commands": "prosemirrorCommands",
+      "prosemirror-utils": "prosemirrorUtils"
     }
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "prosemirror-state",
+    "prosemirror-view",
+    "prosemirror-model",
+    "prosemirror-schema-basic",
+    "prosemirror-schema-list",
+    "prosemirror-history",
+    "prosemirror-keymap",
+    "prosemirror-commands",
+    "prosemirror-utils",
+    "prosemirror-tables"
+  ]
 }

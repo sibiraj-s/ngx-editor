@@ -7,6 +7,7 @@ interface Options {
 
 const defaultToolbarOptions: Toolbar = [
   ['bold', 'italic', 'code'],
+  ['ordered_list', 'bullet_list']
 ];
 
 const defaultConfig: Config = {

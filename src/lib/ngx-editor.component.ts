@@ -7,7 +7,8 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { EditorState, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { Node as ProsemirrorNode } from 'prosemirror-model';
-import { schema } from 'prosemirror-schema-basic';
+
+import schema from './schema';
 
 import { Config, ComputedOptions } from './types';
 
