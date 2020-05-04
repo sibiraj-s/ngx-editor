@@ -13,6 +13,16 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.3 (2020-05-04)
+
+#### Features
+
+- add support for list ([274dcc7](https://github.com/Sibiraj-S/ngx-editor/commit/274dcc7))
+
+#### Breaking Changes
+
+- prosemirror `peerDependencies` are no longer needed ([274dcc7](https://github.com/Sibiraj-S/ngx-editor/commit/274dcc7))
+
 ## v5.0.0-alpha.2 (2020-04-30)
 
 #### Bug Fixes
