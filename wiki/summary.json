@@ -1,9 +1,5 @@
 [
   {
-    "title": "Prerequisites",
-    "file": "content/prerequisites.md"
-  },
-  {
     "title": "Configuration",
     "file": "content/configuartion.md"
   },
