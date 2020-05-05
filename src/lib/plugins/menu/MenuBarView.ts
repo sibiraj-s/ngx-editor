@@ -3,7 +3,7 @@ import { EditorState } from 'prosemirror-state';
 
 import { Toolbar } from '../../types';
 
-import MenuItems from './MenuItems';
+import { renderMenu } from './menu';
 
 class MenuBarView {
   toolbar: Toolbar;
@@ -26,10 +26,8 @@ class MenuBarView {
     const menuDom = document.createElement('div');
     menuDom.className = 'NgxEditor-MenuBar';
 
-    const menuItems = new MenuItems(this.toolbar, this.view, menuDom);
-    menuItems.render();
-
-    this.updateMenuItems = menuItems.update.bind(menuItems);
+    const { update } = renderMenu(this.toolbar, this.view, menuDom);
+    this.updateMenuItems = update;
 
     this.view.dom.parentNode.insertBefore(menuDom, this.view.dom);
   }
