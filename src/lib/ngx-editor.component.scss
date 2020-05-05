@@ -14,27 +14,98 @@ $icon-size: 30px;
 
 .NgxEditor-MenuBar {
   display: flex;
-  padding: .2rem;
+  padding: 0.2rem;
   border-bottom: 1px solid #ddd;
 
   .NgxEditor-MenuItem {
-    height: $icon-size;
-    width: $icon-size;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.3s ease-in-out;
-    border-radius: 4px;
 
     &:hover {
       cursor: pointer;
       background-color: #f1f1f1;
     }
 
-    &.NgxEditor-MenuItem__active {
+    &.NgxEditor-MenuItem__Icon {
+      height: $icon-size;
+      width: $icon-size;
+      transition: 0.3s ease-in-out;
+      border-radius: 2px;
+      margin-right: 2px;
 
-      svg {
-        fill: #06c;
+      &.NgxEditor-MenuItem__Active {
+        background-color: #e8f0fe;
+
+        svg {
+          fill: #1a73e8;
+        }
+      }
+    }
+
+    &.NgxEditor-MenuItem__Dropdown-Wrapper {
+      position: relative;
+      max-width: 100px;
+      width: 100%;
+      justify-content: start;
+
+      .NgxEditor-MenuItem__Dropdown {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        .NgxEditor-MenuItem__Dropdown-Text {
+          margin-left: 5px;
+        }
+
+        .NgxEditor-MenuItem__Dropdown-Icon {
+          margin-left: auto;
+          position: relative;
+          top: 2px;
+        }
+      }
+
+      .NgxEditor-MenuItem__Dropdown-Menu {
+        position: absolute;
+        left: 0;
+        top: 30px;
+        box-shadow: rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        border-radius: 4px;
+        background-color: white;
+        display: none;
+
+        .NgxEditor-MenuItem__Dropdown-Item {
+          cursor: pointer;
+          padding: 0.5rem 1rem;
+          white-space: nowrap;
+
+          &:hover,
+          &.NgxEditor-MenuItem__active {
+            background-color: #f1f1f1;
+          }
+        }
+      }
+
+      &.NgxEditor-MenuItem__Dropdown-Wrapper-Selected,
+      &.NgxEditor-MenuItem__Dropdown-Wrapper-Open {
+        background-color: #e8f0fe;
+        color: #1a73e8;
+      }
+
+      &.NgxEditor-MenuItem__Dropdown-Wrapper-Open {
+        background-color: #e8f0fe;
+        color: #1a73e8;
+
+        .NgxEditor-MenuItem__Dropdown-Icon {
+          svg {
+            fill: #1a73e8;
+          }
+        }
+
+        .NgxEditor-MenuItem__Dropdown-Menu {
+          display: block;
+          color: initial;
+        }
       }
     }
   }
@@ -46,7 +117,7 @@ $icon-size: 30px;
 }
 
 .NgxEditor-Content {
-  padding: .5rem;
+  padding: 0.5rem;
   white-space: pre-wrap;
 
   p {

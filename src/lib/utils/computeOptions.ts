@@ -6,8 +6,10 @@ interface Options {
 }
 
 const defaultToolbarOptions: Toolbar = [
-  ['bold', 'italic', 'code'],
-  ['ordered_list', 'bullet_list']
+  ['bold', 'italic'],
+  ['code'],
+  ['ordered_list', 'bullet_list'],
+  [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }]
 ];
 
 const defaultConfig: Config = {

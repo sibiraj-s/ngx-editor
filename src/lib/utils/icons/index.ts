@@ -5,20 +5,22 @@ import italic from './italic';
 import code from './code';
 import orderedList from './ordered_list';
 import bulletList from './bullet_list';
+import arrowDropDown from './arrowDropDown';
 
-const height = 20;
-const width = 20;
+const DEFAULT_ICON_HEIGHT = 20;
+const DEFAULT_ICON_WIDTH = 20;
 
 const icons = {
   bold,
   italic,
   code,
   ordered_list: orderedList,
-  bullet_list: bulletList
+  bullet_list: bulletList,
+  arrow_drop_down: arrowDropDown
 };
 
 // Helper function to create menu icons
-export function getIconSvg(name: string) {
+export function getIconSvg(name: string, width = DEFAULT_ICON_WIDTH, height = DEFAULT_ICON_HEIGHT) {
   const path = icons[name] || '<path></path>';
 
   return `

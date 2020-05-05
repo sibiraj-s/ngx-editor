@@ -25,6 +25,48 @@ const menuItemsMeta: { [key: string]: MenuItemMeta } = {
     key: 'bullet_list',
     icon: 'bullet_list',
     type: 'node',
+  },
+  h1: {
+    key: 'heading',
+    attrs: {
+      level: 1,
+    },
+    type: 'node'
+  },
+  h2: {
+    key: 'heading',
+    attrs: {
+      level: 2,
+    },
+    type: 'node'
+  },
+  h3: {
+    key: 'heading',
+    attrs: {
+      level: 3,
+    },
+    type: 'node'
+  },
+  h4: {
+    key: 'heading',
+    attrs: {
+      level: 4,
+    },
+    type: 'node'
+  },
+  h5: {
+    key: 'heading',
+    attrs: {
+      level: 5,
+    },
+    type: 'node'
+  },
+  h6: {
+    key: 'heading',
+    attrs: {
+      level: 6,
+    },
+    type: 'node'
   }
 };
 
