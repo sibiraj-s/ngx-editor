@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.4 (2020-05-05)
+
+#### Features
+
+- add support for headings ([2d7d38e](https://github.com/Sibiraj-S/ngx-editor/commit/2d7d38e))
+
 ## v5.0.0-alpha.3 (2020-05-04)
 
 #### Features
