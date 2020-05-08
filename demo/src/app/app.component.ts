@@ -8,7 +8,6 @@ import { environment } from '../environments/environment';
 })
 
 export class AppComponent {
-  placeholder = 'Type something here...';
   isProdMode = environment.production;
 
   editorContent: object = {
