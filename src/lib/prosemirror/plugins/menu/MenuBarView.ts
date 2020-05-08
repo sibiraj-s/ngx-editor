@@ -1,22 +1,22 @@
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
 
-import { Toolbar } from '../../types';
+import { MenuOptions } from '../../../types';
 
 import { renderMenu } from './menu';
 
 class MenuBarView {
-  toolbar: Toolbar;
+  options: MenuOptions;
   view: EditorView;
 
   dom: HTMLElement;
 
   updateMenuItems: (state: EditorState) => void;
 
-  constructor(toolbar: Toolbar, editorView: EditorView) {
+  constructor(editorView: EditorView, options: MenuOptions) {
     // const menu = getMenu(toolbar);
     this.view = editorView;
-    this.toolbar = toolbar;
+    this.options = options;
 
     this.render();
     this.update();
@@ -26,7 +26,7 @@ class MenuBarView {
     const menuDom = document.createElement('div');
     menuDom.className = 'NgxEditor-MenuBar';
 
-    const { update } = renderMenu(this.toolbar, this.view, menuDom);
+    const { update } = renderMenu(this.options, this.view, menuDom);
     this.updateMenuItems = update;
 
     this.view.dom.parentNode.insertBefore(menuDom, this.view.dom);

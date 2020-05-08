@@ -9,8 +9,6 @@
       "prosemirror-model": "prosemirrorModel",
       "prosemirror-schema-basic": "prosemirrorSchemaBasic",
       "prosemirror-schema-list": "prosemirrorSchemaList",
-      "prosemirror-history": "prosemirrorHistory",
-      "prosemirror-keymap": "prosemirrorKeymap",
       "prosemirror-commands": "prosemirrorCommands",
       "prosemirror-utils": "prosemirrorUtils"
     }
@@ -21,8 +19,6 @@
     "prosemirror-model",
     "prosemirror-schema-basic",
     "prosemirror-schema-list",
-    "prosemirror-history",
-    "prosemirror-keymap",
     "prosemirror-commands",
     "prosemirror-utils",
     "prosemirror-tables"

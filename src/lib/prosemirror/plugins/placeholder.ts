@@ -1,7 +1,9 @@
 import { Plugin, EditorState, PluginKey } from 'prosemirror-state';
 import { DecorationSet, Decoration } from 'prosemirror-view';
 
-function placeholderPlugin(text: string) {
+const DEFAULT_PLACEHOLDER = 'Type Here...';
+
+function placeholderPlugin(text: string = DEFAULT_PLACEHOLDER) {
   return new Plugin({
     key: new PluginKey('placeholder'),
     props: {

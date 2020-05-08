@@ -4,7 +4,7 @@ import { setBlockType } from 'prosemirror-commands';
 
 import isNodeActive from '../helpers/isNodeActive';
 
-export default function toggleBlockType(type: NodeType, toggleType: NodeType, attrs = {}) {
+export const toggleBlockType = (type: NodeType, toggleType: NodeType, attrs = {}) => {
   return (state: EditorState, dispatch: (tr: Transaction) => void) => {
     const isActive = isNodeActive(state, type, attrs);
 
@@ -14,4 +14,4 @@ export default function toggleBlockType(type: NodeType, toggleType: NodeType, at
 
     return setBlockType(type, attrs)(state, dispatch);
   };
-}
+};
