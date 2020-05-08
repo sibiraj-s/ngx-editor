@@ -27,8 +27,6 @@ import schema from './schema';
 export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestroy {
   @ViewChild('ngxEditor', { static: true }) ngxEditor: ElementRef;
 
-  @Input() placeholder = 'Type here...';
-
   private view: EditorView;
   private onChange: (value: object) => void;
 
