@@ -13,6 +13,27 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.5 (2020-05-08)
+
+#### Features
+
+- add support for prosemirror plugins ([fcdc39b](https://github.com/Sibiraj-S/ngx-editor/commit/fcdc39b))
+
+#### Breaking Changes
+
+- placeholder and config property is replaced with plugins
+
+```ts
+import { menu, placeholder } from "ngx-editor";
+
+NgxEditorModule.forRoot({
+  plugins: [menu(), placholder("Type something here...")],
+});
+```
+
+- shortcuts needs to be configured manually using plugins
+- removed peerDependencies `prosemirror-history` and `prosemirror-keymap`
+
 ## v5.0.0-alpha.4 (2020-05-05)
 
 #### Features
