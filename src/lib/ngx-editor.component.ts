@@ -8,12 +8,9 @@ import { EditorState, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { Node as ProsemirrorNode } from 'prosemirror-model';
 
+import { NgxEditorService, NgxEditorServiceConfig } from './ngx-editor.service';
+
 import schema from './schema';
-
-import { Config, ComputedOptions } from './types';
-
-import { getPlugins } from './utils/plugins';
-import computeOptions from './utils/computeOptions';
 
 @Component({
   selector: 'ngx-editor',
@@ -30,13 +27,14 @@ import computeOptions from './utils/computeOptions';
 export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestroy {
   @ViewChild('ngxEditor', { static: true }) ngxEditor: ElementRef;
 
-  @Input() placeholder = 'Type here...';
-  @Input() config: Config;
-
   private view: EditorView;
   private onChange: (value: object) => void;
 
-  private options: ComputedOptions;
+  private config: NgxEditorServiceConfig;
+
+  constructor(ngxEditorService: NgxEditorService) {
+    this.config = ngxEditorService.config;
+  }
 
   writeValue(value: object | null) {
     if (!value) {
@@ -84,7 +82,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     this.view = new EditorView(this.ngxEditor.nativeElement, {
       state: EditorState.create({
         schema,
-        plugins: getPlugins(this.options),
+        plugins: this.config.plugins,
       }),
       dispatchTransaction: this.handleTransactions.bind(this),
       attributes: {
@@ -94,11 +92,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   }
 
   ngOnInit() {
-    this.options = computeOptions({
-      placeholder: this.placeholder,
-      config: this.config
-    });
-
     this.createEditor();
   }
 

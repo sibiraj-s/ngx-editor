@@ -1,17 +1,14 @@
-import { Plugin } from 'prosemirror-state';
-import { history, undo, redo } from 'prosemirror-history';
-import { keymap } from 'prosemirror-keymap';
-import { baseKeymap, toggleMark } from 'prosemirror-commands';
+import { schema, menu, placeholder } from 'ngx-editor';
 
-import schema from '../schema';
-
-import { ComputedOptions, KeyMap } from '../types';
-
-import menu from '../plugins/menu';
-import placeholder from '../plugins/placeholder';
+import { undo, redo, history } from 'prosemirror-history';
 import { splitListItem, liftListItem, sinkListItem } from 'prosemirror-schema-list';
+import { keymap } from 'prosemirror-keymap';
+import { toggleMark, baseKeymap } from 'prosemirror-commands';
+import { Plugin } from 'prosemirror-state';
 
 const isMacOs = /Mac/.test(navigator.platform);
+
+export type KeyMap = { [key: string]: any };
 
 const getHistoryKeyMap = (): KeyMap => {
   const historyMap: KeyMap = {};
@@ -38,7 +35,7 @@ const getListKeyMap = (): KeyMap => {
   return listMap;
 };
 
-export const getPlugins = (options: ComputedOptions): Plugin[] => {
+export const getPlugins = (): Plugin[] => {
   const historyKeyMap = getHistoryKeyMap();
   const listKeyMap = getListKeyMap();
 
@@ -52,12 +49,24 @@ export const getPlugins = (options: ComputedOptions): Plugin[] => {
     keymap(historyKeyMap),
     keymap(listKeyMap),
     keymap(baseKeymap),
-    placeholder(options.placeholder),
+    menu({
+      toolbar: [
+        ['bold', 'italic'],
+        ['code'],
+        ['ordered_list', 'bullet_list'],
+        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }]
+      ],
+      labels: {
+        bold: 'Bold',
+        italics: 'Italics',
+        code: 'Code',
+        ordered_list: 'Ordered List',
+        bullet_list: 'Bullet List',
+        heading: 'Header'
+      }
+    }),
+    placeholder('Type Something here...')
   ];
-
-  if (options.toolbar) {
-    plugins.push(menu(options.toolbar));
-  }
 
   return plugins;
 };

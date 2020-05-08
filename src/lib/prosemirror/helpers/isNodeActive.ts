@@ -2,7 +2,7 @@ import { EditorState } from 'prosemirror-state';
 import { NodeType, Node as ProsemirrorNode } from 'prosemirror-model';
 import { findSelectedNodeOfType, findParentNode } from 'prosemirror-utils';
 
-const isNodeActive = (state: EditorState, type: NodeType, attrs = {}): boolean => {
+export const isNodeActive = (state: EditorState, type: NodeType, attrs = {}): boolean => {
   const { $from, to } = state.selection;
 
   const predicate = (n: ProsemirrorNode) => n.type === type;

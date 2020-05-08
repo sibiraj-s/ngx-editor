@@ -4,27 +4,23 @@ import { EditorState } from 'prosemirror-state';
 import { MarkType, NodeType } from 'prosemirror-model';
 
 import {
-  Toolbar,
-  MenuItemMeta,
   MenuItemViewSpec,
   ToolbarItem,
   ToolbarDropdownGroupKeys,
-  ToolbarDropdownGroupValues
-} from '../../types';
+  ToolbarDropdownGroupValues,
+  MenuOptions
+} from '../../../types';
 
-import schema from '../../schema';
+import schema from '../../../schema';
 
-import isNodeActive from '../../pm-tools/helpers/isNodeActive';
-import isMarkActive from '../../pm-tools/helpers/isMarkActive';
-import toggleList from '../../pm-tools/commands/toggleList';
-import toggleBlockType from '../../pm-tools/commands/toggleBlockType';
+import isNodeActive from '../../helpers/isNodeActive';
+import isMarkActive from '../../helpers/isMarkActive';
+import { toggleList, toggleBlockType } from '../../commands';
 
-import { getIconSvg } from '../../utils/icons';
-import flatDeep from '../../utils/flatDeep';
+import { getIconSvg } from '../../../utils/icons';
+import flatDeep from '../../../utils/flatDeep';
 
-import menuItemsMeta from './meta';
-
-import { labels } from './i18n';
+import menuItemsMeta, {MenuItemMeta} from './meta';
 
 const MENU_ITEM_CLASSNAME = 'NgxEditor-MenuItem';
 
@@ -43,6 +39,8 @@ class DropDownView {
   private dropdownGroup: ToolbarDropdownGroupKeys;
   private dropdownFields: ToolbarDropdownGroupValues;
   private editorView: EditorView;
+  private options: MenuOptions;
+
   dom: HTMLElement;
 
   updates = [];
@@ -50,16 +48,20 @@ class DropDownView {
   constructor(
     dropdownGroup: ToolbarDropdownGroupKeys,
     dropdownFields: ToolbarDropdownGroupValues,
-    editorView: EditorView
+    editorView: EditorView,
+    options: MenuOptions
   ) {
     this.dropdownGroup = dropdownGroup;
     this.dropdownFields = dropdownFields;
     this.editorView = editorView;
+    this.options = options;
   }
 
   getWrapperDom(): HTMLElement {
     let isDropdownOpen = false;
     const dropdownWrapper = document.createElement('div');
+
+    const labels = this.options.labels;
 
     dropdownWrapper.classList.add(MENU_ITEM_CLASSNAME);
     dropdownWrapper.classList.add(`${MENU_ITEM_CLASSNAME}__Dropdown-Wrapper`);
@@ -286,8 +288,10 @@ const getSeperatorDom = (): HTMLElement => {
   return div;
 };
 
-export const renderMenu = (toolbar: Toolbar, editorView: EditorView, menuDom: HTMLElement) => {
+export const renderMenu = (options: MenuOptions, editorView: EditorView, menuDom: HTMLElement) => {
   const updates: any[] = [];
+
+  const toolbar = options.toolbar;
 
   toolbar.forEach((group: ToolbarItem[], toolbarIndex: number): void => {
     const isLastMenuGroup = toolbar.length - 1 === toolbarIndex;
@@ -301,7 +305,7 @@ export const renderMenu = (toolbar: Toolbar, editorView: EditorView, menuDom: HT
           if (DROPDOWN_ITEMS.has(dropdownGroup)) {
             const dropdown: ToolbarDropdownGroupValues = toolbarItem[dropdownGroup];
 
-            const dropdownView = new DropDownView(dropdownGroup, dropdown, editorView);
+            const dropdownView = new DropDownView(dropdownGroup, dropdown, editorView, options);
             const rendered = dropdownView.render();
             updates.push(rendered.updates);
             menuDom.appendChild(rendered.dom);
@@ -315,6 +319,8 @@ export const renderMenu = (toolbar: Toolbar, editorView: EditorView, menuDom: HT
       if (typeof toolbarItem === 'string') {
         const menuItem = menuItemsMeta[toolbarItem];
 
+        const labels = options.labels;
+
         if (menuItem) {
           const spec: MenuItemViewSpec = {
             classNames: [
@@ -324,7 +330,7 @@ export const renderMenu = (toolbar: Toolbar, editorView: EditorView, menuDom: HT
             ],
             innerHTML: getIconSvg(menuItem.icon),
             attrs: {
-              title: menuItem.key
+              title: labels[menuItem.i18nKey]
             }
           };
 
