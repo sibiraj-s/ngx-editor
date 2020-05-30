@@ -5,7 +5,7 @@
    <img src="./sketch/ngx-editor.png" alt="ngxEditor">
   </a>
 </p>
-<p align="center">A Simple WYSIWYG Editor for Angular 6 Applications.</p>
+<p align="center">A Simple WYSIWYG Editor for Angular Applications.</p>
 <p align="center">
   <a href="https://travis-ci.org/sibiraj-s/ngx-editor">
     <img alt="Tests" src="https://github.com/sibiraj-s/ngx-editor/workflows/Tests/badge.svg">
@@ -35,15 +35,6 @@ npm install ngx-editor --save
 # or
 yarn add ngx-editor
 ```
-
-#### PeerDependencies
-
-- prosemirror-state
-- prosemirror-view
-- prosemirror-schema-basic
-- prosemirror-commands
-- prosemirror-history
-- prosemirror-keymap
 
 ### Usage
 

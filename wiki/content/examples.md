@@ -47,7 +47,7 @@ NgxEditorModule.forRoot({
 });
 ```
 
-### Extras
+### Shortcuts to work with makrs
 
 Reference
 
