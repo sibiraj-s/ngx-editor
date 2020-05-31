@@ -5,7 +5,6 @@ import italic from './italic';
 import code from './code';
 import orderedList from './ordered_list';
 import bulletList from './bullet_list';
-import arrowDropDown from './arrowDropDown';
 
 const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
@@ -15,8 +14,7 @@ const icons = {
   italic,
   code,
   ordered_list: orderedList,
-  bullet_list: bulletList,
-  arrow_drop_down: arrowDropDown
+  bullet_list: bulletList
 };
 
 // Helper function to create menu icons
