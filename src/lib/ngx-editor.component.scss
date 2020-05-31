@@ -1,10 +1,16 @@
-.ProseMirror {
-  outline: none;
-}
-
 $icon-size: 30px;
 
-.NgxEditor-Wrapper {
+$menubar-border-color: #ddd;
+
+$menu-item-border-radius: 2px;
+$menu-item-hover-bg-color: #f1f1f1;
+$menu-item-active-bg-color: #e8f0fe;
+$menu-item-active-color: #1a73e8;
+
+$dropdown-menu-hover-bg-color: #f1f1f1;
+$dropdown-item-active-bg-color: #f1f1f1;
+
+.NgxEditor {
   background: white;
   color: black;
   background-clip: padding-box;
@@ -12,117 +18,7 @@ $icon-size: 30px;
   border: 2px solid rgba(0, 0, 0, 0.2);
 }
 
-.NgxEditor-MenuBar {
-  display: flex;
-  padding: 0.2rem;
-  border-bottom: 1px solid #ddd;
-
-  .NgxEditor-MenuItem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      cursor: pointer;
-      background-color: #f1f1f1;
-    }
-
-    &.NgxEditor-MenuItem__Icon {
-      height: $icon-size;
-      width: $icon-size;
-      transition: 0.3s ease-in-out;
-      border-radius: 2px;
-      margin-right: 2px;
-
-      &.NgxEditor-MenuItem__Active {
-        background-color: #e8f0fe;
-
-        svg {
-          fill: #1a73e8;
-        }
-      }
-    }
-
-    &.NgxEditor-MenuItem__Dropdown-Wrapper {
-      position: relative;
-      max-width: 100px;
-      width: 100%;
-      justify-content: start;
-
-      .NgxEditor-MenuItem__Dropdown {
-        display: flex;
-        align-items: center;
-        width: 100%;
-
-        .NgxEditor-MenuItem__Dropdown-Text {
-          margin-left: 5px;
-        }
-
-        .NgxEditor-MenuItem__Dropdown-Icon {
-          margin-left: auto;
-          position: relative;
-          top: 2px;
-        }
-      }
-
-      .NgxEditor-MenuItem__Dropdown-Menu {
-        position: absolute;
-        left: 0;
-        top: 30px;
-        box-shadow: rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-        border-radius: 4px;
-        background-color: white;
-        display: none;
-        z-index: 10;
-
-        .NgxEditor-MenuItem__Dropdown-Item {
-          cursor: pointer;
-          padding: 0.5rem 1rem;
-          white-space: nowrap;
-
-          &:hover,
-          &.NgxEditor-MenuItem__Active {
-            background-color: #f1f1f1;
-          }
-        }
-      }
-
-      &.NgxEditor-MenuItem__Dropdown-Wrapper-Selected,
-      &.NgxEditor-MenuItem__Dropdown-Wrapper-Open {
-        background-color: #e8f0fe;
-        color: #1a73e8;
-      }
-
-      &.NgxEditor-MenuItem__Dropdown-Wrapper-Open {
-        background-color: #e8f0fe;
-        color: #1a73e8;
-
-        .NgxEditor-MenuItem__Dropdown-Icon {
-          svg {
-            fill: #1a73e8;
-          }
-        }
-
-        .NgxEditor-MenuItem__Dropdown-Menu {
-          display: block;
-          color: initial;
-        }
-      }
-    }
-  }
-
-  .NgxEditor-MenuItem__Seperator {
-    border-left: 1px solid #ccc;
-    margin: 0 5px;
-  }
-
-  .disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-}
-
-.NgxEditor-Content {
+.NgxEditor__Content {
   padding: 0.5rem;
   white-space: pre-wrap;
 
@@ -132,7 +28,135 @@ $icon-size: 30px;
   }
 }
 
-.NgxEditor-Placeholder {
+.NgxEditor__MenuBar {
+  display: flex;
+  padding: 0.2rem;
+  border-bottom: 1px solid $menubar-border-color;
+  cursor: default;
+}
+
+.NgxEditor__MenuItem {
+  $self: &;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: $menu-item-hover-bg-color;
+  }
+
+  &#{ $self }--Icon {
+    height: $icon-size;
+    width: $icon-size;
+    transition: 0.3s ease-in-out;
+    margin-right: 2px;
+  }
+
+  &#{ $self }--Text {
+    padding: 0 0.3rem;
+  }
+
+  &#{ $self }--Active {
+    background-color: $menu-item-active-bg-color;
+    color: $menu-item-active-color;
+
+    svg {
+      fill: $menu-item-active-color;
+    }
+  }
+}
+
+.NgxEditor--Disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.NgxEditor__Seperator {
+  border-left: 1px solid #ccc;
+  margin: 0 5px;
+}
+
+.NgxEditor__Dropdown {
+  $self: &;
+  min-width: 4rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: $dropdown-menu-hover-bg-color;
+  }
+
+  #{ $self }__Text {
+    display: flex;
+    align-items: center;
+    padding: 0 0.3rem;
+
+    &::after {
+      display: inline-block;
+      content: "";
+      margin-left: 25px;
+      vertical-align: 0.255em;
+      border-top: 0.3rem solid;
+      border-right: 0.3rem solid transparent;
+      border-bottom: 0;
+      border-left: 0.3rem solid transparent;
+    }
+  }
+
+  #{ $self }__DropdownMenu {
+    position: absolute;
+    left: 0;
+    top: 30px;
+    box-shadow: rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 4px;
+    background-color: white;
+    display: none;
+    z-index: 10;
+    width: 100%;
+  }
+
+  #{ $self }__Item {
+    padding: 0.5rem;
+    white-space: nowrap;
+    color: inherit;
+
+    &:hover {
+      background-color: darken($dropdown-item-active-bg-color, 2%);
+    }
+  }
+
+  &#{ $self }--Selected,
+  &#{ $self }--Open {
+    background-color: $menu-item-active-bg-color;
+
+    #{ $self }__Text {
+      color: $menu-item-active-color;
+    }
+  }
+
+  #{ $self }--Active {
+    background-color: $dropdown-item-active-bg-color;
+
+    &:hover {
+      background-color: darken($dropdown-item-active-bg-color, 4%);
+    }
+  }
+
+  &#{ $self }--Open {
+    #{ $self }__DropdownMenu {
+      display: block;
+    }
+  }
+}
+
+.NgxEditor__Placeholder {
   color: #6c757d;
   opacity: 1;
+}
+
+// prosemirror
+.ProseMirror {
+  outline: none;
 }

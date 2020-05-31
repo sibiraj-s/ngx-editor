@@ -33,6 +33,6 @@ describe('NgxEditorComponent', () => {
 
     const compiled: DebugElement = fixture.debugElement;
     // expect menubar to be rendered
-    expect(compiled.query(By.css('.NgxEditor-MenuBar'))).toBeDefined();
+    expect(compiled.query(By.css('.NgxEditor__MenuBar'))).toBeDefined();
   });
 });

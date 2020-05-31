@@ -16,6 +16,8 @@ export interface MenuItemViewSpec {
   innerHTML?: string;
   textContent?: string;
   attrs?: { [key: string]: string };
+  activeClass: string;
+  disabledClass: string;
 }
 
 export interface NodeViews {

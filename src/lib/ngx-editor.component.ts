@@ -56,7 +56,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   private updateContent(value: object) {
     try {
       const doc = this.parseDoc(value);
-
       const state = this.view.state;
       const tr = state.tr;
       tr.replaceWith(0, state.doc.content.size, doc);
@@ -88,7 +87,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
       nodeViews,
       dispatchTransaction: this.handleTransactions.bind(this),
       attributes: {
-        class: 'NgxEditor-Content'
+        class: 'NgxEditor__Content'
       },
     });
   }

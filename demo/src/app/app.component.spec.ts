@@ -34,6 +34,6 @@ describe('AppComponent', () => {
 
   it('should render title in a h6 tag', () => {
     const compiled: DebugElement = fixture.debugElement;
-    expect(compiled.query(By.css('.NgxEditor-MenuBar'))).toBeDefined();
+    expect(compiled.query(By.css('.NgxEditor__MenuBar'))).toBeDefined();
   });
 });
