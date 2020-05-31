@@ -8,7 +8,7 @@ const listItem = Object.assign({}, schemaList.listItem, { content: 'paragraph bl
 const orderedList = Object.assign({}, schemaList.orderedList, { content: 'list_item+', group: listGroup });
 const bulletList = Object.assign({}, schemaList.bulletList, { content: 'list_item+', group: listGroup });
 
-const nodes = Object.assign(
+export const nodes = Object.assign(
   {},
   schemaBasic.nodes,
   {
@@ -18,9 +18,9 @@ const nodes = Object.assign(
   }
 );
 
-const schema = new Schema({
-  marks: schemaBasic.marks,
+export const marks = schemaBasic.marks;
+
+export const schema = new Schema({
+  marks,
   nodes
 });
-
-export default schema;
