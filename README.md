@@ -58,6 +58,37 @@ Then in HTML
 
 For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
 
+### Configuration
+
+```ts
+import { menu, placeholder, schema } from 'ngx-editor';
+
+NgxEditorModule.forRoot({
+  schema, // optional scheama, see https://sibiraj.dev/ngx-editor/additional-documentation/schema.html
+  plugins: [
+    menu({
+      // default options (Optional)
+      toolbar: [
+        ['bold', 'italic', 'code'], // inline icons
+        ['ordered_list', 'bullet_list'],
+        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }] // dropdown
+        [codemirror] // custom menu, see https://sibiraj.dev/ngx-editor/additional-documentation/menu-plugin.html
+      ],
+      labels: {
+        bold: 'Bold',
+        italics: 'Italics',
+        code: 'Code',
+        ordered_list: 'Ordered List',
+        bullet_list: 'Bullet List',
+        heading: 'Heading'
+      }
+    }),
+    placholder('Type something here...')
+  ],
+  nodeViews: {} // optional, see https://prosemirror.net/examples/footnote/
+});
+```
+
 ## Compatibility
 
 All Evergreen-Browsers are supported
