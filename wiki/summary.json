@@ -4,11 +4,31 @@
     "file": "content/configuartion.md"
   },
   {
-    "title": "NgModel Binding",
+    "title": "NgModel",
     "file": "content/ng-model.md"
   },
   {
-    "title": "Examples",
-    "file": "content/examples.md"
+    "title": "History",
+    "file": "content/history.md"
+  },
+  {
+    "title": "Shortcuts",
+    "file": "content/shortcuts.md"
+  },
+  {
+    "title": "HTML",
+    "file": "content/working-with-html.md"
+  },
+  {
+    "title": "Menu Plugin",
+    "file": "content/menu.md"
+  },
+  {
+    "title": "Schema",
+    "file": "content/schema.md"
+  },
+  {
+    "title": "Inline Code Editor",
+    "file": "content/inline-code-editor.md"
   }
 ]
