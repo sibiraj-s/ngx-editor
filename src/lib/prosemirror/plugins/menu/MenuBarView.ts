@@ -24,7 +24,7 @@ class MenuBarView {
 
   render() {
     const menuDom = document.createElement('div');
-    menuDom.className = 'NgxEditor-MenuBar';
+    menuDom.className = 'NgxEditor__MenuBar';
 
     const { update } = renderMenu(this.options, this.view, menuDom);
     this.updateMenuItems = update;

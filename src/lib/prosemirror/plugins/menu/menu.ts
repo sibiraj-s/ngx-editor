@@ -20,7 +20,16 @@ import flatDeep from '../../../utils/flatDeep';
 
 import menuItemsMeta, { MenuItemMeta } from './meta';
 
-const MENU_ITEM_CLASSNAME = 'NgxEditor-MenuItem';
+const SEPERATOR_CLASSNAME = 'NgxEditor__Seperator';
+
+const MENU_ITEM_CLASSNAME = 'NgxEditor__MenuItem';
+const ACTIVE_MENU_ITEM_CLASSNAME = `${MENU_ITEM_CLASSNAME}--Active`;
+const DISABLED_CLASSNAME = 'NgxEditor--Disabled';
+
+const DROPDWON_ITEM_CLASSNAME = 'NgxEditor__Dropdown';
+const DROPWDOWN_OPEN_CLASSNAME = `${DROPDWON_ITEM_CLASSNAME}--Open`;
+const ACTIVE_DROPDOWN_ITEM_CLASSNAME = `${DROPDWON_ITEM_CLASSNAME}--Active`;
+const SELECTED_DROPDOWN_ITEM_CLASSNAME = `${DROPDWON_ITEM_CLASSNAME}--Selected`;
 
 const DROPDOWN_ITEMS = new Map();
 DROPDOWN_ITEMS.set('heading', ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
@@ -57,45 +66,43 @@ class DropDownView {
 
   getWrapperDom(): HTMLElement {
     let isDropdownOpen = false;
-    const dropdownWrapper = document.createElement('div');
+    const dropdown = document.createElement('div');
 
     const labels = this.options.labels;
 
-    dropdownWrapper.classList.add(MENU_ITEM_CLASSNAME);
-    dropdownWrapper.classList.add(`${MENU_ITEM_CLASSNAME}__Dropdown-Wrapper`);
-
-    // create dropdown content
-    const dropdown = document.createElement('div');
-    dropdown.classList.add(`${MENU_ITEM_CLASSNAME}__Dropdown`);
+    dropdown.classList.add(DROPDWON_ITEM_CLASSNAME);
 
     const dropdownText = document.createElement('div');
-    dropdownText.classList.add(`${MENU_ITEM_CLASSNAME}__Dropdown-Text`);
+    dropdownText.classList.add(`${DROPDWON_ITEM_CLASSNAME}__Text`);
     dropdownText.textContent = labels[this.dropdownGroup];
 
-    const dropdownIcon = document.createElement('div');
-    dropdownIcon.classList.add(`${MENU_ITEM_CLASSNAME}__Dropdown-Icon`);
-    dropdownIcon.innerHTML = getIconSvg('arrow_drop_down');
-
     dropdown.appendChild(dropdownText);
-    dropdown.appendChild(dropdownIcon);
 
-    const dropdownOpenClassName = `${MENU_ITEM_CLASSNAME}__Dropdown-Wrapper-Open`;
+    // create dropdown list
+    const dropdownMenu = document.createElement('div');
+    dropdownMenu.classList.add(`${DROPDWON_ITEM_CLASSNAME}__DropdownMenu`);
 
     const mouseDownHandler = (e: MouseEvent) => {
       e.preventDefault();
-      if (!dropdownWrapper.contains(e.target as Node)) {
+      if (!dropdown.contains(e.target as Node)) {
         closeDropdown();
       }
     };
 
-    const openDropdown = () => {
-      dropdownWrapper.classList.add(dropdownOpenClassName);
+    const openDropdown = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+
+      if (dropdownMenu.contains(target)) {
+        return;
+      }
+
+      dropdown.classList.add(DROPWDOWN_OPEN_CLASSNAME);
       isDropdownOpen = true;
       window.addEventListener('mousedown', mouseDownHandler);
     };
 
     const closeDropdown = () => {
-      dropdownWrapper.classList.remove(dropdownOpenClassName);
+      dropdown.classList.remove(DROPWDOWN_OPEN_CLASSNAME);
       isDropdownOpen = false;
       window.removeEventListener('mousedown', mouseDownHandler);
     };
@@ -103,15 +110,11 @@ class DropDownView {
     dropdown.addEventListener('click', (e: MouseEvent) => {
       e.preventDefault();
       if (!isDropdownOpen) {
-        openDropdown();
+        openDropdown(e);
       } else {
         closeDropdown();
       }
     });
-
-    // create dropdown list
-    const dropdownList = document.createElement('div');
-    dropdownList.classList.add(`${MENU_ITEM_CLASSNAME}__Dropdown-Menu`);
 
     this.dropdownFields.forEach(dropdownItem => {
       const menuItem = menuItemsMeta[dropdownItem];
@@ -124,12 +127,14 @@ class DropDownView {
 
       const spec: MenuItemViewSpec = {
         classNames: [
-          `${MENU_ITEM_CLASSNAME}__Dropdown-Item`
+          `${DROPDWON_ITEM_CLASSNAME}__Item`
         ],
         textContent: text,
         attrs: {
           title: text
-        }
+        },
+        activeClass: ACTIVE_DROPDOWN_ITEM_CLASSNAME,
+        disabledClass: DISABLED_CLASSNAME
       };
 
       const menuItemView = new MenuItemView(menuItem, this.editorView, spec);
@@ -145,29 +150,25 @@ class DropDownView {
       const dropUpdate = (state: EditorState) => {
         update(state);
 
-        const selectedClass = `${MENU_ITEM_CLASSNAME}__Dropdown-Wrapper-Selected`;
-
         // update the dropdown content heading when a class is selected
-        const activeEl = dropdownList.getElementsByClassName(`${MENU_ITEM_CLASSNAME}__Active`);
+        const activeEl = dropdownMenu.getElementsByClassName(ACTIVE_DROPDOWN_ITEM_CLASSNAME);
         if (activeEl.length) {
           const el = activeEl[0];
           dropdownText.textContent = el.textContent;
-          dropdownWrapper.classList.add(selectedClass);
+          dropdown.classList.add(SELECTED_DROPDOWN_ITEM_CLASSNAME);
         } else {
           // restore default value
           dropdownText.textContent = labels[this.dropdownGroup];
-          dropdownWrapper.classList.remove(selectedClass);
+          dropdown.classList.remove(SELECTED_DROPDOWN_ITEM_CLASSNAME);
         }
       };
 
-      dropdownList.appendChild(dom);
+      dropdownMenu.appendChild(dom);
       this.updates.push(dropUpdate);
     });
 
-    dropdownWrapper.appendChild(dropdown);
-    dropdownWrapper.appendChild(dropdownList);
-
-    return dropdownWrapper;
+    dropdown.appendChild(dropdownMenu);
+    return dropdown;
   }
 
   render() {
@@ -198,6 +199,8 @@ class MenuItemView {
     const { schema } = this.editorView.state;
     const { command } = this.setupCommandListeners();
 
+    const { activeClass, disabledClass } = this.spec;
+
     const update = (state: EditorState): void => {
       const menuItem = this.menuItem;
       let isActive = false;
@@ -214,8 +217,8 @@ class MenuItemView {
         isActive = isNodeActive(state, type, menuItem.attrs);
       }
 
-      dom.classList.toggle(`${MENU_ITEM_CLASSNAME}__Active`, isActive);
-      dom.classList.toggle(`disabled`, !canExecute);
+      dom.classList.toggle(activeClass, isActive);
+      dom.classList.toggle(disabledClass, !canExecute);
     };
 
     return {
@@ -289,7 +292,7 @@ class MenuItemView {
 
 const getSeperatorDom = (): HTMLElement => {
   const div = document.createElement('div');
-  div.className = `${MENU_ITEM_CLASSNAME}__Seperator`;
+  div.className = SEPERATOR_CLASSNAME;
   return div;
 };
 
@@ -330,13 +333,14 @@ export const renderMenu = (options: MenuOptions, editorView: EditorView, menuDom
           const spec: MenuItemViewSpec = {
             classNames: [
               MENU_ITEM_CLASSNAME,
-              `${MENU_ITEM_CLASSNAME}__Icon`,
-              `${MENU_ITEM_CLASSNAME}__${menuItem.key}`
+              `${MENU_ITEM_CLASSNAME}--Icon`,
             ],
             innerHTML: getIconSvg(menuItem.icon),
             attrs: {
               title: labels[menuItem.i18nKey]
-            }
+            },
+            activeClass: ACTIVE_MENU_ITEM_CLASSNAME,
+            disabledClass: DISABLED_CLASSNAME
           };
 
           const menuItemView = new MenuItemView(menuItem, editorView, spec);

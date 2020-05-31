@@ -7,12 +7,12 @@ const codeMirror: ToolbarCustomMenuItem = (editorView) => {
   const dom: HTMLElement = document.createElement('div');
   dom.innerHTML = 'CodeMirror';
 
-  dom.classList.add('NgxEditor-MenuItem');
-  dom.classList.add('CustomMenuItem');
+  dom.classList.add('NgxEditor__MenuItem');
+  dom.classList.add('NgxEditor__MenuItem--Text');
 
   const type = schema.nodes.code_block;
 
-  let command;
+  const command = toggleBlockType(type, schema.nodes.paragraph);
 
   dom.addEventListener('mousedown', (e: MouseEvent) => {
     e.preventDefault();
@@ -22,21 +22,16 @@ const codeMirror: ToolbarCustomMenuItem = (editorView) => {
       return;
     }
 
-    command = toggleBlockType(type, schema.nodes.paragraph);
     command(editorView.state, editorView.dispatch);
   });
 
-
   const update = (state: EditorState): void => {
     const isActive = isNodeActive(state, type);
-    let canExecute = true;
 
-    if (command) {
-      canExecute = command(state, null);
-    }
+    const canExecute = command(state, null);
 
-    dom.classList.toggle(`NgxEditor-MenuItem__Active`, isActive);
-    dom.classList.toggle(`disabled`, !canExecute);
+    dom.classList.toggle(`NgxEditor__MenuItem--Active`, isActive);
+    dom.classList.toggle(`NgxEditor--Disabled`, !canExecute);
   };
 
   return {

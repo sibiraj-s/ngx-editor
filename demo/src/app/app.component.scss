@@ -34,16 +34,6 @@
   }
 }
 
-.CustomMenuItem {
-  padding: 0 0.3rem;
-  border-radius: 2px;
-
-  &.NgxEditor-MenuItem__Active {
-    background-color: #e8f0fe;
-    color: #1a73e8;
-  }
-}
-
 .CodeMirror {
   border: 1px solid #eee;
   height: auto;

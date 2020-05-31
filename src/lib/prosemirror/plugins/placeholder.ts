@@ -2,6 +2,7 @@ import { Plugin, EditorState, PluginKey } from 'prosemirror-state';
 import { DecorationSet, Decoration } from 'prosemirror-view';
 
 const DEFAULT_PLACEHOLDER = 'Type Here...';
+const PLACEHOLDER_CLASSNAME = 'NgxEditor__Placeholder';
 
 function placeholderPlugin(text: string = DEFAULT_PLACEHOLDER) {
   return new Plugin({
@@ -12,7 +13,7 @@ function placeholderPlugin(text: string = DEFAULT_PLACEHOLDER) {
 
         if (doc.childCount === 1 && doc.firstChild.isTextblock && doc.firstChild.content.size === 0) {
           const placeHolderEl = document.createElement('span');
-          placeHolderEl.classList.add('NgxEditor-Placeholder');
+          placeHolderEl.classList.add(PLACEHOLDER_CLASSNAME);
           placeHolderEl.textContent = text;
           return DecorationSet.create(doc, [Decoration.widget(1, placeHolderEl)]);
         }
