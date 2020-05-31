@@ -1,23 +1,32 @@
 import { Injectable, Optional } from '@angular/core';
 
-import { NgxEditorConfig } from './types';
+import { Schema } from 'prosemirror-model';
+import { Plugin } from 'prosemirror-state';
+
+import { NgxEditorConfig, NodeViews } from './types';
 
 import menu from './prosemirror/plugins/menu';
 import placeholder from './prosemirror/plugins/placeholder';
+import { schema } from './schema';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class NgxEditorServiceConfig {
-  public plugins = [
+  public plugins: Plugin[] = [
     menu(),
     placeholder()
   ];
+
+  public nodeViews: NodeViews = {};
+  public schema: Schema = schema;
 }
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class NgxEditorService {
   config: NgxEditorServiceConfig;
 
@@ -26,6 +35,12 @@ export class NgxEditorService {
   }
 }
 
+const defaultConfig: NgxEditorConfig = {
+  plugins: [],
+  nodeViews: {},
+  schema
+};
+
 export function provideMyServiceOptions(config?: NgxEditorConfig): NgxEditorConfig {
-  return (config);
+  return Object.assign({}, defaultConfig, config);
 }

@@ -1,6 +1,6 @@
 import {
   Component, ViewChild, ElementRef,
-  Input, forwardRef, OnDestroy, OnInit, ViewEncapsulation
+  forwardRef, OnDestroy, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -9,8 +9,6 @@ import { EditorView } from 'prosemirror-view';
 import { Node as ProsemirrorNode } from 'prosemirror-model';
 
 import { NgxEditorService, NgxEditorServiceConfig } from './ngx-editor.service';
-
-import schema from './schema';
 
 @Component({
   selector: 'ngx-editor',
@@ -51,6 +49,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   registerOnTouched(): void { }
 
   private parseDoc(contentJson: object): ProsemirrorNode {
+    const { schema } = this.config;
     return schema.nodeFromJSON(contentJson);
   }
 
@@ -79,11 +78,14 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   }
 
   createEditor() {
+    const { schema, plugins, nodeViews } = this.config;
+
     this.view = new EditorView(this.ngxEditor.nativeElement, {
       state: EditorState.create({
         schema,
-        plugins: this.config.plugins,
+        plugins,
       }),
+      nodeViews,
       dispatchTransaction: this.handleTransactions.bind(this),
       attributes: {
         class: 'NgxEditor-Content'

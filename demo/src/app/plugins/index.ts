@@ -6,6 +6,8 @@ import { keymap } from 'prosemirror-keymap';
 import { toggleMark, baseKeymap } from 'prosemirror-commands';
 import { Plugin } from 'prosemirror-state';
 
+import codemirrorMenu from './menu/codemirror';
+
 const isMacOs = /Mac/.test(navigator.platform);
 
 export type KeyMap = { [key: string]: any };
@@ -35,7 +37,7 @@ const getListKeyMap = (): KeyMap => {
   return listMap;
 };
 
-export const getPlugins = (): Plugin[] => {
+const getPlugins = (): Plugin[] => {
   const historyKeyMap = getHistoryKeyMap();
   const listKeyMap = getListKeyMap();
 
@@ -54,7 +56,8 @@ export const getPlugins = (): Plugin[] => {
         ['bold', 'italic'],
         ['code'],
         ['ordered_list', 'bullet_list'],
-        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }]
+        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+        [codemirrorMenu]
       ],
       labels: {
         bold: 'Bold',
@@ -70,3 +73,5 @@ export const getPlugins = (): Plugin[] => {
 
   return plugins;
 };
+
+export default getPlugins();

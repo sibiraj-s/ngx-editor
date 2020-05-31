@@ -6,7 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NgxEditorModule } from 'ngx-editor';
 
-import { getPlugins } from './plugin';
+import schema from './schema';
+import plugins from './plugins';
+import nodeViews from './nodeviews';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { getPlugins } from './plugin';
     BrowserModule,
     FormsModule,
     NgxEditorModule.forRoot({
-      plugins: getPlugins()
+      schema,
+      plugins,
+      nodeViews
     }),
   ],
   bootstrap: [AppComponent]

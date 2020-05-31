@@ -73,6 +73,7 @@ $icon-size: 30px;
         border-radius: 4px;
         background-color: white;
         display: none;
+        z-index: 10;
 
         .NgxEditor-MenuItem__Dropdown-Item {
           cursor: pointer;
@@ -80,7 +81,7 @@ $icon-size: 30px;
           white-space: nowrap;
 
           &:hover,
-          &.NgxEditor-MenuItem__active {
+          &.NgxEditor-MenuItem__Active {
             background-color: #f1f1f1;
           }
         }
@@ -113,6 +114,11 @@ $icon-size: 30px;
   .NgxEditor-MenuItem__Seperator {
     border-left: 1px solid #ccc;
     margin: 0 5px;
+  }
+
+  .disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }
 

@@ -1,33 +1,31 @@
 import { toggleMark } from 'prosemirror-commands';
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
-import { MarkType, NodeType } from 'prosemirror-model';
+import { MarkType, NodeType, Schema } from 'prosemirror-model';
 
 import {
   MenuItemViewSpec,
   ToolbarItem,
   ToolbarDropdownGroupKeys,
   ToolbarDropdownGroupValues,
-  MenuOptions
+  MenuOptions,
+  Command
 } from '../../../types';
 
-import schema from '../../../schema';
-
-import isNodeActive from '../../helpers/isNodeActive';
-import isMarkActive from '../../helpers/isMarkActive';
+import { isNodeActive, isMarkActive } from '../../helpers';
 import { toggleList, toggleBlockType } from '../../commands';
 
 import { getIconSvg } from '../../../utils/icons';
 import flatDeep from '../../../utils/flatDeep';
 
-import menuItemsMeta, {MenuItemMeta} from './meta';
+import menuItemsMeta, { MenuItemMeta } from './meta';
 
 const MENU_ITEM_CLASSNAME = 'NgxEditor-MenuItem';
 
 const DROPDOWN_ITEMS = new Map();
 DROPDOWN_ITEMS.set('heading', ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
 
-const isListItem = (type: NodeType) => {
+const isListItem = (type: NodeType, schema: Schema) => {
   return (
     type === schema.nodes.list_item ||
     type === schema.nodes.ordered_list ||
@@ -197,11 +195,14 @@ class MenuItemView {
 
   render() {
     const dom = this.dom = this.getDom();
-    this.setupCommandListeners();
+    const { schema } = this.editorView.state;
+    const { command } = this.setupCommandListeners();
 
     const update = (state: EditorState): void => {
       const menuItem = this.menuItem;
       let isActive = false;
+
+      const canExecute = command(this.editorView.state, null);
 
       if (menuItem.type === 'mark') {
         const type: MarkType = schema.marks[menuItem.key];
@@ -214,6 +215,7 @@ class MenuItemView {
       }
 
       dom.classList.toggle(`${MENU_ITEM_CLASSNAME}__Active`, isActive);
+      dom.classList.toggle(`disabled`, !canExecute);
     };
 
     return {
@@ -249,6 +251,26 @@ class MenuItemView {
   }
 
   private setupCommandListeners() {
+    const { schema } = this.editorView.state;
+
+    let command: Command;
+
+    if (this.menuItem.type === 'mark') {
+      command = toggleMark(schema.marks[this.menuItem.key]);
+    }
+
+    if (this.menuItem.type === 'node') {
+      const type = schema.nodes[this.menuItem.key];
+
+      if (isListItem(type, schema)) {
+        command = toggleList(type, schema.nodes.list_item);
+      }
+
+      if (type === schema.nodes.heading) {
+        command = toggleBlockType(type, schema.nodes.paragraph, { level: this.menuItem.attrs.level });
+      }
+    }
+
     this.dom.addEventListener('mousedown', (e: MouseEvent) => {
       e.preventDefault();
 
@@ -257,28 +279,11 @@ class MenuItemView {
         return;
       }
 
-      if (this.menuItem.type === 'mark') {
-        const command = toggleMark(schema.marks[this.menuItem.key]);
-        command(this.editorView.state, this.editorView.dispatch);
-        return;
-      }
-
-      if (this.menuItem.type === 'node') {
-        const type = schema.nodes[this.menuItem.key];
-
-        if (isListItem(type)) {
-          const command = toggleList(type, schema.nodes.list_item);
-          command(this.editorView.state, this.editorView.dispatch);
-          return;
-        }
-
-        if (type === schema.nodes.heading) {
-          const command = toggleBlockType(type, schema.nodes.paragraph, { level: this.menuItem.attrs.level });
-          command(this.editorView.state, this.editorView.dispatch);
-          return;
-        }
-      }
+      // execute command
+      command(this.editorView.state, this.editorView.dispatch);
     });
+
+    return { command };
   }
 }
 
@@ -340,6 +345,12 @@ export const renderMenu = (options: MenuOptions, editorView: EditorView, menuDom
           menuDom.appendChild(dom);
           updates.push(update);
         }
+      }
+
+      if (typeof toolbarItem === 'function') {
+        const { dom, update } = toolbarItem(editorView);
+        menuDom.appendChild(dom);
+        updates.push(update);
       }
 
       if (isLastMenuItem && !isLastMenuGroup) {
