@@ -1,6 +1,6 @@
 import {
   Component, ViewChild, ElementRef,
-  forwardRef, OnDestroy, OnInit, ViewEncapsulation
+  forwardRef, OnDestroy, ViewEncapsulation, AfterViewInit
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -22,7 +22,7 @@ import { NgxEditorService, NgxEditorServiceConfig } from './ngx-editor.service';
   encapsulation: ViewEncapsulation.None
 })
 
-export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestroy {
+export class NgxEditorComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
   @ViewChild('ngxEditor', { static: true }) ngxEditor: ElementRef;
 
   private view: EditorView;
@@ -30,12 +30,14 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
 
   private config: NgxEditorServiceConfig;
 
+  private editorInitialized = false;
+
   constructor(ngxEditorService: NgxEditorService) {
     this.config = ngxEditorService.config;
   }
 
   writeValue(value: object | null) {
-    if (!value) {
+    if (!this.editorInitialized) {
       return;
     }
 
@@ -49,6 +51,10 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   registerOnTouched(): void { }
 
   private parseDoc(contentJson: object): ProsemirrorNode {
+    if (!contentJson) {
+      return null;
+    }
+
     const { schema } = this.config;
     return schema.nodeFromJSON(contentJson);
   }
@@ -57,6 +63,12 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     try {
       const doc = this.parseDoc(value);
       const state = this.view.state;
+
+      // don't emit if both content is same
+      if (doc !== null && state.doc.eq(doc)) {
+        return;
+      }
+
       const tr = state.tr;
       tr.replaceWith(0, state.doc.content.size, doc);
       this.view.dispatch(tr);
@@ -82,7 +94,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     this.view = new EditorView(this.ngxEditor.nativeElement, {
       state: EditorState.create({
         schema,
-        plugins,
+        plugins
       }),
       nodeViews,
       dispatchTransaction: this.handleTransactions.bind(this),
@@ -90,9 +102,11 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
         class: 'NgxEditor__Content'
       },
     });
+
+    this.editorInitialized = true;
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.createEditor();
   }
 
