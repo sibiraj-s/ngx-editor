@@ -3,6 +3,8 @@ import { isNodeActive, toggleBlockType, ToolbarCustomMenuItem } from 'ngx-editor
 
 import schema from '../../schema';
 
+// Ref: https://prosemirror.net/examples/codemirror/
+
 const codeMirror: ToolbarCustomMenuItem = (editorView) => {
   const dom: HTMLElement = document.createElement('div');
   dom.innerHTML = 'CodeMirror';
