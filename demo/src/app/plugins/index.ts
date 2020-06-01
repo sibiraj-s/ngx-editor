@@ -7,7 +7,7 @@ import { toggleMark, baseKeymap } from 'prosemirror-commands';
 import { Plugin } from 'prosemirror-state';
 
 import codemirrorMenu from './menu/codemirror';
-
+import { buildInputRules } from './input-rules';
 import schema from '../schema';
 
 const isMacOs = /Mac/.test(navigator.platform);
@@ -53,6 +53,7 @@ const getPlugins = (): Plugin[] => {
     keymap(historyKeyMap),
     keymap(listKeyMap),
     keymap(baseKeymap),
+    buildInputRules(schema),
     menu({
       toolbar: [
         ['bold', 'italic'],
