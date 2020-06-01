@@ -30,5 +30,9 @@
   {
     "title": "Inline Code Editor",
     "file": "content/inline-code-editor.md"
+  },
+  {
+    "title": "Input Rules",
+    "file": "content/input-rules.md"
   }
 ]
