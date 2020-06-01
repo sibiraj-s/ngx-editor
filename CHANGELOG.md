@@ -13,6 +13,21 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.7 (2020-06-01)
+
+#### Enhancements
+
+- remove dependencies `prosemirror-utils` and `prosemirror-tables` ([6e13142](https://github.com/Sibiraj-S/ngx-editor/commit/6e13142))
+
+#### Bug Fixes
+
+- handle null value correctly in input ([84104c2](https://github.com/Sibiraj-S/ngx-editor/commit/84104c2))
+- fix schema usage in example app ([6e13142](https://github.com/Sibiraj-S/ngx-editor/commit/6e13142))
+
+#### Documentation
+
+- add input-rules examples ([ce00b5f](https://github.com/Sibiraj-S/ngx-editor/commit/ce00b5f))
+
 ## v5.0.0-alpha.6 (2020-05-31)
 
 #### Features
@@ -39,7 +54,7 @@ All notable changes to this project will be documented in this file.
 import { menu, placeholder } from 'ngx-editor';
 
 NgxEditorModule.forRoot({
-  plugins: [menu(), placholder('Type something here...')]
+  plugins: [menu(), placholder('Type something here...')],
 });
 ```
 
