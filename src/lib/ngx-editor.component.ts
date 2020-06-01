@@ -66,7 +66,7 @@ export class NgxEditorComponent implements ControlValueAccessor, AfterViewInit, 
 
       // don't emit if both content is same
       if (doc !== null && state.doc.eq(doc)) {
-        return
+        return;
       }
 
       const tr = state.tr;
