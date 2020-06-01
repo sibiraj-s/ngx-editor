@@ -12,7 +12,7 @@ import {
   Command
 } from '../../../types';
 
-import { isNodeActive, isMarkActive } from '../../helpers';
+import { isNodeActive, isMarkActive, isListItem, isListItemActive } from '../../helpers';
 import { toggleList, toggleBlockType } from '../../commands';
 
 import { getIconSvg } from '../../../utils/icons';
@@ -34,13 +34,6 @@ const SELECTED_DROPDOWN_ITEM_CLASSNAME = `${DROPDWON_ITEM_CLASSNAME}--Selected`;
 const DROPDOWN_ITEMS = new Map();
 DROPDOWN_ITEMS.set('heading', ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
 
-const isListItem = (type: NodeType, schema: Schema) => {
-  return (
-    type === schema.nodes.list_item ||
-    type === schema.nodes.ordered_list ||
-    type === schema.nodes.bullet_list
-  );
-};
 
 class DropDownView {
   private dropdownGroup: ToolbarDropdownGroupKeys;
@@ -205,6 +198,8 @@ class MenuItemView {
       const menuItem = this.menuItem;
       let isActive = false;
 
+      const one = 1;
+
       const canExecute = command(this.editorView.state, null);
 
       if (menuItem.type === 'mark') {
@@ -214,7 +209,12 @@ class MenuItemView {
 
       if (menuItem.type === 'node') {
         const type: NodeType = schema.nodes[menuItem.key];
-        isActive = isNodeActive(state, type, menuItem.attrs);
+
+        if (isListItem(type, schema)) {
+          isActive = isListItemActive(state, type);
+        } else {
+          isActive = isNodeActive(state, type, menuItem.attrs);
+        }
       }
 
       dom.classList.toggle(activeClass, isActive);

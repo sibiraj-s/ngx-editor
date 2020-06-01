@@ -1,4 +1,4 @@
-import { schema, menu, placeholder } from 'ngx-editor';
+import { menu, placeholder } from 'ngx-editor';
 
 import { undo, redo, history } from 'prosemirror-history';
 import { splitListItem, liftListItem, sinkListItem } from 'prosemirror-schema-list';
@@ -7,6 +7,8 @@ import { toggleMark, baseKeymap } from 'prosemirror-commands';
 import { Plugin } from 'prosemirror-state';
 
 import codemirrorMenu from './menu/codemirror';
+
+import schema from '../schema';
 
 const isMacOs = /Mac/.test(navigator.platform);
 
