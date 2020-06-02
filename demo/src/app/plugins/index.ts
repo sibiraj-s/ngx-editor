@@ -57,7 +57,7 @@ const getPlugins = (): Plugin[] => {
     menu({
       toolbar: [
         ['bold', 'italic'],
-        ['code'],
+        ['code', 'blockquote'],
         ['ordered_list', 'bullet_list'],
         [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
         [codemirrorMenu]
@@ -68,7 +68,8 @@ const getPlugins = (): Plugin[] => {
         code: 'Code',
         ordered_list: 'Ordered List',
         bullet_list: 'Bullet List',
-        heading: 'Header'
+        heading: 'Header',
+        blockquote: 'Quote'
       }
     }),
     placeholder('Type Something here...')

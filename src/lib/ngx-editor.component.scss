@@ -25,16 +25,6 @@ $menubar-text-padding: 0 $menu-item-spacing;
   border: 2px solid rgba(0, 0, 0, 0.2);
 }
 
-.NgxEditor__Content {
-  padding: 0.5rem;
-  white-space: pre-wrap;
-
-  p {
-    margin: 0;
-    margin-bottom: 0.7rem;
-  }
-}
-
 .NgxEditor__MenuBar {
   display: flex;
   padding: $menubar-padding;
@@ -162,6 +152,23 @@ $menubar-text-padding: 0 $menu-item-spacing;
 .NgxEditor__Placeholder {
   color: #6c757d;
   opacity: 1;
+}
+
+.NgxEditor__Content {
+  padding: 0.5rem;
+  white-space: pre-wrap;
+
+  p {
+    margin: 0;
+    margin-bottom: 0.7rem;
+  }
+
+  blockquote {
+    padding-left: 1rem;
+    border-left: 3px solid #ddd;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 // prosemirror
