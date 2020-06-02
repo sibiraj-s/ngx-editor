@@ -1,7 +1,7 @@
-import { toggleMark } from 'prosemirror-commands';
+import { toggleMark, wrapIn } from 'prosemirror-commands';
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
-import { MarkType, NodeType, Schema } from 'prosemirror-model';
+import { MarkType, NodeType } from 'prosemirror-model';
 
 import {
   MenuItemViewSpec,
@@ -13,7 +13,7 @@ import {
 } from '../../../types';
 
 import { isNodeActive, isMarkActive, isListItem } from '../../helpers';
-import { toggleList, toggleBlockType } from '../../commands';
+import { toggleList, toggleBlockType, toggleWrap } from '../../commands';
 
 import { getIconSvg } from '../../../utils/icons';
 import flatDeep from '../../../utils/flatDeep';
@@ -264,6 +264,10 @@ class MenuItemView {
 
       if (type === schema.nodes.heading) {
         command = toggleBlockType(type, schema.nodes.paragraph, { level: this.menuItem.attrs.level });
+      }
+
+      if (type === schema.nodes.blockquote) {
+        command = toggleWrap(type);
       }
     }
 

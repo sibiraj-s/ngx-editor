@@ -86,6 +86,12 @@ const menuItemsMeta: { [key: string]: MenuItemMeta } = {
       level: 6,
     },
     type: 'node'
+  },
+  blockquote: {
+    key: 'blockquote',
+    i18nKey: 'blockquote',
+    icon: 'quote',
+    type: 'node'
   }
 };
 

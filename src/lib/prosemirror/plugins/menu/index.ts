@@ -6,7 +6,7 @@ import MenuBarView from './MenuBarView';
 
 const DEFAULT_TOOLBAR: Toolbar = [
   ['bold', 'italic'],
-  ['code'],
+  ['code', 'blockquote'],
   ['ordered_list', 'bullet_list'],
   [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }]
 ];
@@ -17,7 +17,8 @@ const DEFAULT_LABELS: MenuLabels = {
   code: 'Code',
   ordered_list: 'Ordered List',
   bullet_list: 'Bullet List',
-  heading: 'Heading'
+  heading: 'Heading',
+  blockquote: 'Quote'
 };
 
 const DEFAULT_OPTIONS: MenuOptions = {
