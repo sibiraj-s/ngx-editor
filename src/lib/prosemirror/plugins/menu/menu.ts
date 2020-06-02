@@ -12,7 +12,7 @@ import {
   Command
 } from '../../../types';
 
-import { isNodeActive, isMarkActive, isListItem, isListItemActive } from '../../helpers';
+import { isNodeActive, isMarkActive, isListItem } from '../../helpers';
 import { toggleList, toggleBlockType } from '../../commands';
 
 import { getIconSvg } from '../../../utils/icons';
@@ -198,8 +198,6 @@ class MenuItemView {
       const menuItem = this.menuItem;
       let isActive = false;
 
-      const one = 1;
-
       const canExecute = command(this.editorView.state, null);
 
       if (menuItem.type === 'mark') {
@@ -209,12 +207,7 @@ class MenuItemView {
 
       if (menuItem.type === 'node') {
         const type: NodeType = schema.nodes[menuItem.key];
-
-        if (isListItem(type, schema)) {
-          isActive = isListItemActive(state, type);
-        } else {
-          isActive = isNodeActive(state, type, menuItem.attrs);
-        }
+        isActive = isNodeActive(state, type, menuItem.attrs);
       }
 
       dom.classList.toggle(activeClass, isActive);
