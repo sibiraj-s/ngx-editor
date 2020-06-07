@@ -58,7 +58,7 @@ Then in HTML
 
 For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
 
-### Configuration
+### Optional Configuration
 
 ```ts
 import { menu, placeholder, schema } from 'ngx-editor';
