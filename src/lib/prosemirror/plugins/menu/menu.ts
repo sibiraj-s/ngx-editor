@@ -1,4 +1,4 @@
-import { toggleMark, wrapIn } from 'prosemirror-commands';
+import { toggleMark } from 'prosemirror-commands';
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
 import { MarkType, NodeType } from 'prosemirror-model';
