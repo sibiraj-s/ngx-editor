@@ -13,6 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.8 (2020-06-08)
+
+#### Bug Fixes
+
+- set active state correctly for nested lists ([453d807](https://github.com/Sibiraj-S/ngx-editor/commit/453d807))
+- fix vulnerabilities ([9c89d2a](https://github.com/Sibiraj-S/ngx-editor/commit/9c89d2a))
+
+#### Features
+
+- add blockquote support ([a26f192](https://github.com/Sibiraj-S/ngx-editor/commit/a26f192))
+
 ## v5.0.0-alpha.7 (2020-06-01)
 
 #### Enhancements
@@ -54,7 +65,7 @@ All notable changes to this project will be documented in this file.
 import { menu, placeholder } from 'ngx-editor';
 
 NgxEditorModule.forRoot({
-  plugins: [menu(), placholder('Type something here...')],
+  plugins: [menu(), placholder('Type something here...')]
 });
 ```
 
