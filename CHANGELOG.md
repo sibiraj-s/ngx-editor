@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.9 (2020-06-13)
+
+#### Bug Fixes
+
+- fix issues with reactive-forms ([bede7a1](https://github.com/Sibiraj-S/ngx-editor/commit/bede7a1))
+
 ## v5.0.0-alpha.8 (2020-06-08)
 
 #### Bug Fixes
