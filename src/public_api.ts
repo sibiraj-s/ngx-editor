@@ -4,6 +4,7 @@
 
 export * from './lib/ngx-editor.component';
 export * from './lib/ngx-editor.module';
+export { NgxEditorService } from './lib/ngx-editor.service';
 
 export * from './lib/schema';
 
