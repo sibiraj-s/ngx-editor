@@ -15,7 +15,7 @@ export class AppComponent {
 
   editorContent: object = jsonDoc;
 
-  editorContentChange(doc: object) {
+  editorContentChange(doc: object): void {
     this.editorContent = doc;
   }
 }

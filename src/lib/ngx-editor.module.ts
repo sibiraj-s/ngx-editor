@@ -13,7 +13,7 @@ const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorCo
 })
 
 export class NgxEditorModule {
-  static forRoot(config: NgxEditorConfig): ModuleWithProviders {
+  static forRoot(config: NgxEditorConfig): ModuleWithProviders<NgxEditorModule> {
 
     return {
       ngModule: NgxEditorModule,

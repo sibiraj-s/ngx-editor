@@ -3,6 +3,7 @@ import {
   smartQuotes, emDash, ellipsis, InputRule
 } from 'prosemirror-inputrules';
 import { NodeType, Schema } from 'prosemirror-model';
+import { Plugin } from 'prosemirror-state';
 
 // Source: https://github.com/ProseMirror/prosemirror-example-setup/
 
@@ -56,7 +57,7 @@ export function headingRule(nodeType: NodeType, maxLevel: number): InputRule {
 // : (Schema) → Plugin
 // A set of input rules for creating the basic block quotes, lists,
 // code blocks, and heading.
-export function buildInputRules(schema: Schema) {
+export function buildInputRules(schema: Schema): Plugin {
   const rules = smartQuotes.concat(ellipsis, emDash);
 
   rules.push(blockQuoteRule(schema.nodes.blockquote));

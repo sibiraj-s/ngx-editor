@@ -1,5 +1,5 @@
 import { nodes as basicNodes, marks as basicMarks } from 'ngx-editor';
-import { Schema, Node as ProsemirrorNode, NodeSpec } from 'prosemirror-model';
+import { Schema, Node as ProsemirrorNode, NodeSpec, DOMOutputSpec } from 'prosemirror-model';
 
 const codeBlock: NodeSpec = {
   group: 'block',
@@ -17,7 +17,7 @@ const codeBlock: NodeSpec = {
     }
   }
   ],
-  toDOM(node: ProsemirrorNode) {
+  toDOM(node: ProsemirrorNode): DOMOutputSpec {
     return ['pre', { 'data-language': node.attrs.language }, node.attrs.text];
   }
 };
