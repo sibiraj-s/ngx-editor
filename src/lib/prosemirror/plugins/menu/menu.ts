@@ -9,7 +9,9 @@ import {
   ToolbarDropdownGroupKeys,
   ToolbarDropdownGroupValues,
   MenuOptions,
-  Command
+  Command,
+  DropdownViewRender,
+  MenuItemViewRender
 } from '../../../types';
 
 import { isNodeActive, isMarkActive, isListItem } from '../../helpers';
@@ -164,7 +166,7 @@ class DropDownView {
     return dropdown;
   }
 
-  render() {
+  render(): DropdownViewRender {
     this.dom = this.getWrapperDom();
 
     return {
@@ -187,7 +189,7 @@ class MenuItemView {
     this.spec = spec;
   }
 
-  render() {
+  render(): MenuItemViewRender {
     const dom = this.dom = this.getDom();
     const { schema } = this.editorView.state;
     const { command } = this.setupCommandListeners();
@@ -246,7 +248,7 @@ class MenuItemView {
     return div;
   }
 
-  private setupCommandListeners() {
+  private setupCommandListeners(): { command: Command } {
     const { schema } = this.editorView.state;
 
     let command: Command;
@@ -364,7 +366,7 @@ export const renderMenu = (options: MenuOptions, editorView: EditorView, menuDom
   const combinedUpdates = flatDeep(updates, Infinity);
 
   return {
-    update(state: EditorState) {
+    update(state: EditorState): void {
       combinedUpdates.forEach((update: (state: EditorState) => void) => {
         update(state);
       });

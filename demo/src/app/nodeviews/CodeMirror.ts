@@ -1,3 +1,4 @@
+/* tslint:disable:typedef */
 import { exitCode } from 'prosemirror-commands';
 import { undo, redo } from 'prosemirror-history';
 import { TextSelection, Selection } from 'prosemirror-state';
@@ -9,7 +10,13 @@ import 'codemirror/mode/javascript/javascript';
 
 import schema from '../schema';
 
-function computeChange(oldVal: string, newVal: string) {
+interface ComputeChange {
+  from: number;
+  to: number;
+  text: string;
+}
+
+function computeChange(oldVal: string, newVal: string): ComputeChange {
   if (oldVal === newVal) { return null; }
   let start = 0;
   let oldEnd = oldVal.length;

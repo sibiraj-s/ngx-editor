@@ -20,7 +20,7 @@ const icons = {
 };
 
 // Helper function to create menu icons
-export function getIconSvg(name: string, width = DEFAULT_ICON_WIDTH, height = DEFAULT_ICON_HEIGHT) {
+export function getIconSvg(name: string, width = DEFAULT_ICON_WIDTH, height = DEFAULT_ICON_HEIGHT): string {
   const path = icons[name] || '<path></path>';
 
   return `

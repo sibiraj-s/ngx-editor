@@ -43,3 +43,13 @@ export interface MenuOptions {
 }
 
 export type Command = (schema: EditorState, dispatch: (tr: Transaction) => void) => boolean;
+
+export interface DropdownViewRender {
+  dom: HTMLElement;
+  updates: Array<(state: EditorState) => void>;
+}
+
+export interface MenuItemViewRender {
+  dom: HTMLElement;
+  update: (state: EditorState) => void;
+}

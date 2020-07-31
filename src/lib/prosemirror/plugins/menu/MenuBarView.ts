@@ -22,7 +22,7 @@ class MenuBarView {
     this.update();
   }
 
-  render() {
+  render(): void {
     const menuDom = document.createElement('div');
     menuDom.className = 'NgxEditor__MenuBar';
 
@@ -32,7 +32,7 @@ class MenuBarView {
     this.view.dom.parentNode.insertBefore(menuDom, this.view.dom);
   }
 
-  update() {
+  update(): void {
     this.updateMenuItems(this.view.state);
   }
 }
