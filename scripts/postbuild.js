@@ -3,7 +3,7 @@ const path = require('path');
 
 const chalk = require('chalk');
 
-async function copyFile(srcFilePath, destFilePath) {
+const copyFile = async function (srcFilePath, destFilePath) {
   const fileName = path.basename(srcFilePath);
   try {
     const srcPath = path.resolve(process.cwd(), srcFilePath);
@@ -13,7 +13,7 @@ async function copyFile(srcFilePath, destFilePath) {
   } catch (err) {
     console.log(chalk.red(`Error while copying ${fileName}`), err);
   }
-}
+};
 
 copyFile('README.md', 'README.md');
 copyFile('CHANGELOG.md', 'CHANGELOG.md');
