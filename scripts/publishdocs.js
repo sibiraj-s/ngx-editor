@@ -8,18 +8,18 @@ const publishAsync = util.promisify(ghpages.publish);
 
 const ghPagesOptions = {
   branch: 'gh-pages',
-  message: `docs: update ${new Date().toISOString()}`
+  message: `docs: update ${new Date().toISOString()}`,
 };
 
 const questions = [
   {
     name: 'publishDocs',
     type: 'confirm',
-    message: `Do You want to publish the docs to '${chalk.cyan(ghPagesOptions.branch)}' branch?`
-  }
+    message: `Do You want to publish the docs to '${chalk.cyan(ghPagesOptions.branch)}' branch?`,
+  },
 ];
 
-async function publish() {
+const publish = async function () {
   try {
     if (!process.env.CI) {
       const answers = await inquirer.prompt(questions);
@@ -36,6 +36,6 @@ async function publish() {
   } catch (err) {
     console.log(chalk.red('Unable to publish docs. Error:'), err);
   }
-}
+};
 
 publish();
