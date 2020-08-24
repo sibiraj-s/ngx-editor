@@ -26,6 +26,8 @@
 
 ## Getting Started
 
+> NOTE: This is documentation for ngx-editor@5.x. View here for [ngx-editor@4.x documentation](https://github.com/sibiraj-s/ngx-editor/tree/v4.1.0)
+
 ### Installation
 
 Install via Package managers such as [npm][npm] or [yarn][yarn]
