@@ -12,13 +12,13 @@ import {
   Command,
   DropdownViewRender,
   MenuItemViewRender
-} from '../../../types';
+} from '../types';
 
-import { isNodeActive, isMarkActive, isListItem } from '../../helpers';
-import { toggleList, toggleBlockType, toggleWrap } from '../../commands';
+import { isNodeActive, isMarkActive, isListItem } from 'ngx-editor/helpers';
+import { toggleList, toggleBlockType, toggleWrap } from 'ngx-editor/commands';
 
-import { getIconSvg } from '../../../utils/icons';
-import flatDeep from '../../../utils/flatDeep';
+import { getIconSvg } from '../utils/icons';
+import flatDeep from '../utils/flatDeep';
 
 import menuItemsMeta, { MenuItemMeta } from './meta';
 

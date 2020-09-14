@@ -1,5 +1,8 @@
 import { EditorState } from 'prosemirror-state';
-import { isNodeActive, toggleBlockType, ToolbarCustomMenuItem } from 'ngx-editor';
+
+import { toggleBlockType } from 'ngx-editor/commands';
+import { isNodeActive } from 'ngx-editor/helpers';
+import { ToolbarCustomMenuItem } from 'ngx-editor/plugins';
 
 import schema from '../../schema';
 

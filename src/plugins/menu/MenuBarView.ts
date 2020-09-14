@@ -1,7 +1,7 @@
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
 
-import { MenuOptions } from '../../../types';
+import { MenuOptions } from '../types';
 
 import { renderMenu } from './menu';
 
