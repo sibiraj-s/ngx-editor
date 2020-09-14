@@ -1,10 +1,10 @@
-import { menu, placeholder } from 'ngx-editor';
-
 import { undo, redo, history } from 'prosemirror-history';
 import { splitListItem, liftListItem, sinkListItem } from 'prosemirror-schema-list';
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark, baseKeymap } from 'prosemirror-commands';
 import { Plugin } from 'prosemirror-state';
+
+import { menu, placeholder, link } from 'ngx-editor';
 
 import codemirrorMenu from './menu/codemirror';
 import { buildInputRules } from './input-rules';
@@ -72,7 +72,8 @@ const getPlugins = (): Plugin[] => {
         blockquote: 'Quote'
       }
     }),
-    placeholder('Type Something here...')
+    placeholder('Type Something here...'),
+    link(),
   ];
 
   return plugins;

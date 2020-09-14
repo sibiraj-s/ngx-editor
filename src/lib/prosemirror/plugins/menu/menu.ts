@@ -36,7 +36,6 @@ const SELECTED_DROPDOWN_ITEM_CLASSNAME = `${DROPDWON_ITEM_CLASSNAME}--Selected`;
 const DROPDOWN_ITEMS = new Map();
 DROPDOWN_ITEMS.set('heading', ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
 
-
 class DropDownView {
   private dropdownGroup: ToolbarDropdownGroupKeys;
   private dropdownFields: ToolbarDropdownGroupValues;

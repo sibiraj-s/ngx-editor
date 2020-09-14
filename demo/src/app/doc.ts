@@ -47,7 +47,7 @@ export default {
             {
               type: 'link',
               attrs: {
-                href: 'http://codemirror.net',
+                href: 'https://codemirror.net',
                 title: null
               }
             }
@@ -56,7 +56,24 @@ export default {
         },
         {
           type: 'text',
-          text: ' code editor, which provides syntax highlighting, auto-indentation, and similar.'
+          text: ' code editor, which provides '
+        },
+        {
+          type: 'text',
+          marks: [
+            {
+              type: 'link',
+              attrs: {
+                href: 'https://en.wikipedia.org',
+                title: ''
+              }
+            }
+          ],
+          text: 'syntax highlighting'
+        },
+        {
+          type: 'text',
+          text: ', auto-indentation, and similar.'
         }
       ]
     },
@@ -74,8 +91,7 @@ export default {
       content: [
         {
           type: 'text',
-          text:
-            'The content of the code editor is kept in sync with the content of the code block in the rich text editor, so that it is as if you\'re directly editing the outer document, using a more convenient interface.'
+          text: 'The content of the code editor is kept in sync with the content of the code block in the rich text editor, so that it is as if you\'re directly editing the outer document, using a more convenient interface.'
         }
       ]
     }
