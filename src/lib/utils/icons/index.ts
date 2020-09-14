@@ -6,6 +6,7 @@ import code from './code';
 import orderedList from './ordered_list';
 import bulletList from './bullet_list';
 import quote from './quote';
+import link from './link';
 
 const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
@@ -16,7 +17,8 @@ const icons = {
   code,
   ordered_list: orderedList,
   bullet_list: bulletList,
-  quote
+  quote,
+  link
 };
 
 // Helper function to create menu icons
