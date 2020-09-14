@@ -2,8 +2,8 @@ import { EditorView } from 'prosemirror-view';
 import { Plugin, PluginKey } from 'prosemirror-state';
 import { Mark } from 'prosemirror-model';
 
-import { calculateBubblePos } from '../helpers/bubblePosition';
-import { isMarkActive, getSelectionMarks } from '../helpers';
+import { calculateBubblePos } from 'ngx-editor/helpers';
+import { isMarkActive, getSelectionMarks } from 'ngx-editor/helpers';
 
 class FloatingOptionsView {
   bubbleEL: HTMLElement;

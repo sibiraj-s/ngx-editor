@@ -4,7 +4,7 @@ import { keymap } from 'prosemirror-keymap';
 import { toggleMark, baseKeymap } from 'prosemirror-commands';
 import { Plugin } from 'prosemirror-state';
 
-import { menu, placeholder, link } from 'ngx-editor';
+import { menu, placeholder, link } from 'ngx-editor/plugins';
 
 import codemirrorMenu from './menu/codemirror';
 import { buildInputRules } from './input-rules';

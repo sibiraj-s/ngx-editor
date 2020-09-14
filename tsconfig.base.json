@@ -19,6 +19,18 @@
       "ngx-editor": [
         "dist/ngx-editor/ngx-editor",
         "dist/ngx-editor"
+      ],
+      "ngx-editor/helpers": [
+        "dist/ngx-editor/ngx-editor/helpers",
+        "dist/ngx-editor/helpers"
+      ],
+      "ngx-editor/commands": [
+        "dist/ngx-editor/ngx-editor/commands",
+        "dist/ngx-editor/commands"
+      ],
+      "ngx-editor/plugins": [
+        "dist/ngx-editor/ngx-editor/plugins",
+        "dist/ngx-editor/plugins"
       ]
     }
   }

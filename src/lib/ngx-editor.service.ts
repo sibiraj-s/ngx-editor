@@ -5,8 +5,7 @@ import { Plugin } from 'prosemirror-state';
 
 import { NgxEditorConfig, NodeViews } from './types';
 
-import menu from './prosemirror/plugins/menu';
-import placeholder from './prosemirror/plugins/placeholder';
+import { menu, placeholder } from 'ngx-editor/plugins';
 import { schema } from './schema';
 
 @Injectable({

@@ -3,7 +3,7 @@
 Configuring the plugin
 
 ```ts
-import { menu, placeholder } from 'ngx-editor';
+import { menu, placeholder } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
   plugins: [

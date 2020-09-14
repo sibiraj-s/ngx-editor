@@ -9,7 +9,8 @@ Example: https://github.com/sibiraj-s/ngx-editor/tree/master/demo
 ## Usage
 
 ```ts
-import { menu, placeholder, schema } from 'ngx-editor';
+import { schema } from 'ngx-editor';
+import { menu, placeholder } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
   schema

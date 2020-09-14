@@ -8,8 +8,7 @@
       "prosemirror-view": "prosemirrorView",
       "prosemirror-model": "prosemirrorModel",
       "prosemirror-schema-basic": "prosemirrorSchemaBasic",
-      "prosemirror-schema-list": "prosemirrorSchemaList",
-      "prosemirror-commands": "prosemirrorCommands"
+      "prosemirror-schema-list": "prosemirrorSchemaList"
     }
   },
   "whitelistedNonPeerDependencies": [

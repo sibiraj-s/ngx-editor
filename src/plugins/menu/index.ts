@@ -1,7 +1,7 @@
 import { EditorView } from 'prosemirror-view';
 import { Plugin, PluginKey } from 'prosemirror-state';
 
-import { Toolbar, MenuLabels, MenuOptions } from '../../../types';
+import { Toolbar, MenuLabels, MenuOptions } from '../types';
 import MenuBarView from './MenuBarView';
 
 const DEFAULT_TOOLBAR: Toolbar = [

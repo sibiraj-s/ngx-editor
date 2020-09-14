@@ -2,7 +2,7 @@ import { EditorState, Transaction } from 'prosemirror-state';
 import { NodeType } from 'prosemirror-model';
 import { setBlockType } from 'prosemirror-commands';
 
-import isNodeActive from '../helpers/isNodeActive';
+import { isNodeActive } from 'ngx-editor/helpers';
 
 export const toggleBlockType = (type: NodeType, toggleType: NodeType, attrs = {}) => {
   return (state: EditorState, dispatch: (tr: Transaction) => void) => {
