@@ -298,70 +298,72 @@ export const renderMenu = (options: MenuOptions, editorView: EditorView, menuDom
   const updates: any[] = [];
 
   const toolbar = options.toolbar;
-
-  toolbar.forEach((group: ToolbarItem[], toolbarIndex: number): void => {
-    const isLastMenuGroup = toolbar.length - 1 === toolbarIndex;
-
-    group.forEach((toolbarItem: ToolbarItem, menuIndex: number): void => {
-      const isLastMenuItem = group.length - 1 === menuIndex;
-
-      // render dropdown
-      if (typeof toolbarItem === 'object') {
-        Object.keys(toolbarItem).forEach((dropdownGroup: ToolbarDropdownGroupKeys) => {
-          if (DROPDOWN_ITEMS.has(dropdownGroup)) {
-            const dropdown: ToolbarDropdownGroupValues = toolbarItem[dropdownGroup];
-
-            const dropdownView = new DropDownView(dropdownGroup, dropdown, editorView, options);
-            const rendered = dropdownView.render();
-            updates.push(rendered.updates);
-            menuDom.appendChild(rendered.dom);
-          } else {
-            console.warn('Unkown dropdown group:', dropdownGroup);
+  if (toolbar !== null) //handling excess div space rendered if toolbar is not to be rendered (at all).
+  {
+    toolbar.forEach((group: ToolbarItem[], toolbarIndex: number): void => {
+      const isLastMenuGroup = toolbar.length - 1 === toolbarIndex;
+  
+      group.forEach((toolbarItem: ToolbarItem, menuIndex: number): void => {
+        const isLastMenuItem = group.length - 1 === menuIndex;
+  
+        // render dropdown
+        if (typeof toolbarItem === 'object') {
+          Object.keys(toolbarItem).forEach((dropdownGroup: ToolbarDropdownGroupKeys) => {
+            if (DROPDOWN_ITEMS.has(dropdownGroup)) {
+              const dropdown: ToolbarDropdownGroupValues = toolbarItem[dropdownGroup];
+  
+              const dropdownView = new DropDownView(dropdownGroup, dropdown, editorView, options);
+              const rendered = dropdownView.render();
+              updates.push(rendered.updates);
+              menuDom.appendChild(rendered.dom);
+            } else {
+              console.warn('Unkown dropdown group:', dropdownGroup);
+            }
+          });
+        }
+  
+        // render Icons
+        if (typeof toolbarItem === 'string') {
+          const menuItem = menuItemsMeta[toolbarItem];
+  
+          const labels = options.labels;
+  
+          if (menuItem) {
+            const spec: MenuItemViewSpec = {
+              classNames: [
+                MENU_ITEM_CLASSNAME,
+                `${MENU_ITEM_CLASSNAME}--Icon`,
+              ],
+              innerHTML: getIconSvg(menuItem.icon),
+              attrs: {
+                title: labels[menuItem.i18nKey]
+              },
+              activeClass: ACTIVE_MENU_ITEM_CLASSNAME,
+              disabledClass: DISABLED_CLASSNAME
+            };
+  
+            const menuItemView = new MenuItemView(menuItem, editorView, spec);
+            const { update, dom } = menuItemView.render();
+  
+            menuDom.appendChild(dom);
+            updates.push(update);
           }
-        });
-      }
-
-      // render Icons
-      if (typeof toolbarItem === 'string') {
-        const menuItem = menuItemsMeta[toolbarItem];
-
-        const labels = options.labels;
-
-        if (menuItem) {
-          const spec: MenuItemViewSpec = {
-            classNames: [
-              MENU_ITEM_CLASSNAME,
-              `${MENU_ITEM_CLASSNAME}--Icon`,
-            ],
-            innerHTML: getIconSvg(menuItem.icon),
-            attrs: {
-              title: labels[menuItem.i18nKey]
-            },
-            activeClass: ACTIVE_MENU_ITEM_CLASSNAME,
-            disabledClass: DISABLED_CLASSNAME
-          };
-
-          const menuItemView = new MenuItemView(menuItem, editorView, spec);
-          const { update, dom } = menuItemView.render();
-
+        }
+  
+        if (typeof toolbarItem === 'function') {
+          const { dom, update } = toolbarItem(editorView);
           menuDom.appendChild(dom);
           updates.push(update);
         }
-      }
-
-      if (typeof toolbarItem === 'function') {
-        const { dom, update } = toolbarItem(editorView);
-        menuDom.appendChild(dom);
-        updates.push(update);
-      }
-
-      if (isLastMenuItem && !isLastMenuGroup) {
-        const seperatorDom = getSeperatorDom();
-        menuDom.appendChild(seperatorDom);
-      }
+  
+        if (isLastMenuItem && !isLastMenuGroup) {
+          const seperatorDom = getSeperatorDom();
+          menuDom.appendChild(seperatorDom);
+        }
+      });
     });
-  });
-
+  }
+  
   const combinedUpdates = flatDeep(updates, Infinity);
 
   return {
