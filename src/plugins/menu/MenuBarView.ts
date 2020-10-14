@@ -1,9 +1,9 @@
-import { EditorView } from 'prosemirror-view';
-import { EditorState } from 'prosemirror-state';
+import { EditorView } from "prosemirror-view";
+import { EditorState } from "prosemirror-state";
 
-import { MenuOptions } from '../types';
+import { MenuOptions } from "../types";
 
-import { renderMenu } from './menu';
+import { renderMenu } from "./menu";
 
 class MenuBarView {
   options: MenuOptions;
@@ -23,13 +23,15 @@ class MenuBarView {
   }
 
   render(): void {
-    const menuDom = document.createElement('div');
-    menuDom.className = 'NgxEditor__MenuBar';
+    if (this.options.toolbar !== null) {
+      const menuDom = document.createElement("div");
+      menuDom.className = "NgxEditor__MenuBar";
 
-    const { update } = renderMenu(this.options, this.view, menuDom);
-    this.updateMenuItems = update;
+      const { update } = renderMenu(this.options, this.view, menuDom);
+      this.updateMenuItems = update;
 
-    this.view.dom.parentNode.insertBefore(menuDom, this.view.dom);
+      this.view.dom.parentNode.insertBefore(menuDom, this.view.dom);
+    }
   }
 
   update(): void {
