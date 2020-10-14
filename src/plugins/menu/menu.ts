@@ -298,20 +298,19 @@ export const renderMenu = (options: MenuOptions, editorView: EditorView, menuDom
   const updates: any[] = [];
 
   const toolbar = options.toolbar;
-  if (toolbar !== null) //handling excess div space rendered if toolbar is not to be rendered (at all).
-  {
-    toolbar.forEach((group: ToolbarItem[], toolbarIndex: number): void => {
+
+  toolbar.forEach((group: ToolbarItem[], toolbarIndex: number): void => {
       const isLastMenuGroup = toolbar.length - 1 === toolbarIndex;
-  
+
       group.forEach((toolbarItem: ToolbarItem, menuIndex: number): void => {
         const isLastMenuItem = group.length - 1 === menuIndex;
-  
+
         // render dropdown
         if (typeof toolbarItem === 'object') {
           Object.keys(toolbarItem).forEach((dropdownGroup: ToolbarDropdownGroupKeys) => {
             if (DROPDOWN_ITEMS.has(dropdownGroup)) {
               const dropdown: ToolbarDropdownGroupValues = toolbarItem[dropdownGroup];
-  
+
               const dropdownView = new DropDownView(dropdownGroup, dropdown, editorView, options);
               const rendered = dropdownView.render();
               updates.push(rendered.updates);
@@ -321,13 +320,13 @@ export const renderMenu = (options: MenuOptions, editorView: EditorView, menuDom
             }
           });
         }
-  
+
         // render Icons
         if (typeof toolbarItem === 'string') {
           const menuItem = menuItemsMeta[toolbarItem];
-  
+
           const labels = options.labels;
-  
+
           if (menuItem) {
             const spec: MenuItemViewSpec = {
               classNames: [
@@ -341,29 +340,28 @@ export const renderMenu = (options: MenuOptions, editorView: EditorView, menuDom
               activeClass: ACTIVE_MENU_ITEM_CLASSNAME,
               disabledClass: DISABLED_CLASSNAME
             };
-  
+
             const menuItemView = new MenuItemView(menuItem, editorView, spec);
             const { update, dom } = menuItemView.render();
-  
+
             menuDom.appendChild(dom);
             updates.push(update);
           }
         }
-  
+
         if (typeof toolbarItem === 'function') {
           const { dom, update } = toolbarItem(editorView);
           menuDom.appendChild(dom);
           updates.push(update);
         }
-  
+
         if (isLastMenuItem && !isLastMenuGroup) {
           const seperatorDom = getSeperatorDom();
           menuDom.appendChild(seperatorDom);
         }
       });
     });
-  }
-  
+
   const combinedUpdates = flatDeep(updates, Infinity);
 
   return {

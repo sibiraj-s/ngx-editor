@@ -6,7 +6,7 @@ module.exports = {
   overrides: [{
     files: 'scripts/**/*.js',
     rules: {
-      'no-console': 'off',
+      'no-console': 'off'
     }
   }]
 };

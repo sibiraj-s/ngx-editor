@@ -1,21 +1,23 @@
-const util = require('util');
+const util = require("util");
 
-const inquirer = require('inquirer');
-const ghpages = require('gh-pages');
-const chalk = require('chalk');
+const inquirer = require("inquirer");
+const ghpages = require("gh-pages");
+const chalk = require("chalk");
 
 const publishAsync = util.promisify(ghpages.publish);
 
 const ghPagesOptions = {
-  branch: 'gh-pages',
+  branch: "gh-pages",
   message: `docs: update ${new Date().toISOString()}`,
 };
 
 const questions = [
   {
-    name: 'publishDocs',
-    type: 'confirm',
-    message: `Do You want to publish the docs to '${chalk.cyan(ghPagesOptions.branch)}' branch?`,
+    name: "publishDocs",
+    type: "confirm",
+    message: `Do You want to publish the docs to '${chalk.cyan(
+      ghPagesOptions.branch
+    )}' branch?`,
   },
 ];
 
@@ -28,13 +30,19 @@ const publish = async function () {
         return;
       }
     } else {
-      console.log('CI detected. Skipping prompt.');
+      console.log("CI detected. Skipping prompt.");
     }
 
-    await publishAsync('docs', ghPagesOptions);
-    console.log(chalk.green(`\nDocumentation published successfully to ${chalk.cyan('\'gh-pages\'')} \n`));
+    await publishAsync("docs", ghPagesOptions);
+    console.log(
+      chalk.green(
+        `\nDocumentation published successfully to ${chalk.cyan(
+          "'gh-pages'"
+        )} \n`
+      )
+    );
   } catch (err) {
-    console.log(chalk.red('Unable to publish docs. Error:'), err);
+    console.log(chalk.red("Unable to publish docs. Error:"), err);
   }
 };
 
