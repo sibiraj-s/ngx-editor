@@ -23,13 +23,16 @@ class MenuBarView {
   }
 
   render(): void {
-    const menuDom = document.createElement('div');
-    menuDom.className = 'NgxEditor__MenuBar';
+    if (this.options.toolbar !== null || this.options.toolbar !== undefined)
+      {
+        const menuDom = document.createElement('div');
+        menuDom.className = 'NgxEditor__MenuBar';
 
-    const { update } = renderMenu(this.options, this.view, menuDom);
-    this.updateMenuItems = update;
+        const { update } = renderMenu(this.options, this.view, menuDom);
+        this.updateMenuItems = update;
 
-    this.view.dom.parentNode.insertBefore(menuDom, this.view.dom);
+        this.view.dom.parentNode.insertBefore(menuDom, this.view.dom);
+      }
   }
 
   update(): void {
