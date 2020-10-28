@@ -40,6 +40,8 @@ yarn add ngx-editor
 
 ### Usage
 
+**Note**: By default the editor comes with no features enabled. Refer the [demo](#demo) and [documentation](#documentation) for more details.
+
 Import `ngx-editor` module
 
 ```ts
