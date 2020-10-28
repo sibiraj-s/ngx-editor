@@ -104,7 +104,9 @@ All Evergreen-Browsers are supported
 
 ## Demo
 
-Demo at stackblitz [ngx-editor](https://ngx-editor.stackblitz.io/)
+Demo at stackblitz https://ngx-editor.stackblitz.io/
+
+Edit the stackblitz here https://stackblitz.com/edit/ngx-editor
 
 ## Documentation
 
