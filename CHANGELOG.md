@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v4.1.1 (2020-11-09)
+
+#### Bug Fixes
+
+- fix validation in insert video form ([74a86ca](https://github.com/Sibiraj-S/ngx-editor/commit/74a86ca))
+
 ## v5.0.0-alpha.9 (2020-06-13)
 
 #### Bug Fixes
