@@ -196,8 +196,21 @@
         <form class="extra-gt" [formGroup]="imageForm" (ngSubmit)="imageForm.valid && insertImage()" autocomplete="off">
           <div class="form-group">
             <label for="imageURLInput" class="small">URL</label>
-            <input type="text" class="form-control-sm" id="imageURLInput" placeholder="URL" formControlName="imageUrl"
+            <input type="url" class="form-control-sm" id="imageURLInput" placeholder="URL" formControlName="imageUrl"
               required>
+          </div>
+          <div class="form-group">
+            <label for="imageAltTextInput" class="small">Alternate text</label>
+            <input type="url" class="form-control-sm" id="imageAltTextInput" placeholder="Alternate text" formControlName="imageAlt">
+          </div>
+          <div class="row form-group">
+            <div class="col">
+              <input type="text" class="form-control-sm" formControlName="height" placeholder="height (px)" pattern="[0-9]*">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control-sm" formControlName="width" placeholder="width (px)" pattern="[0-9]*">
+            </div>
+            <label class="small">Height/Width</label>
           </div>
           <button type="submit" class="btn-primary btn-sm btn">Submit</button>
         </form>

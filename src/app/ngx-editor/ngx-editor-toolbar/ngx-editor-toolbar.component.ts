@@ -110,12 +110,15 @@ export class NgxEditorToolbarComponent implements OnInit {
    */
   buildImageForm(): void {
     this.imageForm = this._formBuilder.group({
-      imageUrl: ['', [Validators.required]]
+      imageUrl: ['', [Validators.required]],
+      imageAlt: [''],
+      height: [''],
+      width: [''],
     });
   }
 
   /**
-   * create insert image form
+   * create video image form
    */
   buildVideoForm(): void {
     this.videoForm = this._formBuilder.group({
@@ -165,7 +168,12 @@ export class NgxEditorToolbarComponent implements OnInit {
   /** insert image in the editor */
   insertImage(): void {
     try {
-      this._commandExecutorService.insertImage(this.imageForm.value.imageUrl);
+      this._commandExecutorService.insertImage({
+        url: this.imageForm.value.imageUrl,
+        alt: this.imageForm.value.imageAlt,
+        width: this.imageForm.value.width,
+        height: this.imageForm.value.height,
+      });
     } catch (error) {
       this._messageService.sendMessage(error.message);
     }

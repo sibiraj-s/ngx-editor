@@ -41,17 +41,21 @@ export class CommandExecutorService {
   /**
    * inserts image in the editor
    *
-   * @param imageURI url of the image to be inserted
+   * @param image url, alt, width and height of the image to be inserted
    */
-  insertImage(imageURI: string): void {
+  insertImage(image: { url: string, alt: string, width: number | null, height: number | null }): void {
     if (this.savedSelection) {
-      if (imageURI) {
+      if (image.url) {
         const restored = Utils.restoreSelection(this.savedSelection);
         if (restored) {
-          const inserted = document.execCommand('insertImage', false, imageURI);
-          if (!inserted) {
+          try {
+            // Validate URL
+            const url = new URL(image.url);
+          } catch (e) {
             throw new Error('Invalid URL');
           }
+          const imageTag = `<img alt="${image.alt}" width="${image.width}" height="${image.height}" src="${image.url}" />`;
+          this.insertHtml(imageTag);
         }
       }
     } else {
