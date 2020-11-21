@@ -24,6 +24,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - run: node --version
       - run: npm --version
 
