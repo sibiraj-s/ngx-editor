@@ -40,10 +40,12 @@ class FloatingOptionsView {
     commands.classList.add('commands');
 
     const editOpt = document.createElement('button');
+    editOpt.type = 'button';
     editOpt.classList.add('command');
     editOpt.textContent = 'Edit';
 
     const removeOpt = document.createElement('button');
+    removeOpt.type = 'button';
     removeOpt.classList.add('command');
     removeOpt.textContent = 'Remove';
 
@@ -74,18 +76,18 @@ class FloatingOptionsView {
       return;
     }
 
-    const hasFocus = view.hasFocus();
+    // const hasFocus = view.hasFocus();
     const isActive = isMarkActive(state, schema.marks.link);
     const linkMarks: Mark[] = getSelectionMarks(state).filter(mark => mark.type === schema.marks.link);
 
-
     // hide for selection and show only for clicks
-    if (!isActive || linkMarks.length !== 1 || !hasFocus) {
+    if (!isActive || linkMarks.length !== 1) {
       this.hideBubble();
       return;
     }
 
-    const { $head: { pos } } = selection;
+    const { $head: { pos }, from, to } = selection;
+
     const [linkItem] = linkMarks;
 
     this.clearBubbleContent();
@@ -93,11 +95,16 @@ class FloatingOptionsView {
     const removeCB = (e: MouseEvent) => {
       e.preventDefault();
 
-      const $pos = doc.resolve(pos);
-      const linkStart = pos - $pos.textOffset;
-      const linkEnd = linkStart + $pos.parent.child($pos.index()).nodeSize;
+      // if the cursor is on the link without any selection
+      if (from === to) {
+        const $pos = doc.resolve(pos);
+        const linkStart = pos - $pos.textOffset;
+        const linkEnd = linkStart + $pos.parent.child($pos.index()).nodeSize;
 
-      tr.removeMark(linkStart, linkEnd);
+        tr.removeMark(linkStart, linkEnd);
+      } else {
+        tr.removeMark(from, to);
+      }
 
       dispatch(tr);
       view.focus();
@@ -120,14 +127,6 @@ function linkPlugin(): Plugin {
     key: new PluginKey('link'),
     view(editorView: EditorView): FloatingOptionsView {
       return new FloatingOptionsView(editorView);
-    },
-    props: {
-      handleDOMEvents: {
-        blur(view): boolean {
-          view.dispatch(view.state.tr.setMeta('LINK_PLUGIN_EDITOR_BLUR', true));
-          return false;
-        }
-      }
     }
   });
 }
