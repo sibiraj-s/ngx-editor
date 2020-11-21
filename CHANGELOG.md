@@ -22,7 +22,7 @@ All notable changes to this project will be documented in this file.
 
 #### Breaking Changes
 
-- drop angualr 9 support ([59ed7e3](https://github.com/Sibiraj-S/ngx-editor/commit/59ed7e3))
+- drop angular 9 support ([59ed7e3](https://github.com/Sibiraj-S/ngx-editor/commit/59ed7e3))
 
 #### Internal
 
