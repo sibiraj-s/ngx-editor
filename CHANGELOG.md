@@ -26,7 +26,7 @@ All notable changes to this project will be documented in this file.
 
 #### Internal
 
-- publish docs only on release ([35f45d6](https://github.com/Sibiraj-S/ngx-editor/commit/35f45d6))
+- publish docs only on release ([5838c2d](https://github.com/Sibiraj-S/ngx-editor/commit/5838c2d))
 - update to node 14 ([38893d8](https://github.com/Sibiraj-S/ngx-editor/commit/38893d8))
 
 ## v4.1.1 (2020-11-09)
