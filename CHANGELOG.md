@@ -13,6 +13,22 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.10 (2020-11-21)
+
+#### Features
+
+- partial link support ([87e8d50](https://github.com/Sibiraj-S/ngx-editor/commit/87e8d50))
+- support angular 10, 11 ([59ed7e3](https://github.com/Sibiraj-S/ngx-editor/commit/59ed7e3))
+
+#### Breaking Changes
+
+- drop angualr 9 support ([59ed7e3](https://github.com/Sibiraj-S/ngx-editor/commit/59ed7e3))
+
+#### Internal
+
+- publish docs only on release ([35f45d6](https://github.com/Sibiraj-S/ngx-editor/commit/35f45d6))
+- update to node 14 ([38893d8](https://github.com/Sibiraj-S/ngx-editor/commit/38893d8))
+
 ## v4.1.1 (2020-11-09)
 
 #### Bug Fixes
@@ -74,10 +90,10 @@ All notable changes to this project will be documented in this file.
 - placeholder and config property is replaced with plugins
 
 ```ts
-import { menu, placeholder } from 'ngx-editor';
+import { menu, placeholder } from "ngx-editor";
 
 NgxEditorModule.forRoot({
-  plugins: [menu(), placholder('Type something here...')]
+  plugins: [menu(), placholder("Type something here...")],
 });
 ```
 
