@@ -11,7 +11,7 @@ function placeholderPlugin(text: string = DEFAULT_PLACEHOLDER): Plugin {
       decorations(state: EditorState): DecorationSet {
         const doc = state.doc;
 
-        if (doc.childCount === 1 && doc.firstChild.isTextblock && doc.firstChild.content.size === 0) {
+        if (doc.childCount === 1 && doc?.firstChild?.isTextblock && doc.firstChild.content.size === 0) {
           const placeHolderEl = document.createElement('span');
           placeHolderEl.classList.add(PLACEHOLDER_CLASSNAME);
           placeHolderEl.textContent = text;

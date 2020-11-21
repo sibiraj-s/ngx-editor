@@ -6,7 +6,7 @@ import { calculateBubblePos } from 'ngx-editor/helpers';
 import { isMarkActive, getSelectionMarks } from 'ngx-editor/helpers';
 
 class FloatingOptionsView {
-  bubbleEL: HTMLElement;
+  bubbleEL: HTMLElement = document.createElement('div');
 
   constructor(view: EditorView) {
     this.render(view);
@@ -14,9 +14,8 @@ class FloatingOptionsView {
   }
 
   render(view: EditorView): void {
-    this.bubbleEL = document.createElement('div');
     this.bubbleEL.className = 'NgxEditor__FloatingBubble';
-    view.dom.parentNode.appendChild(this.bubbleEL);
+    view.dom.parentNode?.appendChild(this.bubbleEL);
   }
 
   setDomPosition(view: EditorView): void {

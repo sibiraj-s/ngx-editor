@@ -9,12 +9,9 @@ class MenuBarView {
   options: MenuOptions;
   view: EditorView;
 
-  dom: HTMLElement;
-
-  updateMenuItems: (state: EditorState) => void;
+  updateMenuItems?: (state: EditorState) => void;
 
   constructor(editorView: EditorView, options: MenuOptions) {
-    // const menu = getMenu(toolbar);
     this.view = editorView;
     this.options = options;
 
@@ -29,11 +26,11 @@ class MenuBarView {
     const { update } = renderMenu(this.options, this.view, menuDom);
     this.updateMenuItems = update;
 
-    this.view.dom.parentNode.insertBefore(menuDom, this.view.dom);
+    this.view.dom.parentNode?.insertBefore(menuDom, this.view.dom);
   }
 
   update(): void {
-    this.updateMenuItems(this.view.state);
+    this.updateMenuItems?.(this.view.state);
   }
 }
 

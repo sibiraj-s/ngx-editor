@@ -8,9 +8,9 @@ describe('ngx-editor App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('A Simple WYSIWYG Editor for Angular Applications.');
+  it('should display welcome message', async () => {
+    await page.navigateTo();
+    expect(await page.getTitleText()).toEqual('A Simple WYSIWYG Editor for Angular Applications.');
   });
 
   afterEach(async () => {
