@@ -22,8 +22,8 @@ export interface MenuItemViewSpec {
 
 export type MenuLabels = { [key: string]: string };
 export interface MenuOptions {
-  toolbar?: Toolbar;
-  labels?: MenuLabels;
+  toolbar: Toolbar;
+  labels: MenuLabels;
   schema?: Schema;
 }
 
