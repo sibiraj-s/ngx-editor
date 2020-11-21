@@ -15,7 +15,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{env.NODE_VERSION}}
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - run: npm ci
+      - run: npm run build
       - run: npm run test:lib
 
   pages:
@@ -62,6 +69,12 @@ jobs:
         with:
           node-version: ${{env.NODE_VERSION}}
           registry-url: https://registry.npmjs.org/
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - run: npm ci
       - run: npm run release
         env:
