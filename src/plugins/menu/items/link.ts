@@ -59,8 +59,6 @@ const updateLink = (view: EditorView, data: OnSubmitData) => {
 const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
   const { dom, update: updateDom, toggleIcon } = getMenuItemDom(spec);
 
-  console.log(dom);
-
   const onSubmit = (data: OnSubmitData) => {
     updateLink(view, data);
     closePopup();
