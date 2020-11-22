@@ -95,10 +95,8 @@ const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
       return removeLink(view);
     }
 
-    if (!empty) {
-      const selectedText = doc.textBetween(from, to);
-      renderForm(getFormInputs(selectedText));
-    }
+    const selectedText = !empty ? doc.textBetween(from, to) : '';
+    renderForm(getFormInputs(selectedText));
 
     show();
     isPopupOpen = true;
