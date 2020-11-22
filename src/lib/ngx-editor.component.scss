@@ -40,6 +40,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   &:hover {
     background-color: $menu-item-hover-bg-color;
@@ -55,13 +56,20 @@ $menubar-text-padding: 0 $menu-item-spacing;
     }
   }
 
+  #{ $self }--IconContainer {
+    display: flex;
+  }
+
   &#{ $self }--Text {
     padding: $menubar-text-padding;
   }
 
   &#{ $self }--Active {
     background-color: $menu-item-active-bg-color;
-    color: $menu-item-active-color;
+
+    &#{ $self }--Text {
+      color: $menu-item-active-color;
+    }
 
     svg {
       fill: $menu-item-active-color;
@@ -150,6 +158,46 @@ $menubar-text-padding: 0 $menu-item-spacing;
     #{ $self }__DropdownMenu {
       display: block;
     }
+  }
+}
+
+.NgxEditor__Popup {
+  $self: &;
+  position: absolute;
+  top: calc(#{$menubar-height} + 2px);
+  box-shadow: rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: $border-radius;
+  background-color: white;
+  z-index: 10;
+  min-width: 12rem;
+  padding: 8px;
+  display: none;
+
+  #{ $self }--FormGroup {
+    margin-bottom: 8px;
+
+    label {
+      margin-bottom: 3px;
+    }
+
+    input[type="text"],
+    input[type="url"] {
+      padding: 2px 4px;
+    }
+  }
+
+  #{ $self }--Col {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  #{ $self }--Label {
+    font-size: 85%;
+  }
+
+  &#{ $self }--Open {
+    display: block;
   }
 }
 

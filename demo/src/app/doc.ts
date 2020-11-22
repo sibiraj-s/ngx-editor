@@ -65,7 +65,7 @@ export default {
               type: 'link',
               attrs: {
                 href: 'https://en.wikipedia.org',
-                title: ''
+                title: '',
               }
             }
           ],

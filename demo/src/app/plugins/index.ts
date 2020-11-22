@@ -60,6 +60,7 @@ const getPlugins = (): Plugin[] => {
         ['code', 'blockquote'],
         ['ordered_list', 'bullet_list'],
         [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+        ['link'],
         [codemirrorMenu]
       ],
       labels: {
@@ -69,7 +70,8 @@ const getPlugins = (): Plugin[] => {
         ordered_list: 'Ordered List',
         bullet_list: 'Bullet List',
         heading: 'Header',
-        blockquote: 'Quote'
+        blockquote: 'Quote',
+        link: 'Link'
       }
     }),
     placeholder('Type Something here...'),

@@ -2,8 +2,10 @@ import { EditorView } from 'prosemirror-view';
 import { Plugin, PluginKey } from 'prosemirror-state';
 import { Mark } from 'prosemirror-model';
 
-import { calculateBubblePos } from 'ngx-editor/helpers';
-import { isMarkActive, getSelectionMarks } from 'ngx-editor/helpers';
+import {
+  calculateBubblePos, isLinkActive, getSelectionMarks,
+  removeLink
+} from 'ngx-editor/helpers';
 
 class FloatingOptionsView {
   bubbleEL: HTMLElement = document.createElement('div');
@@ -32,7 +34,7 @@ class FloatingOptionsView {
 
     const link = document.createElement('a');
     link.href = item.attrs.href;
-    link.target = '_blank';
+    link.target = item.attrs.target;
     link.innerText = item.attrs.href;
     link.title = item.attrs.href;
 
@@ -69,32 +71,19 @@ class FloatingOptionsView {
   }
 
   update(view: EditorView): void {
-    const { state, dispatch } = view;
-    const { selection, schema, doc, tr } = state;
+    const { state } = view;
+    const { schema } = state;
 
     if (!schema.marks.link) {
       return;
     }
 
     // const hasFocus = view.hasFocus();
-    const isActive = isMarkActive(state, schema.marks.link);
+    const isActive = isLinkActive(state);
     const linkMarks: Mark[] = getSelectionMarks(state).filter(mark => mark.type === schema.marks.link);
 
-    const { $head: { pos }, from, to, anchor, head } = selection;
-    const isForwardSelection = anchor === from;
-
-    // hide the popup if selection has non mark text at the begining or at the end
-    const selectionHasOnlyMarks = isForwardSelection ?
-      (
-        state.doc.rangeHasMark(anchor, anchor + 1, schema.marks.link) &&
-        state.doc.rangeHasMark(head - 1, head, schema.marks.link)
-      ) : (
-        state.doc.rangeHasMark(anchor - 1, anchor, schema.marks.link) &&
-        state.doc.rangeHasMark(head, head + 1, schema.marks.link)
-      );
-
     // hide for selection and show only for clicks
-    if (!isActive || linkMarks.length !== 1 || !selectionHasOnlyMarks) {
+    if (!isActive) {
       this.hideBubble();
       return;
     }
@@ -106,18 +95,7 @@ class FloatingOptionsView {
     const removeCB = (e: MouseEvent) => {
       e.preventDefault();
 
-      // if the cursor is on the link without any selection
-      if (from === to) {
-        const $pos = doc.resolve(pos);
-        const linkStart = pos - $pos.textOffset;
-        const linkEnd = linkStart + $pos.parent.child($pos.index()).nodeSize;
-
-        tr.removeMark(linkStart, linkEnd);
-      } else {
-        tr.removeMark(from, to);
-      }
-
-      dispatch(tr);
+      removeLink(view);
       view.focus();
     };
 
