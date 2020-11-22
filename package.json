@@ -26,7 +26,8 @@
     "angular-wysiwyg-editor",
     "wysiwyg-editor",
     "ngx-editor",
-    "prosemirror"
+    "prosemirror",
+    "angular-prosemirror"
   ],
   "dependencies": {
     "@angular/animations": "~11.0.1",
