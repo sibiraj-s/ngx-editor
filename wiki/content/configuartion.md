@@ -13,7 +13,8 @@ NgxEditorModule.forRoot({
         ['bold', 'italic'], // inline icons
         ['code', 'blockquote'],
         ['ordered_list', 'bullet_list'],
-        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }] // dropdown
+        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }], // dropdown
+        ['link']
       ],
       labels: {
         bold: 'Bold',
@@ -21,7 +22,8 @@ NgxEditorModule.forRoot({
         code: 'Code',
         ordered_list: 'Ordered List',
         bullet_list: 'Bullet List',
-        heading: 'Heading'
+        heading: 'Heading',
+        link: 'Link'
       }
     }),
     placholder('Type something here...')
