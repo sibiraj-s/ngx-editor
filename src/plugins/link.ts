@@ -80,13 +80,24 @@ class FloatingOptionsView {
     const isActive = isMarkActive(state, schema.marks.link);
     const linkMarks: Mark[] = getSelectionMarks(state).filter(mark => mark.type === schema.marks.link);
 
+    const { $head: { pos }, from, to, anchor, head } = selection;
+    const isForwardSelection = anchor === from;
+
+    // hide the popup if selection has non mark text at the begining or at the end
+    const selectionHasOnlyMarks = isForwardSelection ?
+      (
+        state.doc.rangeHasMark(anchor, anchor + 1, schema.marks.link) &&
+        state.doc.rangeHasMark(head - 1, head, schema.marks.link)
+      ) : (
+        state.doc.rangeHasMark(anchor - 1, anchor, schema.marks.link) &&
+        state.doc.rangeHasMark(head, head + 1, schema.marks.link)
+      );
+
     // hide for selection and show only for clicks
-    if (!isActive || linkMarks.length !== 1) {
+    if (!isActive || linkMarks.length !== 1 || !selectionHasOnlyMarks) {
       this.hideBubble();
       return;
     }
-
-    const { $head: { pos }, from, to } = selection;
 
     const [linkItem] = linkMarks;
 
