@@ -14,6 +14,7 @@ NgxEditorModule.forRoot({
         ['code', 'blockquote'],
         ['ordered_list', 'bullet_list'],
         [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }], // dropdown
+        ['link'],
         [codemirror] // custom menu, example below
       ],
       labels: {
@@ -22,7 +23,8 @@ NgxEditorModule.forRoot({
         code: 'Code',
         ordered_list: 'Ordered List',
         bullet_list: 'Bullet List',
-        heading: 'Heading'
+        heading: 'Heading',
+        link: 'Link'
       }
     })
   ]
