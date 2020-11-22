@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.11 (2020-11-23)
+
+#### Features
+
+- support links ([59899f4](https://github.com/Sibiraj-S/ngx-editor/commit/59899f4))
+
 ## v5.0.0-alpha.10 (2020-11-21)
 
 #### Features
