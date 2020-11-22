@@ -4,11 +4,14 @@ import { Plugin, PluginKey } from 'prosemirror-state';
 import { Toolbar, MenuLabels, MenuOptions } from '../types';
 import MenuBarView from './MenuBarView';
 
+export { getMenuItemDom } from './views/MenuItem';
+
 const DEFAULT_TOOLBAR: Toolbar = [
   ['bold', 'italic'],
   ['code', 'blockquote'],
   ['ordered_list', 'bullet_list'],
-  [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }]
+  [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+  ['link']
 ];
 
 const DEFAULT_LABELS: MenuLabels = {
@@ -18,7 +21,8 @@ const DEFAULT_LABELS: MenuLabels = {
   ordered_list: 'Ordered List',
   bullet_list: 'Bullet List',
   heading: 'Heading',
-  blockquote: 'Quote'
+  blockquote: 'Quote',
+  link: 'Link'
 };
 
 const DEFAULT_OPTIONS: MenuOptions = {
@@ -36,7 +40,8 @@ function menuPlugin(options: MenuOptions): Plugin {
 }
 
 const menu = (options: MenuOptions = DEFAULT_OPTIONS) => {
-  return menuPlugin(options);
+  const mergedOptions = Object.assign({}, DEFAULT_OPTIONS, options);
+  return menuPlugin(mergedOptions);
 };
 
 export default menu;

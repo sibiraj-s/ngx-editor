@@ -18,7 +18,26 @@ export const nodes = Object.assign(
   }
 );
 
-export const marks = schemaBasic.marks;
+const linkMark = Object.assign(
+  {},
+  schemaBasic.marks.link,
+  {
+    attrs: {
+      ...schemaBasic.marks.link.attrs,
+      target: {
+        default: '_blank'
+      }
+    }
+  }
+);
+
+export const marks = Object.assign(
+  {},
+  schemaBasic.marks,
+  {
+    link: linkMark
+  }
+);
 
 export const schema = new Schema({
   marks,

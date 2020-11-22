@@ -2,6 +2,7 @@ export interface MenuItemMeta {
   key: string;
   i18nKey: string;
   icon?: string;
+  toggleIcon?: string;
   type: 'mark' | 'node';
   attrs?: {
     level?: number
@@ -92,6 +93,13 @@ const menuItemsMeta: { [key: string]: MenuItemMeta } = {
     i18nKey: 'blockquote',
     icon: 'quote',
     type: 'node'
+  },
+  link: {
+    key: 'link',
+    i18nKey: 'link',
+    icon: 'link',
+    type: 'mark',
+    toggleIcon: 'unlink'
   }
 };
 
