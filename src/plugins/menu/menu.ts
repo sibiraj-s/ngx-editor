@@ -12,9 +12,9 @@ import {
 import { getIconSvg } from '../utils/icons';
 import flatDeep from '../utils/flatDeep';
 
-import MenuItemView, {
+import SimpleMenuItem, {
   ACTIVE_MENU_ITEM_CLASSNAME, DISABLED_CLASSNAME, MENU_ITEM_CLASSNAME, MENU_ITEM_ICON_CLASSNAME
-} from './views/MenuItem';
+} from './views/SimpleMenuItem';
 import DropDownView from './views/Dropdown';
 
 import getSeperator from './items/seperator';
@@ -84,7 +84,7 @@ export const renderMenu = (options: MenuOptions, editorView: EditorView, menuDom
             menuDom.appendChild(dom);
             updates.push(update);
           } else {
-            const menuItemView = new MenuItemView(menuItem, editorView, spec);
+            const menuItemView = new SimpleMenuItem(menuItem, editorView, spec);
             const { dom, update } = menuItemView.render();
 
             menuDom.appendChild(dom);

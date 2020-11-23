@@ -21,6 +21,7 @@ export interface MenuItemSpec {
     default: string;
     alt: string;
   };
+  iconContainerClass?: string;
   textContent?: string;
   attrs?: { [key: string]: string };
   activeClass: string;
@@ -31,12 +32,6 @@ export type DOMUpdateOptions = {
   active: boolean;
   disabled: boolean;
 };
-
-export interface MenuItemDOM {
-  dom: HTMLElement;
-  update: (options: DOMUpdateOptions) => void;
-  toggleIcon?: (toggle: boolean) => void;
-}
 
 export type MenuLabels = { [key: string]: string };
 export interface MenuOptions {

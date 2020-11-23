@@ -2,18 +2,24 @@ import { EditorState } from 'prosemirror-state';
 
 import { toggleBlockType } from 'ngx-editor/commands';
 import { isNodeActive } from 'ngx-editor/helpers';
-import { ToolbarCustomMenuItem } from 'ngx-editor/plugins';
+import { ToolbarCustomMenuItem, MenuItem, MenuItemSpec } from 'ngx-editor/plugins';
 
 import schema from '../../schema';
 
 // Ref: https://prosemirror.net/examples/codemirror/
 
 const codeMirror: ToolbarCustomMenuItem = (editorView) => {
-  const dom: HTMLElement = document.createElement('div');
-  dom.innerHTML = 'CodeMirror';
+  const spec: MenuItemSpec = {
+    classNames: [
+      'NgxEditor__MenuItem',
+      'NgxEditor__MenuItem--Text'
+    ],
+    activeClass: 'NgxEditor__MenuItem--Active',
+    disabledClass: 'NgxEditor--Disabled',
+    textContent: 'CodeMirror'
+  };
 
-  dom.classList.add('NgxEditor__MenuItem');
-  dom.classList.add('NgxEditor__MenuItem--Text');
+  const { dom, update: updateDom } = new MenuItem(spec);
 
   const type = schema.nodes.code_block;
 
@@ -32,11 +38,12 @@ const codeMirror: ToolbarCustomMenuItem = (editorView) => {
 
   const update = (state: EditorState): void => {
     const isActive = isNodeActive(state, type);
-
     const canExecute = command(state, null);
 
-    dom.classList.toggle(`NgxEditor__MenuItem--Active`, isActive);
-    dom.classList.toggle(`NgxEditor--Disabled`, !canExecute);
+    updateDom({
+      active: isActive,
+      disabled: !canExecute
+    });
   };
 
   return {

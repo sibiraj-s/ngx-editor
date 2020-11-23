@@ -48,7 +48,8 @@ export default {
               type: 'link',
               attrs: {
                 href: 'https://codemirror.net',
-                title: null
+                title: 'CodeMirror',
+                target: '_blank'
               }
             }
           ],
