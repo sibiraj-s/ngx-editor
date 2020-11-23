@@ -117,7 +117,7 @@ const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
     window.removeEventListener('mousedown', mouseDownHandler);
   };
 
-  dom.addEventListener('click', (e: MouseEvent) => {
+  dom.addEventListener('mousedown', (e: MouseEvent) => {
     if (isPopupOpen) {
       closePopup(e);
     } else {
