@@ -38,5 +38,13 @@
   {
     "title": "Reactive Forms",
     "file": "content/reactive-forms.md"
+  },
+  {
+    "title": "Working with links",
+    "file": "content/working-with-links.md"
+  },
+  {
+    "title": "Plugins",
+    "file": "content/plugins.md"
   }
 ]
