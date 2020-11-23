@@ -41,19 +41,13 @@ class FloatingOptionsView {
     const commands = document.createElement('div');
     commands.classList.add('commands');
 
-    const editOpt = document.createElement('button');
-    editOpt.type = 'button';
-    editOpt.classList.add('command');
-    editOpt.textContent = 'Edit';
-
     const removeOpt = document.createElement('button');
     removeOpt.type = 'button';
     removeOpt.classList.add('command');
     removeOpt.textContent = 'Remove';
 
-    removeOpt.onclick = removeCB;
+    removeOpt.addEventListener('mousedown', removeCB, { once: true });
 
-    // commands.appendChild(editOpt);
     commands.appendChild(removeOpt);
 
     el.appendChild(link);
@@ -78,12 +72,12 @@ class FloatingOptionsView {
       return;
     }
 
-    // const hasFocus = view.hasFocus();
+    const hasFocus = view.hasFocus();
     const isActive = isLinkActive(state);
     const linkMarks: Mark[] = getSelectionMarks(state).filter(mark => mark.type === schema.marks.link);
 
     // hide for selection and show only for clicks
-    if (!isActive) {
+    if (!hasFocus || !isActive) {
       this.hideBubble();
       return;
     }
@@ -94,6 +88,7 @@ class FloatingOptionsView {
 
     const removeCB = (e: MouseEvent) => {
       e.preventDefault();
+      e.stopPropagation();
 
       removeLink(view);
       view.focus();
@@ -116,6 +111,15 @@ function linkPlugin(): Plugin {
     key: new PluginKey('link'),
     view(editorView: EditorView): FloatingOptionsView {
       return new FloatingOptionsView(editorView);
+    },
+    props: {
+      handleDOMEvents: {
+        blur: (view: EditorView): boolean => {
+          // dummy transaction to update
+          view.dispatch(view.state.tr.setMeta('LINK_PLUGIN_EDITOR_BLUR', true));
+          return false;
+        }
+      }
     }
   });
 }
