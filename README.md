@@ -40,7 +40,7 @@ yarn add ngx-editor
 
 ### Usage
 
-**Note**: By default the editor comes with no features enabled. Refer the [demo](#demo) and [documentation](#documentation) for more details.
+**Note**: By default the editor comes with bare minimal features enabled to reduce the size of the bundle. Refer the [demo](#demo) and [documentation](#documentation) for more details and examples.
 
 Import `ngx-editor` module
 
