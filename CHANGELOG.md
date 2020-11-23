@@ -13,6 +13,13 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.12 (2020-11-23)
+
+#### Bug Fixes
+
+- hide tooltip when editor is not in focus ([0fab30f](https://github.com/sibiraj-s/ngx-editor/commit/0fab30f))
+- handle unlink option in menu correctly ([0696e82](https://github.com/sibiraj-s/ngx-editor/commit/0696e82))
+
 ## v5.0.0-alpha.11 (2020-11-23)
 
 #### Features
