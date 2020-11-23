@@ -4,7 +4,7 @@ import { Plugin, PluginKey } from 'prosemirror-state';
 import { Toolbar, MenuLabels, MenuOptions } from '../types';
 import MenuBarView from './MenuBarView';
 
-export { getMenuItemDom } from './views/MenuItem';
+export { MenuItem } from './views/base/MenuItem';
 
 const DEFAULT_TOOLBAR: Toolbar = [
   ['bold', 'italic'],

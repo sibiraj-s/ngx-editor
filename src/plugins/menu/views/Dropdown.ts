@@ -10,7 +10,7 @@ import {
 } from '../../types';
 import menuItemsMeta from '../meta';
 
-import MenuItemView, { DISABLED_CLASSNAME } from './MenuItem';
+import SimpleMenutItem, { DISABLED_CLASSNAME } from './SimpleMenuItem';
 
 const DROPDWON_ITEM_CLASSNAME = 'NgxEditor__Dropdown';
 const DROPWDOWN_OPEN_CLASSNAME = `${DROPDWON_ITEM_CLASSNAME}--Open`;
@@ -112,7 +112,7 @@ class DropDownView {
         disabledClass: DISABLED_CLASSNAME
       };
 
-      const menuItemView = new MenuItemView(menuItem, this.editorView, spec);
+      const menuItemView = new SimpleMenutItem(menuItem, this.editorView, spec);
       const { update, dom } = menuItemView.render();
 
       // remove open class once clicked on dropdown value

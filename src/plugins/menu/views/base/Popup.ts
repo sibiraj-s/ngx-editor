@@ -1,5 +1,5 @@
 const POPOUP_ITEM_CLASSNAME = 'NgxEditor__Popup';
-const POPOUP_ITEM_OPEN_CLASSNAME = 'NgxEditor__Popup--Open';
+const POPOUP_ITEM_OPEN_CLASSNAME = `${POPOUP_ITEM_CLASSNAME}--Open`;
 
 class Popup {
   dom: HTMLElement;

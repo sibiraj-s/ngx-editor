@@ -10,10 +10,10 @@ import { MenuItemMeta } from '../meta';
 import {
   MenuItemSpec,
   Command,
-  MenuItemViewRender,
-  MenuItemDOM,
-  DOMUpdateOptions
+  MenuItemViewRender
 } from '../../types';
+
+import MenuItem from './base/MenuItem';
 
 export const MENU_ITEM_CLASSNAME = 'NgxEditor__MenuItem';
 export const MENU_ITEM_ICON_CLASSNAME = 'NgxEditor__MenuItem--Icon';
@@ -21,53 +21,7 @@ export const MENU_ITEM_ICON_CONTAINER_CLASSNAME = 'NgxEditor__MenuItem--IconCont
 export const ACTIVE_MENU_ITEM_CLASSNAME = `${MENU_ITEM_CLASSNAME}--Active`;
 export const DISABLED_CLASSNAME = 'NgxEditor--Disabled';
 
-export const getMenuItemDom = (spec: MenuItemSpec): MenuItemDOM => {
-  const div = document.createElement('div');
-
-  let toggleIcon = null;
-
-  if (spec.classNames) {
-    spec.classNames.forEach(className => {
-      div.classList.add(className);
-    });
-  }
-
-  if (spec.attrs) {
-    Object.entries(spec.attrs).forEach(obj => {
-      div.setAttribute(obj[0], obj[1]);
-    });
-  }
-
-  if (spec.icon) {
-    const icon = document.createElement('div');
-    icon.className = MENU_ITEM_ICON_CONTAINER_CLASSNAME;
-
-    icon.innerHTML = spec.icon.default;
-
-    toggleIcon = (toggle: boolean): void => {
-      icon.innerHTML = toggle ? spec.icon.alt : spec.icon.default;
-    };
-
-    div.appendChild(icon);
-  }
-
-  if (spec.textContent) {
-    div.textContent = spec.textContent;
-  }
-
-  const update = (options: DOMUpdateOptions) => {
-    div.classList.toggle(spec.activeClass, options.active);
-    div.classList.toggle(spec.disabledClass, options.disabled);
-  };
-
-  return {
-    dom: div,
-    update,
-    toggleIcon
-  };
-};
-
-class MenuItem {
+class SimpleMenuItem {
   private menuItem: MenuItemMeta;
   private editorView: EditorView;
   private spec: MenuItemSpec;
@@ -79,7 +33,7 @@ class MenuItem {
   }
 
   render(): MenuItemViewRender {
-    const { dom, update: updateDom } = getMenuItemDom(this.spec);
+    const { dom, update: updateDom } = new MenuItem(this.spec);
 
     const { schema } = this.editorView.state;
     const { command } = this.setupCommandListeners(dom);
@@ -153,4 +107,4 @@ class MenuItem {
   }
 }
 
-export default MenuItem;
+export default SimpleMenuItem;

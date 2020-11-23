@@ -4,11 +4,11 @@ import { EditorState } from 'prosemirror-state';
 
 import { isMarkActive, removeLink } from 'ngx-editor/helpers';
 
-import { getMenuItemDom } from '../views/MenuItem';
+import MenuItem from '../views/base/MenuItem';
 import { MenuItemSpec, MenuItemViewRender } from '../../types';
 
-import Popup from '../views/Popup';
-import FormView, { FormInputs, OnSubmitData } from '../views/FormView';
+import Popup from '../views/base/Popup';
+import FormView, { FormInputs, OnSubmitData } from '../views/base/Form';
 
 const getFormInputs = (defaultValue = ''): FormInputs => [
   [
@@ -57,7 +57,7 @@ const updateLink = (view: EditorView, data: OnSubmitData) => {
 };
 
 const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
-  const { dom, update: updateDom, toggleIcon } = getMenuItemDom(spec);
+  const { dom, update: updateDom, toggleIcon } = new MenuItem(spec);
 
   const onSubmit = (data: OnSubmitData) => {
     updateLink(view, data);
