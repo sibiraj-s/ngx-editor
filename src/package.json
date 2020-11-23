@@ -1,7 +1,7 @@
 {
   "name": "ngx-editor",
   "version": "5.0.0-alpha.11",
-  "description": "WYSIWYG Editor for Angular Applications",
+  "description": "WYSIWYG editor for angular apps using ProseMirror",
   "license": "MIT",
   "repository": "https://github.com/sibiraj-s/ngx-editor.git",
   "bugs": "https://github.com/sibiraj-s/ngx-editor/issues",
