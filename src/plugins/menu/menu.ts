@@ -13,7 +13,8 @@ import { getIconSvg } from '../utils/icons';
 import flatDeep from '../utils/flatDeep';
 
 import SimpleMenuItem, {
-  ACTIVE_MENU_ITEM_CLASSNAME, DISABLED_CLASSNAME, MENU_ITEM_CLASSNAME, MENU_ITEM_ICON_CLASSNAME
+  ACTIVE_MENU_ITEM_CLASSNAME, DISABLED_CLASSNAME, MENU_ITEM_CLASSNAME,
+  MENU_ITEM_ICON_CLASSNAME, MENU_ITEM_ICON_CONTAINER_CLASSNAME
 } from './views/SimpleMenuItem';
 import DropDownView from './views/Dropdown';
 
@@ -72,6 +73,7 @@ export const renderMenu = (options: MenuOptions, editorView: EditorView, menuDom
               default: getIconSvg(menuItem.icon),
               alt: getIconSvg(menuItem.toggleIcon)
             },
+            iconContainerClass: MENU_ITEM_ICON_CONTAINER_CLASSNAME,
             attrs: {
               title: labels[menuItem.i18nKey]
             },
