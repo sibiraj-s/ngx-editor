@@ -106,7 +106,7 @@ class FloatingOptionsView {
   }
 }
 
-function linkPlugin(): Plugin {
+const linkPlugin = (): Plugin => {
   return new Plugin({
     key: new PluginKey('link'),
     view(editorView: EditorView): FloatingOptionsView {
@@ -122,6 +122,6 @@ function linkPlugin(): Plugin {
       }
     }
   });
-}
+};
 
 export default linkPlugin;
