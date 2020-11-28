@@ -4,7 +4,7 @@ import { DecorationSet, Decoration } from 'prosemirror-view';
 const DEFAULT_PLACEHOLDER = 'Type Here...';
 const PLACEHOLDER_CLASSNAME = 'NgxEditor__Placeholder';
 
-function placeholderPlugin(text: string = DEFAULT_PLACEHOLDER): Plugin {
+const placeholderPlugin = (text: string = DEFAULT_PLACEHOLDER): Plugin => {
   return new Plugin({
     key: new PluginKey('placeholder'),
     props: {
@@ -22,6 +22,6 @@ function placeholderPlugin(text: string = DEFAULT_PLACEHOLDER): Plugin {
       }
     }
   });
-}
+};
 
 export default placeholderPlugin;
