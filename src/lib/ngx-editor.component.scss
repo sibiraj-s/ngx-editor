@@ -3,6 +3,7 @@ $icon-size: 1.85rem;
 
 $border-radius: 4px;
 
+$white: #fff;
 $menubar-border-color: #ddd;
 
 $menu-item-border-radius: 2px;
@@ -282,22 +283,21 @@ $menubar-text-padding: 0 $menu-item-spacing;
   position: relative;
   display: inline-block;
   line-height: 0;
-  padding: 2px;
+  padding: 1px;
 
   &.NgxEditor__Resizer--Active {
     padding: 0;
-    border: 2px solid orange;
+    border: 1px solid $menu-item-active-color;
   }
 
   .NgxEditor__ResizeHandle {
     position: absolute;
-    bottom: -4px;
-    right: -4px;
-    width: 10px;
-    height: 10px;
-    border: 3px solid black;
-    border-top: none;
-    border-left: none;
+    bottom: -5px;
+    right: -5px;
+    width: 7px;
+    height: 7px;
+    border: 1px solid white;
+    background-color: $menu-item-active-color;
     cursor: nwse-resize;
     display: none;
   }
