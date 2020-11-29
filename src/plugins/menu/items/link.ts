@@ -60,40 +60,14 @@ const updateLink = (view: EditorView, data: OnSubmitData) => {
 const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
   const { dom, update: updateDom, toggleIcon } = new MenuItem(spec);
 
-  const onSubmit = (data: OnSubmitData) => {
-    updateLink(view, data);
-    closePopup();
-  };
-
-  const { dom: popupDom, show, hide } = new Popup();
-  const { dom: formDom, render: renderForm } = new FormView({ inputs: getFormInputs(), onSubmit });
-
-  let isPopupOpen = false;
-  popupDom.appendChild(formDom);
-  dom.appendChild(popupDom);
-
-  const mouseDownHandler = (e: MouseEvent) => {
-    if (!dom.contains(e.target as Node)) {
-      closePopup(e);
-    }
-  };
-
-  const setActiveState = () => {
-    updateDom({
-      active: isPopupOpen,
-      disabled: false
-    });
-  };
-
-  const showPopup = (e: MouseEvent) => {
-    e.preventDefault();
-
+  const onPopupOpen = () => {
     const { state } = view;
     const { doc, selection: { from, to, empty }, schema } = state;
     const isActive = isMarkActive(state, schema.marks.link);
 
     if (isActive) {
-      return removeLink(view);
+      removeLink(view);
+      return false;
     }
 
     const selectedText = !empty ? doc.textBetween(from, to) : '';
@@ -103,34 +77,37 @@ const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
     const isTextDisabled = isImageNode ?? false;
 
     renderForm(getFormInputs(selectedText, isTextDisabled));
-
-    show();
-    isPopupOpen = true;
-    setActiveState();
-    window.addEventListener('mousedown', mouseDownHandler);
+    return true;
   };
 
-  const closePopup = (e?: MouseEvent) => {
-    if (e && popupDom.contains(e.target as HTMLElement)) {
-      return;
-    }
-
-    e?.preventDefault();
-
-    hide();
-    isPopupOpen = false;
+  const onPopupClose = () => {
     setActiveState();
-    window.removeEventListener('mousedown', mouseDownHandler);
+    return true;
   };
 
-  dom.addEventListener('mousedown', (e: MouseEvent) => {
-    if (isPopupOpen) {
-      closePopup(e);
-    } else {
-      showPopup(e);
-    }
+  const { dom: popupDom, closePopup } = new Popup({
+    menuDOM: dom,
+    onOpen: onPopupOpen,
+    onClose: onPopupClose
   });
 
+  const onSubmit = (data: OnSubmitData) => {
+    updateLink(view, data);
+    closePopup();
+  };
+
+  const { dom: formDom, render: renderForm } = new FormView({ inputs: getFormInputs(), onSubmit });
+
+  const isPopupOpen = false;
+  popupDom.appendChild(formDom);
+  dom.appendChild(popupDom);
+
+  const setActiveState = () => {
+    updateDom({
+      active: isPopupOpen,
+      disabled: false
+    });
+  };
 
   const update = (editorState: EditorState) => {
     const { schema } = editorState;

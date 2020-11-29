@@ -140,7 +140,7 @@ class FormView {
 
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
-    submitButton.textContent = 'Submit';
+    submitButton.textContent = 'Insert';
 
     this.dom.appendChild(submitButton);
   }
