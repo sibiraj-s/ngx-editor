@@ -39,13 +39,18 @@ const getFormInputs = (url = '', alt = '', title = ''): FormInputs => [
 ];
 
 const updateImage = (view: EditorView, data: OnSubmitData) => {
-  const { dispatch, state: { schema, tr } } = view;
+  const { dispatch, state: { selection, schema, tr } } = view;
 
-  const attrs = {
+  const attrs: { [key: string]: any } = {
     src: data.url,
     alt: data.altText ?? '',
     title: data.title ?? ''
   };
+
+  if (selection instanceof NodeSelection) {
+    const { width } = selection.node.attrs;
+    attrs.width = width;
+  }
 
   dispatch(tr.replaceSelectionWith(schema.nodes.image.createAndFill(attrs)));
 };
