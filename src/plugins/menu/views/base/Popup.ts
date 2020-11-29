@@ -1,29 +1,45 @@
 const POPOUP_ITEM_CLASSNAME = 'NgxEditor__Popup';
 const POPOUP_ITEM_OPEN_CLASSNAME = `${POPOUP_ITEM_CLASSNAME}--Open`;
 
+type OnPopupOpen = () => boolean | null;
+type OnPopupClose = () => boolean | null;
+type AfterPopupOpen = () => unknown;
+type AfterPopupClose = () => unknown;
+
 interface PopupOptions {
   menuDOM: HTMLElement;
-  onOpen: () => boolean | null;
-  onClose: () => boolean | null;
+  onOpen: OnPopupOpen;
+  afterOpen: AfterPopupOpen;
+  onClose: OnPopupClose;
+  afterClose: AfterPopupClose;
 }
 
 class Popup {
   dom: HTMLElement;
   menuDOM: HTMLElement;
   popupIsOpen = false;
-  onOpen: () => boolean | null;
-  onClose: () => boolean | null;
+  onOpen: OnPopupOpen;
+  onClose: OnPopupClose;
+  afterOpen: AfterPopupOpen;
+  afterClose: AfterPopupClose;
 
-  constructor({ menuDOM, onOpen, onClose }: PopupOptions) {
+  constructor(options: PopupOptions) {
+    const { menuDOM, onOpen, afterOpen, onClose, afterClose } = options;
 
     this.menuDOM = menuDOM;
     this.onOpen = onOpen;
     this.onClose = onClose;
+    this.afterOpen = afterOpen;
+    this.afterClose = afterClose;
 
     this.dom = document.createElement('div');
     this.dom.classList.add(POPOUP_ITEM_CLASSNAME);
 
     this.setupEventListeners();
+  }
+
+  isPopupOpen = (): boolean => {
+    return this.popupIsOpen;
   }
 
   show = (): void => {
@@ -51,6 +67,7 @@ class Popup {
     }
 
     this.show();
+    this.afterOpen();
     window.addEventListener('mousedown', this.mousedownHandler);
   }
 
@@ -62,6 +79,7 @@ class Popup {
     e?.preventDefault();
     this.onClose();
     this.hide();
+    this.afterClose();
     window.removeEventListener('mousedown', this.mousedownHandler);
   }
 
