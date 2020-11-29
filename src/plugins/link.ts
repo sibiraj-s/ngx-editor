@@ -7,7 +7,7 @@ import {
   removeLink
 } from 'ngx-editor/helpers';
 
-class FloatingOptionsView {
+class LinkOptions {
   bubbleEL: HTMLElement = document.createElement('div');
 
   constructor(view: EditorView) {
@@ -109,8 +109,8 @@ class FloatingOptionsView {
 const linkPlugin = (): Plugin => {
   return new Plugin({
     key: new PluginKey('link'),
-    view(editorView: EditorView): FloatingOptionsView {
-      return new FloatingOptionsView(editorView);
+    view(editorView: EditorView): LinkOptions {
+      return new LinkOptions(editorView);
     },
     props: {
       handleDOMEvents: {
