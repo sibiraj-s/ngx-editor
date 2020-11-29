@@ -50,7 +50,6 @@ import { NgxEditorModule } from 'ngx-editor';
 @NgModule({
   imports: [NgxEditorModule],
 })
-
 export class AppModule {}
 ```
 
@@ -75,8 +74,7 @@ NgxEditorModule.forRoot({
       toolbar: [
         ['bold', 'italic', 'code'], // inline icons
         ['ordered_list', 'bullet_list'],
-        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }] // dropdown
-        [codemirror] // custom menu, see https://sibiraj.dev/ngx-editor/additional-documentation/menu-plugin.html
+        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }][codemirror], // dropdown // custom menu, see https://sibiraj.dev/ngx-editor/additional-documentation/menu-plugin.html
       ],
       labels: {
         bold: 'Bold',
@@ -84,12 +82,12 @@ NgxEditorModule.forRoot({
         code: 'Code',
         ordered_list: 'Ordered List',
         bullet_list: 'Bullet List',
-        heading: 'Heading'
-      }
+        heading: 'Heading',
+      },
     }),
-    placholder('Type something here...')
+    placholder('Type something here...'),
   ],
-  nodeViews: {} // optional, see https://prosemirror.net/examples/footnote/
+  nodeViews: {}, // optional, see https://prosemirror.net/examples/footnote/
 });
 ```
 

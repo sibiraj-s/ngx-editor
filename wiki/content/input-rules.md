@@ -35,7 +35,7 @@ export function orderedListRule(nodeType: NodeType): InputRule {
     /^(\d+)\.\s$/,
     nodeType,
     (match) => ({ order: +match[1] }),
-    (match, node) => node.childCount + node.attrs.order === +match[1],
+    (match, node) => node.childCount + node.attrs.order === +match[1]
   );
 }
 
@@ -60,9 +60,13 @@ export function codeBlockRule(nodeType: NodeType): InputRule {
 // the start of a textblock into a heading whose level corresponds to
 // the number of `#` signs.
 export function headingRule(nodeType: NodeType, maxLevel: number): InputRule {
-  return textblockTypeInputRule(new RegExp('^(#{1,' + maxLevel + '})\\s$'), nodeType, (match) => ({
-    level: match[1].length,
-  }));
+  return textblockTypeInputRule(
+    new RegExp('^(#{1,' + maxLevel + '})\\s$'),
+    nodeType,
+    (match) => ({
+      level: match[1].length,
+    })
+  );
 }
 
 // : (Schema) → Plugin

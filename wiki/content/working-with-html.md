@@ -9,7 +9,9 @@ import { schema } from 'ngx-editor';
 const contentNode = schema.nodeFromJSON(this.jsonDoc);
 
 // https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment
-const html: DocumentFragment = DOMSerializer.fromSchema(schema).serializeFragment(contentNode.content);
+const html: DocumentFragment = DOMSerializer.fromSchema(
+  schema
+).serializeFragment(contentNode.content);
 console.log(html);
 ```
 

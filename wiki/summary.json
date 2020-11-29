@@ -4,6 +4,10 @@
     "file": "content/configuartion.md"
   },
   {
+    "title": "Full featured editor",
+    "file": "content/full-featured-editor.md"
+  },
+  {
     "title": "NgModel",
     "file": "content/ng-model.md"
   },
@@ -46,5 +50,9 @@
   {
     "title": "Plugins",
     "file": "content/plugins.md"
+  },
+  {
+    "title": "Images",
+    "file": "content/images.md"
   }
 ]

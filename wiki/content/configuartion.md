@@ -14,7 +14,7 @@ NgxEditorModule.forRoot({
         ['code', 'blockquote'],
         ['ordered_list', 'bullet_list'],
         [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }], // dropdown
-        ['link']
+        ['link', 'image'],
       ],
       labels: {
         bold: 'Bold',
@@ -23,11 +23,12 @@ NgxEditorModule.forRoot({
         ordered_list: 'Ordered List',
         bullet_list: 'Bullet List',
         heading: 'Heading',
-        link: 'Link'
-      }
+        link: 'Link',
+        image: 'Image',
+      },
     }),
-    placholder('Type something here...')
+    placholder('Type something here...'),
   ],
-  nodeViews: {} // optional, for example see https://prosemirror.net/examples/footnote/
+  nodeViews: {}, // optional, for example see https://prosemirror.net/examples/footnote/
 });
 ```

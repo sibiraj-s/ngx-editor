@@ -4,7 +4,7 @@ To enable link support in menu
 
 ```ts
 import { schema } from 'ngx-editor';
-import { menu, placeholder } from 'ngx-editor/plugins';
+import { menu } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
   plugins: [
@@ -22,8 +22,6 @@ To enable link tooltip inside the editor to when the selection has a link.
 import { link } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
-  plugins: [
-    link(),
-  ]
+  plugins: [link()],
 });
 ```

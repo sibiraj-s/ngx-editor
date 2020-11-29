@@ -1,12 +1,22 @@
+# Full featured editor
+
+Use the following config to created a full featured editor
+
+### plugin.ts
+
+```ts
 import { undo, redo, history } from 'prosemirror-history';
-import { splitListItem, liftListItem, sinkListItem } from 'prosemirror-schema-list';
+import {
+  splitListItem,
+  liftListItem,
+  sinkListItem,
+} from 'prosemirror-schema-list';
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark, baseKeymap } from 'prosemirror-commands';
 import { Plugin } from 'prosemirror-state';
 
 import { menu, placeholder, link, imagePlugin } from 'ngx-editor/plugins';
 
-import codemirrorMenu from './menu/codemirror';
 import { buildInputRules } from './input-rules';
 import schema from '../schema';
 
@@ -61,7 +71,6 @@ const getPlugins = (): Plugin[] => {
         ['ordered_list', 'bullet_list'],
         [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
         ['link', 'image'],
-        [codemirrorMenu]
       ],
       labels: {
         bold: 'Bold',
@@ -72,17 +81,40 @@ const getPlugins = (): Plugin[] => {
         heading: 'Header',
         blockquote: 'Quote',
         link: 'Link',
-        image: 'Image'
-      }
+        image: 'Image',
+      },
     }),
     placeholder('Type Something here...'),
     link(),
     imagePlugin({
       resize: true,
-    })
+    }),
   ];
 
   return plugins;
 };
 
 export default getPlugins();
+```
+
+### app.module.ts
+
+```ts
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { NgxEditorModule, schema } from 'ngx-editor';
+
+import plugins from './plugins';
+
+@NgModule({
+  imports: [
+    FormsModule,
+    NgxEditorModule.forRoot({
+      schema,
+      plugins,
+    }),
+  ],
+})
+export class AppModule {}
+```

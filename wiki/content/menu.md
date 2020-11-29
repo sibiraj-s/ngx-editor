@@ -15,7 +15,7 @@ NgxEditorModule.forRoot({
         ['ordered_list', 'bullet_list'],
         [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }], // dropdown
         ['link'],
-        [codemirror] // custom menu, example below
+        [codemirror], // custom menu, example below
       ],
       labels: {
         bold: 'Bold',
@@ -24,10 +24,10 @@ NgxEditorModule.forRoot({
         ordered_list: 'Ordered List',
         bullet_list: 'Bullet List',
         heading: 'Heading',
-        link: 'Link'
-      }
-    })
-  ]
+        link: 'Link',
+      },
+    }),
+  ],
 });
 ```
 
@@ -39,7 +39,11 @@ Example:
 
 ```ts
 import { EditorState } from 'prosemirror-state';
-import { isNodeActive, toggleBlockType, ToolbarCustomMenuItem } from 'ngx-editor';
+import {
+  isNodeActive,
+  toggleBlockType,
+  ToolbarCustomMenuItem,
+} from 'ngx-editor';
 
 import schema from '../../schema';
 
@@ -79,7 +83,7 @@ const codeMirror: ToolbarCustomMenuItem = (editorView) => {
 
   return {
     dom,
-    update
+    update,
   };
 };
 
