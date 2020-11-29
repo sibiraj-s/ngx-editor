@@ -1,7 +1,7 @@
-import { nodes as basicNodes, marks as basicMarks } from 'ngx-editor';
+import { nodes as basicNodes, marks } from 'ngx-editor';
 import { Schema, Node as ProsemirrorNode, NodeSpec, DOMOutputSpec } from 'prosemirror-model';
 
-const codeBlock: NodeSpec = {
+const codeMirror: NodeSpec = {
   group: 'block',
   attrs: {
     text: { default: '' },
@@ -22,17 +22,14 @@ const codeBlock: NodeSpec = {
   }
 };
 
-const nodes = Object.assign(
-  {},
-  basicNodes,
-  {
-    code_mirror: codeBlock
-  }
-);
+const nodes = {
+  ...basicNodes,
+  code_mirror: codeMirror
+};
 
 const schema = new Schema({
   nodes,
-  marks: basicMarks
+  marks
 });
 
 export default schema;

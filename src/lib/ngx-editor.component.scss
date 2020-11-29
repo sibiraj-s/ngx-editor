@@ -278,6 +278,19 @@ $menubar-text-padding: 0 $menu-item-spacing;
   }
 }
 
+.NgxEditor__ResizeHandle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border: 3px solid black;
+  border-top: none;
+  border-left: none;
+  cursor: nwse-resize;
+  display: none;
+}
+
 // prosemirror
 .ProseMirror {
   outline: none;

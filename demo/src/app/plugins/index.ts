@@ -4,7 +4,7 @@ import { keymap } from 'prosemirror-keymap';
 import { toggleMark, baseKeymap } from 'prosemirror-commands';
 import { Plugin } from 'prosemirror-state';
 
-import { menu, placeholder, link } from 'ngx-editor/plugins';
+import { menu, placeholder, link, imagePlugin } from 'ngx-editor/plugins';
 
 import codemirrorMenu from './menu/codemirror';
 import { buildInputRules } from './input-rules';
@@ -76,6 +76,7 @@ const getPlugins = (): Plugin[] => {
     }),
     placeholder('Type Something here...'),
     link(),
+    imagePlugin()
   ];
 
   return plugins;
