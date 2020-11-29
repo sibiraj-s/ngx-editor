@@ -15,8 +15,8 @@ NgxEditorModule.forRoot({
     keymap({
       // configure shortcuts
       'Mod-z': undo,
-      'Shift-Mod-z': redo
-    })
-  ]
+      'Shift-Mod-z': redo,
+    }),
+  ],
 });
 ```

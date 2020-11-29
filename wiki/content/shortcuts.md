@@ -9,7 +9,11 @@ Reference
 
 ```ts
 import { schema } from 'ngx-editor';
-import { splitListItem, liftListItem, sinkListItem } from 'prosemirror-schema-list';
+import {
+  splitListItem,
+  liftListItem,
+  sinkListItem,
+} from 'prosemirror-schema-list';
 import { keymap } from 'prosemirror-keymap';
 
 NgxEditorModule.forRoot({
@@ -18,9 +22,9 @@ NgxEditorModule.forRoot({
       Enter: splitListItem(schema.nodes.list_item),
       'Mod-[': liftListItem(schema.nodes.list_item),
       'Mod-]': sinkListItem(schema.nodes.list_item),
-      Tab: sinkListItem(schema.nodes.list_item)
-    })
-  ]
+      Tab: sinkListItem(schema.nodes.list_item),
+    }),
+  ],
 });
 ```
 
@@ -41,9 +45,9 @@ NgxEditorModule.forRoot({
     keymap({
       'Mod-b': toggleMark(schema.marks.strong), // toggle strong
       'Mod-i': toggleMark(schema.marks.em), // toggle italics
-      'Mod-`': toggleMark(schema.marks.code) // toggle code
+      'Mod-`': toggleMark(schema.marks.code), // toggle code
     }),
-    keymap(baseKeymap)
-  ]
+    keymap(baseKeymap),
+  ],
 });
 ```

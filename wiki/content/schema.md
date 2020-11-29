@@ -13,7 +13,7 @@ import { schema } from 'ngx-editor';
 import { menu, placeholder } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
-  schema
+  schema,
 });
 ```
 
@@ -27,7 +27,7 @@ const codeBlock: NodeSpec = {
   group: 'block',
   attrs: {
     text: { default: '' },
-    language: { default: 'text/javascript' }
+    language: { default: 'text/javascript' },
   },
   parseDOM: [
     {
@@ -35,23 +35,23 @@ const codeBlock: NodeSpec = {
       getAttrs: (dom: HTMLElement) => {
         return {
           text: dom.textContent,
-          language: dom.getAttribute('data-language') || 'text/plain'
+          language: dom.getAttribute('data-language') || 'text/plain',
         };
-      }
-    }
+      },
+    },
   ],
   toDOM(node: ProsemirrorNode) {
     return ['pre', { 'data-language': node.attrs.language }, node.attrs.text];
-  }
+  },
 };
 
 const nodes = Object.assign({}, basicNodes, {
-  code_mirror: codeBlock
+  code_mirror: codeBlock,
 });
 
 const schema = new Schema({
   nodes,
-  marks: basicMarks
+  marks: basicMarks,
 });
 
 export default schema;

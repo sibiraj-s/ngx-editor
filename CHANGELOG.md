@@ -103,10 +103,10 @@ All notable changes to this project will be documented in this file.
 - placeholder and config property is replaced with plugins
 
 ```ts
-import { menu, placeholder } from "ngx-editor";
+import { menu, placeholder } from 'ngx-editor';
 
 NgxEditorModule.forRoot({
-  plugins: [menu(), placholder("Type something here...")],
+  plugins: [menu(), placholder('Type something here...')],
 });
 ```
 

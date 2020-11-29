@@ -23,10 +23,17 @@ function computeChange(oldVal: string, newVal: string) {
   let start = 0;
   let oldEnd = oldVal.length;
   let newEnd = newVal.length;
-  while (start < oldEnd && oldVal.charCodeAt(start) === newVal.charCodeAt(start)) {
+  while (
+    start < oldEnd &&
+    oldVal.charCodeAt(start) === newVal.charCodeAt(start)
+  ) {
     ++start;
   }
-  while (oldEnd > start && newEnd > start && oldVal.charCodeAt(oldEnd - 1) === newVal.charCodeAt(newEnd - 1)) {
+  while (
+    oldEnd > start &&
+    newEnd > start &&
+    oldVal.charCodeAt(oldEnd - 1) === newVal.charCodeAt(newEnd - 1)
+  ) {
     oldEnd--;
     newEnd--;
   }
@@ -57,7 +64,7 @@ class CodeMirrorView {
     this.cm = new CodeMirror(null, {
       value: this.node.textContent,
       lineNumbers: true,
-      extraKeys: this.codeMirrorKeymap()
+      extraKeys: this.codeMirrorKeymap(),
     });
 
     // The editor's outer node is our DOM representation
@@ -112,7 +119,10 @@ class CodeMirrorView {
   setSelection(anchor: number, head: number) {
     this.cm.focus();
     this.updating = true;
-    this.cm.setSelection(this.cm.posFromIndex(anchor), this.cm.posFromIndex(head));
+    this.cm.setSelection(
+      this.cm.posFromIndex(anchor),
+      this.cm.posFromIndex(head)
+    );
     this.updating = false;
   }
 
@@ -143,7 +153,7 @@ class CodeMirrorView {
         if (exitCode(view.state, view.dispatch)) {
           view.focus();
         }
-      }
+      },
     });
   }
 
@@ -152,15 +162,21 @@ class CodeMirrorView {
     if (
       this.cm.somethingSelected() ||
       pos.line !== (dir < 0 ? this.cm.firstLine() : this.cm.lastLine()) ||
-      (unit === 'char' && pos.ch !== (dir < 0 ? 0 : this.cm.getLine(pos.line).length))
+      (unit === 'char' &&
+        pos.ch !== (dir < 0 ? 0 : this.cm.getLine(pos.line).length))
     ) {
       return CodeMirror.Pass;
     }
 
     this.view.focus();
     const targetPos = this.getPos() + (dir < 0 ? 0 : this.node.nodeSize);
-    const selection = Selection.near(this.view.state.doc.resolve(targetPos), dir);
-    this.view.dispatch(this.view.state.tr.setSelection(selection).scrollIntoView());
+    const selection = Selection.near(
+      this.view.state.doc.resolve(targetPos),
+      dir
+    );
+    this.view.dispatch(
+      this.view.state.tr.setSelection(selection).scrollIntoView()
+    );
     this.view.focus();
   }
 
@@ -172,7 +188,11 @@ class CodeMirrorView {
     const change = computeChange(this.cm.getValue(), node.textContent);
     if (change) {
       this.updating = true;
-      this.cm.replaceRange(change.text, this.cm.posFromIndex(change.from), this.cm.posFromIndex(change.to));
+      this.cm.replaceRange(
+        change.text,
+        this.cm.posFromIndex(change.from),
+        this.cm.posFromIndex(change.to)
+      );
       this.updating = false;
     }
     return true;
@@ -189,9 +209,13 @@ import { NgxEditorModule } from 'ngx-editor';
 
 NgxEditorModule.forRoot({
   nodeViews: {
-    code_block: (node: ProsemirrorNode, view: EditorView, getPos: () => number) => {
+    code_block: (
+      node: ProsemirrorNode,
+      view: EditorView,
+      getPos: () => number
+    ) => {
       return new CodeBlockView(node, view, getPos);
-    }
-  }
+    },
+  },
 });
 ```
