@@ -42,8 +42,9 @@ class ImageRezieView {
         const computedWidth = startWidth + diffInPx;
 
         // prevent image overflow the editor
-        if (computedWidth > editorWidth) {
-          return this.deselectNode();
+        // prevent resizng below 20px
+        if (computedWidth > editorWidth || computedWidth < 20) {
+          return;
         }
 
         outer.style.width = `${computedWidth}px`;
