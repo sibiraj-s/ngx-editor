@@ -278,6 +278,12 @@ $menubar-text-padding: 0 $menu-item-spacing;
   }
 }
 
+.NgxEditor__ImageWrapper {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
 .NgxEditor__ResizeHandle {
   position: absolute;
   bottom: 0;
