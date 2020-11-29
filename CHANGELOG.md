@@ -13,6 +13,22 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.13 (2020-11-29)
+
+#### Features
+
+- support inserting images ([87b1414](https://github.com/sibiraj-s/ngx-editor/commit/87b1414))
+- resizable images ([317bf42](https://github.com/sibiraj-s/ngx-editor/commit/317bf42))
+
+#### Bug Fixes
+
+- center align menu icons ([99e7c00](https://github.com/sibiraj-s/ngx-editor/commit/99e7c00))
+- prevent menu content overflowing the editor ([9005869](https://github.com/sibiraj-s/ngx-editor/commit/9005869))
+
+#### Enhancements
+
+- remove dependency `prosemirror-schema-basic` ([317bf42](https://github.com/sibiraj-s/ngx-editor/commit/317bf42))
+
 ## v5.0.0-alpha.12 (2020-11-23)
 
 #### Bug Fixes
