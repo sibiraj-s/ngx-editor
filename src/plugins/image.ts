@@ -20,6 +20,8 @@ class ImageRezieView {
 
     const img = document.createElement('img');
     img.setAttribute('src', node.attrs.src);
+    img.setAttribute('alt', node.attrs.alt ?? '');
+    img.setAttribute('title', node.attrs.title ?? '');
     img.style.width = '100%';
 
     const handle = document.createElement('span');
