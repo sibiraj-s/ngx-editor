@@ -76,7 +76,9 @@ const getPlugins = (): Plugin[] => {
     }),
     placeholder('Type Something here...'),
     link(),
-    imagePlugin()
+    imagePlugin({
+      resize: true,
+    })
   ];
 
   return plugins;

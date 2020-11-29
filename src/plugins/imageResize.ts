@@ -2,6 +2,8 @@ import { Node as ProsemirrorNode } from 'prosemirror-model';
 import { NodeSelection, Plugin, PluginKey } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
+import { ImagePluginOptions } from './types';
+
 class ImageRezieView {
   img: HTMLElement;
   dom: HTMLElement;
@@ -86,13 +88,21 @@ class ImageRezieView {
   }
 }
 
+const defaultOptions: ImagePluginOptions = {
+  resize: true,
+};
 
-const imagePlugin = (): Plugin => {
+const imagePlugin = (opts = defaultOptions): Plugin => {
+  const options = { ...defaultOptions, ...opts };
+
   return new Plugin({
     key: new PluginKey('link'),
     props: {
       nodeViews: {
         image: (node: ProsemirrorNode, view: EditorView, getPos: () => number) => {
+          if (!options.resize) {
+            return null;
+          }
           return new ImageRezieView(node, view, getPos);
         },
       }
