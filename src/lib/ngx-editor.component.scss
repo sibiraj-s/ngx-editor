@@ -33,6 +33,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
   border-bottom: 1px solid $menubar-border-color;
   cursor: default;
   height: $menubar-height;
+  overflow: hidden;
 }
 
 .NgxEditor__MenuItem {
