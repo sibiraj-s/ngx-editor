@@ -7,7 +7,6 @@
       "prosemirror-state": "prosemirrorState",
       "prosemirror-view": "prosemirrorView",
       "prosemirror-model": "prosemirrorModel",
-      "prosemirror-schema-basic": "prosemirrorSchemaBasic",
       "prosemirror-schema-list": "prosemirrorSchemaList"
     }
   },
@@ -15,7 +14,6 @@
     "prosemirror-state",
     "prosemirror-view",
     "prosemirror-model",
-    "prosemirror-schema-basic",
     "prosemirror-schema-list",
     "prosemirror-commands"
   ]
