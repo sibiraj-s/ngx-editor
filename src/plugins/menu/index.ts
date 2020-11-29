@@ -11,7 +11,7 @@ const DEFAULT_TOOLBAR: Toolbar = [
   ['code', 'blockquote'],
   ['ordered_list', 'bullet_list'],
   [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-  ['link']
+  ['link', 'image']
 ];
 
 const DEFAULT_LABELS: MenuLabels = {
@@ -22,7 +22,8 @@ const DEFAULT_LABELS: MenuLabels = {
   bullet_list: 'Bullet List',
   heading: 'Heading',
   blockquote: 'Quote',
-  link: 'Link'
+  link: 'Link',
+  image: 'Image'
 };
 
 const DEFAULT_OPTIONS: MenuOptions = {

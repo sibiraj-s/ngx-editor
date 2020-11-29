@@ -100,6 +100,12 @@ const menuItemsMeta: { [key: string]: MenuItemMeta } = {
     icon: 'link',
     type: 'mark',
     toggleIcon: 'unlink'
+  },
+  image: {
+    key: 'image',
+    i18nKey: 'image',
+    icon: 'image',
+    type: 'node'
   }
 };
 

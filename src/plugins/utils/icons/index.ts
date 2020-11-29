@@ -8,6 +8,7 @@ import bulletList from './bullet_list';
 import quote from './quote';
 import link from './link';
 import unlink from './unlink';
+import image from './image';
 
 const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
@@ -20,7 +21,8 @@ const icons = {
   bullet_list: bulletList,
   quote,
   link,
-  unlink
+  unlink,
+  image
 };
 
 // Helper function to create menu icons
