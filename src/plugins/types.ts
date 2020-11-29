@@ -51,3 +51,7 @@ export interface MenuItemViewRender {
   dom: HTMLElement;
   update: (state: EditorState) => void;
 }
+
+export interface ImagePluginOptions {
+  resize: boolean;
+}
