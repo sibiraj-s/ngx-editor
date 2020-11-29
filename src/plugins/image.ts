@@ -4,6 +4,10 @@ import { EditorView } from 'prosemirror-view';
 
 import { ImagePluginOptions } from './types';
 
+const WRAPPER_CLASSNAME = 'NgxEditor__ImageWrapper';
+const WRAPPER_RESIZE_ACTIVE_CLASSNAME = 'NgxEditor__Resizer--Active';
+const RESIZE_HANDLE_CLASSNAME = 'NgxEditor__ResizeHandle';
+
 class ImageRezieView {
   img: HTMLElement;
   dom: HTMLElement;
@@ -11,7 +15,7 @@ class ImageRezieView {
 
   constructor(node: ProsemirrorNode, view: EditorView, getPos: () => number) {
     const outer = document.createElement('span');
-    outer.className = 'NgxEditor__ImageWrapper';
+    outer.className = WRAPPER_CLASSNAME;
     outer.style.width = node.attrs.width;
 
     const img = document.createElement('img');
@@ -19,7 +23,7 @@ class ImageRezieView {
     img.style.width = '100%';
 
     const handle = document.createElement('span');
-    handle.className = 'NgxEditor__ResizeHandle';
+    handle.className = RESIZE_HANDLE_CLASSNAME;
 
     handle.onmousedown = (mousedownEvent) => {
       mousedownEvent.preventDefault();
@@ -78,10 +82,12 @@ class ImageRezieView {
   }
 
   selectNode(): void {
+    this.dom.classList.add(WRAPPER_RESIZE_ACTIVE_CLASSNAME);
     this.handle.style.display = 'block';
   }
 
   deselectNode(): void {
+    this.dom.classList.remove(WRAPPER_RESIZE_ACTIVE_CLASSNAME);
     this.handle.style.display = 'none';
   }
 }
