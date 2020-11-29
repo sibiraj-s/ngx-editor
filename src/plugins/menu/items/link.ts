@@ -10,7 +10,7 @@ import { MenuItemSpec, MenuItemViewRender } from '../../types';
 import Popup from '../views/base/Popup';
 import FormView, { FormInputs, OnSubmitData } from '../views/base/Form';
 
-const getFormInputs = (defaultValue = '', disableText = false): FormInputs => [
+const getFormInputs = (text = '', disableText = false): FormInputs => [
   [
     {
       type: 'url',
@@ -25,7 +25,7 @@ const getFormInputs = (defaultValue = '', disableText = false): FormInputs => [
       required: true,
       label: 'Text',
       name: 'text',
-      defaultValue,
+      defaultValue: text,
       disabled: disableText
     }
   ],
@@ -118,11 +118,11 @@ const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
     });
   };
 
-  const update = (editorState: EditorState) => {
-    const { schema } = editorState;
+  const update = (state: EditorState) => {
+    const { schema } = state;
     const command = toggleMark(schema.marks.link);
-    const canExecute = command(editorState, null);
-    const isActive = isMarkActive(editorState, schema.marks.link);
+    const canExecute = command(state, null);
+    const isActive = isMarkActive(state, schema.marks.link);
 
     toggleIcon(isActive);
 

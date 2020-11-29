@@ -20,6 +20,7 @@ import DropDownView from './views/Dropdown';
 
 import getSeperator from './items/seperator';
 import link from './items/link';
+import image from './items/image';
 
 import menuItemsMeta from './meta';
 
@@ -27,7 +28,8 @@ const DROPDOWN_ITEMS = new Map();
 DROPDOWN_ITEMS.set('heading', ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
 
 const builtInMenuItems = {
-  link
+  link,
+  image
 };
 
 export const renderMenu = (options: MenuOptions, editorView: EditorView, menuDom: HTMLElement) => {
