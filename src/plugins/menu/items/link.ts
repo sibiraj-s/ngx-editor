@@ -80,16 +80,23 @@ const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
     return true;
   };
 
-  const onPopupClose = () => {
+  const updateActiveState = () => {
     setActiveState();
+  };
+
+  const onPopupClose = () => {
     return true;
   };
 
-  const { dom: popupDom, closePopup } = new Popup({
+  const popupOptions = {
     menuDOM: dom,
     onOpen: onPopupOpen,
-    onClose: onPopupClose
-  });
+    afterOpen: updateActiveState,
+    onClose: onPopupClose,
+    afterClose: updateActiveState
+  };
+
+  const { dom: popupDom, closePopup, isPopupOpen } = new Popup(popupOptions);
 
   const onSubmit = (data: OnSubmitData) => {
     updateLink(view, data);
@@ -98,13 +105,12 @@ const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
 
   const { dom: formDom, render: renderForm } = new FormView({ inputs: getFormInputs(), onSubmit });
 
-  const isPopupOpen = false;
   popupDom.appendChild(formDom);
   dom.appendChild(popupDom);
 
   const setActiveState = () => {
     updateDom({
-      active: isPopupOpen,
+      active: isPopupOpen(),
       disabled: false
     });
   };
@@ -118,7 +124,7 @@ const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
     toggleIcon(isActive);
 
     updateDom({
-      active: isPopupOpen || isActive,
+      active: isPopupOpen() || isActive,
       disabled: !canExecute
     });
   };
