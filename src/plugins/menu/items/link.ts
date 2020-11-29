@@ -62,7 +62,8 @@ const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
 
   const onPopupOpen = () => {
     const { state } = view;
-    const { doc, selection: { from, to, empty }, schema } = state;
+    const { doc, selection, schema } = state;
+    const { from, to, empty } = selection;
     const isActive = isMarkActive(state, schema.marks.link);
 
     if (isActive) {
@@ -72,9 +73,11 @@ const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
 
     const selectedText = !empty ? doc.textBetween(from, to) : '';
 
-    const nodeSelection = state.selection as NodeSelection;
-    const isImageNode = nodeSelection.node?.type.name === 'image';
-    const isTextDisabled = isImageNode ?? false;
+    let isTextDisabled = false;
+
+    if (selection instanceof NodeSelection) {
+      isTextDisabled = selection.node.type.name === 'image';
+    }
 
     renderForm(getFormInputs(selectedText, isTextDisabled));
     return true;
