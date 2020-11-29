@@ -11,11 +11,8 @@ class ImageRezieView {
 
   constructor(node: ProsemirrorNode, view: EditorView, getPos: () => number) {
     const outer = document.createElement('span');
-
-    outer.style.position = 'relative';
+    outer.className = 'NgxEditor__ImageWrapper';
     outer.style.width = node.attrs.width;
-    outer.style.display = 'inline-block';
-    outer.style.lineHeight = '0'; // necessary so the bottom right arrow is aligned nicely
 
     const img = document.createElement('img');
     img.setAttribute('src', node.attrs.src);
