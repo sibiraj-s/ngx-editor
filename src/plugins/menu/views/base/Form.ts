@@ -42,6 +42,7 @@ const createInputElement = (formItem: FormItemInput): HTMLElement => {
 
   input.placeholder = formItem.placeholder ?? '';
   input.defaultValue = formItem.defaultValue ?? '';
+  input.disabled = formItem.disabled ?? false;
   input.name = formItem.name;
   input.autocomplete = 'off';
 
