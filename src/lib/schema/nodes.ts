@@ -108,7 +108,8 @@ export const image: NodeSpec = {
         return {
           src: dom.getAttribute('src'),
           title: dom.getAttribute('title'),
-          alt: dom.getAttribute('alt')
+          alt: dom.getAttribute('alt'),
+          width: dom.getAttribute('width')
         };
       }
     }
