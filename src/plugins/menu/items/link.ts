@@ -1,6 +1,6 @@
 import { EditorView } from 'prosemirror-view';
 import { toggleMark } from 'prosemirror-commands';
-import { EditorState } from 'prosemirror-state';
+import { EditorState, NodeSelection } from 'prosemirror-state';
 
 import { isMarkActive, removeLink } from 'ngx-editor/helpers';
 
@@ -10,7 +10,7 @@ import { MenuItemSpec, MenuItemViewRender } from '../../types';
 import Popup from '../views/base/Popup';
 import FormView, { FormInputs, OnSubmitData } from '../views/base/Form';
 
-const getFormInputs = (defaultValue = ''): FormInputs => [
+const getFormInputs = (defaultValue = '', disableText = false): FormInputs => [
   [
     {
       type: 'url',
@@ -25,7 +25,8 @@ const getFormInputs = (defaultValue = ''): FormInputs => [
       required: true,
       label: 'Text',
       name: 'text',
-      defaultValue
+      defaultValue,
+      disabled: disableText
     }
   ],
   [
@@ -96,7 +97,12 @@ const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
     }
 
     const selectedText = !empty ? doc.textBetween(from, to) : '';
-    renderForm(getFormInputs(selectedText));
+
+    const nodeSelection = state.selection as NodeSelection;
+    const isImageNode = nodeSelection?.node.type.name === 'image';
+    const isTextDisabled = isImageNode ?? false;
+
+    renderForm(getFormInputs(selectedText, isTextDisabled));
 
     show();
     isPopupOpen = true;
