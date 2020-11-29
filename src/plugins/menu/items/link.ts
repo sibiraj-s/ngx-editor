@@ -99,7 +99,7 @@ const link = (view: EditorView, spec: MenuItemSpec): MenuItemViewRender => {
     const selectedText = !empty ? doc.textBetween(from, to) : '';
 
     const nodeSelection = state.selection as NodeSelection;
-    const isImageNode = nodeSelection?.node.type.name === 'image';
+    const isImageNode = nodeSelection.node?.type.name === 'image';
     const isTextDisabled = isImageNode ?? false;
 
     renderForm(getFormInputs(selectedText, isTextDisabled));
