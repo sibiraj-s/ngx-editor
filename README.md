@@ -91,7 +91,7 @@ NgxEditorModule.forRoot({
 });
 ```
 
-## Compatibility
+## Browser Compatibility
 
 All Evergreen-Browsers are supported
 
@@ -99,6 +99,10 @@ All Evergreen-Browsers are supported
 - Microsoft Edge
 - Mozilla Firefox
 - Opera
+
+## Angular Compatibility
+
+Angular 9+. 
 
 ## Demo
 
