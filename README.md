@@ -102,7 +102,7 @@ All Evergreen-Browsers are supported
 
 ## Angular Compatibility
 
-Angular 9+. 
+Angular 9+.
 
 ## Demo
 
