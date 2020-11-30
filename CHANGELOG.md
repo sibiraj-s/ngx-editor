@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.14 (2020-11-30)
+
+#### Features
+
+- support angular 9 ([0a497f2](https://github.com/sibiraj-s/ngx-editor/commit/0a497f2))
+
 ## v5.0.0-alpha.13 (2020-11-29)
 
 #### Features
