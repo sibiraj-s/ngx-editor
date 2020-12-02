@@ -63,7 +63,7 @@ const getPlugins = (): Plugin[] => {
     keymap(historyKeyMap),
     keymap(listKeyMap),
     keymap(baseKeymap),
-    buildInputRules(schema),
+    buildInputRules(schema), // see input rules example
     menu({
       toolbar: [
         ['bold', 'italic'],

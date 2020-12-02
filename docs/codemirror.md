@@ -14,7 +14,7 @@ import { EditorView } from 'prosemirror-view';
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';
 
-import schema from '../schema';
+import schema from '../schema'; // see schema page
 
 function computeChange(oldVal: string, newVal: string) {
   if (oldVal === newVal) {
@@ -206,10 +206,12 @@ export default CodeMirrorView;
 
 ```ts
 import { NgxEditorModule } from 'ngx-editor';
+import schema from './schema.ts`
 
 NgxEditorModule.forRoot({
+  schema,
   nodeViews: {
-    code_block: (
+    code_block: ( // first define schema `code_block`. see schema section
       node: ProsemirrorNode,
       view: EditorView,
       getPos: () => number

@@ -19,8 +19,10 @@ NgxEditorModule.forRoot({
 
 ## Create custom schema
 
+Ref: https://prosemirror.net/examples/schema/
+
 ```ts
-import { nodes as basicNodes, marks as basicMarks } from 'ngx-editor';
+import { nodes as basicNodes, marks } from 'ngx-editor';
 import { Schema, Node as ProsemirrorNode, NodeSpec } from 'prosemirror-model';
 
 const codeBlock: NodeSpec = {
@@ -51,7 +53,7 @@ const nodes = Object.assign({}, basicNodes, {
 
 const schema = new Schema({
   nodes,
-  marks: basicMarks,
+  marks,
 });
 
 export default schema;
