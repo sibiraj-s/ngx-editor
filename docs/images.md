@@ -8,7 +8,7 @@ NgxEditorModule.forRoot({
   plugins: [
     menu({
       toolbar: [
-        ['image'] // add this to enable inseting links from menubar
+        ['image'] // add this to enable inserting links from menubar
       ]
   ],
 });
