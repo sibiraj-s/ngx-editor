@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/sibiraj-s/ngx-editor">
-   <img src="./sketch/ngx-editor.png" alt="ngxEditor">
+   <img src="./ngx-editor.svg" alt="ngxEditor">
   </a>
 </p>
 <p align="center">A Simple WYSIWYG Editor for Angular Applications.</p>
@@ -26,8 +26,7 @@
 
 ## Getting Started
 
-> NOTE: This is documentation for ngx-editor v5.x. View here for [ngx-editor@4.x documentation](https://github.com/sibiraj-s/ngx-editor/tree/v4.1.0).
-v4 just uses plain contentediable and is not recommened since the behaviour is inconsitent across browsers.
+> NOTE: This is documentation for ngx-editor v5.x. View here for [ngx-editor@4.x documentation](https://github.com/sibiraj-s/ngx-editor/tree/v4.1.0). v4 just uses plain contentediable and is not recommened since the behaviour is inconsitent across browsers.
 
 ### Installation
 
