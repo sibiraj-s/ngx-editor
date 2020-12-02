@@ -68,14 +68,14 @@ For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
 import { menu, placeholder, schema } from 'ngx-editor';
 
 NgxEditorModule.forRoot({
-  schema, // optional scheama, see https://sibiraj.dev/ngx-editor/additional-documentation/schema.html
+  schema, // optional scheama, see https://sibiraj.dev/ngx-editor/#/schema
   plugins: [
     menu({
       // default options (Optional)
       toolbar: [
         ['bold', 'italic', 'code'], // inline icons
         ['ordered_list', 'bullet_list'],
-        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }][codemirror], // dropdown // custom menu, see https://sibiraj.dev/ngx-editor/additional-documentation/menu-plugin.html
+        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }][codemirror], // dropdown // custom menu, see https://sibiraj.dev/ngx-editor/#/menu
       ],
       labels: {
         bold: 'Bold',
