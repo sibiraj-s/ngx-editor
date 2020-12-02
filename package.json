@@ -3,7 +3,6 @@
   "scripts": {
     "build:demo": "ng build demo --prod",
     "build:lib": "ng build ngx-editor --prod ",
-    "build:docs": "compodoc",
     "build": "npm run build:lib && npm run build:demo",
     "e2e": "ng e2e",
     "lint": "ng lint",
@@ -12,7 +11,6 @@
     "ng": "ng",
     "prebuild": "npm run lint",
     "prerelease": "npm run build:lib",
-    "publish:docs": "npm run build:docs && node ./scripts/publishdocs.js",
     "postbuild:lib": "node ./scripts/postbuild.js",
     "release": "sh ./scripts/release.sh",
     "serve:demo": "ng serve demo --open --port 5002 --host 0.0.0.0",
