@@ -25,40 +25,40 @@ jobs:
       - run: npm run build
       - run: npm run test:lib
 
-  pages:
-    name: Publish to gh-pages
-    runs-on: ubuntu-latest
+  # pages:
+  #   name: Publish to gh-pages
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+  #     - name: Use Node.js ${{ env.NODE_VERSION }}
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
 
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+  #     - uses: actions/cache@v2
+  #       with:
+  #         path: ~/.npm
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-
 
-      - run: node --version
-      - run: npm --version
+  #     - run: node --version
+  #     - run: npm --version
 
-      - name: NPM Install
-        run: npm ci
+  #     - name: NPM Install
+  #       run: npm ci
 
-      - name: Publish to gh-pages branch
-        run: |
-          git config --global user.name "Sibiraj"
-          git config --global user.email "20282546+sibiraj-s@users.noreply.github.com"
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
-          npm run publish:docs
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Publish to gh-pages branch
+  #       run: |
+  #         git config --global user.name "Sibiraj"
+  #         git config --global user.email "20282546+sibiraj-s@users.noreply.github.com"
+  #         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
+  #         npm run publish:docs
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish-npm:
     needs: test
