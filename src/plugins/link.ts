@@ -102,8 +102,8 @@ class LinkOptions {
       e.preventDefault();
       e.stopPropagation();
 
-      // removeLink(view);
-      // view.focus();
+      removeLink(view);
+      view.focus();
     };
 
     const el = this.createLinkNode(linkItem, removeCB);
