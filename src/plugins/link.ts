@@ -34,9 +34,14 @@ class LinkOptions {
 
     const link = document.createElement('a');
     link.href = item.attrs.href;
-    link.target = item.attrs.target;
+    link.target = '_blank';
     link.innerText = item.attrs.href;
     link.title = item.attrs.href;
+
+    link.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    }, { once: true });
 
     const commands = document.createElement('div');
     commands.classList.add('commands');
