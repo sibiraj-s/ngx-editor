@@ -18,29 +18,38 @@ class ImageRezieView {
     outer.className = WRAPPER_CLASSNAME;
     outer.style.width = node.attrs.width;
 
+    const handle = document.createElement('span');
+    handle.className = RESIZE_HANDLE_CLASSNAME;
+
     const img = document.createElement('img');
     img.setAttribute('src', node.attrs.src);
     img.setAttribute('alt', node.attrs.alt ?? '');
     img.setAttribute('title', node.attrs.title ?? '');
     img.style.width = '100%';
 
-    const handle = document.createElement('span');
-    handle.className = RESIZE_HANDLE_CLASSNAME;
+    const handleBottomRight = document.createElement('span');
+    const handleTopRight = document.createElement('span');
+    const handleTopLeft = document.createElement('span');
+    const handleBottomLeft = document.createElement('span');
+    handleBottomRight.className = `${RESIZE_HANDLE_CLASSNAME}--BR`;
+    handleTopRight.className = `${RESIZE_HANDLE_CLASSNAME}--TR`;
+    handleTopLeft.className = `${RESIZE_HANDLE_CLASSNAME}--TL`;
+    handleBottomLeft.className = `${RESIZE_HANDLE_CLASSNAME}--BL`;
 
-    handle.onmousedown = (mousedownEvent) => {
-      mousedownEvent.preventDefault();
+    const resizePropoptionally = (evt: MouseEvent) => {
+      evt.preventDefault();
 
       const { state, dispatch } = view;
       const { tr } = state;
 
-      const startX = mousedownEvent.pageX;
+      const startX = evt.pageX;
       const startWidth = img.clientWidth;
 
       const { width } = window.getComputedStyle(view.dom);
       const editorWidth = parseInt(width, 10);
 
-      const onMouseMove = (mouseMoveEvent: MouseEvent) => {
-        const currentX = mouseMoveEvent.pageX;
+      const onMouseMove = (e: MouseEvent) => {
+        const currentX = e.pageX;
         const diffInPx = currentX - startX;
         const computedWidth = startWidth + diffInPx;
 
@@ -74,6 +83,16 @@ class ImageRezieView {
       document.addEventListener('mousemove', onMouseMove);
       document.addEventListener('mouseup', onMouseUp);
     };
+
+    handleBottomRight.addEventListener('mousedown', resizePropoptionally, { once: true });
+    handleTopRight.addEventListener('mousedown', resizePropoptionally, { once: true });
+    handleTopLeft.addEventListener('mousedown', resizePropoptionally, { once: true });
+    handleBottomLeft.addEventListener('mousedown', resizePropoptionally, { once: true });
+
+    handle.appendChild(handleBottomRight);
+    handle.appendChild(handleTopRight);
+    handle.appendChild(handleTopLeft);
+    handle.appendChild(handleBottomLeft);
 
     outer.appendChild(handle);
     outer.appendChild(img);

@@ -293,14 +293,44 @@ $menubar-text-padding: 0 $menu-item-spacing;
 
   .NgxEditor__ResizeHandle {
     position: absolute;
-    bottom: -5px;
-    right: -5px;
-    width: 7px;
-    height: 7px;
-    border: 1px solid white;
-    background-color: $menu-item-active-color;
-    cursor: nwse-resize;
     display: none;
+    height: 100%;
+    width: 100%;
+
+    .NgxEditor__ResizeHandle--TL,
+    .NgxEditor__ResizeHandle--BL,
+    .NgxEditor__ResizeHandle--TR,
+    .NgxEditor__ResizeHandle--BR {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      background-color: $menu-item-active-color;
+      border: 1px solid white;
+    }
+
+    .NgxEditor__ResizeHandle--BR {
+      bottom: -5px;
+      right: -5px;
+      cursor: se-resize;
+    }
+
+    .NgxEditor__ResizeHandle--TR {
+      top: -5px;
+      right: -5px;
+      cursor: ne-resize;
+    }
+
+    .NgxEditor__ResizeHandle--TL {
+      top: -5px;
+      left: -5px;
+      cursor: nw-resize;
+    }
+
+    .NgxEditor__ResizeHandle--BL {
+      bottom: -5px;
+      left: -5px;
+      cursor: sw-resize;
+    }
   }
 }
 

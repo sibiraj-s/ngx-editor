@@ -119,9 +119,6 @@ export default {
       ]
     },
     {
-      type: 'paragraph'
-    },
-    {
       type: 'paragraph',
       content: [
         {
