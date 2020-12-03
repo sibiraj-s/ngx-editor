@@ -235,6 +235,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
   margin-bottom: 0.3rem;
   transform: translateX(-50%);
   display: flex;
+  align-items: center;
 
   &::before,
   &::after {
@@ -271,10 +272,12 @@ $menubar-text-padding: 0 $menu-item-spacing;
     margin-left: 0.5rem;
 
     .command {
-      border: none;
+      padding: 2px;
+      border-radius: 2px;
+      display: flex;
 
       &:hover {
-        text-decoration: underline;
+        background-color: $menu-item-hover-bg-color;
       }
     }
   }

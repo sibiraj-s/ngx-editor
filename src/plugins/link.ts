@@ -1,11 +1,12 @@
 import { EditorView } from 'prosemirror-view';
-import { Plugin, PluginKey } from 'prosemirror-state';
+import { NodeSelection, Plugin, PluginKey } from 'prosemirror-state';
 import { Mark } from 'prosemirror-model';
 
 import {
   calculateBubblePos, isLinkActive, getSelectionMarks,
   removeLink
 } from 'ngx-editor/helpers';
+import { getIconSvg } from './utils/icons';
 
 class LinkOptions {
   bubbleEL: HTMLElement = document.createElement('div');
@@ -46,10 +47,10 @@ class LinkOptions {
     const commands = document.createElement('div');
     commands.classList.add('commands');
 
-    const removeOpt = document.createElement('button');
-    removeOpt.type = 'button';
+    const removeOpt = document.createElement('div');
+    removeOpt.innerHTML = getIconSvg('unlink');
+    removeOpt.title = 'Remove link';
     removeOpt.classList.add('command');
-    removeOpt.textContent = 'Remove';
 
     removeOpt.addEventListener('mousedown', removeCB, { once: true });
 
@@ -71,10 +72,16 @@ class LinkOptions {
 
   update(view: EditorView): void {
     const { state } = view;
-    const { schema } = state;
+    const { schema, selection } = state;
 
     if (!schema.marks.link) {
       return;
+    }
+
+    if (selection instanceof NodeSelection) {
+      if (selection.node.type.name === 'image') {
+        return;
+      }
     }
 
     const hasFocus = view.hasFocus();
@@ -95,8 +102,8 @@ class LinkOptions {
       e.preventDefault();
       e.stopPropagation();
 
-      removeLink(view);
-      view.focus();
+      // removeLink(view);
+      // view.focus();
     };
 
     const el = this.createLinkNode(linkItem, removeCB);
