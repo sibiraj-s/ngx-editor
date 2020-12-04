@@ -109,6 +109,10 @@ Angular 9+.
 
 Demo at stackblitz https://ngx-editor.stackblitz.io/
 
+## Icons
+
+Icons are from https://material.io/resources/icons/
+
 Edit the stackblitz here https://stackblitz.com/edit/ngx-editor
 
 [npm]: https://www.npmjs.com/

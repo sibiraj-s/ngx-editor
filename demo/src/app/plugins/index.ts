@@ -61,6 +61,7 @@ const getPlugins = (): Plugin[] => {
         ['ordered_list', 'bullet_list'],
         [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
         ['link', 'image'],
+        ['align_left', 'align_center', 'align_right'],
         [codemirrorMenu]
       ],
       labels: {
@@ -72,7 +73,10 @@ const getPlugins = (): Plugin[] => {
         heading: 'Header',
         blockquote: 'Quote',
         link: 'Link',
-        image: 'Image'
+        image: 'Image',
+        align_left: 'Left Align',
+        align_center: 'Center Align',
+        align_right: 'Right Align'
       }
     }),
     placeholder('Type Something here...'),

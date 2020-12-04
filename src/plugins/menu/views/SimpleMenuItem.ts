@@ -1,10 +1,10 @@
-import { toggleMark } from 'prosemirror-commands';
+import { setBlockType, toggleMark } from 'prosemirror-commands';
 import { EditorView } from 'prosemirror-view';
 import { EditorState } from 'prosemirror-state';
 import { MarkType, NodeType } from 'prosemirror-model';
 
 import { isNodeActive, isMarkActive, isListItem } from 'ngx-editor/helpers';
-import { toggleList, toggleBlockType, toggleWrap } from 'ngx-editor/commands';
+import { toggleList, toggleBlockType, toggleWrap, setNodeAttrs } from 'ngx-editor/commands';
 
 import { MenuItemMeta } from '../meta';
 import {
@@ -89,6 +89,10 @@ class SimpleMenuItem {
       if (type === schema.nodes.blockquote) {
         command = toggleWrap(type);
       }
+    }
+
+    if (this.menuItem.key === 'align') {
+      command = setNodeAttrs(null, this.menuItem.attrs);
     }
 
     dom.addEventListener('mousedown', (e: MouseEvent) => {

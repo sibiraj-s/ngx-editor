@@ -11,7 +11,8 @@ const DEFAULT_TOOLBAR: Toolbar = [
   ['code', 'blockquote'],
   ['ordered_list', 'bullet_list'],
   [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-  ['link', 'image']
+  ['link', 'image'],
+  ['align_left', 'align_center', 'align_right']
 ];
 
 const DEFAULT_LABELS: MenuLabels = {
@@ -23,7 +24,10 @@ const DEFAULT_LABELS: MenuLabels = {
   heading: 'Heading',
   blockquote: 'Quote',
   link: 'Link',
-  image: 'Image'
+  image: 'Image',
+  align_left: 'Left Align',
+  align_center: 'Center Align',
+  align_right: 'Right Align'
 };
 
 const DEFAULT_OPTIONS: MenuOptions = {

@@ -17,9 +17,24 @@ const text: NodeSpec = {
 const paragraph: NodeSpec = {
   content: 'inline*',
   group: 'block',
-  parseDOM: [{ tag: 'p' }],
-  toDOM(): DOMOutputSpec {
-    return ['p', 0];
+  attrs: {
+    align: {
+      default: null,
+    }
+  },
+  parseDOM: [
+    {
+      tag: 'p',
+      getAttrs(dom: HTMLElement): GetAttrsSpec {
+        return {
+          align: dom.getAttribute('align') || ''
+        };
+      }
+    }
+  ],
+  toDOM(node): DOMOutputSpec {
+    const { align } = node.attrs;
+    return ['p', { align }, 0];
   }
 };
 
@@ -40,25 +55,83 @@ const horizontalRule: NodeSpec = {
   parseDOM: [{ tag: 'hr' }],
   toDOM(): DOMOutputSpec {
     return ['hr'];
-   }
+  }
 };
 
 // :: NodeSpec A heading textblock, with a `level` attribute that
 // should hold the number 1 to 6. Parsed and serialized as `<h1>` to
 // `<h6>` elements.
 const heading: NodeSpec = {
-  attrs: { level: { default: 1 } },
+  attrs: {
+    level: {
+      default: 1
+    },
+    align: {
+      default: null,
+    }
+  },
   content: 'inline*',
   group: 'block',
   defining: true,
-  parseDOM: [{ tag: 'h1', attrs: { level: 1 } },
-  { tag: 'h2', attrs: { level: 2 } },
-  { tag: 'h3', attrs: { level: 3 } },
-  { tag: 'h4', attrs: { level: 4 } },
-  { tag: 'h5', attrs: { level: 5 } },
-  { tag: 'h6', attrs: { level: 6 } }],
+  parseDOM: [
+    {
+      tag: 'h1',
+      getAttrs(dom: HTMLElement): GetAttrsSpec {
+        return {
+          level: 1,
+          align: dom.getAttribute('align') || ''
+        };
+      }
+    },
+    {
+      tag: 'h2',
+      getAttrs(dom: HTMLElement): GetAttrsSpec {
+        return {
+          level: 2,
+          align: dom.getAttribute('align') || ''
+        };
+      }
+    },
+    {
+      tag: 'h3',
+      getAttrs(dom: HTMLElement): GetAttrsSpec {
+        return {
+          level: 3,
+          // align: dom.getAttribute('align') || ''
+        };
+      }
+    },
+    {
+      tag: 'h4',
+      getAttrs(dom: HTMLElement): GetAttrsSpec {
+        return {
+          level: 4,
+          align: dom.getAttribute('align') || ''
+        };
+      }
+    },
+    {
+      tag: 'h5',
+      getAttrs(dom: HTMLElement): GetAttrsSpec {
+        return {
+          level: 5,
+          align: dom.getAttribute('align') || ''
+        };
+      }
+    },
+    {
+      tag: 'h6',
+      getAttrs(dom: HTMLElement): GetAttrsSpec {
+        return {
+          level: 6,
+          align: dom.getAttribute('align') || ''
+        };
+      }
+    },
+  ],
   toDOM(node): DOMOutputSpec {
-    return ['h' + node.attrs.level, 0];
+    const { align } = node.attrs;
+    return ['h' + node.attrs.level, { align }, 0];
   }
 };
 
@@ -71,7 +144,12 @@ const codeBlock: NodeSpec = {
   group: 'block',
   code: true,
   defining: true,
-  parseDOM: [{ tag: 'pre', preserveWhitespace: 'full' }],
+  parseDOM: [
+    {
+      tag: 'pre',
+      preserveWhitespace: 'full'
+    }
+  ],
   toDOM(): DOMOutputSpec {
     return ['pre', ['code', 0]];
   }
@@ -123,7 +201,7 @@ export const image: NodeSpec = {
 const listItem = {
   ...sl.listItem,
   content: 'paragraph block*'
- };
+};
 
 const orderedList = {
   ...sl.orderedList,

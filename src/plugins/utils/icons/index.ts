@@ -9,6 +9,9 @@ import quote from './quote';
 import link from './link';
 import unlink from './unlink';
 import image from './image';
+import alignLeft from './align_left';
+import alignCenter from './align_center';
+import alignRight from './align_right';
 
 const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
@@ -22,7 +25,10 @@ const icons = {
   quote,
   link,
   unlink,
-  image
+  image,
+  align_left: alignLeft,
+  align_center: alignCenter,
+  align_right: alignRight
 };
 
 // Helper function to create menu icons

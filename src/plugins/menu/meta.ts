@@ -5,7 +5,8 @@ export interface MenuItemMeta {
   toggleIcon?: string;
   type: 'mark' | 'node';
   attrs?: {
-    level?: number
+    level?: number,
+    align?: string | null
   };
 }
 
@@ -45,6 +46,7 @@ const menuItemsMeta: { [key: string]: MenuItemMeta } = {
     i18nKey: 'heading',
     attrs: {
       level: 1,
+      align: null
     },
     type: 'node'
   },
@@ -53,6 +55,7 @@ const menuItemsMeta: { [key: string]: MenuItemMeta } = {
     i18nKey: 'heading',
     attrs: {
       level: 2,
+      align: null
     },
     type: 'node'
   },
@@ -61,6 +64,7 @@ const menuItemsMeta: { [key: string]: MenuItemMeta } = {
     i18nKey: 'heading',
     attrs: {
       level: 3,
+      align: null
     },
     type: 'node'
   },
@@ -69,6 +73,7 @@ const menuItemsMeta: { [key: string]: MenuItemMeta } = {
     i18nKey: 'heading',
     attrs: {
       level: 4,
+      align: null
     },
     type: 'node'
   },
@@ -77,6 +82,7 @@ const menuItemsMeta: { [key: string]: MenuItemMeta } = {
     i18nKey: 'heading',
     attrs: {
       level: 5,
+      align: null
     },
     type: 'node'
   },
@@ -85,6 +91,7 @@ const menuItemsMeta: { [key: string]: MenuItemMeta } = {
     i18nKey: 'heading',
     attrs: {
       level: 6,
+      align: null
     },
     type: 'node'
   },
@@ -105,6 +112,33 @@ const menuItemsMeta: { [key: string]: MenuItemMeta } = {
     key: 'image',
     i18nKey: 'image',
     icon: 'image',
+    type: 'node'
+  },
+  align_left: {
+    key: 'align',
+    attrs: {
+      align: 'left'
+    },
+    i18nKey: 'align_left',
+    icon: 'align_left',
+    type: 'node'
+  },
+  align_right: {
+    key: 'align',
+    attrs: {
+      align: 'right'
+    },
+    i18nKey: 'align_right',
+    icon: 'align_right',
+    type: 'node'
+  },
+  align_center: {
+    key: 'align',
+    attrs: {
+      align: 'center'
+    },
+    i18nKey: 'align_center',
+    icon: 'align_center',
     type: 'node'
   }
 };

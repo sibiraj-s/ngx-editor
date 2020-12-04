@@ -5,7 +5,11 @@ import { EditorView } from 'prosemirror-view';
 type TCR = { dom: HTMLElement, update: (state: EditorState) => void };
 
 type TBHeading = Array<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'>;
-type TBItems = 'bold' | 'italic' | 'code' | 'blockquote' | 'ordered_list' | 'bullet_list' | 'link' | 'image';
+type TBItems = 'bold' | 'italic'
+  | 'code' | 'blockquote'
+  | 'ordered_list' | 'bullet_list'
+  | 'link' | 'image'
+  | 'align_left' | 'align_center' | 'align_right';
 
 export type ToolbarDropdown = { heading?: TBHeading };
 export type ToolbarBuiltInMenuItem = (editorView: EditorView, spec: MenuItemSpec) => TCR;
