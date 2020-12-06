@@ -8,12 +8,12 @@ import { EditorState, Plugin, PluginKey, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { Node as ProsemirrorNode } from 'prosemirror-model';
 
-import { NgxEditorService, NgxEditorServiceConfig } from './ngx-editor.service';
+import { NgxEditorService, NgxEditorServiceConfig } from './editor.service';
 
 @Component({
   selector: 'ngx-editor',
-  templateUrl: 'ngx-editor.component.html',
-  styleUrls: ['ngx-editor.component.scss'],
+  templateUrl: './editor.component.html',
+  styleUrls: ['./editor.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => NgxEditorComponent),

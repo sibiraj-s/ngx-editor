@@ -3,7 +3,7 @@ import { EditorView } from 'prosemirror-view';
 
 import { SimpleCommands } from '../MenuCommands';
 import Icon from '../../../icons';
-import { NgxEditorService } from '../../../ngx-editor.service';
+import { NgxEditorService } from '../../../editor.service';
 
 @Component({
   selector: 'ngx-simple-command',

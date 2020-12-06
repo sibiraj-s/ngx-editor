@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { NodeSelection} from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
-import { NgxEditorService } from '../../../ngx-editor.service';
+import { NgxEditorService } from '../../../editor.service';
 import Icon from '../../../icons';
 import { Image as ImageCommand } from '../MenuCommands';
 

@@ -2,7 +2,7 @@ import { Component, ElementRef, HostBinding, HostListener, Input } from '@angula
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
 
-import { NgxEditorService } from '../../../ngx-editor.service';
+import { NgxEditorService } from '../../../editor.service';
 import Icon from '../../../icons';
 import { Link as LinkCommand } from '../MenuCommands';
 

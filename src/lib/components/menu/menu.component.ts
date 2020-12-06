@@ -3,7 +3,7 @@ import { EditorView } from 'prosemirror-view';
 
 import { ToolbarItem } from '../../types';
 
-import { NgxEditorService } from '../../ngx-editor.service';
+import { NgxEditorService } from '../../editor.service';
 
 @Component({
   selector: 'ngx-menu',

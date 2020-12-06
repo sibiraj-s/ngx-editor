@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { NgxEditorComponent } from './ngx-editor.component';
+import { NgxEditorComponent } from './editor.component';
 
 describe('NgxEditorComponent', () => {
   let component: NgxEditorComponent;

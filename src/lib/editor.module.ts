@@ -4,8 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgxEditorConfig } from './types';
 
-import { NgxEditorComponent } from './ngx-editor.component';
-import { NgxEditorServiceConfig, provideMyServiceOptions } from './ngx-editor.service';
+import { NgxEditorComponent } from './editor.component';
+import { NgxEditorServiceConfig, provideMyServiceOptions } from './editor.service';
 import { MenuComponent } from './components/menu/menu.component';
 import { SimpleCommandComponent } from './components/menu/simple-command/simple-command.component';
 import { LinkComponent } from './components/menu/link/link.component';

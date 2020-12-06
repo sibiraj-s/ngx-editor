@@ -1,8 +1,7 @@
 import { Component, ElementRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
-import { Plugin, PluginKey } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
-import { NgxEditorService } from '../../../ngx-editor.service';
+import { NgxEditorService } from '../../../editor.service';
 import { SimpleCommands } from '../MenuCommands';
 
 @Component({
