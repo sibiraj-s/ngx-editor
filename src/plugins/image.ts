@@ -2,8 +2,6 @@ import { Node as ProsemirrorNode } from 'prosemirror-model';
 import { NodeSelection, Plugin, PluginKey } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
-import { ImagePluginOptions } from './types';
-
 const WRAPPER_CLASSNAME = 'NgxEditor__ImageWrapper';
 const WRAPPER_RESIZE_ACTIVE_CLASSNAME = 'NgxEditor__Resizer--Active';
 const RESIZE_HANDLE_CLASSNAME = 'NgxEditor__ResizeHandle';
@@ -113,7 +111,7 @@ class ImageRezieView {
   }
 }
 
-const defaultOptions: ImagePluginOptions = {
+const defaultOptions = {
   resize: true,
 };
 
