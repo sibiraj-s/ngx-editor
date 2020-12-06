@@ -1,45 +1,77 @@
-import { Injectable, Optional } from '@angular/core';
-
+import { Injectable, Optional, TemplateRef } from '@angular/core';
 import { Schema } from 'prosemirror-model';
 import { Plugin } from 'prosemirror-state';
+import { Subject } from 'rxjs';
 
-import { NgxEditorConfig, NodeViews } from './types';
+import { placeholder } from 'ngx-editor/plugins';
 
-import { menu, placeholder } from 'ngx-editor/plugins';
+import { NgxEditorConfig, NodeViews, Toolbar } from './types';
+import I18n from './i18n';
+
 import { schema } from './schema';
+import { EditorView } from 'prosemirror-view';
+
+const DEFAULT_MENU: Toolbar = [
+  ['bold', 'italic'],
+  ['code', 'blockquote'],
+  ['ordered_list', 'bullet_list'],
+  [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+  ['link', 'image'],
+  ['align_left', 'align_center', 'align_right', 'align_justify'],
+];
+
+const DEFAULT_SCHEMA = schema;
+const DEFAULT_PLUGINS: Plugin[] = [
+  placeholder()
+];
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class NgxEditorServiceConfig {
-  public plugins: Plugin[] = [
-    menu(),
-    placeholder()
-  ];
-
+  public plugins: Plugin[] = DEFAULT_PLUGINS;
   public nodeViews: NodeViews = {};
-  public schema: Schema = schema;
+  public schema: Schema = DEFAULT_SCHEMA;
+  public menu = DEFAULT_MENU;
+  public i18n = {};
 }
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class NgxEditorService {
   config: NgxEditorServiceConfig;
+  #view: EditorView;
+
+  customMenuRefChange: Subject<TemplateRef<any>> = new Subject<TemplateRef<any>>();
 
   constructor(@Optional() config?: NgxEditorServiceConfig) {
     this.config = config;
   }
+
+  get i18n(): I18n {
+    return new I18n(this.config.i18n);
+  }
+
+  set view(v: EditorView) {
+    this.#view = v;
+  }
+
+  get view(): EditorView {
+    return this.#view;
+  }
+
+  setCustomMenuRef(c: TemplateRef<any>): void {
+    this.customMenuRefChange.next(c);
+  }
 }
 
-const defaultConfig: NgxEditorConfig = {
-  plugins: [],
-  nodeViews: {},
-  schema
-};
-
-export function provideMyServiceOptions(config?: NgxEditorConfig): NgxEditorConfig {
-  return Object.assign({}, defaultConfig, config);
+export function provideMyServiceOptions(config?: NgxEditorConfig): NgxEditorServiceConfig {
+  return {
+    plugins: config?.plugins ?? DEFAULT_PLUGINS,
+    nodeViews: config?.nodeViews ?? {},
+    menu: config?.menu ?? DEFAULT_MENU,
+    schema: config?.schema ?? DEFAULT_SCHEMA,
+    i18n: config.i18n ?? {}
+  };
 }

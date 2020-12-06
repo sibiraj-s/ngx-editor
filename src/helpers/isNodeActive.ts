@@ -1,10 +1,10 @@
 import { EditorState } from 'prosemirror-state';
-import { Node, NodeType, ResolvedPos } from 'prosemirror-model';
+import { NodeType, ResolvedPos } from 'prosemirror-model';
 
-const findNode = (type: NodeType, $from: ResolvedPos): Node | null => {
+const findNodeType = (type: NodeType, $from: ResolvedPos): NodeType | null => {
   for (let i = $from.depth; i > 0; i--) {
     if ($from.node(i).type === type) {
-      return $from.node(i);
+      return $from.node(i).type;
     }
   }
 
@@ -15,14 +15,10 @@ export const isNodeActive = (state: EditorState, type: NodeType, attrs: any = {}
   const { selection } = state;
   const { $from, to } = selection;
 
-  const node: Node | null = findNode(type, $from);
+  const node: NodeType | null = findNodeType(type, $from);
 
   if (!Object.entries(attrs).length || !node) {
     return !!node;
-  }
-
-  if (node.type.name === 'heading') {
-    return attrs?.level === node.attrs.level;
   }
 
   return to <= $from.end() && $from.parent.hasMarkup(type, attrs);

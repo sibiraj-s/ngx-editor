@@ -1,6 +1,24 @@
-import { Plugin } from 'prosemirror-state';
+import { EditorState, Plugin } from 'prosemirror-state';
 import { Node as ProsemirrorNode, Schema } from 'prosemirror-model';
 import { EditorView, Decoration, NodeView } from 'prosemirror-view';
+
+import { I18nKeys } from './i18n';
+
+type TCR = { dom: HTMLElement, update: (state: EditorState) => void };
+
+type TBHeading = Array<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'>;
+type TBItems = 'bold' | 'italic'
+  | 'code' | 'blockquote'
+  | 'ordered_list' | 'bullet_list'
+  | 'link' | 'image'
+  | 'align_left' | 'align_center' | 'align_right' | 'align_justify';
+
+export type ToolbarDropdown = { heading?: TBHeading };
+export type ToolbarCustomMenuItem = (editorView: EditorView) => TCR;
+export type ToolbarDropdownGroupKeys = keyof ToolbarDropdown;
+export type ToolbarDropdownGroupValues = ToolbarDropdown[ToolbarDropdownGroupKeys];
+export type ToolbarItem = TBItems | ToolbarDropdown | ToolbarCustomMenuItem;
+export type Toolbar = Array<ToolbarItem[]>;
 
 export interface NodeViews {
   [name: string]: (
@@ -15,4 +33,6 @@ export interface NgxEditorConfig {
   schema?: Schema;
   plugins?: Plugin[];
   nodeViews?: NodeViews;
+  menu?: Toolbar;
+  i18n?: Partial<Record<I18nKeys, string>>;
 }

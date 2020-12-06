@@ -27,7 +27,7 @@ const paragraph: NodeSpec = {
       tag: 'p',
       getAttrs(dom: HTMLElement): GetAttrsSpec {
         return {
-          align: dom.getAttribute('align') || ''
+          align: dom.getAttribute('align') || null
         };
       }
     }
@@ -79,7 +79,7 @@ const heading: NodeSpec = {
       getAttrs(dom: HTMLElement): GetAttrsSpec {
         return {
           level: 1,
-          align: dom.getAttribute('align') || ''
+          align: dom.getAttribute('align') || null
         };
       }
     },
@@ -88,7 +88,7 @@ const heading: NodeSpec = {
       getAttrs(dom: HTMLElement): GetAttrsSpec {
         return {
           level: 2,
-          align: dom.getAttribute('align') || ''
+          align: dom.getAttribute('align') || null
         };
       }
     },
@@ -97,7 +97,7 @@ const heading: NodeSpec = {
       getAttrs(dom: HTMLElement): GetAttrsSpec {
         return {
           level: 3,
-          // align: dom.getAttribute('align') || ''
+          align: dom.getAttribute('align') || null
         };
       }
     },
@@ -106,7 +106,7 @@ const heading: NodeSpec = {
       getAttrs(dom: HTMLElement): GetAttrsSpec {
         return {
           level: 4,
-          align: dom.getAttribute('align') || ''
+          align: dom.getAttribute('align') || null
         };
       }
     },
@@ -115,7 +115,7 @@ const heading: NodeSpec = {
       getAttrs(dom: HTMLElement): GetAttrsSpec {
         return {
           level: 5,
-          align: dom.getAttribute('align') || ''
+          align: dom.getAttribute('align') || null
         };
       }
     },
@@ -124,7 +124,7 @@ const heading: NodeSpec = {
       getAttrs(dom: HTMLElement): GetAttrsSpec {
         return {
           level: 6,
-          align: dom.getAttribute('align') || ''
+          align: dom.getAttribute('align') || null
         };
       }
     },

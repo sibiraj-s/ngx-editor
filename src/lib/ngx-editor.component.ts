@@ -1,6 +1,6 @@
 import {
   Component, ViewChild, ElementRef,
-  forwardRef, OnDestroy, ViewEncapsulation, OnInit
+  forwardRef, OnDestroy, ViewEncapsulation, OnInit, Output, EventEmitter, Input, TemplateRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -25,14 +25,19 @@ import { NgxEditorService, NgxEditorServiceConfig } from './ngx-editor.service';
 export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestroy {
   @ViewChild('ngxEditor', { static: true }) ngxEditor: ElementRef;
 
-  private view: EditorView;
+  view: EditorView;
   private onChange: (value: object) => void;
 
-  private config: NgxEditorServiceConfig;
+  config: NgxEditorServiceConfig;
+
+  @Input() customMenuRef: TemplateRef<any>;
+  @Output() init = new EventEmitter<EditorView>();
+  @Output() focusOut = new EventEmitter<void>();
+  @Output() focusIn = new EventEmitter<void>();
 
   private editorInitialized = false;
 
-  constructor(ngxEditorService: NgxEditorService) {
+  constructor(private ngxEditorService: NgxEditorService) {
     this.config = ngxEditorService.config;
   }
 
@@ -93,16 +98,30 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
 
     this.view = new EditorView(this.ngxEditor.nativeElement, {
       state: EditorState.create({
+        doc: null,
         schema,
         plugins
       }),
       nodeViews,
       dispatchTransaction: this.handleTransactions.bind(this),
+      handleDOMEvents: {
+        focus: () => {
+          this.focusIn.emit();
+          return true;
+        },
+        blur: () => {
+          this.focusOut.emit();
+          return true;
+        }
+      },
       attributes: {
         class: 'NgxEditor__Content'
       },
     });
 
+    this.ngxEditorService.view = this.view;
+    this.init.emit(this.view);
+    this.ngxEditorService.setCustomMenuRef(this.customMenuRef);
     this.editorInitialized = true;
   }
 

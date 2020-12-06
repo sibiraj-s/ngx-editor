@@ -16,7 +16,8 @@
   "peerDependencies": {
     "@angular/common": ">=9.0.0",
     "@angular/core": ">=9.0.0",
-    "@angular/forms": ">=9.0.0"
+    "@angular/forms": ">=9.0.0",
+    "@angular/platform-browser": ">=9.0.0"
   },
   "dependencies": {
     "prosemirror-commands": "^1.1.4",
