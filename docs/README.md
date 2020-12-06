@@ -68,24 +68,14 @@ import { menu, placeholder, schema } from 'ngx-editor';
 
 NgxEditorModule.forRoot({
   schema, // optional scheama, see https://sibiraj.dev/ngx-editor/#/schema
-  plugins: [
-    menu({
-      // default options (Optional)
-      toolbar: [
-        ['bold', 'italic', 'code'], // inline icons
-        ['ordered_list', 'bullet_list'],
-        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }][codemirror], // dropdown // custom menu, https://sibiraj.dev/ngx-editor/#/menu
-      ],
-      labels: {
-        bold: 'Bold',
-        italics: 'Italics',
-        code: 'Code',
-        ordered_list: 'Ordered List',
-        bullet_list: 'Bullet List',
-        heading: 'Heading',
-      },
-    }),
-    placholder('Type something here...'),
+  plugins: [placholder('Type something here...')],
+  menu: [
+    ['bold', 'italic'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
   ],
   nodeViews: {}, // optional, see https://prosemirror.net/examples/footnote/
 });

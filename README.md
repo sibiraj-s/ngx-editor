@@ -27,7 +27,7 @@
 ## Getting Started
 
 > NOTE: This is documentation for ngx-editor v5.x. View here for [ngx-editor@4.x documentation](https://github.com/sibiraj-s/ngx-editor/tree/v4.1.0).
-v4 just uses plain contentediable and is not recommened since the behaviour is inconsitent across browsers.
+> v4 just uses plain contentediable and is not recommened since the behaviour is inconsitent across browsers.
 
 ### Installation
 
@@ -70,23 +70,17 @@ import { menu, placeholder, schema } from 'ngx-editor';
 NgxEditorModule.forRoot({
   schema, // optional scheama, see https://sibiraj.dev/ngx-editor/#/schema
   plugins: [
-    menu({
-      // default options (Optional)
-      toolbar: [
-        ['bold', 'italic', 'code'], // inline icons
-        ['ordered_list', 'bullet_list'],
-        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }][codemirror], // dropdown // custom menu, see https://sibiraj.dev/ngx-editor/#/menu
-      ],
-      labels: {
-        bold: 'Bold',
-        italics: 'Italics',
-        code: 'Code',
-        ordered_list: 'Ordered List',
-        bullet_list: 'Bullet List',
-        heading: 'Heading',
-      },
-    }),
-    placholder('Type something here...'),
+    // include other prosemirror plugins
+    placholder('Type something here...'), // default
+  ],
+  menu: [
+    // default options (Optional)
+    ['bold', 'italic'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
   ],
   nodeViews: {}, // optional, see https://prosemirror.net/examples/footnote/
 });

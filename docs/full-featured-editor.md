@@ -15,7 +15,7 @@ import { keymap } from 'prosemirror-keymap';
 import { toggleMark, baseKeymap } from 'prosemirror-commands';
 import { Plugin } from 'prosemirror-state';
 
-import { menu, placeholder, link, imagePlugin } from 'ngx-editor/plugins';
+import { placeholder, link, imagePlugin } from 'ngx-editor/plugins';
 
 import { buildInputRules } from './input-rules';
 import schema from '../schema';
@@ -63,27 +63,7 @@ const getPlugins = (): Plugin[] => {
     keymap(historyKeyMap),
     keymap(listKeyMap),
     keymap(baseKeymap),
-    buildInputRules(schema), // see input rules example
-    menu({
-      toolbar: [
-        ['bold', 'italic'],
-        ['code', 'blockquote'],
-        ['ordered_list', 'bullet_list'],
-        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-        ['link', 'image'],
-      ],
-      labels: {
-        bold: 'Bold',
-        italics: 'Italics',
-        code: 'Code',
-        ordered_list: 'Ordered List',
-        bullet_list: 'Bullet List',
-        heading: 'Header',
-        blockquote: 'Quote',
-        link: 'Link',
-        image: 'Image',
-      },
-    }),
+    buildInputRules(schema),
     placeholder('Type Something here...'),
     link(),
     imagePlugin({
@@ -113,6 +93,42 @@ import plugins from './plugins';
     NgxEditorModule.forRoot({
       schema,
       plugins,
+      menu: [
+        ['bold', 'italic'],
+        ['code', 'blockquote'],
+        ['ordered_list', 'bullet_list'],
+        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+        ['link', 'image'],
+        ['align_left', 'align_center', 'align_right', 'align_justify'],
+      ],
+      i18n: {
+        // menu
+        bold: 'Bold',
+        italic: 'Italic',
+        code: 'Code',
+        blockquote: 'Blockquote',
+        bullet_list: 'Bullet List',
+        ordered_list: 'Ordered List',
+        heading: 'Heading',
+        h1: 'Header 1',
+        h2: 'Header 2',
+        h3: 'Header 3',
+        h4: 'Header 4',
+        h5: 'Header 5',
+        h6: 'Header 6',
+        align_left: 'Left Align',
+        align_center: 'Center Align',
+        align_right: 'Right Align',
+        align_justify: 'Justify',
+
+        // pupups, forms, others...
+        url: 'URL',
+        text: 'Text',
+        openInNewTab: 'Open in new tab',
+        insert: 'Insert',
+        altText: 'Alt Text',
+        title: 'Title',
+      },
     }),
   ],
 })

@@ -1,97 +1,140 @@
-# Menu Plugin
-
-Configuring the plugin
+# Menu
 
 ```ts
-import { menu, placeholder } from 'ngx-editor/plugins';
-
 NgxEditorModule.forRoot({
-  plugins: [
-    menu({
-      // default options (Optional)
-      toolbar: [
-        ['bold', 'italic'], // inline icons
-        ['code', 'blockquote'],
-        ['ordered_list', 'bullet_list'],
-        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }], // dropdown
-        ['link'],
-        [codemirror], // custom menu, example below
-      ],
-      labels: {
-        bold: 'Bold',
-        italics: 'Italics',
-        code: 'Code',
-        ordered_list: 'Ordered List',
-        bullet_list: 'Bullet List',
-        heading: 'Heading',
-        link: 'Link',
-      },
-    }),
+  menu: [
+    ['bold', 'italic'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
   ],
+  i18n: {
+    // menu
+    bold: 'Bold',
+    italic: 'Italic',
+    code: 'Code',
+    blockquote: 'Blockquote',
+    bullet_list: 'Bullet List',
+    ordered_list: 'Ordered List',
+    heading: 'Heading',
+    h1: 'Header 1',
+    h2: 'Header 2',
+    h3: 'Header 3',
+    h4: 'Header 4',
+    h5: 'Header 5',
+    h6: 'Header 6',
+    align_left: 'Left Align',
+    align_center: 'Center Align',
+    align_right: 'Right Align',
+    align_justify: 'Justify',
+
+    // pupups, forms, others...
+    url: 'URL',
+    text: 'Text',
+    openInNewTab: 'Open in new tab',
+    insert: 'Insert',
+    altText: 'Alt Text',
+    title: 'Title',
+  },
 });
 ```
 
 ## Custom Menu
 
-Custom menu should return an `update` function (invoked for every transcation) and `dom` html-element (to mount in the menubar).
+The editorView will be available from the init function
 
-Example:
+#### Editor
+
+```html
+<div class="editor">
+  <ngx-editor
+    [ngModel]="editorContent"
+    (ngModelChange)="editorContentChange($event)"
+    (init)="init($event)"
+    [customMenuRef]="customMenu"
+  >
+  </ngx-editor>
+</div>
+<ng-template #customMenu>
+  <app-custom-menu [editorView]="editorView"></app-custom-menu>
+</ng-template>
+```
+
+#### Custom Menu Template
+
+```html
+<div class="NgxEditor__Seperator"></div>
+<div
+  class="NgxEditor__MenuItem NgxEditor__MenuItem--Text"
+  (mousedown)="onClick($event)"
+  [ngClass]="{'NgxEditor__MenuItem--Active': isActive, 'NgxEditor--Disabled': isDisabled}"
+>
+  CodeMirror
+</div>
+```
+
+#### Custom Menu Component
 
 ```ts
-import { EditorState } from 'prosemirror-state';
+import { Component, Input, OnInit } from '@angular/core';
+import { setBlockType } from 'prosemirror-commands';
+import { EditorState, Plugin, PluginKey, Transaction } from 'prosemirror-state';
+import { EditorView } from 'prosemirror-view';
 
-import { toggleBlockType } from 'ngx-editor/commands';
 import { isNodeActive } from 'ngx-editor/helpers';
-import {
-  ToolbarCustomMenuItem,
-  MenuItem,
-  MenuItemSpec,
-} from 'ngx-editor/plugins';
 
-import schema from '../../schema';
+@Component({
+  selector: 'app-custom-menu',
+  templateUrl: './custom-menu.component.html',
+  styleUrls: ['./custom-menu.component.scss'],
+})
+export class CustomMenuComponent implements OnInit {
+  constructor() {}
 
-// Ref: https://prosemirror.net/examples/codemirror/
+  @Input() editorView: EditorView;
+  isActive = false;
+  isDisabled = false;
 
-const codeMirror: ToolbarCustomMenuItem = (editorView) => {
-  const spec: MenuItemSpec = {
-    classNames: ['NgxEditor__MenuItem', 'NgxEditor__MenuItem--Text'],
-    activeClass: 'NgxEditor__MenuItem--Active',
-    disabledClass: 'NgxEditor--Disabled',
-    textContent: 'CodeMirror',
-  };
-
-  const { dom, update: updateDom } = new MenuItem(spec);
-
-  const type = schema.nodes.code_block;
-
-  const command = toggleBlockType(type, schema.nodes.paragraph);
-
-  dom.addEventListener('mousedown', (e: MouseEvent) => {
+  onClick(e: MouseEvent): void {
     e.preventDefault();
+    const { state, dispatch } = this.editorView;
+    this.execute(state, dispatch);
+  }
 
-    // don't execute if not left click
-    if (e.buttons !== 1) {
-      return;
+  execute(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
+    const { schema } = state;
+
+    if (this.isActive) {
+      return setBlockType(schema.nodes.paragraph)(state, dispatch);
     }
 
-    command(editorView.state, editorView.dispatch);
-  });
+    return setBlockType(schema.nodes.code_block)(state, dispatch);
+  }
 
-  const update = (state: EditorState): void => {
-    const isActive = isNodeActive(state, type);
-    const canExecute = command(state, null);
+  update = (view: EditorView) => {
+    const { state } = view;
+    const { schema } = state;
+    this.isActive = isNodeActive(state, schema.nodes.code_block);
+    this.isDisabled = !this.execute(state, null); // returns true if executable
+  };
 
-    updateDom({
-      active: isActive,
-      disabled: !canExecute,
+  ngOnInit(): void {
+    const plugin = new Plugin({
+      key: new PluginKey(`custom-menu-codemirror`),
+      view: () => {
+        return {
+          update: this.update,
+        };
+      },
     });
-  };
 
-  return {
-    dom,
-    update,
-  };
-};
+    const newState = this.editorView.state.reconfigure({
+      plugins: this.editorView.state.plugins.concat([plugin]),
+    });
 
-export default codeMirror;
+    this.editorView.updateState(newState);
+  }
+}
 ```
