@@ -64,7 +64,7 @@ For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
 ### Optional Configuration
 
 ```ts
-import { menu, placeholder, schema } from 'ngx-editor';
+import { placeholder, schema } from 'ngx-editor';
 
 NgxEditorModule.forRoot({
   schema, // optional scheama, see https://sibiraj.dev/ngx-editor/#/schema

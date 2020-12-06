@@ -10,7 +10,6 @@ Example: https://github.com/sibiraj-s/ngx-editor/tree/master/demo
 
 ```ts
 import { schema } from 'ngx-editor';
-import { menu, placeholder } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
   schema,

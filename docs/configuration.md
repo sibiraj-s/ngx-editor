@@ -2,7 +2,7 @@
 
 ```ts
 import { schema } from 'ngx-editor';
-import { menu, placeholder } from 'ngx-editor/plugins';
+import { placeholder } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
   schema, // optional scheama, see https://sibiraj.dev/ngx-editor/#/schema
