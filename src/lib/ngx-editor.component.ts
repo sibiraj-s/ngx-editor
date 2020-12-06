@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
-import { EditorState, Transaction } from 'prosemirror-state';
+import { EditorState, Plugin, PluginKey, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { Node as ProsemirrorNode } from 'prosemirror-model';
 
@@ -93,6 +93,23 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     }
   }
 
+  onEditorUpdate = (view: EditorView) => {
+    this.ngxEditorService.dispatchEditorUpdate(view);
+  }
+
+  createUpdateWatcherPlugin(): Plugin {
+    const plugin = new Plugin({
+      key: new PluginKey('ngx-update-watcher'),
+      view: () => {
+        return {
+          update: this.onEditorUpdate
+        };
+      }
+    });
+
+    return plugin;
+  }
+
   createEditor(): void {
     const { schema, plugins, nodeViews } = this.config;
 
@@ -100,7 +117,10 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
       state: EditorState.create({
         doc: null,
         schema,
-        plugins
+        plugins: [
+          ...plugins,
+          this.createUpdateWatcherPlugin()
+        ]
       }),
       nodeViews,
       dispatchTransaction: this.handleTransactions.bind(this),

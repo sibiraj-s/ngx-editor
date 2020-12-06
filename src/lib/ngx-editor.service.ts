@@ -1,5 +1,6 @@
 import { Injectable, Optional, TemplateRef } from '@angular/core';
 import { Schema } from 'prosemirror-model';
+import { EditorView } from 'prosemirror-view';
 import { Plugin } from 'prosemirror-state';
 import { Subject } from 'rxjs';
 
@@ -9,7 +10,6 @@ import { NgxEditorConfig, NodeViews, Toolbar } from './types';
 import I18n from './i18n';
 
 import { schema } from './schema';
-import { EditorView } from 'prosemirror-view';
 
 const DEFAULT_MENU: Toolbar = [
   ['bold', 'italic'],
@@ -44,6 +44,7 @@ export class NgxEditorService {
   #view: EditorView;
 
   customMenuRefChange: Subject<TemplateRef<any>> = new Subject<TemplateRef<any>>();
+  editorUpdate: Subject<EditorView> = new Subject<EditorView>();
 
   constructor(@Optional() config?: NgxEditorServiceConfig) {
     this.config = config;
@@ -63,6 +64,10 @@ export class NgxEditorService {
 
   setCustomMenuRef(c: TemplateRef<any>): void {
     this.customMenuRefChange.next(c);
+  }
+
+  dispatchEditorUpdate(view: EditorView): void {
+    this.editorUpdate.next(view);
   }
 }
 

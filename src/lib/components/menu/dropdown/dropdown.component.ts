@@ -11,7 +11,7 @@ import { SimpleCommands } from '../MenuCommands';
   styleUrls: ['./dropdown.component.scss']
 })
 export class DropdownComponent implements OnInit {
-  view: EditorView;
+  editorView: EditorView;
 
   @Input() group: any;
   @Input() items: any;
@@ -24,7 +24,11 @@ export class DropdownComponent implements OnInit {
   activeItem: string | null;
 
   constructor(private ngxeService: NgxEditorService, private el: ElementRef) {
-    this.view = this.ngxeService.view;
+    this.editorView = this.ngxeService.view;
+
+    this.ngxeService.editorUpdate.subscribe((view: EditorView) => {
+      this.update(view);
+    });
   }
 
   @HostBinding('class.NgxEditor__Dropdown--Selected') get isSelected(): boolean {
@@ -59,13 +63,13 @@ export class DropdownComponent implements OnInit {
     }
 
     const command = SimpleCommands.get(item);
-    const { state, dispatch } = this.view;
+    const { state, dispatch } = this.editorView;
     command.execute(state, dispatch);
     this.isDropdownOpen = false;
   }
 
-  update = () => {
-    const { state } = this.view;
+  update = (view: EditorView) => {
+    const { state } = view;
     this.activeItems = [];
     this.disabledItems = [];
 
@@ -91,21 +95,6 @@ export class DropdownComponent implements OnInit {
 
   ngOnInit(): void {
     this.selected = this.group;
-
-    const plugin = new Plugin({
-      key: new PluginKey(`ngx-menu-command-dropdown`),
-      view: () => {
-        return {
-          update: this.update
-        };
-      }
-    });
-
-    const newState = this.view.state.reconfigure({
-      plugins: this.view.state.plugins.concat([plugin])
-    });
-
-    this.view.updateState(newState);
   }
 
 }

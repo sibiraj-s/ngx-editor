@@ -1,6 +1,6 @@
-import { Component, ElementRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, Input } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NodeSelection, Plugin, PluginKey } from 'prosemirror-state';
+import { NodeSelection} from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
 import { NgxEditorService } from '../../../ngx-editor.service';
@@ -12,7 +12,7 @@ import { Image as ImageCommand } from '../MenuCommands';
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss']
 })
-export class ImageComponent implements OnInit {
+export class ImageComponent  {
   showPopup = false;
   isActive = false;
 
@@ -30,6 +30,10 @@ export class ImageComponent implements OnInit {
 
   constructor(private el: ElementRef, private ngxeService: NgxEditorService) {
     this.editorView = this.ngxeService.view;
+
+    this.ngxeService.editorUpdate.subscribe((view: EditorView) => {
+      this.update(view);
+    });
   }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
@@ -110,22 +114,4 @@ export class ImageComponent implements OnInit {
     ImageCommand.execute(attrs, state, dispatch);
     this.hideForm();
   }
-
-  ngOnInit(): void {
-    const plugin = new Plugin({
-      key: new PluginKey(`ngx-menu-command-image`),
-      view: () => {
-        return {
-          update: this.update
-        };
-      }
-    });
-
-    const newState = this.editorView.state.reconfigure({
-      plugins: this.editorView.state.plugins.concat([plugin])
-    });
-
-    this.editorView.updateState(newState);
-  }
-
 }

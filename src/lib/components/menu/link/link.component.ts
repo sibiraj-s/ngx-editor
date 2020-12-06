@@ -1,6 +1,5 @@
-import { Component, ElementRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, Input } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Plugin, PluginKey } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
 import { NgxEditorService } from '../../../ngx-editor.service';
@@ -13,7 +12,7 @@ import { Link as LinkCommand } from '../MenuCommands';
   styleUrls: ['./link.component.scss']
 })
 
-export class LinkComponent implements OnInit {
+export class LinkComponent {
   showPopup = false;
   isActive = false;
   canExecute = true;
@@ -32,6 +31,10 @@ export class LinkComponent implements OnInit {
 
   constructor(private el: ElementRef, private ngxeService: NgxEditorService) {
     this.editorView = this.ngxeService.view;
+
+    this.ngxeService.editorUpdate.subscribe((view: EditorView) => {
+      this.update(view);
+    });
    }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
@@ -129,22 +132,5 @@ export class LinkComponent implements OnInit {
       LinkCommand.update(attrs, state, dispatch);
     }
     this.hideForm();
-  }
-
-  ngOnInit(): void {
-    const plugin = new Plugin({
-      key: new PluginKey(`ngx-menu-command-link`),
-      view: () => {
-        return {
-          update: this.update
-        };
-      }
-    });
-
-    const newState = this.editorView.state.reconfigure({
-      plugins: this.editorView.state.plugins.concat([plugin])
-    });
-
-    this.editorView.updateState(newState);
   }
 }

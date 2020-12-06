@@ -1,5 +1,4 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { Plugin, PluginKey } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
 import { SimpleCommands } from '../MenuCommands';
@@ -20,6 +19,10 @@ export class SimpleCommandComponent implements OnInit {
 
   constructor(private ngxeService: NgxEditorService) {
     this.editorView = this.ngxeService.view;
+
+    this.ngxeService.editorUpdate.subscribe((view: EditorView) => {
+      this.update(view);
+    });
   }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') isActive = false;
@@ -50,20 +53,5 @@ export class SimpleCommandComponent implements OnInit {
 
   ngOnInit(): void {
     this.html = Icon.get(this.name);
-
-    const plugin = new Plugin({
-      key: new PluginKey(`ngx-menu-command-${this.name}`),
-      view: () => {
-        return {
-          update: this.update
-        };
-      }
-    });
-
-    const newState = this.editorView.state.reconfigure({
-      plugins: this.editorView.state.plugins.concat([plugin])
-    });
-
-    this.editorView.updateState(newState);
   }
 }
