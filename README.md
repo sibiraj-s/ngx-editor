@@ -41,7 +41,7 @@ yarn add ngx-editor
 
 ### Usage
 
-**Note**: By default the editor comes with bare minimal features enabled to reduce the size of the bundle. Refer the [demo](#demo) and [documentation](#documentation) for more details and examples.
+**Note**: By default the editor comes with bare minimal features enabled to reduce the size of the bundle. Refer the [demo](#demo) and [documentation] for more details and examples.
 
 Import `ngx-editor` module
 
@@ -113,4 +113,5 @@ Edit the stackblitz here https://stackblitz.com/edit/ngx-editor
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
 [github]: https://sibiraj-s.github.io/
+[documentation]: https://sibiraj.dev/ngx-editor/ 
 [wiki]: https://github.com/sibiraj-s/ngx-editor/wiki/ngxEditor

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NgxEditorModule } from 'ngx-editor';
@@ -16,6 +16,7 @@ import { CustomMenuComponent } from './components/custom-menu/custom-menu.compon
     CommonModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxEditorModule.forRoot({
       schema,
       plugins,
