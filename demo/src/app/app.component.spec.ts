@@ -1,6 +1,6 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NgxEditorModule } from 'ngx-editor';
 
@@ -15,6 +15,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         FormsModule,
+        ReactiveFormsModule,
         NgxEditorModule
       ],
       declarations: [
