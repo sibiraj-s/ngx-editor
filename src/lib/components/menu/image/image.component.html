@@ -1,7 +1,8 @@
 <div class="NgxEditor__MenuItem--IconContainer" [innerHTML]="icon | sanitizeHtml" (mousedown)="onMouseDown($event)">
 </div>
-<div *ngIf="showPopup" class="NgxEditor__Popup">
 
+<!-- popup -->
+<div *ngIf="showPopup" class="NgxEditor__Popup">
   <form class="NgxEditor__Popup--Form" [formGroup]="form" (ngSubmit)="insertLink($event)">
 
     <div class="NgxEditor__Popup--FormGroup">
@@ -29,5 +30,6 @@
     </div>
 
     <button type="submit" [disabled]="!form.valid || !form.dirty">{{getLabel('insert')}}</button>
+
   </form>
 </div>

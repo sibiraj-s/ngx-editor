@@ -1,21 +1,18 @@
 <div class="NgxEditor__MenuBar">
-  <ng-container *ngFor="let toolbarItem of toolbar; let lastToolbarItem = last">
 
+  <ng-container *ngFor="let toolbarItem of toolbar; let lastToolbarItem = last">
     <ng-container *ngFor="let item of toolbarItem; let lastItem = last">
 
       <!-- simple icons -->
-      <ngx-simple-command [name]="item" [class]="iconContainerClass"
-        *ngIf="simpleCommands.includes(item)">
+      <ngx-simple-command [name]="item" [class]="iconContainerClass" *ngIf="simpleCommands.includes(item)">
       </ngx-simple-command>
 
       <!-- link -->
-      <ngx-link [name]="item" [class]="iconContainerClass"
-        *ngIf="item === 'link'">
+      <ngx-link [name]="item" [class]="iconContainerClass" *ngIf="item === 'link'">
       </ngx-link>
 
       <!-- image -->
-      <ngx-image [name]="item" [class]="iconContainerClass"
-        *ngIf="item === 'image'">
+      <ngx-image [name]="item" [class]="iconContainerClass" *ngIf="item === 'image'">
       </ngx-image>
 
       <!-- dropdown -->
@@ -35,5 +32,5 @@
   <ng-container *ngIf="customMenuRef">
     <ng-container [ngTemplateOutlet]="customMenuRef"></ng-container>
   </ng-container>
-  <!-- <ng-container *ngTemplateOutlet="ngxEditorCustomMenu"></ng-container> -->
+  
 </div>
