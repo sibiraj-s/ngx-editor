@@ -30,6 +30,7 @@ export class AppModule {}
 ```ts
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Validators } from 'ngx-editor';
 
 @Component({
   selector: 'app-root',
@@ -38,7 +39,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AppComponent {
   form = new FormGroup({
-    editorContent: new FormControl(null),
+    editorContent: new FormControl(null, [Validators.required()]),
   });
 
   ngOnInit() {
@@ -55,4 +56,12 @@ export class AppComponent {
 <form [formGroup]="form">
   <ngx-editor formControlName="editorContent"></ngx-editor>
 </form>
+```
+
+### Validators
+
+```ts
+import { Validators } from 'ngx-editor';
+
+Validators.required(schema); // pass schema if you are using a custom schema else leave it empty
 ```
