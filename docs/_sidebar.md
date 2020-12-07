@@ -4,6 +4,7 @@
   - [Configuration](configuration.md)
   - [Plugins](plugins.md)
   - [Schema](schema.md)
+  - [Convert JSON doc to HTML](doc-html-doc.md)
 
 - Examples
 
@@ -16,5 +17,4 @@
   - [CodeMirror](codemirror.md)
   - [Reactive Forms](reactive-forms.md)
   - [Ng Model Binding](ng-model.md)
-  - [Working with HTML](working-with-html.md)
   - [Working with Links](working-with-links.md)

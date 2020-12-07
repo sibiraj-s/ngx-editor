@@ -1,0 +1,26 @@
+import MarkToggle from './MarkToogle';
+import BlockquoteToggle from './BlockquoteToggle';
+import ListItemToggle from './ListItemToggle';
+import Heading from './Heading';
+import TextAlign from './TextAlign';
+import Link from './Link';
+import Image from './Image';
+
+export const STRONG = new MarkToggle('strong');
+export const EM = new MarkToggle('em');
+export const CODE = new MarkToggle('code');
+export const BLOCKQUOTE = new BlockquoteToggle();
+export const UL = new ListItemToggle(true);
+export const OL = new ListItemToggle(false);
+export const H1 = new Heading(1);
+export const H2 = new Heading(2);
+export const H3 = new Heading(3);
+export const H4 = new Heading(4);
+export const H5 = new Heading(5);
+export const H6 = new Heading(6);
+export const ALIGN_LEFT = new TextAlign('left');
+export const ALIGN_CENTER = new TextAlign('center');
+export const ALIGN_RIGHT = new TextAlign('right');
+export const ALIGN_JUSTIFY = new TextAlign('justify');
+export const LINK = new Link();
+export const IMAGE = new Image();

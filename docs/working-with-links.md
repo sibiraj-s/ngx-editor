@@ -4,15 +4,9 @@ To enable link support in menu
 
 ```ts
 import { schema } from 'ngx-editor';
-import { menu } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
-  plugins: [
-    menu({
-      toolbar: [
-        ['link'] // add this
-      ]
-  ],
+  menu: [['link']],
 });
 ```
 

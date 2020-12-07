@@ -1,11 +1,9 @@
 import { EditorView } from 'prosemirror-view';
-import { Plugin, PluginKey } from 'prosemirror-state';
+import { NodeSelection, Plugin, PluginKey } from 'prosemirror-state';
 import { Mark } from 'prosemirror-model';
 
-import {
-  calculateBubblePos, isLinkActive, getSelectionMarks,
-  removeLink
-} from 'ngx-editor/helpers';
+import { calculateBubblePos, isLinkActive, getSelectionMarks } from 'ngx-editor/helpers';
+import { removeLink } from 'ngx-editor/commands';
 
 class LinkOptions {
   bubbleEL: HTMLElement = document.createElement('div');
@@ -34,17 +32,22 @@ class LinkOptions {
 
     const link = document.createElement('a');
     link.href = item.attrs.href;
-    link.target = item.attrs.target;
+    link.target = '_blank';
     link.innerText = item.attrs.href;
     link.title = item.attrs.href;
+
+    link.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    }, { once: true });
 
     const commands = document.createElement('div');
     commands.classList.add('commands');
 
     const removeOpt = document.createElement('button');
-    removeOpt.type = 'button';
+    removeOpt.textContent = 'Remove Link';
+    removeOpt.title = 'Remove link';
     removeOpt.classList.add('command');
-    removeOpt.textContent = 'Remove';
 
     removeOpt.addEventListener('mousedown', removeCB, { once: true });
 
@@ -65,11 +68,17 @@ class LinkOptions {
   }
 
   update(view: EditorView): void {
-    const { state } = view;
-    const { schema } = state;
+    const { state, dispatch } = view;
+    const { schema, selection } = state;
 
     if (!schema.marks.link) {
       return;
+    }
+
+    if (selection instanceof NodeSelection) {
+      if (selection.node.type.name === 'image') {
+        return;
+      }
     }
 
     const hasFocus = view.hasFocus();
@@ -90,7 +99,11 @@ class LinkOptions {
       e.preventDefault();
       e.stopPropagation();
 
-      removeLink(view);
+      if (e.button !== 0) {
+        return;
+      }
+
+      removeLink()(state, dispatch);
       view.focus();
     };
 

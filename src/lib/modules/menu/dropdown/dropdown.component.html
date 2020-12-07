@@ -1,0 +1,10 @@
+<div class="NgxEditor__Dropdown--Text" (mousedown)="toggleDropdown($event)">
+  {{getName(activeItem || selected)}}
+</div>
+
+<div class="NgxEditor__Dropdown--DropdownMenu" *ngIf="isDropdownOpen">
+  <div class="NgxEditor__Dropdown--Item" *ngFor="let item of items" (mousedown)="onClick($event, item)"
+    [ngClass]="{'NgxEditor__Dropdown--Active': item === activeItem, 'NgxEditor--Disabled':disabledItems.includes(item)}">
+    {{getName(item)}}
+  </div>
+</div>

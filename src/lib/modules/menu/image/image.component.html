@@ -1,0 +1,35 @@
+<div class="NgxEditor__MenuItem--IconContainer" [innerHTML]="icon | sanitizeHtml" (mousedown)="onMouseDown($event)">
+</div>
+
+<!-- popup -->
+<div *ngIf="showPopup" class="NgxEditor__Popup">
+  <form class="NgxEditor__Popup--Form" [formGroup]="form" (ngSubmit)="insertLink($event)">
+
+    <div class="NgxEditor__Popup--FormGroup">
+      <div class="NgxEditor__Popup--Col">
+        <label class="NgxEditor__Popup--Label">{{getLabel('url')}}</label>
+        <input type="href" id="href" formControlName="src" autofocus autocomplete="off" />
+        <div *ngIf="src.touched && src.invalid" class="NgxEditor__HelpText NgxEditor__HelpText--Error">
+          {{ src.errors.pattern && 'Please enter valid url.' }}
+        </div>
+      </div>
+    </div>
+
+    <div class="NgxEditor__Popup--FormGroup">
+      <div class="NgxEditor__Popup--Col">
+        <label class="NgxEditor__Popup--Label">{{getLabel('altText')}}</label>
+        <input type="text" formControlName="alt" autocomplete="off" />
+      </div>
+    </div>
+
+    <div class="NgxEditor__Popup--FormGroup">
+      <div class="NgxEditor__Popup--Col">
+        <label class="NgxEditor__Popup--Label">{{getLabel('title')}}</label>
+        <input type="text" formControlName="title" autocomplete="off" />
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!form.valid || !form.dirty">{{getLabel('insert')}}</button>
+
+  </form>
+</div>

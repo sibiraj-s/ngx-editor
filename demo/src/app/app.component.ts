@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { EditorView } from 'prosemirror-view';
 import { environment } from '../environments/environment';
 
 import jsonDoc from './doc';
@@ -12,10 +13,15 @@ import jsonDoc from './doc';
 
 export class AppComponent {
   isProdMode = environment.production;
+  editorView: EditorView;
 
   editorContent: object = jsonDoc;
 
   editorContentChange(doc: object): void {
     this.editorContent = doc;
+  }
+
+  init(view: EditorView): void {
+    this.editorView = view;
   }
 }

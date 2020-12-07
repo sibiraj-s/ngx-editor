@@ -2,14 +2,10 @@
 
 ```ts
 import { schema } from 'ngx-editor';
-import { menu } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
-  plugins: [
-    menu({
-      toolbar: [
-        ['image'] // add this to enable inserting links from menubar
-      ]
+  menu: [
+    ['image'], // add this to enable inserting links from menubar
   ],
 });
 ```

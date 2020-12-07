@@ -9,11 +9,9 @@ import { NgxEditorModule } from 'ngx-editor';
 import schema from './schema';
 import plugins from './plugins';
 import nodeViews from './nodeviews';
+import { CustomMenuComponent } from './components/custom-menu/custom-menu.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -23,6 +21,10 @@ import nodeViews from './nodeviews';
       plugins,
       nodeViews
     }),
+  ],
+  declarations: [
+    AppComponent,
+    CustomMenuComponent,
   ],
   bootstrap: [AppComponent]
 })

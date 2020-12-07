@@ -1,0 +1,168 @@
+$primary: #1a73e8;
+$light-gray: #f1f1f1;
+
+.NgxEditor {
+  background: white;
+  color: black;
+  background-clip: padding-box;
+  border-radius: 4px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.NgxEditor--Disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.NgxEditor__Placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
+.NgxEditor__Content {
+  padding: 0.5rem;
+  white-space: pre-wrap;
+
+  p {
+    margin: 0;
+    margin-bottom: 0.7rem;
+  }
+
+  blockquote {
+    padding-left: 1rem;
+    border-left: 3px solid #ddd;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.NgxEditor__FloatingBubble {
+  position: absolute;
+  z-index: 20;
+  background: white;
+  border: 1px solid silver;
+  border-radius: 4px;
+  padding: 0.3rem;
+  margin-bottom: 0.3rem;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+
+  &::before,
+  &::after {
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    left: 50%;
+    margin-left: -5px;
+    border: 5px solid transparent;
+    border-bottom-width: 0;
+  }
+
+  &::before {
+    bottom: -6px;
+    border-top-color: silver;
+  }
+
+  &::after {
+    bottom: -4.5px;
+    border-top-color: white;
+  }
+
+  a {
+    display: inline-block;
+    max-width: 15rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 2px;
+  }
+
+  .commands {
+    display: flex;
+    margin-left: 0.5rem;
+
+    .command {
+      padding: 2px;
+      border-radius: 2px;
+      display: flex;
+      padding: 2px;
+      border: none;
+      white-space: nowrap;
+      background-color: $light-gray;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.NgxEditor__ImageWrapper {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  padding: 1px;
+
+  &.NgxEditor__Resizer--Active {
+    padding: 1px;
+    border: 1px solid $primary;
+  }
+
+  .NgxEditor__ResizeHandle {
+    position: absolute;
+    display: none;
+    height: 100%;
+    width: 100%;
+
+    .NgxEditor__ResizeHandle--TL,
+    .NgxEditor__ResizeHandle--BL,
+    .NgxEditor__ResizeHandle--TR,
+    .NgxEditor__ResizeHandle--BR {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      background-color: $primary;
+      border: 1px solid white;
+    }
+
+    .NgxEditor__ResizeHandle--BR {
+      bottom: -5px;
+      right: -5px;
+      cursor: se-resize;
+    }
+
+    .NgxEditor__ResizeHandle--TR {
+      top: -5px;
+      right: -5px;
+      cursor: ne-resize;
+    }
+
+    .NgxEditor__ResizeHandle--TL {
+      top: -5px;
+      left: -5px;
+      cursor: nw-resize;
+    }
+
+    .NgxEditor__ResizeHandle--BL {
+      bottom: -5px;
+      left: -5px;
+      cursor: sw-resize;
+    }
+  }
+}
+
+// prosemirror
+.ProseMirror {
+  outline: none;
+}
+
+.NgxEditor__HelpText {
+  font-size: 80%;
+
+  &.NgxEditor__HelpText--Error {
+    color: red;
+  }
+}
