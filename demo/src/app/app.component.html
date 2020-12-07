@@ -16,7 +16,7 @@
     <form [formGroup]="form">
 
       <div class="editor">
-        <ngx-editor formControlName="editorContent" (init)="init($event)" [customMenuRef]="customMenu" (blur)="onBlur($event)">
+        <ngx-editor formControlName="editorContent" (init)="init($event)" [customMenuRef]="customMenu">
         </ngx-editor>
       </div>
 
