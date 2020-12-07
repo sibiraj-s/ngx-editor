@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { DomSanitizer } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 
 import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 
@@ -7,7 +7,7 @@ describe('SanitizeHtmlPipe', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
-        DomSanitizer,
+         BrowserModule,
       ]
     }).compileComponents();
   });
@@ -18,9 +18,13 @@ describe('SanitizeHtmlPipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  it('shoudl sanitize html', () => {
+  it('should sanitize html', () => {
     const sanitizer = TestBed.inject(DomSanitizer);
     const pipe = new SanitizeHtmlPipe(sanitizer);
-    expect(pipe.transform('<svg></svg>')).toBe('<svg></svg>');
+
+    const html = '<svg></svg>';
+    const result =  pipe.transform(html);
+    const expected = sanitizer.bypassSecurityTrustHtml(html);
+    expect(result).toEqual(expected);
   });
 });
