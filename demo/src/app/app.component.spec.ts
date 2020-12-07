@@ -1,10 +1,11 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NgxEditorModule } from 'ngx-editor';
 
 import { AppComponent } from './app.component';
-import { DebugElement } from '@angular/core';
+import { CustomMenuComponent } from './components/custom-menu/custom-menu.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -17,8 +18,9 @@ describe('AppComponent', () => {
         NgxEditorModule
       ],
       declarations: [
-        AppComponent
-      ],
+        AppComponent,
+        CustomMenuComponent
+      ]
     }).compileComponents();
   });
 

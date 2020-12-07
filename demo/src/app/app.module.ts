@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -12,10 +12,6 @@ import nodeViews from './nodeviews';
 import { CustomMenuComponent } from './components/custom-menu/custom-menu.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CustomMenuComponent
-  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -26,10 +22,11 @@ import { CustomMenuComponent } from './components/custom-menu/custom-menu.compon
       nodeViews
     }),
   ],
-  bootstrap: [AppComponent],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ]
+  declarations: [
+    AppComponent,
+    CustomMenuComponent,
+  ],
+  bootstrap: [AppComponent]
 })
 
 export class AppModule { }
