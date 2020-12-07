@@ -12,13 +12,17 @@
         <img src="https://badgen.net/npm/license/ngx-editor" />
       </div>
     </div>
+
     <div class="editor">
       <ngx-editor [ngModel]="editorContent" (ngModelChange)="editorContentChange($event)" (init)="init($event)"
         [customMenuRef]="customMenu">
       </ngx-editor>
     </div>
+
+    <!-- custom menu -->
     <ng-template #customMenu>
       <app-custom-menu [editorView]="editorView"></app-custom-menu>
     </ng-template>
   </div>
+
 </div>
