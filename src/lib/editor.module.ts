@@ -1,37 +1,19 @@
 import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgxEditorConfig } from './types';
 
 import { NgxEditorComponent } from './editor.component';
 import { NgxEditorServiceConfig, provideMyServiceOptions } from './editor.service';
-import { MenuComponent } from './components/menu/menu.component';
-import { SimpleCommandComponent } from './components/menu/simple-command/simple-command.component';
-import { LinkComponent } from './components/menu/link/link.component';
-import { SanitizeHtmlPipe } from './pipe/sanitize-html.pipe';
-import { DropdownComponent } from './components/menu/dropdown/dropdown.component';
-import { ImageComponent } from './components/menu/image/image.component';
+import { MenuModule } from './modules/menu/menu.module';
 
 const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorConfig');
 
 @NgModule({
   imports: [
-    CommonModule,
-    ReactiveFormsModule
+    MenuModule
   ],
   declarations: [
-    NgxEditorComponent,
-
-    // pipes
-    SanitizeHtmlPipe,
-
-    // other components
-    MenuComponent,
-    SimpleCommandComponent,
-    LinkComponent,
-    DropdownComponent,
-    ImageComponent,
+    NgxEditorComponent
   ],
   exports: [NgxEditorComponent],
 })

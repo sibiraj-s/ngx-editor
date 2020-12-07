@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SimpleCommandComponent } from './simple-command.component';
-import { SanitizeHtmlPipe } from '../../../pipe/sanitize-html.pipe';
+import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 
 describe('SimpleCommandComponent', () => {
   let component: SimpleCommandComponent;

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LinkComponent } from './link.component';
-import { SanitizeHtmlPipe } from '../../../pipe/sanitize-html.pipe';
+import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 
 describe('LinkComponent', () => {
   let component: LinkComponent;

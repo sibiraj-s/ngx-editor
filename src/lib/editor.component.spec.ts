@@ -1,9 +1,9 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { NgxEditorComponent } from './editor.component';
+import { MenuModule } from './modules/menu/menu.module';
 
 describe('NgxEditorComponent', () => {
   let component: NgxEditorComponent;
@@ -11,7 +11,9 @@ describe('NgxEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [
+        MenuModule
+      ],
       declarations: [
         NgxEditorComponent,
       ]
