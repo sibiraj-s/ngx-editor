@@ -13,6 +13,16 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.16 (2020-12-07)
+
+#### Features
+
+- added custom `required validator` ([6af3ce0](https://github.com/sibiraj-s/ngx-editor/commit/6af3ce0))
+
+#### Bug Fixes
+
+- fix touched property not registered when used with reactive forms ([6af3ce0](https://github.com/sibiraj-s/ngx-editor/commit/6af3ce0))
+
 ## v5.0.0-alpha.15 (2020-12-07)
 
 #### Features
