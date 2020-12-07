@@ -48,7 +48,7 @@ export class SimpleCommandComponent implements OnInit {
   }
 
   getTitle(name: string): string {
-    return this.ngxeService.i18n.get(name);
+    return this.ngxeService.locals.get(name);
   }
 
   ngOnInit(): void {

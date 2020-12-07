@@ -27,12 +27,12 @@ const defaults = {
   title: 'Title'
 };
 
-export type I18nKeys = keyof typeof defaults;
+export type LocalsKeys = keyof typeof defaults;
 
-class I18n {
+class Locals {
   locals = defaults;
 
-  constructor(newLocals: Partial<Record<I18nKeys, string>> = {}) {
+  constructor(newLocals: Partial<Record<LocalsKeys, string>> = {}) {
     this.locals = Object.assign({}, defaults, newLocals);
   }
 
@@ -41,4 +41,4 @@ class I18n {
   }
 }
 
-export default I18n;
+export default Locals;

@@ -2,7 +2,7 @@ import { EditorState, Plugin } from 'prosemirror-state';
 import { Node as ProsemirrorNode, Schema } from 'prosemirror-model';
 import { EditorView, Decoration, NodeView } from 'prosemirror-view';
 
-import { I18nKeys } from './i18n';
+import { LocalsKeys } from './Locals';
 
 type TCR = { dom: HTMLElement, update: (state: EditorState) => void };
 
@@ -34,5 +34,5 @@ export interface NgxEditorConfig {
   plugins?: Plugin[];
   nodeViews?: NodeViews;
   menu?: Toolbar;
-  i18n?: Partial<Record<I18nKeys, string>>;
+  locals?: Partial<Record<LocalsKeys, string>>;
 }

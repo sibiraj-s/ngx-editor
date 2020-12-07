@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 import { placeholder } from 'ngx-editor/plugins';
 
 import { NgxEditorConfig, NodeViews, Toolbar } from './types';
-import I18n from './i18n';
+import Locals from './Locals';
 
 import { schema } from './schema';
 
@@ -33,7 +33,7 @@ export class NgxEditorServiceConfig {
   public nodeViews: NodeViews = {};
   public schema: Schema = DEFAULT_SCHEMA;
   public menu = DEFAULT_MENU;
-  public i18n = {};
+  public locals = {};
 }
 
 @Injectable({
@@ -50,8 +50,8 @@ export class NgxEditorService {
     this.config = config;
   }
 
-  get i18n(): I18n {
-    return new I18n(this.config.i18n);
+  get locals(): Locals {
+    return new Locals(this.config.locals);
   }
 
   set view(v: EditorView) {
@@ -77,6 +77,6 @@ export function provideMyServiceOptions(config?: NgxEditorConfig): NgxEditorServ
     nodeViews: config?.nodeViews ?? {},
     menu: config?.menu ?? DEFAULT_MENU,
     schema: config?.schema ?? DEFAULT_SCHEMA,
-    i18n: config.i18n ?? {}
+    locals: config.locals ?? {}
   };
 }

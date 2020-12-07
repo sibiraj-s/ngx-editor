@@ -101,7 +101,7 @@ import plugins from './plugins';
         ['link', 'image'],
         ['align_left', 'align_center', 'align_right', 'align_justify'],
       ],
-      i18n: {
+      locals: {
         // menu
         bold: 'Bold',
         italic: 'Italic',

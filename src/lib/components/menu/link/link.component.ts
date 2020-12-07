@@ -64,7 +64,7 @@ export class LinkComponent {
   }
 
   getLabel(key: string): string {
-    return this.ngxeService.i18n.get(key);
+    return this.ngxeService.locals.get(key);
   }
 
   hideForm(): void {
