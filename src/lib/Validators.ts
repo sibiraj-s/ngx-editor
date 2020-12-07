@@ -3,6 +3,7 @@ import { Schema } from 'prosemirror-model';
 
 import schema from './schema';
 
+// @dynamic
 export class Validators {
 
   static required(customSchema?: Schema): ValidatorFn {
