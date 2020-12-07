@@ -16,6 +16,10 @@ describe('DropdownComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DropdownComponent);
     component = fixture.componentInstance;
+
+    component.group = 'heading';
+    component.items = ['h1', 'h2'];
+
     fixture.detectChanges();
   });
 
