@@ -13,6 +13,94 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.15 (2020-12-07)
+
+#### Features
+
+- added `focusIn` and `focusOut` events emitted on `focus` and `blur` events respecitvely.
+- added `init` event, dispatched once editor is initialized. emits `EditorView` object
+- added `removeLink` command
+
+```ts
+import { removeLink } from 'ngx-editor/commands';
+```
+
+- added alignment options to menu
+
+```ts
+{
+  // config
+  menu: [['align_left', 'align_center', 'align_right', 'align_justify']];
+}
+```
+
+#### Dependency Updates
+
+- update `prosemirror-view`
+- removed `prosemirror-schema-basic` dependency
+
+#### Enhancements
+
+- allow images to be resized from all directions
+- suport locals for all menu items
+- improved click area on menu icons
+- it is more easier to write custom menus now, more angular way
+
+#### Bug Fixes
+
+- fix clicking on links in the bubble doesn't open in new tab
+
+#### Breaking Changes
+
+- removed `menu` plugin
+
+**Before**
+
+```ts
+import { menu } from 'ngx-editor';
+
+NgxEditorModule.forRoot({
+  plugins: [
+    menu({
+      // default options (Optional)
+      toolbar: [
+        ['bold', 'italic', 'code'], // inline icons
+        ['ordered_list', 'bullet_list'],
+        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+      ],
+      labels: {
+        bold: 'Bold',
+        italics: 'Italics',
+        code: 'Code',
+        ordered_list: 'Ordered List',
+        bullet_list: 'Bullet List',
+        heading: 'Heading',
+      },
+    }),
+  ],
+});
+```
+
+**After**
+
+```ts
+NgxEditorModule.forRoot({
+  menu: [
+    ['bold', 'italic'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ],
+  locals: {
+    bold: 'Bold',
+    italics: 'Italics',
+    // '...'
+  },
+});
+```
+
 ## v5.0.0-alpha.14 (2020-11-30)
 
 #### Features
