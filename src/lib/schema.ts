@@ -10,3 +10,5 @@ export const schema = new Schema({
   marks,
   nodes
 });
+
+export default schema;

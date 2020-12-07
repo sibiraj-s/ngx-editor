@@ -13,11 +13,14 @@
       </div>
     </div>
 
-    <div class="editor">
-      <ngx-editor [ngModel]="editorContent" (ngModelChange)="editorContentChange($event)" (init)="init($event)"
-        [customMenuRef]="customMenu">
-      </ngx-editor>
-    </div>
+    <form [formGroup]="form">
+
+      <div class="editor">
+        <ngx-editor formControlName="editorContent" (init)="init($event)" [customMenuRef]="customMenu" (blur)="onBlur($event)">
+        </ngx-editor>
+      </div>
+
+    </form>
 
     <!-- custom menu -->
     <ng-template #customMenu>

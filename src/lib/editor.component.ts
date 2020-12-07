@@ -1,6 +1,7 @@
 import {
   Component, ViewChild, ElementRef,
-  forwardRef, OnDestroy, ViewEncapsulation, OnInit, Output, EventEmitter, Input, TemplateRef
+  forwardRef, OnDestroy, ViewEncapsulation, OnInit,
+  Output, EventEmitter, Input, TemplateRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -27,6 +28,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
 
   view: EditorView;
   private onChange: (value: object) => void;
+  private onTouched: () => void;
 
   config: NgxEditorServiceConfig;
 
@@ -53,7 +55,9 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     this.onChange = fn;
   }
 
-  registerOnTouched(): void { }
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
 
   private parseDoc(contentJson: object): ProsemirrorNode {
     if (!contentJson) {
@@ -130,6 +134,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
           return true;
         },
         blur: () => {
+          this.onTouched();
           this.focusOut.emit();
           return true;
         }

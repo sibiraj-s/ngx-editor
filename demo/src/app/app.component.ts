@@ -1,6 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
 import { environment } from '../environments/environment';
+import { Validators } from 'ngx-editor';
 
 import jsonDoc from './doc';
 
@@ -15,10 +17,12 @@ export class AppComponent {
   isProdMode = environment.production;
   editorView: EditorView;
 
-  editorContent: object = jsonDoc;
+  form = new FormGroup({
+    editorContent: new FormControl(jsonDoc, Validators.required())
+  });
 
-  editorContentChange(doc: object): void {
-    this.editorContent = doc;
+  get doc(): AbstractControl {
+    return this.form.get('editorContent');
   }
 
   init(view: EditorView): void {
