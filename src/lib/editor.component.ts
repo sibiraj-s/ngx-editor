@@ -1,7 +1,8 @@
 import {
   Component, ViewChild, ElementRef,
   forwardRef, OnDestroy, ViewEncapsulation, OnInit,
-  Output, EventEmitter, Input, TemplateRef
+  Output, EventEmitter, Input, TemplateRef,
+  OnChanges, SimpleChanges
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -23,7 +24,7 @@ import { NgxEditorService, NgxEditorServiceConfig } from './editor.service';
   encapsulation: ViewEncapsulation.None
 })
 
-export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestroy {
+export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestroy, OnChanges {
   @ViewChild('ngxEditor', { static: true }) ngxEditor: ElementRef;
 
   view: EditorView;
@@ -33,6 +34,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   config: NgxEditorServiceConfig;
 
   @Input() customMenuRef: TemplateRef<any>;
+  @Input() placeholder: string;
   @Output() init = new EventEmitter<EditorView>();
   @Output() focusOut = new EventEmitter<void>();
   @Output() focusIn = new EventEmitter<void>();
@@ -150,11 +152,24 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     this.editorInitialized = true;
   }
 
+  setPlaceholder(newPlaceholder?: string): void {
+    const { dispatch, state: { tr } } = this.view;
+    const placeholder = newPlaceholder ?? this.placeholder;
+    dispatch(tr.setMeta('UPDATE_PLACEHOLDER', placeholder));
+  }
+
   ngOnInit(): void {
     this.createEditor();
+    this.setPlaceholder();
   }
 
   ngOnDestroy(): void {
     this.view.destroy();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes?.placeholder && !changes.placeholder.isFirstChange()) {
+      this.setPlaceholder(changes.placeholder.currentValue);
+    }
   }
 }
