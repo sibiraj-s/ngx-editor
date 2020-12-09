@@ -114,7 +114,7 @@ Edit the stackblitz here https://stackblitz.com/edit/ngx-editor
 
 All contributions are welcome.
 
-See [./CONTRIBUTING.md](./github/CONTRIBUTING.md) to get started.
+See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) to get started.
 
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
