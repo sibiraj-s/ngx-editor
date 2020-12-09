@@ -13,6 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.17 (2020-12-09)
+
+#### Bug Fixes
+
+- prevent menu icons from shrinking on reszie ([b4f457c](https://github.com/sibiraj-s/ngx-editor/commit/b4f457c))
+- fix image plugin exported with incorrect name ([ac365e7](https://github.com/sibiraj-s/ngx-editor/commit/ac365e7))
+
+#### Features
+
+- allow placeholder to be set vai component input ([ef4879a](https://github.com/sibiraj-s/ngx-editor/commit/ef4879a))
+
 ## v5.0.0-alpha.16 (2020-12-07)
 
 #### Features
