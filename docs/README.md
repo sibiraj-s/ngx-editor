@@ -56,7 +56,7 @@ export class AppModule {}
 Then in HTML
 
 ```html
-<ngx-editor [ngModel]="jsonDoc"></ngx-editor>
+<ngx-editor [ngModel]="jsonDoc" placeholder="Type here"></ngx-editor>
 ```
 
 For `ngModel` to work, You must import `FormsModule` from `@angular/forms`

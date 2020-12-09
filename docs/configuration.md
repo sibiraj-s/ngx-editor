@@ -46,3 +46,9 @@ NgxEditorModule.forRoot({
   nodeViews: {}, // optional, for example see https://prosemirror.net/examples/footnote/
 });
 ```
+
+**Note**: _Providing new options to the config overrides the defaults_
+
+## Component Props
+
+- placeholder [`string`] - (Optional) - A placeholder for the editor. If you are using custom set of plugins, you must also include `placeholder` plugin from `ngx-editor/plugins` plugins for this to work
