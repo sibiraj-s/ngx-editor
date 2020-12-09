@@ -84,7 +84,7 @@ NgxEditorModule.forRoot({
 
 ## Browser Compatibility
 
-All Evergreen-Browsers are supported
+Mostly works on all Evergreen-Browsers like
 
 - Google Chrome
 - Microsoft Edge
