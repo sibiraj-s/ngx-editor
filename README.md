@@ -110,6 +110,12 @@ Icons are from https://material.io/resources/icons/
 
 Edit the stackblitz here https://stackblitz.com/edit/ngx-editor
 
+## Contributing
+
+All contributions are welcome.
+
+See [./CONTRIBUTING.md](./github/CONTRIBUTING.md) to get started.
+
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
 [github]: https://sibiraj-s.github.io/
