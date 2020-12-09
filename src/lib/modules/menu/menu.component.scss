@@ -37,6 +37,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
   align-items: center;
   justify-content: center;
   position: relative;
+  flex-shrink: 0;
 
   &:hover {
     background-color: $menu-item-hover-bg-color;
@@ -82,6 +83,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
   position: relative;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 
   &:hover {
     background-color: $dropdown-menu-hover-bg-color;
