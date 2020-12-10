@@ -4,7 +4,7 @@ import { keymap } from 'prosemirror-keymap';
 import { toggleMark, baseKeymap } from 'prosemirror-commands';
 import { Plugin } from 'prosemirror-state';
 
-import { placeholder, link, image } from 'ngx-editor/plugins';
+import { placeholder, image } from 'ngx-editor/plugins';
 
 import { buildInputRules } from './input-rules';
 import schema from '../schema';
@@ -54,7 +54,6 @@ const getPlugins = (): Plugin[] => {
     keymap(baseKeymap),
     buildInputRules(schema),
     placeholder('Type Something here...'),
-    link(),
     image({
       resize: true,
     })

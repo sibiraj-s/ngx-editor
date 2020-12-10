@@ -1,8 +1,9 @@
-import { Component, ElementRef, HostBinding, HostListener, Input } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
 
 import { NgxEditorService } from '../../../editor.service';
+import { SharedService } from '../../../services/shared/shared.service';
 import Icon from '../../../icons';
 import { Link as LinkCommand } from '../MenuCommands';
 
@@ -12,10 +13,13 @@ import { Link as LinkCommand } from '../MenuCommands';
   styleUrls: ['./link.component.scss']
 })
 
-export class LinkComponent {
+export class LinkComponent implements OnDestroy {
   showPopup = false;
   isActive = false;
-  canExecute = true;
+  private canExecute = true;
+  private editorView: EditorView;
+
+  @Input() name: string;
 
   form = new FormGroup({
     href: new FormControl('', [
@@ -26,16 +30,17 @@ export class LinkComponent {
     openInNewTab: new FormControl(true)
   });
 
-  editorView: EditorView;
-  @Input() name: string;
+  constructor(
+    private el: ElementRef,
+    private ngxeService: NgxEditorService,
+    private sharedService: SharedService
+  ) {
+    this.editorView = this.sharedService.view;
 
-  constructor(private el: ElementRef, private ngxeService: NgxEditorService) {
-    this.editorView = this.ngxeService.view;
-
-    this.ngxeService.editorUpdate.subscribe((view: EditorView) => {
+    this.sharedService.plugin.update.subscribe((view: EditorView) => {
       this.update(view);
     });
-   }
+  }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
     return this.isActive || this.showPopup;
@@ -67,7 +72,7 @@ export class LinkComponent {
     return this.ngxeService.locals.get(key);
   }
 
-  hideForm(): void {
+  private hideForm(): void {
     this.showPopup = false;
     this.form.reset({
       href: '',
@@ -97,7 +102,7 @@ export class LinkComponent {
     }
   }
 
-  setText = () => {
+  private setText = () => {
     const { state: { selection, doc } } = this.editorView;
     const { empty, from, to } = selection;
     const selectedText = !empty ? doc.textBetween(from, to) : '';
@@ -108,7 +113,7 @@ export class LinkComponent {
     }
   }
 
-  update = (view: EditorView) => {
+  private update = (view: EditorView) => {
     const { state } = view;
     this.isActive = LinkCommand.isActive(state, { strict: false });
     this.canExecute = LinkCommand.canExecute(state);
@@ -132,5 +137,9 @@ export class LinkComponent {
       LinkCommand.update(attrs, state, dispatch);
     }
     this.hideForm();
+  }
+
+  ngOnDestroy(): void {
+    this.sharedService.plugin.update.unsubscribe();
   }
 }
