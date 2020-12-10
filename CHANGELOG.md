@@ -27,13 +27,13 @@ All notable changes to this project will be documented in this file.
 Before
 
 ```ts
-import {link} from 'ngx-editor/plugins`
+import { link } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
   plugins: [
-    link() // remove this
-  ]
-})
+    link(), // remove this
+  ],
+});
 ```
 
 ## v5.0.0-alpha.17 (2020-12-09)
