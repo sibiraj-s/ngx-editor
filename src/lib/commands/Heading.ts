@@ -33,22 +33,24 @@ class Heading {
 
   isActive(state: EditorState): boolean {
     const { schema } = state;
-    const nodes = getSelectionNodes(state);
+    const nodesInSelection = getSelectionNodes(state);
 
     const type: NodeType = schema.nodes.heading;
     if (!type) {
       return false;
     }
 
+    const supportedNodes = [
+      type,
+      schema.nodes.text,
+      schema.nodes.blockquote
+    ];
+
     // heading is a text node
     // don't mark as active when it has more nodes
-    const unSupportedNodes = nodes.filter(node => {
-      return ![type, schema.nodes.text].includes(node.type);
+    const nodes = nodesInSelection.filter(node => {
+      return supportedNodes.includes(node.type);
     });
-
-    if (unSupportedNodes.length) {
-      return false;
-    }
 
     const acitveNode = nodes.find((node: ProsemirrorNode) => {
       return node.attrs.level === this.level;
