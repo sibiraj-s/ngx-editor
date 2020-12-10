@@ -20,7 +20,15 @@ import { CustomMenuComponent } from './components/custom-menu/custom-menu.compon
     NgxEditorModule.forRoot({
       schema,
       plugins,
-      nodeViews
+      nodeViews,
+      menu: [
+        ['bold', 'italic'],
+        ['code', 'blockquote'],
+        ['ordered_list', 'bullet_list'],
+        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+        ['link', 'image'],
+        ['align_left', 'align_center', 'align_right', 'align_justify'],
+      ]
     }),
   ],
   declarations: [
