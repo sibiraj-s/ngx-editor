@@ -2,7 +2,7 @@ import {
   Component, ViewChild, ElementRef,
   forwardRef, OnDestroy, ViewEncapsulation, OnInit,
   Output, EventEmitter, Input, TemplateRef,
-  OnChanges, SimpleChanges, Injector,
+  OnChanges, SimpleChanges,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -45,7 +45,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
 
   constructor(
     ngxEditorService: NgxEditorService,
-    private injector: Injector,
     private sharedService: SharedService,
   ) {
     this.config = ngxEditorService.config;

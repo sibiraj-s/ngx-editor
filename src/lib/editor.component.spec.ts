@@ -4,6 +4,7 @@ import { DebugElement } from '@angular/core';
 
 import { NgxEditorComponent } from './editor.component';
 import { MenuModule } from './modules/menu/menu.module';
+import { BubbleComponent } from './components/bubble/bubble.component';
 
 describe('NgxEditorComponent', () => {
   let component: NgxEditorComponent;
@@ -16,6 +17,7 @@ describe('NgxEditorComponent', () => {
       ],
       declarations: [
         NgxEditorComponent,
+        BubbleComponent
       ]
     }).compileComponents();
   });

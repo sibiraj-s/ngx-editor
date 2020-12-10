@@ -1,6 +1,6 @@
 import {
-  Component, ElementRef, EventEmitter, OnDestroy,
-  OnInit, Output, Renderer2
+  Component, ElementRef, OnDestroy,
+  OnInit, Renderer2
 } from '@angular/core';
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
@@ -20,8 +20,6 @@ export class BubbleComponent implements OnInit, OnDestroy {
   private view: EditorView;
   activeLinkItem: Mark;
 
-  @Output() private destroy = new EventEmitter<void>();
-
   constructor(
     private sharedService: SharedService,
     private el: ElementRef,
@@ -31,8 +29,6 @@ export class BubbleComponent implements OnInit, OnDestroy {
       this.view = view;
       this.update(view);
     });
-
-    this.sharedService.plugin.destroy.subscribe(this.destroy);
   }
 
   private setDomPosition(view: EditorView): void {
@@ -96,6 +92,5 @@ export class BubbleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sharedService.plugin.update.unsubscribe();
-    this.sharedService.plugin.destroy.unsubscribe();
   }
 }
