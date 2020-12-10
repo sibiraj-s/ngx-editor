@@ -1,9 +1,10 @@
-import { Component, ElementRef, HostBinding, HostListener, Input } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NodeSelection} from 'prosemirror-state';
+import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
 import { NgxEditorService } from '../../../editor.service';
+import { SharedService } from '../../../services/shared/shared.service';
 import Icon from '../../../icons';
 import { Image as ImageCommand } from '../MenuCommands';
 
@@ -12,7 +13,7 @@ import { Image as ImageCommand } from '../MenuCommands';
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss']
 })
-export class ImageComponent  {
+export class ImageComponent implements OnDestroy {
   showPopup = false;
   isActive = false;
 
@@ -25,13 +26,17 @@ export class ImageComponent  {
     title: new FormControl('')
   });
 
-  editorView: EditorView;
+  private editorView: EditorView;
   @Input() name: string;
 
-  constructor(private el: ElementRef, private ngxeService: NgxEditorService) {
-    this.editorView = this.ngxeService.view;
+  constructor(
+    private el: ElementRef,
+    private ngxeService: NgxEditorService,
+    private sharedService: SharedService
+  ) {
+    this.editorView = this.sharedService.view;
 
-    this.ngxeService.editorUpdate.subscribe((view: EditorView) => {
+    this.sharedService.plugin.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -58,7 +63,7 @@ export class ImageComponent  {
     return this.ngxeService.locals.get(key);
   }
 
-  hideForm(): void {
+  private hideForm(): void {
     this.showPopup = false;
     this.form.reset({
       src: '',
@@ -81,7 +86,7 @@ export class ImageComponent  {
     }
   }
 
-  fillForm(): void {
+  private fillForm(): void {
     const { state } = this.editorView;
     const { selection } = state;
     if (selection instanceof NodeSelection && this.isActive) {
@@ -95,7 +100,7 @@ export class ImageComponent  {
     }
   }
 
-  update = (view: EditorView) => {
+  private update = (view: EditorView) => {
     const { state } = view;
     this.isActive = ImageCommand.isActive(state);
   }
@@ -113,5 +118,9 @@ export class ImageComponent  {
 
     ImageCommand.execute(attrs, state, dispatch);
     this.hideForm();
+  }
+
+  ngOnDestroy(): void {
+    this.sharedService.plugin.update.unsubscribe();
   }
 }

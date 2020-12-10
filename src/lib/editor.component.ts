@@ -2,7 +2,7 @@ import {
   Component, ViewChild, ElementRef,
   forwardRef, OnDestroy, ViewEncapsulation, OnInit,
   Output, EventEmitter, Input, TemplateRef,
-  OnChanges, SimpleChanges
+  OnChanges, SimpleChanges, Injector,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -11,6 +11,8 @@ import { EditorView } from 'prosemirror-view';
 import { Node as ProsemirrorNode } from 'prosemirror-model';
 
 import { NgxEditorService, NgxEditorServiceConfig } from './editor.service';
+import { SharedService } from './services/shared/shared.service';
+import { Toolbar } from './types';
 
 @Component({
   selector: 'ngx-editor',
@@ -31,7 +33,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   private onChange: (value: object) => void;
   private onTouched: () => void;
 
-  config: NgxEditorServiceConfig;
+  private config: NgxEditorServiceConfig;
 
   @Input() customMenuRef: TemplateRef<any>;
   @Input() placeholder: string;
@@ -41,8 +43,16 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
 
   private editorInitialized = false;
 
-  constructor(private ngxEditorService: NgxEditorService) {
+  constructor(
+    ngxEditorService: NgxEditorService,
+    private injector: Injector,
+    private sharedService: SharedService,
+  ) {
     this.config = ngxEditorService.config;
+  }
+
+  get menu(): Toolbar {
+    return this.config.menu;
   }
 
   writeValue(value: object | null): void {
@@ -99,16 +109,13 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     }
   }
 
-  onEditorUpdate = (view: EditorView) => {
-    this.ngxEditorService.dispatchEditorUpdate(view);
-  }
-
-  createUpdateWatcherPlugin(): Plugin {
+  private createUpdateWatcherPlugin(): Plugin {
     const plugin = new Plugin({
       key: new PluginKey('ngx-update-watcher'),
       view: () => {
         return {
-          update: this.onEditorUpdate
+          update: (view: EditorView) => this.sharedService.plugin.update.next(view),
+          destroy: () => this.sharedService.plugin.destroy.next()
         };
       }
     });
@@ -116,7 +123,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     return plugin;
   }
 
-  createEditor(): void {
+  private createEditor(): void {
     const { schema, plugins, nodeViews } = this.config;
 
     this.view = new EditorView(this.ngxEditor.nativeElement, {
@@ -133,12 +140,12 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
       handleDOMEvents: {
         focus: () => {
           this.focusIn.emit();
-          return true;
+          return false;
         },
         blur: () => {
           this.onTouched();
           this.focusOut.emit();
-          return true;
+          return false;
         }
       },
       attributes: {
@@ -146,13 +153,13 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
       },
     });
 
-    this.ngxEditorService.view = this.view;
-    this.init.emit(this.view);
-    this.ngxEditorService.setCustomMenuRef(this.customMenuRef);
     this.editorInitialized = true;
+    this.sharedService.view = this.view;
+    this.sharedService.setCustomMenuRef(this.customMenuRef);
+    this.init.emit(this.view);
   }
 
-  setPlaceholder(newPlaceholder?: string): void {
+  private setPlaceholder(newPlaceholder?: string): void {
     const { dispatch, state: { tr } } = this.view;
     const placeholder = newPlaceholder ?? this.placeholder;
     dispatch(tr.setMeta('UPDATE_PLACEHOLDER', placeholder));
@@ -163,13 +170,13 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     this.setPlaceholder();
   }
 
-  ngOnDestroy(): void {
-    this.view.destroy();
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.placeholder && !changes.placeholder.isFirstChange()) {
       this.setPlaceholder(changes.placeholder.currentValue);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.view.destroy();
   }
 }

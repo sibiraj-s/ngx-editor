@@ -1,9 +1,9 @@
-import { Component, Input, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnDestroy, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 
 import { ToolbarItem } from '../../types';
 
-import { NgxEditorService } from '../../editor.service';
+import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'ngx-menu',
@@ -12,7 +12,7 @@ import { NgxEditorService } from '../../editor.service';
   encapsulation: ViewEncapsulation.None
 })
 
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnDestroy {
   @Input() toolbar: any;
   @Input() editorView: EditorView;
 
@@ -29,8 +29,8 @@ export class MenuComponent implements OnInit {
   dropdownContainerClass = ['NgxEditor__Dropdown'];
   seperatorClass = ['NgxEditor__Seperator'];
 
-  constructor(private ngxeService: NgxEditorService) {
-    this.ngxeService.customMenuRefChange.subscribe((ref) => {
+  constructor(private sharedService: SharedService) {
+    this.sharedService.customMenuRefChange.subscribe((ref) => {
       this.customMenuRef = ref;
     });
   }
@@ -43,6 +43,7 @@ export class MenuComponent implements OnInit {
     return false;
   }
 
-  ngOnInit(): void {
+  ngOnDestroy(): void {
+    this.sharedService.customMenuRefChange.unsubscribe();
   }
 }

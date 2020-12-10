@@ -1,7 +1,8 @@
-import { Component, ElementRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 
 import { NgxEditorService } from '../../../editor.service';
+import { SharedService } from '../../../services/shared/shared.service';
 import { SimpleCommands } from '../MenuCommands';
 
 @Component({
@@ -9,8 +10,8 @@ import { SimpleCommands } from '../MenuCommands';
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss']
 })
-export class DropdownComponent implements OnInit {
-  editorView: EditorView;
+export class DropdownComponent implements OnInit, OnDestroy {
+  private editorView: EditorView;
 
   @Input() group: any;
   @Input() items: any;
@@ -18,14 +19,18 @@ export class DropdownComponent implements OnInit {
   isDropdownOpen = false;
   selected: string;
 
-  activeItems = [];
+  private activeItems = [];
   disabledItems = [];
   activeItem: string | null;
 
-  constructor(private ngxeService: NgxEditorService, private el: ElementRef) {
-    this.editorView = this.ngxeService.view;
+  constructor(
+    private ngxeService: NgxEditorService,
+    private sharedService: SharedService,
+    private el: ElementRef
+  ) {
+    this.editorView = this.sharedService.view;
 
-    this.ngxeService.editorUpdate.subscribe((view: EditorView) => {
+    this.sharedService.plugin.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -67,7 +72,7 @@ export class DropdownComponent implements OnInit {
     this.isDropdownOpen = false;
   }
 
-  update = (view: EditorView) => {
+  private update = (view: EditorView) => {
     const { state } = view;
     this.activeItems = [];
     this.disabledItems = [];
@@ -96,4 +101,7 @@ export class DropdownComponent implements OnInit {
     this.selected = this.group;
   }
 
+  ngOnDestroy(): void {
+    this.sharedService.plugin.update.unsubscribe();
+  }
 }

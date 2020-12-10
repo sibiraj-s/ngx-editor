@@ -17,4 +17,3 @@
   - [CodeMirror](codemirror.md)
   - [Reactive Forms](reactive-forms.md)
   - [Ng Model Binding](ng-model.md)
-  - [Working with Links](working-with-links.md)

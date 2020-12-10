@@ -38,73 +38,11 @@ $light-gray: #f1f1f1;
   }
 }
 
-.NgxEditor__FloatingBubble {
-  position: absolute;
-  z-index: 20;
-  background: white;
-  border: 1px solid silver;
-  border-radius: 4px;
-  padding: 0.3rem;
-  margin-bottom: 0.3rem;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-
-  &::before,
-  &::after {
-    content: "";
-    height: 0;
-    width: 0;
-    position: absolute;
-    left: 50%;
-    margin-left: -5px;
-    border: 5px solid transparent;
-    border-bottom-width: 0;
-  }
-
-  &::before {
-    bottom: -6px;
-    border-top-color: silver;
-  }
-
-  &::after {
-    bottom: -4.5px;
-    border-top-color: white;
-  }
-
-  a {
-    display: inline-block;
-    max-width: 15rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-left: 2px;
-  }
-
-  .commands {
-    display: flex;
-    margin-left: 0.5rem;
-
-    .command {
-      padding: 2px;
-      border-radius: 2px;
-      display: flex;
-      padding: 2px;
-      border: none;
-      white-space: nowrap;
-      background-color: $light-gray;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-}
-
 .NgxEditor__ImageWrapper {
   position: relative;
   display: inline-block;
   line-height: 0;
-  padding: 1px;
+  padding: 2px;
 
   &.NgxEditor__Resizer--Active {
     padding: 1px;

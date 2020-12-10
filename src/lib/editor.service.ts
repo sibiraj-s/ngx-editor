@@ -41,10 +41,6 @@ export class NgxEditorServiceConfig {
 })
 export class NgxEditorService {
   config: NgxEditorServiceConfig;
-  #view: EditorView;
-
-  customMenuRefChange: Subject<TemplateRef<any>> = new Subject<TemplateRef<any>>();
-  editorUpdate: Subject<EditorView> = new Subject<EditorView>();
 
   constructor(@Optional() config?: NgxEditorServiceConfig) {
     this.config = config;
@@ -52,22 +48,6 @@ export class NgxEditorService {
 
   get locals(): Locals {
     return new Locals(this.config.locals);
-  }
-
-  set view(v: EditorView) {
-    this.#view = v;
-  }
-
-  get view(): EditorView {
-    return this.#view;
-  }
-
-  setCustomMenuRef(c: TemplateRef<any>): void {
-    this.customMenuRefChange.next(c);
-  }
-
-  dispatchEditorUpdate(view: EditorView): void {
-    this.editorUpdate.next(view);
   }
 }
 

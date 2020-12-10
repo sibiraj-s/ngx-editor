@@ -6,6 +6,12 @@ const WRAPPER_CLASSNAME = 'NgxEditor__ImageWrapper';
 const WRAPPER_RESIZE_ACTIVE_CLASSNAME = 'NgxEditor__Resizer--Active';
 const RESIZE_HANDLE_CLASSNAME = 'NgxEditor__ResizeHandle';
 
+const createHandle = (direction: string): HTMLElement => {
+  const handle = document.createElement('span');
+  handle.className = `${RESIZE_HANDLE_CLASSNAME}--${direction}`;
+  return handle;
+};
+
 class ImageRezieView {
   img: HTMLElement;
   dom: HTMLElement;
@@ -25,14 +31,10 @@ class ImageRezieView {
     img.setAttribute('title', node.attrs.title ?? '');
     img.style.width = '100%';
 
-    const handleBottomRight = document.createElement('span');
-    const handleTopRight = document.createElement('span');
-    const handleTopLeft = document.createElement('span');
-    const handleBottomLeft = document.createElement('span');
-    handleBottomRight.className = `${RESIZE_HANDLE_CLASSNAME}--BR`;
-    handleTopRight.className = `${RESIZE_HANDLE_CLASSNAME}--TR`;
-    handleTopLeft.className = `${RESIZE_HANDLE_CLASSNAME}--TL`;
-    handleBottomLeft.className = `${RESIZE_HANDLE_CLASSNAME}--BL`;
+    const handleBottomRight = createHandle('BR');
+    const handleTopRight = createHandle('TL');
+    const handleTopLeft = createHandle('TR');
+    const handleBottomLeft = createHandle('BL');
 
     const resizePropoptionally = (evt: MouseEvent) => {
       evt.preventDefault();

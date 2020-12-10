@@ -1,9 +1,10 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 
 import { SimpleCommands } from '../MenuCommands';
 import Icon from '../../../icons';
 import { NgxEditorService } from '../../../editor.service';
+import { SharedService } from '../../../services/shared/shared.service';
 
 @Component({
   selector: 'ngx-simple-command',
@@ -11,16 +12,19 @@ import { NgxEditorService } from '../../../editor.service';
   styleUrls: ['./simple-command.component.scss']
 })
 
-export class SimpleCommandComponent implements OnInit {
+export class SimpleCommandComponent implements OnInit, OnDestroy {
   @Input() name: string;
 
   html: string;
   editorView: EditorView;
 
-  constructor(private ngxeService: NgxEditorService) {
-    this.editorView = this.ngxeService.view;
+  constructor(
+    private ngxeService: NgxEditorService,
+    private sharedService: SharedService
+  ) {
+    this.editorView = this.sharedService.view;
 
-    this.ngxeService.editorUpdate.subscribe((view: EditorView) => {
+    this.sharedService.plugin.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -53,5 +57,9 @@ export class SimpleCommandComponent implements OnInit {
 
   ngOnInit(): void {
     this.html = Icon.get(this.name);
+  }
+
+  ngOnDestroy(): void {
+    this.sharedService.plugin.update.unsubscribe();
   }
 }
