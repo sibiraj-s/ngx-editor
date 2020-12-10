@@ -13,6 +13,29 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.18 (2020-12-10)
+
+#### Bug Fixes
+
+- update schema to support target `_blank` ([400c636](https://github.com/sibiraj-s/ngx-editor/commit/400c636))
+- use `href` as title instead of text ([400c636](https://github.com/sibiraj-s/ngx-editor/commit/400c636))
+
+#### Breaking Changes
+
+- link plugin is no longer required ([63b6aa6](https://github.com/sibiraj-s/ngx-editor/commit/63b6aa6))
+
+Before
+
+```ts
+import {link} from 'ngx-editor/plugins`
+
+NgxEditorModule.forRoot({
+  plugins: [
+    link() // remove this
+  ]
+})
+```
+
 ## v5.0.0-alpha.17 (2020-12-09)
 
 #### Bug Fixes
