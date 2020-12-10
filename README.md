@@ -119,5 +119,5 @@ See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) to get started.
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
 [github]: https://sibiraj-s.github.io/
-[documentation]: https://sibiraj.dev/ngx-editor/ 
+[documentation]: https://sibiraj.dev/ngx-editor/
 [wiki]: https://github.com/sibiraj-s/ngx-editor/wiki/ngxEditor

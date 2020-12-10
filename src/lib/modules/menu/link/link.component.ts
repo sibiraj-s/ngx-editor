@@ -126,7 +126,7 @@ export class LinkComponent implements OnDestroy {
     const { selection } = state;
 
     const attrs = {
-      title: text,
+      title: href,
       href,
       target: openInNewTab ? '_blank' : '_self'
     };

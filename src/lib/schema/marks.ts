@@ -9,7 +9,7 @@ const link: MarkSpec = {
   attrs: {
     href: {},
     title: { default: null },
-    default: { default: '_blank' }
+    target: { default: '_blank' }
   },
   inclusive: false,
   parseDOM: [
@@ -18,13 +18,14 @@ const link: MarkSpec = {
       getAttrs(dom: HTMLElement): GetAttrsSpec {
         return {
           href: dom.getAttribute('href'),
-          title: dom.getAttribute('title')
+          title: dom.getAttribute('title'),
+          target: dom.getAttribute('target'),
         };
       }
     }],
   toDOM(node): DOMOutputSpec {
-    const { href, title } = node.attrs;
-    return ['a', { href, title }, 0];
+    const { href, title, target } = node.attrs;
+    return ['a', { href, title, target }, 0];
   }
 };
 

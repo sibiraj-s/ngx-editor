@@ -112,8 +112,8 @@ export default {
               type: 'link',
               attrs: {
                 href: 'https://codemirror.net',
-                title: 'CodeMirror',
-                default: '_blank'
+                title: 'https://codemirror.net',
+                target: '_blank'
               }
             }
           ],
@@ -131,7 +131,7 @@ export default {
               attrs: {
                 href: 'https://en.wikipedia.org',
                 title: '',
-                default: '_blank'
+                target: '_blank'
               }
             }
           ],
