@@ -13,6 +13,13 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.19 (2020-12-14)
+
+#### Bug Fixes
+
+- highlight heading menu item when headings inside blockquotes is slected ([45fdb6e](https://github.com/sibiraj-s/ngx-editor/commit/45fdb6e))
+- correctly unsubscribe on component destroy ([9f83f3b](https://github.com/sibiraj-s/ngx-editor/commit/9f83f3b))
+
 ## v5.0.0-alpha.18 (2020-12-10)
 
 #### Bug Fixes
