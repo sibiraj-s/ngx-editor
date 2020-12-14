@@ -1,5 +1,6 @@
 import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
+import { Subscription } from 'rxjs';
 
 import { SimpleCommands } from '../MenuCommands';
 import Icon from '../../../icons';
@@ -17,6 +18,7 @@ export class SimpleCommandComponent implements OnInit, OnDestroy {
 
   html: string;
   editorView: EditorView;
+  private pluginUpdateSubscription: Subscription;
 
   constructor(
     private ngxeService: NgxEditorService,
@@ -24,7 +26,7 @@ export class SimpleCommandComponent implements OnInit, OnDestroy {
   ) {
     this.editorView = this.sharedService.view;
 
-    this.sharedService.plugin.update.subscribe((view: EditorView) => {
+    this.pluginUpdateSubscription = this.sharedService.plugin.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -60,6 +62,6 @@ export class SimpleCommandComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sharedService.plugin.update.unsubscribe();
+    this.pluginUpdateSubscription.unsubscribe();
   }
 }

@@ -2,6 +2,7 @@ import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy } fr
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
+import { Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
 import { SharedService } from '../../../services/shared/shared.service';
@@ -16,6 +17,7 @@ import { Image as ImageCommand } from '../MenuCommands';
 export class ImageComponent implements OnDestroy {
   showPopup = false;
   isActive = false;
+  private pluginUpdateSubscription: Subscription;
 
   form = new FormGroup({
     src: new FormControl('', [
@@ -36,7 +38,7 @@ export class ImageComponent implements OnDestroy {
   ) {
     this.editorView = this.sharedService.view;
 
-    this.sharedService.plugin.update.subscribe((view: EditorView) => {
+    this.pluginUpdateSubscription = this.sharedService.plugin.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -121,6 +123,6 @@ export class ImageComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sharedService.plugin.update.unsubscribe();
+    this.pluginUpdateSubscription.unsubscribe();
   }
 }

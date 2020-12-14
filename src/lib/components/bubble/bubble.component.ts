@@ -5,6 +5,7 @@ import {
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { Mark } from 'prosemirror-model';
+import { Subscription } from 'rxjs';
 
 import { calculateBubblePos, getSelectionMarks, isLinkActive } from 'ngx-editor/helpers';
 import { removeLink } from 'ngx-editor/commands';
@@ -19,13 +20,14 @@ import { SharedService } from '../../services/shared/shared.service';
 export class BubbleComponent implements OnInit, OnDestroy {
   private view: EditorView;
   activeLinkItem: Mark;
+  private pluginUpdateSubscription: Subscription;
 
   constructor(
     private sharedService: SharedService,
     private el: ElementRef,
     private renderer: Renderer2
   ) {
-    this.sharedService.plugin.update.subscribe((view: EditorView) => {
+    this.pluginUpdateSubscription = this.sharedService.plugin.update.subscribe((view: EditorView) => {
       this.view = view;
       this.update(view);
     });
@@ -91,6 +93,6 @@ export class BubbleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sharedService.plugin.update.unsubscribe();
+    this.pluginUpdateSubscription.unsubscribe();
   }
 }

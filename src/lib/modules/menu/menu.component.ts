@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
+import { Subscription } from 'rxjs';
 
 import { ToolbarItem } from '../../types';
 
@@ -17,6 +18,7 @@ export class MenuComponent implements OnDestroy {
   @Input() editorView: EditorView;
 
   customMenuRef: TemplateRef<any> = null;
+  customMenuRefSubscription: Subscription;
 
   simpleCommands = [
     'bold', 'italic',
@@ -30,7 +32,7 @@ export class MenuComponent implements OnDestroy {
   seperatorClass = ['NgxEditor__Seperator'];
 
   constructor(private sharedService: SharedService) {
-    this.sharedService.customMenuRefChange.subscribe((ref) => {
+    this.customMenuRefSubscription = this.sharedService.customMenuRefChange.subscribe((ref) => {
       this.customMenuRef = ref;
     });
   }
@@ -44,6 +46,6 @@ export class MenuComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sharedService.customMenuRefChange.unsubscribe();
+    this.customMenuRefSubscription.unsubscribe();
   }
 }
