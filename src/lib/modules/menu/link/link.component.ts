@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
+import { Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
 import { SharedService } from '../../../services/shared/shared.service';
@@ -18,6 +19,7 @@ export class LinkComponent implements OnDestroy {
   isActive = false;
   private canExecute = true;
   private editorView: EditorView;
+  private pluginUpdateSubscription: Subscription;
 
   @Input() name: string;
 
@@ -37,7 +39,7 @@ export class LinkComponent implements OnDestroy {
   ) {
     this.editorView = this.sharedService.view;
 
-    this.sharedService.plugin.update.subscribe((view: EditorView) => {
+    this.pluginUpdateSubscription = this.sharedService.plugin.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -140,6 +142,6 @@ export class LinkComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sharedService.plugin.update.unsubscribe();
+    this.pluginUpdateSubscription.unsubscribe();
   }
 }

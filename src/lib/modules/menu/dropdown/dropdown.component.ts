@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
+import { Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
 import { SharedService } from '../../../services/shared/shared.service';
@@ -12,6 +13,7 @@ import { SimpleCommands } from '../MenuCommands';
 })
 export class DropdownComponent implements OnInit, OnDestroy {
   private editorView: EditorView;
+  private pluginUpdateSubscription: Subscription;
 
   @Input() group: any;
   @Input() items: any;
@@ -30,7 +32,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
   ) {
     this.editorView = this.sharedService.view;
 
-    this.sharedService.plugin.update.subscribe((view: EditorView) => {
+    this.pluginUpdateSubscription = this.sharedService.plugin.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -102,6 +104,6 @@ export class DropdownComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sharedService.plugin.update.unsubscribe();
+    this.pluginUpdateSubscription.unsubscribe();
   }
 }

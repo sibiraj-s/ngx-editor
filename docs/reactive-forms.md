@@ -41,12 +41,6 @@ export class AppComponent {
   form = new FormGroup({
     editorContent: new FormControl(null, [Validators.required()]),
   });
-
-  ngOnInit() {
-    this.form.valueChanges.subscribe((val) => {
-      console.log('Value Changes:', val);
-    });
-  }
 }
 ```
 
