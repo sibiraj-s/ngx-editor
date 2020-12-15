@@ -1,8 +1,6 @@
-import { Injectable, Optional, TemplateRef } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { Schema } from 'prosemirror-model';
-import { EditorView } from 'prosemirror-view';
 import { Plugin } from 'prosemirror-state';
-import { Subject } from 'rxjs';
 
 import { placeholder } from 'ngx-editor/plugins';
 
