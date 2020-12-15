@@ -5,3 +5,4 @@ export * from './lib/schema';
 export * from './lib/validators';
 
 export * from './lib/types';
+export * from './lib/html';

@@ -3,26 +3,21 @@
 ## Generate HTML from JSON
 
 ```ts
-import { DOMSerializer } from 'prosemirror-model';
-import { schema } from 'ngx-editor';
+import { toHTML } from 'ngx-editor';
 
-const contentNode = schema.nodeFromJSON(this.jsonDoc);
+const html = toHTML(this.jsonDoc) // -> html string
 
-// https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment
-const html: DocumentFragment = DOMSerializer.fromSchema(
-  schema
-).serializeFragment(contentNode.content);
-console.log(html);
+// schema is optional, use it if you modified the default schema
+const html = toHTML(this.jsonDoc, schema) // -> html string
 ```
 
 ## Generating JSON from HTML
 
 ```ts
-import { DOMParser } from 'prosemirror-model';
-import { schema } from 'ngx-editor';
+import { toDOC } from 'ngx-editor';
 
-const el = document.createElement('div');
-el.innerHTML = htmlString;
+this.jsonDoc = toDOC(htmlString);
 
-this.jsonDoc = DOMParser.fromSchema(schema).parse(el).toJSON();
+// schema is optional, use it if you modified the default schema
+this.jsonDoc = toDOC(htmlString, schema);
 ```
