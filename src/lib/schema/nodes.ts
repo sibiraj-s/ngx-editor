@@ -1,6 +1,8 @@
 import { DOMOutputSpec, Node as ProsemirrorNode, NodeSpec } from 'prosemirror-model';
 import * as sl from 'prosemirror-schema-list';
 
+import toStyleString from '../utils/toStyleString';
+
 type GetAttrsSpec = { [key: string]: any };
 
 const doc: NodeSpec = {
@@ -26,15 +28,24 @@ const paragraph: NodeSpec = {
     {
       tag: 'p',
       getAttrs(dom: HTMLElement): GetAttrsSpec {
+        const { textAlign } = dom.style;
+        const align = dom.getAttribute('align') || textAlign || null;
+
         return {
-          align: dom.getAttribute('align') || null
+          align
         };
       }
     }
   ],
   toDOM(node): DOMOutputSpec {
     const { align } = node.attrs;
-    return ['p', { align }, 0];
+
+    const styles: Partial<CSSStyleDeclaration> = {
+      textAlign: align !== 'left' ? align : null
+    };
+    const style = toStyleString(styles) || null;
+
+    return ['p', { style }, 0];
   }
 };
 
@@ -77,61 +88,85 @@ const heading: NodeSpec = {
     {
       tag: 'h1',
       getAttrs(dom: HTMLElement): GetAttrsSpec {
+        const { textAlign } = dom.style;
+        const align = dom.getAttribute('align') || textAlign || null;
+
         return {
           level: 1,
-          align: dom.getAttribute('align') || null
+          align
         };
       }
     },
     {
       tag: 'h2',
       getAttrs(dom: HTMLElement): GetAttrsSpec {
+        const { textAlign } = dom.style;
+        const align = dom.getAttribute('align') || textAlign || null;
+
         return {
           level: 2,
-          align: dom.getAttribute('align') || null
+          align
         };
       }
     },
     {
       tag: 'h3',
       getAttrs(dom: HTMLElement): GetAttrsSpec {
+        const { textAlign } = dom.style;
+        const align = dom.getAttribute('align') || textAlign || null;
+
         return {
           level: 3,
-          align: dom.getAttribute('align') || null
+          align
         };
       }
     },
     {
       tag: 'h4',
       getAttrs(dom: HTMLElement): GetAttrsSpec {
+        const { textAlign } = dom.style;
+        const align = dom.getAttribute('align') || textAlign || null;
+
         return {
           level: 4,
-          align: dom.getAttribute('align') || null
+          align
         };
       }
     },
     {
       tag: 'h5',
       getAttrs(dom: HTMLElement): GetAttrsSpec {
+        const { textAlign } = dom.style;
+        const align = dom.getAttribute('align') || textAlign || null;
+
         return {
           level: 5,
-          align: dom.getAttribute('align') || null
+          align
         };
       }
     },
     {
       tag: 'h6',
       getAttrs(dom: HTMLElement): GetAttrsSpec {
+        const { textAlign } = dom.style;
+        const align = dom.getAttribute('align') || textAlign || null;
+
         return {
           level: 6,
-          align: dom.getAttribute('align') || null
+          align
         };
       }
     },
   ],
   toDOM(node): DOMOutputSpec {
-    const { align } = node.attrs;
-    return ['h' + node.attrs.level, { align }, 0];
+    const { level, align } = node.attrs;
+
+    const styles: Partial<CSSStyleDeclaration> = {
+      textAlign: align !== 'left' ? align : null
+    };
+    const style = toStyleString(styles) || null;
+
+    return ['h' + level, { style }, 0];
   }
 };
 
