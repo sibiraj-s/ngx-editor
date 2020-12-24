@@ -13,6 +13,13 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-beta.0 (2020-12-24)
+
+#### Bug Fixes
+
+- fix errors while selecting text/background color mark ([b1e85bb](https://github.com/sibiraj-s/ngx-editor/commit/b1e85bb))
+- prefer `text-align` style property instead of `align` attribute ([ee03ee7](https://github.com/sibiraj-s/ngx-editor/commit/ee03ee7))
+
 ## v5.0.0-alpha.20 (2020-12-24)
 
 #### Bug Fixes
