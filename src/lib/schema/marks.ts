@@ -1,4 +1,4 @@
-import { DOMOutputSpec, MarkSpec } from 'prosemirror-model';
+import { DOMOutputSpec, Mark, MarkSpec } from 'prosemirror-model';
 
 type GetAttrsSpec = { [key: string]: any } | null;
 
@@ -78,11 +78,53 @@ const code: MarkSpec = {
   }
 };
 
+const textColor: MarkSpec = {
+  attrs: {
+    color: {
+      default: null
+    },
+  },
+  parseDOM: [
+    {
+      style: 'color',
+      getAttrs: (value: string): GetAttrsSpec => {
+        return { color: value };
+      }
+    }
+  ],
+  toDOM(mark: Mark): DOMOutputSpec {
+    const { color } = mark.attrs;
+    return ['span', { style: `color:${color};` }, 0];
+  },
+};
+
+const textBackgroundColor: MarkSpec = {
+  attrs: {
+    backgroundColor: {
+      default: null
+    },
+  },
+  parseDOM: [
+    {
+      style: 'background-color',
+      getAttrs: (value: string): GetAttrsSpec => {
+        return { backgroundColor: value };
+      }
+    }
+  ],
+  toDOM(mark: Mark): DOMOutputSpec {
+    const { backgroundColor } = mark.attrs;
+    return ['span', { style: `background-color:${backgroundColor};` }, 0];
+  },
+};
+
 const makrs = {
   link,
   em,
   strong,
-  code
+  code,
+  text_color: textColor,
+  text_background_color: textBackgroundColor
 };
 
 export default makrs;

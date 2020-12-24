@@ -17,6 +17,8 @@ const defaults = {
   align_center: 'Center Align',
   align_right: 'Right Align',
   align_justify: 'Justify',
+  text_color: 'Text Color',
+  background_color: 'Background Color',
 
   // pupups, forms, others...
   url: 'URL',
@@ -24,7 +26,8 @@ const defaults = {
   openInNewTab: 'Open in new tab',
   insert: 'Insert',
   altText: 'Alt Text',
-  title: 'Title'
+  title: 'Title',
+  remove: 'Remove',
 };
 
 export type LocalsKeys = keyof typeof defaults;

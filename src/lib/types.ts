@@ -11,6 +11,7 @@ type TBItems = 'bold' | 'italic'
   | 'code' | 'blockquote'
   | 'ordered_list' | 'bullet_list'
   | 'link' | 'image'
+  | 'text_color' | 'background_color'
   | 'align_left' | 'align_center' | 'align_right' | 'align_justify';
 
 export type ToolbarDropdown = { heading?: TBHeading };

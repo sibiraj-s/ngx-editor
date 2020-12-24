@@ -23,6 +23,13 @@
         </ng-container>
       </ng-container>
 
+      <!-- text color picker -->
+      <ngx-color-picker [class]="iconContainerClass" *ngIf="item === 'text_color'" type="text_color">
+      </ngx-color-picker>
+      <!-- background color picker -->
+      <ngx-color-picker [class]="iconContainerClass" *ngIf="item === 'background_color'" type="background_color">
+      </ngx-color-picker>
+
       <!-- seperator -->
       <div [class]="seperatorClass" *ngIf="lastItem && !lastToolbarItem"></div>
     </ng-container>

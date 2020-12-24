@@ -45,7 +45,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
     return this.disabledItems.length === this.items.length;
   }
 
-  @HostListener('document:click', ['$event.target']) onDocumentClick(target: Node): void {
+  @HostListener('document:mousedown', ['$event.target']) onDocumentClick(target: Node): void {
     if (!this.el.nativeElement.contains(target) && this.isDropdownOpen) {
       this.isDropdownOpen = false;
     }
