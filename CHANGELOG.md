@@ -13,6 +13,21 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-alpha.20 (2020-12-24)
+
+#### Bug Fixes
+
+- prevent user-selection on placeholder ([58076c7](https://github.com/sibiraj-s/ngx-editor/commit/58076c7))
+
+#### Features
+
+- color picker with default presets to set text/background color ([9c38412](https://github.com/sibiraj-s/ngx-editor/commit/9c38412))
+- expose utitlities to work with HTML ([b252358](https://github.com/sibiraj-s/ngx-editor/commit/b252358))
+
+```ts
+import { toHTML, toDOC } from 'ngx-editor';
+```
+
 ## v5.0.0-alpha.19 (2020-12-14)
 
 #### Bug Fixes
