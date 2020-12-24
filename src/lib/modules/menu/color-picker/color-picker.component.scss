@@ -1,0 +1,32 @@
+.NgxEditor__Popup {
+  width: 230px;
+}
+
+.NgxEditor__ColorContainer {
+  display: flex;
+  justify-content: space-between;
+
+  & + .NgxEditor__ColorContainer {
+    margin-top: 5px;
+  }
+}
+
+.NgxEditor__Color {
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.NgxEditor__Color--Active {
+  &::after {
+    content: '✔';
+    font-size: 90%;
+  }
+}
+
+.NgxEditor__MenuItem--Button {
+  margin-top: 5px;
+}

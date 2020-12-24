@@ -55,7 +55,7 @@ export class ImageComponent implements OnDestroy {
     return this.form.get('src');
   }
 
-  @HostListener('document:click', ['$event']) onDocumentClick(e: MouseEvent): void {
+  @HostListener('document:mousedown', ['$event']) onDocumentClick(e: MouseEvent): void {
     if (!this.el.nativeElement.contains(e.target) && this.showPopup) {
       this.hideForm();
     }

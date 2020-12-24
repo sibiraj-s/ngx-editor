@@ -23,3 +23,5 @@ SimpleCommands.set('align_justify', Commands.ALIGN_JUSTIFY);
 
 export const Link = Commands.LINK;
 export const Image = Commands.IMAGE;
+export const TextColor = Commands.TEXT_COLOR;
+export const TextBackgroundColor = Commands.TEXT_BACKGROUND_COLOR;

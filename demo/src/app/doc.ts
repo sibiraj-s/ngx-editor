@@ -22,7 +22,23 @@ export default {
       content: [
         {
           type: 'text',
-          text: 'This is editable text. You can focus it and start typing.'
+          text: 'This is editable text. '
+        },
+        {
+          type: 'text',
+          marks: [
+            {
+              type: 'text_color',
+              attrs: {
+                color: '#d93f0b'
+              }
+            }
+          ],
+          text: 'You can focus it and start typing'
+        },
+        {
+          type: 'text',
+          text: '.'
         }
       ]
     },
@@ -63,7 +79,23 @@ export default {
             },
             {
               type: 'text',
-              text: ' is simply dummy text of the printing and typesetting industry. '
+              text: ' is '
+            },
+            {
+              type: 'text',
+              marks: [
+                {
+                  type: 'text_background_color',
+                  attrs: {
+                    backgroundColor: '#fbca04'
+                  }
+                }
+              ],
+              text: 'simply dummy'
+            },
+            {
+              type: 'text',
+              text: ' text of the printing and typesetting industry. '
             },
             {
               type: 'text',

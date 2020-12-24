@@ -64,7 +64,7 @@ export class LinkComponent implements OnDestroy {
     return this.form.get('text');
   }
 
-  @HostListener('document:click', ['$event']) onDocumentClick(e: MouseEvent): void {
+  @HostListener('document:mousedown', ['$event']) onDocumentClick(e: MouseEvent): void {
     if (!this.el.nativeElement.contains(e.target) && this.showPopup) {
       this.hideForm();
     }

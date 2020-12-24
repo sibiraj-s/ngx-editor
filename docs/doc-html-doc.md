@@ -5,10 +5,10 @@
 ```ts
 import { toHTML } from 'ngx-editor';
 
-const html = toHTML(this.jsonDoc) // -> html string
+const html = toHTML(this.jsonDoc); // -> html string
 
 // schema is optional, use it if you modified the default schema
-const html = toHTML(this.jsonDoc, schema) // -> html string
+const html = toHTML(this.jsonDoc, schema); // -> html string
 ```
 
 ## Generating JSON from HTML

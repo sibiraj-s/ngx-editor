@@ -1,0 +1,16 @@
+<div class="NgxEditor__MenuItem--IconContainer" [innerHTML]="icon | sanitizeHtml" (mousedown)="togglePopup($event)"
+  [title]="title">
+</div>
+
+<div *ngIf="showPopup" class="NgxEditor__Popup">
+  <div *ngFor="let colors of colorMap" class="NgxEditor__ColorContainer">
+    <button class="NgxEditor__Color" *ngFor="let color of colors"
+      [ngStyle]="{backgroundColor: color, color:getContrastYIQ(color)}" [title]="color"
+      (mousedown)="onColorSelect($event, color)"
+      [ngClass]="{'NgxEditor__Color--Active': activeColors.includes(color)}"></button>
+  </div>
+
+  <button class="NgxEditor__MenuItem--Button" (mousedown)="remove($event)" [disabled]="!isActive">
+    {{getLabel('remove')}}
+  </button>
+</div>

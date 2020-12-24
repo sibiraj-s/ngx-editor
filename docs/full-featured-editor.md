@@ -98,6 +98,7 @@ import plugins from './plugins';
         ['ordered_list', 'bullet_list'],
         [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
         ['link', 'image'],
+        ['text_color', 'background_color'],
         ['align_left', 'align_center', 'align_right', 'align_justify'],
       ],
       locals: {
@@ -119,6 +120,8 @@ import plugins from './plugins';
         align_center: 'Center Align',
         align_right: 'Right Align',
         align_justify: 'Justify',
+        text_color: 'Text Color',
+        background_color: 'Background Color',
 
         // pupups, forms, others...
         url: 'URL',
@@ -127,6 +130,7 @@ import plugins from './plugins';
         insert: 'Insert',
         altText: 'Alt Text',
         title: 'Title',
+        remove: 'Remove',
       },
     }),
   ],

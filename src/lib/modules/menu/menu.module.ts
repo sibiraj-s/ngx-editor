@@ -7,6 +7,7 @@ import { SimpleCommandComponent } from './simple-command/simple-command.componen
 import { LinkComponent } from './link/link.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { ImageComponent } from './image/image.component';
+import { ColorPickerComponent } from './color-picker/color-picker.component';
 
 import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
 
@@ -25,6 +26,7 @@ import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
     LinkComponent,
     DropdownComponent,
     ImageComponent,
+    ColorPickerComponent
   ],
   exports: [MenuComponent],
 })
