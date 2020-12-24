@@ -19,6 +19,7 @@ $light-gray: #f1f1f1;
 .NgxEditor__Placeholder {
   color: #6c757d;
   opacity: 1;
+  user-select: none;
 }
 
 .NgxEditor__Content {
