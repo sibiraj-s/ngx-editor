@@ -9,7 +9,6 @@
     "lint:scripts": "eslint ./scripts",
     "format:md": "prettier **/*.md --write",
     "ng": "ng",
-    "prebuild": "npm run lint",
     "prerelease": "npm run build:lib",
     "postbuild:lib": "node ./scripts/postbuild.js",
     "release": "sh ./scripts/release.sh",
