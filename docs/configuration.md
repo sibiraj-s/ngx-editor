@@ -9,6 +9,7 @@ NgxEditorModule.forRoot({
   plugins: [placholder('Type something here...')],
   menu: [
     ['bold', 'italic'],
+    ['underline', 'strike'],
     ['code', 'blockquote'],
     ['ordered_list', 'bullet_list'],
     [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
@@ -21,6 +22,8 @@ NgxEditorModule.forRoot({
     bold: 'Bold',
     italic: 'Italic',
     code: 'Code',
+    underline: 'Underline',
+    strike: 'Strike',
     blockquote: 'Blockquote',
     bullet_list: 'Bullet List',
     ordered_list: 'Ordered List',
