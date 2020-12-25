@@ -3,8 +3,8 @@
 </div>
 
 <div *ngIf="showPopup" class="NgxEditor__Popup">
-  <div *ngFor="let colors of colorMap" class="NgxEditor__ColorContainer">
-    <button class="NgxEditor__Color" *ngFor="let color of colors"
+  <div *ngFor="let colorGroup of presets" class="NgxEditor__ColorContainer">
+    <button class="NgxEditor__Color" *ngFor="let color of colorGroup"
       [ngStyle]="{backgroundColor: color, color:getContrastYIQ(color)}" [title]="color"
       (mousedown)="onColorSelect($event, color)"
       [ngClass]="{'NgxEditor__Color--Active': activeColors.includes(color)}"></button>
