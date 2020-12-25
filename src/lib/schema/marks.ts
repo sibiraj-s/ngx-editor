@@ -96,7 +96,6 @@ const s: MarkSpec = {
   parseDOM: [
     { tag: 's' },
     { tag: 'strike' },
-    { tag: 'del' },
     { style: 'text-decoration=line-through' }
   ],
   toDOM(): DOMOutputSpec {
