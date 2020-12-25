@@ -78,6 +78,18 @@ const code: MarkSpec = {
   }
 };
 
+// :: MarkSpec An underline mark. Rendered as an `<u>` element.
+// Has parse rules that also match `text-decoration: underline`.
+const u: MarkSpec = {
+  parseDOM: [
+    { tag: 'u' },
+    { style: 'text-decoration=underline' }
+  ],
+  toDOM(): DOMOutputSpec {
+    return ['u', 0];
+  }
+};
+
 const textColor: MarkSpec = {
   attrs: {
     color: {
@@ -123,6 +135,7 @@ const makrs = {
   em,
   strong,
   code,
+  u,
   text_color: textColor,
   text_background_color: textBackgroundColor
 };

@@ -10,6 +10,7 @@ import TextColor from './TextColor';
 export const STRONG = new MarkToggle('strong');
 export const EM = new MarkToggle('em');
 export const CODE = new MarkToggle('code');
+export const UNDERLINE = new MarkToggle('u');
 export const BLOCKQUOTE = new BlockquoteToggle();
 export const UL = new ListItemToggle(true);
 export const OL = new ListItemToggle(false);

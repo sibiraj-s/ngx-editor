@@ -3,6 +3,7 @@
 import bold from './bold';
 import italic from './italic';
 import code from './code';
+import underline from './underline';
 import orderedList from './ordered_list';
 import bulletList from './bullet_list';
 import quote from './quote';
@@ -23,6 +24,7 @@ const icons = {
   bold,
   italic,
   code,
+  underline,
   ordered_list: orderedList,
   bullet_list: bulletList,
   blockquote: quote,
