@@ -2,7 +2,7 @@ const camelToDashed = (str: string): string => {
   return str.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
 };
 
-const cleanObject = (obj: { [key: string]: any }): { [key: string]: any } => {
+const cleanObject = (obj: Record<string, any>): Record<string, any> => {
   const cleanObj = {};
 
   Object.keys(obj).forEach((prop) => {

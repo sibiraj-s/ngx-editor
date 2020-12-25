@@ -1,10 +1,8 @@
 import { DOMSerializer, Schema, DOMParser } from 'prosemirror-model';
 import { schema } from './schema';
 
-type JSONDOC = { [key: string]: any };
-
 // https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment
-export const toHTML = (json: JSONDOC, inputSchema?: Schema): string => {
+export const toHTML = (json: Record<string, any>, inputSchema?: Schema): string => {
 
   const userSchema = inputSchema ?? schema;
 
@@ -16,7 +14,7 @@ export const toHTML = (json: JSONDOC, inputSchema?: Schema): string => {
   return div.innerHTML;
 };
 
-export const toDoc = (html: string, inputSchema?: Schema): JSONDOC => {
+export const toDoc = (html: string, inputSchema?: Schema): Record<string, any> => {
   const userSchema = inputSchema ?? schema;
 
   const el = document.createElement('div');

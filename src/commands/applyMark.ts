@@ -25,7 +25,7 @@ function markApplies(doc: PrmosemirroNode, ranges: SelectionRange[], type: MarkT
   return false;
 }
 
-export const applyMark = (type: MarkType, attrs: { [key: string]: any } = {}) => {
+export const applyMark = (type: MarkType, attrs: Record<string, any> = {}) => {
   return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
     const { tr, selection } = state;
     const { $from, $to, empty, ranges } = selection;
