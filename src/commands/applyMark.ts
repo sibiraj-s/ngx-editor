@@ -38,15 +38,16 @@ export const applyMark = (type: MarkType, attrs: Record<string, any> = {}) => {
       }
 
       tr.addStoredMark(type.create(attrs));
+      dispatch?.(tr);
     } else {
       tr.addMark($from.pos, $to.pos, type.create(attrs));
 
       if (!tr.docChanged) {
         return false;
       }
+      dispatch?.(tr.scrollIntoView());
     }
 
-    dispatch?.(tr.scrollIntoView());
     return true;
   };
 };
