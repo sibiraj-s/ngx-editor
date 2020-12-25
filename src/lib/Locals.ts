@@ -3,6 +3,8 @@ const defaults = {
   bold: 'Bold',
   italic: 'Italic',
   code: 'Code',
+  underline: 'Underline',
+  strike: 'Strike',
   blockquote: 'Blockquote',
   bullet_list: 'Bullet List',
   ordered_list: 'Ordered List',

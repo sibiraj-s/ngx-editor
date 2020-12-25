@@ -94,6 +94,7 @@ import plugins from './plugins';
       plugins,
       menu: [
         ['bold', 'italic'],
+        ['underline', 'strike'],
         ['code', 'blockquote'],
         ['ordered_list', 'bullet_list'],
         [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
@@ -107,6 +108,8 @@ import plugins from './plugins';
         italic: 'Italic',
         code: 'Code',
         blockquote: 'Blockquote',
+        underline: 'Underline',
+        strike: 'Strike',
         bullet_list: 'Bullet List',
         ordered_list: 'Ordered List',
         heading: 'Heading',
