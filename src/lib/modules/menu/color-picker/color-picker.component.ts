@@ -8,9 +8,9 @@ import { Subscription } from 'rxjs';
 import Icon from '../../../icons';
 import { NgxEditorService } from '../../../editor.service';
 import { SharedService } from '../../../services/shared/shared.service';
-import { TextColor as TextColorCommand, TextBackgroundColor as TextBackgorundColorCommand } from '../MenuCommands';
+import { TextColor, TextBackgroundColor } from '../MenuCommands';
 
-type Command = typeof TextColorCommand | typeof TextBackgorundColorCommand;
+type Command = typeof TextColor | typeof TextBackgroundColor;
 
 @Component({
   selector: 'ngx-color-picker',
@@ -39,11 +39,8 @@ export class ColorPickerComponent implements OnDestroy {
     return !this.canExecute;
   }
 
-  get colorMap(): string[][] {
-    return [
-      this.presets.slice(0, this.presets.length / 2),
-      this.presets.slice(this.presets.length / 2, this.presets.length)
-    ];
+  get presets(): string[][] {
+    return this.ngxeService.colorPresets;
   }
 
   get title(): string {
@@ -55,29 +52,10 @@ export class ColorPickerComponent implements OnDestroy {
   }
 
   private get command(): Command {
-    return this.type === 'text_color' ? TextColorCommand : TextBackgorundColorCommand;
+    return this.type === 'text_color' ? TextColor : TextBackgroundColor;
   }
 
   private pluginUpdateSubscription: Subscription;
-  private presets = [
-    '#b60205',
-    '#d93f0b',
-    '#fbca04',
-    '#0e8a16',
-    '#006b75',
-    '#1d76db',
-    '#0052cc',
-    '#5319e7',
-    '#e99695',
-    '#f9d0c4',
-    '#fef2c0',
-    '#c2e0c6',
-    '#bfdadc',
-    '#c5def5',
-    '#bfd4f2',
-    '#d4c5f9'
-  ];
-
   private editorView: EditorView;
   showPopup = false;
   isActive = false;

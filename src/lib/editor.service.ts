@@ -4,12 +4,12 @@ import { Plugin } from 'prosemirror-state';
 
 import { placeholder } from 'ngx-editor/plugins';
 
-import { NgxEditorConfig, NodeViews, Toolbar } from './types';
+import { Menu, NgxEditorConfig, NodeViews, Toolbar } from './types';
 import Locals from './Locals';
 
 import { schema } from './schema';
 
-const DEFAULT_MENU: Toolbar = [
+const DEFAULT_TOOLBAR: Toolbar = [
   ['bold', 'italic'],
   ['code', 'blockquote'],
   ['underline', 'strike'],
@@ -19,6 +19,30 @@ const DEFAULT_MENU: Toolbar = [
   ['text_color', 'background_color'],
   ['align_left', 'align_center', 'align_right', 'align_justify'],
 ];
+
+const DEFAULT_COLOR_PRESETS = [
+  '#b60205',
+  '#d93f0b',
+  '#fbca04',
+  '#0e8a16',
+  '#006b75',
+  '#1d76db',
+  '#0052cc',
+  '#5319e7',
+  '#e99695',
+  '#f9d0c4',
+  '#fef2c0',
+  '#c2e0c6',
+  '#bfdadc',
+  '#c5def5',
+  '#bfd4f2',
+  '#d4c5f9'
+];
+
+const DEFAULT_MENU: Menu = {
+  toolbar: DEFAULT_TOOLBAR,
+  colorPresets: []
+};
 
 const DEFAULT_SCHEMA = schema;
 const DEFAULT_PLUGINS: Plugin[] = [
@@ -49,14 +73,54 @@ export class NgxEditorService {
   get locals(): Locals {
     return new Locals(this.config.locals);
   }
+
+  get menu(): Menu {
+    return this.config.menu;
+  }
+
+  get colorPresets(): string[][] {
+    const col = 8;
+    const colors: string[][] = [];
+
+    const { colorPresets } = this.config.menu;
+    const allColors = colorPresets.length ? colorPresets : DEFAULT_COLOR_PRESETS;
+
+    allColors.forEach((color, index) => {
+      const row = Math.floor(index / col);
+
+      if (!colors[row]) {
+        colors.push([]);
+      }
+
+      colors[row].push(color);
+    });
+
+    return colors;
+  }
 }
 
-export function provideMyServiceOptions(config?: NgxEditorConfig): NgxEditorServiceConfig {
+export const provideMyServiceOptions = (config?: NgxEditorConfig): NgxEditorServiceConfig => {
+  let menu: Menu;
+
+  if (!config.menu) {
+    menu = DEFAULT_MENU;
+  } else if (Array.isArray(config.menu)) {
+    menu = {
+      ...DEFAULT_MENU,
+      toolbar: config.menu,
+    };
+  } else {
+    menu = {
+      ...DEFAULT_MENU,
+      ...config.menu,
+    };
+  }
+
   return {
     plugins: config?.plugins ?? DEFAULT_PLUGINS,
     nodeViews: config?.nodeViews ?? {},
-    menu: config?.menu ?? DEFAULT_MENU,
+    menu,
     schema: config?.schema ?? DEFAULT_SCHEMA,
     locals: config.locals ?? {}
   };
-}
+};

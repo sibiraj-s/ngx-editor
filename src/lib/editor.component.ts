@@ -50,8 +50,8 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     this.config = ngxEditorService.config;
   }
 
-  get menu(): Toolbar {
-    return this.config.menu;
+  get toolbar(): Toolbar {
+    return this.config.menu.toolbar;
   }
 
   writeValue(value: object | null): void {

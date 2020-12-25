@@ -31,10 +31,15 @@ export interface NodeViews {
   ) => NodeView;
 }
 
+export interface Menu {
+  toolbar: Toolbar;
+  colorPresets?: string[];
+}
+
 export interface NgxEditorConfig {
   schema?: Schema;
   plugins?: Plugin[];
   nodeViews?: NodeViews;
-  menu?: Toolbar;
+  menu?: Menu | Toolbar;
   locals?: Partial<Record<LocalsKeys, string>>;
 }
