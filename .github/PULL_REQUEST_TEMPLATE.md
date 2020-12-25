@@ -17,7 +17,7 @@ This PR contains:
 - [ ] yes
 - [ ] no
 
-If yes, please describe the breakage.
+<!-- If yes, please describe the breakage. -->
 
 ### Checklist
 
