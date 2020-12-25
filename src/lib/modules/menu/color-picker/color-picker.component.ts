@@ -104,6 +104,10 @@ export class ColorPickerComponent implements OnDestroy {
   onColorSelect(e: MouseEvent, color: string): void {
     e.preventDefault();
 
+    if (e.button !== 0) {
+      return;
+    }
+
     const { state, dispatch } = this.editorView;
 
     const attrs: { [key: string]: string } = {};
