@@ -37,7 +37,6 @@ export const applyMark = (type: MarkType, attrs: Record<string, any> = {}) => {
         return false;
       }
 
-
       tr.addStoredMark(type.create(attrs));
     } else {
       tr.addMark($from.pos, $to.pos, type.create(attrs));

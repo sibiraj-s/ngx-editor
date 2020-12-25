@@ -26,10 +26,11 @@ class TextColor {
         return false;
       }
 
-      const { from, empty } = selection;
-      if (!empty) {
+      const { from, to, empty } = selection;
+
+      if (!empty && (from + 1 === to)) {
         const node = doc.nodeAt(from);
-        if (node && node.isAtom && !node.isText && node.isLeaf) {
+        if (node.isAtom && !node.isText && node.isLeaf) {
           // An atomic node (e.g. Image) is selected.
           return false;
         }
