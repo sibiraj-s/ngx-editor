@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-beta.2 (2020-12-25)
+
+#### Features
+
+- support custom color presets ([b82658b](https://github.com/sibiraj-s/ngx-editor/commit/b82658b))
+
+#### Bug Fixes
+
+- prevent crash while selecting highlighting text/background color ([098fc62](https://github.com/sibiraj-s/ngx-editor/commit/098fc62))
+- prevent applying color on right click ([9745295](https://github.com/sibiraj-s/ngx-editor/commit/9745295))
+- don't autoscroll for applying colors without selection ([91db712](https://github.com/sibiraj-s/ngx-editor/commit/91db712))
+
 ## v5.0.0-beta.1 (2020-12-25)
 
 #### Features
@@ -36,7 +48,7 @@ All notable changes to this project will be documented in this file.
 #### Features
 
 - color picker with default presets to set text/background color ([9c38412](https://github.com/sibiraj-s/ngx-editor/commit/9c38412))
-- expose utitlities to work with HTML ([b252358](https://github.com/sibiraj-s/ngx-editor/commit/b252358))
+- expose utilities to work with HTML ([b252358](https://github.com/sibiraj-s/ngx-editor/commit/b252358))
 
 ```ts
 import { toHTML, toDOC } from 'ngx-editor';
@@ -97,7 +109,7 @@ NgxEditorModule.forRoot({
 
 #### Features
 
-- added `focusIn` and `focusOut` events emitted on `focus` and `blur` events respecitvely.
+- added `focusIn` and `focusOut` events emitted on `focus` and `blur` events respectively.
 - added `init` event, dispatched once editor is initialized. emits `EditorView` object
 - added `removeLink` command
 
@@ -124,7 +136,7 @@ import { removeLink } from 'ngx-editor/commands';
 - allow images to be resized from all directions
 - suport locals for all menu items
 - improved click area on menu icons
-- it is more easier to write custom menus now, more angular way
+- it is easier to write custom menus now, more angular way
 
 #### Bug Fixes
 
