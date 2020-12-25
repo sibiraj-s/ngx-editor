@@ -7,6 +7,7 @@ export const SimpleCommands = new Map<string, SimpleCommand>();
 SimpleCommands.set('bold', Commands.STRONG);
 SimpleCommands.set('italic', Commands.EM);
 SimpleCommands.set('code', Commands.CODE);
+SimpleCommands.set('underline', Commands.UNDERLINE);
 SimpleCommands.set('blockquote', Commands.BLOCKQUOTE);
 SimpleCommands.set('bullet_list', Commands.UL);
 SimpleCommands.set('ordered_list', Commands.OL);

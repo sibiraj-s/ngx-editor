@@ -9,6 +9,7 @@ type TCR = { dom: HTMLElement, update: (state: EditorState) => void };
 type TBHeading = Array<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'>;
 type TBItems = 'bold' | 'italic'
   | 'code' | 'blockquote'
+  | 'underline'
   | 'ordered_list' | 'bullet_list'
   | 'link' | 'image'
   | 'text_color' | 'background_color'
