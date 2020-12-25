@@ -1,7 +1,5 @@
 import { DOMOutputSpec, Mark, MarkSpec } from 'prosemirror-model';
 
-type GetAttrsSpec = { [key: string]: any } | null;
-
 // :: MarkSpec A link. Has `href` and `title` attributes. `title`
 // defaults to the empty string. Rendered and parsed as an `<a>`
 // element.
@@ -15,7 +13,7 @@ const link: MarkSpec = {
   parseDOM: [
     {
       tag: 'a[href]',
-      getAttrs(dom: HTMLElement): GetAttrsSpec {
+      getAttrs(dom: HTMLElement): Record<string, any> {
         return {
           href: dom.getAttribute('href'),
           title: dom.getAttribute('title'),
@@ -52,13 +50,13 @@ const strong: MarkSpec = {
     // tags with a font-weight normal.
     {
       tag: 'b',
-      getAttrs: (dom: HTMLElement): GetAttrsSpec => {
+      getAttrs: (dom: HTMLElement): Record<string, any> => {
         return dom.style.fontWeight !== 'normal' && null;
       },
     },
     {
       style: 'font-weight',
-      getAttrs: (value: string): GetAttrsSpec => {
+      getAttrs: (value: string): Record<string, any> => {
         return /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null;
       }
     }
@@ -112,7 +110,7 @@ const textColor: MarkSpec = {
   parseDOM: [
     {
       style: 'color',
-      getAttrs: (value: string): GetAttrsSpec => {
+      getAttrs: (value: string): Record<string, any> => {
         return { color: value };
       }
     }
@@ -132,7 +130,7 @@ const textBackgroundColor: MarkSpec = {
   parseDOM: [
     {
       style: 'background-color',
-      getAttrs: (value: string): GetAttrsSpec => {
+      getAttrs: (value: string): Record<string, any> => {
         return { backgroundColor: value };
       }
     }

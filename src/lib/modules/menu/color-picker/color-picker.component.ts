@@ -110,7 +110,7 @@ export class ColorPickerComponent implements OnDestroy {
 
     const { state, dispatch } = this.editorView;
 
-    const attrs: { [key: string]: string } = {};
+    const attrs: Record<string, any> = {};
 
     if (this.type === 'text_color') {
       attrs.color = color;

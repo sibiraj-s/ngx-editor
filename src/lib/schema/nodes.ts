@@ -3,8 +3,6 @@ import * as sl from 'prosemirror-schema-list';
 
 import toStyleString from '../utils/toStyleString';
 
-type GetAttrsSpec = { [key: string]: any };
-
 const doc: NodeSpec = {
   content: 'block+'
 };
@@ -27,7 +25,7 @@ const paragraph: NodeSpec = {
   parseDOM: [
     {
       tag: 'p',
-      getAttrs(dom: HTMLElement): GetAttrsSpec {
+      getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
 
@@ -87,7 +85,7 @@ const heading: NodeSpec = {
   parseDOM: [
     {
       tag: 'h1',
-      getAttrs(dom: HTMLElement): GetAttrsSpec {
+      getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
 
@@ -99,7 +97,7 @@ const heading: NodeSpec = {
     },
     {
       tag: 'h2',
-      getAttrs(dom: HTMLElement): GetAttrsSpec {
+      getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
 
@@ -111,7 +109,7 @@ const heading: NodeSpec = {
     },
     {
       tag: 'h3',
-      getAttrs(dom: HTMLElement): GetAttrsSpec {
+      getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
 
@@ -123,7 +121,7 @@ const heading: NodeSpec = {
     },
     {
       tag: 'h4',
-      getAttrs(dom: HTMLElement): GetAttrsSpec {
+      getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
 
@@ -135,7 +133,7 @@ const heading: NodeSpec = {
     },
     {
       tag: 'h5',
-      getAttrs(dom: HTMLElement): GetAttrsSpec {
+      getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
 
@@ -147,7 +145,7 @@ const heading: NodeSpec = {
     },
     {
       tag: 'h6',
-      getAttrs(dom: HTMLElement): GetAttrsSpec {
+      getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
 
@@ -217,7 +215,7 @@ export const image: NodeSpec = {
   parseDOM: [
     {
       tag: 'img[src]',
-      getAttrs(dom: HTMLElement): GetAttrsSpec {
+      getAttrs(dom: HTMLElement): Record<string, any> {
         return {
           src: dom.getAttribute('src'),
           title: dom.getAttribute('title'),

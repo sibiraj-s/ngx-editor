@@ -11,10 +11,8 @@ import schema from '../schema';
 
 const isMacOs = /Mac/.test(navigator.platform);
 
-export type KeyMap = { [key: string]: any };
-
-const getHistoryKeyMap = (): KeyMap => {
-  const historyMap: KeyMap = {};
+const getHistoryKeyMap = (): Record<string, any> => {
+  const historyMap: Record<string, any> = {};
 
   historyMap['Mod-z'] = undo;
 
@@ -27,8 +25,8 @@ const getHistoryKeyMap = (): KeyMap => {
   return historyMap;
 };
 
-const getListKeyMap = (): KeyMap => {
-  const listMap: KeyMap = {};
+const getListKeyMap = (): Record<string, any> => {
+  const listMap: Record<string, any> = {};
 
   listMap.Enter = splitListItem(schema.nodes.list_item);
   listMap['Mod-['] = liftListItem(schema.nodes.list_item);
