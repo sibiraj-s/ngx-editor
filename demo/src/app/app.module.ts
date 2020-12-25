@@ -23,7 +23,7 @@ import { CustomMenuComponent } from './components/custom-menu/custom-menu.compon
       nodeViews,
       menu: [
         ['bold', 'italic'],
-        ['underline'],
+        ['underline', 'strike'],
         ['code', 'blockquote'],
         ['ordered_list', 'bullet_list'],
         [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],

@@ -11,6 +11,7 @@ export const STRONG = new MarkToggle('strong');
 export const EM = new MarkToggle('em');
 export const CODE = new MarkToggle('code');
 export const UNDERLINE = new MarkToggle('u');
+export const STRIKE = new MarkToggle('s');
 export const BLOCKQUOTE = new BlockquoteToggle();
 export const UL = new ListItemToggle(true);
 export const OL = new ListItemToggle(false);

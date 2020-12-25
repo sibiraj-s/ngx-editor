@@ -4,6 +4,7 @@ import bold from './bold';
 import italic from './italic';
 import code from './code';
 import underline from './underline';
+import strike from './strike';
 import orderedList from './ordered_list';
 import bulletList from './bullet_list';
 import quote from './quote';
@@ -25,6 +26,7 @@ const icons = {
   italic,
   code,
   underline,
+  strike,
   ordered_list: orderedList,
   bullet_list: bulletList,
   blockquote: quote,
