@@ -13,6 +13,13 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-beta.1 (2020-12-25)
+
+#### Features
+
+- support strikethrough ([098fc62](https://github.com/sibiraj-s/ngx-editor/commit/098fc62))
+- support underline ([888573d](https://github.com/sibiraj-s/ngx-editor/commit/888573d))
+
 ## v5.0.0-beta.0 (2020-12-24)
 
 #### Bug Fixes
