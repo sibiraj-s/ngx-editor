@@ -22,7 +22,7 @@ export class MenuComponent implements OnDestroy {
 
   simpleCommands = [
     'bold', 'italic',
-    'underline',
+    'underline', 'strike',
     'code', 'blockquote',
     'ordered_list', 'bullet_list',
     'align_left', 'align_center', 'align_right', 'align_justify'

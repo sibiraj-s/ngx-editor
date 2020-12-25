@@ -90,6 +90,20 @@ const u: MarkSpec = {
   }
 };
 
+// :: MarkSpec An underline mark. Rendered as an `<s>` element.
+// Has parse rules that also match `strike`, `del` tag and css property `text-decoration: line-through`.
+const s: MarkSpec = {
+  parseDOM: [
+    { tag: 's' },
+    { tag: 'strike' },
+    { tag: 'del' },
+    { style: 'text-decoration=line-through' }
+  ],
+  toDOM(): DOMOutputSpec {
+    return ['s', 0];
+  }
+};
+
 const textColor: MarkSpec = {
   attrs: {
     color: {
@@ -136,6 +150,7 @@ const makrs = {
   strong,
   code,
   u,
+  s,
   text_color: textColor,
   text_background_color: textBackgroundColor
 };

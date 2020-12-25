@@ -8,6 +8,7 @@ SimpleCommands.set('bold', Commands.STRONG);
 SimpleCommands.set('italic', Commands.EM);
 SimpleCommands.set('code', Commands.CODE);
 SimpleCommands.set('underline', Commands.UNDERLINE);
+SimpleCommands.set('strike', Commands.STRIKE);
 SimpleCommands.set('blockquote', Commands.BLOCKQUOTE);
 SimpleCommands.set('bullet_list', Commands.UL);
 SimpleCommands.set('ordered_list', Commands.OL);

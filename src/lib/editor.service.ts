@@ -12,7 +12,7 @@ import { schema } from './schema';
 const DEFAULT_MENU: Toolbar = [
   ['bold', 'italic'],
   ['code', 'blockquote'],
-  ['underline'],
+  ['underline', 'strike'],
   ['ordered_list', 'bullet_list'],
   [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
   ['link', 'image'],
