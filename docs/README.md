@@ -71,6 +71,12 @@ const html = toHTML(jsonDoc);
 
 To convert HTML to json
 
+```ts
+import { toDoc } from 'ngx-editor';
+
+const jsonDoc = toDoc(html);
+```
+
 ### Optional Configuration
 
 ```ts
