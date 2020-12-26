@@ -60,8 +60,6 @@ Then in HTML
 <ngx-editor [ngModel]="jsonDoc"></ngx-editor>
 ```
 
-For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
-
 ### Working with HTML
 
 To convert json output from the editor to html
