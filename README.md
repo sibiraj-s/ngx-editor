@@ -62,6 +62,24 @@ Then in HTML
 
 For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
 
+### Working with HTML
+
+To convert json output from the editor to html
+
+```ts
+import { toHTML } from 'ngx-editor';
+
+const html = toHTML(jsonDoc);
+```
+
+To convert HTML to json
+
+```ts
+import { toDoc } from 'ngx-editor';
+
+const jsonDoc = toDoc(html);
+```
+
 ### Optional Configuration
 
 ```ts
