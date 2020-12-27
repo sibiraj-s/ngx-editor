@@ -4,7 +4,7 @@ Ref: https://prosemirror.net/examples/codemirror/
 
 Example: https://github.com/sibiraj-s/ngx-editor/tree/master/demo for examples.
 
-See https://sibiraj.dev/ngx-editor/#/menu?id=custom-menu for implementing custom to toggle the codemirror block
+See https://sibiraj-s.github.io/ngx-editor/#/menu?id=custom-menu for implementing custom to toggle the codemirror block
 
 ```ts
 import { exitCode } from 'prosemirror-commands';

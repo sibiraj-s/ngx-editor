@@ -84,7 +84,7 @@ import { schema } from 'ngx-editor';
 import { placeholder } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
-  schema, // optional scheama, see https://sibiraj.dev/ngx-editor/#/schema
+  schema, // optional scheama, see https://sibiraj-s.github.io/ngx-editor/#/schema
   plugins: [placholder('Type something here...')],
   menu: [
     ['bold', 'italic'],

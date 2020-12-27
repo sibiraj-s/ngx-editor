@@ -85,7 +85,7 @@ import { schema } from 'ngx-editor';
 import { placeholder } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
-  schema, // optional scheama, see https://sibiraj.dev/ngx-editor/#/schema
+  schema, // optional scheama, see https://sibiraj-s.github.io/ngx-editor/#/schema
   plugins: [
     // include other prosemirror plugins
     placholder('Type something here...'), // default
@@ -124,10 +124,11 @@ Demo at stackblitz https://ngx-editor.stackblitz.io/
 
 Edit the stackblitz here https://stackblitz.com/edit/ngx-editor
 
+## 
+
 ## Icons
 
 Icons are from https://material.io/resources/icons/
-
 
 ## Contributing
 
@@ -138,5 +139,5 @@ See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) to get started.
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
 [github]: https://sibiraj-s.github.io/
-[documentation]: https://sibiraj.dev/ngx-editor/
+[documentation]: https://sibiraj-s.github.io/ngx-editor
 [wiki]: https://github.com/sibiraj-s/ngx-editor/wiki/ngxEditor
