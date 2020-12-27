@@ -17,3 +17,4 @@
   - [CodeMirror](codemirror.md)
   - [Reactive Forms](reactive-forms.md)
   - [Ng Model Binding](ng-model.md)
+  - [Collaborative Editing](collab.md)
