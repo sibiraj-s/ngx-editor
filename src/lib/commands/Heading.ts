@@ -24,11 +24,13 @@ class Heading {
     const nodePos = selection.$from.before(1);
     const node = doc.nodeAt(nodePos);
 
+    const attrs = node?.attrs ?? {};
+
     if (this.isActive(state)) {
-      return setBlockType(schema.nodes.paragraph, node.attrs)(state, dispatch);
+      return setBlockType(schema.nodes.paragraph, attrs)(state, dispatch);
     }
 
-    return setBlockType(type, { ...node.attrs, level: this.level })(state, dispatch);
+    return setBlockType(type, { ...attrs, level: this.level })(state, dispatch);
   }
 
   isActive(state: EditorState): boolean {
