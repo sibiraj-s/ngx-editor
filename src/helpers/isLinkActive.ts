@@ -13,6 +13,10 @@ export const isLinkActive = (state: EditorState): boolean => {
   const isForwardSelection = anchor === from;
   const linkMarks: Mark[] = getSelectionMarks(state).filter(mark => mark.type === schema.marks.link);
 
+  if (!linkMarks.length) {
+    return false;
+  }
+
   const selectionHasOnlyMarks = isForwardSelection ?
     (
       state.doc.rangeHasMark(anchor, anchor + 1, schema.marks.link) &&
