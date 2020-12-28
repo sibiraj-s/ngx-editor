@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0-beta.3 (2020-12-28)
+
+#### Bug Fixes
+
+- fix active link helper crash with collab module ([e7b7aad](https://github.com/sibiraj-s/ngx-editor/commit/e7b7aad))
+- fix cursor for placeholder ([7c8e6f9](https://github.com/sibiraj-s/ngx-editor/commit/7c8e6f9))
+- fix heading command crash with collab module ([d26a2af](https://github.com/sibiraj-s/ngx-editor/commit/d26a2af))
+
+#### Documentation
+
+- added example to setup prosemirror-collab ([df6f7a4](https://github.com/sibiraj-s/ngx-editor/commit/df6f7a4))
+
 ## v5.0.0-beta.2 (2020-12-25)
 
 #### Features
