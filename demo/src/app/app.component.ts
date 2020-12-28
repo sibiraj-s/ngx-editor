@@ -16,6 +16,7 @@ import jsonDoc from './doc';
 export class AppComponent {
   isProdMode = environment.production;
   editorView: EditorView;
+  editordoc = jsonDoc;
 
   form = new FormGroup({
     editorContent: new FormControl(jsonDoc, Validators.required())
