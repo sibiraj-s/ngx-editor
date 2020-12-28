@@ -102,18 +102,20 @@ export class NgxEditorService {
 export const provideMyServiceOptions = (config?: NgxEditorConfig): NgxEditorServiceConfig => {
   let menu: Menu;
 
-  if (!config.menu) {
-    menu = DEFAULT_MENU;
-  } else if (Array.isArray(config.menu)) {
-    menu = {
-      ...DEFAULT_MENU,
-      toolbar: config.menu,
-    };
-  } else {
-    menu = {
-      ...DEFAULT_MENU,
-      ...config.menu,
-    };
+  if (config.menu !== null) {
+    if (!config.menu) {
+      menu = DEFAULT_MENU;
+    } else if (Array.isArray(config.menu)) {
+      menu = {
+        ...DEFAULT_MENU,
+        toolbar: config.menu,
+      };
+    } else {
+      menu = {
+        ...DEFAULT_MENU,
+        ...config.menu,
+      };
+    }
   }
 
   return {

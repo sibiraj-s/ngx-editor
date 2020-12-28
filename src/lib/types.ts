@@ -40,6 +40,6 @@ export interface NgxEditorConfig {
   schema?: Schema;
   plugins?: Plugin[];
   nodeViews?: NodeViews;
-  menu?: Menu | Toolbar;
+  menu?: null | Menu | Toolbar;
   locals?: Partial<Record<LocalsKeys, string>>;
 }
