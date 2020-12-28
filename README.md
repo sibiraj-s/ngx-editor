@@ -5,7 +5,7 @@
    <img src="./sketch/ngx-editor.png" alt="ngxEditor">
   </a>
 </p>
-<p align="center">A Simple WYSIWYG Editor for Angular Applications.</p>
+<p align="center">Rich Text Editor for angular using ProseMirror</p>
 <p align="center">
   <a href="https://travis-ci.org/sibiraj-s/ngx-editor">
     <img alt="Tests" src="https://github.com/sibiraj-s/ngx-editor/workflows/Tests/badge.svg">

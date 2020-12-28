@@ -10,7 +10,7 @@ describe('ngx-editor App', () => {
 
   it('should display welcome message', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('A Simple WYSIWYG Editor for Angular Applications.');
+    expect(await page.getTitleText()).toEqual('Rich Text Editor for angular using ProseMirror');
   });
 
   afterEach(async () => {
