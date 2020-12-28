@@ -124,7 +124,9 @@ Demo at stackblitz https://ngx-editor.stackblitz.io/
 
 Edit the stackblitz here https://stackblitz.com/edit/ngx-editor
 
-## 
+## Collaborative Editing
+
+See https://sibiraj-s.github.io/ngx-editor/#/collab
 
 ## Icons
 
