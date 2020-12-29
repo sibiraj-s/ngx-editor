@@ -2,8 +2,6 @@ import { Injectable, Optional } from '@angular/core';
 import { Schema } from 'prosemirror-model';
 import { Plugin } from 'prosemirror-state';
 
-import { placeholder } from 'ngx-editor/plugins';
-
 import { Menu, NgxEditorConfig, NodeViews, Toolbar } from './types';
 import Locals from './Locals';
 
@@ -46,7 +44,6 @@ const DEFAULT_MENU: Menu = {
 
 const DEFAULT_SCHEMA = schema;
 const DEFAULT_PLUGINS: Plugin[] = [
-  placeholder()
 ];
 
 @Injectable({

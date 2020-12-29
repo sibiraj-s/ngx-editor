@@ -2,7 +2,6 @@
 
 ```ts
 import { schema } from 'ngx-editor';
-import { placeholder } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
   schema, // optional scheama, see https://sibiraj-s.github.io/ngx-editor/#/schema
@@ -58,4 +57,5 @@ NgxEditorModule.forRoot({
 
 ## Component Props
 
-- placeholder [`string`] - (Optional) - A placeholder for the editor. If you are using custom set of plugins, you must also include `placeholder` plugin from `ngx-editor/plugins` plugins for this to work
+- placeholder [`string`] - (Optional) - A placeholder for the editor
+- editable [`boolean`] - (Optional) - 

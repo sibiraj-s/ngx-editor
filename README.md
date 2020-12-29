@@ -86,13 +86,11 @@ const jsonDoc = toDoc(html);
 
 ```ts
 import { schema } from 'ngx-editor';
-import { placeholder } from 'ngx-editor/plugins';
 
 NgxEditorModule.forRoot({
   schema, // optional scheama, see https://sibiraj-s.github.io/ngx-editor/#/schema
   plugins: [
     // include other prosemirror plugins
-    placholder('Type something here...'), // default
   ],
   menu: [
     // default options (Optional)

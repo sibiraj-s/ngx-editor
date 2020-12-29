@@ -13,7 +13,7 @@ import { Node as ProsemirrorNode } from 'prosemirror-model';
 import { NgxEditorService, NgxEditorServiceConfig } from './editor.service';
 import { SharedService } from './services/shared/shared.service';
 import { Toolbar } from './types';
-import { editable } from 'ngx-editor/plugins';
+import { editable as editablePlugin, placeholder as placeholderPlugin } from 'ngx-editor/plugins';
 
 @Component({
   selector: 'ngx-editor',
@@ -37,7 +37,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   private config: NgxEditorServiceConfig;
 
   @Input() customMenuRef: TemplateRef<any>;
-  @Input() placeholder: string;
+  @Input() placeholder = 'Type here...';
   @Input() editable = true;
   @Output() init = new EventEmitter<EditorView>();
   @Output() focusOut = new EventEmitter<void>();
@@ -126,7 +126,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
 
   private filterBuiltIns(plugin: Plugin): boolean {
     const pluginKey: string = (plugin as any).key;
-    if (/^editable\$/.test(pluginKey)) {
+    if (/^(editable|placeholder)\$/.test(pluginKey)) {
       return false;
     }
 
@@ -143,7 +143,8 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
         plugins: [
           ...plugins.filter((plugin) => this.filterBuiltIns(plugin)),
           this.createUpdateWatcherPlugin(),
-          editable(this.editable)
+          placeholderPlugin(this.placeholder),
+          editablePlugin(this.editable)
         ]
       }),
       nodeViews,

@@ -22,6 +22,10 @@ const placeholderPlugin = (text: string = DEFAULT_PLACEHOLDER): Plugin => {
 
         const placeholder = this.getState(state);
 
+        if (!placeholder) {
+          return DecorationSet.empty;
+        }
+
         if (doc.childCount === 1 && doc?.firstChild?.isTextblock && doc.firstChild.content.size === 0) {
           const placeHolderEl = document.createElement('span');
           placeHolderEl.classList.add(PLACEHOLDER_CLASSNAME);
