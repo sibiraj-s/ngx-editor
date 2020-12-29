@@ -13,6 +13,14 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.0.0 (2020-12-29)
+
+#### Features
+
+- support editable prop ([be077d7](https://github.com/sibiraj-s/ngx-editor/commit/be077d7))
+- placeholder plugin is included by default ([03ac403](https://github.com/sibiraj-s/ngx-editor/commit/03ac403))
+- allow hiding menu component ([998ca3c](https://github.com/sibiraj-s/ngx-editor/commit/998ca3c))
+
 ## v5.0.0-beta.3 (2020-12-28)
 
 #### Bug Fixes
