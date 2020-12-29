@@ -57,7 +57,11 @@ export class AppModule {}
 Then in HTML
 
 ```html
-<ngx-editor [ngModel]="jsonDoc"></ngx-editor>
+<ngx-editor
+  [ngModel]="jsonDoc"
+  [editable]="true"
+  [placeholder]="Type here..."
+></ngx-editor>
 ```
 
 ### Working with HTML

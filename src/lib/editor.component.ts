@@ -13,6 +13,7 @@ import { Node as ProsemirrorNode } from 'prosemirror-model';
 import { NgxEditorService, NgxEditorServiceConfig } from './editor.service';
 import { SharedService } from './services/shared/shared.service';
 import { Toolbar } from './types';
+import { editable } from 'ngx-editor/plugins';
 
 @Component({
   selector: 'ngx-editor',
@@ -37,6 +38,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
 
   @Input() customMenuRef: TemplateRef<any>;
   @Input() placeholder: string;
+  @Input() editable = true;
   @Output() init = new EventEmitter<EditorView>();
   @Output() focusOut = new EventEmitter<void>();
   @Output() focusIn = new EventEmitter<void>();
@@ -122,6 +124,15 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     return plugin;
   }
 
+  private filterBuiltIns(plugin: Plugin): boolean {
+    const pluginKey: string = (plugin as any).key;
+    if (/^editable\$/.test(pluginKey)) {
+      return false;
+    }
+
+    return true;
+  }
+
   private createEditor(): void {
     const { schema, plugins, nodeViews } = this.config;
 
@@ -130,8 +141,9 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
         doc: null,
         schema,
         plugins: [
-          ...plugins,
-          this.createUpdateWatcherPlugin()
+          ...plugins.filter((plugin) => this.filterBuiltIns(plugin)),
+          this.createUpdateWatcherPlugin(),
+          editable(this.editable)
         ]
       }),
       nodeViews,
@@ -164,6 +176,11 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     dispatch(tr.setMeta('UPDATE_PLACEHOLDER', placeholder));
   }
 
+  private updateEditable(edit: boolean): void {
+    const { dispatch, state: { tr } } = this.view;
+    dispatch(tr.setMeta('UPDATE_EDITABLE', edit));
+  }
+
   ngOnInit(): void {
     this.createEditor();
     this.setPlaceholder();
@@ -172,6 +189,10 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.placeholder && !changes.placeholder.isFirstChange()) {
       this.setPlaceholder(changes.placeholder.currentValue);
+    }
+
+    if (changes?.editable && !changes.editable.isFirstChange()) {
+      this.updateEditable(changes.editable.currentValue);
     }
   }
 
