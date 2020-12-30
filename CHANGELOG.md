@@ -13,6 +13,16 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.1.0 (2020-12-30)
+
+#### Features
+
+- accept HTML as input ([d62d8e4](https://github.com/sibiraj-s/ngx-editor/commit/d62d8e4))
+
+#### Bug Fixes
+
+- don't call onchange on init ([2d7bf59](https://github.com/sibiraj-s/ngx-editor/commit/2d7bf59))
+
 ## v5.0.0 (2020-12-29)
 
 #### Features
