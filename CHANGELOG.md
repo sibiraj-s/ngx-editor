@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.1.1 (2020-12-30)
+
+#### Bug Fixes
+
+- return null from `required` validator when valid ([398e1d5](https://github.com/sibiraj-s/ngx-editor/commit/398e1d5))
+
 ## v5.1.0 (2020-12-30)
 
 #### Features
