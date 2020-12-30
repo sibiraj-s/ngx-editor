@@ -38,6 +38,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   private config: NgxEditorServiceConfig;
   private editorInitialized = false;
 
+  @Input() outputFormat: 'doc' | 'html';
   @Input() customMenuRef: TemplateRef<any>;
   @Input() placeholder = 'Type here...';
   @Input() editable = true;
@@ -59,6 +60,10 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   writeValue(value: Record<string, any> | string | null): void {
     if (!this.editorInitialized) {
       return;
+    }
+
+    if (!this.outputFormat && typeof value === 'string') {
+      this.outputFormat = 'html';
     }
 
     this.updateContent(value);
@@ -122,6 +127,13 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     }
 
     const json = state.doc.toJSON();
+
+    if (this.outputFormat === 'html') {
+      const html = toHTML(json, this.config.schema);
+      this.onChange(html);
+      return;
+    }
+
     this.onChange(json);
   }
 
