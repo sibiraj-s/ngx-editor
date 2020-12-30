@@ -14,6 +14,17 @@ const editablePlugin = (editable = true) => {
     props: {
       editable(state: EditorState): boolean {
         return this.getState(state);
+      },
+      attributes(state: EditorState): Record<string, string> | null {
+        const isEnabled = this.getState(state);
+
+        if (isEnabled) {
+          return null;
+        }
+
+        return {
+          class: 'NgxEditor__Content--Disabled'
+        };
       }
     }
   });

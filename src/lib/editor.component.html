@@ -3,6 +3,7 @@
     [toolbar]="toolbar" 
     [editorView]="view"
     *ngIf="toolbar"
+    [disabled]="!editable"
   >
   </ngx-menu>
   <ngx-bubble></ngx-bubble>

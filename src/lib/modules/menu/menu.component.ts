@@ -16,6 +16,7 @@ import { SharedService } from '../../services/shared/shared.service';
 export class MenuComponent implements OnDestroy {
   @Input() toolbar: any;
   @Input() editorView: EditorView;
+  @Input() disabled = false;
 
   customMenuRef: TemplateRef<any> = null;
   customMenuRefSubscription: Subscription;

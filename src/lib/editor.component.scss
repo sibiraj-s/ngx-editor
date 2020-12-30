@@ -41,6 +41,11 @@ $light-gray: #f1f1f1;
   }
 }
 
+.NgxEditor__Content--Disabled {
+  user-select: none;
+  pointer-events: none;
+}
+
 .NgxEditor__ImageWrapper {
   position: relative;
   display: inline-block;
