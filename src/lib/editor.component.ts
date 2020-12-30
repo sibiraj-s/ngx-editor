@@ -96,7 +96,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
 
       const newDoc = this.parse(value);
       tr.replaceWith(0, state.doc.content.size, newDoc)
-        .setMeta('PREVENT_EMIT', true);
+        .setMeta('PREVENT_ONCHANGE', true);
 
       // don't emit if both content is same
       if (doc !== null && doc.eq(tr.doc)) {
@@ -117,7 +117,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     const { state } = this.view.state.applyTransaction(tr);
     this.view.updateState(state);
 
-    if (!tr.docChanged || !this.onChange || tr.getMeta('PREVENT_UPDATE')) {
+    if (!tr.docChanged || !this.onChange || tr.getMeta('PREVENT_ONCHANGE')) {
       return;
     }
 
