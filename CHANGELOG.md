@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.2.1 (2020-12-30)
+
+#### Bug Fixes
+
+- disable menu when editable is set to false ([b7eca21](https://github.com/sibiraj-s/ngx-editor/commit/b7eca21))
+
 ## v5.2.0 (2020-12-30)
 
 #### Features
