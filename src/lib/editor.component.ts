@@ -14,6 +14,7 @@ import { NgxEditorService, NgxEditorServiceConfig } from './editor.service';
 import { SharedService } from './services/shared/shared.service';
 import { Toolbar } from './types';
 import { editable as editablePlugin, placeholder as placeholderPlugin } from 'ngx-editor/plugins';
+import { toDoc, toHTML } from './html';
 
 @Component({
   selector: 'ngx-editor',
@@ -31,10 +32,11 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   @ViewChild('ngxEditor', { static: true }) ngxEditor: ElementRef;
 
   view: EditorView;
-  private onChange: (value: object) => void;
+  private onChange: (value: Record<string, any> | string) => void;
   private onTouched: () => void;
 
   private config: NgxEditorServiceConfig;
+  private editorInitialized = false;
 
   @Input() customMenuRef: TemplateRef<any>;
   @Input() placeholder = 'Type here...';
@@ -42,8 +44,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
   @Output() init = new EventEmitter<EditorView>();
   @Output() focusOut = new EventEmitter<void>();
   @Output() focusIn = new EventEmitter<void>();
-
-  private editorInitialized = false;
 
   constructor(
     ngxEditorService: NgxEditorService,
@@ -56,7 +56,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     return this.config.menu?.toolbar;
   }
 
-  writeValue(value: object | null): void {
+  writeValue(value: Record<string, any> | string | null): void {
     if (!this.editorInitialized) {
       return;
     }
@@ -72,27 +72,41 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     this.onTouched = fn;
   }
 
-  private parseDoc(contentJson: object): ProsemirrorNode {
-    if (!contentJson) {
+  private parse(value: Record<string, any> | string): ProsemirrorNode {
+    if (!value) {
       return null;
+    }
+
+    let contentJson = null;
+
+    if (typeof value === 'string') {
+      contentJson = toDoc(value, this.config.schema);
+    } else {
+      contentJson = value;
     }
 
     const { schema } = this.config;
     return schema.nodeFromJSON(contentJson);
   }
 
-  private updateContent(value: object): void {
+  private updateContent(value: Record<string, any> | string): void {
     try {
-      const doc = this.parseDoc(value);
-      const state = this.view.state;
+      const { state } = this.view;
+      const { tr, doc } = state;
+
+      const newDoc = this.parse(value);
+      tr.replaceWith(0, state.doc.content.size, newDoc)
+        .setMeta('PREVENT_EMIT', true);
 
       // don't emit if both content is same
-      if (doc !== null && state.doc.eq(doc)) {
+      if (doc !== null && doc.eq(tr.doc)) {
         return;
       }
 
-      const tr = state.tr;
-      tr.replaceWith(0, state.doc.content.size, doc);
+      if (!tr.docChanged) {
+        return;
+      }
+
       this.view.dispatch(tr);
     } catch (err) {
       console.error('Unable to update document.', err);
@@ -101,13 +115,14 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
 
   private handleTransactions(tr: Transaction): void {
     const { state } = this.view.state.applyTransaction(tr);
-
     this.view.updateState(state);
 
-    if (tr.docChanged && this.onChange) {
-      const json = state.doc.toJSON();
-      this.onChange(json);
+    if (!tr.docChanged || !this.onChange || tr.getMeta('PREVENT_UPDATE')) {
+      return;
     }
+
+    const json = state.doc.toJSON();
+    this.onChange(json);
   }
 
   private createUpdateWatcherPlugin(): Plugin {
