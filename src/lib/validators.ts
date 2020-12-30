@@ -21,8 +21,12 @@ export class Validators {
         && node?.firstChild?.isTextblock
         && node.firstChild.content.size === 0;
 
+      if (!isEmpty) {
+        return null;
+      }
+
       return {
-        required: isEmpty
+        required: true
       };
     };
   }
