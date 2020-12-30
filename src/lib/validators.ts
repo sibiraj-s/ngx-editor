@@ -1,6 +1,7 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { Schema } from 'prosemirror-model';
 
+import { toDoc } from './html';
 import schema from './schema';
 
 // @dynamic
@@ -11,11 +12,19 @@ export class Validators {
 
       const userSchema = customSchema || schema;
 
-      if (!c.value) {
+      const value = c.value;
+      if (!value) {
         return null;
       }
 
-      const node = userSchema.nodeFromJSON(c.value);
+      let doc = null;
+      if (typeof value === 'string') {
+        doc = toDoc(value, userSchema);
+      } else {
+        doc = value;
+      }
+
+      const node = userSchema.nodeFromJSON(doc);
 
       const isEmpty = node.childCount === 1
         && node?.firstChild?.isTextblock
