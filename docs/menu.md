@@ -51,6 +51,8 @@ NgxEditorModule.forRoot({
 });
 ```
 
+Set Menu as `null` to disable menu
+
 ## Custom Menu
 
 The editorView will be available from the init function

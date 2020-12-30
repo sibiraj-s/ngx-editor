@@ -58,4 +58,4 @@ NgxEditorModule.forRoot({
 ## Component Props
 
 - placeholder [`string`] - (Optional) - A placeholder for the editor
-- editable [`boolean`] - (Optional) - 
+- editable [`boolean`] - (Optional)

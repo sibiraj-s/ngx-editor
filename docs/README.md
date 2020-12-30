@@ -57,11 +57,13 @@ Then in HTML
 
 ```html
 <ngx-editor
-  [ngModel]="jsonDoc"
+  [ngModel]="html"
   [editable]="true"
   [placeholder]="Type here..."
 ></ngx-editor>
 ```
+
+Note: Input can be a HTML string or a jsonDoc
 
 ### Working with HTML
 
@@ -70,7 +72,7 @@ To convert json output from the editor to html
 ```ts
 import { toHTML } from 'ngx-editor';
 
-const html = toHTML(jsonDoc);
+const html = toHTML(jsonDoc, schema); // schema is optional
 ```
 
 To convert HTML to json
