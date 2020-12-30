@@ -13,6 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.2.0 (2020-12-30)
+
+#### Features
+
+- allow specifying output format ([e71b7d7](https://github.com/sibiraj-s/ngx-editor/commit/e71b7d7))
+
+#### Bug Fixes
+
+- emit HTML if input is a HTML ([e71b7d7](https://github.com/sibiraj-s/ngx-editor/commit/e71b7d7))
+- fix validators for HTML input ([9b25119](https://github.com/sibiraj-s/ngx-editor/commit/9b25119))
+
 ## v5.1.1 (2020-12-30)
 
 #### Bug Fixes
