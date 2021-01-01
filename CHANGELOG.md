@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v5.3.0 (2021-01-01)
+
+#### Features
+
+- add maxLength, minLength validators ([d59051c](https://github.com/sibiraj-s/ngx-editor/commit/d59051c))
+
 ## v5.2.1 (2020-12-30)
 
 #### Bug Fixes
