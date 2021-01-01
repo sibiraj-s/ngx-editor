@@ -58,4 +58,6 @@ export class AppComponent {
 import { Validators } from 'ngx-editor';
 
 Validators.required(schema); // pass schema if you are using a custom schema else leave it empty
+Validators.maxLength(maxLenght, schema);
+Validators.minLength(minLenght, schema);
 ```
