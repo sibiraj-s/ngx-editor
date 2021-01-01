@@ -8,13 +8,12 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 import { EditorState, Plugin, PluginKey, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
-import { Node as ProsemirrorNode } from 'prosemirror-model';
 
 import { NgxEditorService, NgxEditorServiceConfig } from './editor.service';
 import { SharedService } from './services/shared/shared.service';
 import { Toolbar } from './types';
 import { editable as editablePlugin, placeholder as placeholderPlugin } from 'ngx-editor/plugins';
-import { toDoc, toHTML } from './html';
+import { parseValue, toHTML } from './parsers';
 
 @Component({
   selector: 'ngx-editor',
@@ -77,29 +76,12 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     this.onTouched = fn;
   }
 
-  private parse(value: Record<string, any> | string): ProsemirrorNode {
-    if (!value) {
-      return null;
-    }
-
-    let contentJson = null;
-
-    if (typeof value === 'string') {
-      contentJson = toDoc(value, this.config.schema);
-    } else {
-      contentJson = value;
-    }
-
-    const { schema } = this.config;
-    return schema.nodeFromJSON(contentJson);
-  }
-
   private updateContent(value: Record<string, any> | string): void {
     try {
       const { state } = this.view;
       const { tr, doc } = state;
 
-      const newDoc = this.parse(value);
+      const newDoc = parseValue(value, this.config.schema);
       tr.replaceWith(0, state.doc.content.size, newDoc)
         .setMeta('PREVENT_ONCHANGE', true);
 
