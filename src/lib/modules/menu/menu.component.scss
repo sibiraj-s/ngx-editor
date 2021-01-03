@@ -9,8 +9,6 @@ $light-gray-1: #e8f0fe;
 $medium-gray: #ddd;
 $medium-gray-2: #ccc;
 
-$menubar-border-color: $medium-gray;
-
 $menu-item-border-radius: 2px;
 $menu-item-hover-bg-color: $light-gray;
 $menu-item-active-bg-color: $light-gray-1;
@@ -26,7 +24,6 @@ $menubar-text-padding: 0 $menu-item-spacing;
 .NgxEditor__MenuBar {
   display: flex;
   padding: $menubar-padding;
-  border-bottom: 1px solid $menubar-border-color;
   cursor: default;
   height: $menubar-height;
 }

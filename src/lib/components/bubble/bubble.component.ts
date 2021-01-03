@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, OnDestroy,
+  Component, ElementRef, Input, OnDestroy,
   OnInit, Renderer2
 } from '@angular/core';
 import { NodeSelection } from 'prosemirror-state';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 import { calculateBubblePos, getSelectionMarks, isLinkActive } from 'ngx-editor/helpers';
 import { removeLink } from 'ngx-editor/commands';
 
-import { SharedService } from '../../services/shared/shared.service';
+import Editor from '../../Editor';
 
 @Component({
   selector: 'ngx-bubble',
@@ -18,33 +18,29 @@ import { SharedService } from '../../services/shared/shared.service';
   styleUrls: ['./bubble.component.scss']
 })
 export class BubbleComponent implements OnInit, OnDestroy {
+  @Input() editor: Editor;
+
   private view: EditorView;
+  private updateSubscription: Subscription;
   activeLinkItem: Mark;
-  private pluginUpdateSubscription: Subscription;
 
   constructor(
-    private sharedService: SharedService,
     private el: ElementRef,
     private renderer: Renderer2
-  ) {
-    this.pluginUpdateSubscription = this.sharedService.plugin.update.subscribe((view: EditorView) => {
-      this.view = view;
-      this.update(view);
-    });
-  }
+  ) { }
 
-  private setDomPosition(view: EditorView): void {
+  private setDomPosition(): void {
     // Otherwise, reposition it and update its content
     this.showBubble();
 
-    const { bottom, left } = calculateBubblePos(view, this.el.nativeElement);
+    const { bottom, left } = calculateBubblePos(this.view, this.el.nativeElement);
 
     this.renderer.setStyle(this.el.nativeElement, 'left', `${left}px`);
     this.renderer.setStyle(this.el.nativeElement, 'bottom', `${bottom}px`);
   }
 
   private showBubble(): void {
-    this.renderer.setStyle(this.el.nativeElement, 'display', '');
+    this.renderer.setStyle(this.el.nativeElement, 'display', 'flex');
   }
 
   private hideBubble(): void {
@@ -57,8 +53,8 @@ export class BubbleComponent implements OnInit, OnDestroy {
     this.view.focus();
   }
 
-  private update(view: EditorView): void {
-    const { state } = view;
+  private update(): void {
+    const { state } = this.view;
     const { schema, selection } = state;
 
     if (!schema.marks.link) {
@@ -71,7 +67,7 @@ export class BubbleComponent implements OnInit, OnDestroy {
       }
     }
 
-    const hasFocus = view.hasFocus();
+    const hasFocus = this.view.hasFocus();
     const isActive = isLinkActive(state);
     const linkMarks: Mark[] = getSelectionMarks(state).filter(mark => mark.type === schema.marks.link);
 
@@ -85,14 +81,18 @@ export class BubbleComponent implements OnInit, OnDestroy {
     this.activeLinkItem = linkItem;
 
     // update dom position
-    this.setDomPosition(view);
+    this.setDomPosition();
   }
 
   ngOnInit(): void {
+    this.view = this.editor.view;
 
+    this.editor.onUpdate.subscribe(() => {
+      this.update();
+    });
   }
 
   ngOnDestroy(): void {
-    this.pluginUpdateSubscription.unsubscribe();
+    this.updateSubscription.unsubscribe();
   }
 }

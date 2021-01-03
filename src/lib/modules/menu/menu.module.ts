@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { MenuService } from './menu.service';
+
 import { MenuComponent } from './menu.component';
 import { SimpleCommandComponent } from './simple-command/simple-command.component';
 import { LinkComponent } from './link/link.component';
@@ -28,7 +30,12 @@ import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
     ImageComponent,
     ColorPickerComponent
   ],
-  exports: [MenuComponent],
+  providers: [
+    MenuService,
+  ],
+  exports: [
+    MenuComponent
+  ],
 })
 
 export class MenuModule { }

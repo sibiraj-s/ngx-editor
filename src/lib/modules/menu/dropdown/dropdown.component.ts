@@ -3,7 +3,7 @@ import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
-import { SharedService } from '../../../services/shared/shared.service';
+import { MenuService } from '../menu.service';
 import { SimpleCommands } from '../MenuCommands';
 
 @Component({
@@ -27,12 +27,12 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   constructor(
     private ngxeService: NgxEditorService,
-    private sharedService: SharedService,
+    private menuService: MenuService,
     private el: ElementRef
   ) {
-    this.editorView = this.sharedService.view;
+    this.editorView = this.menuService.view;
 
-    this.pluginUpdateSubscription = this.sharedService.plugin.update.subscribe((view: EditorView) => {
+    this.pluginUpdateSubscription = this.menuService.plugin.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }

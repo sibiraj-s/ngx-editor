@@ -4,11 +4,11 @@ import { CommonModule } from '@angular/common';
 import { NgxEditorConfig } from './types';
 
 import { NgxEditorComponent } from './editor.component';
-import { NgxEditorServiceConfig, provideMyServiceOptions } from './editor.service';
+import { NgxEditorService, NgxEditorServiceConfig, provideMyServiceOptions } from './editor.service';
 import { MenuModule } from './modules/menu/menu.module';
 
 import { BubbleComponent } from './components/bubble/bubble.component';
-import { SharedService } from './services/shared/shared.service';
+import { MenuComponent } from './modules/menu/menu.component';
 
 const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorConfig');
 
@@ -17,14 +17,15 @@ const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorCo
     CommonModule,
     MenuModule,
   ],
-  providers: [
-    SharedService
-  ],
+  providers: [],
   declarations: [
     NgxEditorComponent,
-    BubbleComponent
+    BubbleComponent,
   ],
-  exports: [NgxEditorComponent],
+  exports: [
+    NgxEditorComponent,
+    MenuComponent
+  ],
   entryComponents: [BubbleComponent]
 })
 
@@ -43,6 +44,24 @@ export class NgxEditorModule {
           useFactory: provideMyServiceOptions,
           deps: [NGX_EDITOR_CONFIG_TOKEN]
         }
+      ]
+    };
+  }
+
+  static forChild(config: NgxEditorConfig): ModuleWithProviders<NgxEditorModule> {
+    return {
+      ngModule: NgxEditorModule,
+      providers: [
+        {
+          provide: NGX_EDITOR_CONFIG_TOKEN,
+          useValue: config
+        },
+        {
+          provide: NgxEditorServiceConfig,
+          useFactory: provideMyServiceOptions,
+          deps: [NGX_EDITOR_CONFIG_TOKEN]
+        },
+        NgxEditorService,
       ]
     };
   }

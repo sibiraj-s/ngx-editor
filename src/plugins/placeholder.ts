@@ -1,15 +1,14 @@
 import { Plugin, EditorState, PluginKey, Transaction } from 'prosemirror-state';
 import { DecorationSet, Decoration } from 'prosemirror-view';
 
-const DEFAULT_PLACEHOLDER = 'Type Here...';
 const PLACEHOLDER_CLASSNAME = 'NgxEditor__Placeholder';
 
-const placeholderPlugin = (text: string = DEFAULT_PLACEHOLDER): Plugin => {
+const placeholderPlugin = (text?: string): Plugin => {
   return new Plugin({
     key: new PluginKey('placeholder'),
     state: {
       init(): string {
-        return text;
+        return text ?? '';
       },
       apply(tr: Transaction, previousVal: string): string {
         const placeholder = tr.getMeta('UPDATE_PLACEHOLDER') ?? previousVal;

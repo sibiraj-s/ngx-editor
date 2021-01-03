@@ -1,19 +1,14 @@
 import {
   Component, ViewChild, ElementRef,
-  forwardRef, OnDestroy, ViewEncapsulation, OnInit,
-  Output, EventEmitter, Input, TemplateRef,
-  OnChanges, SimpleChanges,
+  forwardRef, OnDestroy, ViewEncapsulation,
+  OnInit, Output, EventEmitter,
+  Input, Renderer2, SimpleChanges, OnChanges,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
-import { EditorState, Plugin, PluginKey, Transaction } from 'prosemirror-state';
-import { EditorView } from 'prosemirror-view';
-
-import { NgxEditorService, NgxEditorServiceConfig } from './editor.service';
-import { SharedService } from './services/shared/shared.service';
-import { Toolbar } from './types';
-import { editable as editablePlugin, placeholder as placeholderPlugin } from 'ngx-editor/plugins';
-import { parseValue, toHTML } from './parsers';
+import { toHTML } from './parsers';
+import Editor from './Editor';
 
 @Component({
   selector: 'ngx-editor',
@@ -27,45 +22,29 @@ import { parseValue, toHTML } from './parsers';
   encapsulation: ViewEncapsulation.None
 })
 
-export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestroy, OnChanges {
+export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
+
+  constructor(private renderer: Renderer2) { }
   @ViewChild('ngxEditor', { static: true }) ngxEditor: ElementRef;
+  private subscriptions: Subscription[] = [];
 
-  view: EditorView;
-  private onChange: (value: Record<string, any> | string) => void;
-  private onTouched: () => void;
-
-  private config: NgxEditorServiceConfig;
-  private editorInitialized = false;
-
+  @Input() editor: Editor;
   @Input() outputFormat: 'doc' | 'html';
-  @Input() customMenuRef: TemplateRef<any>;
-  @Input() placeholder = 'Type here...';
-  @Input() editable = true;
-  @Output() init = new EventEmitter<EditorView>();
+  @Input() placeholder = 'Type Here...';
+  @Input() enabled = true;
+
   @Output() focusOut = new EventEmitter<void>();
   @Output() focusIn = new EventEmitter<void>();
 
-  constructor(
-    ngxEditorService: NgxEditorService,
-    private sharedService: SharedService,
-  ) {
-    this.config = ngxEditorService.config;
-  }
-
-  get toolbar(): Toolbar {
-    return this.config.menu?.toolbar;
-  }
+  private onChange: (value: Record<string, any> | string) => void = () => { };
+  private onTouched: () => void = () => { };
 
   writeValue(value: Record<string, any> | string | null): void {
-    if (!this.editorInitialized) {
-      return;
-    }
-
     if (!this.outputFormat && typeof value === 'string') {
       this.outputFormat = 'html';
     }
 
-    this.updateContent(value);
+    this.editor.setContent(value);
   }
 
   registerOnChange(fn: any): void {
@@ -76,137 +55,70 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnDestr
     this.onTouched = fn;
   }
 
-  private updateContent(value: Record<string, any> | string): void {
-    try {
-      const { state } = this.view;
-      const { tr, doc } = state;
-
-      const newDoc = parseValue(value, this.config.schema);
-      tr.replaceWith(0, state.doc.content.size, newDoc)
-        .setMeta('PREVENT_ONCHANGE', true);
-
-      // don't emit if both content is same
-      if (doc !== null && doc.eq(tr.doc)) {
-        return;
-      }
-
-      if (!tr.docChanged) {
-        return;
-      }
-
-      this.view.dispatch(tr);
-    } catch (err) {
-      console.error('Unable to update document.', err);
-    }
-  }
-
-  private handleTransactions(tr: Transaction): void {
-    const { state } = this.view.state.applyTransaction(tr);
-    this.view.updateState(state);
-
-    if (!tr.docChanged || !this.onChange || tr.getMeta('PREVENT_ONCHANGE')) {
-      return;
-    }
-
-    const json = state.doc.toJSON();
-
+  private handleChange(jsonDoc: Record<string, any> | null): void {
     if (this.outputFormat === 'html') {
-      const html = toHTML(json, this.config.schema);
+      const html = toHTML(jsonDoc, this.editor.schema);
       this.onChange(html);
       return;
     }
 
-    this.onChange(json);
-  }
-
-  private createUpdateWatcherPlugin(): Plugin {
-    const plugin = new Plugin({
-      key: new PluginKey('ngx-update-watcher'),
-      view: () => {
-        return {
-          update: (view: EditorView) => this.sharedService.plugin.update.next(view),
-          destroy: () => this.sharedService.plugin.destroy.next()
-        };
-      }
-    });
-
-    return plugin;
-  }
-
-  private filterBuiltIns(plugin: Plugin): boolean {
-    const pluginKey: string = (plugin as any).key;
-    if (/^(editable|placeholder)\$/.test(pluginKey)) {
-      return false;
-    }
-
-    return true;
-  }
-
-  private createEditor(): void {
-    const { schema, plugins, nodeViews } = this.config;
-
-    this.view = new EditorView(this.ngxEditor.nativeElement, {
-      state: EditorState.create({
-        doc: null,
-        schema,
-        plugins: [
-          ...plugins.filter((plugin) => this.filterBuiltIns(plugin)),
-          this.createUpdateWatcherPlugin(),
-          placeholderPlugin(this.placeholder),
-          editablePlugin(this.editable)
-        ]
-      }),
-      nodeViews,
-      dispatchTransaction: this.handleTransactions.bind(this),
-      handleDOMEvents: {
-        focus: () => {
-          this.focusIn.emit();
-          return false;
-        },
-        blur: () => {
-          this.onTouched();
-          this.focusOut.emit();
-          return false;
-        }
-      },
-      attributes: {
-        class: 'NgxEditor__Content'
-      },
-    });
-
-    this.editorInitialized = true;
-    this.sharedService.view = this.view;
-    this.sharedService.setCustomMenuRef(this.customMenuRef);
-    this.init.emit(this.view);
-  }
-
-  private setPlaceholder(newPlaceholder?: string): void {
-    const { dispatch, state: { tr } } = this.view;
-    const placeholder = newPlaceholder ?? this.placeholder;
-    dispatch(tr.setMeta('UPDATE_PLACEHOLDER', placeholder));
-  }
-
-  private updateEditable(edit: boolean): void {
-    const { dispatch, state: { tr } } = this.view;
-    dispatch(tr.setMeta('UPDATE_EDITABLE', edit));
+    this.onChange(jsonDoc);
   }
 
   ngOnInit(): void {
-    this.createEditor();
-    this.setPlaceholder();
+    if (!this.editor) {
+      throw new Error('NGXEditor: Required Editor instance');
+    }
+
+    if (this.enabled) {
+      this.editor.enable();
+    } else {
+      this.editor.disable();
+    }
+
+    this.editor.setPlaceholder(this.placeholder);
+
+    this.renderer.appendChild(this.ngxEditor.nativeElement, this.editor.el);
+
+    const contentChangeSubscription = this.editor.onContentChange.subscribe(jsonDoc => {
+      this.handleChange(jsonDoc);
+    });
+
+    const blurSubscription = this.editor.onBlur.subscribe(() => {
+      this.focusOut.emit();
+      this.onTouched();
+    });
+
+    const focusScbscription = this.editor.onFocus.subscribe(() => {
+      this.focusIn.emit();
+    });
+
+    this.subscriptions.push(
+      contentChangeSubscription,
+      blurSubscription,
+      focusScbscription
+    );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.placeholder && !changes.placeholder.isFirstChange()) {
-      this.setPlaceholder(changes.placeholder.currentValue);
+      this.editor.setPlaceholder(changes.placeholder.currentValue);
     }
 
     if (changes?.editable && !changes.editable.isFirstChange()) {
-      this.updateEditable(changes.editable.currentValue);
+      if (!changes.editable.currentValue) {
+        this.editor.disable();
+      } else {
+        this.editor.enable();
+      }
     }
   }
 
   ngOnDestroy(): void {
-    this.view.destroy();
+    this.subscriptions.forEach(subscription => {
+      subscription.unsubscribe();
+    });
+
+    this.editor.destroy();
   }
 }

@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 
 import Icon from '../../../icons';
 import { NgxEditorService } from '../../../editor.service';
-import { SharedService } from '../../../services/shared/shared.service';
+import { MenuService } from '../menu.service';
 import { TextColor, TextBackgroundColor } from '../MenuCommands';
 
 type Command = typeof TextColor | typeof TextBackgroundColor;
@@ -18,15 +18,16 @@ type Command = typeof TextColor | typeof TextBackgroundColor;
   styleUrls: ['./color-picker.component.scss']
 })
 export class ColorPickerComponent implements OnDestroy {
+  @Input() presets: string[][];
 
   constructor(
     private el: ElementRef,
-    private sharedService: SharedService,
+    private menuService: MenuService,
     private ngxeService: NgxEditorService
   ) {
-    this.editorView = this.sharedService.view;
+    this.editorView = this.menuService.view;
 
-    this.pluginUpdateSubscription = this.sharedService.plugin.update.subscribe((view: EditorView) => {
+    this.pluginUpdateSubscription = this.menuService.plugin.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -37,10 +38,6 @@ export class ColorPickerComponent implements OnDestroy {
 
   @HostBinding('class.NgxEditor--Disabled') get disabled(): boolean {
     return !this.canExecute;
-  }
-
-  get presets(): string[][] {
-    return this.ngxeService.colorPresets;
   }
 
   get title(): string {
