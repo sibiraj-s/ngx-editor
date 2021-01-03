@@ -61,7 +61,7 @@ NgxEditorModule.forRoot({
 
 ## Component Props
 
-- editor - (Required) - Editor instance
-- placeholder [`string`] - (Optional) - A placeholder for the editor
-- editable [`boolean`] - (Optional)
-- outputFormat [`doc` | `html`] - (Optional) - Controls the output value type
+- editor - (Required) - editor instance
+- placeholder [`string`] - (Optional) - placeholder for the editor
+- enabled [`boolean`] - (Optional) - enabled/disable the editor
+- outputFormat [`doc` | `html`] - (Optional) - output value type
