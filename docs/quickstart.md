@@ -21,10 +21,32 @@ import { NgxEditorModule } from 'ngx-editor';
 export class AppModule {}
 ```
 
+Initialize editor in the component
+
+```ts
+import { Editor } from 'ngx-editor';
+
+export class AppComponent implements OnInit, OnDestroy {
+  html = '';
+  editor: Editor;
+  ngOnInit(): void {
+    this.editor = new Editor({
+      schema,
+      plugins,
+      nodeViews,
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+}
+```
+
 Then in HTML
 
 ```html
-<ngx-editor [ngModel]="jsonDoc"></ngx-editor>
+<ngx-editor [editor]="editor" [ngModel]="html"></ngx-editor>
 ```
 
 For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
