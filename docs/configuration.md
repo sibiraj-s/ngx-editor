@@ -1,21 +1,28 @@
 # Configuration
 
+### Editor
+
+```ts
+import { Editor } from 'ngx-editor';
+
+editor = new Editor({
+  content: '',
+  plugins: [],
+  schema,
+  nodeViews: {},
+  placeholder: 'Type here',
+  enabled: true,
+});
+```
+
+Options like `content`, `placeholder` and `enabled` will be overridden by options in the component
+
+### Locals
+
 ```ts
 import { schema } from 'ngx-editor';
 
 NgxEditorModule.forRoot({
-  schema, // optional scheama, see https://sibiraj-s.github.io/ngx-editor/#/schema
-  plugins: [placholder('Type something here...')],
-  menu: [
-    ['bold', 'italic'],
-    ['underline', 'strike'],
-    ['code', 'blockquote'],
-    ['ordered_list', 'bullet_list'],
-    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-    ['link', 'image'],
-    ['text_color', 'background_color'],
-    ['align_left', 'align_center', 'align_right', 'align_justify'],
-  ],
   locals: {
     // menu
     bold: 'Bold',
@@ -49,13 +56,12 @@ NgxEditorModule.forRoot({
     title: 'Title',
     remove: 'Remove',
   },
-  nodeViews: {}, // optional, for example see https://prosemirror.net/examples/footnote/
 });
 ```
 
-**Note**: _Providing new options to the config overrides the defaults_
-
 ## Component Props
 
+- editor - (Required) - Editor instance
 - placeholder [`string`] - (Optional) - A placeholder for the editor
 - editable [`boolean`] - (Optional)
+- outputFormat [`doc` | `html`] - (Optional) - Controls the output value type

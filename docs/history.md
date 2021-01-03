@@ -8,8 +8,9 @@ Reference
 ```ts
 import { undo, redo, history } from 'prosemirror-history';
 import { keymap } from 'prosemirror-keymap';
+import { Editor } from 'ngx-editor';
 
-NgxEditorModule.forRoot({
+new Editor({
   plugins: [
     history(), // enable history support
     keymap({

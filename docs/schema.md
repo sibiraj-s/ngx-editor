@@ -9,9 +9,9 @@ Example: https://github.com/sibiraj-s/ngx-editor/tree/master/demo
 ## Usage
 
 ```ts
-import { schema } from 'ngx-editor';
+import { Editor } from 'ngx-editor';
 
-NgxEditorModule.forRoot({
+new Editor({
   schema,
 });
 ```

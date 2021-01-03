@@ -16,7 +16,7 @@ import {
   undo,
   redo,
 } from 'y-prosemirror';
-import NgxEditorModule from 'ngx-editor';
+import { Editor } from 'ngx-editor';
 
 const ydoc = new Y.Doc();
 const provider = new WebsocketProvider(
@@ -26,18 +26,13 @@ const provider = new WebsocketProvider(
 );
 const type = ydoc.getXmlFragment('prosemirror');
 
-@NgModule({
-  imports: [
-    NgxEditorModule.forRoot({
-      plugins: [
-        ySyncPlugin(type),
-        yCursorPlugin(provider.awareness),
-        yUndoPlugin(),
-      ],
-    }),
+new Editor({
+  plugins: [
+    ySyncPlugin(type),
+    yCursorPlugin(provider.awareness),
+    yUndoPlugin(),
   ],
-})
-export class AppModule {}
+});
 ```
 
 ### Server

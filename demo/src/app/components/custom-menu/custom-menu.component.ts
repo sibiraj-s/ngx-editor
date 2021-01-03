@@ -42,8 +42,6 @@ export class CustomMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const { view } = this.editor;
-
     const plugin = new Plugin({
       key: new PluginKey(`custom-menu-codemirror`),
       view: () => {
@@ -53,10 +51,6 @@ export class CustomMenuComponent implements OnInit {
       }
     });
 
-    const newState = view.state.reconfigure({
-      plugins: view.state.plugins.concat([plugin])
-    });
-
-    view.updateState(newState);
+    this.editor.registerPlugin(plugin);
   }
 }

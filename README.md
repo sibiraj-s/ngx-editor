@@ -26,9 +26,6 @@
 
 ## Getting Started
 
-> NOTE: This is documentation for ngx-editor v5.x. View here for [ngx-editor@4.x documentation](https://github.com/sibiraj-s/ngx-editor/tree/v4.1.0).
-> v4 just uses plain contentediable and is not recommened since the behaviour is inconsitent across browsers.
-
 ### Installation
 
 Install via Package managers such as [npm][npm] or [yarn][yarn]
@@ -59,7 +56,7 @@ Component
 ```ts
 import { Editor, Toolbar } from 'ngx-editor';
 
-export class AppComponent implements OnInit, OnDestroy {
+export class EditorComponent implements OnInit, OnDestroy {
   editor: Editor;
   toolbar: Toolbar = [
     ['bold', 'italic'],
@@ -103,7 +100,7 @@ Note: Input can be a HTML string or a jsonDoc
 
 ### Working with HTML
 
-If Input to component is HTML, output will be HTML. To manually convert json output from the editor to html
+If the Input to the component is HTML, output will be HTML. To manually convert json output from the editor to html
 
 ```ts
 import { toHTML } from 'ngx-editor';

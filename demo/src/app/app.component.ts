@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-import { EditorView } from 'prosemirror-view';
 import { environment } from '../environments/environment';
 
 import { Validators, Editor, Toolbar } from 'ngx-editor';
@@ -17,7 +16,7 @@ import nodeViews from './nodeviews';
   encapsulation: ViewEncapsulation.None
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   isProdMode = environment.production;
 
   editordoc = jsonDoc;
@@ -48,5 +47,9 @@ export class AppComponent implements OnInit {
       plugins,
       nodeViews
     });
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
   }
 }

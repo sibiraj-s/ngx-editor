@@ -89,18 +89,6 @@ import plugins from './plugins';
   imports: [
     FormsModule,
     NgxEditorModule.forRoot({
-      schema,
-      plugins,
-      menu: [
-        ['bold', 'italic'],
-        ['underline', 'strike'],
-        ['code', 'blockquote'],
-        ['ordered_list', 'bullet_list'],
-        [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-        ['link', 'image'],
-        ['text_color', 'background_color'],
-        ['align_left', 'align_center', 'align_right', 'align_justify'],
-      ],
       locals: {
         // menu
         bold: 'Bold',
@@ -138,4 +126,85 @@ import plugins from './plugins';
   ],
 })
 export class AppModule {}
+```
+
+### app.component.ts
+
+```ts
+import { Component, OnInit, OnDestory, ViewEncapsulation } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+
+import { Validators, Editor, Toolbar } from 'ngx-editor';
+
+import schema from './schema';
+import plugins from './plugins';
+import nodeViews from './nodeviews';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+})
+export class AppComponent implements OnInit, OnDestory {
+  editor: Editor;
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
+
+  form = new FormGroup({
+    editorContent: new FormControl('', Validators.required()),
+  });
+
+  ngOnInit(): void {
+    this.editor = new Editor({
+      schema,
+      plugins,
+      nodeViews,
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+}
+```
+
+### app.component.html
+
+```html
+<form [formGroup]="form">
+  <div class="editor">
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+    <ngx-editor [editor]="editor" formControlName="editorContent"> </ngx-editor>
+  </div>
+</form>
+```
+
+#### app.component.scss
+
+```scss
+.editor {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  .NgxEditor__MenuBar {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .NgxEditor {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border: none;
+  }
+}
 ```

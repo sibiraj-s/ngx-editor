@@ -8,7 +8,7 @@ Reference
 - https://prosemirror.net/docs/ref/#schema-list
 
 ```ts
-import { schema } from 'ngx-editor';
+import { Editor, schema } from 'ngx-editor';
 import {
   splitListItem,
   liftListItem,
@@ -16,7 +16,7 @@ import {
 } from 'prosemirror-schema-list';
 import { keymap } from 'prosemirror-keymap';
 
-NgxEditorModule.forRoot({
+new Editor({
   plugins: [
     keymap({
       Enter: splitListItem(schema.nodes.list_item),
@@ -36,11 +36,11 @@ Reference
 - https://prosemirror.net/docs/ref/#keymap
 
 ```ts
-import { schema } from 'ngx-editor';
+import { Editor, schema } from 'ngx-editor';
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark, baseKeymap } from 'prosemirror-commands';
 
-NgxEditorModule.forRoot({
+new Editor({
   plugins: [
     keymap({
       'Mod-b': toggleMark(schema.marks.strong), // toggle strong

@@ -207,13 +207,14 @@ export default CodeMirrorView;
 ### Usage
 
 ```ts
-import { NgxEditorModule } from 'ngx-editor';
-import schema from './schema.ts`
+import { Editor } from 'ngx-editor';
+import schema from './schema.ts';
 
-NgxEditorModule.forRoot({
+new Editor({
   schema,
   nodeViews: {
-    code_block: ( // first define schema `code_block`. see schema section
+    code_block: (
+      // first define schema `code_block`. see schema section
       node: ProsemirrorNode,
       view: EditorView,
       getPos: () => number
