@@ -72,7 +72,12 @@ export class AppComponent implements OnInit, OnDestroy {
 HTML
 
 ```html
-<ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+<ngx-editor-menu
+  [editor]="editor"
+  [toolbar]="toolbar"
+  [colorPresets]="colorPresets"
+>
+</ngx-editor-menu>
 ```
 
 ## CustomMenu
