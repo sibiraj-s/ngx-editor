@@ -33,6 +33,13 @@ interface Options {
   nodeViews?: NodeViews;
 }
 
+const DEFAULT_OPTIONS: Options = {
+  content: null,
+  enabled: true,
+  plugins: [],
+  nodeViews: {}
+};
+
 class Editor {
   view: EditorView;
   options: Options;
@@ -43,7 +50,7 @@ class Editor {
   onBlur = new Subject<void>();
   onUpdate = new Subject();
 
-  constructor(options: Options) {
+  constructor(options: Options = DEFAULT_OPTIONS) {
     this.options = options;
     this.createEditor(options);
   }

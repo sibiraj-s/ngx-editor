@@ -5,6 +5,7 @@ import { DebugElement } from '@angular/core';
 import { NgxEditorComponent } from './editor.component';
 import { MenuModule } from './modules/menu/menu.module';
 import { BubbleComponent } from './components/bubble/bubble.component';
+import Editor from './Editor';
 
 describe('NgxEditorComponent', () => {
   let component: NgxEditorComponent;
@@ -25,6 +26,7 @@ describe('NgxEditorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NgxEditorComponent);
     component = fixture.componentInstance;
+    component.editor = new Editor();
     fixture.detectChanges();
   });
 
