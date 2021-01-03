@@ -54,10 +54,45 @@ import { NgxEditorModule } from 'ngx-editor';
 export class AppModule {}
 ```
 
+Component
+
+```ts
+import { Editor, Toolbar } from 'ngx-editor';
+
+export class AppComponent implements OnInit, OnDestroy {
+  editor: Editor;
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
+  html: '';
+
+  ngOnInit(): void {
+    this.editor = new Editor({
+      schema,
+      plugins,
+      nodeViews,
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+}
+```
+
 Then in HTML
 
 ```html
+<ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
 <ngx-editor
+  [editor]="editor"
   [ngModel]="html"
   [editable]="true"
   [placeholder]="Type here..."
@@ -68,7 +103,7 @@ Note: Input can be a HTML string or a jsonDoc
 
 ### Working with HTML
 
-To convert json output from the editor to html
+If Input to component is HTML, output will be HTML. To manually convert json output from the editor to html
 
 ```ts
 import { toHTML } from 'ngx-editor';
@@ -76,7 +111,7 @@ import { toHTML } from 'ngx-editor';
 const html = toHTML(jsonDoc, schema); // schema is optional
 ```
 
-To convert HTML to json. Optional, Editor will accept HTML input
+Or to convert HTML to json. Optional, as Editor will accept HTML input
 
 ```ts
 import { toDoc } from 'ngx-editor';
@@ -86,26 +121,45 @@ const jsonDoc = toDoc(html);
 
 ### Optional Configuration
 
+You can specify locals to be used in the editor
+
 ```ts
 import { schema } from 'ngx-editor';
 
 NgxEditorModule.forRoot({
-  schema, // optional scheama, see https://sibiraj-s.github.io/ngx-editor/#/schema
-  plugins: [
-    // include other prosemirror plugins
-  ],
-  menu: [
-    // default options (Optional)
-    ['bold', 'italic'],
-    ['underline', 'strike'],
-    ['code', 'blockquote'],
-    ['ordered_list', 'bullet_list'],
-    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-    ['link', 'image'],
-    ['text_color', 'background_color'],
-    ['align_left', 'align_center', 'align_right', 'align_justify'],
-  ],
-  nodeViews: {}, // optional, see https://prosemirror.net/examples/footnote/
+  locals: {
+    // menu
+    bold: 'Bold',
+    italic: 'Italic',
+    code: 'Code',
+    underline: 'Underline',
+    strike: 'Strike',
+    blockquote: 'Blockquote',
+    bullet_list: 'Bullet List',
+    ordered_list: 'Ordered List',
+    heading: 'Heading',
+    h1: 'Header 1',
+    h2: 'Header 2',
+    h3: 'Header 3',
+    h4: 'Header 4',
+    h5: 'Header 5',
+    h6: 'Header 6',
+    align_left: 'Left Align',
+    align_center: 'Center Align',
+    align_right: 'Right Align',
+    align_justify: 'Justify',
+    text_color: 'Text Color',
+    background_color: 'Background Color',
+
+    // pupups, forms, others...
+    url: 'URL',
+    text: 'Text',
+    openInNewTab: 'Open in new tab',
+    insert: 'Insert',
+    altText: 'Alt Text',
+    title: 'Title',
+    remove: 'Remove',
+  },
 });
 ```
 

@@ -67,7 +67,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
   ngOnInit(): void {
     if (!this.editor) {
-      throw new Error('NGXEditor: Required Editor instance');
+      throw new Error('NgxEditor: Required editor instance');
     }
 
     if (this.enabled) {
