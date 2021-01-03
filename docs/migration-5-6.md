@@ -1,31 +1,5 @@
 # Migrating from v5 to v6
 
-## Prosemirror Configuration
-
-**Before**
-
-```ts
-import { NgxEditorModule } from 'ngx-editor';
-
-NgxEditorModule.forRoot({
-  plugins: [],
-  schema: {},
-  nodeViews: {},
-});
-```
-
-**After**
-
-```ts
-import { Editor } from 'ngx-editor';
-
-new Editor({
-  plugins: [],
-  schema: {},
-  nodeViews: {},
-});
-```
-
 ## Menu
 
 **Before**
@@ -56,11 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
   colorPresets = ['red', 'blue', 'green'];
 
   ngOnInit(): void {
-    this.editor = new Editor({
-      schema,
-      plugins,
-      nodeViews,
-    });
+    this.editor = new Editor();
   }
 
   ngOnDestroy(): void {
@@ -92,4 +62,30 @@ After
 
 ```html
 <ngx-editor-menu [customMenuRef]="customMenu"> </ngx-editor-menu>
+```
+
+## Prosemirror Configuration
+
+**Before**
+
+```ts
+import { NgxEditorModule } from 'ngx-editor';
+
+NgxEditorModule.forRoot({
+  plugins: [],
+  schema: {},
+  nodeViews: {},
+});
+```
+
+**After**
+
+```ts
+import { Editor } from 'ngx-editor';
+
+new Editor({
+  plugins: [],
+  schema: {},
+  nodeViews: {},
+});
 ```
