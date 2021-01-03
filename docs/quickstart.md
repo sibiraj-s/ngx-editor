@@ -49,6 +49,8 @@ Then in HTML
 <ngx-editor [editor]="editor" [ngModel]="html"></ngx-editor>
 ```
 
+<iframe src="https://stackblitz.com/edit/ngx-editor-basic?embed=1&file=src/app/app.component.ts&hideExplorer=1&view=preview" height="600"></iframe>
+
 For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
 
 [npm]: https://www.npmjs.com/

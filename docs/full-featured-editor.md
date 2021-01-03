@@ -1,8 +1,8 @@
 # Full featured editor
 
-Use the following config to created a full featured editor
-
 <iframe src="https://stackblitz.com/edit/ngx-editor?embed=1&file=src/app/app.component.ts&hideExplorer=1&view=preview" height="600"></iframe>
+
+Use the following config to created a full featured editor
 
 ### plugin.ts
 
