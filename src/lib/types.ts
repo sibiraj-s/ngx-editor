@@ -1,6 +1,5 @@
-import { EditorState, Plugin } from 'prosemirror-state';
-import { Node as ProsemirrorNode, Schema } from 'prosemirror-model';
-import { EditorView, Decoration, NodeView } from 'prosemirror-view';
+import { EditorState } from 'prosemirror-state';
+import { EditorView } from 'prosemirror-view';
 
 import { LocalsKeys } from './Locals';
 
@@ -22,24 +21,6 @@ export type ToolbarDropdownGroupValues = ToolbarDropdown[ToolbarDropdownGroupKey
 export type ToolbarItem = TBItems | ToolbarDropdown | ToolbarCustomMenuItem;
 export type Toolbar = Array<ToolbarItem[]>;
 
-export interface NodeViews {
-  [name: string]: (
-    node: ProsemirrorNode,
-    view: EditorView,
-    getPos: () => number,
-    decorations: Decoration[]
-  ) => NodeView;
-}
-
-export interface Menu {
-  toolbar: Toolbar;
-  colorPresets?: string[];
-}
-
 export interface NgxEditorConfig {
-  schema?: Schema;
-  plugins?: Plugin[];
-  nodeViews?: NodeViews;
-  menu?: null | Menu | Toolbar;
   locals?: Partial<Record<LocalsKeys, string>>;
 }
