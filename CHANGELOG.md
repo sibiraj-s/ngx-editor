@@ -13,6 +13,102 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v6.0.0 (2021-01-03)
+
+Refactor internals ([a5763a3](https://github.com/sibiraj-s/ngx-editor/commit/a5763a3))
+
+## Migration
+
+### Menu
+
+**Before**
+
+```ts
+import { NgxEditorModule } from 'ngx-editor';
+
+NgxEditorModule.forRoot({
+  menu: {
+    toolbar: [],
+    colorPresets: [],
+  },
+});
+```
+
+**After**
+
+Menu is a seperate component, has to be included manually if required.
+
+Component
+
+```ts
+export class AppComponent implements OnInit, OnDestroy {
+  isProdMode = environment.production;
+
+  editor: Editor;
+  toolbar: Toolbar = [['bold', 'italic']];
+  colorPresets = ['red', 'blue', 'green'];
+
+  ngOnInit(): void {
+    this.editor = new Editor();
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+}
+```
+
+HTML
+
+```html
+<ngx-editor-menu
+  [editor]="editor"
+  [toolbar]="toolbar"
+  [colorPresets]="colorPresets"
+>
+</ngx-editor-menu>
+```
+
+### CustomMenu
+
+Before
+
+```html
+<ngx-editor [customMenuRef]="customMenu"> </ngx-editor>
+```
+
+After
+
+```html
+<ngx-editor-menu [customMenuRef]="customMenu"> </ngx-editor-menu>
+```
+
+### Prosemirror Configuration
+
+**Before**
+
+```ts
+import { NgxEditorModule } from 'ngx-editor';
+
+NgxEditorModule.forRoot({
+  plugins: [],
+  schema: {},
+  nodeViews: {},
+});
+```
+
+**After**
+
+```ts
+import { Editor } from 'ngx-editor';
+
+new Editor({
+  plugins: [],
+  schema: {},
+  nodeViews: {},
+});
+```
+
 ## v5.3.0 (2021-01-01)
 
 #### Features
