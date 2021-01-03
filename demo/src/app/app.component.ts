@@ -20,7 +20,6 @@ import nodeViews from './nodeviews';
 export class AppComponent implements OnInit {
   isProdMode = environment.production;
 
-  editorView: EditorView;
   editordoc = jsonDoc;
 
   editor: Editor;
@@ -41,10 +40,6 @@ export class AppComponent implements OnInit {
 
   get doc(): AbstractControl {
     return this.form.get('editorContent');
-  }
-
-  init(view: EditorView): void {
-    this.editorView = view;
   }
 
   ngOnInit(): void {
