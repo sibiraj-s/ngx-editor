@@ -23,10 +23,9 @@ import Editor from './Editor';
 })
 
 export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
-
   constructor(private renderer: Renderer2) { }
+
   @ViewChild('ngxEditor', { static: true }) ngxEditor: ElementRef;
-  private subscriptions: Subscription[] = [];
 
   @Input() editor: Editor;
   @Input() outputFormat: 'doc' | 'html';
@@ -36,6 +35,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   @Output() focusOut = new EventEmitter<void>();
   @Output() focusIn = new EventEmitter<void>();
 
+  private subscriptions: Subscription[] = [];
   private onChange: (value: Record<string, any> | string) => void = () => { };
   private onTouched: () => void = () => { };
 

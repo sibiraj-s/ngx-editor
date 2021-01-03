@@ -88,9 +88,9 @@ export function buildInputRules(schema: Schema) {
 ### Config
 
 ```ts
-import { NgxEditorModule, schema } from 'ngx-editor';
+import { Editor, schema } from 'ngx-editor';
 
-NgxEditorModule.forRoot({
+new Editor({
   plugins: [buildInputRules(schema)],
 });
 ```

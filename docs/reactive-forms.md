@@ -28,7 +28,7 @@ export class AppModule {}
 ## AppComponent
 
 ```ts
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from 'ngx-editor';
 
@@ -37,10 +37,18 @@ import { Validators } from 'ngx-editor';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   form = new FormGroup({
     editorContent: new FormControl(null, [Validators.required()]),
   });
+
+  ngOnInit(): void {
+    this.editor = new Editor();
+  }
+
+  ngOnDestory(): void {
+    this.editor.destroy();
+  }
 }
 ```
 
@@ -48,7 +56,7 @@ export class AppComponent {
 
 ```html
 <form [formGroup]="form">
-  <ngx-editor formControlName="editorContent"></ngx-editor>
+  <ngx-editor [editor]="editor" formControlName="editorContent"></ngx-editor>
 </form>
 ```
 

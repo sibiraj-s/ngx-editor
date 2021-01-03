@@ -1,57 +1,46 @@
 # Menu
 
-```ts
-NgxEditorModule.forRoot({
-  menu: {
-    toolbar: [
-      ['bold', 'italic'],
-      ['underline', 'strike'],
-      ['code', 'blockquote'],
-      ['ordered_list', 'bullet_list'],
-      [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-      ['link', 'image'],
-      ['text_color', 'background_color'],
-      ['align_left', 'align_center', 'align_right', 'align_justify'],
-    ],
-    colorPresets: ['red', '#FF0000', 'rgb(255, 0, 0)'],
-  },
-  locals: {
-    // menu
-    bold: 'Bold',
-    italic: 'Italic',
-    code: 'Code',
-    blockquote: 'Blockquote',
-    underline: 'Underline',
-    strike: 'Strike',
-    bullet_list: 'Bullet List',
-    ordered_list: 'Ordered List',
-    heading: 'Heading',
-    h1: 'Header 1',
-    h2: 'Header 2',
-    h3: 'Header 3',
-    h4: 'Header 4',
-    h5: 'Header 5',
-    h6: 'Header 6',
-    align_left: 'Left Align',
-    align_center: 'Center Align',
-    align_right: 'Right Align',
-    align_justify: 'Justify',
-    text_color: 'Text Color',
-    background_color: 'Background Color',
+Menu is not part of the editor component. Include `ngx-editor-menu` in your HTML manually
 
-    // pupups, forms, others...
-    url: 'URL',
-    text: 'Text',
-    openInNewTab: 'Open in new tab',
-    insert: 'Insert',
-    altText: 'Alt Text',
-    title: 'Title',
-    remove: 'Remove',
-  },
-});
+```ts
+export class AppComponent implements OnInit, OnDestroy {
+  editor: Editor;
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
+  colorPresets = ['red', '#FF0000', 'rgb(255, 0, 0)'];
+
+  ngOnInit(): void {
+    this.editor = new Editor({
+      schema,
+      plugins,
+      nodeViews,
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+}
 ```
 
-Set Menu as `null` to disable menu
+Then in HTML
+
+```html
+<ngx-editor-menu
+  [editor]="editor"
+  [toolbar]="toolbar"
+  [colorPresets]="colorPresets"
+>
+</ngx-editor-menu>
+```
 
 ## Custom Menu
 
@@ -60,17 +49,14 @@ The editorView will be available from the init function
 #### Editor
 
 ```html
-<div class="editor">
-  <ngx-editor
-    [ngModel]="editorContent"
-    (ngModelChange)="editorContentChange($event)"
-    (init)="init($event)"
-    [customMenuRef]="customMenu"
-  >
-  </ngx-editor>
-</div>
+<ngx-editor-menu
+  [editor]="editor"
+  [toolbar]="toolbar"
+  [customMenuRef]="customMenu"
+>
+</ngx-editor-menu>
 <ng-template #customMenu>
-  <app-custom-menu [editorView]="editorView"></app-custom-menu>
+  <app-custom-menu [editor]="editor"></app-custom-menu>
 </ng-template>
 ```
 
@@ -95,6 +81,7 @@ import { setBlockType } from 'prosemirror-commands';
 import { EditorState, Plugin, PluginKey, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
+import { Editor } from 'ngx-editor';
 import { isNodeActive } from 'ngx-editor/helpers';
 
 @Component({
@@ -105,13 +92,13 @@ import { isNodeActive } from 'ngx-editor/helpers';
 export class CustomMenuComponent implements OnInit {
   constructor() {}
 
-  @Input() editorView: EditorView;
+  @Input() editor: Editor;
   isActive = false;
   isDisabled = false;
 
   onClick(e: MouseEvent): void {
     e.preventDefault();
-    const { state, dispatch } = this.editorView;
+    const { state, dispatch } = this.editor.view;
     this.execute(state, dispatch);
   }
 
@@ -142,11 +129,7 @@ export class CustomMenuComponent implements OnInit {
       },
     });
 
-    const newState = this.editorView.state.reconfigure({
-      plugins: this.editorView.state.plugins.concat([plugin]),
-    });
-
-    this.editorView.updateState(newState);
+    this.editor.registerPlugin(plugin);
   }
 }
 ```
