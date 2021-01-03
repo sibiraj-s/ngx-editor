@@ -2,10 +2,21 @@
 
 Menu is not part of the editor component. Include `ngx-editor-menu` in your HTML manually
 
+## Component props
+
+- **editor** - (`Required`) editor instance
+- **toolbar** - (`Optional`)
+- **enabled** - (`Optional`) enable/disable menu bar
+- **colorPresets** - (`Optional`) - colors for color picker
+- **customMenuRef** - (`Optional`) - Template reference to custom menu item
+
+**component.html**
+
 ```ts
 export class AppComponent implements OnInit, OnDestroy {
   editor: Editor;
   toolbar: Toolbar = [
+    // default value
     ['bold', 'italic'],
     ['underline', 'strike'],
     ['code', 'blockquote'],
@@ -31,7 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
 }
 ```
 
-Then in HTML
+**component.html**
 
 ```html
 <ngx-editor-menu

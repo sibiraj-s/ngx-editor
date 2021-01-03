@@ -1,6 +1,7 @@
 - Getting started
 
   - [Quick start](quickstart.md)
+  - [Editor](editor.md)
   - [Configuration](configuration.md)
   - [Plugins](plugins.md)
   - [Schema](schema.md)
