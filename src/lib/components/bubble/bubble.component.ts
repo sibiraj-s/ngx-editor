@@ -87,7 +87,7 @@ export class BubbleComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.view = this.editor.view;
 
-    this.editor.onUpdate.subscribe(() => {
+    this.updateSubscription = this.editor.onUpdate.subscribe(() => {
       this.update();
     });
   }

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BubbleComponent } from './bubble.component';
+import Editor from '../../Editor';
 
 describe('BubbleComponent', () => {
   let component: BubbleComponent;
@@ -16,6 +17,7 @@ describe('BubbleComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BubbleComponent);
     component = fixture.componentInstance;
+    component.editor = new Editor();
     fixture.detectChanges();
   });
 
