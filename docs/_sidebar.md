@@ -5,6 +5,7 @@
   - [Plugins](plugins.md)
   - [Schema](schema.md)
   - [Convert JSON doc to HTML](doc-html-doc.md)
+  - [Migration v5 - v6](migration-5-6.md)
 
 - Examples
 
