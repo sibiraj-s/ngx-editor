@@ -16,7 +16,9 @@
     <form [formGroup]="form">
 
       <div class="editor">
-        <ngx-editor formControlName="editorContent" (init)="init($event)" [customMenuRef]="customMenu">
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" *ngIf="toolbar" [customMenuRef]="customMenu">
+        </ngx-editor-menu>
+        <ngx-editor [editor]="editor" formControlName="editorContent">
         </ngx-editor>
       </div>
 
@@ -27,7 +29,7 @@
 
     <!-- custom menu -->
     <ng-template #customMenu>
-      <app-custom-menu [editorView]="editorView"></app-custom-menu>
+      <app-custom-menu [editor]="editor"></app-custom-menu>
     </ng-template>
   </div>
 

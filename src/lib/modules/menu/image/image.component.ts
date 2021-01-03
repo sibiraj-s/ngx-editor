@@ -5,7 +5,7 @@ import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
-import { SharedService } from '../../../services/shared/shared.service';
+import { MenuService } from '../menu.service';
 import Icon from '../../../icons';
 import { Image as ImageCommand } from '../MenuCommands';
 
@@ -34,11 +34,11 @@ export class ImageComponent implements OnDestroy {
   constructor(
     private el: ElementRef,
     private ngxeService: NgxEditorService,
-    private sharedService: SharedService
+    private menuService: MenuService
   ) {
-    this.editorView = this.sharedService.view;
+    this.editorView = this.menuService.view;
 
-    this.pluginUpdateSubscription = this.sharedService.plugin.update.subscribe((view: EditorView) => {
+    this.pluginUpdateSubscription = this.menuService.plugin.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }

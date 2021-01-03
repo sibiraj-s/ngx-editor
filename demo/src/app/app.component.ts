@@ -1,10 +1,14 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
 import { environment } from '../environments/environment';
-import { Validators } from 'ngx-editor';
+
+import { Validators, Editor, Toolbar } from 'ngx-editor';
 
 import jsonDoc from './doc';
+import schema from './schema';
+import plugins from './plugins';
+import nodeViews from './nodeviews';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +17,23 @@ import jsonDoc from './doc';
   encapsulation: ViewEncapsulation.None
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   isProdMode = environment.production;
+
   editorView: EditorView;
   editordoc = jsonDoc;
+
+  editor: Editor;
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
 
   form = new FormGroup({
     editorContent: new FormControl(jsonDoc, Validators.required())
@@ -28,5 +45,13 @@ export class AppComponent {
 
   init(view: EditorView): void {
     this.editorView = view;
+  }
+
+  ngOnInit(): void {
+    this.editor = new Editor({
+      schema,
+      plugins,
+      nodeViews
+    });
   }
 }

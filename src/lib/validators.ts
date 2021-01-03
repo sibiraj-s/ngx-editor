@@ -1,7 +1,7 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { Schema} from 'prosemirror-model';
 
-import { parseValue } from './parsers';
+import { parseContent } from './parsers';
 import defaultSchema from './schema';
 
 type ValidationErrors = Record<string, any>;
@@ -24,7 +24,7 @@ export class Validators {
     return (control: AbstractControl): ValidationErrors | null => {
 
       const schema = userSchema || defaultSchema;
-      const doc = parseValue(control.value, schema);
+      const doc = parseContent(control.value, schema);
 
       const isEmpty = doc.childCount === 1
         && doc?.firstChild?.isTextblock
@@ -43,7 +43,7 @@ export class Validators {
   static maxLength(maxLength: number, userSchema?: Schema): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const schema = userSchema || defaultSchema;
-      const doc = parseValue(control.value, schema);
+      const doc = parseContent(control.value, schema);
 
       const value = doc.textContent;
 
@@ -64,7 +64,7 @@ export class Validators {
     return (control: AbstractControl): ValidationErrors | null => {
 
       const schema = userSchema || defaultSchema;
-      const doc = parseValue(control.value, schema);
+      const doc = parseContent(control.value, schema);
 
       const value = doc.textContent;
 

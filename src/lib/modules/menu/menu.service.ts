@@ -5,13 +5,13 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SharedService {
+export class MenuService {
   #view: EditorView;
   customMenuRefChange: Subject<TemplateRef<any>> = new Subject<TemplateRef<any>>();
 
   plugin = {
     update: new Subject<EditorView>(),
-    destroy:  new Subject<void>()
+    destroy: new Subject<void>()
   };
 
   constructor() { }

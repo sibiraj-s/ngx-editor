@@ -3,6 +3,7 @@ import { setBlockType } from 'prosemirror-commands';
 import { EditorState, Plugin, PluginKey, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
+import { Editor } from 'ngx-editor';
 import { isNodeActive } from 'ngx-editor/helpers';
 
 @Component({
@@ -13,13 +14,13 @@ import { isNodeActive } from 'ngx-editor/helpers';
 export class CustomMenuComponent implements OnInit {
   constructor() { }
 
-  @Input() editorView: EditorView;
+  @Input() editor: Editor;
   isActive = false;
   isDisabled = false;
 
   onClick(e: MouseEvent): void {
     e.preventDefault();
-    const { state, dispatch } = this.editorView;
+    const { state, dispatch } = this.editor.view;
     this.execute(state, dispatch);
   }
 
@@ -41,6 +42,8 @@ export class CustomMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const { view } = this.editor;
+
     const plugin = new Plugin({
       key: new PluginKey(`custom-menu-codemirror`),
       view: () => {
@@ -50,10 +53,10 @@ export class CustomMenuComponent implements OnInit {
       }
     });
 
-    const newState = this.editorView.state.reconfigure({
-      plugins: this.editorView.state.plugins.concat([plugin])
+    const newState = view.state.reconfigure({
+      plugins: view.state.plugins.concat([plugin])
     });
 
-    this.editorView.updateState(newState);
+    view.updateState(newState);
   }
 }

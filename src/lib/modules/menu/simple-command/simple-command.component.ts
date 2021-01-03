@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { SimpleCommands } from '../MenuCommands';
 import Icon from '../../../icons';
 import { NgxEditorService } from '../../../editor.service';
-import { SharedService } from '../../../services/shared/shared.service';
+import { MenuService } from '../menu.service';
 
 @Component({
   selector: 'ngx-simple-command',
@@ -22,11 +22,11 @@ export class SimpleCommandComponent implements OnInit, OnDestroy {
 
   constructor(
     private ngxeService: NgxEditorService,
-    private sharedService: SharedService
+    private menuService: MenuService
   ) {
-    this.editorView = this.sharedService.view;
+    this.editorView = this.menuService.view;
 
-    this.pluginUpdateSubscription = this.sharedService.plugin.update.subscribe((view: EditorView) => {
+    this.pluginUpdateSubscription = this.menuService.plugin.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
