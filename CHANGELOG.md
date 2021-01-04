@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v6.0.1 (2021-01-04)
+
+#### Enhancements
+
+- scope menu styles ([3ce6787](https://github.com/sibiraj-s/ngx-editor/commit/3ce6787))
+
 ## v6.0.0 (2021-01-03)
 
 Refactor internals ([a5763a3](https://github.com/sibiraj-s/ngx-editor/commit/a5763a3))
