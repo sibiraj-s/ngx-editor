@@ -1,6 +1,11 @@
 $primary: #1a73e8;
 $light-gray: #f1f1f1;
 
+// prosemirror
+.ProseMirror {
+  outline: none;
+}
+
 .NgxEditor {
   background: white;
   color: black;
@@ -97,18 +102,5 @@ $light-gray: #f1f1f1;
       left: -5px;
       cursor: sw-resize;
     }
-  }
-}
-
-// prosemirror
-.ProseMirror {
-  outline: none;
-}
-
-.NgxEditor__HelpText {
-  font-size: 80%;
-
-  &.NgxEditor__HelpText--Error {
-    color: red;
   }
 }

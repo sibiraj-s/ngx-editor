@@ -184,3 +184,11 @@ $menubar-text-padding: 0 $menu-item-spacing;
   border-left: 1px solid $medium-gray-2;
   margin: 0 $menu-item-spacing;
 }
+
+.NgxEditor__HelpText {
+  font-size: 80%;
+
+  &.NgxEditor__HelpText--Error {
+    color: red;
+  }
+}
