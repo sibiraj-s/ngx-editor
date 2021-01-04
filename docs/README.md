@@ -26,6 +26,8 @@
 
 ## Getting Started
 
+[demo] | [edit on stackblitz][stackblitz] | [documentation]
+
 ### Installation
 
 Install via Package managers such as [npm][npm] or [yarn][yarn]
@@ -71,11 +73,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   html: '';
 
   ngOnInit(): void {
-    this.editor = new Editor({
-      schema,
-      plugins,
-      nodeViews,
-    });
+    this.editor = new Editor();
   }
 
   ngOnDestroy(): void {
@@ -189,6 +187,6 @@ Icons are from https://material.io/resources/icons/
 
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
-[github]: https://sibiraj-s.github.io/
 [documentation]: https://sibiraj-s.github.io/ngx-editor
-[wiki]: https://github.com/sibiraj-s/ngx-editor/wiki/ngxEditor
+[demo]: https://ngx-editor.stackblitz.io/
+[stackblitz]: https://stackblitz.com/edit/ngx-editor
