@@ -25,8 +25,7 @@ const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorCo
   exports: [
     NgxEditorComponent,
     MenuComponent
-  ],
-  entryComponents: [BubbleComponent]
+  ]
 })
 
 export class NgxEditorModule {
