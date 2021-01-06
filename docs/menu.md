@@ -1,6 +1,6 @@
 # Menu
 
-Menu is not part of the editor component. Include `ngx-editor-menu` in your HTML manually. The custom-menu items will be added after the items on the toolbar.
+Menu is not part of the editor component. Include `ngx-editor-menu` in your HTML manually. The custom-menu will be inserted after the toolbar items.
 
 ## Component props
 
