@@ -55,7 +55,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 ## Custom Menu
 
-The editorView will be available from the init function. Create `customMenu` as a template variable using the custom-menu component.
+Create `customMenu` as a template variable using the custom-menu component.
 
 #### Editor
 
