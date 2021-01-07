@@ -1,6 +1,6 @@
 # Menu
 
-Menu is not part of the editor component. Include `ngx-editor-menu` in your HTML manually
+Menu is not part of the editor component. Include `ngx-editor-menu` in your HTML manually.
 
 ## Component props
 
@@ -10,7 +10,7 @@ Menu is not part of the editor component. Include `ngx-editor-menu` in your HTML
 - **colorPresets** - (`Optional`) - colors for color picker
 - **customMenuRef** - (`Optional`) - Template reference to custom menu item
 
-**component.html**
+**app.component.ts**
 
 ```ts
 export class AppComponent implements OnInit, OnDestroy {
@@ -55,7 +55,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
 ## Custom Menu
 
-The editorView will be available from the init function
+To insert custom menu items into the editor-menu. Create a template and pass its reference to `ngx-editor-menu` via `customMenuRef` input prop. The template will be rendered after the toolbar items.
+
+Note: The input is just a `TemplateRef`, the menu component will render whatever template passed to it. Refer the existing toolbar items for classnames and reuse them as needed.
 
 #### Editor
 
@@ -66,6 +68,8 @@ The editorView will be available from the init function
   [customMenuRef]="customMenu"
 >
 </ngx-editor-menu>
+
+<!-- Create template reference variable -->
 <ng-template #customMenu>
   <app-custom-menu [editor]="editor"></app-custom-menu>
 </ng-template>
