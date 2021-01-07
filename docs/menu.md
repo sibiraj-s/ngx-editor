@@ -55,7 +55,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
 ## Custom Menu
 
-Create `customMenu` as a template variable using the newly created custom-menu component. The custom-menu will be inserted after the toolbar items.
+To insert custom menu items into the editor-menu. Create a template and pass its reference to `ngx-editor-menu` via `customMenuRef` input prop. The template will be rendered after the toolbar items.
+
+Note: The input is just a `TemplateRef`, the menu component will render whatever template passed to it. Refer the existing toolbar items for classnames and reuse them as needed.
 
 #### Editor
 
@@ -66,9 +68,6 @@ Create `customMenu` as a template variable using the newly created custom-menu c
   [customMenuRef]="customMenu"
 >
 </ngx-editor-menu>
-
-<!-- Editor -->
-<ngx-editor [editor]="editor"> </ngx-editor>
 
 <!-- Create template reference variable -->
 <ng-template #customMenu>
