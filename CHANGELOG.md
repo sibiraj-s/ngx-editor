@@ -15,7 +15,7 @@ All notable changes to this project will be documented in this file.
 
 ## v6.0.3 (2021-01-08)
 
-#### Dependency Updates
+#### Bug fixes
 
 - focus editor after inserting a link or image ([2d10e5f](https://github.com/sibiraj-s/ngx-editor/commit/2d10e5f))
 - prevent dispatching a transaction if there is no change after updating a link ([2d10e5f](https://github.com/sibiraj-s/ngx-editor/commit/2d10e5f))
