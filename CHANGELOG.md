@@ -13,6 +13,14 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v6.0.3 (2021-01-08)
+
+#### Dependency Updates
+
+- focus editor after inserting a link or image ([2d10e5f](https://github.com/sibiraj-s/ngx-editor/commit/2d10e5f))
+- prevent dispatching a transaction if there is no change after updating a link ([2d10e5f](https://github.com/sibiraj-s/ngx-editor/commit/2d10e5f))
+- select the image once inserted ([a33ea83](https://github.com/sibiraj-s/ngx-editor/commit/a33ea83))
+
 ## v6.0.2 (2021-01-08)
 
 #### Dependency Updates
