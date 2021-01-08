@@ -26,7 +26,7 @@
 
 ## Getting Started
 
-[demo] | [edit on stackblitz][stackblitz] | [documentation]
+[demo] | [edit on stackblitz][stackblitz] | [documentation] | [migrating from v4][migration] | [migrating from other editors][migration]
 
 ### Installation
 
@@ -190,3 +190,4 @@ Icons are from https://material.io/resources/icons/
 [documentation]: https://sibiraj-s.github.io/ngx-editor
 [demo]: https://ngx-editor.stackblitz.io/
 [stackblitz]: https://stackblitz.com/edit/ngx-editor
+[migration]: https://sibiraj-s.github.io/ngx-editor/#/migration
