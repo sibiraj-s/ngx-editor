@@ -32,8 +32,16 @@ class Link {
 
 
     const node = schema.text(text, [schema.marks.link.create(attrs)]);
-    dispatch(tr.replaceSelectionWith(node, false));
-    return true;
+
+    tr.replaceSelectionWith(node, false)
+      .scrollIntoView();
+
+    if (tr.docChanged) {
+      dispatch?.(tr);
+      return true;
+    }
+
+    return false;
   }
 
   isActive(state: EditorState, options = defaultOptions): boolean {

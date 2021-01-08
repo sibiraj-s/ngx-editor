@@ -119,6 +119,7 @@ export class ImageComponent implements OnDestroy {
     };
 
     ImageCommand.execute(attrs, state, dispatch);
+    this.editorView.focus();
     this.hideForm();
   }
 

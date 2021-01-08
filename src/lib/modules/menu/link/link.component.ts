@@ -135,6 +135,7 @@ export class LinkComponent implements OnDestroy {
 
     if (selection.empty) {
       LinkCommand.insert(text, attrs, state, dispatch);
+      this.editorView.focus();
     } else {
       LinkCommand.update(attrs, state, dispatch);
     }

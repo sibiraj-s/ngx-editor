@@ -17,7 +17,9 @@ class Image {
       nodeAttrs.width = selection.node.attrs.width;
     }
 
-    tr.replaceSelectionWith(type.createAndFill(nodeAttrs));
+    tr
+      .replaceSelectionWith(type.createAndFill(nodeAttrs))
+      .scrollIntoView();
 
     if (tr.docChanged) {
       dispatch?.(tr);
