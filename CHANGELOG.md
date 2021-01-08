@@ -13,6 +13,20 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v6.0.2 (2021-01-08)
+
+#### Dependency Updates
+
+- update prosemirror-view to v1.17.0 ([576eabb](https://github.com/sibiraj-s/ngx-editor/commit/576eabb))
+
+#### Enhancements
+
+- removed unwanted entryComponents ([01256c3](https://github.com/sibiraj-s/ngx-editor/commit/01256c3))
+
+#### Documentation
+
+- add migration guide from v4 and from other editors ([73c9016](https://github.com/sibiraj-s/ngx-editor/commit/73c9016))
+
 ## v6.0.1 (2021-01-04)
 
 #### Enhancements
