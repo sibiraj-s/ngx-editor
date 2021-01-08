@@ -9,7 +9,9 @@ An Example to convert and parse `div` into `p` tag persisting all attributes
 **Example HTML**
 
 ```html
-<div style="background: orange">Example text with example custom container with inline style</div>
+<div style="background: orange">
+  Example text with example custom container with inline style
+</div>
 ```
 
 Lets take this HTML and and write a schema to retain background property.
