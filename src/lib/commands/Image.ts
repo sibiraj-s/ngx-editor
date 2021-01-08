@@ -17,8 +17,14 @@ class Image {
       nodeAttrs.width = selection.node.attrs.width;
     }
 
+    tr.replaceSelectionWith(type.createAndFill(nodeAttrs));
+
+    const resolvedPos = tr.doc.resolve(
+      tr.selection.anchor - tr.selection.$anchor.nodeBefore.nodeSize
+    );
+
     tr
-      .replaceSelectionWith(type.createAndFill(nodeAttrs))
+      .setSelection(new NodeSelection(resolvedPos))
       .scrollIntoView();
 
     if (tr.docChanged) {
