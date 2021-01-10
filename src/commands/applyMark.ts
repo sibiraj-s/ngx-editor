@@ -26,7 +26,7 @@ function markApplies(doc: PrmosemirroNode, ranges: SelectionRange[], type: MarkT
 }
 
 export const applyMark = (type: MarkType, attrs: Record<string, any> = {}) => {
-  return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
+  return (state: EditorState, dispatch?: (tr: Transaction) => void ): boolean => {
     const { tr, selection } = state;
     const { $from, $to, empty, ranges } = selection;
 
@@ -38,6 +38,11 @@ export const applyMark = (type: MarkType, attrs: Record<string, any> = {}) => {
       }
 
       tr.addStoredMark(type.create(attrs));
+
+      if (!tr.storedMarksSet) {
+        return false;
+      }
+
       dispatch?.(tr);
     } else {
       tr.addMark($from.pos, $to.pos, type.create(attrs));
@@ -45,6 +50,7 @@ export const applyMark = (type: MarkType, attrs: Record<string, any> = {}) => {
       if (!tr.docChanged) {
         return false;
       }
+
       dispatch?.(tr.scrollIntoView());
     }
 

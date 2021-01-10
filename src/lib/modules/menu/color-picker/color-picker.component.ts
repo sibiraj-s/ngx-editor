@@ -115,7 +115,7 @@ export class ColorPickerComponent implements OnDestroy {
       attrs.backgroundColor = color;
     }
 
-    this.command.execute(attrs)(state, dispatch);
+    this.command.apply(attrs)(state, dispatch);
 
     if (!this.editorView.hasFocus()) {
       this.editorView.focus();
@@ -126,7 +126,7 @@ export class ColorPickerComponent implements OnDestroy {
 
   private update = (view: EditorView) => {
     const { state } = view;
-    this.canExecute = this.command.execute(null)(state);
+    this.canExecute = this.command.apply(null)(state);
     this.isActive = this.command.isActive(state);
     this.activeColors = [];
 

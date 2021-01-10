@@ -70,7 +70,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
     const command = SimpleCommands.get(item);
     const { state, dispatch } = this.editorView;
-    command.execute(state, dispatch);
+    command.toggle(state, dispatch);
     this.isDropdownOpen = false;
   }
 

@@ -12,7 +12,7 @@ class TextAlign {
     this.align = align;
   }
 
-  execute(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
+  apply(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
     const { doc, selection, tr, schema } = state;
     const { from, to } = selection;
 
@@ -49,7 +49,7 @@ class TextAlign {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.execute(state, null);
+    return this.apply(state, null);
   }
 }
 

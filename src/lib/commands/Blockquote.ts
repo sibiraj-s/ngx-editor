@@ -6,8 +6,8 @@ import { isNodeActive } from 'ngx-editor/helpers';
 
 import { SimpleCommand } from './types';
 
-class BlockqoteToggle implements SimpleCommand {
-  execute(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
+class Blockqote implements SimpleCommand {
+  toggle(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
     const { schema } = state;
 
     const type: NodeType = schema.nodes.blockquote;
@@ -34,8 +34,8 @@ class BlockqoteToggle implements SimpleCommand {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.execute(state, null);
+    return this.toggle(state, null);
   }
 }
 
-export default BlockqoteToggle;
+export default Blockqote;

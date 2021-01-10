@@ -43,7 +43,7 @@ export class SimpleCommandComponent implements OnInit, OnDestroy {
 
     const { state, dispatch } = this.editorView;
     const command = SimpleCommands.get(this.name);
-    command.execute(state, dispatch);
+    command.toggle(state, dispatch);
   }
 
   update = (view: EditorView) => {

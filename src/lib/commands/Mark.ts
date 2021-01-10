@@ -6,15 +6,27 @@ import { EditorState } from 'prosemirror-state';
 import { isMarkActive } from 'ngx-editor/helpers';
 
 import { SimpleCommand, Dispatch } from './types';
+import { applyMark } from 'ngx-editor/commands';
 
-class MarkToggle implements SimpleCommand {
+class Mark implements SimpleCommand {
   name: string;
 
   constructor(name: string) {
     this.name = name;
   }
 
-  execute(state: EditorState, dispatch: Dispatch): boolean {
+  apply(state: EditorState, dispatch: Dispatch): boolean {
+    const { schema } = state;
+
+    const type: MarkType = schema.marks[this.name];
+    if (!type) {
+      return false;
+    }
+
+    return applyMark(type)(state, dispatch);
+  }
+
+  toggle(state: EditorState, dispatch: Dispatch): boolean {
     const { schema } = state;
 
     const type: MarkType = schema.marks[this.name];
@@ -38,8 +50,8 @@ class MarkToggle implements SimpleCommand {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.execute(state, null);
+    return this.toggle(state, null);
   }
 }
 
-export default MarkToggle;
+export default Mark;

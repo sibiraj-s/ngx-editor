@@ -17,7 +17,7 @@ class ListItemToggle implements SimpleCommand {
     return this.isBulletList ? schema.nodes.bullet_list : schema.nodes.ordered_list;
   }
 
-  execute(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
+  toggle(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
     const { schema } = state;
 
     const type = this.getType(schema);
@@ -44,7 +44,7 @@ class ListItemToggle implements SimpleCommand {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.execute(state, null);
+    return this.toggle(state, null);
   }
 }
 

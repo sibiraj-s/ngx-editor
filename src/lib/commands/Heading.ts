@@ -13,7 +13,7 @@ class Heading {
     this.level = level;
   }
 
-  execute(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
+  toggle(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
     const { schema, selection, doc } = state;
 
     const type: NodeType = schema.nodes.heading;
@@ -62,7 +62,7 @@ class Heading {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.execute(state, null);
+    return this.toggle(state, null);
   }
 }
 

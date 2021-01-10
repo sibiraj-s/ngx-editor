@@ -17,7 +17,7 @@ class TextColor {
     this.name = name;
   }
 
-  execute(attrs: {}): Execute {
+  apply(attrs: {}): Execute {
     return (state: EditorState, dispatch?: Dispatch): boolean => {
       const { schema, selection, doc } = state;
 
@@ -93,7 +93,7 @@ class TextColor {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.execute({})(state, null);
+    return this.apply({})(state, null);
   }
 }
 
