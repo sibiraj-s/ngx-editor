@@ -13,6 +13,20 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v6.1.0-beta.0 (2021-01-11)
+
+- add `removeMark` command ([f740817](https://github.com/sibiraj-s/ngx-editor/commit/f740817))
+- expose commands ([dc5c8d1](https://github.com/sibiraj-s/ngx-editor/commit/dc5c8d1))
+
+```ts
+this.editor.commands
+  .textColor('red')
+  .insertText('Hello world!')
+  .focus()
+  .scrollIntoView()
+  .exec();
+```
+
 ## v6.0.3 (2021-01-08)
 
 #### Bug Fixes
