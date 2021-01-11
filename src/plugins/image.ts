@@ -30,6 +30,7 @@ class ImageRezieView {
     img.setAttribute('alt', node.attrs.alt ?? '');
     img.setAttribute('title', node.attrs.title ?? '');
     img.style.width = '100%';
+    img.style.height = '100%';
 
     const handleBottomRight = createHandle('BR');
     const handleTopRight = createHandle('TL');
