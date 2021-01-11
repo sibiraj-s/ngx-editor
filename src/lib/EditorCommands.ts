@@ -211,7 +211,7 @@ class EditorCommands {
 
   align(p: Align): this {
     const command = new TextAlignCommand(p);
-    command.apply()(this.state, this.dispatch);
+    command.toggle()(this.state, this.dispatch);
     return this;
   }
 }

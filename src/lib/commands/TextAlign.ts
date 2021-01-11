@@ -13,7 +13,7 @@ class TextAlign {
     this.align = align;
   }
 
-  apply(): Command {
+  toggle(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
 
       const { doc, selection, tr, schema } = state;
@@ -53,7 +53,7 @@ class TextAlign {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.apply()(state, null);
+    return this.toggle()(state, null);
   }
 }
 
