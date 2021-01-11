@@ -1,6 +1,6 @@
 import { NodeType, Node as ProsemirrorNode } from 'prosemirror-model';
 import { EditorState, Transaction } from 'prosemirror-state';
-import { setBlockType } from 'prosemirror-commands';
+import { Command, setBlockType } from 'prosemirror-commands';
 
 import { getSelectionNodes } from 'ngx-editor/helpers';
 
@@ -13,35 +13,41 @@ class Heading {
     this.level = level;
   }
 
-  apply(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
-    const { schema } = state;
+  apply(): Command {
+    return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
 
-    const type: NodeType = schema.nodes.heading;
-    if (!type) {
-      return false;
-    }
+      const { schema } = state;
 
-    return setBlockType(type)(state, dispatch);
+      const type: NodeType = schema.nodes.heading;
+      if (!type) {
+        return false;
+      }
+
+      return setBlockType(type)(state, dispatch);
+    };
   }
 
-  toggle(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
-    const { schema, selection, doc } = state;
+  toggle(): Command {
+    return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
 
-    const type: NodeType = schema.nodes.heading;
-    if (!type) {
-      return false;
-    }
+      const { schema, selection, doc } = state;
 
-    const nodePos = selection.$from.before(1);
-    const node = doc.nodeAt(nodePos);
+      const type: NodeType = schema.nodes.heading;
+      if (!type) {
+        return false;
+      }
 
-    const attrs = node?.attrs ?? {};
+      const nodePos = selection.$from.before(1);
+      const node = doc.nodeAt(nodePos);
 
-    if (this.isActive(state)) {
-      return setBlockType(schema.nodes.paragraph, attrs)(state, dispatch);
-    }
+      const attrs = node?.attrs ?? {};
 
-    return setBlockType(type, { ...attrs, level: this.level })(state, dispatch);
+      if (this.isActive(state)) {
+        return setBlockType(schema.nodes.paragraph, attrs)(state, dispatch);
+      }
+
+      return setBlockType(type, { ...attrs, level: this.level })(state, dispatch);
+    };
   }
 
   isActive(state: EditorState): boolean {
@@ -73,7 +79,7 @@ class Heading {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.toggle(state, null);
+    return this.toggle()(state, null);
   }
 }
 

@@ -2,6 +2,7 @@ import { EditorState, Transaction } from 'prosemirror-state';
 
 import { getSelectionNodes } from 'ngx-editor/helpers';
 import { Node } from 'prosemirror-model';
+import { Command } from 'prosemirror-commands';
 
 type Align = 'left' | 'center' | 'right' | 'justify';
 
@@ -12,30 +13,33 @@ class TextAlign {
     this.align = align;
   }
 
-  apply(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
-    const { doc, selection, tr, schema } = state;
-    const { from, to } = selection;
+  apply(): Command {
+    return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
 
-    let applicable = false;
+      const { doc, selection, tr, schema } = state;
+      const { from, to } = selection;
 
-    doc.nodesBetween(from, to, (node, pos) => {
-      const nodeType = node.type;
-      if ([schema.nodes.paragraph, schema.nodes.heading].includes(nodeType)) {
-        applicable = true;
-        tr.setNodeMarkup(pos, nodeType, { ...node.attrs, align: this.align });
+      let applicable = false;
+
+      doc.nodesBetween(from, to, (node, pos) => {
+        const nodeType = node.type;
+        if ([schema.nodes.paragraph, schema.nodes.heading].includes(nodeType)) {
+          applicable = true;
+          tr.setNodeMarkup(pos, nodeType, { ...node.attrs, align: this.align });
+        }
+        return true;
+      });
+
+      if (!applicable) {
+        return false;
       }
+
+      if (tr.docChanged) {
+        dispatch?.(tr);
+      }
+
       return true;
-    });
-
-    if (!applicable) {
-      return false;
-    }
-
-    if (tr.docChanged) {
-      dispatch?.(tr);
-    }
-
-    return true;
+    };
   }
 
   isActive(state: EditorState): boolean {
@@ -49,7 +53,7 @@ class TextAlign {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.apply(state, null);
+    return this.apply()(state, null);
   }
 }
 

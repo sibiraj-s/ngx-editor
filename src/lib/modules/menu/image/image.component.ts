@@ -113,12 +113,11 @@ export class ImageComponent implements OnDestroy {
     const { dispatch, state } = this.editorView;
 
     const attrs = {
-      src,
       alt,
       title
     };
 
-    ImageCommand.execute(attrs, state, dispatch);
+    ImageCommand.insert(src, attrs)(state, dispatch);
     this.editorView.focus();
     this.hideForm();
   }

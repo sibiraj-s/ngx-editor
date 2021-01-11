@@ -5,6 +5,7 @@ import { liftListItem, wrapInList } from 'prosemirror-schema-list';
 import { isNodeActive } from 'ngx-editor/helpers';
 
 import { SimpleCommand } from './types';
+import { Command } from 'prosemirror-commands';
 
 class ListItemToggle implements SimpleCommand {
   isBulletList = false;
@@ -17,19 +18,22 @@ class ListItemToggle implements SimpleCommand {
     return this.isBulletList ? schema.nodes.bullet_list : schema.nodes.ordered_list;
   }
 
-  toggle(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
-    const { schema } = state;
+  toggle(): Command {
+    return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
 
-    const type = this.getType(schema);
-    if (!type) {
-      return false;
-    }
+      const { schema } = state;
 
-    if (this.isActive(state)) {
-      return liftListItem(schema.nodes.list_item)(state, dispatch);
-    }
+      const type = this.getType(schema);
+      if (!type) {
+        return false;
+      }
 
-    return wrapInList(type)(state, dispatch);
+      if (this.isActive(state)) {
+        return liftListItem(schema.nodes.list_item)(state, dispatch);
+      }
+
+      return wrapInList(type)(state, dispatch);
+    };
   }
 
   isActive(state: EditorState): boolean {
@@ -44,7 +48,7 @@ class ListItemToggle implements SimpleCommand {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.toggle(state, null);
+    return this.toggle()(state, null);
   }
 }
 
