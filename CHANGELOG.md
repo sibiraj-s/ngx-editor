@@ -15,6 +15,8 @@ All notable changes to this project will be documented in this file.
 
 ## v6.1.0-beta.0 (2021-01-11)
 
+#### Features
+
 - add `removeMark` command ([f740817](https://github.com/sibiraj-s/ngx-editor/commit/f740817))
 - expose commands ([dc5c8d1](https://github.com/sibiraj-s/ngx-editor/commit/dc5c8d1))
 
