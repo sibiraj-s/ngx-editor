@@ -84,7 +84,7 @@ class Editor {
   }
 
   private handleTransactions(tr: Transaction): void {
-    const { state } = this.view.state.applyTransaction(tr);
+    const state = this.view.state.apply(tr);
     this.view.updateState(state);
 
     this.onUpdate.next();
