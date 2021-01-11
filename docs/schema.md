@@ -57,3 +57,5 @@ const schema = new Schema({
 
 export default schema;
 ```
+
+**Note**: Always extend the built in schema. Removing builtin schemas might cause the editor menu/commands to not work as expected.

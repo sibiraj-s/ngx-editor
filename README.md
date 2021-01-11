@@ -114,6 +114,19 @@ import { toDoc } from 'ngx-editor';
 const jsonDoc = toDoc(html);
 ```
 
+### Commands
+
+```ts
+this.editor.commands
+  .textColor('red')
+  .insertText('Hello world!')
+  .focus()
+  .scrollIntoView()
+  .exec();
+```
+
+Run `exec` to apply the changes to the editor.
+
 ### Optional Configuration
 
 You can specify locals to be used in the editor
