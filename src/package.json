@@ -21,8 +21,9 @@
   },
   "dependencies": {
     "@types/prosemirror-model": "^1.11.1",
+    "@types/prosemirror-schema-list": "^1.0.1",
     "@types/prosemirror-state": "^1.2.5",
-    "@types/prosemirror-view": "^1.16.1",
+    "@types/prosemirror-view": "^1.17.0",
     "prosemirror-commands": "^1.1.4",
     "prosemirror-model": "^1.13.1",
     "prosemirror-schema-list": "^1.1.4",
