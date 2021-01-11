@@ -3,11 +3,11 @@ import { EditorState, NodeSelection } from 'prosemirror-state';
 
 import { Dispatch } from './types';
 
-export type ImageAttrs = {
+export interface ImageAttrs {
   alt?: string;
   title?: string;
   width?: string;
-};
+}
 
 class Image {
   insert(src: string, attrs: ImageAttrs): Command {

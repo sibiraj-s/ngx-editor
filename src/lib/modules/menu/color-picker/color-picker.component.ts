@@ -107,15 +107,13 @@ export class ColorPickerComponent implements OnDestroy {
 
     const { state, dispatch } = this.editorView;
 
-    const attrs: Record<string, any> = {};
-
     if (this.type === 'text_color') {
-      attrs.color = color;
+      const attrs = { color };
+      this.command.apply(attrs)(state, dispatch);
     } else {
-      attrs.backgroundColor = color;
+      const attrs = { backgroundColor: color };
+      this.command.apply(attrs)(state, dispatch);
     }
-
-    this.command.apply(attrs)(state, dispatch);
 
     if (!this.editorView.hasFocus()) {
       this.editorView.focus();

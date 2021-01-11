@@ -4,7 +4,7 @@ import { getSelectionNodes } from 'ngx-editor/helpers';
 import { Node } from 'prosemirror-model';
 import { Command } from 'prosemirror-commands';
 
-type Align = 'left' | 'center' | 'right' | 'justify';
+export type Align = 'left' | 'center' | 'right' | 'justify';
 
 class TextAlign {
   align: string;

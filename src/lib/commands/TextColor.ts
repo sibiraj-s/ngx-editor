@@ -1,14 +1,21 @@
 import { MarkType } from 'prosemirror-model';
 import { EditorState } from 'prosemirror-state';
+import { Command } from 'prosemirror-commands';
 
 import { getSelectionMarks, isMarkActive } from 'ngx-editor/helpers';
 import { applyMark, removeMark } from 'ngx-editor/commands';
 
 import { Dispatch } from './types';
 
-type Execute = (state: EditorState, dispatch?: Dispatch) => boolean;
-
 type Name = 'text_color' | 'text_background_color';
+
+interface ColorAttrs {
+  color: string;
+}
+
+interface BackgroundColorAttrs {
+  backgroundColor: string;
+}
 
 class TextColor {
   name: Name;
@@ -17,7 +24,7 @@ class TextColor {
     this.name = name;
   }
 
-  apply(attrs: {}): Execute {
+  apply(attrs: ColorAttrs | BackgroundColorAttrs): Command {
     return (state: EditorState, dispatch?: Dispatch): boolean => {
       const { schema, selection, doc } = state;
 
@@ -79,7 +86,8 @@ class TextColor {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.apply({})(state, null);
+    const attrs = this.name === 'text_color' ? { color: '' } : { backgroundColor: '' };
+    return this.apply(attrs)(state, null);
   }
 }
 
