@@ -2,7 +2,7 @@ import { MarkType } from 'prosemirror-model';
 import { EditorState } from 'prosemirror-state';
 
 import { getSelectionMarks, isMarkActive } from 'ngx-editor/helpers';
-import { applyMark } from 'ngx-editor/commands';
+import { applyMark, removeMark } from 'ngx-editor/commands';
 
 import { Dispatch } from './types';
 
@@ -68,28 +68,14 @@ class TextColor {
   }
 
   remove(state: EditorState, dispatch: Dispatch): boolean {
-    const { tr } = state;
-    const { selection, schema } = state;
-
-    const { empty, from, to } = selection;
+    const { schema } = state;
 
     const type = schema.marks[this.name];
     if (!type) {
       return false;
     }
 
-    if (empty) {
-      tr.removeStoredMark(type);
-    } else {
-      tr.removeMark(from, to, type);
-
-      if (!tr.docChanged) {
-        return false;
-      }
-    }
-
-    dispatch(tr.scrollIntoView());
-    return true;
+    return removeMark(type)(state, dispatch);
   }
 
   canExecute(state: EditorState): boolean {

@@ -3,11 +3,10 @@ import { EditorState, TextSelection, Transaction } from 'prosemirror-state';
 
 import { markApplies } from 'ngx-editor/helpers';
 
-// Ref: https://github.com/ProseMirror/prosemirror-commands/blob/master/src/commands.js
-export const applyMark = (type: MarkType, attrs: Record<string, any> = {}) => {
+export const removeMark = (type: MarkType, attrs: Record<string, any> = {}) => {
   return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
-    const { tr, selection } = state;
-    const { empty, ranges, $from, $to } = selection;
+    const { tr, selection, storedMarks, doc } = state;
+    const { empty, ranges } = selection;
 
     if (empty && selection instanceof TextSelection) {
       const { $cursor } = selection;
@@ -16,14 +15,20 @@ export const applyMark = (type: MarkType, attrs: Record<string, any> = {}) => {
         return false;
       }
 
-      tr.addStoredMark(type.create(attrs));
-      if (!tr.storedMarksSet) {
-        return false;
+      if (type.isInSet(storedMarks || $cursor.marks())) {
+        tr.removeStoredMark(type);
+        dispatch?.(tr);
+        return true;
       }
-
-      dispatch?.(tr);
     } else {
-      tr.addMark($from.pos, $to.pos, type.create(attrs));
+      for (const range of ranges) {
+        const { $from, $to } = range;
+        const hasMark = doc.rangeHasMark($from.pos, $to.pos, type);
+
+        if (hasMark) {
+          tr.removeMark($from.pos, $to.pos, type);
+        }
+      }
 
       if (!tr.docChanged) {
         return false;
@@ -32,6 +37,6 @@ export const applyMark = (type: MarkType, attrs: Record<string, any> = {}) => {
       dispatch?.(tr.scrollIntoView());
     }
 
-    return true;
+    return false;
   };
 };
