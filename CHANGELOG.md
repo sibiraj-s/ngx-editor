@@ -13,6 +13,13 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v6.1.0-beta.1 (2021-01-11)
+
+#### Bug Fixes
+
+- fix hidden broken image placehodler ([e2ae5e7](https://github.com/sibiraj-s/ngx-editor/commit/e2ae5e7))
+- fix text align command ([ee0556c](https://github.com/sibiraj-s/ngx-editor/commit/ee0556c))
+
 ## v6.1.0-beta.0 (2021-01-11)
 
 #### Features
