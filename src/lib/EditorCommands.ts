@@ -197,6 +197,18 @@ class EditorCommands {
     return this;
   }
 
+  removeTextColor(): this {
+    const command = new TextColorCommand('text_color');
+    command.remove()(this.state, this.dispatch);
+    return this;
+  }
+
+  removeBackgroundColor(): this {
+    const command = new TextColorCommand('text_background_color');
+    command.remove()(this.state, this.dispatch);
+    return this;
+  }
+
   align(p: Align): this {
     const command = new TextAlignCommand(p);
     command.apply()(this.state, this.dispatch);

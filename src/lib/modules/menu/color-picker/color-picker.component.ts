@@ -94,7 +94,7 @@ export class ColorPickerComponent implements OnDestroy {
     e.preventDefault();
     const { state, dispatch } = this.editorView;
 
-    this.command.remove(state, dispatch);
+    this.command.remove()(state, dispatch);
     this.hidePopup();
   }
 

@@ -74,15 +74,17 @@ class TextColor {
     return colors;
   }
 
-  remove(state: EditorState, dispatch: Dispatch): boolean {
-    const { schema } = state;
+  remove(): Command {
+    return (state: EditorState, dispatch?: Dispatch): boolean => {
+      const { schema } = state;
 
-    const type = schema.marks[this.name];
-    if (!type) {
-      return false;
-    }
+      const type = schema.marks[this.name];
+      if (!type) {
+        return false;
+      }
 
-    return removeMark(type)(state, dispatch);
+      return removeMark(type)(state, dispatch);
+    };
   }
 
   canExecute(state: EditorState): boolean {
