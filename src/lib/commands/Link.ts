@@ -19,10 +19,14 @@ export interface LinkAttrs {
 class Link {
   update(attrs = {}): Command {
     return (state: EditorState, dispatch: Dispatch): boolean => {
-      const { schema } = state;
+      const { schema, selection } = state;
 
       const type: MarkType = schema.marks.link;
       if (!type) {
+        return false;
+      }
+
+      if (selection.empty) {
         return false;
       }
 

@@ -4,13 +4,24 @@ import { setBlockType } from 'prosemirror-commands';
 
 import { getSelectionNodes } from 'ngx-editor/helpers';
 
-type Level = 1 | 2 | 3 | 4 | 5 | 6;
+export type HeadingLevels = 1 | 2 | 3 | 4 | 5 | 6;
 
 class Heading {
   level: number;
 
-  constructor(level: Level) {
+  constructor(level: HeadingLevels) {
     this.level = level;
+  }
+
+  apply(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
+    const { schema } = state;
+
+    const type: NodeType = schema.nodes.heading;
+    if (!type) {
+      return false;
+    }
+
+    return setBlockType(type)(state, dispatch);
   }
 
   toggle(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
