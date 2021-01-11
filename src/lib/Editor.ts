@@ -8,6 +8,7 @@ import {
   placeholder as placeholderPlugin
 } from 'ngx-editor/plugins';
 
+import EditorCommands from './EditorCommands';
 import defautlSchema from './schema';
 import { parseContent } from './parsers';
 import isNil from './utils/isNil';
@@ -59,6 +60,10 @@ class Editor {
     return this.options.schema || defautlSchema;
   }
 
+  get commands(): EditorCommands {
+    return new EditorCommands(this.view);
+  }
+
   setContent(content: Content): void {
     if (isNil(content)) {
       return;
@@ -89,7 +94,7 @@ class Editor {
 
     this.onUpdate.next();
 
-    if (!tr.docChanged) {
+    if (!tr.docChanged && !tr.getMeta('FORCE_EMIT')) {
       return;
     }
 
