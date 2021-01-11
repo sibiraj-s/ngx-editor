@@ -1,4 +1,4 @@
-import { toggleMark } from 'prosemirror-commands';
+import { Command, toggleMark } from 'prosemirror-commands';
 import { MarkType } from 'prosemirror-model';
 import { EditorState } from 'prosemirror-state';
 
@@ -10,38 +10,53 @@ const defaultOptions = {
   strict: true
 };
 
+export interface LinkAttrs {
+  href: string;
+  title?: string;
+  target?: string;
+}
+
 class Link {
-  update(attrs = {}, state: EditorState, dispatch: Dispatch): boolean {
-    const { schema } = state;
+  update(attrs = {}): Command {
+    return (state: EditorState, dispatch: Dispatch): boolean => {
+      const { schema } = state;
 
-    const type: MarkType = schema.marks.link;
-    if (!type) {
-      return false;
-    }
+      const type: MarkType = schema.marks.link;
+      if (!type) {
+        return false;
+      }
 
-    return toggleMark(type, attrs)(state, dispatch);
+      return toggleMark(type, attrs)(state, dispatch);
+    };
   }
 
-  insert(text: string, attrs = {}, state: EditorState, dispatch: Dispatch): boolean {
-    const { schema, tr } = state;
+  insert(text: string, attrs: LinkAttrs): Command {
+    return (state: EditorState, dispatch: Dispatch): boolean => {
+      const { schema, tr } = state;
 
-    const type: MarkType = schema.marks.link;
-    if (!type) {
+      const type: MarkType = schema.marks.link;
+      if (!type) {
+        return false;
+      }
+
+      const linkAttrs: LinkAttrs = {
+        href: attrs.href,
+        title: attrs.title ?? text,
+        target: attrs.target ?? '_blank'
+      };
+
+      const node = schema.text(text, [schema.marks.link.create(linkAttrs)]);
+
+      tr.replaceSelectionWith(node, false)
+        .scrollIntoView();
+
+      if (tr.docChanged) {
+        dispatch?.(tr);
+        return true;
+      }
+
       return false;
-    }
-
-
-    const node = schema.text(text, [schema.marks.link.create(attrs)]);
-
-    tr.replaceSelectionWith(node, false)
-      .scrollIntoView();
-
-    if (tr.docChanged) {
-      dispatch?.(tr);
-      return true;
-    }
-
-    return false;
+    };
   }
 
   isActive(state: EditorState, options = defaultOptions): boolean {
@@ -58,7 +73,7 @@ class Link {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.update({}, state, null);
+    return this.update({})(state, null);
   }
 }
 
