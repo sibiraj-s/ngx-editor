@@ -85,13 +85,15 @@ export class EditorComponent implements OnInit, OnDestroy {
 Then in HTML
 
 ```html
-<ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-<ngx-editor
-  [editor]="editor"
-  [ngModel]="html"
-  [editable]="true"
-  [placeholder]="Type here..."
-></ngx-editor>
+<div class="NgxEditor__Wrapper">
+  <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+  <ngx-editor
+    [editor]="editor"
+    [ngModel]="html"
+    [editable]="true"
+    [placeholder]="Type here..."
+  ></ngx-editor>
+</div>
 ```
 
 Note: Input can be a HTML string or a jsonDoc
