@@ -13,6 +13,21 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v6.1.0-beta.2 (2021-01-15)
+
+#### Bug Fixes
+
+- fix validation on empty string input ([9700f27](https://github.com/sibiraj-s/ngx-editor/commit/9700f27))
+
+#### Dependency Updates
+
+- update prosemirror-view ([15336b8](https://github.com/sibiraj-s/ngx-editor/commit/15336b8))
+- update prosemirror-commands ([ced34fd](https://github.com/sibiraj-s/ngx-editor/commit/ced34fd))
+
+#### Features
+
+- add default wrapper css ([f1934b8](https://github.com/sibiraj-s/ngx-editor/commit/f1934b8))
+
 ## v6.1.0-beta.1 (2021-01-11)
 
 #### Bug Fixes
