@@ -1,21 +1,29 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-import { Schema} from 'prosemirror-model';
+import { Schema, Node as ProsemirrorNode } from 'prosemirror-model';
 
 import { parseContent } from './parsers';
 import defaultSchema from './schema';
 
 type ValidationErrors = Record<string, any>;
 
-function isEmptyInputValue(value: any): boolean {
+const isEmptyInputValue = (value: any): boolean => {
   // we don't check for string here so it also works with arrays
   return value == null || value.length === 0;
-}
+};
 
-function hasValidLength(value: any): boolean {
+const hasValidLength = (value: any): boolean => {
   // non-strict comparison is intentional, to check for both `null` and `undefined` values
   return value != null && typeof value.length === 'number';
-}
+};
 
+const isDocEmpty = (doc: ProsemirrorNode): boolean => {
+  if (!doc) {
+    return true;
+  }
+
+  const { childCount, firstChild } = doc;
+  return childCount === 1 && firstChild?.isTextblock && firstChild.content.size === 0;
+};
 
 // @dynamic
 export class Validators {
@@ -26,9 +34,7 @@ export class Validators {
       const schema = userSchema || defaultSchema;
       const doc = parseContent(control.value, schema);
 
-      const isEmpty = doc.childCount === 1
-        && doc?.firstChild?.isTextblock
-        && doc.firstChild.content.size === 0;
+      const isEmpty = isDocEmpty(doc);
 
       if (!isEmpty) {
         return null;
