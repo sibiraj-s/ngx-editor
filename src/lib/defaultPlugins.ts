@@ -83,6 +83,15 @@ const buildInputRules = (schema: Schema): Plugin => {
 };
 
 const getKeyboardShortcuts = (schema: Schema) => {
+  const historyKeyMap: Record<string, any> = {};
+
+  historyKeyMap['Mod-z'] = undo;
+  if (isMacOs) {
+    historyKeyMap['Shift-Mod-z'] = redo;
+  } else {
+    historyKeyMap['Mod-y'] = redo;
+  }
+
   return [
     keymap({
       'Mod-b': toggleMark(schema.marks.strong),
@@ -95,27 +104,9 @@ const getKeyboardShortcuts = (schema: Schema) => {
       'Mod-]': sinkListItem(schema.nodes.list_item),
       Tab: sinkListItem(schema.nodes.list_item)
     }),
-    keymap(baseKeymap)
+    keymap(baseKeymap),
+    keymap(historyKeyMap)
   ];
-};
-
-const getHistoryPlugins = (): Plugin[] => {
-  const plugins: Plugin[] = [];
-
-  const keyMappings: Record<string, any> = {};
-
-  keyMappings['Mod-z'] = undo;
-  if (isMacOs) {
-    keyMappings['Shift-Mod-z'] = redo;
-  } else {
-    keyMappings['Mod-y'] = redo;
-  }
-
-  plugins.push(history());
-  plugins.push(keymap(keyMappings));
-  plugins.push(keymap(keyMappings));
-
-  return plugins;
 };
 
 const getDefaultPlugins = (schema: Schema, options: Options) => {
@@ -126,7 +117,7 @@ const getDefaultPlugins = (schema: Schema, options: Options) => {
   }
 
   if (options.history) {
-    plugins.push(...getHistoryPlugins());
+    plugins.push(history());
   }
 
   if (options.inputRules) {
