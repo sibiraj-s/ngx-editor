@@ -16,6 +16,10 @@ interface Options {
   inputRules: boolean;
 }
 
+interface ShortcutOptions {
+  history: boolean;
+}
+
 const isMacOs = /Mac/.test(navigator.platform);
 
 // Input rules ref: https://github.com/ProseMirror/prosemirror-example-setup/
@@ -82,7 +86,7 @@ const buildInputRules = (schema: Schema): Plugin => {
   return inputRules({ rules });
 };
 
-const getKeyboardShortcuts = (schema: Schema) => {
+const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) => {
   const historyKeyMap: Record<string, any> = {};
 
   historyKeyMap['Mod-z'] = undo;
@@ -92,7 +96,7 @@ const getKeyboardShortcuts = (schema: Schema) => {
     historyKeyMap['Mod-y'] = redo;
   }
 
-  return [
+  const plugins = [
     keymap({
       'Mod-b': toggleMark(schema.marks.strong),
       'Mod-i': toggleMark(schema.marks.em),
@@ -104,16 +108,21 @@ const getKeyboardShortcuts = (schema: Schema) => {
       'Mod-]': sinkListItem(schema.nodes.list_item),
       Tab: sinkListItem(schema.nodes.list_item)
     }),
-    keymap(baseKeymap),
-    keymap(historyKeyMap)
+    keymap(baseKeymap)
   ];
+
+  if (options.history) {
+    plugins.push(keymap(historyKeyMap));
+  }
+
+  return plugins;
 };
 
 const getDefaultPlugins = (schema: Schema, options: Options) => {
   const plugins: Plugin[] = [];
 
   if (options.keyboardShortcuts) {
-    plugins.push(...getKeyboardShortcuts(schema));
+    plugins.push(...getKeyboardShortcuts(schema, { history: options.history }));
   }
 
   if (options.history) {
