@@ -13,6 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v7.0.0 (2021-01-18)
+
+#### Features
+
+- defalt keyboard shortcuts and input rules are enabled by default ([5a4351b](https://github.com/sibiraj-s/ngx-editor/commit/5a4351b))
+- history is enabled by default ([5a4351b](https://github.com/sibiraj-s/ngx-editor/commit/5a4351b))
+
+## Migration
+
+Refer docs for migration https://sibiraj-s.github.io/ngx-editor
+
 ## v6.1.0 (2021-01-18)
 
 #### Features
