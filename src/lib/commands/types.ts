@@ -1,5 +1,5 @@
 import { EditorState, Transaction } from 'prosemirror-state';
-import { Command } from 'ngx-editor/commands';
+import { Command } from 'prosemirror-commands';
 
 export type Dispatch = (tr: Transaction) => void | null;
 

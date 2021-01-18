@@ -17,8 +17,8 @@ import {
   redo,
 } from 'y-prosemirror';
 import { Editor } from 'ngx-editor';
-import { history } from 'ngx-editor/history';
-import { keymap } from 'ngx-editor/keymap';
+import { keymap } from 'prosemirror-keymap';
+import { history } from 'prosemirror-history';
 
 const ydoc = new Y.Doc();
 const provider = new WebsocketProvider(

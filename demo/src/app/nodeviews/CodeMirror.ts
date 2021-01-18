@@ -3,8 +3,7 @@ import { undo, redo } from 'prosemirror-history';
 import { TextSelection, Selection } from 'prosemirror-state';
 import { Node as ProsemirrorNode } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
-
-import { exitCode } from 'ngx-editor/commands';
+import { exitCode } from 'prosemirror-commands';
 
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';

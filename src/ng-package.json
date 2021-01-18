@@ -6,7 +6,12 @@
     "umdModuleIds": {
       "prosemirror-state": "prosemirrorState",
       "prosemirror-view": "prosemirrorView",
-      "prosemirror-model": "prosemirrorModel"
+      "prosemirror-model": "prosemirrorModel",
+      "prosemirror-keymap": "prosemirrorKeymap",
+      "prosemirror-schema-list": "prosemirroSchemaList",
+      "prosemirror-commands": "prosemirrorCommands",
+      "prosemirror-history": "prosemirrorHistory",
+      "prosemirror-inputrules": "prosemirrorInputRules"
     }
   },
   "whitelistedNonPeerDependencies": [

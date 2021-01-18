@@ -1,14 +1,13 @@
 import { NodeType, Schema } from 'prosemirror-model';
 import { Plugin } from 'prosemirror-state';
-
-import { keymap } from 'ngx-editor/keymap';
-import { toggleMark, baseKeymap } from 'ngx-editor/commands';
-import { splitListItem, liftListItem, sinkListItem } from 'ngx-editor/schema-list';
-import { history, undo, redo } from 'ngx-editor/history';
+import { keymap } from 'prosemirror-keymap';
+import { toggleMark, baseKeymap } from 'prosemirror-commands';
+import { splitListItem, liftListItem, sinkListItem } from 'prosemirror-schema-list';
+import { history, undo, redo } from 'prosemirror-history';
 import {
   inputRules, wrappingInputRule, textblockTypeInputRule,
   smartQuotes, emDash, ellipsis, InputRule
-} from 'ngx-editor/inputrules';
+} from 'prosemirror-inputrules';
 
 interface Options {
   history: boolean;

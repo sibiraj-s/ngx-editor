@@ -1,6 +1,6 @@
 import { EditorState, NodeSelection } from 'prosemirror-state';
+import { Command } from 'prosemirror-commands';
 
-import { Command } from 'ngx-editor/commands';
 import { Dispatch } from './types';
 
 export interface ImageAttrs {

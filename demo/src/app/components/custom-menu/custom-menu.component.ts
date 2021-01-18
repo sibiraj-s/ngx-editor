@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EditorState, Plugin, PluginKey, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
+import { setBlockType } from 'prosemirror-commands';
 
 import { Editor } from 'ngx-editor';
 import { isNodeActive } from 'ngx-editor/helpers';
-import { setBlockType } from 'ngx-editor/commands';
 
 @Component({
   selector: 'app-custom-menu',

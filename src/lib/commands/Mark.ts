@@ -1,10 +1,11 @@
 import { MarkType } from 'prosemirror-model';
 import { EditorState, Transaction } from 'prosemirror-state';
+import { Command, toggleMark } from 'prosemirror-commands';
 
+import { applyMark } from 'ngx-editor/commands';
 import { isMarkActive } from 'ngx-editor/helpers';
 
 import { SimpleCommand } from './types';
-import { applyMark,  Command, toggleMark } from 'ngx-editor/commands';
 
 class Mark implements SimpleCommand {
   name: string;
