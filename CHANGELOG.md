@@ -13,6 +13,16 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v6.1.0 (2021-01-18)
+
+#### Features
+
+- hitory and history keyboard shortcuts are builtin ([5a4351b](https://github.com/sibiraj-s/ngx-editor/commit/5a4351b))
+
+#### Bug Fixes
+
+- prevent errors when plugins field is not defined ([5a4351b](https://github.com/sibiraj-s/ngx-editor/commit/5a4351b))
+
 ## v6.1.0-beta.2 (2021-01-15)
 
 #### Bug Fixes
