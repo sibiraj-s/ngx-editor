@@ -17,7 +17,7 @@ All notable changes to this project will be documented in this file.
 
 #### Features
 
-- defalt keyboard shortcuts and input rules are enabled by default ([5a4351b](https://github.com/sibiraj-s/ngx-editor/commit/5a4351b))
+- default keyboard shortcuts and input rules are enabled by default ([5a4351b](https://github.com/sibiraj-s/ngx-editor/commit/5a4351b))
 - history is enabled by default ([5a4351b](https://github.com/sibiraj-s/ngx-editor/commit/5a4351b))
 
 ## Migration
