@@ -7,13 +7,12 @@ import {
   editable as editablePlugin,
   placeholder as placeholderPlugin
 } from 'ngx-editor/plugins';
-import { history, undo, redo } from 'ngx-editor/history';
-import { keymap } from 'ngx-editor/keymap';
 
 import EditorCommands from './EditorCommands';
 import defautlSchema from './schema';
 import { parseContent } from './parsers';
 import isNil from './utils/isNil';
+import getDefaultPlugins from './defaultPlugins';
 
 type Content = string | Record<string, any> | null;
 type JSONDoc = Record<string, null> | null;
@@ -32,6 +31,8 @@ interface Options {
   enabled?: boolean;
   placeholder?: string;
   history?: boolean;
+  keyboardShortcuts?: boolean;
+  inputRules?: boolean;
   schema?: Schema;
   plugins?: Plugin[];
   nodeViews?: NodeViews;
@@ -40,30 +41,12 @@ interface Options {
 const DEFAULT_OPTIONS: Options = {
   content: null,
   enabled: true,
-  history: false,
+  history: true,
+  keyboardShortcuts: true,
+  inputRules: true,
   schema: defautlSchema,
   plugins: [],
   nodeViews: {}
-};
-
-const isMacOs = /Mac/.test(navigator.platform);
-
-const getHistoryPlugins = (): Plugin[] => {
-  const plugins: Plugin[] = [];
-
-  const keyMappings: Record<string, any> = {};
-
-  keyMappings['Mod-z'] = undo;
-  if (isMacOs) {
-    keyMappings['Shift-Mod-z'] = redo;
-  } else {
-    keyMappings['Mod-y'] = redo;
-  }
-
-  plugins.push(history());
-  plugins.push(keymap(keyMappings));
-
-  return plugins;
 };
 
 class Editor {
@@ -144,9 +127,13 @@ class Editor {
       ...(options.plugins ?? [])
     ];
 
-    if (options.history) {
-      plugins.push(...getHistoryPlugins());
-    }
+    const defaultPlugins = getDefaultPlugins(schema, {
+      history: options.history,
+      keyboardShortcuts: options.keyboardShortcuts,
+      inputRules: options.inputRules
+    });
+
+    plugins.push(...defaultPlugins);
 
     this.view = new EditorView(this.el, {
       editable: () => editable,

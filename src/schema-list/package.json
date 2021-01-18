@@ -3,8 +3,7 @@
     "lib": {
       "entryFile": "./public_api.ts",
       "umdModuleIds": {
-        "prosemirror-state": "prosemirrorState",
-        "prosemirror-commands": "prosemirrorCommands"
+        "prosemirror-schema-list": "prosemirrorSchemaList"
       }
     }
   }

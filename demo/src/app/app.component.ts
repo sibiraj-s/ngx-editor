@@ -46,7 +46,9 @@ export class AppComponent implements OnInit, OnDestroy {
       schema,
       plugins,
       nodeViews,
-      history: true
+      history: true,
+      keyboardShortcuts: true,
+      inputRules: true
     });
   }
 

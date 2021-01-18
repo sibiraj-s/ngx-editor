@@ -3,7 +3,7 @@ import { EditorView } from 'prosemirror-view';
 import {
   chainCommands, createParagraphNear, liftEmptyBlock,
   newlineInCode, splitBlock
-} from 'prosemirror-commands';
+} from 'ngx-editor/commands';
 
 import MarkCommand from './commands/Mark';
 import ListCommand from './commands/ListItem';

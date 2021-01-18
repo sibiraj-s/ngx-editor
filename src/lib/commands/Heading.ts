@@ -1,7 +1,7 @@
 import { NodeType, Node as ProsemirrorNode } from 'prosemirror-model';
 import { EditorState, Transaction } from 'prosemirror-state';
-import { Command, setBlockType } from 'prosemirror-commands';
 
+import { Command, setBlockType } from 'ngx-editor/commands';
 import { getSelectionNodes } from 'ngx-editor/helpers';
 
 export type HeadingLevels = 1 | 2 | 3 | 4 | 5 | 6;

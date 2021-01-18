@@ -43,6 +43,14 @@
       "ngx-editor/keymap": [
         "dist/ngx-editor/ngx-editor/keymap",
         "dist/ngx-editor/keymap"
+      ],
+      "ngx-editor/inputrules": [
+        "dist/ngx-editor/ngx-editor/inputrules",
+        "dist/ngx-editor/inputrules"
+      ],
+      "ngx-editor/schema-list": [
+        "dist/ngx-editor/ngx-editor/schema-list",
+        "dist/ngx-editor/schema-list"
       ]
     }
   },

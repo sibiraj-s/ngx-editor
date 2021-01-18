@@ -1,8 +1,8 @@
 import { EditorState, Transaction } from 'prosemirror-state';
+import { Node } from 'prosemirror-model';
 
 import { getSelectionNodes } from 'ngx-editor/helpers';
-import { Node } from 'prosemirror-model';
-import { Command } from 'prosemirror-commands';
+import { Command } from 'ngx-editor/commands';
 
 export type Align = 'left' | 'center' | 'right' | 'justify';
 
