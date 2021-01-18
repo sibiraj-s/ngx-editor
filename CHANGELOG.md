@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v7.0.1 (2021-01-18)
+
+#### Bug Fixes
+
+- fix remove exported prosemirror methods ([86a8a82](https://github.com/sibiraj-s/ngx-editor/commit/86a8a82))
+
 ## v7.0.0 (2021-01-18)
 
 #### Features
