@@ -30,11 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
   html = '';
   editor: Editor;
   ngOnInit(): void {
-    this.editor = new Editor({
-      schema,
-      plugins,
-      nodeViews,
-    });
+    this.editor = new Editor();
   }
 
   ngOnDestroy(): void {

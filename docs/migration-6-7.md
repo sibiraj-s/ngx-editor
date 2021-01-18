@@ -1,4 +1,20 @@
-# Examples
+# Migrating from v6 to v7
+
+You may need to remove the plugins added to enable the basic features such as history, keyboard shortcuts and input rules associated to the build schema. They are included by default.
+
+## History
+
+Editor now comes with inbuilt history support. You can enable or disable this by
+
+```ts
+import { Editor } from 'ngx-editor';
+
+new Editor({
+  history: true,
+});
+```
+
+## Keyboard Shortcuts
 
 Enable/disable default keyboard shortcuts. Enabled by default
 
@@ -23,10 +39,21 @@ Enables the following shortcuts. `Mod` represents `CMD in Mac` and `CTRL in Wind
 - **Mod-y** - redo (only in windows)
 - **Shift-Mod-z** - redo (only in Mac)
 
-and some other default shortcuts based on OS.
+and some other default shortcuts based on OS
 
 **Note**: History based shortcuts will be enabled only if `history` option is `true`
 
-Related Links
+## Input Rules
 
-- https://prosemirror.net/docs/ref/#keymap
+```ts
+import { Editor } from 'ngx-editor';
+
+new Editor({
+  inputRules: true,
+});
+```
+
+Enables the following input rules like
+
+- Typing `>+{space}` will toggle blockquote
+- Typing `#+{space}` will toggle heading

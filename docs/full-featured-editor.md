@@ -7,74 +7,17 @@ Use the following config to created a full featured editor
 ### plugin.ts
 
 ```ts
-import { undo, redo, history } from 'prosemirror-history';
-import {
-  splitListItem,
-  liftListItem,
-  sinkListItem,
-} from 'prosemirror-schema-list';
-import { keymap } from 'prosemirror-keymap';
-import { toggleMark, baseKeymap } from 'prosemirror-commands';
 import { Plugin } from 'prosemirror-state';
-
 import { image } from 'ngx-editor/plugins';
 
-import { buildInputRules } from './input-rules';
-import schema from '../schema';
+const plugins: Plugin[] = [
+  image({
+    // enables image resizing
+    resize: true,
+  }),
+];
 
-const isMacOs = /Mac/.test(navigator.platform);
-
-export type KeyMap = Record<string, any>;
-
-const getHistoryKeyMap = (): KeyMap => {
-  const historyMap: Record<string, any> = {};
-
-  historyMap['Mod-z'] = undo;
-
-  if (isMacOs) {
-    historyMap['Shift-Mod-z'] = redo;
-  } else {
-    historyMap['Mod-y'] = redo;
-  }
-
-  return historyMap;
-};
-
-const getListKeyMap = (): Record<string, any> => {
-  const listMap: Record<string, any> = {};
-
-  listMap.Enter = splitListItem(schema.nodes.list_item);
-  listMap['Mod-['] = liftListItem(schema.nodes.list_item);
-  listMap['Mod-]'] = sinkListItem(schema.nodes.list_item);
-  listMap.Tab = sinkListItem(schema.nodes.list_item);
-
-  return listMap;
-};
-
-const getPlugins = (): Plugin[] => {
-  const historyKeyMap = getHistoryKeyMap();
-  const listKeyMap = getListKeyMap();
-
-  const plugins = [
-    history(),
-    keymap({
-      'Mod-b': toggleMark(schema.marks.strong),
-      'Mod-i': toggleMark(schema.marks.em),
-      'Mod-`': toggleMark(schema.marks.code),
-    }),
-    keymap(historyKeyMap),
-    keymap(listKeyMap),
-    keymap(baseKeymap),
-    buildInputRules(schema),
-    image({
-      resize: true,
-    }),
-  ];
-
-  return plugins;
-};
-
-export default getPlugins();
+export default plugins;
 ```
 
 ### app.module.ts
@@ -135,12 +78,9 @@ export class AppModule {}
 ```ts
 import { Component, OnInit, OnDestory, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-
 import { Validators, Editor, Toolbar } from 'ngx-editor';
 
-import schema from './schema';
 import plugins from './plugins';
-import nodeViews from './nodeviews';
 
 @Component({
   selector: 'app-root',
@@ -167,9 +107,7 @@ export class AppComponent implements OnInit, OnDestory {
 
   ngOnInit(): void {
     this.editor = new Editor({
-      schema,
       plugins,
-      nodeViews,
     });
   }
 
@@ -183,30 +121,9 @@ export class AppComponent implements OnInit, OnDestory {
 
 ```html
 <form [formGroup]="form">
-  <div class="editor">
+  <div class="NgxEditor__Wrapper">
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
     <ngx-editor [editor]="editor" formControlName="editorContent"> </ngx-editor>
   </div>
 </form>
-```
-
-#### app.component.scss
-
-```scss
-.editor {
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-
-  .NgxEditor__MenuBar {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  }
-
-  .NgxEditor {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border: none;
-  }
-}
 ```

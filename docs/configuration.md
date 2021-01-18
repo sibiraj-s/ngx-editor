@@ -12,6 +12,9 @@ editor = new Editor({
   nodeViews: {},
   placeholder: 'Type here',
   enabled: true,
+  history: true,
+  keyboardShortcuts: true,
+  inputRules: true,
 });
 ```
 

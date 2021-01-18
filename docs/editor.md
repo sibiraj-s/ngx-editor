@@ -9,9 +9,12 @@ const editor = new Editor({
   content: '',
   placeholder: 'Type here',
   enabled: true,
+  history: true,
+  keyboardShortcuts: true,
+  inputRules: true,
   plugins: [], //https://prosemirror.net/docs/guide/#state
   schema, //https://prosemirror.net/examples/schema/
-  nodeViews: {}, //https://prosemirror.net/docs/guide/#state
+  nodeViews: {}, //https://prosemirror.net/docs/guide/#state,
 });
 ```
 
@@ -25,6 +28,9 @@ Some options may be overwritten by the component props
 - **plugins** - (`Optional`) - prosemirror plugins
 - **schema** - (`Optional`) - prosemirror plugins
 - **nodeViews** - (`Optional`) - prosemirror nodeViews
+- **history** - (`Optional`) - enables history support in editor
+- **keyboardShortcuts** - (`Optional`) - enables keyboard shortcuts for the inbuilt schema
+- **inputRules** - (`Optional`) - enables inputrules for the inbuilt schema
 
 ## Editor Instance
 

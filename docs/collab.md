@@ -17,6 +17,8 @@ import {
   redo,
 } from 'y-prosemirror';
 import { Editor } from 'ngx-editor';
+import { history } from 'ngx-editor/history';
+import { keymap } from 'ngx-editor/keymap';
 
 const ydoc = new Y.Doc();
 const provider = new WebsocketProvider(
@@ -27,10 +29,17 @@ const provider = new WebsocketProvider(
 const type = ydoc.getXmlFragment('prosemirror');
 
 new Editor({
+  history: false, // include the history plugin manually
   plugins: [
+    history(),
     ySyncPlugin(type),
     yCursorPlugin(provider.awareness),
     yUndoPlugin(),
+    keymap({
+      'Mod-z': undo,
+      'Mod-y': redo,
+      'Mod-Shift-z': redo,
+    }),
   ],
 });
 ```

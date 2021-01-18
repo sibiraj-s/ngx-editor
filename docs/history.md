@@ -1,23 +1,16 @@
-# Enable history support in the editor
-
-Reference
-
-- https://prosemirror.net/docs/ref/#history
-- https://prosemirror.net/docs/ref/#keymap
+# Enable/Disable editor history support
 
 ```ts
-import { undo, redo, history } from 'prosemirror-history';
-import { keymap } from 'prosemirror-keymap';
 import { Editor } from 'ngx-editor';
 
 new Editor({
-  plugins: [
-    history(), // enable history support
-    keymap({
-      // configure shortcuts
-      'Mod-z': undo,
-      'Shift-Mod-z': redo,
-    }),
-  ],
+  history: true,
 });
 ```
+
+_**Note**: You may need to disable history if you are using collaborative editing_
+
+Related links
+
+- https://prosemirror.net/docs/ref/#history
+- https://prosemirror.net/docs/ref/#keymap
