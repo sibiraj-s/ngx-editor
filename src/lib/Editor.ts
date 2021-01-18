@@ -7,6 +7,8 @@ import {
   editable as editablePlugin,
   placeholder as placeholderPlugin
 } from 'ngx-editor/plugins';
+import { history, undo, redo } from 'ngx-editor/history';
+import { keymap } from 'ngx-editor/keymap';
 
 import EditorCommands from './EditorCommands';
 import defautlSchema from './schema';
@@ -29,6 +31,7 @@ interface Options {
   content?: Content;
   enabled?: boolean;
   placeholder?: string;
+  history?: boolean;
   schema?: Schema;
   plugins?: Plugin[];
   nodeViews?: NodeViews;
@@ -37,8 +40,30 @@ interface Options {
 const DEFAULT_OPTIONS: Options = {
   content: null,
   enabled: true,
+  history: false,
+  schema: defautlSchema,
   plugins: [],
   nodeViews: {}
+};
+
+const isMacOs = /Mac/.test(navigator.platform);
+
+const getHistoryPlugins = (): Plugin[] => {
+  const plugins: Plugin[] = [];
+
+  const keyMappings: Record<string, any> = {};
+
+  keyMappings['Mod-z'] = undo;
+  if (isMacOs) {
+    keyMappings['Shift-Mod-z'] = redo;
+  } else {
+    keyMappings['Mod-y'] = redo;
+  }
+
+  plugins.push(history());
+  plugins.push(keymap(keyMappings));
+
+  return plugins;
 };
 
 class Editor {
@@ -52,8 +77,8 @@ class Editor {
   onUpdate = new Subject();
 
   constructor(options: Options = DEFAULT_OPTIONS) {
-    this.options = options;
-    this.createEditor(options);
+    this.options = Object.assign({}, DEFAULT_OPTIONS, options);
+    this.createEditor();
   }
 
   get schema(): Schema {
@@ -102,8 +127,9 @@ class Editor {
     this.onContentChange.next(json);
   }
 
-  private createEditor(options: Options): void {
-    const { content, plugins, nodeViews, enabled } = options;
+  private createEditor(): void {
+    const { options } = this;
+    const { content, nodeViews, enabled } = options;
     const schema = this.schema;
 
     const editable = enabled ?? true;
@@ -112,16 +138,22 @@ class Editor {
     const doc = parseContent(content, schema);
     this.el = document.createDocumentFragment();
 
+    const plugins: Plugin[] = [
+      editablePlugin(),
+      placeholderPlugin(placeholder),
+      ...(options.plugins ?? [])
+    ];
+
+    if (options.history) {
+      plugins.push(...getHistoryPlugins());
+    }
+
     this.view = new EditorView(this.el, {
       editable: () => editable,
       state: EditorState.create({
         doc,
         schema,
-        plugins: [
-          editablePlugin(),
-          placeholderPlugin(placeholder),
-          ...plugins
-        ],
+        plugins,
       }),
       nodeViews,
       dispatchTransaction: this.handleTransactions.bind(this),

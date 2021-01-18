@@ -32,9 +32,17 @@
         "dist/ngx-editor/ngx-editor/commands",
         "dist/ngx-editor/commands"
       ],
+      "ngx-editor/history": [
+        "dist/ngx-editor/ngx-editor/history",
+        "dist/ngx-editor/history"
+      ],
       "ngx-editor/plugins": [
         "dist/ngx-editor/ngx-editor/plugins",
         "dist/ngx-editor/plugins"
+      ],
+      "ngx-editor/keymap": [
+        "dist/ngx-editor/ngx-editor/keymap",
+        "dist/ngx-editor/keymap"
       ]
     }
   },

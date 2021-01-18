@@ -45,7 +45,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.editor = new Editor({
       schema,
       plugins,
-      nodeViews
+      nodeViews,
+      history: true
     });
   }
 

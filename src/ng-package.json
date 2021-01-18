@@ -14,8 +14,10 @@
   "whitelistedNonPeerDependencies": [
     "prosemirror-state",
     "prosemirror-view",
+    "prosemirror-keymap",
     "prosemirror-model",
     "prosemirror-schema-list",
-    "prosemirror-commands"
+    "prosemirror-commands",
+    "prosemirror-history"
   ]
 }
