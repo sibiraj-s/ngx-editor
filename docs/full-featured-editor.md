@@ -58,7 +58,7 @@ import plugins from './plugins';
         text_color: 'Text Color',
         background_color: 'Background Color',
 
-        // pupups, forms, others...
+        // popups, forms, others...
         url: 'URL',
         text: 'Text',
         openInNewTab: 'Open in new tab',
@@ -76,7 +76,7 @@ export class AppModule {}
 ### app.component.ts
 
 ```ts
-import { Component, OnInit, OnDestory, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { Validators, Editor, Toolbar } from 'ngx-editor';
 
@@ -88,7 +88,7 @@ import plugins from './plugins';
   styleUrls: ['app.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppComponent implements OnInit, OnDestory {
+export class AppComponent implements OnInit, OnDestroy {
   editor: Editor;
   toolbar: Toolbar = [
     ['bold', 'italic'],
