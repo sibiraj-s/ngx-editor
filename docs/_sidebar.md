@@ -8,12 +8,6 @@
   - [Commands](commands.md)
   - [Convert JSON doc to HTML](doc-html-doc.md)
 
-- Migration
-
-  - [v6 to v7](migration-6-7.md)
-  - [v5 to v6](migration-5-6.md)
-  - [v4 or from other editors to v5/v6 ](migration.md)
-
 - Examples
 
   - [Full Featured Editor](full-featured-editor.md)
@@ -26,3 +20,9 @@
   - [Reactive Forms](reactive-forms.md)
   - [Ng Model Binding](ng-model.md)
   - [Collaborative Editing](collab.md)
+
+- Migration
+
+  - [v6 to v7](migration-6-7.md)
+  - [v5 to v6](migration-5-6.md)
+  - [v4 or from other editors to v5/v6 ](migration.md)
