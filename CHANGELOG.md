@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v7.0.2 (2021-01-22)
+
+#### Dependency Updates
+
+- update `prosemirror-state` ([64a4e5f](https://github.com/sibiraj-s/ngx-editor/commit/64a4e5f))
+- update devDependencies ([a573a5d](https://github.com/sibiraj-s/ngx-editor/commit/a573a5d))
+- update `@types/prosemirror-*` packages ([8683d27](https://github.com/sibiraj-s/ngx-editor/commit/8683d27))
+
+#### Documentation
+
+- fix typos ([541d6e0](https://github.com/sibiraj-s/ngx-editor/commit/541d6e0))
+
 ## v7.0.1 (2021-01-18)
 
 #### Bug Fixes
