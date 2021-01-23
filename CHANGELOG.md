@@ -13,6 +13,16 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v7.0.3 (2021-01-23)
+
+#### Bug Fixes
+
+- fix issues with `buildOptimizer` in angular 9, 10 ([49eba35](https://github.com/sibiraj-s/ngx-editor/commit/49eba35))
+
+#### Enhancements
+
+- update typings ([c048e52](https://github.com/sibiraj-s/ngx-editor/commit/c048e52))
+
 ## v7.0.2 (2021-01-22)
 
 #### Dependency Updates
