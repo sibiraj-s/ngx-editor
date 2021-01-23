@@ -134,8 +134,6 @@ Run `exec` to apply the changes to the editor.
 You can specify locals to be used in the editor
 
 ```ts
-import { schema } from 'ngx-editor';
-
 NgxEditorModule.forRoot({
   locals: {
     // menu
