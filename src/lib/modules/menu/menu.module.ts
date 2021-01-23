@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MenuService } from './menu.service';
 
 import { MenuComponent } from './menu.component';
-import { SimpleCommandComponent } from './simple-command/simple-command.component';
+import { ToggleCommandComponent } from './toggle-command/toggle-command.component';
 import { LinkComponent } from './link/link.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { ImageComponent } from './image/image.component';
@@ -24,11 +24,11 @@ import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
 
     // components
     MenuComponent,
-    SimpleCommandComponent,
+    ToggleCommandComponent,
     LinkComponent,
     DropdownComponent,
     ImageComponent,
-    ColorPickerComponent
+    ColorPickerComponent,
   ],
   providers: [
     MenuService,

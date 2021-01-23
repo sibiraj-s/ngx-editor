@@ -18,7 +18,7 @@ export interface LinkAttrs {
 
 class Link {
   update(attrs = {}): Command {
-    return (state: EditorState, dispatch: Dispatch): boolean => {
+    return (state: EditorState, dispatch?: Dispatch): boolean => {
       const { schema, selection } = state;
 
       const type: MarkType = schema.marks.link;
@@ -35,7 +35,7 @@ class Link {
   }
 
   insert(text: string, attrs: LinkAttrs): Command {
-    return (state: EditorState, dispatch: Dispatch): boolean => {
+    return (state: EditorState, dispatch?: Dispatch): boolean => {
       const { schema, tr } = state;
 
       const type: MarkType = schema.marks.link;
@@ -77,7 +77,7 @@ class Link {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.update({})(state, null);
+    return this.update({})(state);
   }
 }
 

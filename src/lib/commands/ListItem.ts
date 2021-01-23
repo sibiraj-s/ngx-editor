@@ -5,9 +5,7 @@ import { Command } from 'prosemirror-commands';
 
 import { isNodeActive } from 'ngx-editor/helpers';
 
-import { SimpleCommand } from './types';
-
-class ListItemToggle implements SimpleCommand {
+class ListItem {
   isBulletList = false;
 
   constructor(isBulletList = false) {
@@ -48,8 +46,8 @@ class ListItemToggle implements SimpleCommand {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.toggle()(state, null);
+    return this.toggle()(state);
   }
 }
 
-export default ListItemToggle;
+export default ListItem;

@@ -124,7 +124,7 @@ export class ColorPickerComponent implements OnDestroy {
 
   private update = (view: EditorView) => {
     const { state } = view;
-    this.canExecute = this.command.apply(null)(state);
+    this.canExecute = this.command.canExecute(state);
     this.isActive = this.command.isActive(state);
     this.activeColors = [];
 

@@ -2,19 +2,24 @@ import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core'
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
-import { SimpleCommands } from '../MenuCommands';
 import Icon from '../../../icons';
+import { ToggleCommands } from '../MenuCommands';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
+import { TBItems, ToolbarItem } from '../../../types';
 
 @Component({
-  selector: 'ngx-simple-command',
-  templateUrl: './simple-command.component.html',
-  styleUrls: ['./simple-command.component.scss']
+  selector: 'ngx-toggle-command',
+  templateUrl: './toggle-command.component.html',
+  styleUrls: ['./toggle-command.component.scss']
 })
 
-export class SimpleCommandComponent implements OnInit, OnDestroy {
-  @Input() name: string;
+export class ToggleCommandComponent implements OnInit, OnDestroy {
+  @Input() toolbarItem: ToolbarItem;
+
+  get name(): TBItems {
+    return this.toolbarItem as TBItems;
+  }
 
   html: string;
   editorView: EditorView;
@@ -42,13 +47,13 @@ export class SimpleCommandComponent implements OnInit, OnDestroy {
     }
 
     const { state, dispatch } = this.editorView;
-    const command = SimpleCommands.get(this.name);
+    const command = ToggleCommands.get(this.name);
     command.toggle()(state, dispatch);
   }
 
   update = (view: EditorView) => {
     const { state } = view;
-    const command = SimpleCommands.get(this.name);
+    const command = ToggleCommands.get(this.name);
     this.isActive = command.isActive(state);
     this.disabled = !command.canExecute(state);
   }

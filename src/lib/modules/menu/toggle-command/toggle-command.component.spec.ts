@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SimpleCommandComponent } from './simple-command.component';
+import { ToggleCommandComponent } from './toggle-command.component';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 
-describe('SimpleCommandComponent', () => {
-  let component: SimpleCommandComponent;
-  let fixture: ComponentFixture<SimpleCommandComponent>;
+describe('ToggleCommandComponent', () => {
+  let component: ToggleCommandComponent;
+  let fixture: ComponentFixture<ToggleCommandComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        SimpleCommandComponent,
+        ToggleCommandComponent,
         SanitizeHtmlPipe
       ]
     })
@@ -18,7 +18,7 @@ describe('SimpleCommandComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SimpleCommandComponent);
+    fixture = TestBed.createComponent(ToggleCommandComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

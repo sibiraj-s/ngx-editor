@@ -24,7 +24,7 @@ class TextColor {
     this.name = name;
   }
 
-  apply(attrs: ColorAttrs | BackgroundColorAttrs): Command {
+  apply(attrs: ColorAttrs | BackgroundColorAttrs | null): Command {
     return (state: EditorState, dispatch?: Dispatch): boolean => {
       const { schema, selection, doc } = state;
 
@@ -37,13 +37,13 @@ class TextColor {
 
       if (!empty && (from + 1 === to)) {
         const node = doc.nodeAt(from);
-        if (node.isAtom && !node.isText && node.isLeaf) {
+        if (node?.isAtom && !node.isText && node.isLeaf) {
           // An atomic node (e.g. Image) is selected.
           return false;
         }
       }
 
-      return applyMark(type, attrs)(state, dispatch);
+      return applyMark(type, attrs ?? {})(state, dispatch);
     };
   }
 
@@ -88,8 +88,7 @@ class TextColor {
   }
 
   canExecute(state: EditorState): boolean {
-    const attrs = this.name === 'text_color' ? { color: '' } : { backgroundColor: '' };
-    return this.apply(attrs)(state, null);
+    return this.apply(null)(state);
   }
 }
 

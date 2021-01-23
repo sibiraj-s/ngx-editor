@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Toolbar, ToolbarItem } from '../../types';
+import { Toolbar, ToolbarItem, ToolbarDropdown } from '../../types';
 
 import { MenuService } from './menu.service';
 import Editor from '../../Editor';
@@ -47,7 +47,7 @@ const DEFAULT_COLOR_PRESETS = [
 })
 
 export class MenuComponent implements OnInit, OnDestroy {
-  @Input() toolbar: any = DEFAULT_TOOLBAR;
+  @Input() toolbar: Toolbar = DEFAULT_TOOLBAR;
   @Input() colorPresets: string[] = DEFAULT_COLOR_PRESETS;
   @Input() disabled = false;
   @Input() editor: Editor;
@@ -55,7 +55,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   private updateSubscription: Subscription;
 
-  simpleCommands = [
+  toggleCommands: any[] = [
     'bold', 'italic',
     'underline', 'strike',
     'code', 'blockquote',
@@ -87,11 +87,15 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   isDropDown(item: ToolbarItem): boolean {
-    if (typeof item === 'object') {
+    if ((item as ToolbarDropdown)?.heading) {
       return true;
     }
 
     return false;
+  }
+
+  getDropdownItems(item: ToolbarItem): ToolbarDropdown {
+    return item as ToolbarDropdown;
   }
 
   ngOnInit(): void {

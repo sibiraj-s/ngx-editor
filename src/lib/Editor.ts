@@ -1,6 +1,6 @@
-import { Schema, Node as ProsemirrorNode } from 'prosemirror-model';
+import { Schema } from 'prosemirror-model';
 import { EditorState, Plugin, Transaction } from 'prosemirror-state';
-import { Decoration, EditorView, NodeView } from 'prosemirror-view';
+import { EditorProps, EditorView } from 'prosemirror-view';
 import { Subject } from 'rxjs';
 
 import {
@@ -17,15 +17,6 @@ import getDefaultPlugins from './defaultPlugins';
 type Content = string | Record<string, any> | null;
 type JSONDoc = Record<string, null> | null;
 
-interface NodeViews {
-  [name: string]: (
-    node: ProsemirrorNode,
-    view: EditorView,
-    getPos: () => number,
-    decorations: Decoration[]
-  ) => NodeView;
-}
-
 interface Options {
   content?: Content;
   enabled?: boolean;
@@ -35,7 +26,7 @@ interface Options {
   inputRules?: boolean;
   schema?: Schema;
   plugins?: Plugin[];
-  nodeViews?: NodeViews;
+  nodeViews?: EditorProps['nodeViews'];
 }
 
 const DEFAULT_OPTIONS: Options = {

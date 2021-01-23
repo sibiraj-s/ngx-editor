@@ -4,9 +4,7 @@ import { Command, lift, wrapIn } from 'prosemirror-commands';
 
 import { isNodeActive } from 'ngx-editor/helpers';
 
-import { SimpleCommand } from './types';
-
-class Blockqote implements SimpleCommand {
+class Blockqote {
   toggle(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
       const { schema } = state;

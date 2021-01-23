@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, OnDestroy } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
@@ -20,8 +20,6 @@ export class LinkComponent implements OnDestroy {
   private canExecute = true;
   private editorView: EditorView;
   private pluginUpdateSubscription: Subscription;
-
-  @Input() name: string;
 
   form = new FormGroup({
     href: new FormControl('', [

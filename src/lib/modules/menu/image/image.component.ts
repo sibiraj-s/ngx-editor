@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, OnDestroy } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
@@ -29,7 +29,6 @@ export class ImageComponent implements OnDestroy {
   });
 
   private editorView: EditorView;
-  @Input() name: string;
 
   constructor(
     private el: ElementRef,

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
 
 import { MenuComponent } from './menu.component';
-import { SimpleCommandComponent } from './simple-command/simple-command.component';
+import { ToggleCommandComponent } from './toggle-command/toggle-command.component';
 import { LinkComponent } from './link/link.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { ImageComponent } from './image/image.component';
@@ -20,7 +20,7 @@ describe('MenuComponent', () => {
         SanitizeHtmlPipe,
 
         MenuComponent,
-        SimpleCommandComponent,
+        ToggleCommandComponent,
         LinkComponent,
         DropdownComponent,
         ImageComponent,

@@ -1,25 +1,28 @@
-import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component, ElementRef, HostBinding,
+  HostListener, Input, OnDestroy
+} from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
-import { SimpleCommands } from '../MenuCommands';
+import { ToggleCommands } from '../MenuCommands';
+import { TBHeadingItems } from '../../../types';
 
 @Component({
   selector: 'ngx-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss']
 })
-export class DropdownComponent implements OnInit, OnDestroy {
+export class DropdownComponent implements OnDestroy {
   private editorView: EditorView;
   private pluginUpdateSubscription: Subscription;
 
-  @Input() group: any;
-  @Input() items: any;
+  @Input() group: string;
+  @Input() items: TBHeadingItems[];
 
   isDropdownOpen = false;
-  selected: string;
 
   private activeItems = [];
   disabledItems = [];
@@ -60,7 +63,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  onClick(e: MouseEvent, item: string): void {
+  onClick(e: MouseEvent, item: TBHeadingItems): void {
     e.preventDefault();
 
     // consider only left click
@@ -68,7 +71,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const command = SimpleCommands.get(item);
+    const command = ToggleCommands.get(item);
     const { state, dispatch } = this.editorView;
     command.toggle()(state, dispatch);
     this.isDropdownOpen = false;
@@ -79,8 +82,8 @@ export class DropdownComponent implements OnInit, OnDestroy {
     this.activeItems = [];
     this.disabledItems = [];
 
-    this.items.forEach((item: string) => {
-      const command = SimpleCommands.get(item);
+    this.items.forEach((item: TBHeadingItems) => {
+      const command = ToggleCommands.get(item);
       const isActive = command.isActive(state);
 
       if (isActive) {
@@ -97,10 +100,6 @@ export class DropdownComponent implements OnInit, OnDestroy {
     } else {
       this.activeItem = null;
     }
-  }
-
-  ngOnInit(): void {
-    this.selected = this.group;
   }
 
   ngOnDestroy(): void {

@@ -5,9 +5,7 @@ import { Command, toggleMark } from 'prosemirror-commands';
 import { applyMark } from 'ngx-editor/commands';
 import { isMarkActive } from 'ngx-editor/helpers';
 
-import { SimpleCommand } from './types';
-
-class Mark implements SimpleCommand {
+class Mark {
   name: string;
 
   constructor(name: string) {
@@ -55,7 +53,7 @@ class Mark implements SimpleCommand {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.toggle()(state, null);
+    return this.toggle()(state);
   }
 }
 

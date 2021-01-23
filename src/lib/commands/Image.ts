@@ -11,7 +11,7 @@ export interface ImageAttrs {
 
 class Image {
   insert(src: string, attrs: ImageAttrs): Command {
-    return (state: EditorState, dispatch: Dispatch): boolean => {
+    return (state: EditorState, dispatch?: Dispatch): boolean => {
       const { schema, tr, selection } = state;
 
       const type = schema.nodes.image;
