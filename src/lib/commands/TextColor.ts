@@ -24,7 +24,7 @@ class TextColor {
     this.name = name;
   }
 
-  apply(attrs: ColorAttrs | BackgroundColorAttrs | null): Command {
+  apply(attrs: ColorAttrs | BackgroundColorAttrs): Command {
     return (state: EditorState, dispatch?: Dispatch): boolean => {
       const { schema, selection, doc } = state;
 
@@ -43,7 +43,7 @@ class TextColor {
         }
       }
 
-      return applyMark(type, attrs ?? {})(state, dispatch);
+      return applyMark(type, attrs)(state, dispatch);
     };
   }
 
@@ -88,7 +88,8 @@ class TextColor {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.apply(null)(state);
+    const attrs = this.name === 'text_color' ? { color: '' } : { backgroundColor: '' };
+    return this.apply(attrs)(state);
   }
 }
 
