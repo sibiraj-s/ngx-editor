@@ -15,7 +15,7 @@ import isNil from './utils/isNil';
 import getDefaultPlugins from './defaultPlugins';
 
 type Content = string | Record<string, any> | null;
-type JSONDoc = Record<string, null> | null;
+type JSONDoc = Record<string, null>;
 
 interface Options {
   content?: Content;
@@ -103,7 +103,8 @@ class Editor {
 
   private createEditor(): void {
     const { options } = this;
-    const { content, nodeViews, enabled } = options;
+    const { content = null, nodeViews, enabled } = options;
+    const { history = true, keyboardShortcuts = true, inputRules = true } = options;
     const schema = this.schema;
 
     const editable = enabled ?? true;
@@ -119,9 +120,9 @@ class Editor {
     ];
 
     const defaultPlugins = getDefaultPlugins(schema, {
-      history: options.history,
-      keyboardShortcuts: options.keyboardShortcuts,
-      inputRules: options.inputRules
+      history,
+      keyboardShortcuts,
+      inputRules
     });
 
     plugins.push(...defaultPlugins);

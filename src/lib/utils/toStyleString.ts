@@ -3,7 +3,7 @@ const camelToDashed = (str: string): string => {
 };
 
 const cleanObject = (obj: Record<string, any>): Record<string, any> => {
-  const cleanObj = {};
+  const cleanObj: Record<string, string> = {};
 
   Object.keys(obj).forEach((prop) => {
     if (obj[prop]) {

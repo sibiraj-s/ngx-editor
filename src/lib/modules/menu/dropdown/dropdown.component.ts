@@ -24,8 +24,8 @@ export class DropdownComponent implements OnDestroy {
 
   isDropdownOpen = false;
 
-  private activeItems = [];
-  disabledItems = [];
+  private activeItems: TBHeadingItems[] = [];
+  disabledItems: string[] = [];
   activeItem: string | null;
 
   constructor(
@@ -71,7 +71,7 @@ export class DropdownComponent implements OnDestroy {
       return;
     }
 
-    const command = ToggleCommands.get(item);
+    const command = ToggleCommands[item];
     const { state, dispatch } = this.editorView;
     command.toggle()(state, dispatch);
     this.isDropdownOpen = false;
@@ -83,7 +83,7 @@ export class DropdownComponent implements OnDestroy {
     this.disabledItems = [];
 
     this.items.forEach((item: TBHeadingItems) => {
-      const command = ToggleCommands.get(item);
+      const command = ToggleCommands[item];
       const isActive = command.isActive(state);
 
       if (isActive) {

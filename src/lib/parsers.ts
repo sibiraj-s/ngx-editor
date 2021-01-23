@@ -2,9 +2,13 @@ import { DOMSerializer, Schema, DOMParser, Node as ProsemirrorNode } from 'prose
 
 import defaultSchema from './schema';
 
+export const emptyDoc = {
+  type: 'doc',
+  content: []
+};
+
 // https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment
 export const toHTML = (json: Record<string, any>, inputSchema?: Schema): string => {
-
   const schema = inputSchema ?? defaultSchema;
 
   const contentNode = schema.nodeFromJSON(json);
@@ -26,7 +30,7 @@ export const toDoc = (html: string, inputSchema?: Schema): Record<string, any> =
 
 export const parseContent = (value: string | Record<string, any> | null, schema: Schema): ProsemirrorNode => {
   if (!value) {
-    return null;
+    return schema.nodeFromJSON(emptyDoc);
   }
 
   if (typeof value !== 'string') {

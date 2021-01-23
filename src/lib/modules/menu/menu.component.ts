@@ -51,7 +51,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   @Input() colorPresets: string[] = DEFAULT_COLOR_PRESETS;
   @Input() disabled = false;
   @Input() editor: Editor;
-  @Input() customMenuRef: TemplateRef<any> = null;
+  @Input() customMenuRef: TemplateRef<any> | null = null;
 
   private updateSubscription: Subscription;
 

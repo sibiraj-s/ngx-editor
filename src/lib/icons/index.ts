@@ -21,7 +21,7 @@ import colorFill from './color_fill';
 const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
 
-const icons = {
+const icons: Record<string, any> = {
   bold,
   italic,
   code,

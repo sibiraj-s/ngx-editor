@@ -34,7 +34,7 @@ class Blockqote {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.toggle()(state, null);
+    return this.toggle()(state);
   }
 }
 

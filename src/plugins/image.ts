@@ -69,7 +69,7 @@ class ImageRezieView {
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
 
-        const transaction = tr.setNodeMarkup(getPos(), null, {
+        const transaction = tr.setNodeMarkup(getPos(), undefined, {
           src: node.attrs.src,
           width: outer.style.width
         });

@@ -19,6 +19,7 @@ type Command = typeof TextColor | typeof TextBackgroundColor;
 })
 export class ColorPickerComponent implements OnDestroy {
   @Input() presets: string[][];
+  @Input() type: string;
 
   constructor(
     private el: ElementRef,
@@ -56,10 +57,8 @@ export class ColorPickerComponent implements OnDestroy {
   private editorView: EditorView;
   showPopup = false;
   isActive = false;
-  activeColors = [];
+  activeColors: string[] = [];
   private canExecute = true;
-
-  @Input() type: string;
 
   getContrastYIQ(hexcolor: string): string {
     hexcolor = hexcolor.replace('#', '');

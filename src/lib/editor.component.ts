@@ -55,7 +55,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     this.onTouched = fn;
   }
 
-  private handleChange(jsonDoc: Record<string, any> | null): void {
+  private handleChange(jsonDoc: Record<string, any>): void {
     if (this.outputFormat === 'html') {
       const html = toHTML(jsonDoc, this.editor.schema);
       this.onChange(html);

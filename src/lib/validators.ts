@@ -8,7 +8,7 @@ type ValidationErrors = Record<string, any>;
 
 const isEmptyInputValue = (value: any): boolean => {
   // we don't check for string here so it also works with arrays
-  return value == null || value.length === 0;
+  return value === null || value.length === 0;
 };
 
 const hasValidLength = (value: any): boolean => {
@@ -16,13 +16,13 @@ const hasValidLength = (value: any): boolean => {
   return value != null && typeof value.length === 'number';
 };
 
-const isDocEmpty = (doc: ProsemirrorNode): boolean => {
+const isDocEmpty = (doc: ProsemirrorNode | null): boolean => {
   if (!doc) {
     return true;
   }
 
   const { childCount, firstChild } = doc;
-  return childCount === 1 && firstChild?.isTextblock && firstChild.content.size === 0;
+  return Boolean(childCount === 1 && firstChild?.isTextblock && firstChild.content.size === 0);
 };
 
 // @dynamic

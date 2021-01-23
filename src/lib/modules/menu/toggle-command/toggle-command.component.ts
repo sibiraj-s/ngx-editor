@@ -47,13 +47,13 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
     }
 
     const { state, dispatch } = this.editorView;
-    const command = ToggleCommands.get(this.name);
+    const command = ToggleCommands[this.name];
     command.toggle()(state, dispatch);
   }
 
   update = (view: EditorView) => {
     const { state } = view;
-    const command = ToggleCommands.get(this.name);
+    const command = ToggleCommands[this.name];
     this.isActive = command.isActive(state);
     this.disabled = !command.canExecute(state);
   }

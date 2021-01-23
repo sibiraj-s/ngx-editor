@@ -1,4 +1,4 @@
-const defaults = {
+const defaults: Record<string, string> = {
   // menu
   bold: 'Bold',
   italic: 'Italic',
