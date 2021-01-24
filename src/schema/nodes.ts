@@ -1,7 +1,7 @@
 import { DOMOutputSpec, Node as ProsemirrorNode, NodeSpec } from 'prosemirror-model';
 import * as sl from 'prosemirror-schema-list';
 
-import toStyleString from '../utils/toStyleString';
+import { toStyleString } from 'ngx-editor/utils';
 
 const doc: NodeSpec = {
   content: 'block+'

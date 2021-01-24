@@ -1,14 +1,4 @@
-import { Schema } from 'prosemirror-model';
+import { schema } from 'ngx-editor/schema';
 
-import nodes from './schema/nodes';
-import marks from './schema/marks';
-
-export { default as marks } from './schema/marks';
-export { default as nodes } from './schema/nodes';
-
-export const schema = new Schema({
-  marks,
-  nodes
-});
-
+export { schema, marks, nodes } from 'ngx-editor/schema';
 export default schema;

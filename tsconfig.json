@@ -24,33 +24,25 @@
         "dist/ngx-editor/ngx-editor",
         "dist/ngx-editor"
       ],
+      "ngx-editor/utils": [
+        "dist/ngx-editor/ngx-editor/utils",
+        "dist/ngx-editor/utils"
+      ],
       "ngx-editor/helpers": [
         "dist/ngx-editor/ngx-editor/helpers",
         "dist/ngx-editor/helpers"
+      ],
+      "ngx-editor/schema": [
+        "dist/ngx-editor/ngx-editor/schema",
+        "dist/ngx-editor/schema"
       ],
       "ngx-editor/commands": [
         "dist/ngx-editor/ngx-editor/commands",
         "dist/ngx-editor/commands"
       ],
-      "ngx-editor/history": [
-        "dist/ngx-editor/ngx-editor/history",
-        "dist/ngx-editor/history"
-      ],
       "ngx-editor/plugins": [
         "dist/ngx-editor/ngx-editor/plugins",
         "dist/ngx-editor/plugins"
-      ],
-      "ngx-editor/keymap": [
-        "dist/ngx-editor/ngx-editor/keymap",
-        "dist/ngx-editor/keymap"
-      ],
-      "ngx-editor/inputrules": [
-        "dist/ngx-editor/ngx-editor/inputrules",
-        "dist/ngx-editor/inputrules"
-      ],
-      "ngx-editor/schema-list": [
-        "dist/ngx-editor/ngx-editor/schema-list",
-        "dist/ngx-editor/schema-list"
       ]
     }
   },

@@ -7,11 +7,11 @@ import {
   editable as editablePlugin,
   placeholder as placeholderPlugin
 } from 'ngx-editor/plugins';
+import { isNil } from 'ngx-editor/utils';
 
 import EditorCommands from './EditorCommands';
 import defautlSchema from './schema';
 import { parseContent } from './parsers';
-import isNil from './utils/isNil';
 import getDefaultPlugins from './defaultPlugins';
 
 type Content = string | Record<string, any> | null;

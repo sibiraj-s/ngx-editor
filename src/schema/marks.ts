@@ -141,7 +141,7 @@ const textBackgroundColor: MarkSpec = {
   },
 };
 
-const makrs = {
+const marks = {
   link,
   em,
   strong,
@@ -152,4 +152,4 @@ const makrs = {
   text_background_color: textBackgroundColor
 };
 
-export default makrs;
+export default marks;
