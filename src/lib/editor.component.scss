@@ -2,9 +2,6 @@ $primary: #1a73e8;
 $light-gray: #f1f1f1;
 
 // prosemirror
-.ProseMirror {
-  outline: none;
-}
 
 .NgxEditor {
   background: white;
@@ -32,6 +29,9 @@ $light-gray: #f1f1f1;
 .NgxEditor__Content {
   padding: 0.5rem;
   white-space: pre-wrap;
+  outline: none;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0;
 
   p {
     margin: 0;
