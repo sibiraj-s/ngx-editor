@@ -213,8 +213,8 @@ import schema from './schema.ts';
 new Editor({
   schema,
   nodeViews: {
-    code_block: (
-      // first define schema `code_block`. see schema section
+    code_mirror: (
+      // first define schema `code_mirror`. see schema section
       node: ProsemirrorNode,
       view: EditorView,
       getPos: () => number
