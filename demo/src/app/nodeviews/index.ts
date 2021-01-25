@@ -4,7 +4,7 @@ import { EditorView } from 'prosemirror-view';
 import CodeBlockView from './CodeMirror';
 
 const nodeViews = {
-  code_block: (node: ProsemirrorNode, view: EditorView, getPos: () => number) => {
+  code_mirror: (node: ProsemirrorNode, view: EditorView, getPos: () => number) => {
     return new CodeBlockView(node, view, getPos);
   }
 };

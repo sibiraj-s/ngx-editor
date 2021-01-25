@@ -176,7 +176,7 @@ export default {
       ]
     },
     {
-      type: 'code_block',
+      type: 'code_mirror',
       content: [
         {
           type: 'text',
