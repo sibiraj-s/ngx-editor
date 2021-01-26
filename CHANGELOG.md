@@ -13,6 +13,28 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v7.0.4 (2021-01-24)
+
+#### Bug Fixes
+
+- set empty document with atleast one node ([8939b80](https://github.com/sibiraj-s/ngx-editor/commit/8939b80))
+
+#### Features
+
+- schema as a secondary endpoint ([9dc6a98](https://github.com/sibiraj-s/ngx-editor/commit/9dc6a98))
+
+```ts
+import { schema, marks, nodes } from 'ngx-editor/schema';
+```
+
+#### Enhancements
+
+- improve font style ([90d8236](https://github.com/sibiraj-s/ngx-editor/commit/90d8236))
+
+#### Documentation
+
+- fix `code_mirror` example ([454d9be](https://github.com/sibiraj-s/ngx-editor/commit/454d9be))
+
 ## v7.0.3 (2021-01-23)
 
 #### Bug Fixes
