@@ -93,6 +93,8 @@ export class BubbleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.updateSubscription.unsubscribe();
+    if (this.updateSubscription) {
+      this.updateSubscription.unsubscribe();
+    }
   }
 }
