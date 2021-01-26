@@ -13,7 +13,7 @@ import { exitCode } from 'prosemirror-commands';
 import { undo, redo } from 'prosemirror-history';
 import { TextSelection, Selection } from 'prosemirror-state';
 import { Node as ProsemirrorNode } from 'prosemirror-model';
-import { EditorView } from 'prosemirror-view';
+import { EditorView, NodeView } from 'prosemirror-view';
 
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';
@@ -46,7 +46,7 @@ function computeChange(oldVal: string, newVal: string) {
 
 type GetPos = () => number;
 
-class CodeMirrorView {
+class CodeMirrorView implements NodeView {
   node: ProsemirrorNode;
   getPos: GetPos;
   incomingChanges: boolean;
@@ -201,12 +201,65 @@ class CodeMirrorView {
     }
     return true;
   }
+
+  selectNode() {
+    this.cm.focus();
+  }
+  stopEvent() {
+    return true;
+  }
 }
 
 export default CodeMirrorView;
 ```
 
-### Usage
+### Plugins
+
+```ts
+import { EditorState, Plugin, Selection, Transaction } from 'prosemirror-state';
+import { EditorView } from 'prosemirror-view';
+import { keymap } from 'prosemirror-keymap';
+
+import { Command } from 'prosemirror-commands';
+
+type Dir = 'left' | 'right' | 'up' | 'down';
+
+const arrowHandler = (dir: Dir): Command => {
+  return (
+    state: EditorState,
+    dispatch: (tr: Transaction) => void,
+    view: EditorView
+  ): boolean => {
+    if (state.selection.empty && view.endOfTextblock(dir)) {
+      const { doc } = state;
+      const { $head } = state.selection;
+
+      const side = dir === 'left' || dir === 'up' ? -1 : 1;
+      const nextPos = Selection.near(
+        doc.resolve(side > 0 ? $head.after() : $head.before()),
+        side
+      );
+
+      if (nextPos.$head && nextPos.$head.parent.type.name === 'code_mirror') {
+        dispatch(state.tr.setSelection(nextPos));
+        return true;
+      }
+    }
+    return false;
+  };
+};
+
+const arrowHandlers = keymap({
+  ArrowLeft: arrowHandler('left'),
+  ArrowRight: arrowHandler('right'),
+  ArrowUp: arrowHandler('up'),
+  ArrowDown: arrowHandler('down'),
+});
+
+const plugins = [arrowHandlers];
+```
+
+### Editor
 
 ```ts
 import { Editor } from 'ngx-editor';

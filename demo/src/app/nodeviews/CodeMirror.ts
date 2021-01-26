@@ -2,7 +2,7 @@
 import { undo, redo } from 'prosemirror-history';
 import { TextSelection, Selection } from 'prosemirror-state';
 import { Node as ProsemirrorNode } from 'prosemirror-model';
-import { EditorView } from 'prosemirror-view';
+import { EditorView, NodeView } from 'prosemirror-view';
 import { exitCode } from 'prosemirror-commands';
 
 import CodeMirror from 'codemirror';
@@ -32,7 +32,7 @@ function computeChange(oldVal: string, newVal: string): ComputeChange {
 
 type GetPos = () => number;
 
-class CodeMirrorView {
+class CodeMirrorView implements NodeView {
   node: ProsemirrorNode;
   getPos: GetPos;
   incomingChanges: boolean;
@@ -164,6 +164,14 @@ class CodeMirrorView {
         this.cm.posFromIndex(change.to));
       this.updating = false;
     }
+    return true;
+  }
+
+  selectNode() {
+    this.cm.focus();
+  }
+
+  stopEvent() {
     return true;
   }
 }

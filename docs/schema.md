@@ -22,32 +22,28 @@ Ref: https://prosemirror.net/examples/schema/
 
 ```ts
 import { nodes as basicNodes, marks } from 'ngx-editor';
-import { Schema, Node as ProsemirrorNode, NodeSpec } from 'prosemirror-model';
+import { Schema, NodeSpec } from 'prosemirror-model';
 
-const codeBlock: NodeSpec = {
+const codeMirror: NodeSpec = {
+  content: 'text*',
+  marks: '',
   group: 'block',
-  attrs: {
-    text: { default: '' },
-    language: { default: 'text/javascript' },
-  },
+  code: true,
+  defining: true,
+  isolating: true,
   parseDOM: [
     {
       tag: 'pre',
-      getAttrs: (dom: HTMLElement) => {
-        return {
-          text: dom.textContent,
-          language: dom.getAttribute('data-language') || 'text/plain',
-        };
-      },
+      preserveWhitespace: 'full',
     },
   ],
-  toDOM(node: ProsemirrorNode) {
-    return ['pre', { 'data-language': node.attrs.language }, node.attrs.text];
+  toDOM(): DOMOutputSpec {
+    return ['pre', ['code', 0]];
   },
 };
 
 const nodes = Object.assign({}, basicNodes, {
-  code_mirror: codeBlock,
+  code_mirror: codeMirror,
 });
 
 const schema = new Schema({
