@@ -38,7 +38,14 @@ describe('NgxEditorComponent', () => {
     expect(true).toBeTrue();
 
     const compiled: DebugElement = fixture.debugElement;
-    // expect menubar to be rendered
-    expect(compiled.query(By.css('.NgxEditor__MenuBar'))).toBeDefined();
+    expect(compiled.query(By.css('.NgxEditor'))).toBeTruthy();
+    expect(compiled.query(By.css('.ProseMirror'))).toBeTruthy();
+  });
+
+  it('should render the placeholder with no content', () => {
+    expect(true).toBeTrue();
+
+    const compiled: DebugElement = fixture.debugElement;
+    expect(compiled.query(By.css('.NgxEditor__Placeholder'))).toBeTruthy();
   });
 });
