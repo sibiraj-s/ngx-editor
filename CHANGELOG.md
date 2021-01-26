@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v7.0.5 (2021-01-26)
+
+#### Bug Fixes
+
+#### Bug Fixes
+
+- update typings ([a27237e](https://github.com/sibiraj-s/ngx-editor/commit/a27237e))
+
+#### Internal
+
+- update test cases ([849411e](https://github.com/sibiraj-s/ngx-editor/commit/849411e)), ([c39b5cb](https://github.com/sibiraj-s/ngx-editor/commit/c39b5cb))
+
 ## v7.0.4 (2021-01-24)
 
 #### Bug Fixes
