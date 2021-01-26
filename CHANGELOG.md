@@ -17,8 +17,6 @@ All notable changes to this project will be documented in this file.
 
 #### Bug Fixes
 
-#### Bug Fixes
-
 - update typings ([a27237e](https://github.com/sibiraj-s/ngx-editor/commit/a27237e))
 
 #### Internal
