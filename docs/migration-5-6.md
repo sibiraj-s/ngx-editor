@@ -64,7 +64,7 @@ After
 <ngx-editor-menu [customMenuRef]="customMenu"> </ngx-editor-menu>
 ```
 
-## Prosemirror Configuration
+## ProseMirror Configuration
 
 **Before**
 

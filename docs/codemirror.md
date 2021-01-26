@@ -12,7 +12,7 @@ See https://sibiraj-s.github.io/ngx-editor/#/menu?id=custom-menu for implementin
 import { exitCode } from 'prosemirror-commands';
 import { undo, redo } from 'prosemirror-history';
 import { TextSelection, Selection } from 'prosemirror-state';
-import { Node as ProsemirrorNode } from 'prosemirror-model';
+import { Node as ProseMirrorNode } from 'prosemirror-model';
 import { EditorView, NodeView } from 'prosemirror-view';
 
 import CodeMirror from 'codemirror';
@@ -47,7 +47,7 @@ function computeChange(oldVal: string, newVal: string) {
 type GetPos = () => number;
 
 class CodeMirrorView implements NodeView {
-  node: ProsemirrorNode;
+  node: ProseMirrorNode;
   getPos: GetPos;
   incomingChanges: boolean;
 
@@ -57,7 +57,7 @@ class CodeMirrorView implements NodeView {
   dom: HTMLElement;
   updating: boolean;
 
-  constructor(node: ProsemirrorNode, view: EditorView, getPos: GetPos) {
+  constructor(node: ProseMirrorNode, view: EditorView, getPos: GetPos) {
     // Store for later
     this.node = node;
     this.view = view;
@@ -113,7 +113,7 @@ class CodeMirrorView implements NodeView {
     }
   }
 
-  asProseMirrorSelection(doc: ProsemirrorNode) {
+  asProseMirrorSelection(doc: ProseMirrorNode) {
     const offset = this.getPos() + 1;
     const anchor = this.cm.indexFromPos(this.cm.getCursor('anchor')) + offset;
     const head = this.cm.indexFromPos(this.cm.getCursor('head')) + offset;
@@ -184,7 +184,7 @@ class CodeMirrorView implements NodeView {
     this.view.focus();
   }
 
-  update(node: ProsemirrorNode) {
+  update(node: ProseMirrorNode) {
     if (node.type !== this.node.type) {
       return false;
     }
@@ -270,7 +270,7 @@ new Editor({
   nodeViews: {
     code_mirror: (
       // first define schema `code_mirror`. see schema section
-      node: ProsemirrorNode,
+      node: ProseMirrorNode,
       view: EditorView,
       getPos: () => number
     ) => {

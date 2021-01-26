@@ -1,4 +1,4 @@
-import { NodeType, Node as ProsemirrorNode } from 'prosemirror-model';
+import { NodeType, Node as ProseMirrorNode } from 'prosemirror-model';
 import { EditorState, Transaction } from 'prosemirror-state';
 import { Command, setBlockType } from 'prosemirror-commands';
 
@@ -71,7 +71,7 @@ class Heading {
       return supportedNodes.includes(node.type);
     });
 
-    const acitveNode = nodes.find((node: ProsemirrorNode) => {
+    const acitveNode = nodes.find((node: ProseMirrorNode) => {
       return node.attrs.level === this.level;
     });
 

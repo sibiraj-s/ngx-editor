@@ -1,5 +1,5 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-import { Schema, Node as ProsemirrorNode } from 'prosemirror-model';
+import { Schema, Node as ProseMirrorNode } from 'prosemirror-model';
 
 import { parseContent } from './parsers';
 import defaultSchema from './schema';
@@ -16,7 +16,7 @@ const hasValidLength = (value: any): boolean => {
   return value != null && typeof value.length === 'number';
 };
 
-const isDocEmpty = (doc: ProsemirrorNode | null): boolean => {
+const isDocEmpty = (doc: ProseMirrorNode | null): boolean => {
   if (!doc) {
     return true;
   }

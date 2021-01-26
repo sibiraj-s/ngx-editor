@@ -1,4 +1,4 @@
-import { DOMOutputSpec, Node as ProsemirrorNode, NodeSpec } from 'prosemirror-model';
+import { DOMOutputSpec, Node as ProseMirrorNode, NodeSpec } from 'prosemirror-model';
 import * as sl from 'prosemirror-schema-list';
 
 import { toStyleString } from 'ngx-editor/utils';
@@ -225,7 +225,7 @@ export const image: NodeSpec = {
       }
     }
   ],
-  toDOM(node: ProsemirrorNode): DOMOutputSpec {
+  toDOM(node: ProseMirrorNode): DOMOutputSpec {
     const { src, alt, title, width } = node.attrs;
     return ['img', { src, alt, title, width }];
   }

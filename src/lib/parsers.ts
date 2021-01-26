@@ -1,4 +1,4 @@
-import { DOMSerializer, Schema, DOMParser, Node as ProsemirrorNode } from 'prosemirror-model';
+import { DOMSerializer, Schema, DOMParser, Node as ProseMirrorNode } from 'prosemirror-model';
 
 import defaultSchema from './schema';
 
@@ -32,7 +32,7 @@ export const toDoc = (html: string, inputSchema?: Schema): Record<string, any> =
   return DOMParser.fromSchema(schema).parse(el).toJSON();
 };
 
-export const parseContent = (value: string | Record<string, any> | null, schema: Schema): ProsemirrorNode => {
+export const parseContent = (value: string | Record<string, any> | null, schema: Schema): ProseMirrorNode => {
   if (!value) {
     return schema.nodeFromJSON(emptyDoc);
   }

@@ -1,4 +1,4 @@
-import { Node as ProsemirrorNode } from 'prosemirror-model';
+import { Node as ProseMirrorNode } from 'prosemirror-model';
 import { NodeSelection, Plugin, PluginKey } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
@@ -17,7 +17,7 @@ class ImageRezieView {
   dom: HTMLElement;
   handle: HTMLElement;
 
-  constructor(node: ProsemirrorNode, view: EditorView, getPos: () => number) {
+  constructor(node: ProseMirrorNode, view: EditorView, getPos: () => number) {
     const outer = document.createElement('span');
     outer.className = WRAPPER_CLASSNAME;
     outer.style.width = node.attrs.width;
@@ -125,7 +125,7 @@ const imagePlugin = (opts = defaultOptions): Plugin => {
     key: new PluginKey('link'),
     props: {
       nodeViews: {
-        image: (node: ProsemirrorNode, view: EditorView, getPos: () => number) => {
+        image: (node: ProseMirrorNode, view: EditorView, getPos: () => number) => {
           if (!options.resize) {
             return null;
           }
