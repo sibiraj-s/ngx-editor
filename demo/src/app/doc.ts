@@ -242,7 +242,7 @@ export default {
       content: [
         {
           type: 'text',
-          text: 'function max(a, b) {\n  return a > b ? a : b\n}'
+          text: 'function max(a, b) {\n  return a > b ? a : b;\n}'
         }
       ]
     },
