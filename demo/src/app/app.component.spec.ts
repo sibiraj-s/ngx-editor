@@ -35,8 +35,14 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render title in a h6 tag', () => {
+  it('should render editor', () => {
     const compiled: DebugElement = fixture.debugElement;
-    expect(compiled.query(By.css('.NgxEditor__MenuBar'))).toBeDefined();
+    expect(compiled.query(By.css('.NgxEditor'))).toBeTruthy();
+    expect(compiled.query(By.css('.ProseMirror'))).toBeTruthy();
+  });
+
+  it('should render menubar', () => {
+    const compiled: DebugElement = fixture.debugElement;
+    expect(compiled.query(By.css('.NgxEditor__MenuBar'))).toBeTruthy();
   });
 });
