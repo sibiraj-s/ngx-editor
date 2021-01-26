@@ -14,8 +14,8 @@ import defautlSchema from './schema';
 import { parseContent } from './parsers';
 import getDefaultPlugins from './defaultPlugins';
 
-type Content = string | Record<string, any> | null;
-type JSONDoc = Record<string, null>;
+type JSONDoc = Record<string, any>;
+type Content = string | null | JSONDoc;
 
 interface Options {
   content?: Content;
