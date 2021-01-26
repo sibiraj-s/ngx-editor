@@ -4,7 +4,11 @@ import defaultSchema from './schema';
 
 export const emptyDoc = {
   type: 'doc',
-  content: []
+  content: [
+    {
+      type: 'paragraph',
+    }
+  ],
 };
 
 // https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment
