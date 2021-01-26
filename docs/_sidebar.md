@@ -16,10 +16,10 @@
   - [Images](images.md)
   - [InputRules](input-rules.md)
   - [Shortcuts](shortcuts.md)
-  - [CodeMirror](codemirror.md)
   - [Reactive Forms](reactive-forms.md)
   - [Ng Model Binding](ng-model.md)
   - [Collaborative Editing](collab.md)
+  - [CodeMirror](codemirror.md)
   - [Mentions & tags](mentions.md)
 
 - Migration

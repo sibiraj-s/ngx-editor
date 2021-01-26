@@ -23,7 +23,7 @@ Options like `content`, `placeholder` and `enabled` will be overridden by option
 ### Locals
 
 ```ts
-import { schema } from 'ngx-editor';
+import { schema } from 'ngx-editor/schema';
 
 NgxEditorModule.forRoot({
   locals: {

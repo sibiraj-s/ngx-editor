@@ -3,7 +3,8 @@
 This is the core module. Create the editor and pass it to the components. The editor accepts the following options
 
 ```ts
-import { Editor, schema } from 'ngx-editor';
+import { Editor } from 'ngx-editor';
+import { schema } from 'ngx-editor/schema';
 
 const editor = new Editor({
   content: '',

@@ -1,6 +1,6 @@
 # Full featured editor
 
-<iframe src="https://stackblitz.com/edit/ngx-editor?embed=1&file=src/app/app.component.ts&hideExplorer=1&view=preview" height="600"></iframe>
+<iframe src="https://stackblitz.com/edit/ngx-editor?embed=1&hideExplorer=1&view=preview" height="600"></iframe>
 
 Use the following config to created a full featured editor
 
@@ -27,6 +27,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { NgxEditorModule, schema } from 'ngx-editor';
+import { schema } from 'ngx-editor/schema';
 
 import plugins from './plugins';
 

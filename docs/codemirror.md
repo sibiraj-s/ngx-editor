@@ -1,4 +1,6 @@
-# Inline code editor
+# Embedded code editor
+
+<iframe src="https://stackblitz.com/edit/ngx-editor-codemirror?embed=1&hideExplorer=1&view=preview" height="600"></iframe>
 
 Ref: https://prosemirror.net/examples/codemirror/
 

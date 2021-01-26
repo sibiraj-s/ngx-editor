@@ -17,7 +17,7 @@ All notable changes to this project will be documented in this file.
 
 #### Bug Fixes
 
-- set empty document with atleast one node ([8939b80](https://github.com/sibiraj-s/ngx-editor/commit/8939b80))
+- set empty document with at-least one node ([8939b80](https://github.com/sibiraj-s/ngx-editor/commit/8939b80))
 
 #### Features
 
