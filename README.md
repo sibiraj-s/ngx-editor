@@ -76,6 +76,7 @@ export class EditorComponent implements OnInit, OnDestroy {
     this.editor = new Editor();
   }
 
+  // make sure to destory the editor
   ngOnDestroy(): void {
     this.editor.destroy();
   }

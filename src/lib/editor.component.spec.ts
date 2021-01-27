@@ -30,6 +30,10 @@ describe('NgxEditorComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    component.editor.destroy();
+  });
+
   it('should create the editor component correctly', () => {
     expect(component).toBeTruthy();
   });

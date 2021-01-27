@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
 
@@ -36,7 +38,16 @@ describe('MenuComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    component.editor.destroy();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render menubar', () => {
+    const compiled: DebugElement = fixture.debugElement;
+    expect(compiled.query(By.css('.NgxEditor__MenuBar'))).toBeTruthy();
   });
 });
