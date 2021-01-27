@@ -119,8 +119,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
       subscription.unsubscribe();
     });
 
-    if (this.editor) {
-      this.editor.destroy();
-    }
+    this.editor.destroy();
   }
 }
