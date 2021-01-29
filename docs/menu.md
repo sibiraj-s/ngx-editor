@@ -65,7 +65,7 @@ Note: The input is just a `TemplateRef`, the menu component will render whatever
 >
 </ngx-editor-menu>
 
-<!-- Create template reference variable -->
+<!-- Create template reference -->
 <ng-template #customMenu>
   <app-custom-menu [editor]="editor"></app-custom-menu>
 </ng-template>
