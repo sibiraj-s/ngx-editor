@@ -29,11 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
   colorPresets = ['red', '#FF0000', 'rgb(255, 0, 0)'];
 
   ngOnInit(): void {
-    this.editor = new Editor({
-      schema,
-      plugins,
-      nodeViews,
-    });
+    this.editor = new Editor();
   }
 
   ngOnDestroy(): void {
