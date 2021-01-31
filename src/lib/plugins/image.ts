@@ -6,16 +6,6 @@ import { EditorView, NodeView } from 'prosemirror-view';
 
 import { ImageViewComponent } from '../components/image-view/image-view.component';
 
-const WRAPPER_CLASSNAME = 'NgxEditor__ImageWrapper';
-const WRAPPER_RESIZE_ACTIVE_CLASSNAME = 'NgxEditor__Resizer--Active';
-const RESIZE_HANDLE_CLASSNAME = 'NgxEditor__ResizeHandle';
-
-const createHandle = (direction: string): HTMLElement => {
-  const handle = document.createElement('span');
-  handle.className = `${RESIZE_HANDLE_CLASSNAME}--${direction}`;
-  return handle;
-};
-
 class ImageRezieView implements NodeView {
   img: HTMLElement;
   dom: NgElement & WithProperties<ImageViewComponent>;
