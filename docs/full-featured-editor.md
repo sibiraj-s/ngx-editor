@@ -4,22 +4,6 @@
 
 Use the following config to created a full featured editor
 
-### plugin.ts
-
-```ts
-import { Plugin } from 'prosemirror-state';
-import { image } from 'ngx-editor/plugins';
-
-const plugins: Plugin[] = [
-  image({
-    // enables image resizing
-    resize: true,
-  }),
-];
-
-export default plugins;
-```
-
 ### app.module.ts
 
 ```ts
@@ -28,8 +12,6 @@ import { FormsModule } from '@angular/forms';
 
 import { NgxEditorModule, schema } from 'ngx-editor';
 import { schema } from 'ngx-editor/schema';
-
-import plugins from './plugins';
 
 @NgModule({
   imports: [
@@ -81,8 +63,6 @@ import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { Validators, Editor, Toolbar } from 'ngx-editor';
 
-import plugins from './plugins';
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -107,9 +87,7 @@ export class AppComponent implements OnInit, OnDestroy {
   });
 
   ngOnInit(): void {
-    this.editor = new Editor({
-      plugins,
-    });
+    this.editor = new Editor();
   }
 
   ngOnDestroy(): void {

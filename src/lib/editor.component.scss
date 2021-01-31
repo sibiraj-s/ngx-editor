@@ -1,8 +1,3 @@
-$primary: #1a73e8;
-$light-gray: #f1f1f1;
-
-// prosemirror
-
 .NgxEditor {
   background: white;
   color: black;
@@ -49,60 +44,6 @@ $light-gray: #f1f1f1;
 .NgxEditor__Content--Disabled {
   user-select: none;
   pointer-events: none;
-}
-
-.NgxEditor__ImageWrapper {
-  position: relative;
-  display: inline-block;
-  line-height: 0;
-  padding: 2px;
-
-  &.NgxEditor__Resizer--Active {
-    padding: 1px;
-    border: 1px solid $primary;
-  }
-
-  .NgxEditor__ResizeHandle {
-    position: absolute;
-    display: none;
-    height: 100%;
-    width: 100%;
-
-    .NgxEditor__ResizeHandle--TL,
-    .NgxEditor__ResizeHandle--BL,
-    .NgxEditor__ResizeHandle--TR,
-    .NgxEditor__ResizeHandle--BR {
-      position: absolute;
-      width: 7px;
-      height: 7px;
-      background-color: $primary;
-      border: 1px solid white;
-    }
-
-    .NgxEditor__ResizeHandle--BR {
-      bottom: -5px;
-      right: -5px;
-      cursor: se-resize;
-    }
-
-    .NgxEditor__ResizeHandle--TR {
-      top: -5px;
-      right: -5px;
-      cursor: ne-resize;
-    }
-
-    .NgxEditor__ResizeHandle--TL {
-      top: -5px;
-      left: -5px;
-      cursor: nw-resize;
-    }
-
-    .NgxEditor__ResizeHandle--BL {
-      bottom: -5px;
-      left: -5px;
-      cursor: sw-resize;
-    }
-  }
 }
 
 .NgxEditor__Wrapper {

@@ -1,6 +1,10 @@
+import { Injector, Renderer2 } from '@angular/core';
+import { NgElement, WithProperties } from '@angular/elements';
 import { Node as ProseMirrorNode } from 'prosemirror-model';
 import { NodeSelection, Plugin, PluginKey } from 'prosemirror-state';
-import { EditorView } from 'prosemirror-view';
+import { EditorView, NodeView } from 'prosemirror-view';
+
+import { ImageViewComponent } from '../components/image-view/image-view.component';
 
 const WRAPPER_CLASSNAME = 'NgxEditor__ImageWrapper';
 const WRAPPER_RESIZE_ACTIVE_CLASSNAME = 'NgxEditor__Resizer--Active';
@@ -12,124 +16,67 @@ const createHandle = (direction: string): HTMLElement => {
   return handle;
 };
 
-class ImageRezieView {
+class ImageRezieView implements NodeView {
   img: HTMLElement;
-  dom: HTMLElement;
+  dom: NgElement & WithProperties<ImageViewComponent>;
   handle: HTMLElement;
+  view: EditorView;
+  getPos: () => number;
 
-  constructor(node: ProseMirrorNode, view: EditorView, getPos: () => number) {
-    const outer = document.createElement('span');
-    outer.className = WRAPPER_CLASSNAME;
-    outer.style.width = node.attrs.width;
+  constructor(node: ProseMirrorNode, view: EditorView, getPos: () => number, injector: Injector) {
+    const renderer = injector.get(Renderer2);
 
-    const handle = document.createElement('span');
-    handle.className = RESIZE_HANDLE_CLASSNAME;
+    const dom = renderer.createElement('ngx-image-view') as NgElement & WithProperties<ImageViewComponent>;
+    dom.src = node.attrs.src;
+    dom.alt = node.attrs.alt;
+    dom.title = node.attrs.title;
+    dom.outerWidth = node.attrs.width;
+    dom.view = view;
 
-    const img = document.createElement('img');
-    img.setAttribute('src', node.attrs.src);
-    img.setAttribute('alt', node.attrs.alt ?? '');
-    img.setAttribute('title', node.attrs.title ?? '');
-    img.style.width = '100%';
-    img.style.height = '100%';
+    this.dom = dom;
+    this.view = view;
+    this.getPos = getPos;
 
-    const handleBottomRight = createHandle('BR');
-    const handleTopRight = createHandle('TL');
-    const handleTopLeft = createHandle('TR');
-    const handleBottomLeft = createHandle('BL');
+    this.dom.addEventListener('imageResize', this.handleResize);
+  }
 
-    const resizePropoptionally = (evt: MouseEvent) => {
-      evt.preventDefault();
+  handleResize = (): void => {
+    const { state, dispatch } = this.view;
+    const { tr } = state;
 
-      const { state, dispatch } = view;
-      const { tr } = state;
+    const transaction = tr.setNodeMarkup(this.getPos(), undefined, {
+      src: this.dom.src,
+      width: this.dom.outerWidth
+    });
 
-      const startX = evt.pageX;
-      const startWidth = img.clientWidth;
+    const resolvedPos = transaction.doc.resolve(this.getPos());
+    const newSelection = new NodeSelection(resolvedPos);
 
-      const { width } = window.getComputedStyle(view.dom);
-      const editorWidth = parseInt(width, 10);
-
-      const onMouseMove = (e: MouseEvent) => {
-        const currentX = e.pageX;
-        const diffInPx = currentX - startX;
-        const computedWidth = startWidth + diffInPx;
-
-        // prevent image overflow the editor
-        // prevent resizng below 20px
-        if (computedWidth > editorWidth || computedWidth < 20) {
-          return;
-        }
-
-        outer.style.width = `${computedWidth}px`;
-      };
-
-      const onMouseUp = (e: MouseEvent) => {
-        e.preventDefault();
-
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-
-        const transaction = tr.setNodeMarkup(getPos(), undefined, {
-          src: node.attrs.src,
-          width: outer.style.width
-        });
-
-        const resolvedPos = transaction.doc.resolve(getPos());
-        const newSelection = new NodeSelection(resolvedPos);
-
-        transaction.setSelection(newSelection);
-        dispatch(transaction);
-      };
-
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
-    };
-
-    handleBottomRight.addEventListener('mousedown', resizePropoptionally, { once: true });
-    handleTopRight.addEventListener('mousedown', resizePropoptionally, { once: true });
-    handleTopLeft.addEventListener('mousedown', resizePropoptionally, { once: true });
-    handleBottomLeft.addEventListener('mousedown', resizePropoptionally, { once: true });
-
-    handle.appendChild(handleBottomRight);
-    handle.appendChild(handleTopRight);
-    handle.appendChild(handleTopLeft);
-    handle.appendChild(handleBottomLeft);
-
-    outer.appendChild(handle);
-    outer.appendChild(img);
-
-    this.dom = outer;
-    this.img = img;
-    this.handle = handle;
+    transaction.setSelection(newSelection);
+    dispatch(transaction);
   }
 
   selectNode(): void {
-    this.dom.classList.add(WRAPPER_RESIZE_ACTIVE_CLASSNAME);
-    this.handle.style.display = 'block';
+    this.dom.selected = true;
   }
 
   deselectNode(): void {
-    this.dom.classList.remove(WRAPPER_RESIZE_ACTIVE_CLASSNAME);
-    this.handle.style.display = 'none';
+    this.dom.selected = false;
+  }
+
+  destroy(): void {
+    this.dom.removeEventListener('imageResize', this.handleResize);
   }
 }
 
-const defaultOptions = {
-  resize: true,
-};
-
-const imagePlugin = (opts = defaultOptions): Plugin => {
-  const options = { ...defaultOptions, ...opts };
+const imagePlugin = (injector: Injector): Plugin => {
 
   return new Plugin({
     key: new PluginKey('link'),
     props: {
       nodeViews: {
         image: (node: ProseMirrorNode, view: EditorView, getPos: () => number) => {
-          if (!options.resize) {
-            return null;
-          }
-          return new ImageRezieView(node, view, getPos);
+          return new ImageRezieView(node, view, getPos, injector);
         },
       }
     }

@@ -9,6 +9,7 @@ import { MenuModule } from './modules/menu/menu.module';
 
 import { BubbleComponent } from './components/bubble/bubble.component';
 import { MenuComponent } from './modules/menu/menu.component';
+import { ImageViewComponent } from './components/image-view/image-view.component';
 
 const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorConfig');
 
@@ -21,6 +22,7 @@ const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorCo
   declarations: [
     NgxEditorComponent,
     BubbleComponent,
+    ImageViewComponent,
   ],
   exports: [
     NgxEditorComponent,

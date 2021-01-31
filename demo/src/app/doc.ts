@@ -257,6 +257,23 @@ export default {
           text: 'The content of the code editor is kept in sync with the content of the code block in the rich text editor, so that it is as if you\'re directly editing the outer document, using a more convenient interface.'
         }
       ]
+    },
+    {
+      type: 'paragraph',
+      attrs: {
+        align: 'center'
+      },
+      content: [
+        {
+          type: 'image',
+          attrs: {
+            src: 'https://gameranx.com/wp-content/uploads/2016/03/Rise-of-the-Tomb-Raider-4K-Wallpaper-3.jpg',
+            alt: null,
+            title: null,
+            width: '578px'
+          }
+        }
+      ]
     }
   ]
 };

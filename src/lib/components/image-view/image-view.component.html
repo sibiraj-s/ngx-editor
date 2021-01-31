@@ -1,0 +1,9 @@
+<span class="NgxEditor__ImageWrapper" [ngClass]="{'NgxEditor__Resizer--Active': selected}" [style.width]="outerWidth">
+  <span class="NgxEditor__ResizeHandle" *ngIf="selected" (mousedown)="startResizing($event)">
+    <span class="NgxEditor__ResizeHandle--TL" ></span>
+    <span class="NgxEditor__ResizeHandle--TR" ></span>
+    <span class="NgxEditor__ResizeHandle--BL"></span>
+    <span class="NgxEditor__ResizeHandle--BR"></span>
+  </span>
+  <img [src]="src" [alt]="alt" [title]="title" #imgEl />
+</span>

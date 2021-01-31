@@ -2,7 +2,6 @@ import { EditorState, Plugin, Selection, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { keymap } from 'prosemirror-keymap';
 
-import { image } from 'ngx-editor/plugins';
 import { Command } from 'prosemirror-commands';
 
 type Dir = 'left' | 'right' | 'up' | 'down';
@@ -34,9 +33,6 @@ const arrowHandlers = keymap({
 
 const getPlugins = (): Plugin[] => {
   const plugins = [
-    image({
-      resize: true,
-    }),
     arrowHandlers
   ];
 

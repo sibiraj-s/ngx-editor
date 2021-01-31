@@ -34,6 +34,7 @@
     "@angular/common": "~11.0.1",
     "@angular/compiler": "~11.0.1",
     "@angular/core": "~11.0.1",
+    "@angular/elements": "^11.0.1",
     "@angular/forms": "~11.0.1",
     "@angular/platform-browser": "~11.0.1",
     "@angular/platform-browser-dynamic": "~11.0.1",
