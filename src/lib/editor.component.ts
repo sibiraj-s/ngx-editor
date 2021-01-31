@@ -105,8 +105,8 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
       this.editor.setPlaceholder(changes.placeholder.currentValue);
     }
 
-    if (changes?.editable && !changes.editable.isFirstChange()) {
-      if (!changes.editable.currentValue) {
+    if (changes?.enabled && !changes.enabled.isFirstChange()) {
+      if (!changes.enabled.currentValue) {
         this.editor.disable();
       } else {
         this.editor.enable();
