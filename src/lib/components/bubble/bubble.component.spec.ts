@@ -21,6 +21,10 @@ describe('BubbleComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    component.editor.destroy();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
