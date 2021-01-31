@@ -45,10 +45,10 @@ class Editor {
   options: Options;
   el: DocumentFragment;
 
-  onContentChange = new Subject<JSONDoc>();
-  onFocus = new Subject<void>();
-  onBlur = new Subject<void>();
-  onUpdate = new Subject();
+  valueChange = new Subject<JSONDoc>();
+  focus = new Subject<void>();
+  blur = new Subject<void>();
+  update = new Subject();
 
   constructor(options: Options = DEFAULT_OPTIONS) {
     this.options = Object.assign({}, DEFAULT_OPTIONS, options);
@@ -91,14 +91,14 @@ class Editor {
     const state = this.view.state.apply(tr);
     this.view.updateState(state);
 
-    this.onUpdate.next();
+    this.update.next();
 
     if (!tr.docChanged && !tr.getMeta('FORCE_EMIT')) {
       return;
     }
 
     const json = state.doc.toJSON();
-    this.onContentChange.next(json);
+    this.valueChange.next(json);
   }
 
   private createEditor(): void {
@@ -138,11 +138,11 @@ class Editor {
       dispatchTransaction: this.handleTransactions.bind(this),
       handleDOMEvents: {
         focus: () => {
-          this.onFocus.next();
+          this.focus.next();
           return false;
         },
         blur: () => {
-          this.onBlur.next();
+          this.blur.next();
           return false;
         }
       },

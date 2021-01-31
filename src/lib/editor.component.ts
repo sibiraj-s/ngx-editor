@@ -80,16 +80,16 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
     this.renderer.appendChild(this.ngxEditor.nativeElement, this.editor.el);
 
-    const contentChangeSubscription = this.editor.onContentChange.subscribe(jsonDoc => {
+    const contentChangeSubscription = this.editor.valueChange.subscribe(jsonDoc => {
       this.handleChange(jsonDoc);
     });
 
-    const blurSubscription = this.editor.onBlur.subscribe(() => {
+    const blurSubscription = this.editor.blur.subscribe(() => {
       this.focusOut.emit();
       this.onTouched();
     });
 
-    const focusScbscription = this.editor.onFocus.subscribe(() => {
+    const focusScbscription = this.editor.focus.subscribe(() => {
       this.focusIn.emit();
     });
 

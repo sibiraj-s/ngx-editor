@@ -105,7 +105,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
     this.menuService.view = this.editor.view;
 
-    this.updateSubscription = this.editor.onUpdate.subscribe(() => {
+    this.updateSubscription = this.editor.update.subscribe(() => {
       this.menuService.plugin.update.next(this.editor.view);
     });
   }
