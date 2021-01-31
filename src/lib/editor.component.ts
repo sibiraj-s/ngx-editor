@@ -90,6 +90,19 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     this.editor.registerPlugin(plugins.attributes({
       class: 'NgxEditor__Content'
     }));
+
+    this.editor.registerPlugin(plugins.focus(() => {
+      this.focusIn.emit();
+    }));
+
+    this.editor.registerPlugin(plugins.focus(() => {
+      this.focusIn.emit();
+    }));
+
+    this.editor.registerPlugin(plugins.blur(() => {
+      this.focusOut.emit();
+      this.onTouched();
+    }));
   }
 
   ngOnInit(): void {
@@ -105,20 +118,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
       this.handleChange(jsonDoc);
     });
 
-    const blurSubscription = this.editor.blur.subscribe(() => {
-      this.focusOut.emit();
-      this.onTouched();
-    });
-
-    const focusScbscription = this.editor.focus.subscribe(() => {
-      this.focusIn.emit();
-    });
-
-    this.subscriptions.push(
-      contentChangeSubscription,
-      blurSubscription,
-      focusScbscription
-    );
+    this.subscriptions.push(contentChangeSubscription);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -39,8 +39,6 @@ class Editor {
   el: DocumentFragment;
 
   valueChange = new Subject<JSONDoc>();
-  focus = new Subject<void>();
-  blur = new Subject<void>();
   update = new Subject();
 
   constructor(options: Options = DEFAULT_OPTIONS) {
@@ -120,17 +118,7 @@ class Editor {
         plugins,
       }),
       nodeViews,
-      dispatchTransaction: this.handleTransactions.bind(this),
-      handleDOMEvents: {
-        focus: () => {
-          this.focus.next();
-          return false;
-        },
-        blur: () => {
-          this.blur.next();
-          return false;
-        }
-      }
+      dispatchTransaction: this.handleTransactions.bind(this)
     });
   }
 
