@@ -7,11 +7,7 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import {
-  editable as editablePlugin,
-  placeholder as placeholderPlugin
-} from 'ngx-editor/plugins';
-
+import * as plugins from './plugins';
 import { toHTML } from './parsers';
 import Editor from './Editor';
 
@@ -88,8 +84,12 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   }
 
   private registerPlugins(): void {
-    this.editor.registerPlugin(editablePlugin(this.enabled));
-    this.editor.registerPlugin(placeholderPlugin(this.placeholder));
+    this.editor.registerPlugin(plugins.editable(this.enabled));
+    this.editor.registerPlugin(plugins.placeholder(this.placeholder));
+
+    this.editor.registerPlugin(plugins.attributes({
+      class: 'NgxEditor__Content'
+    }));
   }
 
   ngOnInit(): void {

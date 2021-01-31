@@ -130,10 +130,7 @@ class Editor {
           this.blur.next();
           return false;
         }
-      },
-      attributes: {
-        class: 'NgxEditor__Content'
-      },
+      }
     });
   }
 
