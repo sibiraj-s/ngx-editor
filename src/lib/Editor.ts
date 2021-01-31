@@ -109,13 +109,11 @@ class Editor {
       inputRules
     });
 
-    plugins.push(...defaultPlugins);
-
     this.view = new EditorView(this.el, {
       state: EditorState.create({
         doc,
         schema,
-        plugins,
+        plugins: [...defaultPlugins, ...plugins, ],
       }),
       nodeViews,
       dispatchTransaction: this.handleTransactions.bind(this)
