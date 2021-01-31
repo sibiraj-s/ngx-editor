@@ -7,6 +7,11 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
+import {
+  editable as editablePlugin,
+  placeholder as placeholderPlugin
+} from 'ngx-editor/plugins';
+
 import { toHTML } from './parsers';
 import Editor from './Editor';
 
@@ -65,18 +70,34 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     this.onChange(jsonDoc);
   }
 
+  private setMeta(key: string, value: any): void {
+    const { dispatch, state: { tr } } = this.editor.view;
+    dispatch(tr.setMeta(key, value));
+  }
+
+  private enable(): void {
+    this.setMeta('UPDATE_EDITABLE', true);
+  }
+
+  private disable(): void {
+    this.setMeta('UPDATE_EDITABLE', false);
+  }
+
+  private setPlaceholder(placeholder: string): void {
+    this.setMeta('UPDATE_PLACEHOLDER', placeholder);
+  }
+
+  private registerPlugins(): void {
+    this.editor.registerPlugin(editablePlugin(this.enabled));
+    this.editor.registerPlugin(placeholderPlugin(this.placeholder));
+  }
+
   ngOnInit(): void {
     if (!this.editor) {
       throw new Error('NgxEditor: Required editor instance');
     }
 
-    if (this.enabled) {
-      this.editor.enable();
-    } else {
-      this.editor.disable();
-    }
-
-    this.editor.setPlaceholder(this.placeholder);
+    this.registerPlugins();
 
     this.renderer.appendChild(this.ngxEditor.nativeElement, this.editor.el);
 
@@ -102,14 +123,14 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.placeholder && !changes.placeholder.isFirstChange()) {
-      this.editor.setPlaceholder(changes.placeholder.currentValue);
+      this.setPlaceholder(changes.placeholder.currentValue);
     }
 
     if (changes?.enabled && !changes.enabled.isFirstChange()) {
       if (!changes.enabled.currentValue) {
-        this.editor.disable();
+        this.disable();
       } else {
-        this.editor.enable();
+        this.enable();
       }
     }
   }

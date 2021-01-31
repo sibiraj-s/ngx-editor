@@ -3,10 +3,6 @@ import { EditorState, Plugin, Transaction } from 'prosemirror-state';
 import { EditorProps, EditorView } from 'prosemirror-view';
 import { Subject } from 'rxjs';
 
-import {
-  editable as editablePlugin,
-  placeholder as placeholderPlugin
-} from 'ngx-editor/plugins';
 import { isNil } from 'ngx-editor/utils';
 
 import EditorCommands from './EditorCommands';
@@ -19,8 +15,6 @@ type Content = string | null | JSONDoc;
 
 interface Options {
   content?: Content;
-  enabled?: boolean;
-  placeholder?: string;
   history?: boolean;
   keyboardShortcuts?: boolean;
   inputRules?: boolean;
@@ -31,7 +25,6 @@ interface Options {
 
 const DEFAULT_OPTIONS: Options = {
   content: null,
-  enabled: true,
   history: true,
   keyboardShortcuts: true,
   inputRules: true,
@@ -103,21 +96,14 @@ class Editor {
 
   private createEditor(): void {
     const { options } = this;
-    const { content = null, nodeViews, enabled } = options;
+    const { content = null, nodeViews } = options;
     const { history = true, keyboardShortcuts = true, inputRules = true } = options;
     const schema = this.schema;
-
-    const editable = enabled ?? true;
-    const placeholder = options.placeholder ?? '';
 
     const doc = parseContent(content, schema);
     this.el = document.createDocumentFragment();
 
-    const plugins: Plugin[] = [
-      editablePlugin(),
-      placeholderPlugin(placeholder),
-      ...(options.plugins ?? [])
-    ];
+    const plugins: Plugin[] = options.plugins ?? [];
 
     const defaultPlugins = getDefaultPlugins(schema, {
       history,
@@ -128,7 +114,6 @@ class Editor {
     plugins.push(...defaultPlugins);
 
     this.view = new EditorView(this.el, {
-      editable: () => editable,
       state: EditorState.create({
         doc,
         schema,
@@ -158,21 +143,6 @@ class Editor {
 
     const newState = state.reconfigure({ plugins });
     this.view.updateState(newState);
-  }
-
-  enable(): void {
-    const { dispatch, state: { tr } } = this.view;
-    dispatch(tr.setMeta('UPDATE_EDITABLE', true));
-  }
-
-  disable(): void {
-    const { dispatch, state: { tr } } = this.view;
-    dispatch(tr.setMeta('UPDATE_EDITABLE', false));
-  }
-
-  setPlaceholder(placeholder: string): void {
-    const { dispatch, state: { tr } } = this.view;
-    dispatch(tr.setMeta('UPDATE_PLACEHOLDER', placeholder));
   }
 
   destroy(): void {
