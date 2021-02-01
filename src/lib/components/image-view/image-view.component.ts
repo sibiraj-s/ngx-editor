@@ -34,13 +34,15 @@ export class ImageViewComponent {
     const startX = evt.pageX;
     const startWidth = this.imgEl.nativeElement.clientWidth;
 
+    const isLeftResize = (evt.target as HTMLElement).dataset.direction === 'left';
+
     const { width } = window.getComputedStyle(this.view.dom);
     const editorWidth = parseInt(width, 10);
 
     const onMouseMove = (e: MouseEvent) => {
       const currentX = e.pageX;
       const diffInPx = currentX - startX;
-      const computedWidth = startWidth + diffInPx;
+      const computedWidth = isLeftResize ? startWidth - diffInPx : startWidth + diffInPx;
 
       // prevent image overflow the editor
       // prevent resizng below 20px
