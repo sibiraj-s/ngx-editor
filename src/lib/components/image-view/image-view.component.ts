@@ -11,7 +11,6 @@ import { EditorView } from 'prosemirror-view';
 })
 
 export class ImageViewComponent {
-  private resizing = false;
   @Input() src: string;
   @Input() alt = '';
   @Input() title = '';
@@ -25,16 +24,16 @@ export class ImageViewComponent {
 
   constructor() { }
 
-  startResizing(e: MouseEvent): void {
+  startResizing(e: MouseEvent, direction: string): void {
     e.preventDefault();
-    this.resizeImage(e);
+    this.resizeImage(e, direction);
   }
 
-  resizeImage(evt: MouseEvent): void {
+  resizeImage(evt: MouseEvent, direction: string): void {
     const startX = evt.pageX;
     const startWidth = this.imgEl.nativeElement.clientWidth;
 
-    const isLeftResize = (evt.target as HTMLElement).dataset.direction === 'left';
+    const isLeftResize = direction === 'left';
 
     const { width } = window.getComputedStyle(this.view.dom);
     const editorWidth = parseInt(width, 10);
