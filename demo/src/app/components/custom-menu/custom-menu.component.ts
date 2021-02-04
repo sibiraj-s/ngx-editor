@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EditorState, Plugin, PluginKey, Transaction } from 'prosemirror-state';
+import { EditorState, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { setBlockType } from 'prosemirror-commands';
 
@@ -42,15 +42,6 @@ export class CustomMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const plugin = new Plugin({
-      key: new PluginKey(`custom-menu-codemirror`),
-      view: () => {
-        return {
-          update: this.update
-        };
-      }
-    });
-
-    this.editor.registerPlugin(plugin);
+    this.editor.update.subscribe((view) => this.update(view));
   }
 }
