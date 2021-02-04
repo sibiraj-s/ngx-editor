@@ -42,13 +42,13 @@ const icons: Record<string, any> = {
 };
 
 class Icon {
-  static get(name: string): string {
+  static get(name: keyof typeof icons, fill = '#000'): string {
     const path = icons[name] || '<path></path>';
     return `
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        fill="black"
+        fill=${fill}
         height=${DEFAULT_ICON_HEIGHT}
         width=${DEFAULT_ICON_WIDTH}
       >

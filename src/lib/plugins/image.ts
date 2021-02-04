@@ -6,9 +6,11 @@ import { EditorView, NodeView } from 'prosemirror-view';
 
 import { ImageViewComponent } from '../components/image-view/image-view.component';
 
+type ImageViewElement = NgElement & WithProperties<ImageViewComponent>;
+
 class ImageRezieView implements NodeView {
   img: HTMLElement;
-  dom: NgElement & WithProperties<ImageViewComponent>;
+  dom: ImageViewElement;
   handle: HTMLElement;
   view: EditorView;
   getPos: () => number;
@@ -16,7 +18,7 @@ class ImageRezieView implements NodeView {
   constructor(node: ProseMirrorNode, view: EditorView, getPos: () => number, injector: Injector) {
     const renderer = injector.get(Renderer2);
 
-    const dom = renderer.createElement('ngx-image-view') as NgElement & WithProperties<ImageViewComponent>;
+    const dom = renderer.createElement('ngx-image-view') as ImageViewElement;
     dom.src = node.attrs.src;
     dom.alt = node.attrs.alt;
     dom.title = node.attrs.title;
