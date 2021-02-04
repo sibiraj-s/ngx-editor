@@ -68,3 +68,4 @@ NgxEditorModule.forRoot({
 - placeholder [`string`] - (Optional) - placeholder for the editor
 - enabled [`boolean`] - (Optional) - enabled/disable the editor
 - outputFormat [`doc` | `html`] - (Optional) - output value type
+- floatingMenu [`boolean`] - (Optional) - enable/disable floating menu
