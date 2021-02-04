@@ -13,6 +13,30 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.0.0-beta.0 (2021-02-04)
+
+#### Bug Fixes
+
+- `valueChanges` and `update` are now observables and not subjects ([04ba120](https://github.com/sibiraj-s/ngx-editor/commit/04ba120))
+
+#### Features
+
+- new floating menu ([102ce62](https://github.com/sibiraj-s/ngx-editor/commit/102ce62))
+
+#### Enhancements
+
+- image plugin is included by default ([a3ab60c](https://github.com/sibiraj-s/ngx-editor/commit/a3ab60c))
+
+#### Breaking Changes
+
+Refer docs for migration https://sibiraj-s.github.io/ngx-editor
+
+- image plugin is included by default ([a3ab60c](https://github.com/sibiraj-s/ngx-editor/commit/a3ab60c))
+- editor.focus and editor.blur method no longer exposed ([3804990](https://github.com/sibiraj-s/ngx-editor/commit/3804990))
+- `Editor.onContentChange` is now `Editor.valueChanges` ([84da2cf](https://github.com/sibiraj-s/ngx-editor/commit/84da2cf))
+- `Editor.onUpdate` is now `Editor.update` ([84da2cf](https://github.com/sibiraj-s/ngx-editor/commit/84da2cf))
+- `Editor.destroy` has to be manually called when component is destroyed ([d4db760](https://github.com/sibiraj-s/ngx-editor/commit/d4db760))
+
 ## v7.0.5 (2021-01-26)
 
 #### Bug Fixes
