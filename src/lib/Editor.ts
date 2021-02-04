@@ -1,7 +1,7 @@
 import { Schema } from 'prosemirror-model';
 import { EditorState, Plugin, Transaction } from 'prosemirror-state';
 import { EditorProps, EditorView } from 'prosemirror-view';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { isNil } from 'ngx-editor/utils';
 
@@ -34,16 +34,24 @@ const DEFAULT_OPTIONS: Options = {
 };
 
 class Editor {
+  private options: Options;
   view: EditorView;
-  options: Options;
   el: DocumentFragment;
-
-  valueChange = new Subject<JSONDoc>();
-  update = new Subject();
 
   constructor(options: Options = DEFAULT_OPTIONS) {
     this.options = Object.assign({}, DEFAULT_OPTIONS, options);
     this.createEditor();
+  }
+
+  private valueChangesSubject = new Subject<JSONDoc>();
+  private updateSubject = new Subject<EditorView>();
+
+  get valueChanges(): Observable<JSONDoc> {
+    return this.valueChangesSubject.asObservable();
+  }
+
+  get update(): Observable<EditorView> {
+    return this.updateSubject.asObservable();
   }
 
   get schema(): Schema {
@@ -82,14 +90,14 @@ class Editor {
     const state = this.view.state.apply(tr);
     this.view.updateState(state);
 
-    this.update.next();
+    this.updateSubject.next(this.view);
 
     if (!tr.docChanged && !tr.getMeta('FORCE_EMIT')) {
       return;
     }
 
     const json = state.doc.toJSON();
-    this.valueChange.next(json);
+    this.valueChangesSubject.next(json);
   }
 
   private createEditor(): void {
