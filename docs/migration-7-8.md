@@ -70,3 +70,7 @@ const editor = new Editor();
 editor.focus.subscribe(() => {}); // no longer exposed
 editor.blur.subscribe(() => {}); // no longer exposed
 ```
+
+#### Miscellaneous
+
+- `@angular/elements` is a peerDependency

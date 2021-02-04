@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.0.0-beta.1 (2021-02-04)
+
+#### Bug Fixes
+
+- add `@angualr/elements` as a peerDependency ([a147ee7](https://github.com/sibiraj-s/ngx-editor/commit/a147ee7))
+
 ## v8.0.0-beta.0 (2021-02-04)
 
 #### Bug Fixes
