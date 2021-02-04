@@ -30,7 +30,7 @@ import { FloatingMenuComponent } from './floating-menu/floating-menu.component';
     DropdownComponent,
     ImageComponent,
     ColorPickerComponent,
-    FloatingMenuComponent
+    FloatingMenuComponent,
   ],
   providers: [
     MenuService,

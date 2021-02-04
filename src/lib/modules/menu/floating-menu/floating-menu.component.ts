@@ -45,10 +45,13 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   private showMenu = false;
   private updateSubscription: Subscription;
   private dragging = false;
-  private view: EditorView;
   private resizeSubscription: Subscription;
   execulableItems: TBItems[] = [];
   activeItems: TBItems[] = [];
+
+  private get view(): EditorView {
+    return this.editor.view;
+  }
 
   constructor(private el: ElementRef<HTMLElement>, private sanitizeHTML: SanitizeHtmlPipe) { }
 
@@ -102,7 +105,6 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
 
     const bubble = this.el.nativeElement;
 
-    // These are in screen coordinates
     const start = view.coordsAtPos(from);
 
     // The box in which the tooltip is positioned, to use as base
@@ -195,7 +197,6 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.updateSubscription = this.editor.update
       .subscribe((view) => {
-        this.view = view;
         this.update(view);
         this.findActiveAndDisabledItems(view);
       });

@@ -4,9 +4,11 @@ import {
   OnInit, Output, EventEmitter,
   Input, Renderer2, SimpleChanges,
   OnChanges, Injector, AfterViewInit,
+  ComponentFactoryResolver,
+  ViewContainerRef,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { createCustomElement, NgElement, WithProperties } from '@angular/elements';
+import { createCustomElement } from '@angular/elements';
 import { Subscription } from 'rxjs';
 
 import * as plugins from './plugins';
@@ -27,18 +29,21 @@ import { FloatingMenuComponent } from './modules/menu/floating-menu/floating-men
   encapsulation: ViewEncapsulation.None
 })
 
-export class NgxEditorComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnChanges, OnDestroy {
+export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
   constructor(
     private renderer: Renderer2,
-    private injector: Injector
+    private injector: Injector,
+    private componentFactoryResolver: ComponentFactoryResolver
   ) { }
 
-  @ViewChild('ngxEditor', { static: true }) ngxEditor: ElementRef;
+  @ViewChild('ngxEditor', { static: true }) private ngxEditor: ElementRef;
+  @ViewChild('ngxFloatingMenu', { static: true, read: ViewContainerRef }) private floatingMenuView: ViewContainerRef;
 
   @Input() editor: Editor;
   @Input() outputFormat: 'doc' | 'html';
   @Input() placeholder = 'Type Here...';
   @Input() enabled = true;
+  @Input() floatingMenu = true;
 
   @Output() focusOut = new EventEmitter<void>();
   @Output() focusIn = new EventEmitter<void>();
@@ -97,13 +102,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, AfterVi
       const ImageViewElement = createCustomElement(ImageViewComponent, { injector: this.injector });
       customElements.define('ngx-image-view', ImageViewElement);
     }
-
-    const floatingMenuComponent = customElements.get('ngx-floating-menu');
-
-    if (!floatingMenuComponent) {
-      const FloatingMenuElement = createCustomElement(FloatingMenuComponent, { injector: this.injector });
-      customElements.define('ngx-floating-menu', FloatingMenuElement);
-    }
   }
 
   private registerPlugins(): void {
@@ -131,12 +129,17 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, AfterVi
   }
 
   private createFloatingMenu(): void {
-    type FLoatingMenuElement = NgElement & WithProperties<FloatingMenuComponent>;
-    const floatingMenu = this.renderer.createElement('ngx-floating-menu') as FLoatingMenuElement;
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(FloatingMenuComponent);
 
-    floatingMenu.editor = this.editor;
+    const viewContainerRef = this.floatingMenuView;
+    viewContainerRef.clear();
 
-    this.renderer.appendChild(this.editor.view.dom.parentElement, floatingMenu);
+    const componentRef = viewContainerRef.createComponent<FloatingMenuComponent>(componentFactory);
+    componentRef.instance.editor = this.editor;
+  }
+
+  private destroyFloatingMenu(): void {
+    this.floatingMenuView.clear();
   }
 
   ngOnInit(): void {
@@ -154,10 +157,10 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, AfterVi
     });
 
     this.subscriptions.push(contentChangeSubscription);
-  }
 
-  ngAfterViewInit(): void {
-    this.createFloatingMenu();
+    if (this.floatingMenu) {
+      this.createFloatingMenu();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -170,6 +173,14 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, AfterVi
         this.disable();
       } else {
         this.enable();
+      }
+    }
+
+    if (changes?.floatingMenu && !changes.floatingMenu.isFirstChange()) {
+      if (changes.floatingMenu.currentValue) {
+        this.createFloatingMenu();
+      } else {
+        this.destroyFloatingMenu();
       }
     }
   }

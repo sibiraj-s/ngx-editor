@@ -20,7 +20,7 @@ const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorCo
   providers: [],
   declarations: [
     NgxEditorComponent,
-    ImageViewComponent,
+    ImageViewComponent
   ],
   exports: [
     NgxEditorComponent,
