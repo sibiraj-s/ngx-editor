@@ -1,8 +1,0 @@
-<ng-container *ngIf="activeLinkItem">
-  <a [href]="activeLinkItem.attrs.href" target="_blank" [title]="activeLinkItem.attrs.href">
-    {{activeLinkItem.attrs.href}}
-  </a>
-  <div class="commands">
-    <button class="command" (click)="removeLink()">Remove link</button>
-  </div>
-</ng-container>

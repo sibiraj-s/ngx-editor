@@ -5,7 +5,7 @@ interface TooltipPosition {
   left: number;
 }
 
-export const calculateBubblePos = (view: EditorView, toolTipEl: HTMLElement): TooltipPosition => {
+export const calculateTooltipPos = (view: EditorView): TooltipPosition => {
   const { state: { selection } } = view;
   const { from, to } = selection;
 
@@ -14,8 +14,7 @@ export const calculateBubblePos = (view: EditorView, toolTipEl: HTMLElement): To
   const end = view.coordsAtPos(to);
 
   // The box in which the tooltip is positioned, to use as base
-  const parent = toolTipEl.offsetParent;
-  const box = parent.getBoundingClientRect();
+  const box = view.dom.getBoundingClientRect();
 
   // Find a center-ish x position from the selection endpoints (when
   // crossing lines, end may be more to the left)
