@@ -1,0 +1,57 @@
+:host {
+  position: absolute;
+  z-index: 20;
+  margin-bottom: 0.35rem;
+  display: flex;
+  border-radius: 4px;
+  background-color: #000;
+  color: white;
+  display: flex;
+  height: 1.85rem;
+  padding: 0.2rem 0.3rem;
+  visibility: hidden;
+}
+
+.NgxFloatingMenu__Icon {
+  height: 1.8rem;
+  width: 1.8rem;
+  transition: 0.3s ease-in-out;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    fill: white;
+  }
+
+  &:hover {
+    background-color: #636262;
+  }
+
+  + .NgxFloatingMenu__Icon {
+    margin-left: 0.3rem;
+  }
+}
+
+.NgxFloatingMenu__Icon--Active {
+  background-color: white;
+
+  svg {
+    fill: black;
+  }
+
+  &:hover {
+    background-color: #636262;
+
+    svg {
+      fill: white;
+    }
+  }
+}
+
+.NgxFloatingMenu__Seperator {
+  border-left: 1px solid white;
+  height: 100%;
+  margin: 0 5px;
+}

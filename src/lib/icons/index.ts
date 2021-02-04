@@ -57,6 +57,11 @@ class Icon {
     `;
   }
 
+  static getPath(name: keyof typeof icons): string {
+    const path = icons[name] || '<path></path>';
+    return path;
+  }
+
 }
 
 export default Icon;
