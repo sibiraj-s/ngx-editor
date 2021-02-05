@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :host {
   position: absolute;
   z-index: 20;
@@ -7,8 +13,7 @@
   background-color: #000;
   color: white;
   display: flex;
-  height: 1.85rem;
-  padding: 0.2rem 0.3rem;
+  padding: 0.3rem;
   visibility: hidden;
 }
 
@@ -52,6 +57,5 @@
 
 .NgxFloatingMenu__Seperator {
   border-left: 1px solid white;
-  height: 100%;
   margin: 0 5px;
 }
