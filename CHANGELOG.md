@@ -13,6 +13,26 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.0.0-beta.2 (2021-02-05)
+
+#### Bug Fixes
+
+- fixes styling issues with `box-sizing:border-box` ([6c26440](https://github.com/sibiraj-s/ngx-editor/commit/6c26440))
+- update floating menu styles ([9568769](https://github.com/sibiraj-s/ngx-editor/commit/9568769))
+- prevent incorrect updates to toolbar with multiple instances ([908c9cb](https://github.com/sibiraj-s/ngx-editor/commit/908c9cb))
+
+#### Features
+
+- add alignment options to floating menu ([3c0ed54](https://github.com/sibiraj-s/ngx-editor/commit/3c0ed54))
+
+#### Dependency Updates
+
+- update prosemirror-view, prosemirror-model ([a8ecb22](https://github.com/sibiraj-s/ngx-editor/commit/a8ecb22))
+
+#### Enhancements
+
+- use DOM created by ProseMirror ([8c8b738](https://github.com/sibiraj-s/ngx-editor/commit/8c8b738))
+
 ## v8.0.0-beta.1 (2021-02-04)
 
 #### Bug Fixes
