@@ -31,7 +31,7 @@ import { FloatingMenuComponent } from './floating-menu/floating-menu.component';
     FloatingMenuComponent,
   ],
   providers: [
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
   ],
   exports: [
     MenuComponent

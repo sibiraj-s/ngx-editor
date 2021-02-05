@@ -1,6 +1,6 @@
 import {
   Component, ElementRef, HostBinding,
-  HostListener, OnDestroy, Input
+  HostListener, OnDestroy, Input, OnInit
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
@@ -17,7 +17,7 @@ type Command = typeof TextColor | typeof TextBackgroundColor;
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.scss']
 })
-export class ColorPickerComponent implements OnDestroy {
+export class ColorPickerComponent implements OnInit, OnDestroy {
   @Input() presets: string[][];
   @Input() type: string;
 
@@ -25,13 +25,7 @@ export class ColorPickerComponent implements OnDestroy {
     private el: ElementRef,
     private menuService: MenuService,
     private ngxeService: NgxEditorService
-  ) {
-    this.editorView = this.menuService.editor.view;
-
-    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
-      this.update(view);
-    });
-  }
+  ) { }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
     return this.isActive || this.showPopup;
@@ -134,6 +128,14 @@ export class ColorPickerComponent implements OnDestroy {
 
   getLabel(key: string): string {
     return this.ngxeService.locals.get(key);
+  }
+
+  ngOnInit(): void {
+    this.editorView = this.menuService.editor.view;
+
+    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
+      this.update(view);
+    });
   }
 
   ngOnDestroy(): void {

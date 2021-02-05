@@ -28,13 +28,7 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
   constructor(
     private ngxeService: NgxEditorService,
     private menuService: MenuService
-  ) {
-    this.editorView = this.menuService.editor.view;
-
-    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
-      this.update(view);
-    });
-  }
+  ) {  }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') isActive = false;
   @HostBinding('class.NgxEditor--Disabled') disabled = false;
@@ -64,6 +58,12 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.html = Icon.get(this.name);
+
+    this.editorView = this.menuService.editor.view;
+
+    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
+      this.update(view);
+    });
   }
 
   ngOnDestroy(): void {

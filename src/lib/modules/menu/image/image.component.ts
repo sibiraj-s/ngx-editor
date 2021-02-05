@@ -1,4 +1,7 @@
-import { Component, ElementRef, HostBinding, HostListener, OnDestroy } from '@angular/core';
+import {
+  Component, ElementRef, HostBinding,
+  HostListener, OnDestroy, OnInit
+} from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
@@ -14,7 +17,7 @@ import { Image as ImageCommand } from '../MenuCommands';
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss']
 })
-export class ImageComponent implements OnDestroy {
+export class ImageComponent implements OnInit, OnDestroy {
   showPopup = false;
   isActive = false;
   private updateSubscription: Subscription;
@@ -35,11 +38,7 @@ export class ImageComponent implements OnDestroy {
     private ngxeService: NgxEditorService,
     private menuService: MenuService
   ) {
-    this.editorView = this.menuService.editor.view;
 
-    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
-      this.update(view);
-    });
   }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
@@ -119,6 +118,14 @@ export class ImageComponent implements OnDestroy {
     ImageCommand.insert(src, attrs)(state, dispatch);
     this.editorView.focus();
     this.hideForm();
+  }
+
+  ngOnInit(): void {
+    this.editorView = this.menuService.editor.view;
+
+    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
+      this.update(view);
+    });
   }
 
   ngOnDestroy(): void {

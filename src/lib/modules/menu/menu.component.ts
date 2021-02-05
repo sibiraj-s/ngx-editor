@@ -46,14 +46,12 @@ const DEFAULT_COLOR_PRESETS = [
   providers: [MenuService]
 })
 
-export class MenuComponent implements OnInit, OnDestroy {
+export class MenuComponent implements OnInit {
   @Input() toolbar: Toolbar = DEFAULT_TOOLBAR;
   @Input() colorPresets: string[] = DEFAULT_COLOR_PRESETS;
   @Input() disabled = false;
   @Input() editor: Editor;
   @Input() customMenuRef: TemplateRef<any> | null = null;
-
-  private updateSubscription: Subscription;
 
   toggleCommands: any[] = [
     'bold', 'italic',
@@ -104,9 +102,5 @@ export class MenuComponent implements OnInit, OnDestroy {
     }
 
     this.menuService.editor = this.editor;
-  }
-
-  ngOnDestroy(): void {
-    this.updateSubscription.unsubscribe();
   }
 }

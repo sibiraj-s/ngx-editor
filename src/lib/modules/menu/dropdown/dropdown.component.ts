@@ -1,6 +1,6 @@
 import {
   Component, ElementRef, HostBinding,
-  HostListener, Input, OnDestroy
+  HostListener, Input, OnDestroy, OnInit
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { TBHeadingItems } from '../../../types';
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss']
 })
-export class DropdownComponent implements OnDestroy {
+export class DropdownComponent implements OnInit, OnDestroy {
   private editorView: EditorView;
   private updateSubscription: Subscription;
 
@@ -32,13 +32,7 @@ export class DropdownComponent implements OnDestroy {
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
     private el: ElementRef
-  ) {
-    this.editorView = this.menuService.editor.view;
-
-    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
-      this.update(view);
-    });
-  }
+  ) { }
 
   @HostBinding('class.NgxEditor__Dropdown--Selected') get isSelected(): boolean {
     return Boolean(this.activeItem || this.isDropdownOpen);
@@ -100,6 +94,14 @@ export class DropdownComponent implements OnDestroy {
     } else {
       this.activeItem = null;
     }
+  }
+
+  ngOnInit(): void {
+    this.editorView = this.menuService.editor.view;
+
+    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
+      this.update(view);
+    });
   }
 
   ngOnDestroy(): void {

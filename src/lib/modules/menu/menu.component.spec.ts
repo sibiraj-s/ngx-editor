@@ -11,6 +11,7 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { ImageComponent } from './image/image.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 import Editor from '../../Editor';
+import { MenuService } from './menu.service';
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
@@ -27,7 +28,8 @@ describe('MenuComponent', () => {
         DropdownComponent,
         ImageComponent,
         ColorPickerComponent
-      ]
+      ],
+      providers: [MenuService]
     }).compileComponents();
   });
 

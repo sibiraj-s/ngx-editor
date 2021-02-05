@@ -1,4 +1,7 @@
-import { Component, ElementRef, HostBinding, HostListener, OnDestroy } from '@angular/core';
+import {
+  Component, ElementRef, HostBinding,
+  HostListener, OnDestroy, OnInit
+} from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
@@ -14,7 +17,7 @@ import { Link as LinkCommand } from '../MenuCommands';
   styleUrls: ['./link.component.scss']
 })
 
-export class LinkComponent implements OnDestroy {
+export class LinkComponent implements OnInit, OnDestroy {
   showPopup = false;
   isActive = false;
   private canExecute = true;
@@ -34,13 +37,7 @@ export class LinkComponent implements OnDestroy {
     private el: ElementRef,
     private ngxeService: NgxEditorService,
     private menuService: MenuService
-  ) {
-    this.editorView = this.menuService.editor.view;
-
-    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
-      this.update(view);
-    });
-  }
+  ) {  }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
     return this.isActive || this.showPopup;
@@ -138,6 +135,14 @@ export class LinkComponent implements OnDestroy {
       LinkCommand.update(attrs)(state, dispatch);
     }
     this.hideForm();
+  }
+
+  ngOnInit(): void {
+    this.editorView = this.menuService.editor.view;
+
+    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
+      this.update(view);
+    });
   }
 
   ngOnDestroy(): void {
