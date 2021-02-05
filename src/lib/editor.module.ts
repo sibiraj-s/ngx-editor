@@ -9,6 +9,7 @@ import { MenuModule } from './modules/menu/menu.module';
 
 import { MenuComponent } from './modules/menu/menu.component';
 import { ImageViewComponent } from './components/image-view/image-view.component';
+import { FloatingMenuComponent } from './modules/menu/floating-menu/floating-menu.component';
 
 const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorConfig');
 
@@ -20,7 +21,8 @@ const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorCo
   providers: [],
   declarations: [
     NgxEditorComponent,
-    ImageViewComponent
+    ImageViewComponent,
+    FloatingMenuComponent
   ],
   exports: [
     NgxEditorComponent,

@@ -3,9 +3,7 @@ import {
   forwardRef, OnDestroy, ViewEncapsulation,
   OnInit, Output, EventEmitter,
   Input, Renderer2, SimpleChanges,
-  OnChanges, Injector, AfterViewInit,
-  ComponentFactoryResolver,
-  ViewContainerRef,
+  OnChanges, Injector,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { createCustomElement } from '@angular/elements';
@@ -15,7 +13,6 @@ import * as plugins from './plugins';
 import { toHTML } from './parsers';
 import Editor from './Editor';
 import { ImageViewComponent } from './components/image-view/image-view.component';
-import { FloatingMenuComponent } from './modules/menu/floating-menu/floating-menu.component';
 
 @Component({
   selector: 'ngx-editor',
@@ -32,12 +29,10 @@ import { FloatingMenuComponent } from './modules/menu/floating-menu/floating-men
 export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
   constructor(
     private renderer: Renderer2,
-    private injector: Injector,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private injector: Injector
   ) { }
 
   @ViewChild('ngxEditor', { static: true }) private ngxEditor: ElementRef;
-  @ViewChild('ngxFloatingMenu', { static: true, read: ViewContainerRef }) private floatingMenuView: ViewContainerRef;
 
   @Input() editor: Editor;
   @Input() outputFormat: 'doc' | 'html';
@@ -128,20 +123,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     this.editor.registerPlugin(plugins.image(this.injector));
   }
 
-  private createFloatingMenu(): void {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(FloatingMenuComponent);
-
-    const viewContainerRef = this.floatingMenuView;
-    viewContainerRef.clear();
-
-    const componentRef = viewContainerRef.createComponent<FloatingMenuComponent>(componentFactory);
-    componentRef.instance.editor = this.editor;
-  }
-
-  private destroyFloatingMenu(): void {
-    this.floatingMenuView.clear();
-  }
-
   ngOnInit(): void {
     if (!this.editor) {
       throw new Error('NgxEditor: Required editor instance');
@@ -157,10 +138,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     });
 
     this.subscriptions.push(contentChangeSubscription);
-
-    if (this.floatingMenu) {
-      this.createFloatingMenu();
-    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -173,14 +150,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
         this.disable();
       } else {
         this.enable();
-      }
-    }
-
-    if (changes?.floatingMenu && !changes.floatingMenu.isFirstChange()) {
-      if (changes.floatingMenu.currentValue) {
-        this.createFloatingMenu();
-      } else {
-        this.destroyFloatingMenu();
       }
     }
   }

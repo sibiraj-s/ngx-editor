@@ -10,7 +10,6 @@ import { ImageComponent } from './image/image.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 
 import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
-import { FloatingMenuComponent } from './floating-menu/floating-menu.component';
 
 @NgModule({
   imports: [
@@ -27,8 +26,7 @@ import { FloatingMenuComponent } from './floating-menu/floating-menu.component';
     LinkComponent,
     DropdownComponent,
     ImageComponent,
-    ColorPickerComponent,
-    FloatingMenuComponent,
+    ColorPickerComponent
   ],
   providers: [
     SanitizeHtmlPipe,
