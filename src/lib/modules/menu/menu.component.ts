@@ -1,6 +1,6 @@
 import {
   Component, Input, OnDestroy,
-  OnInit, TemplateRef, ViewEncapsulation
+  OnInit, TemplateRef
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -43,8 +43,7 @@ const DEFAULT_COLOR_PRESETS = [
   selector: 'ngx-editor-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  providers: [MenuService],
-  encapsulation: ViewEncapsulation.None
+  providers: [MenuService]
 })
 
 export class MenuComponent implements OnInit, OnDestroy {
