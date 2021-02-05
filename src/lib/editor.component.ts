@@ -150,7 +150,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     this.registerCustomElements();
     this.registerPlugins();
 
-    this.renderer.appendChild(this.ngxEditor.nativeElement, this.editor.el);
+    this.renderer.appendChild(this.ngxEditor.nativeElement, this.editor.view.dom);
 
     const contentChangeSubscription = this.editor.valueChanges.subscribe(jsonDoc => {
       this.handleChange(jsonDoc);

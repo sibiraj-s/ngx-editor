@@ -36,7 +36,6 @@ const DEFAULT_OPTIONS: Options = {
 class Editor {
   private options: Options;
   view: EditorView;
-  el: DocumentFragment;
 
   constructor(options: Options = DEFAULT_OPTIONS) {
     this.options = Object.assign({}, DEFAULT_OPTIONS, options);
@@ -107,7 +106,6 @@ class Editor {
     const schema = this.schema;
 
     const doc = parseContent(content, schema);
-    this.el = document.createDocumentFragment();
 
     const plugins: Plugin[] = options.plugins ?? [];
 
@@ -117,7 +115,7 @@ class Editor {
       inputRules
     });
 
-    this.view = new EditorView(this.el, {
+    this.view = new EditorView(null, {
       state: EditorState.create({
         doc,
         schema,
