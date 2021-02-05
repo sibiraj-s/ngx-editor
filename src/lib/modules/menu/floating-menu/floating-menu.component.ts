@@ -83,14 +83,16 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   get toolbar(): TBItems[][] {
     return [
       ['bold', 'italic', 'underline', 'strike'],
-      ['ordered_list', 'bullet_list', 'blockquote', 'code']
+      ['ordered_list', 'bullet_list', 'blockquote', 'code'],
+      ['align_left', 'align_center', 'align_right', 'align_justify']
     ];
   }
 
   get toggleCommands(): TBItems[] {
     return [
       'bold', 'italic', 'underline', 'strike',
-      'ordered_list', 'bullet_list', 'blockquote', 'code'
+      'ordered_list', 'bullet_list', 'blockquote', 'code',
+      'align_left', 'align_center', 'align_right', 'align_justify'
     ];
   }
 
