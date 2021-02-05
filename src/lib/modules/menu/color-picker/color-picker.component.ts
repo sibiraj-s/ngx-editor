@@ -26,9 +26,9 @@ export class ColorPickerComponent implements OnDestroy {
     private menuService: MenuService,
     private ngxeService: NgxEditorService
   ) {
-    this.editorView = this.menuService.view;
+    this.editorView = this.menuService.editor.view;
 
-    this.pluginUpdateSubscription = this.menuService.plugin.update.subscribe((view: EditorView) => {
+    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -53,7 +53,7 @@ export class ColorPickerComponent implements OnDestroy {
     return this.type === 'text_color' ? TextColor : TextBackgroundColor;
   }
 
-  private pluginUpdateSubscription: Subscription;
+  private updateSubscription: Subscription;
   private editorView: EditorView;
   showPopup = false;
   isActive = false;
@@ -137,6 +137,6 @@ export class ColorPickerComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.pluginUpdateSubscription.unsubscribe();
+    this.updateSubscription.unsubscribe();
   }
 }

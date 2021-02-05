@@ -23,15 +23,15 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
 
   html: string;
   editorView: EditorView;
-  private pluginUpdateSubscription: Subscription;
+  private updateSubscription: Subscription;
 
   constructor(
     private ngxeService: NgxEditorService,
     private menuService: MenuService
   ) {
-    this.editorView = this.menuService.view;
+    this.editorView = this.menuService.editor.view;
 
-    this.pluginUpdateSubscription = this.menuService.plugin.update.subscribe((view: EditorView) => {
+    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -67,6 +67,6 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.pluginUpdateSubscription.unsubscribe();
+    this.updateSubscription.unsubscribe();
   }
 }

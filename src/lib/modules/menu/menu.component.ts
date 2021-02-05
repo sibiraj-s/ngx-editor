@@ -43,6 +43,7 @@ const DEFAULT_COLOR_PRESETS = [
   selector: 'ngx-editor-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
+  providers: [MenuService],
   encapsulation: ViewEncapsulation.None
 })
 
@@ -103,11 +104,7 @@ export class MenuComponent implements OnInit, OnDestroy {
       throw new Error('NgxEditor: Required editor instance');
     }
 
-    this.menuService.view = this.editor.view;
-
-    this.updateSubscription = this.editor.update.subscribe(() => {
-      this.menuService.plugin.update.next(this.editor.view);
-    });
+    this.menuService.editor = this.editor;
   }
 
   ngOnDestroy(): void {

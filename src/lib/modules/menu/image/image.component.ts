@@ -17,7 +17,7 @@ import { Image as ImageCommand } from '../MenuCommands';
 export class ImageComponent implements OnDestroy {
   showPopup = false;
   isActive = false;
-  private pluginUpdateSubscription: Subscription;
+  private updateSubscription: Subscription;
 
   form = new FormGroup({
     src: new FormControl('', [
@@ -35,9 +35,9 @@ export class ImageComponent implements OnDestroy {
     private ngxeService: NgxEditorService,
     private menuService: MenuService
   ) {
-    this.editorView = this.menuService.view;
+    this.editorView = this.menuService.editor.view;
 
-    this.pluginUpdateSubscription = this.menuService.plugin.update.subscribe((view: EditorView) => {
+    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -122,6 +122,6 @@ export class ImageComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.pluginUpdateSubscription.unsubscribe();
+    this.updateSubscription.unsubscribe();
   }
 }

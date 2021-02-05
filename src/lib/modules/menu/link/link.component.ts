@@ -19,7 +19,7 @@ export class LinkComponent implements OnDestroy {
   isActive = false;
   private canExecute = true;
   private editorView: EditorView;
-  private pluginUpdateSubscription: Subscription;
+  private updateSubscription: Subscription;
 
   form = new FormGroup({
     href: new FormControl('', [
@@ -35,9 +35,9 @@ export class LinkComponent implements OnDestroy {
     private ngxeService: NgxEditorService,
     private menuService: MenuService
   ) {
-    this.editorView = this.menuService.view;
+    this.editorView = this.menuService.editor.view;
 
-    this.pluginUpdateSubscription = this.menuService.plugin.update.subscribe((view: EditorView) => {
+    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -141,6 +141,6 @@ export class LinkComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.pluginUpdateSubscription.unsubscribe();
+    this.updateSubscription.unsubscribe();
   }
 }

@@ -2,26 +2,24 @@ import { Injectable, TemplateRef } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Subject } from 'rxjs';
 
+import Editor from '../../Editor';
+
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
-  #view: EditorView;
+  #editor: Editor;
   customMenuRefChange: Subject<TemplateRef<any>> = new Subject<TemplateRef<any>>();
 
-  plugin = {
-    update: new Subject<EditorView>(),
-    destroy: new Subject<void>()
-  };
 
   constructor() { }
 
-  set view(v: EditorView) {
-    this.#view = v;
+  set editor(e: Editor) {
+    this.#editor = e;
   }
 
-  get view(): EditorView {
-    return this.#view;
+  get editor(): Editor {
+    return this.#editor;
   }
 
   setCustomMenuRef(c: TemplateRef<any>): void {

@@ -17,7 +17,7 @@ import { TBHeadingItems } from '../../../types';
 })
 export class DropdownComponent implements OnDestroy {
   private editorView: EditorView;
-  private pluginUpdateSubscription: Subscription;
+  private updateSubscription: Subscription;
 
   @Input() group: string;
   @Input() items: TBHeadingItems[];
@@ -33,9 +33,9 @@ export class DropdownComponent implements OnDestroy {
     private menuService: MenuService,
     private el: ElementRef
   ) {
-    this.editorView = this.menuService.view;
+    this.editorView = this.menuService.editor.view;
 
-    this.pluginUpdateSubscription = this.menuService.plugin.update.subscribe((view: EditorView) => {
+    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
       this.update(view);
     });
   }
@@ -103,6 +103,6 @@ export class DropdownComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.pluginUpdateSubscription.unsubscribe();
+    this.updateSubscription.unsubscribe();
   }
 }
