@@ -5,6 +5,7 @@ import { DebugElement, SimpleChange } from '@angular/core';
 import { NgxEditorComponent } from './editor.component';
 import { MenuModule } from './modules/menu/menu.module';
 import Editor from './Editor';
+import { FloatingMenuComponent } from './modules/menu/floating-menu/floating-menu.component';
 
 describe('NgxEditorComponent', () => {
   let component: NgxEditorComponent;
@@ -16,7 +17,8 @@ describe('NgxEditorComponent', () => {
         MenuModule
       ],
       declarations: [
-        NgxEditorComponent
+        NgxEditorComponent,
+        FloatingMenuComponent
       ]
     }).compileComponents();
   });
@@ -55,9 +57,8 @@ describe('NgxEditorComponent', () => {
   });
 
   it('should not render floating menu when disabled', () => {
-    component.ngOnChanges({
-      floatingMenu: new SimpleChange(true, false, false)
-    });
+    component.floatingMenu = false;
+    fixture.detectChanges();
 
     const compiled: DebugElement = fixture.debugElement;
     expect(compiled.query(By.css('.NgxFloatingMenu__Icon'))).toBeFalsy();
