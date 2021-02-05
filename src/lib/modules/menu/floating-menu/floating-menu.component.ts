@@ -136,7 +136,6 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
     const { selection } = state;
     const { empty } = selection;
 
-
     if (selection instanceof NodeSelection) {
       if (selection.node.type.name === 'image') {
         this.showMenu = false;
