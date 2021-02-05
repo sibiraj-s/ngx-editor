@@ -89,6 +89,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
   display: flex;
   padding: $menubar-padding;
   cursor: default;
+  background-color: white;
 }
 
 .NgxEditor__MenuItem {
