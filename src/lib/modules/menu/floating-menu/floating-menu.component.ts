@@ -45,6 +45,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   private showMenu = false;
   private updateSubscription: Subscription;
   private dragging = false;
+  private clicked = false;
   private resizeSubscription: Subscription;
   execulableItems: TBItems[] = [];
   activeItems: TBItems[] = [];
@@ -101,6 +102,15 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
     return this.sanitizeHTML.transform(icon);
   }
 
+  private hide(): void {
+    this.clicked = false;
+    this.showMenu = false;
+  }
+
+  private show(): void {
+    this.showMenu = true;
+  }
+
   private calculateBubblePosition(view: EditorView): BubblePosition {
     const { state: { selection } } = view;
     const { from } = selection;
@@ -140,7 +150,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
 
     if (selection instanceof NodeSelection) {
       if (selection.node.type.name === 'image') {
-        this.showMenu = false;
+        this.hide();
         return;
       }
     }
@@ -148,7 +158,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
     const hasFocus = this.view.hasFocus();
 
     if (!hasFocus || empty || this.dragging) {
-      this.showMenu = false;
+      this.hide();
       return;
     }
 
@@ -156,7 +166,10 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
 
     this.posLeft = left;
     this.posBottom = bottom;
-    this.showMenu = true;
+
+    if (!this.clicked) {
+      this.show();
+    }
   }
 
   onClick(e: MouseEvent, commandName: TBItems): void {
@@ -169,8 +182,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
 
     const command = ToggleCommands[commandName];
     command.toggle()(state, dispatch);
-
-    this.showMenu = false;
+    this.clicked = true;
   }
 
   private findActiveAndDisabledItems(view: EditorView): void {
