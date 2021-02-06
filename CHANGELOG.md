@@ -13,6 +13,31 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.0.0-beta.3 (2021-02-06)
+
+#### Bug Fixes
+
+- prevent floating menu flicker on while selection ([4617294](https://github.com/sibiraj-s/ngx-editor/commit/4617294))
+- fix slowness caused by floating menu ([9e6f705](https://github.com/sibiraj-s/ngx-editor/commit/9e6f705))
+
+#### Breaking Changes
+
+Floating menu is now exposed as a component
+
+**Before**
+
+```html
+<ngx-editor [editor]="editor" [floatingMenu]="true"></ngx-editor>
+```
+
+**After**
+
+```html
+<ngx-editor [editor]="editor">
+  <ngx-editor-floating-menu [editor]="editor"></ngx-editor-floating-meu>
+</ngx-editor>
+```
+
 ## v8.0.0-beta.2 (2021-02-05)
 
 #### Bug Fixes
