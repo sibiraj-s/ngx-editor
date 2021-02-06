@@ -36,3 +36,12 @@ CSS
 ### Floating Menu with custom element.
 
 <iframe src="https://stackblitz.com/edit/ngx-editor-floating-menu-custom?embed=1&hideExplorer=1&view=preview" height="600"></iframe>
+
+```html
+<div class="editor">
+  <ngx-editor [editor]="editor"> </ngx-editor>
+  <ngx-editor-floating-menu [editor]="editor">
+    <ngx-editor-menu [editor]="editor"></ngx-editor-menu>
+  </ngx-editor-floating-menu>
+</div>
+```
