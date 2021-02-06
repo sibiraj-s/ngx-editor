@@ -25,7 +25,8 @@ interface BubblePosition {
   styleUrls: ['./floating-menu.component.scss']
 })
 export class FloatingMenuComponent implements OnInit, OnDestroy {
-  @Input() editor: Editor;
+  constructor(private el: ElementRef<HTMLElement>, private sanitizeHTML: SanitizeHtmlPipe) { }
+
   @HostBinding('style') get display(): Partial<CSSStyleDeclaration> {
     if (!this.showMenu) {
       return {
@@ -40,6 +41,12 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
     };
   }
 
+  private get view(): EditorView {
+    return this.editor.view;
+  }
+
+  @Input() editor: Editor;
+
   private posLeft = 0;
   private posBottom = 0;
   private showMenu = false;
@@ -50,11 +57,17 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   execulableItems: TBItems[] = [];
   activeItems: TBItems[] = [];
 
-  private get view(): EditorView {
-    return this.editor.view;
-  }
+  toolbar: TBItems[][] = [
+    ['bold', 'italic', 'underline', 'strike'],
+    ['ordered_list', 'bullet_list', 'blockquote', 'code'],
+    ['align_left', 'align_center', 'align_right', 'align_justify']
+  ];
 
-  constructor(private el: ElementRef<HTMLElement>, private sanitizeHTML: SanitizeHtmlPipe) { }
+  toggleCommands: TBItems[] = [
+    'bold', 'italic', 'underline', 'strike',
+    'ordered_list', 'bullet_list', 'blockquote', 'code',
+    'align_left', 'align_center', 'align_right', 'align_justify'
+  ];
 
   @HostListener('document:mousedown') onMouseDown(): void {
     this.dragging = true;
@@ -79,22 +92,6 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
       return;
     }
     this.update(this.view);
-  }
-
-  get toolbar(): TBItems[][] {
-    return [
-      ['bold', 'italic', 'underline', 'strike'],
-      ['ordered_list', 'bullet_list', 'blockquote', 'code'],
-      ['align_left', 'align_center', 'align_right', 'align_justify']
-    ];
-  }
-
-  get toggleCommands(): TBItems[] {
-    return [
-      'bold', 'italic', 'underline', 'strike',
-      'ordered_list', 'bullet_list', 'blockquote', 'code',
-      'align_left', 'align_center', 'align_right', 'align_justify'
-    ];
   }
 
   getIcon(name: TBItems): SafeHtml {
