@@ -20,7 +20,7 @@ interface BubblePosition {
 }
 
 @Component({
-  selector: 'ngx-floating-menu',
+  selector: 'ngx-editor-floating-menu',
   templateUrl: './floating-menu.component.html',
   styleUrls: ['./floating-menu.component.scss']
 })
