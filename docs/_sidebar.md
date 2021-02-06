@@ -17,6 +17,7 @@
   - [Reactive Forms](reactive-forms.md)
   - [Ng Model Binding](ng-model.md)
   - [Collaborative Editing](collab.md)
+  - [Floating Menu](floating-menu.md)
   - [CodeMirror](codemirror.md)
   - [Mentions & tags](mentions.md)
 
