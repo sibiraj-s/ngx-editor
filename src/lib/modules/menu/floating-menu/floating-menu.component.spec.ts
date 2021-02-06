@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { FloatingMenuComponent } from './floating-menu.component';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
+import { BubbleComponent } from '../bubble/bubble.component';
 import Editor from '../../../Editor';
 
 describe('FloatingMenuComponent', () => {
@@ -11,7 +14,8 @@ describe('FloatingMenuComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        FloatingMenuComponent
+        FloatingMenuComponent,
+        BubbleComponent
       ],
       providers: [
         SanitizeHtmlPipe
@@ -33,5 +37,12 @@ describe('FloatingMenuComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render bubble menu by defaault', () => {
+    expect(component).toBeTruthy();
+
+    const compiled: DebugElement = fixture.debugElement;
+    expect(compiled.query(By.css('.NgxBubbleMenu__Icon'))).toBeTruthy();
   });
 });

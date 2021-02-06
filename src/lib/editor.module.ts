@@ -21,12 +21,12 @@ const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorCo
   providers: [],
   declarations: [
     NgxEditorComponent,
-    ImageViewComponent,
-    FloatingMenuComponent
+    ImageViewComponent
   ],
   exports: [
     NgxEditorComponent,
-    MenuComponent
+    MenuComponent,
+    FloatingMenuComponent
   ]
 })
 

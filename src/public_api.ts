@@ -1,5 +1,6 @@
 export * from './lib/editor.component';
 export * from './lib/modules/menu/menu.component';
+export * from './lib/modules/menu/floating-menu/floating-menu.component';
 export * from './lib/editor.module';
 
 export * from './lib/schema';

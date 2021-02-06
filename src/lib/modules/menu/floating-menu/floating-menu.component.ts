@@ -1,6 +1,6 @@
 import {
-  Component, ElementRef, HostBinding,
-  HostListener, Input, OnDestroy, OnInit
+  Component, ContentChild, ContentChildren, ElementRef, HostBinding,
+  HostListener, Input, OnDestroy, OnInit, ViewChild
 } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { NodeSelection } from 'prosemirror-state';
@@ -15,7 +15,7 @@ import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { ToggleCommands } from '../MenuCommands';
 
 interface BubblePosition {
-  bottom: number;
+  top: number;
   left: number;
 }
 
@@ -25,7 +25,8 @@ interface BubblePosition {
   styleUrls: ['./floating-menu.component.scss']
 })
 export class FloatingMenuComponent implements OnInit, OnDestroy {
-  constructor(private el: ElementRef<HTMLElement>, private sanitizeHTML: SanitizeHtmlPipe) { }
+
+  constructor(public el: ElementRef<HTMLElement>, private sanitizeHTML: SanitizeHtmlPipe) { }
 
   @HostBinding('style') get display(): Partial<CSSStyleDeclaration> {
     if (!this.showMenu) {
@@ -36,7 +37,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
 
     return {
       visibility: 'visible',
-      bottom: this.posBottom + 'px',
+      top: this.posTop + 'px',
       left: this.posLeft + 'px',
     };
   }
@@ -48,7 +49,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   @Input() editor: Editor;
 
   private posLeft = 0;
-  private posBottom = 0;
+  private posTop = 0;
   private showMenu = false;
   private updateSubscription: Subscription;
   private dragging = false;
@@ -112,31 +113,37 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
     const { state: { selection } } = view;
     const { from } = selection;
 
-    const bubble = this.el.nativeElement;
-
-    const start = view.coordsAtPos(from);
+    // the floating bubble itself
+    const bubbleEl = this.el.nativeElement;
+    const bubble = bubbleEl.getBoundingClientRect();
 
     // The box in which the tooltip is positioned, to use as base
-    const box = view.dom.getBoundingClientRect();
+    const box = bubbleEl.parentElement.getBoundingClientRect();
+
+    const start = view.coordsAtPos(from);
 
     let left = start.left - box.left;
 
     const overflowsRight = (
-      box.right < (start.left + bubble.getBoundingClientRect().width) ||
-      bubble.getBoundingClientRect().right > box.right
+      box.right < (start.left + bubble.width) ||
+      bubble.right > box.right
     );
 
     if (overflowsRight) {
-      left = box.width - bubble.getBoundingClientRect().width;
+      left = box.width - bubble.width;
     }
 
+    // if
     if (left < 0) {
       left = 0;
     }
 
+    const bubbleHeight = bubble.height + parseInt(getComputedStyle(bubbleEl).marginBottom, 10);
+    const top = (start.top - box.top) - bubbleHeight;
+
     return {
       left,
-      bottom: box.bottom - start.top
+      top
     };
   }
 
@@ -159,10 +166,10 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const { bottom, left } = this.calculateBubblePosition(this.view);
+    const { top, left } = this.calculateBubblePosition(this.view);
 
     this.posLeft = left;
-    this.posBottom = bottom;
+    this.posTop = top;
 
     if (!this.clicked) {
       this.show();
@@ -217,6 +224,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
       this.useUpdate();
     });
   }
+
 
   ngOnDestroy(): void {
     this.updateSubscription.unsubscribe();

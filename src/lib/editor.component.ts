@@ -38,7 +38,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   @Input() outputFormat: 'doc' | 'html';
   @Input() placeholder = 'Type Here...';
   @Input() enabled = true;
-  @Input() floatingMenu = true;
 
   @Output() focusOut = new EventEmitter<void>();
   @Output() focusIn = new EventEmitter<void>();

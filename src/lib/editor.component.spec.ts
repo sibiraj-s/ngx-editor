@@ -48,19 +48,4 @@ describe('NgxEditorComponent', () => {
     const compiled: DebugElement = fixture.debugElement;
     expect(compiled.query(By.css('.NgxEditor__Placeholder'))).toBeTruthy();
   });
-
-  it('should render floating menu by default', () => {
-    component.floatingMenu = true;
-
-    const compiled: DebugElement = fixture.debugElement;
-    expect(compiled.query(By.css('.NgxFloatingMenu__Icon'))).toBeTruthy();
-  });
-
-  it('should not render floating menu when disabled', () => {
-    component.floatingMenu = false;
-    fixture.detectChanges();
-
-    const compiled: DebugElement = fixture.debugElement;
-    expect(compiled.query(By.css('.NgxFloatingMenu__Icon'))).toBeFalsy();
-  });
 });
