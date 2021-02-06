@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.0.0-beta.4 (2021-02-06)
+
+#### Bug Fixes
+
+- fix floating menu component selector ([dfb9603](https://github.com/sibiraj-s/ngx-editor/commit/dfb9603))
+
 ## v8.0.0-beta.3 (2021-02-06)
 
 #### Bug Fixes
