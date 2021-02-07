@@ -156,6 +156,10 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (!this.editor) {
+      throw new Error('NgxEditor: Required editor instance');
+    }
+
     this.updateSubscription = this.editor.update
       .subscribe((view) => {
         this.update(view);
