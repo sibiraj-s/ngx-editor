@@ -6,13 +6,11 @@ import {
   OnChanges, Injector,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { createCustomElement } from '@angular/elements';
 import { Subscription } from 'rxjs';
 
 import * as plugins from './plugins';
 import { toHTML } from './parsers';
 import Editor from './Editor';
-import { ImageViewComponent } from './components/image-view/image-view.component';
 
 @Component({
   selector: 'ngx-editor',
@@ -89,15 +87,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     this.setMeta('UPDATE_PLACEHOLDER', placeholder);
   }
 
-  private registerCustomElements(): void {
-    const imgViewComponent = customElements.get('ngx-image-view');
-
-    if (!imgViewComponent) {
-      const ImageViewElement = createCustomElement(ImageViewComponent, { injector: this.injector });
-      customElements.define('ngx-image-view', ImageViewElement);
-    }
-  }
-
   private registerPlugins(): void {
     this.editor.registerPlugin(plugins.editable(this.enabled));
     this.editor.registerPlugin(plugins.placeholder(this.placeholder));
@@ -127,7 +116,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
       throw new Error('NgxEditor: Required editor instance');
     }
 
-    this.registerCustomElements();
+    // this.registerCustomElements();
     this.registerPlugins();
 
     this.renderer.appendChild(this.ngxEditor.nativeElement, this.editor.view.dom);

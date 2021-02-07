@@ -1,35 +1,50 @@
-import { Injector, Renderer2 } from '@angular/core';
-import { NgElement, WithProperties } from '@angular/elements';
+import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector } from '@angular/core';
 import { Node as ProseMirrorNode } from 'prosemirror-model';
 import { NodeSelection, Plugin, PluginKey } from 'prosemirror-state';
 import { EditorView, NodeView } from 'prosemirror-view';
+import { Subscription } from 'rxjs';
 
 import { ImageViewComponent } from '../components/image-view/image-view.component';
 
-type ImageViewElement = NgElement & WithProperties<ImageViewComponent>;
-
 class ImageRezieView implements NodeView {
   img: HTMLElement;
-  dom: ImageViewElement;
+  dom: HTMLElement;
   handle: HTMLElement;
   view: EditorView;
   getPos: () => number;
 
-  constructor(node: ProseMirrorNode, view: EditorView, getPos: () => number, injector: Injector) {
-    const renderer = injector.get(Renderer2);
+  applicationRef: ApplicationRef;
+  imageComponentRef: ComponentRef<ImageViewComponent>;
+  resizeSubscription: Subscription;
 
-    const dom = renderer.createElement('ngx-image-view') as ImageViewElement;
-    dom.src = node.attrs.src;
-    dom.alt = node.attrs.alt;
-    dom.title = node.attrs.title;
-    dom.outerWidth = node.attrs.width;
-    dom.view = view;
+  constructor(node: ProseMirrorNode, view: EditorView, getPos: () => number, injector: Injector) {
+    const dom = document.createElement('image-view');
+
+    const componentFactoryResolver = injector.get(ComponentFactoryResolver);
+    this.applicationRef = injector.get(ApplicationRef);
+
+    // Create the component and wire it up with the element
+    const factory = componentFactoryResolver.resolveComponentFactory(
+      ImageViewComponent
+    );
+
+    this.imageComponentRef = factory.create(injector, [], dom);
+    // Attach to the view so that the change detector knows to run
+    this.applicationRef.attachView(this.imageComponentRef.hostView);
+
+    this.imageComponentRef.instance.src = node.attrs.src;
+    this.imageComponentRef.instance.alt = node.attrs.alt;
+    this.imageComponentRef.instance.title = node.attrs.title;
+    this.imageComponentRef.instance.outerWidth = node.attrs.width;
+    this.imageComponentRef.instance.view = view;
 
     this.dom = dom;
     this.view = view;
     this.getPos = getPos;
 
-    this.dom.addEventListener('imageResize', this.handleResize);
+    this.resizeSubscription = this.imageComponentRef.instance.imageResize.subscribe(() => {
+      this.handleResize();
+    });
   }
 
   handleResize = (): void => {
@@ -37,8 +52,8 @@ class ImageRezieView implements NodeView {
     const { tr } = state;
 
     const transaction = tr.setNodeMarkup(this.getPos(), undefined, {
-      src: this.dom.src,
-      width: this.dom.outerWidth
+      src: this.imageComponentRef.instance.src,
+      width: this.imageComponentRef.instance.outerWidth
     });
 
     const resolvedPos = transaction.doc.resolve(this.getPos());
@@ -48,16 +63,25 @@ class ImageRezieView implements NodeView {
     dispatch(transaction);
   }
 
+  update(): boolean {
+    return true;
+  }
+
+  ignoreMutation(): boolean {
+    return true;
+  }
+
   selectNode(): void {
-    this.dom.selected = true;
+    this.imageComponentRef.instance.selected = true;
   }
 
   deselectNode(): void {
-    this.dom.selected = false;
+    this.imageComponentRef.instance.selected = false;
   }
 
   destroy(): void {
-    this.dom.removeEventListener('imageResize', this.handleResize);
+    this.resizeSubscription.unsubscribe();
+    this.applicationRef.detachView(this.imageComponentRef.hostView);
   }
 }
 
