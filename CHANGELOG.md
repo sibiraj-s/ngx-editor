@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.0.0-beta.6 (2021-02-07)
+
+#### Bug Fixes
+
+- set correct image size after resizing while history undo ([0a2d547](https://github.com/sibiraj-s/ngx-editor/commit/0a2d547))
+- remove `@angualr/elements` dependency ([f12a5c8](https://github.com/sibiraj-s/ngx-editor/commit/f12a5c8))
+- set correct style for active item in floating menu ([2806b07](https://github.com/sibiraj-s/ngx-editor/commit/2806b07))
+
+#### Breaking Changes
+
+`@angualr/elements` is no longer a dependency ([f12a5c8](https://github.com/sibiraj-s/ngx-editor/commit/f12a5c8))
+
 ## v8.0.0-beta.5 (2021-02-07)
 
 #### Bug Fixes
