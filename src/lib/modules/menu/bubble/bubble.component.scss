@@ -32,20 +32,12 @@
   + .NgxBubbleMenu__Icon {
     margin-left: 0.3rem;
   }
-}
 
-.NgxBubbleMenu__Icon--Active {
-  background-color: white;
-
-  svg {
-    fill: black;
-  }
-
-  &:hover {
-    background-color: #636262;
-
+  &.NgxBubbleMenu__Icon--Active {
+    background-color: white;
+  
     svg {
-      fill: white;
+      fill: black;
     }
   }
 }
