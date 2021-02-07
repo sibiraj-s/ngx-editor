@@ -74,3 +74,4 @@ editor.blur.subscribe(() => {}); // no longer exposed
 #### Miscellaneous
 
 - `@angular/elements` is a peerDependency
+- Some CSS Bug fixes might affect existing components
