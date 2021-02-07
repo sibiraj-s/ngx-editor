@@ -1,6 +1,6 @@
 import {
-  Component, ContentChild, ContentChildren, ElementRef, HostBinding,
-  HostListener, Input, OnDestroy, OnInit, ViewChild
+  Component, ElementRef, HostBinding,
+  HostListener, Input, OnDestroy, OnInit
 } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { NodeSelection } from 'prosemirror-state';
@@ -12,7 +12,6 @@ import Editor from '../../../Editor';
 import Icon from '../../../icons';
 import { TBItems } from '../../../types';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
-import { ToggleCommands } from '../MenuCommands';
 
 interface BubblePosition {
   top: number;
@@ -29,14 +28,9 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   constructor(public el: ElementRef<HTMLElement>, private sanitizeHTML: SanitizeHtmlPipe) { }
 
   @HostBinding('style') get display(): Partial<CSSStyleDeclaration> {
-    if (!this.showMenu) {
-      return {
-        visibility: 'hidden'
-      };
-    }
-
     return {
-      visibility: 'visible',
+      visibility: this.showMenu ? 'visible' : 'hidden',
+      opacity: this.showMenu ? '1' : '0',
       top: this.posTop + 'px',
       left: this.posLeft + 'px',
     };
@@ -53,22 +47,9 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   private showMenu = false;
   private updateSubscription: Subscription;
   private dragging = false;
-  private clicked = false;
   private resizeSubscription: Subscription;
   execulableItems: TBItems[] = [];
   activeItems: TBItems[] = [];
-
-  toolbar: TBItems[][] = [
-    ['bold', 'italic', 'underline', 'strike'],
-    ['ordered_list', 'bullet_list', 'blockquote', 'code'],
-    ['align_left', 'align_center', 'align_right', 'align_justify']
-  ];
-
-  toggleCommands: TBItems[] = [
-    'bold', 'italic', 'underline', 'strike',
-    'ordered_list', 'bullet_list', 'blockquote', 'code',
-    'align_left', 'align_center', 'align_right', 'align_justify'
-  ];
 
   @HostListener('document:mousedown') onMouseDown(): void {
     this.dragging = true;
@@ -76,6 +57,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
 
   @HostListener('document:keydown') onKeyDown(): void {
     this.dragging = true;
+    this.hide();
   }
 
   @HostListener('document:mouseup') onMouseUp(): void {
@@ -92,6 +74,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
     if (!this.view) {
       return;
     }
+
     this.update(this.view);
   }
 
@@ -101,7 +84,6 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   private hide(): void {
-    this.clicked = false;
     this.showMenu = false;
   }
 
@@ -133,7 +115,6 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
       left = box.width - bubble.width;
     }
 
-    // if
     if (left < 0) {
       left = 0;
     }
@@ -171,51 +152,13 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
     this.posLeft = left;
     this.posTop = top;
 
-    if (!this.clicked) {
-      this.show();
-    }
+    this.show();
   }
-
-  onClick(e: MouseEvent, commandName: TBItems): void {
-    e.preventDefault();
-    if (e.button !== 0) {
-      return;
-    }
-
-    const { state, dispatch } = this.view;
-
-    const command = ToggleCommands[commandName];
-    command.toggle()(state, dispatch);
-    this.clicked = true;
-  }
-
-  private findActiveAndDisabledItems(view: EditorView): void {
-    this.activeItems = [];
-    this.execulableItems = [];
-    const { state } = view;
-
-    this.toggleCommands.forEach(toolbarItem => {
-      const command = ToggleCommands[toolbarItem];
-
-      const isActive = command.isActive(state);
-      if (isActive) {
-        this.activeItems.push(toolbarItem);
-      }
-
-      const canExecute = command.canExecute(state);
-
-      if (canExecute) {
-        this.execulableItems.push(toolbarItem);
-      }
-    });
-  }
-
 
   ngOnInit(): void {
     this.updateSubscription = this.editor.update
       .subscribe((view) => {
         this.update(view);
-        this.findActiveAndDisabledItems(view);
       });
 
     this.resizeSubscription = fromEvent(window, 'resize').pipe(
@@ -224,7 +167,6 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
       this.useUpdate();
     });
   }
-
 
   ngOnDestroy(): void {
     this.updateSubscription.unsubscribe();

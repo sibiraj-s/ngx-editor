@@ -1,6 +1,6 @@
 import {
-  Component, ElementRef,
-  Input, OnDestroy, OnInit
+  Component, Input, OnDestroy,
+  OnInit
 } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { EditorView } from 'prosemirror-view';
@@ -18,7 +18,7 @@ import { ToggleCommands } from '../MenuCommands';
   styleUrls: ['./bubble.component.scss']
 })
 export class BubbleComponent implements OnInit, OnDestroy {
-  constructor(private el: ElementRef<HTMLElement>, private sanitizeHTML: SanitizeHtmlPipe) { }
+  constructor(private sanitizeHTML: SanitizeHtmlPipe) { }
 
   private get view(): EditorView {
     return this.editor.view;
@@ -49,6 +49,8 @@ export class BubbleComponent implements OnInit, OnDestroy {
 
   onClick(e: MouseEvent, commandName: TBItems): void {
     e.preventDefault();
+    e.stopPropagation();
+
     if (e.button !== 0) {
       return;
     }
