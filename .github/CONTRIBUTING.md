@@ -23,7 +23,7 @@ npm i
 - Run the following to build and watch the changes to the library
 
 ```bash
-npm run watch:lib
+npm run dev
 ```
 
 - Run the demo server to test the editor
