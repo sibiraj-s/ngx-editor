@@ -13,6 +13,14 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.0.0-beta.5 (2021-02-07)
+
+#### Bug Fixes
+
+- update prosemirror-transform ([5d87c20](https://github.com/sibiraj-s/ngx-editor/commit/5d87c20))
+- update prosemirror-view ([8325556](https://github.com/sibiraj-s/ngx-editor/commit/8325556))
+- cleanup floating menu show/hide logic ([93afcdc](https://github.com/sibiraj-s/ngx-editor/commit/93afcdc))
+
 ## v8.0.0-beta.4 (2021-02-06)
 
 #### Bug Fixes
