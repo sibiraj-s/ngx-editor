@@ -146,8 +146,6 @@ Mostly works on all Evergreen-Browsers like
 - Opera
 - Safari
 
-The editor makes use of custom components. Include polyfills if required. Refer https://angular.io/guide/elements for more information
-
 ## Angular Compatibility
 
 Angular 9+.
