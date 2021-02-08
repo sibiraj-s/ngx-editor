@@ -29,5 +29,13 @@ npm run dev
 - Run the demo server to test the editor
 
 ```bash
-npm run serve:demo
+npm serve:demo
+```
+
+This will run the demo server in port 5200.
+
+- To preview docs locally
+
+```bash
+npm run serve:docs
 ```
