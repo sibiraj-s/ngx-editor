@@ -76,6 +76,12 @@ class ImageRezieView implements NodeView {
   }
 
   update(node: ProseMirrorNode): boolean {
+    if (node.type !== this.node.type) {
+      return false;
+    }
+
+    this.node = node;
+
     const changed = this.computeChanges(this.node.attrs, node.attrs);
     if (changed) {
       this.updating = true;
