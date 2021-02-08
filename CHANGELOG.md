@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.0.0-beta.7 (2021-02-08)
+
+#### Bug Fixes
+
+- remove use of ecma private methods ([41df4bf](https://github.com/sibiraj-s/ngx-editor/commit/41df4bf))
+- throw error if editor is not provided to floating bubble ([bae942d](https://github.com/sibiraj-s/ngx-editor/commit/bae942d))
+- fix styles for image view ([6fd4a8b](https://github.com/sibiraj-s/ngx-editor/commit/6fd4a8b))
+
+#### Dependency Updates
+
+- update docsify ([d9b3ada](https://github.com/sibiraj-s/ngx-editor/commit/d9b3ada))
+
 ## v8.0.0-beta.6 (2021-02-07)
 
 #### Bug Fixes
