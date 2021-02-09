@@ -13,6 +13,23 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.0.0-beta.8 (2021-02-09)
+
+#### Bug Fixes
+
+- sync image view's cached node on update ([3859006](https://github.com/sibiraj-s/ngx-editor/commit/3859006))
+- prevent floating menu from closing while clicking on disabled items ([83fc998](https://github.com/sibiraj-s/ngx-editor/commit/83fc998))
+- show title for floating menu items ([53eb29c](https://github.com/sibiraj-s/ngx-editor/commit/53eb29c))
+
+#### Dependency Updates
+
+- update angular dependencies ([0d71d63](https://github.com/sibiraj-s/ngx-editor/commit/0d71d63))
+- regenerate package-lock.json file ([7696230](https://github.com/sibiraj-s/ngx-editor/commit/7696230))
+
+#### Internal
+
+- update LICENSE ([b4cdf2f](https://github.com/sibiraj-s/ngx-editor/commit/b4cdf2f))
+
 ## v8.0.0-beta.7 (2021-02-08)
 
 #### Bug Fixes
@@ -72,7 +89,7 @@ Floating menu is now exposed as a component
 
 ```html
 <ngx-editor [editor]="editor">
-  <ngx-editor-floating-menu [editor]="editor"></ngx-editor-floating-meu>
+  <ngx-editor-floating-menu [editor]="editor"></ngx-editor-floating-menu>
 </ngx-editor>
 ```
 
