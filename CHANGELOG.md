@@ -15,6 +15,10 @@ All notable changes to this project will be documented in this file.
 
 ## v8.0.0-beta.8 (2021-02-09)
 
+#### Features
+
+- allow pasting links ([83420ad](https://github.com/sibiraj-s/ngx-editor/commit/83420ad))
+
 #### Bug Fixes
 
 - sync image view's cached node on update ([3859006](https://github.com/sibiraj-s/ngx-editor/commit/3859006))
