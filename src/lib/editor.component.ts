@@ -109,6 +109,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     }));
 
     this.editor.registerPlugin(plugins.image(this.injector));
+    this.editor.registerPlugin(plugins.link());
   }
 
   ngOnInit(): void {
