@@ -51,7 +51,11 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   execulableItems: TBItems[] = [];
   activeItems: TBItems[] = [];
 
-  @HostListener('document:mousedown') onMouseDown(): void {
+  @HostListener('document:mousedown', ['$event']) onMouseDown(e: MouseEvent): void {
+    if (this.el.nativeElement.contains(e.target as Node)) {
+      e.preventDefault();
+      return;
+    }
     this.dragging = true;
   }
 
