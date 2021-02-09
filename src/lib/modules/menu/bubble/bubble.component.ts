@@ -11,6 +11,7 @@ import Icon from '../../../icons';
 import { TBItems } from '../../../types';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { ToggleCommands } from '../MenuCommands';
+import { NgxEditorService } from '../../../editor.service';
 
 @Component({
   selector: 'ngx-bubble',
@@ -18,7 +19,7 @@ import { ToggleCommands } from '../MenuCommands';
   styleUrls: ['./bubble.component.scss']
 })
 export class BubbleComponent implements OnInit, OnDestroy {
-  constructor(private sanitizeHTML: SanitizeHtmlPipe) { }
+  constructor(private sanitizeHTML: SanitizeHtmlPipe, private ngxeService: NgxEditorService) { }
 
   private get view(): EditorView {
     return this.editor.view;
@@ -45,6 +46,10 @@ export class BubbleComponent implements OnInit, OnDestroy {
   getIcon(name: TBItems): SafeHtml {
     const icon = Icon.getPath(name);
     return this.sanitizeHTML.transform(icon);
+  }
+
+  getTitle(name: string): string {
+    return this.ngxeService.locals.get(name);
   }
 
   onClick(e: MouseEvent, commandName: TBItems): void {
