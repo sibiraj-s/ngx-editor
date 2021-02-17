@@ -4,6 +4,7 @@ import {
   chainCommands, createParagraphNear, liftEmptyBlock,
   newlineInCode, splitBlock
 } from 'prosemirror-commands';
+import { DOMParser } from 'prosemirror-model';
 
 import MarkCommand from './commands/Mark';
 import ListCommand from './commands/ListItem';
@@ -212,6 +213,20 @@ class EditorCommands {
   align(p: Align): this {
     const command = new TextAlignCommand(p);
     command.toggle()(this.state, this.dispatch);
+    return this;
+  }
+
+  insertHTML(html: string): this {
+    const { selection, schema, tr } = this.state;
+    const { from, to } = selection;
+
+    const element = document.createElement('div');
+    element.innerHTML = html.trim();
+    const slice = DOMParser.fromSchema(schema).parseSlice(element);
+
+    const transaction = tr.replaceRange(from, to, slice);
+    this.applyTrx(transaction);
+
     return this;
   }
 }
