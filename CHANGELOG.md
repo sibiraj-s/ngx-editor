@@ -13,6 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.0.0 (2021-02-17)
+
+#### Features
+
+- add `auto-link` inputrule ([c18d1ed](https://github.com/sibiraj-s/ngx-editor/commit/c18d1ed))
+- add `insertHTML` command ([9d41ff0](https://github.com/sibiraj-s/ngx-editor/commit/9d41ff0))
+
+#### Dependency Updates
+
+- update `prosemirror-{view/commands}` ([292e21d](https://github.com/sibiraj-s/ngx-editor/commit/292e21d))
+
 ## v8.0.0-beta.8 (2021-02-09)
 
 #### Features
