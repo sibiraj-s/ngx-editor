@@ -62,13 +62,41 @@ new Editor({
 });
 ```
 
-#### Removed Editor.focus and Editor.blur methods
+#### Removed Editor.focus and Editor.blur events
 
 ```ts
 const editor = new Editor();
 
 editor.focus.subscribe(() => {}); // no longer exposed
 editor.blur.subscribe(() => {}); // no longer exposed
+```
+
+Alternatively you can use the props on the editor component for the same
+
+```html
+<ngx-editor
+  [editor]="editor"
+  focusOut="onBlur()"
+  focusIn="onFocus()"
+></ngx-editor>
+```
+
+#### Remvoed Editor.enable and Editor.disable methods
+
+**Before:**
+
+```ts
+const editor = new Editor({});
+
+editor.enable(); // enable edititng
+
+editor.disable(); // disable editing
+```
+
+**After:**
+
+```html
+<ngx-editor [editor]="editor" enabled="true"></ngx-editor>
 ```
 
 #### Miscellaneous
