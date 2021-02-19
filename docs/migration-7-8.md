@@ -89,11 +89,12 @@ Alternatively you can use the props on the editor component for the same
 const editor = new Editor({});
 
 editor.enable(); // enable edititng
-
 editor.disable(); // disable editing
 ```
 
 **After:**
+
+Set the enabled prop to `true` or `false` to enable/disable the editor.
 
 ```html
 <ngx-editor [editor]="editor" enabled="true"></ngx-editor>
