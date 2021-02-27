@@ -14,7 +14,7 @@
       "prosemirror-inputrules": "prosemirrorInputRules"
     }
   },
-  "whitelistedNonPeerDependencies": [
+  "allowedNonPeerDependencies": [
     "prosemirror-state",
     "prosemirror-view",
     "prosemirror-keymap",
