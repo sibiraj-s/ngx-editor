@@ -29,20 +29,18 @@ const placeholderPlugin = (text?: string): Plugin => {
         const decorations: Decoration[] = [];
 
         const decorate = (node: ProseMirrorNode, pos: number) => {
-        if (doc.childCount === 1 && doc?.firstChild?.isTextblock && doc.firstChild.content.size === 0) {
-          const placeHolderEl = document.createElement('span');
-          placeHolderEl.classList.add(PLACEHOLDER_CLASSNAME);
-          placeHolderEl.textContent = placeholder;
-          return DecorationSet.create(doc, [Decoration.widget(1, placeHolderEl)]);
-        }
+          if (node.type.isBlock && node.childCount === 0 && doc.textContent.length === 0) {
 
             const placeholderNode = Decoration.node(pos, (pos + node.nodeSize), {
               class: PLACEHOLDER_CLASSNAME,
-              'data-placeholder': placeholder
+              'data-placeholder': placeholder,
+              'data-align': node.attrs.align ?? null
             });
 
             decorations.push(placeholderNode);
           }
+
+          return false;
         };
 
         doc.descendants(decorate);

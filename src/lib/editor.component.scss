@@ -44,6 +44,12 @@ $menubar-text-padding: 0 $menu-item-spacing;
     cursor: text;
     content: attr(data-placeholder);
   }
+
+  &[data-align="right"] {
+    &::before {
+      position: relative;
+    }
+  }
 }
 
 .NgxEditor__Content {
