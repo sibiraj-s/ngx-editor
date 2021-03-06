@@ -36,11 +36,14 @@ $menubar-text-padding: 0 $menu-item-spacing;
 }
 
 .NgxEditor__Placeholder {
-  color: #6c757d;
-  opacity: 1;
-  user-select: none;
-  position: absolute;
-  cursor: text;
+  &::before {
+    color: #6c757d;
+    opacity: 1;
+    user-select: none;
+    position: absolute;
+    cursor: text;
+    content: attr(data-placeholder);
+  }
 }
 
 .NgxEditor__Content {
