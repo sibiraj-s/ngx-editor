@@ -1,4 +1,5 @@
 {
+  "name": "ngx-editor",
   "private": true,
   "scripts": {
     "build:demo": "ng build demo --prod",
