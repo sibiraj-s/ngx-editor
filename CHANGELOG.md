@@ -13,6 +13,25 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.0.1 (2021-03-06)
+
+#### Bug Fixes
+
+- fix placeholder misaligned with with right align ([2b7b06e](https://github.com/sibiraj-s/ngx-editor/commit/2b7b06e))
+- fix placeholder caret not displayed in Firefox ([451f275](https://github.com/sibiraj-s/ngx-editor/commit/451f275))
+
+#### Dependency Updates
+
+- update karma to v6 ([077140b](https://github.com/sibiraj-s/ngx-editor/commit/077140b))
+- update husky to v5 ([bf7657a](https://github.com/sibiraj-s/ngx-editor/commit/bf7657a))
+- update devDependencies ([8b41338](https://github.com/sibiraj-s/ngx-editor/commit/8b41338)), ([28dc6af](https://github.com/sibiraj-s/ngx-editor/commit/28dc6af))
+- update angular dependencies ([55700a3](https://github.com/sibiraj-s/ngx-editor/commit/55700a3))
+- regenerate package-lock ([ea76b8a](https://github.com/sibiraj-s/ngx-editor/commit/ea76b8a))
+
+#### Documentation
+
+- update migration guide ([bcbfd72](https://github.com/sibiraj-s/ngx-editor/commit/bcbfd72)), ([0002cba](https://github.com/sibiraj-s/ngx-editor/commit/0002cba))
+
 ## v8.0.0 (2021-02-17)
 
 #### Features
