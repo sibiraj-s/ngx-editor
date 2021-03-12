@@ -69,7 +69,13 @@ class Link {
     }
 
     const { schema } = state;
-    return isMarkActive(state, schema.marks.link);
+    const type = schema.marks.link;
+
+    if (!type) {
+      return false;
+    }
+
+    return isMarkActive(state, type);
   }
 
   remove(state: EditorState, dispatch?: Dispatch): boolean {
