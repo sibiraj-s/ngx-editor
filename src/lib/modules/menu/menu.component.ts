@@ -1,8 +1,7 @@
 import {
-  Component, Input, OnDestroy,
+  Component, Input,
   OnInit, TemplateRef
 } from '@angular/core';
-import { Subscription } from 'rxjs';
 
 import { Toolbar, ToolbarItem, ToolbarDropdown } from '../../types';
 
