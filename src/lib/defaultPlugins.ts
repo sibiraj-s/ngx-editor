@@ -1,7 +1,7 @@
 import { NodeType, Schema } from 'prosemirror-model';
 import { Plugin } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
-import { toggleMark, baseKeymap } from 'prosemirror-commands';
+import { toggleMark, baseKeymap, chainCommands, exitCode } from 'prosemirror-commands';
 import { splitListItem, liftListItem, sinkListItem } from 'prosemirror-schema-list';
 import { history, undo, redo } from 'prosemirror-history';
 import {
@@ -103,6 +103,12 @@ const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) => {
     }),
     keymap({
       Enter: splitListItem(schema.nodes.list_item),
+      'Shift-Enter': chainCommands(exitCode, (state, dispatch) => {
+        const tr = state.tr;
+        const br = schema.nodes.hard_break;
+        dispatch(tr.replaceSelectionWith(br.create()).scrollIntoView());
+        return true;
+      }),
       'Mod-[': liftListItem(schema.nodes.list_item),
       'Mod-]': sinkListItem(schema.nodes.list_item),
       Tab: sinkListItem(schema.nodes.list_item)
