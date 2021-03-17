@@ -13,6 +13,26 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.1.0 (2021-03-17)
+
+#### Features
+
+- `Shift-Enter` to line break ([e5a4b4c](https://github.com/sibiraj-s/ngx-editor/commit/e5a4b4c))
+
+#### Bug Fixes
+
+- check if link mark exists before evaluation ([f65b0ff](https://github.com/sibiraj-s/ngx-editor/commit/f65b0ff))
+
+#### Dependency Updates
+
+- regenerate package-lock.json ([47a292c](https://github.com/sibiraj-s/ngx-editor/commit/47a292c))
+- update prosemirror-view ([a71de7d](https://github.com/sibiraj-s/ngx-editor/commit/a71de7d))
+- update devDependencies ([1d56a9e](https://github.com/sibiraj-s/ngx-editor/commit/1d56a9e))
+
+#### Internal
+
+- remove unused imports ([85575e1](https://github.com/sibiraj-s/ngx-editor/commit/85575e1))
+
 ## v8.0.1 (2021-03-06)
 
 #### Bug Fixes
