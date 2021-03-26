@@ -19,18 +19,18 @@ const placeholderPlugin = (text?: string): Plugin => {
     props: {
       decorations(state: EditorState): DecorationSet {
         const { doc } = state;
+        const { textContent, childCount } = doc;
 
         const placeholder = this.getState(state);
 
-        if (!placeholder) {
+        if (!placeholder || childCount > 1) {
           return DecorationSet.empty;
         }
 
         const decorations: Decoration[] = [];
 
         const decorate = (node: ProseMirrorNode, pos: number) => {
-          if (node.type.isBlock && node.childCount === 0 && doc.textContent.length === 0) {
-
+          if (node.type.isBlock && node.childCount === 0 && textContent.length === 0) {
             const placeholderNode = Decoration.node(pos, (pos + node.nodeSize), {
               class: PLACEHOLDER_CLASSNAME,
               'data-placeholder': placeholder,
