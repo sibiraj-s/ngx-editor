@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v8.1.1 (2021-03-26)
+
+#### Bug Fixes
+
+- prevent placeholder from rendering on each empty block ([ef2c452](https://github.com/sibiraj-s/ngx-editor/commit/ef2c452))
+
 ## v8.1.0 (2021-03-17)
 
 #### Features
