@@ -82,7 +82,7 @@ Then in HTML
     [editor]="editor"
     [ngModel]="html"
     [editable]="true"
-    [placeholder]="Type here..."
+    [placeholder]="'Type here...'"
   ></ngx-editor>
 </div>
 ```
