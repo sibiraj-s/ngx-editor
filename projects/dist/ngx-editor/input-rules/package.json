@@ -1,0 +1,10 @@
+{
+  "main": "../bundles/ngx-editor-input-rules.umd.js",
+  "module": "../fesm2015/ngx-editor-input-rules.js",
+  "es2015": "../fesm2015/ngx-editor-input-rules.js",
+  "esm2015": "../esm2015/input-rules/ngx-editor-input-rules.js",
+  "fesm2015": "../fesm2015/ngx-editor-input-rules.js",
+  "typings": "ngx-editor-input-rules.d.ts",
+  "sideEffects": false,
+  "name": "ngx-editor/input-rules"
+}

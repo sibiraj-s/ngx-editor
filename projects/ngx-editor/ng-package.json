@@ -1,0 +1,27 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/ngx-editor",
+  "lib": {
+    "entryFile": "./src/public_api.ts",
+    "umdModuleIds": {
+      "prosemirror-state": "prosemirrorState",
+      "prosemirror-view": "prosemirrorView",
+      "prosemirror-model": "prosemirrorModel",
+      "prosemirror-keymap": "prosemirrorKeymap",
+      "prosemirror-schema-list": "prosemirroSchemaList",
+      "prosemirror-commands": "prosemirrorCommands",
+      "prosemirror-history": "prosemirrorHistory",
+      "prosemirror-inputrules": "prosemirrorInputRules"
+    }
+  },
+  "allowedNonPeerDependencies": [
+    "prosemirror-state",
+    "prosemirror-view",
+    "prosemirror-keymap",
+    "prosemirror-model",
+    "prosemirror-schema-list",
+    "prosemirror-commands",
+    "prosemirror-history",
+    "prosemirror-inputrules"
+  ]
+}

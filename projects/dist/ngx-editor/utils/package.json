@@ -1,0 +1,10 @@
+{
+  "main": "../bundles/ngx-editor-utils.umd.js",
+  "module": "../fesm2015/ngx-editor-utils.js",
+  "es2015": "../fesm2015/ngx-editor-utils.js",
+  "esm2015": "../esm2015/utils/ngx-editor-utils.js",
+  "fesm2015": "../fesm2015/ngx-editor-utils.js",
+  "typings": "ngx-editor-utils.d.ts",
+  "sideEffects": false,
+  "name": "ngx-editor/utils"
+}

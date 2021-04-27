@@ -8,7 +8,7 @@ on:
     types: [created]
 
 jobs:
-  test:
+  test-lib:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,7 +22,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - run: npm ci
-      - run: npm run build
+      - run: npm run build:lib
       - run: npm run test:lib
 
   # pages:

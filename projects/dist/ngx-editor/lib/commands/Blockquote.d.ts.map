@@ -1,0 +1,1 @@
+{"version":3,"file":"Blockquote.d.ts","sourceRoot":"","sources":["../../../../ngx-editor/src/lib/commands/Blockquote.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,WAAW,EAAe,MAAM,mBAAmB,CAAC;AAC7D,OAAO,EAAE,OAAO,EAAgB,MAAM,sBAAsB,CAAC;AAI7D,cAAM,SAAS;IACb,MAAM,IAAI,OAAO;IAiBjB,QAAQ,CAAC,KAAK,EAAE,WAAW,GAAG,OAAO;IAWrC,UAAU,CAAC,KAAK,EAAE,WAAW,GAAG,OAAO;CAGxC;AAED,eAAe,SAAS,CAAC"}

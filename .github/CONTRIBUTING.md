@@ -29,7 +29,7 @@ npm run dev
 - Run the demo server to test the editor
 
 ```bash
-npm serve:demo
+npm run dev:demo
 ```
 
 This will run the demo server in port 5200.

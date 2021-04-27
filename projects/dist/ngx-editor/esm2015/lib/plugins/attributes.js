@@ -1,0 +1,11 @@
+import { Plugin, PluginKey } from 'prosemirror-state';
+const attributesPlugin = (attributes = {}) => {
+    return new Plugin({
+        key: new PluginKey('attributes'),
+        props: {
+            attributes
+        }
+    });
+};
+export default attributesPlugin;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXR0cmlidXRlcy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL25neC1lZGl0b3Ivc3JjL2xpYi9wbHVnaW5zL2F0dHJpYnV0ZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLE1BQU0sRUFBRSxTQUFTLEVBQUUsTUFBTSxtQkFBbUIsQ0FBQztBQUV0RCxNQUFNLGdCQUFnQixHQUFHLENBQUMsVUFBVSxHQUFHLEVBQUUsRUFBRSxFQUFFO0lBQzNDLE9BQU8sSUFBSSxNQUFNLENBQUM7UUFDaEIsR0FBRyxFQUFFLElBQUksU0FBUyxDQUFDLFlBQVksQ0FBQztRQUNoQyxLQUFLLEVBQUU7WUFDTCxVQUFVO1NBQ1g7S0FDRixDQUFDLENBQUM7QUFDTCxDQUFDLENBQUM7QUFFRixlQUFlLGdCQUFnQixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgUGx1Z2luLCBQbHVnaW5LZXkgfSBmcm9tICdwcm9zZW1pcnJvci1zdGF0ZSc7XG5cbmNvbnN0IGF0dHJpYnV0ZXNQbHVnaW4gPSAoYXR0cmlidXRlcyA9IHt9KSA9PiB7XG4gIHJldHVybiBuZXcgUGx1Z2luKHtcbiAgICBrZXk6IG5ldyBQbHVnaW5LZXkoJ2F0dHJpYnV0ZXMnKSxcbiAgICBwcm9wczoge1xuICAgICAgYXR0cmlidXRlc1xuICAgIH1cbiAgfSk7XG59O1xuXG5leHBvcnQgZGVmYXVsdCBhdHRyaWJ1dGVzUGx1Z2luO1xuIl19

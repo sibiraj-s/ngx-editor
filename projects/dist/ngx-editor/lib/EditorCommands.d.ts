@@ -1,0 +1,44 @@
+import { EditorView } from 'prosemirror-view';
+import { LinkAttrs } from './commands/Link';
+import { HeadingLevels } from './commands/Heading';
+import { ImageAttrs } from './commands/Image';
+import { Align } from './commands/TextAlign';
+declare class EditorCommands {
+    private view;
+    private state;
+    private tr;
+    constructor(view: EditorView);
+    private applyTrx;
+    private dispatch;
+    exec(): boolean;
+    focus(): this;
+    scrollIntoView(): this;
+    insertText(text: string): this;
+    insertNewLine(): this;
+    applyMark(name: string): this;
+    toggleMark(name: string): this;
+    bold(): this;
+    toggleBold(): this;
+    italics(): this;
+    toggleItalics(): this;
+    underline(): this;
+    toggleUnderline(): this;
+    strike(): this;
+    toggleStrike(): this;
+    code(): this;
+    toggleCode(): this;
+    toggleOrderedList(): this;
+    toggleBulletList(): this;
+    toggleHeading(level: HeadingLevels): this;
+    insertLink(text: string, attrs: LinkAttrs): this;
+    updateLink(attrs: LinkAttrs): this;
+    insertImage(src: string, attrs?: ImageAttrs): this;
+    textColor(color: string): this;
+    backgroundColor(color: string): this;
+    removeTextColor(): this;
+    removeBackgroundColor(): this;
+    align(p: Align): this;
+    insertHTML(html: string): this;
+}
+export default EditorCommands;
+//# sourceMappingURL=EditorCommands.d.ts.map

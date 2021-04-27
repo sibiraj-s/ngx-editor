@@ -1,0 +1,10 @@
+export * from './lib/editor.component';
+export * from './lib/modules/menu/menu.component';
+export * from './lib/modules/menu/floating-menu/floating-menu.component';
+export * from './lib/editor.module';
+export * from './lib/schema';
+export * from './lib/validators';
+export * from './lib/types';
+export * from './lib/parsers';
+export { default as Editor } from './lib/Editor';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL25neC1lZGl0b3Ivc3JjL3B1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsY0FBYyx3QkFBd0IsQ0FBQztBQUN2QyxjQUFjLG1DQUFtQyxDQUFDO0FBQ2xELGNBQWMsMERBQTBELENBQUM7QUFDekUsY0FBYyxxQkFBcUIsQ0FBQztBQUVwQyxjQUFjLGNBQWMsQ0FBQztBQUM3QixjQUFjLGtCQUFrQixDQUFDO0FBRWpDLGNBQWMsYUFBYSxDQUFDO0FBQzVCLGNBQWMsZUFBZSxDQUFDO0FBQzlCLE9BQU8sRUFBRSxPQUFPLElBQUksTUFBTSxFQUFFLE1BQU0sY0FBYyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0ICogZnJvbSAnLi9saWIvZWRpdG9yLmNvbXBvbmVudCc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9tb2R1bGVzL21lbnUvbWVudS5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvbW9kdWxlcy9tZW51L2Zsb2F0aW5nLW1lbnUvZmxvYXRpbmctbWVudS5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvZWRpdG9yLm1vZHVsZSc7XG5cbmV4cG9ydCAqIGZyb20gJy4vbGliL3NjaGVtYSc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi92YWxpZGF0b3JzJztcblxuZXhwb3J0ICogZnJvbSAnLi9saWIvdHlwZXMnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvcGFyc2Vycyc7XG5leHBvcnQgeyBkZWZhdWx0IGFzIEVkaXRvciB9IGZyb20gJy4vbGliL0VkaXRvcic7XG4iXX0=
