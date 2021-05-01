@@ -13,6 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v9.0.0 (2021-05-01)
+
+#### Features
+
+- enable or disable the component via Forms API ([042eeea](https://github.com/sibiraj-s/ngx-editor/commit/042eeea))
+- add option `dropdownPlacement` to the menu component ([b0f2026](https://github.com/sibiraj-s/ngx-editor/commit/b0f2026))
+
+#### Breaking Changes
+
+- option `enabled` is replaced with `disabled` ([042eeea](https://github.com/sibiraj-s/ngx-editor/commit/042eeea))
+
 ## v8.1.1 (2021-03-26)
 
 #### Bug Fixes
