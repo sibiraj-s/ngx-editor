@@ -123,7 +123,7 @@ const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) => {
   return plugins;
 };
 
-const getDefaultPlugins = (schema: Schema, options: Options) => {
+const getDefaultPlugins = (schema: Schema, options: Options): Plugin[] => {
   const plugins: Plugin[] = [];
 
   if (options.keyboardShortcuts) {

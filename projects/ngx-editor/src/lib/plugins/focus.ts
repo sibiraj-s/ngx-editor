@@ -1,6 +1,6 @@
 import { Plugin, PluginKey } from 'prosemirror-state';
 
-const focusPlugin = (cb = () => { }) => {
+const focusPlugin = (cb: () => void): Plugin => {
   return new Plugin({
     key: new PluginKey('focus'),
     props: {

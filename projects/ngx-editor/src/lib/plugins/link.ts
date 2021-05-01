@@ -40,7 +40,7 @@ const linkify = (fragment: Fragment): Fragment => {
   return Fragment.fromArray(linkified);
 };
 
-const linkPlugin = () => {
+const linkPlugin = ():Plugin => {
   return new Plugin({
     key: new PluginKey('link'),
     props: {

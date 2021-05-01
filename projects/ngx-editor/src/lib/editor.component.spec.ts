@@ -1,6 +1,6 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement, SimpleChange } from '@angular/core';
+import { DebugElement } from '@angular/core';
 
 import { NgxEditorComponent } from './editor.component';
 import { MenuModule } from './modules/menu/menu.module';

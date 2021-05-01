@@ -28,7 +28,7 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
   constructor(
     private ngxeService: NgxEditorService,
     private menuService: MenuService
-  ) {  }
+  ) { }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') isActive = false;
   @HostBinding('class.NgxEditor--Disabled') disabled = false;
@@ -45,7 +45,7 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
     command.toggle()(state, dispatch);
   }
 
-  update = (view: EditorView) => {
+  update = (view: EditorView): void => {
     const { state } = view;
     const command = ToggleCommands[this.name];
     this.isActive = command.isActive(state);

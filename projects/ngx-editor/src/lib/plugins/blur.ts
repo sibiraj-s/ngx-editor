@@ -1,6 +1,6 @@
 import { Plugin, PluginKey } from 'prosemirror-state';
 
-const blurPlugin = (cb = () => { }) => {
+const blurPlugin = (cb: () => void):Plugin => {
   return new Plugin({
     key: new PluginKey('blur'),
     props: {

@@ -1,6 +1,6 @@
 import { EditorState, Plugin, PluginKey, Transaction } from 'prosemirror-state';
 
-const editablePlugin = (editable = true) => {
+const editablePlugin = (editable = true): Plugin => {
   return new Plugin({
     key: new PluginKey('editable'),
     state: {

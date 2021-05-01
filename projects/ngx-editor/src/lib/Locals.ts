@@ -41,7 +41,7 @@ class Locals {
     this.locals = Object.assign({}, defaults, newLocals);
   }
 
-  get = (key: string) => {
+  get = (key: string):string => {
     return this.locals[key] ?? '';
   }
 }

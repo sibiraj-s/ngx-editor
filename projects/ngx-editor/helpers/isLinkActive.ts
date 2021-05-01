@@ -4,7 +4,7 @@ import { Mark } from 'prosemirror-model';
 import getSelectionMarks from './getSelectionMarks';
 
 export const isLinkActive = (state: EditorState): boolean => {
-  const { schema, selection: { anchor, head, from, to } } = state;
+  const { schema, selection: { anchor, head, from } } = state;
 
   if (!schema.marks.link) {
     return false;

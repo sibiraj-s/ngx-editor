@@ -22,8 +22,6 @@ export class ImageViewComponent {
 
   @ViewChild('imgEl', { static: true }) imgEl: ElementRef;
 
-  constructor() { }
-
   startResizing(e: MouseEvent, direction: string): void {
     e.preventDefault();
     this.resizeImage(e, direction);

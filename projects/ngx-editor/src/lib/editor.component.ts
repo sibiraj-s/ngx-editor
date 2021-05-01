@@ -41,8 +41,8 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   @Output() focusIn = new EventEmitter<void>();
 
   private subscriptions: Subscription[] = [];
-  private onChange: (value: Record<string, any> | string) => void = () => { };
-  private onTouched: () => void = () => { };
+  private onChange: (value: Record<string, any> | string) => void = () => { /** */ };
+  private onTouched: () => void = () => { /** */ };
 
   writeValue(value: Record<string, any> | string | null): void {
     if (!this.outputFormat && typeof value === 'string') {
@@ -52,11 +52,11 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     this.editor.setContent(value);
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 

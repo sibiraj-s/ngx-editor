@@ -1,6 +1,6 @@
 import { Plugin, PluginKey } from 'prosemirror-state';
 
-const attributesPlugin = (attributes = {}) => {
+const attributesPlugin = (attributes = {}): Plugin => {
   return new Plugin({
     key: new PluginKey('attributes'),
     props: {

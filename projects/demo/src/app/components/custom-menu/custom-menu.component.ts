@@ -12,8 +12,6 @@ import { isNodeActive } from 'ngx-editor/helpers';
   styleUrls: ['./custom-menu.component.scss']
 })
 export class CustomMenuComponent implements OnInit {
-  constructor() { }
-
   @Input() editor: Editor;
   isActive = false;
   isDisabled = false;
@@ -34,7 +32,7 @@ export class CustomMenuComponent implements OnInit {
     return setBlockType(schema.nodes.code_mirror)(state, dispatch);
   }
 
-  update = (view: EditorView) => {
+  update = (view: EditorView):void => {
     const { state } = view;
     const { schema } = state;
     this.isActive = isNodeActive(state, schema.nodes.code_mirror);
