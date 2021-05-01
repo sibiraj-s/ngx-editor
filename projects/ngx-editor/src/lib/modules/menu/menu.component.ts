@@ -51,6 +51,7 @@ export class MenuComponent implements OnInit {
   @Input() disabled = false;
   @Input() editor: Editor;
   @Input() customMenuRef: TemplateRef<any> | null = null;
+  @Input() dropdownPlacement: 'top' | 'bottom' = 'top';
 
   toggleCommands: any[] = [
     'bold', 'italic',

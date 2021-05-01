@@ -182,12 +182,12 @@ $menubar-text-padding: 0 $menu-item-spacing;
   .NgxEditor__Dropdown--DropdownMenu {
     position: absolute;
     left: 0;
-    top: calc(#{$menubar-height} + 2px);
     box-shadow: rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: $border-radius;
     background-color: #fff;
     z-index: 10;
     width: 100%;
+    top: calc(#{$menubar-height} + 2px);
   }
 
   .NgxEditor__Dropdown--Item {
@@ -215,6 +215,24 @@ $menubar-text-padding: 0 $menu-item-spacing;
     &:hover {
       background-color: darken($dropdown-item-active-bg-color, 4%);
     }
+  }
+}
+
+.NgxEditor__MenuBar--Reverse {
+  .NgxEditor__Dropdown--DropdownMenu {
+    top: unset;
+    bottom: calc(#{$menubar-height} + 2px);
+  }
+
+  .NgxEditor__Dropdown--Text {
+    &::after {
+      transform: rotate(180deg);
+    }
+  }
+
+  .NgxEditor__Popup {
+    top: unset;
+    bottom: calc(#{$menubar-height} + 2px);
   }
 }
 

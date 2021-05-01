@@ -1,4 +1,4 @@
-<div class="NgxEditor__MenuBar" [ngClass]="{'NgxEditor--Disabled': disabled}">
+<div class="NgxEditor__MenuBar" [ngClass]="{'NgxEditor--Disabled': disabled, 'NgxEditor__MenuBar--Reverse': dropdownPlacement === 'top'}">
 
   <ng-container *ngFor="let toolbarItem of toolbar; let lastToolbarItem = last">
     <ng-container *ngFor="let item of toolbarItem; let lastItem = last">
