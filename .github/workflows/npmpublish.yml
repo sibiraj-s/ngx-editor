@@ -61,7 +61,7 @@ jobs:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish-npm:
-    needs: test
+    needs: test-lib
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
