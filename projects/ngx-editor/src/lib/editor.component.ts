@@ -26,8 +26,9 @@ import Editor from './Editor';
 
 export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
   constructor(
-    private renderer: Renderer2,
-    private injector: Injector
+    private _renderer: Renderer2,
+    private _injector: Injector,
+    private _elementRef: ElementRef<HTMLElement>
   ) { }
 
   @ViewChild('ngxEditor', { static: true }) private ngxEditor: ElementRef;
@@ -35,7 +36,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   @Input() editor: Editor;
   @Input() outputFormat: 'doc' | 'html';
   @Input() placeholder = 'Type Here...';
-  @Input() enabled = true;
 
   @Output() focusOut = new EventEmitter<void>();
   @Output() focusIn = new EventEmitter<void>();
@@ -60,6 +60,11 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     this.onTouched = fn;
   }
 
+  setDisabledState(isDisabled: boolean): void {
+    this.setMeta('UPDATE_EDITABLE', !isDisabled);
+    this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
+  }
+
   private handleChange(jsonDoc: Record<string, any>): void {
     if (this.outputFormat === 'html') {
       const html = toHTML(jsonDoc, this.editor.schema);
@@ -75,20 +80,12 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     dispatch(tr.setMeta(key, value));
   }
 
-  private enable(): void {
-    this.setMeta('UPDATE_EDITABLE', true);
-  }
-
-  private disable(): void {
-    this.setMeta('UPDATE_EDITABLE', false);
-  }
-
   private setPlaceholder(placeholder: string): void {
     this.setMeta('UPDATE_PLACEHOLDER', placeholder);
   }
 
   private registerPlugins(): void {
-    this.editor.registerPlugin(plugins.editable(this.enabled));
+    this.editor.registerPlugin(plugins.editable());
     this.editor.registerPlugin(plugins.placeholder(this.placeholder));
 
     this.editor.registerPlugin(plugins.attributes({
@@ -108,7 +105,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
       this.onTouched();
     }));
 
-    this.editor.registerPlugin(plugins.image(this.injector));
+    this.editor.registerPlugin(plugins.image(this._injector));
     this.editor.registerPlugin(plugins.link());
   }
 
@@ -117,10 +114,9 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
       throw new Error('NgxEditor: Required editor instance');
     }
 
-    // this.registerCustomElements();
     this.registerPlugins();
 
-    this.renderer.appendChild(this.ngxEditor.nativeElement, this.editor.view.dom);
+    this._renderer.appendChild(this.ngxEditor.nativeElement, this.editor.view.dom);
 
     const contentChangeSubscription = this.editor.valueChanges.subscribe(jsonDoc => {
       this.handleChange(jsonDoc);
@@ -132,14 +128,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.placeholder && !changes.placeholder.isFirstChange()) {
       this.setPlaceholder(changes.placeholder.currentValue);
-    }
-
-    if (changes?.enabled && !changes.enabled.isFirstChange()) {
-      if (!changes.enabled.currentValue) {
-        this.disable();
-      } else {
-        this.enable();
-      }
     }
   }
 

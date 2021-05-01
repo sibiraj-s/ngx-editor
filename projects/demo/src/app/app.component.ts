@@ -34,7 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ];
 
   form = new FormGroup({
-    editorContent: new FormControl(jsonDoc, Validators.required(schema))
+    editorContent: new FormControl({ value: jsonDoc, disabled: true }, Validators.required(schema))
   });
 
   get doc(): AbstractControl {
