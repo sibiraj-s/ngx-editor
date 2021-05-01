@@ -23,6 +23,7 @@
 
 - Migration
 
+  - [v8 to v9](migration-8-9.md)
   - [v7 to v8](migration-7-8.md)
   - [v6 to v7](migration-6-7.md)
   - [v5 to v6](migration-5-6.md)
