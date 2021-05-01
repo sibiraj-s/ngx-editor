@@ -1,4 +1,4 @@
-/* tslint:disable:typedef */
+/* eslint-disable */
 import { undo, redo } from 'prosemirror-history';
 import { TextSelection, Selection } from 'prosemirror-state';
 import { Node as ProseMirrorNode } from 'prosemirror-model';
