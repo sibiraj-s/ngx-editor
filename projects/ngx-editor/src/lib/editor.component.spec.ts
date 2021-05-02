@@ -48,4 +48,16 @@ describe('NgxEditorComponent', () => {
     const compiled: DebugElement = fixture.debugElement;
     expect(compiled.query(By.css('.NgxEditor__Placeholder'))).toBeTruthy();
   });
+
+  it('should disable/enable the component via Froms API', () => {
+    const compiled: DebugElement = fixture.debugElement;
+
+    component.setDisabledState(true);
+    fixture.detectChanges();
+    expect(compiled.query(By.css('.ProseMirror[contenteditable=false]'))).toBeTruthy();
+
+    component.setDisabledState(false);
+    fixture.detectChanges();
+    expect(compiled.query(By.css('.ProseMirror[contenteditable=true]'))).toBeTruthy();
+  })
 });
