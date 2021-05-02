@@ -1,5 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+rm -rf dist/
 npm run build:lib
 npm run test:lib
