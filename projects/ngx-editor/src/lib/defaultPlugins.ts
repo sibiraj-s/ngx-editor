@@ -19,7 +19,7 @@ interface ShortcutOptions {
   history: boolean;
 }
 
-const isMacOs = /Mac/.test(navigator.platform);
+const isMacOs = typeof navigator !== 'undefined' ? /Mac/.test(navigator.platform) : false
 
 // Input rules ref: https://github.com/ProseMirror/prosemirror-example-setup/
 
