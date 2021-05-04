@@ -1,1 +1,2 @@
 '*.md': prettier --write
+'*.{js,ts,html}': eslint --fix

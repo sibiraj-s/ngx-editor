@@ -10,7 +10,6 @@
     "ng": "ng",
     "e2e": "ng e2e",
     "lint": "ng lint",
-    "lint:scripts": "eslint ./scripts",
     "format:md": "prettier **/*.md --write",
     "prerelease": "npm run build:lib",
     "release": "sh ./scripts/release.sh",
