@@ -8,8 +8,6 @@ import { schema } from 'ngx-editor/schema';
 
 const editor = new Editor({
   content: '',
-  placeholder: 'Type here',
-  enabled: true,
   history: true,
   keyboardShortcuts: true,
   inputRules: true,
@@ -24,8 +22,6 @@ Some options may be overwritten by the component props
 ## Options
 
 - **content** - (`Optional`) - a HTML string or json doc
-- **placeholder** - (`Optional`) - default placeholder. This will be overwritten by component prop if provided
-- **enabled** - (`Optional`) - enable/disable the editor. This will be overwritten by component prop if provided
 - **plugins** - (`Optional`) - prosemirror plugins
 - **schema** - (`Optional`) - prosemirror plugins
 - **nodeViews** - (`Optional`) - prosemirror nodeViews
@@ -57,30 +53,6 @@ const plugin = new Plugin({
 });
 
 editor.registerPlugin(plugin);
-```
-
-**enable**
-
-Enable the editor
-
-```ts
-editor.enable();
-```
-
-**disable**
-
-Disable the editor. Make the editor readonly
-
-```ts
-editor.disable();
-```
-
-**setPlaceholder**
-
-Set placeholder value
-
-```ts
-editor.setPlaceholder('Type Here..');
 ```
 
 **destroy**
