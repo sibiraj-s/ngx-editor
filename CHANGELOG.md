@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v9.0.1 (2021-05-05)
+
+#### Bug Fixes
+
+- check `navigator` before access for SSR ([2a58a3a](https://github.com/sibiraj-s/ngx-editor/commit/2a58a3a))
+
 ## v9.0.0 (2021-05-01)
 
 #### Features
