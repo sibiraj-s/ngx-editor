@@ -6,9 +6,10 @@ Menu is not part of the editor component. Include `ngx-editor-menu` in your HTML
 
 - **editor** - (`Required`) editor instance
 - **toolbar** - (`Optional`)
-- **enabled** - (`Optional`) enable/disable menu bar
+- **disabled** - (`Optional`) enable/disable menu bar
 - **colorPresets** - (`Optional`) - colors for color picker
 - **customMenuRef** - (`Optional`) - Template reference to custom menu item
+- **dropdownPlacement** - (`Optional`) - Placement for the dropdown. Can be `top` or `bottom`
 
 **app.component.ts**
 

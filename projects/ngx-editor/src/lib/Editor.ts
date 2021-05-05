@@ -61,30 +61,6 @@ class Editor {
     return new EditorCommands(this.view);
   }
 
-  setContent(content: Content): void {
-    if (isNil(content)) {
-      return;
-    }
-
-    const { state } = this.view;
-    const { tr, doc } = state;
-
-    const newDoc = parseContent(content, this.schema);
-
-    tr.replaceWith(0, state.doc.content.size, newDoc);
-
-    // don't emit if both content is same
-    if (doc.eq(tr.doc)) {
-      return;
-    }
-
-    if (!tr.docChanged) {
-      return;
-    }
-
-    this.view.dispatch(tr);
-  }
-
   private handleTransactions(tr: Transaction): void {
     const state = this.view.state.apply(tr);
     this.view.updateState(state);
@@ -124,6 +100,30 @@ class Editor {
       nodeViews,
       dispatchTransaction: this.handleTransactions.bind(this)
     });
+  }
+
+  setContent(content: Content): void {
+    if (isNil(content)) {
+      return;
+    }
+
+    const { state } = this.view;
+    const { tr, doc } = state;
+
+    const newDoc = parseContent(content, this.schema);
+
+    tr.replaceWith(0, state.doc.content.size, newDoc);
+
+    // don't emit if both content is same
+    if (doc.eq(tr.doc)) {
+      return;
+    }
+
+    if (!tr.docChanged) {
+      return;
+    }
+
+    this.view.dispatch(tr);
   }
 
   registerPlugin(plugin: Plugin): void {

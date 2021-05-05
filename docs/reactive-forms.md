@@ -69,3 +69,10 @@ Validators.required(schema); // pass schema if you are using a custom schema els
 Validators.maxLength(maxLenght, schema);
 Validators.minLength(minLenght, schema);
 ```
+
+### Enable or disable the editor via Forms API
+
+```ts
+this.form.get('editorContent').disable();
+this.form.get('editorContent').enable();
+```

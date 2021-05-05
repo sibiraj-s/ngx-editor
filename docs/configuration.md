@@ -10,8 +10,6 @@ editor = new Editor({
   plugins: [],
   schema,
   nodeViews: {},
-  placeholder: 'Type here',
-  enabled: true,
   history: true,
   keyboardShortcuts: true,
   inputRules: true,
@@ -65,6 +63,5 @@ NgxEditorModule.forRoot({
 ## Component Props
 
 - editor - (Required) - editor instance
-- placeholder [`string`] - (Optional) - placeholder for the editor
-- enabled [`boolean`] - (Optional) - enabled/disable the editor
 - outputFormat [`doc` | `html`] - (Optional) - output value type
+- placeholder - [`string`] - (Optional) - placeholder for the editor.
