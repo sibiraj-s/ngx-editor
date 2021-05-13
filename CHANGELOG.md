@@ -13,6 +13,13 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v9.0.2 (2021-05-13)
+
+#### Bug Fixes
+
+- update URL regex to allow query parameters ([a8ec71c](https://github.com/sibiraj-s/ngx-editor/commit/a8ec71c))
+- set title for link and image menu items ([d8de693](https://github.com/sibiraj-s/ngx-editor/commit/d8de693))
+
 ## v9.0.1 (2021-05-05)
 
 #### Bug Fixes
