@@ -47,6 +47,9 @@ NgxEditorModule.forRoot({
     align_justify: 'Justify',
     text_color: 'Text Color',
     background_color: 'Background Color',
+    insertLink: 'Insert Link',
+    removeLink: 'Remove Link',
+    insertImage: 'Insert Image',
 
     // pupups, forms, others...
     url: 'URL',

@@ -51,6 +51,10 @@ export class LinkComponent implements OnInit, OnDestroy {
     return Icon.get(this.isActive ? 'unlink' : 'link');
   }
 
+  get title(): string {
+    return this.ngxeService.locals.get(this.isActive ? 'removeLink' : 'insertLink');
+  }
+
   get href(): AbstractControl {
     return this.form.get('href');
   }
