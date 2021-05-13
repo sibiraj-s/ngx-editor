@@ -25,7 +25,7 @@ export class ImageComponent implements OnInit, OnDestroy {
   form = new FormGroup({
     src: new FormControl('', [
       Validators.required,
-      Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')
+      Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)')
     ]),
     alt: new FormControl(''),
     title: new FormControl('')
