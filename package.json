@@ -9,7 +9,6 @@
     "demo": "ng serve demo --open --port 5002 --host 0.0.0.0",
     "docs": "docsify serve ./docs",
     "ng": "ng",
-    "e2e": "ng e2e",
     "lint": "ng lint",
     "format:md": "prettier **/*.md --write",
     "prerelease": "npm run build:lib",
