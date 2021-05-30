@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v10.0.1 (2021-05-30)
+
+#### Bug Fixes
+
+- add missing rxjs peerDependency ([63f396f](https://github.com/sibiraj-s/ngx-editor/commit/63f396f))
+
 ## v10.0.0 (2021-05-27)
 
 #### Breaking Changes
