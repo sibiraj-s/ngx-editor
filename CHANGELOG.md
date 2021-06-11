@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v10.0.2 (2021-06-12)
+
+#### Bug Fixes
+
+- make input elements editable inside floating menu ([c408d17](https://github.com/sibiraj-s/ngx-editor/commit/c408d17))
+
 ## v10.0.1 (2021-05-30)
 
 #### Bug Fixes
