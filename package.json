@@ -6,7 +6,7 @@
     "build": "npm run build:lib && npm run build:demo",
     "postbuild:lib": "node ./scripts/postbuild.js",
     "dev": "ng build ngx-editor --watch --configuration development",
-    "demo": "ng serve demo --open --port 5002 --host 0.0.0.0 --configuration development",
+    "demo": "ng serve demo --port 5002 --configuration development",
     "docs": "docsify serve ./docs",
     "ng": "ng",
     "lint": "ng lint",
