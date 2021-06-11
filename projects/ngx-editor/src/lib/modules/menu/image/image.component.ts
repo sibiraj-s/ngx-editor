@@ -37,9 +37,7 @@ export class ImageComponent implements OnInit, OnDestroy {
     private el: ElementRef,
     private ngxeService: NgxEditorService,
     private menuService: MenuService
-  ) {
-
-  }
+  ) { }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
     return this.isActive || this.showPopup;
@@ -73,8 +71,6 @@ export class ImageComponent implements OnInit, OnDestroy {
   }
 
   onMouseDown(e: MouseEvent): void {
-    e.preventDefault();
-
     if (e.button !== 0) {
       return;
     }

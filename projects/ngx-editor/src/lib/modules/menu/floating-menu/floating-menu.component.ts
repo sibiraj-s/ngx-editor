@@ -52,24 +52,46 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   activeItems: TBItems[] = [];
 
   @HostListener('document:mousedown', ['$event']) onMouseDown(e: MouseEvent): void {
-    if (this.el.nativeElement.contains(e.target as Node)) {
+    const target = e.target as Node
+
+    if (this.el.nativeElement.contains(target) && target.nodeName !== 'INPUT') {
       e.preventDefault();
       return;
     }
+
     this.dragging = true;
   }
 
-  @HostListener('document:keydown') onKeyDown(): void {
+  @HostListener('document:keydown', ['$event']) onKeyDown(e: KeyboardEvent): void {
+    const target = e.target as Node
+
+    if (target.nodeName === 'INPUT') {
+      return;
+    }
+
     this.dragging = true;
     this.hide();
   }
 
-  @HostListener('document:mouseup') onMouseUp(): void {
+  @HostListener('document:mouseup', ['$event']) onMouseUp(e: MouseEvent): void {
+    const target = e.target as Node
+
+    if (this.el.nativeElement.contains(target) || target.nodeName === 'INPUT') {
+      e.preventDefault();
+      return
+    }
+
     this.dragging = false;
     this.useUpdate();
   }
 
-  @HostListener('document:keyup') onKeyUp(): void {
+  @HostListener('document:keyup', ['$event']) onKeyUp(e: KeyboardEvent): void {
+    const target = e.target as Node
+
+    if (target.nodeName === 'INPUT') {
+      return;
+    }
+
     this.dragging = false;
     this.useUpdate();
   }
