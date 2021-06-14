@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Node v-${{ matrix.node-version }}
+      - name: Using node v-${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{env.NODE_VERSION}}
