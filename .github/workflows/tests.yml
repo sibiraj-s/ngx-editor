@@ -1,5 +1,8 @@
 name: Tests
 
+env:
+  NODE_VERSION: 16
+
 on:
   push:
     branches: master
@@ -11,10 +14,6 @@ jobs:
     name: Karma unit tests
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -22,7 +21,7 @@ jobs:
       - name: Node v-${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{env.NODE_VERSION}}
 
       - uses: actions/cache@v2
         with:
