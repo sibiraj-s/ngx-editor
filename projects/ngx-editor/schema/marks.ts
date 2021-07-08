@@ -81,7 +81,10 @@ const code: MarkSpec = {
 const u: MarkSpec = {
   parseDOM: [
     { tag: 'u' },
-    { style: 'text-decoration=underline' }
+    {
+      style: 'text-decoration=underline',
+      consuming: false
+    }
   ],
   toDOM(): DOMOutputSpec {
     return ['u', 0];

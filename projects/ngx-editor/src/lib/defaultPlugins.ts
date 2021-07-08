@@ -115,6 +115,7 @@ const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) => {
     keymap({
       'Mod-b': toggleMark(schema.marks.strong),
       'Mod-i': toggleMark(schema.marks.em),
+      'Mod-u': toggleMark(schema.marks.u),
       'Mod-`': toggleMark(schema.marks.code),
     }),
     keymap({
