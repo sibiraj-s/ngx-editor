@@ -1,4 +1,4 @@
-import { NodeType, Schema } from 'prosemirror-model';
+import { MarkType, NodeType, Schema } from 'prosemirror-model';
 import { Plugin } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark, baseKeymap, chainCommands, exitCode } from 'prosemirror-commands';
@@ -8,6 +8,8 @@ import {
   inputRules, wrappingInputRule, textblockTypeInputRule,
   smartQuotes, emDash, ellipsis, InputRule
 } from 'prosemirror-inputrules';
+
+import { markInputRule } from 'ngx-editor/helpers';
 
 interface Options {
   history: boolean;
@@ -70,12 +72,22 @@ const headingRule = (nodeType: NodeType, maxLevel: number): InputRule => {
   );
 };
 
+const boldRule = (markType: MarkType): InputRule => {
+  return markInputRule(/(?:^|\s)((?:\*\*|__)((?:[^*_]+))(?:\*\*|__))$/, markType, {})
+}
+
+const emRule = (markType: MarkType): InputRule => {
+  return markInputRule(/(?:^|\s)((?:\*|_)((?:[^*_]+))(?:\*|_))$/, markType, {})
+}
+
 // : (Schema) → Plugin
 // A set of input rules for creating the basic block quotes, lists,
 // code blocks, and heading.
 const buildInputRules = (schema: Schema): Plugin => {
   const rules = smartQuotes.concat(ellipsis, emDash);
 
+  rules.push(boldRule(schema.marks.strong));
+  rules.push(emRule(schema.marks.em));
   rules.push(blockQuoteRule(schema.nodes.blockquote));
   rules.push(orderedListRule(schema.nodes.ordered_list));
   rules.push(bulletListRule(schema.nodes.bullet_list));

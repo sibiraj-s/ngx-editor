@@ -5,3 +5,4 @@ export * from './getSelectionMarks';
 export * from './bubblePosition';
 export * from './getSelectionNodes';
 export * from './markApplies';
+export * from './markInputRule';
