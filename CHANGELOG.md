@@ -13,6 +13,16 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v10.1.0 (2021-07-09)
+
+#### Features
+
+- add input rules for bold and italics ([ab7d175](https://github.com/sibiraj-s/ngx-editor/commit/ab7d175))
+
+#### Bug Fixes
+
+- use correct shortcut for underline ([c82fce0](https://github.com/sibiraj-s/ngx-editor/commit/c82fce0))
+
 ## v10.0.2 (2021-06-12)
 
 #### Bug Fixes
