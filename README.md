@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/sibiraj-s/ngx-editor">
-   <img src="./sketch/ngx-editor.png" alt="ngxEditor">
+   <img src="./sketch/ngx-editor.svg" alt="ngxEditor">
   </a>
 </p>
 <p align="center">Rich Text Editor for angular using ProseMirror</p>
@@ -21,6 +21,9 @@
   </a>
   <a href="https://github.com/sibiraj-s/ngx-editor/blob/master/LICENSE">
     <img alt="licence" src="https://badgen.net/npm/license/ngx-editor">
+  </a>
+  <a href="https://open.vscode.dev/sibiraj-s/vscode-scss-formatter">
+    <img alt="Open in Visual Studio Code" src="https://open.vscode.dev/badges/open-in-vscode.svg">
   </a>
 </p>
 
