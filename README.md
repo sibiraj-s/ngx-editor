@@ -163,9 +163,7 @@ Icons are from https://material.io/resources/icons/
 
 ## Contributing
 
-All contributions are welcome.
-
-See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) to get started.
+All contributions are welcome. See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) to get started.
 
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
