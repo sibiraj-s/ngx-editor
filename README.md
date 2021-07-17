@@ -7,7 +7,7 @@
 </p>
 <p align="center">Rich Text Editor for angular using ProseMirror</p>
 <p align="center">
-  <a href="https://travis-ci.org/sibiraj-s/ngx-editor">
+  <a href="https://github.com/sibiraj-s/ngx-editor/actions">
     <img alt="Tests" src="https://github.com/sibiraj-s/ngx-editor/workflows/Tests/badge.svg">
   </a>
   <a href="https://www.npmjs.com/package/ngx-editor">
