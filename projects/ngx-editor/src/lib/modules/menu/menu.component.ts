@@ -17,6 +17,7 @@ const DEFAULT_TOOLBAR: Toolbar = [
   ['link', 'image'],
   ['text_color', 'background_color'],
   ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ['horizontal_rule']
 ];
 
 const DEFAULT_COLOR_PRESETS = [

@@ -12,7 +12,7 @@ export type TBItems = 'bold' | 'italic'
   | 'ordered_list' | 'bullet_list'
   | 'link' | 'image'
   | 'text_color' | 'background_color'
-  | 'align_left' | 'align_center' | 'align_right' | 'align_justify';
+  | 'align_left' | 'align_center' | 'align_right' | 'align_justify' | 'horizontal_rule';
 
 export type ToolbarDropdown = { heading?: TBHeadingItems[] };
 export type ToolbarCustomMenuItem = (editorView: EditorView) => TCR;

@@ -12,6 +12,7 @@ import { FloatingMenuComponent } from './floating-menu/floating-menu.component';
 import { BubbleComponent } from './bubble/bubble.component';
 
 import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
+import { HorizontalRuleComponent } from './horizontal-rule/horizontal-rule.component';
 
 @NgModule({
   imports: [
@@ -29,9 +30,9 @@ import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
     DropdownComponent,
     ImageComponent,
     ColorPickerComponent,
-
     FloatingMenuComponent,
-    BubbleComponent
+    BubbleComponent,
+    HorizontalRuleComponent
   ],
   providers: [
     SanitizeHtmlPipe,
