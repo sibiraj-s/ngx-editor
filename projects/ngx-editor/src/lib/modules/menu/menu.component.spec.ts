@@ -12,6 +12,7 @@ import { ImageComponent } from './image/image.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 import Editor from '../../Editor';
 import { MenuService } from './menu.service';
+import { HorizontalRuleComponent } from './horizontal-rule/horizontal-rule.component';
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
@@ -27,7 +28,8 @@ describe('MenuComponent', () => {
         LinkComponent,
         DropdownComponent,
         ImageComponent,
-        ColorPickerComponent
+        ColorPickerComponent,
+        HorizontalRuleComponent
       ],
       providers: [MenuService]
     }).compileComponents();

@@ -13,6 +13,9 @@
       <!-- image -->
       <ngx-image [class]="iconContainerClass" *ngIf="item === 'image'">
       </ngx-image>
+      
+      <!-- horizontal rule -->
+      <ngx-horizontal-rule [class]="iconContainerClass" *ngIf="item === 'horizontal_rule'"></ngx-horizontal-rule>
 
       <!-- dropdown -->
       <ng-container *ngIf="isDropDown(item)">

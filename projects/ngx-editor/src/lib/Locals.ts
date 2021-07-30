@@ -24,6 +24,7 @@ const defaults: Record<string, string> = {
   insertLink: 'Insert Link',
   removeLink: 'Remove Link',
   insertImage: 'Insert Image',
+  horizontal_rule: 'Horizontal rule',
 
   // pupups, forms, others...
   url: 'URL',

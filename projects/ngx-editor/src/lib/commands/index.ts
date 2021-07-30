@@ -6,6 +6,7 @@ import TextAlign from './TextAlign';
 import Link from './Link';
 import Image from './Image';
 import TextColor from './TextColor';
+import HorizontalRule from './HorizontalRule';
 
 export const STRONG = new Mark('strong');
 export const EM = new Mark('em');
@@ -29,3 +30,4 @@ export const LINK = new Link();
 export const IMAGE = new Image();
 export const TEXT_COLOR = new TextColor('text_color');
 export const TEXT_BACKGROUND_COLOR = new TextColor('text_background_color');
+export const HORIZONTAL_RULE = new HorizontalRule();

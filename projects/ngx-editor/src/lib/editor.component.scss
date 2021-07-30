@@ -283,3 +283,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
     color: red;
   }
 }
+
+.NgxEditor__HorizontalRule--Selected {
+  outline: 2px solid $primary;
+}

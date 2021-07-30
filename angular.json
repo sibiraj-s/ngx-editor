@@ -153,6 +153,7 @@
   },
   "defaultProject": "ngx-editor",
   "cli": {
+    "analytics": false,
     "defaultCollection": "@angular-eslint/schematics"
   }
 }
