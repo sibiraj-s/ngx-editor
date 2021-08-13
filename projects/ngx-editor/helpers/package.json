@@ -1,7 +1,10 @@
 {
   "ngPackage": {
     "lib": {
-      "entryFile": "./public_api.ts"
+      "entryFile": "./public_api.ts",
+      "umdModuleIds": {
+        "prosemirror-inputrules": "prosemirrorInputrules"
+      }
     }
   }
 }
