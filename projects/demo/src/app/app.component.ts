@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { environment } from '../environments/environment';
 
-import { Validators, Editor, Toolbar } from 'ngx-editor';
+import { Validators, Editor, Toolbar, DEFAULT_TOOLBAR } from 'ngx-editor';
 
 import jsonDoc from './doc';
 import schema from './schema';
@@ -22,16 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
   editordoc = jsonDoc;
 
   editor: Editor;
-  toolbar: Toolbar = [
-    ['bold', 'italic'],
-    ['underline', 'strike'],
-    ['code', 'blockquote'],
-    ['ordered_list', 'bullet_list'],
-    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-    ['link', 'image'],
-    ['text_color', 'background_color'],
-    ['align_left', 'align_center', 'align_right', 'align_justify'],
-  ];
+  toolbar: Toolbar = DEFAULT_TOOLBAR;
 
   form = new FormGroup({
     editorContent: new FormControl({ value: jsonDoc, disabled: false }, Validators.required(schema))

@@ -8,7 +8,7 @@ import { Toolbar, ToolbarItem, ToolbarDropdown } from '../../types';
 import { MenuService } from './menu.service';
 import Editor from '../../Editor';
 
-const DEFAULT_TOOLBAR: Toolbar = [
+export const DEFAULT_TOOLBAR: Toolbar = [
   ['bold', 'italic'],
   ['code', 'blockquote'],
   ['underline', 'strike'],
@@ -18,6 +18,13 @@ const DEFAULT_TOOLBAR: Toolbar = [
   ['text_color', 'background_color'],
   ['align_left', 'align_center', 'align_right', 'align_justify'],
 ];
+
+export const TOOLBAR_MINIMAL: Toolbar = [
+  ['bold', 'italic'],
+  [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+  ['link', 'image'],
+  ['text_color', 'background_color'],
+]
 
 const DEFAULT_COLOR_PRESETS = [
   '#b60205',
@@ -46,7 +53,7 @@ const DEFAULT_COLOR_PRESETS = [
 })
 
 export class MenuComponent implements OnInit {
-  @Input() toolbar: Toolbar = DEFAULT_TOOLBAR;
+  @Input() toolbar: Toolbar = TOOLBAR_MINIMAL;
   @Input() colorPresets: string[] = DEFAULT_COLOR_PRESETS;
   @Input() disabled = false;
   @Input() editor: Editor;
