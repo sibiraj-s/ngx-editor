@@ -36,6 +36,6 @@
     "prosemirror-model": "^1.14.3",
     "prosemirror-schema-list": "^1.1.5",
     "prosemirror-state": "^1.3.4",
-    "prosemirror-view": "^1.18.11"
+    "prosemirror-view": "^1.19.0"
   }
 }
