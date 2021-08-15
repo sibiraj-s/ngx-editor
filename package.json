@@ -18,6 +18,10 @@
     "test": "npm run test:lib && npm run test:demo",
     "prepare": "sh ./scripts/install-husky.sh"
   },
+  "engines": {
+    "node": ">=16",
+    "npm": ">=7.20"
+  },
   "keywords": [
     "angular-editor",
     "angular-wysiwyg-editor",
