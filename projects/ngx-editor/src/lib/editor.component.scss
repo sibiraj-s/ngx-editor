@@ -1,5 +1,5 @@
-$menubar-height: 1.85rem;
-$icon-size: 1.85rem;
+$menubar-height: 30px;
+$icon-size: 30px;
 
 $border-radius: 4px;
 
@@ -17,8 +17,8 @@ $menu-item-active-color: $primary;
 $dropdown-menu-hover-bg-color: $light-gray;
 $dropdown-item-active-bg-color: $light-gray;
 
-$menubar-padding: 0.2rem;
-$menu-item-spacing: 0.3rem;
+$menubar-padding: 3px;
+$menu-item-spacing: 5px;
 $menubar-text-padding: 0 $menu-item-spacing;
 
 .NgxEditor {
@@ -53,19 +53,18 @@ $menubar-text-padding: 0 $menu-item-spacing;
 }
 
 .NgxEditor__Content {
-  padding: 0.5rem;
+  padding: 8px;
   white-space: pre-wrap;
   outline: none;
   font-variant-ligatures: none;
   font-feature-settings: "liga" 0;
 
   p {
-    margin: 0;
-    margin-bottom: 0.7rem;
+    margin: 0 0 10px;
   }
 
   blockquote {
-    padding-left: 1rem;
+    padding-left: 16px;
     border-left: 3px solid #ddd;
     margin-left: 0;
     margin-right: 0;
@@ -149,7 +148,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
 }
 
 .NgxEditor__Dropdown {
-  min-width: 4rem;
+  min-width: 64px;
   position: relative;
   display: flex;
   align-items: center;
@@ -170,12 +169,12 @@ $menubar-text-padding: 0 $menu-item-spacing;
     &::after {
       display: inline-block;
       content: "";
-      margin-left: 1.5rem;
-      vertical-align: 0.25rem;
-      border-top: 0.25rem solid;
-      border-right: 0.25rem solid transparent;
+      margin-left: 24px;
+      vertical-align: 4px;
+      border-top: 4px solid;
+      border-right: 4px solid transparent;
       border-bottom: 0;
-      border-left: 0.25rem solid transparent;
+      border-left: 4px solid transparent;
     }
   }
 
@@ -191,7 +190,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
   }
 
   .NgxEditor__Dropdown--Item {
-    padding: 0.5rem;
+    padding: 8px;
     white-space: nowrap;
     color: inherit;
 
@@ -244,7 +243,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
   border-radius: $border-radius;
   background-color: white;
   z-index: 10;
-  min-width: 12rem;
+  min-width: 192px;
   padding: 8px;
 
   .NgxEditor__Popup--FormGroup {

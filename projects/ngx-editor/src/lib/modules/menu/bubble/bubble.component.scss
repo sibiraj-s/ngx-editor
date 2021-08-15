@@ -8,13 +8,13 @@
   display: flex;
   background-color: #000;
   color: white;
-  padding: 0.3rem;
+  padding: 5px;
   border-radius: 4px;
 }
 
 .NgxBubbleMenu__Icon {
-  height: 1.8rem;
-  width: 1.8rem;
+  height: 30px;
+  width: 30px;
   transition: 0.3s ease-in-out;
   border-radius: 2px;
   display: flex;
@@ -30,12 +30,12 @@
   }
 
   + .NgxBubbleMenu__Icon {
-    margin-left: 0.3rem;
+    margin-left: 5px;
   }
 
   &.NgxBubbleMenu__Icon--Active {
     background-color: white;
-  
+
     svg {
       fill: black;
     }
