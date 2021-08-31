@@ -14,6 +14,7 @@ const editor = new Editor({
   plugins: [], //https://prosemirror.net/docs/guide/#state
   schema, //https://prosemirror.net/examples/schema/
   nodeViews: {}, //https://prosemirror.net/docs/guide/#state,
+  enterKeyHint: 'enter', // https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-enterkeyhint-attribute
 });
 ```
 
@@ -28,6 +29,7 @@ Some options may be overwritten by the component props
 - **history** - (`Optional`) - enables history support in editor
 - **keyboardShortcuts** - (`Optional`) - enables keyboard shortcuts for the inbuilt schema
 - **inputRules** - (`Optional`) - enables inputrules for the inbuilt schema
+- **enterKeyHint** - (`Optional`) - enterkeyhint attribute of dom editor (for mobile keyboard)
 
 ## Editor Instance
 
