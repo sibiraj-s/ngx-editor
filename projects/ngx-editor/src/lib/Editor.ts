@@ -31,7 +31,8 @@ const DEFAULT_OPTIONS: Options = {
   inputRules: true,
   schema: defautlSchema,
   plugins: [],
-  nodeViews: {}
+  nodeViews: {},
+  attributes: {}
 };
 
 class Editor {
@@ -92,7 +93,6 @@ class Editor {
       keyboardShortcuts,
       inputRules
     });
-
 
     this.view = new EditorView(null, {
       state: EditorState.create({
