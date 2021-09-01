@@ -12,16 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - uses: actions/setup-node@v2
         with:
           node-version: ${{env.NODE_VERSION}}
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          cache: npm
+
+      - run: node -v
+      - run: npm -v
+
       - run: npm ci
+
       - run: npm run build:lib
       - run: npm run test:lib
 
@@ -37,16 +38,10 @@ jobs:
   #       uses: actions/setup-node@v2
   #       with:
   #         node-version: ${{ env.NODE_VERSION }}
+  #         cache: npm
 
-  #     - uses: actions/cache@v2
-  #       with:
-  #         path: ~/.npm
-  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-  #         restore-keys: |
-  #           ${{ runner.os }}-node-
-
-  #     - run: node --version
-  #     - run: npm --version
+  #     - run: node -v
+  #     - run: npm -v
 
   #     - name: NPM Install
   #       run: npm ci
@@ -69,13 +64,13 @@ jobs:
         with:
           node-version: ${{env.NODE_VERSION}}
           registry-url: https://registry.npmjs.org/
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          cache: npm
+
+      - run: node -v
+      - run: npm -v
+
       - run: npm ci
+
       - run: npm run release
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
