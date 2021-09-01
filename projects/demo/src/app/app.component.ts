@@ -39,7 +39,8 @@ export class AppComponent implements OnInit, OnDestroy {
       nodeViews,
       history: true,
       keyboardShortcuts: true,
-      inputRules: true
+      inputRules: true,
+      attributes: { enterkeyhint: 'enter' }
     });
   }
 

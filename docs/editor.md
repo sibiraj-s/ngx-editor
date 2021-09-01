@@ -14,6 +14,7 @@ const editor = new Editor({
   plugins: [], //https://prosemirror.net/docs/guide/#state
   schema, //https://prosemirror.net/examples/schema/
   nodeViews: {}, //https://prosemirror.net/docs/guide/#state,
+  attributes: {}, // https://prosemirror.net/docs/ref/#view.EditorProps.attributes
 });
 ```
 
@@ -28,6 +29,7 @@ Some options may be overwritten by the component props
 - **history** - (`Optional`) - enables history support in editor
 - **keyboardShortcuts** - (`Optional`) - enables keyboard shortcuts for the inbuilt schema
 - **inputRules** - (`Optional`) - enables inputrules for the inbuilt schema
+- **attributes** - (`Optional`) - editor attributes to forward to ProseMirror
 
 ## Editor Instance
 
