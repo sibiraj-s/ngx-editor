@@ -12,7 +12,6 @@ import getDefaultPlugins from './defaultPlugins';
 
 type JSONDoc = Record<string, any>;
 type Content = string | null | JSONDoc;
-type EnterKeyHint = 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
 
 interface Options {
   content?: Content;
@@ -22,7 +21,7 @@ interface Options {
   schema?: Schema;
   plugins?: Plugin[];
   nodeViews?: EditorProps['nodeViews'];
-  enterKeyHint?: EnterKeyHint;
+  attributes?: Record<string, string>;
 }
 
 const DEFAULT_OPTIONS: Options = {
@@ -86,6 +85,7 @@ class Editor {
     const doc = parseContent(content, schema);
 
     const plugins: Plugin[] = options.plugins ?? [];
+    const attributes: Record<string, string> = options.attributes ?? {};
 
     const defaultPlugins = getDefaultPlugins(schema, {
       history,
@@ -93,11 +93,6 @@ class Editor {
       inputRules
     });
 
-    const attributes: any = {};
-
-    if (options.enterKeyHint) {
-      attributes.enterkeyhint = options.enterKeyHint;
-    }
 
     this.view = new EditorView(null, {
       state: EditorState.create({
