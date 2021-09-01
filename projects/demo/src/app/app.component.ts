@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup} from '@angular/forms';
-import {environment} from '../environments/environment';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { environment } from '../environments/environment';
 
-import {Validators, Editor, Toolbar, DEFAULT_TOOLBAR} from 'ngx-editor';
+import { Validators, Editor, Toolbar, DEFAULT_TOOLBAR } from 'ngx-editor';
 
 import jsonDoc from './doc';
 import schema from './schema';
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   toolbar: Toolbar = DEFAULT_TOOLBAR;
 
   form = new FormGroup({
-    editorContent: new FormControl({value: jsonDoc, disabled: false}, Validators.required(schema))
+    editorContent: new FormControl({ value: jsonDoc, disabled: false }, Validators.required(schema))
   });
 
   get doc(): AbstractControl {
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
       history: true,
       keyboardShortcuts: true,
       inputRules: true,
-      attributes: {enterkeyhint: 'enter'}
+      attributes: { enterkeyhint: 'enter' }
     });
   }
 
