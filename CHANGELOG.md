@@ -13,6 +13,16 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v11.0.0 (2021-09-01)
+
+#### Features
+
+- support editor attributes ([e89e676](https://github.com/sibiraj-s/ngx-editor/commit/e89e676))
+
+#### Breaking Changes
+
+- use px instead of rem for styling ([19464a4](https://github.com/sibiraj-s/ngx-editor/commit/19464a4))
+
 ## v10.1.0 (2021-07-09)
 
 #### Features
