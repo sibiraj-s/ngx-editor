@@ -20,7 +20,8 @@ const link: MarkSpec = {
           target: dom.getAttribute('target'),
         };
       }
-    }],
+    }
+  ],
   toDOM(node): DOMOutputSpec {
     const { href, title, target } = node.attrs;
     return ['a', { href, title, target }, 0];

@@ -105,8 +105,13 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
       this.onTouched();
     }));
 
-    this.editor.registerPlugin(plugins.image(this._injector));
-    this.editor.registerPlugin(plugins.link());
+    if (this.editor.features.resizeImage) {
+      this.editor.registerPlugin(plugins.imageResize(this._injector));
+    }
+
+    if (this.editor.features.linkOnPaste) {
+      this.editor.registerPlugin(plugins.linkify());
+    }
   }
 
   ngOnInit(): void {

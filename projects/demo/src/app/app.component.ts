@@ -40,7 +40,11 @@ export class AppComponent implements OnInit, OnDestroy {
       history: true,
       keyboardShortcuts: true,
       inputRules: true,
-      attributes: { enterkeyhint: 'enter' }
+      attributes: { enterkeyhint: 'enter' },
+      features: {
+        linkOnPaste: true,
+        resizeImage: true
+      }
     });
   }
 

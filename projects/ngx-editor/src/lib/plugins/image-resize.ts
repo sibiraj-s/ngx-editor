@@ -109,9 +109,9 @@ class ImageRezieView implements NodeView {
   }
 }
 
-const imagePlugin = (injector: Injector): Plugin => {
+const imageResizePlugin = (injector: Injector): Plugin => {
   return new Plugin({
-    key: new PluginKey('link'),
+    key: new PluginKey('image-resize'),
     props: {
       nodeViews: {
         image: (node: ProseMirrorNode, view: EditorView, getPos: () => number) => {
@@ -122,4 +122,4 @@ const imagePlugin = (injector: Injector): Plugin => {
   });
 };
 
-export default imagePlugin;
+export default imageResizePlugin;

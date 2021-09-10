@@ -22,6 +22,17 @@ interface Options {
   plugins?: Plugin[];
   nodeViews?: EditorProps['nodeViews'];
   attributes?: Record<string, string>;
+  features?: EditorFeatures
+}
+
+interface EditorFeatures {
+  linkOnPaste?: boolean;
+  resizeImage?: boolean;
+}
+
+const defaultFeatures = {
+  linkOnPaste: true,
+  resizeImage: true
 }
 
 const DEFAULT_OPTIONS: Options = {
@@ -32,7 +43,8 @@ const DEFAULT_OPTIONS: Options = {
   schema: defautlSchema,
   plugins: [],
   nodeViews: {},
-  attributes: {}
+  attributes: {},
+  features: defaultFeatures
 };
 
 class Editor {
@@ -61,6 +73,10 @@ class Editor {
 
   get commands(): EditorCommands {
     return new EditorCommands(this.view);
+  }
+
+  get features(): EditorFeatures {
+    return { ...defaultFeatures, ...this.options.features }
   }
 
   private handleTransactions(tr: Transaction): void {
@@ -98,7 +114,7 @@ class Editor {
       state: EditorState.create({
         doc,
         schema,
-        plugins: [...defaultPlugins, ...plugins, ],
+        plugins: [...defaultPlugins, ...plugins],
       }),
       nodeViews,
       dispatchTransaction: this.handleTransactions.bind(this),

@@ -40,9 +40,9 @@ const linkify = (fragment: Fragment): Fragment => {
   return Fragment.fromArray(linkified);
 };
 
-const linkPlugin = ():Plugin => {
+const linkifyPlugin = ():Plugin => {
   return new Plugin({
-    key: new PluginKey('link'),
+    key: new PluginKey('linkify'),
     props: {
       transformPasted: (slice: Slice) => {
         return new Slice(linkify(slice.content), slice.openStart, slice.openEnd);
@@ -51,4 +51,4 @@ const linkPlugin = ():Plugin => {
   });
 };
 
-export default linkPlugin;
+export default linkifyPlugin;
