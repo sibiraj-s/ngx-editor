@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v11.1.0 (2021-09-10)
+
+#### Features
+
+- add option to enable or disable some editor features ([c0d256f](https://github.com/sibiraj-s/ngx-editor/commit/c0d256f))
+
 ## v11.0.0 (2021-09-01)
 
 #### Features
