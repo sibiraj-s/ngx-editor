@@ -17,7 +17,7 @@ export interface LinkAttrs {
 }
 
 class Link {
-  update(attrs = {}): Command {
+  update(attrs: LinkAttrs): Command {
     return (state: EditorState, dispatch?: Dispatch): boolean => {
       const { schema, selection } = state;
 
@@ -83,7 +83,11 @@ class Link {
   }
 
   canExecute(state: EditorState): boolean {
-    return this.update({})(state);
+    const testAttrs: LinkAttrs = {
+      href: ''
+    }
+
+    return this.insert('Exec', testAttrs)(state) || this.update(testAttrs)(state);
   }
 }
 
