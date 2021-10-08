@@ -1,6 +1,6 @@
 {
   "name": "ngx-editor",
-  "version": "11.1.0",
+  "version": "11.1.1",
   "description": "Rich Text Editor for angular using ProseMirror",
   "license": "MIT",
   "repository": "https://github.com/sibiraj-s/ngx-editor.git",

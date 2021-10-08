@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v11.1.1 (2021-10-08)
+
+#### Bug Fixes
+
+- allow link insert without text selection ([551e0ef](https://github.com/sibiraj-s/ngx-editor/commit/551e0ef))
+
 ## v11.1.0 (2021-09-10)
 
 #### Features
