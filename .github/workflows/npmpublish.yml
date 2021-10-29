@@ -48,8 +48,8 @@ jobs:
 
   #     - name: Publish to gh-pages branch
   #       run: |
-  #         git config --global user.name "Sibiraj"
-  #         git config --global user.email "20282546+sibiraj-s@users.noreply.github.com"
+  #         git config --global user.name "github-actions[bot]"
+  #         git config --global user.email "github-actions[bot]@users.noreply.github.com"
   #         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
   #         npm run publish:docs
   #       env:
