@@ -6,4 +6,4 @@ then
   exit 0
 fi
 
-npx --no-install husky install
+npx --no -- husky install
