@@ -1,6 +1,5 @@
-const fs = require('fs');
-const path = require('path');
-
+const fs = require('node:fs/promises');
+const path = require('node:path');
 const chalk = require('chalk');
 
 const copyFile = async function (srcFilePath, destFilePath) {
@@ -8,7 +7,7 @@ const copyFile = async function (srcFilePath, destFilePath) {
   try {
     const srcPath = path.resolve(process.cwd(), srcFilePath);
     const destPath = path.resolve(process.cwd(), 'dist/ngx-editor', destFilePath);
-    await fs.promises.copyFile(srcPath, destPath);
+    await fs.copyFile(srcPath, destPath);
     console.log(chalk.green(`- File Copied: ${fileName}`));
   } catch (err) {
     console.log(chalk.red(`Error while copying ${fileName}`), err);

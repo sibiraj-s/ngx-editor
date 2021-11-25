@@ -1,5 +1,4 @@
-const util = require('util');
-
+const util = require('node:util');
 const inquirer = require('inquirer');
 const ghpages = require('gh-pages');
 const chalk = require('chalk');
