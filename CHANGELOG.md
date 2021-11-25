@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v12.0.0 (2021-11-25)
+
+#### Breaking Changes
+
+- requires angular 13 ([aadca9c](https://github.com/sibiraj-s/ngx-editor/commit/aadca9c))
+
 ## v11.1.1 (2021-10-08)
 
 #### Bug Fixes
