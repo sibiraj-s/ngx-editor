@@ -68,7 +68,7 @@ class TextColor {
 
     const colors = marks
       .filter(mark => mark.type === schema.marks[this.name])
-      .map(mark => mark.attrs.color)
+      .map(mark => mark.attrs['color'])
       .filter(Boolean);
 
     return colors;

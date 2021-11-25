@@ -34,7 +34,7 @@ const placeholderPlugin = (text?: string): Plugin => {
             const placeholderNode = Decoration.node(pos, (pos + node.nodeSize), {
               class: PLACEHOLDER_CLASSNAME,
               'data-placeholder': placeholder,
-              'data-align': node.attrs.align ?? null
+              'data-align': node.attrs['align'] ?? null
             });
 
             decorations.push(placeholderNode);

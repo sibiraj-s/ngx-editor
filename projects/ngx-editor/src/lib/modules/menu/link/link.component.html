@@ -11,7 +11,7 @@
         <label class="NgxEditor__Popup--Label">{{getLabel('url')}}</label>
         <input type="href" id="href" formControlName="href" autofocus autocomplete="off" />
         <div *ngIf="href.touched && href.invalid" class="NgxEditor__HelpText NgxEditor__HelpText--Error">
-          {{ href.errors?.pattern && 'Please enter valid url.' }}
+          {{ href.errors?.['pattern'] && 'Please enter valid url.' }}
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
         <label class="NgxEditor__Popup--Label">{{getLabel('text')}}</label>
         <input type="text" formControlName="text" autocomplete="off" />
         <div *ngIf="text.touched && text.invalid" class="NgxEditor__HelpText NgxEditor__HelpText--Error">
-          {{ text.errors?.required && 'This is required' }}
+          {{ text.errors?.['required'] && 'This is required' }}
         </div>
       </div>
     </div>

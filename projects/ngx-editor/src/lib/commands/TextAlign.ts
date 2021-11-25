@@ -46,7 +46,7 @@ class TextAlign {
     const nodes = getSelectionNodes(state);
 
     const active = nodes.find((node: Node) => {
-      return node.attrs.align === this.align;
+      return node.attrs['align'] === this.align;
     });
 
     return Boolean(active);

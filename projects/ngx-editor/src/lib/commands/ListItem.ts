@@ -13,7 +13,7 @@ class ListItem {
   }
 
   getType(schema: Schema): NodeType {
-    return this.isBulletList ? schema.nodes.bullet_list : schema.nodes.ordered_list;
+    return this.isBulletList ? schema.nodes['bullet_list'] : schema.nodes['ordered_list'];
   }
 
   toggle(): Command {

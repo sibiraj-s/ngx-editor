@@ -49,10 +49,10 @@ class ImageRezieView implements NodeView {
   }
 
   private setNodeAttributes(attrs: Record<string, any>): void {
-    this.imageComponentRef.instance.src = attrs.src;
-    this.imageComponentRef.instance.alt = attrs.alt;
-    this.imageComponentRef.instance.title = attrs.title;
-    this.imageComponentRef.instance.outerWidth = attrs.width;
+    this.imageComponentRef.instance.src = attrs['src'];
+    this.imageComponentRef.instance.alt = attrs['alt'];
+    this.imageComponentRef.instance.title = attrs['title'];
+    this.imageComponentRef.instance.outerWidth = attrs['width'];
   }
 
   handleResize = (): void => {

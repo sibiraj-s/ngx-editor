@@ -40,7 +40,7 @@ const orderedListRule = (nodeType: NodeType): InputRule => {
     /^(\d+)\.\s$/,
     nodeType,
     match => ({ order: +match[1] }),
-    (match, node) => node.childCount + node.attrs.order === +match[1]
+    (match, node) => node.childCount + node.attrs['order'] === +match[1]
   );
 };
 
@@ -90,13 +90,13 @@ const emRule = (markType: MarkType): InputRule => {
 const buildInputRules = (schema: Schema): Plugin => {
   const rules = smartQuotes.concat(ellipsis, emDash);
 
-  rules.push(boldRule(schema.marks.strong));
-  rules.push(emRule(schema.marks.em));
-  rules.push(blockQuoteRule(schema.nodes.blockquote));
-  rules.push(orderedListRule(schema.nodes.ordered_list));
-  rules.push(bulletListRule(schema.nodes.bullet_list));
-  rules.push(codeBlockRule(schema.nodes.code_block));
-  rules.push(headingRule(schema.nodes.heading, 6));
+  rules.push(boldRule(schema.marks['strong']));
+  rules.push(emRule(schema.marks['em']));
+  rules.push(blockQuoteRule(schema.nodes['blockquote']));
+  rules.push(orderedListRule(schema.nodes['ordered_list']));
+  rules.push(bulletListRule(schema.nodes['bullet_list']));
+  rules.push(codeBlockRule(schema.nodes['code_block']));
+  rules.push(headingRule(schema.nodes['heading'], 6));
 
   return inputRules({ rules });
 };
@@ -113,22 +113,22 @@ const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) => {
 
   const plugins = [
     keymap({
-      'Mod-b': toggleMark(schema.marks.strong),
-      'Mod-i': toggleMark(schema.marks.em),
-      'Mod-u': toggleMark(schema.marks.u),
-      'Mod-`': toggleMark(schema.marks.code),
+      'Mod-b': toggleMark(schema.marks['strong']),
+      'Mod-i': toggleMark(schema.marks['em']),
+      'Mod-u': toggleMark(schema.marks['u']),
+      'Mod-`': toggleMark(schema.marks['code']),
     }),
     keymap({
-      Enter: splitListItem(schema.nodes.list_item),
+      Enter: splitListItem(schema.nodes['list_item']),
       'Shift-Enter': chainCommands(exitCode, (state, dispatch) => {
         const tr = state.tr;
-        const br = schema.nodes.hard_break;
+        const br = schema.nodes['hard_break'];
         dispatch(tr.replaceSelectionWith(br.create()).scrollIntoView());
         return true;
       }),
-      'Mod-[': liftListItem(schema.nodes.list_item),
-      'Mod-]': sinkListItem(schema.nodes.list_item),
-      Tab: sinkListItem(schema.nodes.list_item)
+      'Mod-[': liftListItem(schema.nodes['list_item']),
+      'Mod-]': sinkListItem(schema.nodes['list_item']),
+      Tab: sinkListItem(schema.nodes['list_item'])
     }),
     keymap(baseKeymap)
   ];

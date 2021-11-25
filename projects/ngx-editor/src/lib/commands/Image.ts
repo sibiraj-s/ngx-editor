@@ -26,7 +26,7 @@ class Image {
       };
 
       if (!imageAttrs.width && selection instanceof NodeSelection && selection.node.type === type) {
-        imageAttrs.width = selection.node.attrs.width;
+        imageAttrs.width = selection.node.attrs['width'];
       }
 
       tr.replaceSelectionWith(type.createAndFill(imageAttrs));

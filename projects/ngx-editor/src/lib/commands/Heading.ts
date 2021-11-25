@@ -72,7 +72,7 @@ class Heading {
     });
 
     const acitveNode = nodes.find((node: ProseMirrorNode) => {
-      return node.attrs.level === this.level;
+      return node.attrs['level'] === this.level;
     });
 
     return Boolean(acitveNode);
