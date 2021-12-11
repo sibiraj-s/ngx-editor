@@ -47,5 +47,5 @@ body:
     attributes:
       label: Willing to submit a PR?
       options:
-        - Yes
-        - No
+        - 'Yes'
+        - 'No'
