@@ -1,0 +1,19 @@
+name: Feature Request
+description: Submit a feature request
+title: "[Feature request]: "
+body:
+  - type: textarea
+    id: request
+    attributes:
+      label: Proposal
+      description: If you have a solution in mind, please explain that too.
+      placeholder: Explain your proposal
+    validations:
+      required: true
+  - type: dropdown
+    id: submit-pr
+    attributes:
+      label: Willing to submit a PR?
+      options:
+        - Yes
+        - No
