@@ -49,7 +49,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
       this.outputFormat = 'html';
     }
 
-    this.editor.setContent(value);
+    this.editor.setContent(value ?? '');
   }
 
   registerOnChange(fn: () => void): void {
