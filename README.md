@@ -151,7 +151,7 @@ Mostly works on all Evergreen-Browsers like
 
 ## Angular Compatibility
 
-Angular 12+.
+Angular 13+.
 
 ## Collaborative Editing
 
