@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v12.0.1 (2022-01-06)
+
+#### Bug Fixes
+
+- allow editor to be reset via reactive forms api ([dd96ae2](https://github.com/sibiraj-s/ngx-editor/commit/dd96ae2))
+
+#### Breaking Changes
+
+- set correct peerDependencies versions ([0dd68c8](https://github.com/sibiraj-s/ngx-editor/commit/0dd68c8))
+- add tslib to dependencies ([0dd68c8](https://github.com/sibiraj-s/ngx-editor/commit/0dd68c8)), ([ebe4dcf](https://github.com/sibiraj-s/ngx-editor/commit/ebe4dcf))
+- update prosemirror dependencies ([a0dd0e0](https://github.com/sibiraj-s/ngx-editor/commit/a0dd0e0))
+
 ## v12.0.0 (2021-11-25)
 
 #### Breaking Changes
