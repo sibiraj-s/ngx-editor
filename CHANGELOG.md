@@ -13,7 +13,7 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
-## v12.0.1 (2022-01-06)
+## v12.1.0 (2022-01-06)
 
 #### Bug Fixes
 
