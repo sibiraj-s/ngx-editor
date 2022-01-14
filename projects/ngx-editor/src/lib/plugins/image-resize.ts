@@ -64,8 +64,8 @@ class ImageRezieView implements NodeView {
     const { tr } = state;
 
     const transaction = tr.setNodeMarkup(this.getPos(), undefined, {
-      src: this.imageComponentRef.instance.src,
-      width: this.imageComponentRef.instance.outerWidth
+      ...this.node.attrs,
+      width: this.imageComponentRef.instance.outerWidth,
     });
 
     const resolvedPos = transaction.doc.resolve(this.getPos());
