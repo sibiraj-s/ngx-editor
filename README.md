@@ -19,6 +19,7 @@
   <a href="https://www.npmjs.com/package/ngx-editor">
     <img alt="npm" src="https://badgen.net/npm/dt/ngx-editor">
   </a>
+  <br />
   <a href="https://github.com/sibiraj-s/ngx-editor/blob/master/LICENSE">
     <img alt="licence" src="https://badgen.net/npm/license/ngx-editor">
   </a>
