@@ -19,6 +19,10 @@ All notable changes to this project will be documented in this file.
 
 - set all image attributes during resize ([c4f9426](https://github.com/sibiraj-s/ngx-editor/commit/c4f9426))
 
+#### Dependency Updates
+
+- update devDependencies ([6888b03](https://github.com/sibiraj-s/ngx-editor/commit/6888b03))
+
 ## v12.1.0 (2022-01-06)
 
 #### Bug Fixes
