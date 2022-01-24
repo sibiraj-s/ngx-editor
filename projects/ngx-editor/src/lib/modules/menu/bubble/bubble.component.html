@@ -1,11 +1,9 @@
 <ng-container *ngFor="let toolbarItem of toolbar; let lastToolbarItem = last">
   <ng-container *ngFor="let item of toolbarItem; let lastItem = last">
-      <div class="NgxBubbleMenu__Icon" [ngClass]="{'NgxBubbleMenu__Icon--Active': this.activeItems.includes(item),
+    <div class="NgxBubbleMenu__Icon" [ngClass]="{'NgxBubbleMenu__Icon--Active': this.activeItems.includes(item),
   'NgxEditor--Disabled': !this.execulableItems.includes(item)}" (mousedown)="onClick($event, item)"
-          *ngIf="toggleCommands.includes(item)" [title]="getTitle(item)">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="20" width="20"
-              [innerHTML]="getIcon(item)"></svg>
-      </div>
-      <div class="NgxBubbleMenu__Seperator" *ngIf="lastItem && !lastToolbarItem"></div>
+      *ngIf="toggleCommands.includes(item)" [title]="getTitle(item)" [innerHTML]="getIcon(item)">
+    </div>
+    <div class="NgxBubbleMenu__Seperator" *ngIf="lastItem && !lastToolbarItem"></div>
   </ng-container>
 </ng-container>

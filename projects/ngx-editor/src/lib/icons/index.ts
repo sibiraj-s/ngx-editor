@@ -20,6 +20,7 @@ import colorFill from './color_fill';
 
 const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
+const DEFAULT_ICON_FILL = 'currentColor'
 
 const icons: Record<string, any> = {
   bold,
@@ -42,7 +43,7 @@ const icons: Record<string, any> = {
 };
 
 class Icon {
-  static get(name: keyof typeof icons, fill = '#000'): string {
+  static get(name: keyof typeof icons, fill = DEFAULT_ICON_FILL): string {
     const path = icons[name] || '<path></path>';
     return `
       <svg
@@ -56,12 +57,6 @@ class Icon {
       </svg>
     `;
   }
-
-  static getPath(name: keyof typeof icons): string {
-    const path = icons[name] || '<path></path>';
-    return path;
-  }
-
 }
 
 export default Icon;

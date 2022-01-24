@@ -44,7 +44,7 @@ export class BubbleComponent implements OnInit, OnDestroy {
   ];
 
   getIcon(name: TBItems): SafeHtml {
-    const icon = Icon.getPath(name);
+    const icon = Icon.get(name);
     return this.sanitizeHTML.transform(icon);
   }
 

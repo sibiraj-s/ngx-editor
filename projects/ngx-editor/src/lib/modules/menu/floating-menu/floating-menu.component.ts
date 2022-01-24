@@ -104,11 +104,6 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
     this.update(this.view);
   }
 
-  getIcon(name: TBItems): SafeHtml {
-    const icon = Icon.getPath(name);
-    return this.sanitizeHTML.transform(icon);
-  }
-
   private hide(): void {
     this.showMenu = false;
   }

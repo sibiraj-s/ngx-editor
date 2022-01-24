@@ -136,14 +136,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
 
   &.NgxEditor__MenuItem--Active {
     background-color: $menu-item-active-bg-color;
-
-    &.NgxEditor__MenuItem--Text {
-      color: $menu-item-active-color;
-    }
-
-    svg {
-      fill: $menu-item-active-color;
-    }
+    color: $menu-item-active-bg-color;
   }
 }
 
