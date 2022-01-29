@@ -8,6 +8,7 @@ import { applyMark, removeMark } from 'ngx-editor/commands';
 import { Dispatch } from './types';
 
 type Name = 'text_color' | 'text_background_color';
+type AttrName = 'color' | 'backgroundColor';
 
 interface ColorAttrs {
   color: string;
@@ -19,9 +20,11 @@ interface BackgroundColorAttrs {
 
 class TextColor {
   name: Name;
+  attrName: AttrName;
 
-  constructor(name: Name) {
+  constructor(name: Name, attrName: AttrName = 'color') {
     this.name = name;
+    this.attrName = attrName
   }
 
   apply(attrs: ColorAttrs | BackgroundColorAttrs): Command {
@@ -68,7 +71,9 @@ class TextColor {
 
     const colors = marks
       .filter(mark => mark.type === schema.marks[this.name])
-      .map(mark => mark.attrs['color'])
+      .map(mark => {
+        return mark.attrs[this.attrName]
+      })
       .filter(Boolean);
 
     return colors;

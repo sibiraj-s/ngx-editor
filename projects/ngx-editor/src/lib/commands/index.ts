@@ -27,5 +27,5 @@ export const ALIGN_RIGHT = new TextAlign('right');
 export const ALIGN_JUSTIFY = new TextAlign('justify');
 export const LINK = new Link();
 export const IMAGE = new Image();
-export const TEXT_COLOR = new TextColor('text_color');
-export const TEXT_BACKGROUND_COLOR = new TextColor('text_background_color');
+export const TEXT_COLOR = new TextColor('text_color', 'color');
+export const TEXT_BACKGROUND_COLOR = new TextColor('text_background_color', 'backgroundColor');
