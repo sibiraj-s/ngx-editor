@@ -6,11 +6,11 @@
   - [Schema](schema.md)
   - [Commands](commands.md)
   - [Convert JSON doc to HTML](doc-html-doc.md)
+  - [Menu](menu.md)
 
 - Examples
 
   - [Full Featured Editor](full-featured-editor.md)
-  - [Menu](menu.md)
   - [History](history.md)
   - [InputRules](input-rules.md)
   - [Shortcuts](shortcuts.md)
