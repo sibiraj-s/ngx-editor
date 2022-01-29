@@ -13,6 +13,26 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v12.1.2 (2022-01-29)
+
+#### Bug Fixes
+
+- show active background color in color palette ([e2d4f43](https://github.com/sibiraj-s/ngx-editor/commit/e2d4f43))
+- fix color palette selection in `mat-dialog` ([c7df506](https://github.com/sibiraj-s/ngx-editor/commit/c7df506))
+- replace deprecated substr with substring ([9089c5a](https://github.com/sibiraj-s/ngx-editor/commit/9089c5a))
+
+### Enhancements
+
+- inherit svg text using currentColor ([0b785b3](https://github.com/sibiraj-s/ngx-editor/commit/0b785b3))
+
+#### Performance Improvements
+
+- use trackByFn with ngFor loops ([c7df506](https://github.com/sibiraj-s/ngx-editor/commit/c7df506))
+
+#### Dependency Updates
+
+- update dependencies and devDependencies ([ce1ca6b](https://github.com/sibiraj-s/ngx-editor/commit/ce1ca6b))
+
 ## v12.1.1 (2022-01-14)
 
 #### Bug Fixes
