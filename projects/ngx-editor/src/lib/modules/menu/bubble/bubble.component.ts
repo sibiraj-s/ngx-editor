@@ -52,6 +52,10 @@ export class BubbleComponent implements OnInit, OnDestroy {
     return this.ngxeService.locals.get(name);
   }
 
+  trackByIndex(index: number): number {
+    return index
+  }
+
   onClick(e: MouseEvent, commandName: TBItems): void {
     e.preventDefault();
     e.stopPropagation();

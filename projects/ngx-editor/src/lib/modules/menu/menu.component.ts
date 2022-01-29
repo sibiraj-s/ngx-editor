@@ -91,6 +91,10 @@ export class MenuComponent implements OnInit {
     return colors;
   }
 
+  trackByIndex(index: number): number {
+    return index
+  }
+
   isDropDown(item: ToolbarItem): boolean {
     if ((item as ToolbarDropdown)?.heading) {
       return true;

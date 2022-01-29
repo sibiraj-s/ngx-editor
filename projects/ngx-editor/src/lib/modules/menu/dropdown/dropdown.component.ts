@@ -57,6 +57,10 @@ export class DropdownComponent implements OnInit, OnDestroy {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
+  trackByIndex(index: number): number {
+    return index
+  }
+
   onClick(e: MouseEvent, item: TBHeadingItems): void {
     e.preventDefault();
 

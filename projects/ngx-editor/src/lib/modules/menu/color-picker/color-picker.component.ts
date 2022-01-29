@@ -91,6 +91,10 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     this.hidePopup();
   }
 
+  trackByIndex(index: number): number {
+    return index
+  }
+
   onColorSelect(e: MouseEvent, color: string): void {
     e.preventDefault();
 
