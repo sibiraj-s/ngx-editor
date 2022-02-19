@@ -2,14 +2,12 @@ import {
   Component, ElementRef, HostBinding,
   HostListener, Input, OnDestroy, OnInit
 } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { asyncScheduler, fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 
 import Editor from '../../../Editor';
-import Icon from '../../../icons';
 import { TBItems } from '../../../types';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 
