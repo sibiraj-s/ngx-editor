@@ -6,7 +6,7 @@ import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { asyncScheduler, fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
-import { VirtualElement } from '@floating-ui/core';
+import type { VirtualElement } from '@floating-ui/core';
 import { computePosition, detectOverflow, offset, autoPlacement } from '@floating-ui/dom';
 
 import Editor from '../../../Editor';

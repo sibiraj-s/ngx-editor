@@ -12,6 +12,8 @@
     "prosemirror-schema-list",
     "prosemirror-commands",
     "prosemirror-history",
-    "prosemirror-inputrules"
+    "prosemirror-inputrules",
+    "@floating-ui/core",
+    "@floating-ui/dom"
   ]
 }
