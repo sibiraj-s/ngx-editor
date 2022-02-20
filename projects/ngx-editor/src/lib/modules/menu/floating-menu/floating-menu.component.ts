@@ -10,7 +10,6 @@ import type { VirtualElement } from '@floating-ui/core';
 import { computePosition, detectOverflow, offset, autoPlacement } from '@floating-ui/dom';
 
 import Editor from '../../../Editor';
-import { TBItems } from '../../../types';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 
 interface BubblePosition {
@@ -49,8 +48,6 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   private updateSubscription: Subscription;
   private dragging = false;
   private resizeSubscription: Subscription;
-  execulableItems: TBItems[] = [];
-  activeItems: TBItems[] = [];
 
   @HostListener('document:mousedown', ['$event']) onMouseDown(e: MouseEvent): void {
     const target = e.target as Node

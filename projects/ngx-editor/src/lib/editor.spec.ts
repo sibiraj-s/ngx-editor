@@ -1,4 +1,3 @@
-import { By } from '@angular/platform-browser';
 import Editor from './Editor';
 
 describe('NgxEditorComponent', () => {

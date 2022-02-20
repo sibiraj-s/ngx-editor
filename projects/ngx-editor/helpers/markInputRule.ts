@@ -2,9 +2,7 @@ import { InputRule } from "prosemirror-inputrules"
 import { MarkType } from "prosemirror-model"
 
 export const markInputRule = (regexp: RegExp, markType: MarkType, attrs?: Record<string, unknown>): InputRule => {
-
   return new InputRule(regexp, (state, match, start, end) => {
-
     const tr = state.tr
 
     if (match[2]) {
