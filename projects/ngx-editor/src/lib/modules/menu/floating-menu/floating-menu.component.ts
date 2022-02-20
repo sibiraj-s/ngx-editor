@@ -6,6 +6,8 @@ import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { asyncScheduler, fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
+import { VirtualElement } from '@floating-ui/core';
+import { computePosition, detectOverflow, offset, autoPlacement } from '@floating-ui/dom';
 
 import Editor from '../../../Editor';
 import { TBItems } from '../../../types';
@@ -39,6 +41,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   @Input() editor: Editor;
+  @Input() autoPlace = false;
 
   private posLeft = 0;
   private posTop = 0;
@@ -110,52 +113,95 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
     this.showMenu = true;
   }
 
-  private calculateBubblePosition(view: EditorView): BubblePosition {
+  private async calculateBubblePosition(view: EditorView): Promise<BubblePosition> {
     const { state: { selection } } = view;
-    const { from } = selection;
+    const { from, to } = selection;
+
+    const start = view.coordsAtPos(from);
+    const end = view.coordsAtPos(to);
+
+    const selectionElement: VirtualElement = {
+      getBoundingClientRect() {
+        if (selection instanceof NodeSelection) {
+          const node = view.nodeDOM(from) as HTMLElement
+          return node.getBoundingClientRect()
+        }
+
+        const top = start.top
+        const bottom = end.bottom
+        const left = start.left
+        const right = end.right
+
+        return {
+          x: left,
+          y: top,
+          top,
+          bottom,
+          left,
+          right,
+          width: right - left,
+          height: bottom - top,
+        };
+      },
+    };
 
     // the floating bubble itself
     const bubbleEl = this.el.nativeElement;
-    const bubble = bubbleEl.getBoundingClientRect();
 
-    // The box in which the tooltip is positioned, to use as base
-    const box = bubbleEl.parentElement.getBoundingClientRect();
+    const { x: left, y: top } = await computePosition(selectionElement, bubbleEl, {
+      placement: 'top',
+      middleware: [
+        offset(5),
+        this.autoPlace && autoPlacement({
+          boundary: view.dom,
+          padding: 5,
+          allowedPlacements: ['top', 'bottom']
+        }),
+        {
+          // prevent overflow on right and left side
+          // since only top and bottom placements are allowed
+          // autoplacement can't handle overflows on the right and left
+          name: 'overflowMiddleware',
+          async fn(middlewareArgs) {
+            const overflow = await detectOverflow(middlewareArgs, {
+              boundary: view.dom,
+              padding: 5,
+            });
 
-    const start = view.coordsAtPos(from);
+            // overflows left
+            if (overflow.left > 0) {
+              return {
+                x: middlewareArgs.x + overflow.left,
+              }
+            }
 
-    let left = start.left - box.left;
+            // overflows right
+            if (overflow.right > 0) {
+              return {
+                x: middlewareArgs.x - overflow.right,
+              }
+            }
 
-    const overflowsRight = (
-      box.right < (start.left + bubble.width) ||
-      bubble.right > box.right
-    );
-
-    if (overflowsRight) {
-      left = box.width - bubble.width;
-    }
-
-    if (left < 0) {
-      left = 0;
-    }
-
-    const bubbleHeight = bubble.height + parseInt(getComputedStyle(bubbleEl).marginBottom, 10);
-    const top = (start.top - box.top) - bubbleHeight;
+            return {};
+          },
+        }
+      ].filter(Boolean)
+    })
 
     return {
       left,
       top
-    };
+    }
   }
 
-  private update(view: EditorView): void {
+  private canShowMenu(view: EditorView): Boolean {
     const { state } = view;
     const { selection } = state;
     const { empty } = selection;
 
     if (selection instanceof NodeSelection) {
       if (selection.node.type.name === 'image') {
-        this.hide();
-        return;
+        return false;
       }
     }
 
@@ -163,15 +209,29 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
 
     if (!hasFocus || empty || this.dragging) {
       this.hide();
-      return;
+      return false;
     }
 
-    const { top, left } = this.calculateBubblePosition(this.view);
+    return true
+  }
 
-    this.posLeft = left;
-    this.posTop = top;
+  private update(view: EditorView): void {
+    const canShowMenu = this.canShowMenu(view)
 
-    this.show();
+    if (!canShowMenu) {
+      return this.hide()
+    }
+
+    this.calculateBubblePosition(this.view).then(({ top, left }) => {
+      if (!this.canShowMenu) {
+        return this.hide()
+      }
+
+      this.posLeft = left;
+      this.posTop = top;
+
+      this.show();
+    });
   }
 
   ngOnInit(): void {

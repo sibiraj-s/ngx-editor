@@ -56,6 +56,8 @@
     "@angular/compiler-cli": "~13.2.0",
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
+    "@floating-ui/core": "^0.4.0",
+    "@floating-ui/dom": "^0.2.0",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "@types/prosemirror-commands": "^1.0.4",

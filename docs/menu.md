@@ -2,7 +2,7 @@
 
 Menu is not part of the editor component. Include `ngx-editor-menu` in your HTML manually.
 
-## Component props
+### Component props
 
 - **editor** - (`Required`) editor instance
 - **toolbar** - (`Optional`)
@@ -145,3 +145,27 @@ export class CustomMenuComponent implements OnInit {
   }
 }
 ```
+
+## Floating Menu
+
+The editor exposes a component which by default renders a minimal menu. Place it anywhere in the HTML. Technically it is just a wrapper which provides a wrapper and positions it relative to selection. You can render anything inside it as required.
+
+```html
+<ngx-editor [editor]="editor">
+  <ngx-editor-floating-menu [editor]="editor"></ngx-editor-floating-menu>
+</ngx-editor>
+```
+
+OR
+
+```html
+<div class="editor">
+  <ngx-editor [editor]="editor"> </ngx-editor>
+  <ngx-editor-floating-menu [editor]="editor"></ngx-editor-floating-menu>
+</div>
+```
+
+### Component props
+
+- **editor** - (`Required`) editor instance
+- **autoPlace** - (`Optional`) positions automatically to the top or bottom based on the space available. `false` by default
