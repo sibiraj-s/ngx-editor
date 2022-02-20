@@ -13,6 +13,21 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v12.2.0 (2022-02-20)
+
+### Features
+
+- add option `autoPlace` to floating-menu to automatically position the component ([82c1047](https://github.com/sibiraj-s/ngx-editor/commit/82c1047))
+
+### Enhancements
+
+- improve floating-menu positioning with floating-ui ([82c1047](https://github.com/sibiraj-s/ngx-editor/commit/82c1047))
+
+#### Dependency Updates
+
+- update prosemirror dependencies ([8d4d5ea](https://github.com/sibiraj-s/ngx-editor/commit/8d4d5ea))
+- update devDependencies ([8171514](https://github.com/sibiraj-s/ngx-editor/commit/8171514))
+
 ## v12.1.2 (2022-01-29)
 
 #### Bug Fixes
