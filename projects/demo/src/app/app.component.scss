@@ -42,13 +42,9 @@
 }
 
 .editor {
-  .CodeMirror {
-    border: 1px solid #eee;
+  .cm-editor {
+    border: 1px solid #ddd;
     height: auto;
     margin-bottom: 0.7rem;
-
-    pre {
-      white-space: pre !important;
-    }
   }
 }

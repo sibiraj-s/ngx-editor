@@ -1,27 +1,10 @@
 import { nodes as basicNodes, marks } from 'ngx-editor';
-import { Schema, NodeSpec, DOMOutputSpec } from 'prosemirror-model';
-
-const codeMirror: NodeSpec = {
-  content: 'text*',
-  marks: '',
-  group: 'block',
-  code: true,
-  defining: true,
-  isolating: true,
-  parseDOM: [
-    {
-      tag: 'pre',
-      preserveWhitespace: 'full'
-    }
-  ],
-  toDOM(): DOMOutputSpec {
-    return ['pre', ['code', 0]];
-  },
-};
+import { Schema } from 'prosemirror-model';
+import { node as codeMirrorNode } from 'prosemirror-codemirror-6'
 
 const nodes = {
   ...basicNodes,
-  code_mirror: codeMirror
+  code_mirror: codeMirrorNode
 };
 
 const schema = new Schema({
