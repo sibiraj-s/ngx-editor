@@ -31,6 +31,12 @@ class ImageRezieView implements NodeView {
     // Attach to the view so that the change detector knows to run
     this.applicationRef.attachView(this.imageComponentRef.hostView);
 
+    // TODO: Possible alternate for deprecated ComponentFactoryResolver
+    // const viewContainerRef = injector.get(ViewContainerRef);
+    // this.imageComponentRef = viewContainerRef.createComponent(ImageViewComponent, { injector });
+    // const elementRef = this.imageComponentRef.location;
+    // this.dom = elementRef.nativeElement;
+
     this.setNodeAttributes(node.attrs);
     this.imageComponentRef.instance.view = view;
 
