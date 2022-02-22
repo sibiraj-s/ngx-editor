@@ -99,7 +99,7 @@ export class ImageComponent implements OnInit, OnDestroy {
   private update = (view: EditorView) => {
     const { state } = view;
     this.isActive = ImageCommand.isActive(state);
-  }
+  };
 
   insertLink(e: MouseEvent): void {
     e.preventDefault();

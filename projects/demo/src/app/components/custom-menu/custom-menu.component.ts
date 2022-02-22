@@ -37,7 +37,7 @@ export class CustomMenuComponent implements OnInit {
     const { schema } = state;
     this.isActive = isNodeActive(state, schema.nodes.code_mirror);
     this.isDisabled = !this.execute(state, null); // returns true if executable
-  }
+  };
 
   ngOnInit(): void {
     this.editor.update.subscribe((view) => this.update(view));

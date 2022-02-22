@@ -20,7 +20,7 @@ import colorFill from './color_fill';
 
 const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
-const DEFAULT_ICON_FILL = 'currentColor'
+const DEFAULT_ICON_FILL = 'currentColor';
 
 const icons: Record<string, any> = {
   bold,

@@ -110,13 +110,13 @@ export class LinkComponent implements OnInit, OnDestroy {
       this.text.patchValue(selectedText);
       this.text.disable();
     }
-  }
+  };
 
   private update = (view: EditorView) => {
     const { state } = view;
     this.isActive = LinkCommand.isActive(state, { strict: false });
     this.canExecute = LinkCommand.canExecute(state);
-  }
+  };
 
   insertLink(e: MouseEvent): void {
     e.preventDefault();

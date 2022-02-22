@@ -2,7 +2,7 @@ import Editor from './Editor';
 
 describe('NgxEditorComponent', () => {
   it('should create the editor correctly', () => {
-    const editor = new Editor()
+    const editor = new Editor();
     expect(editor).toBeTruthy();
     expect(editor.view).toBeDefined();
     expect(editor.view.dom).toBeInstanceOf(HTMLElement);
@@ -13,8 +13,8 @@ describe('NgxEditorComponent', () => {
       attributes: {
         enterKeyHint: 'enter'
       }
-    })
+    });
 
-    expect(editor.view.dom.getAttribute('enterKeyHint')).toBe('enter')
-  })
+    expect(editor.view.dom.getAttribute('enterKeyHint')).toBe('enter');
+  });
 });

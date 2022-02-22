@@ -24,7 +24,7 @@ class TextColor {
 
   constructor(name: Name, attrName: AttrName = 'color') {
     this.name = name;
-    this.attrName = attrName
+    this.attrName = attrName;
   }
 
   apply(attrs: ColorAttrs | BackgroundColorAttrs): Command {
@@ -72,7 +72,7 @@ class TextColor {
     const colors = marks
       .filter(mark => mark.type === schema.marks[this.name])
       .map(mark => {
-        return mark.attrs[this.attrName]
+        return mark.attrs[this.attrName];
       })
       .filter(Boolean);
 

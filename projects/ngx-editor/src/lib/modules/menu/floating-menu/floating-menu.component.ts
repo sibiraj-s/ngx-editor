@@ -50,7 +50,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   private resizeSubscription: Subscription;
 
   @HostListener('document:mousedown', ['$event']) onMouseDown(e: MouseEvent): void {
-    const target = e.target as Node
+    const target = e.target as Node;
 
     if (this.el.nativeElement.contains(target) && target.nodeName !== 'INPUT') {
       e.preventDefault();
@@ -61,7 +61,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:keydown', ['$event']) onKeyDown(e: KeyboardEvent): void {
-    const target = e.target as Node
+    const target = e.target as Node;
 
     if (target.nodeName === 'INPUT') {
       return;
@@ -72,11 +72,11 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:mouseup', ['$event']) onMouseUp(e: MouseEvent): void {
-    const target = e.target as Node
+    const target = e.target as Node;
 
     if (this.el.nativeElement.contains(target) || target.nodeName === 'INPUT') {
       e.preventDefault();
-      return
+      return;
     }
 
     this.dragging = false;
@@ -84,7 +84,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:keyup', ['$event']) onKeyUp(e: KeyboardEvent): void {
-    const target = e.target as Node
+    const target = e.target as Node;
 
     if (target.nodeName === 'INPUT') {
       return;
@@ -120,14 +120,14 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
     const selectionElement: VirtualElement = {
       getBoundingClientRect() {
         if (selection instanceof NodeSelection) {
-          const node = view.nodeDOM(from) as HTMLElement
-          return node.getBoundingClientRect()
+          const node = view.nodeDOM(from) as HTMLElement;
+          return node.getBoundingClientRect();
         }
 
-        const top = start.top
-        const bottom = end.bottom
-        const left = start.left
-        const right = end.right
+        const top = start.top;
+        const bottom = end.bottom;
+        const left = start.left;
+        const right = end.right;
 
         return {
           x: left,
@@ -169,26 +169,26 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
             if (overflow.left > 0) {
               return {
                 x: middlewareArgs.x + overflow.left,
-              }
+              };
             }
 
             // overflows right
             if (overflow.right > 0) {
               return {
                 x: middlewareArgs.x - overflow.right,
-              }
+              };
             }
 
             return {};
           },
         }
       ].filter(Boolean)
-    })
+    });
 
     return {
       left,
       top
-    }
+    };
   }
 
   private canShowMenu(view: EditorView): Boolean {
@@ -209,19 +209,19 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
       return false;
     }
 
-    return true
+    return true;
   }
 
   private update(view: EditorView): void {
-    const canShowMenu = this.canShowMenu(view)
+    const canShowMenu = this.canShowMenu(view);
 
     if (!canShowMenu) {
-      return this.hide()
+      return this.hide();
     }
 
     this.calculateBubblePosition(this.view).then(({ top, left }) => {
       if (!this.canShowMenu) {
-        return this.hide()
+        return this.hide();
       }
 
       this.posLeft = left;

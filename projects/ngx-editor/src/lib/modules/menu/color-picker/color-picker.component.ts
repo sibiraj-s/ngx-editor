@@ -92,7 +92,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
   }
 
   trackByIndex(index: number): number {
-    return index
+    return index;
   }
 
   onColorSelect(e: MouseEvent, color: string): void {
@@ -128,7 +128,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     if (this.isActive) {
       this.activeColors = this.command.getActiveColors(state);
     }
-  }
+  };
 
   getLabel(key: string): string {
     return this.ngxeService.locals.get(key);

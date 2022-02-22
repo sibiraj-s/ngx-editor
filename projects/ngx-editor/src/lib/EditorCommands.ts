@@ -45,11 +45,11 @@ class EditorCommands {
     this.state = this.state.apply(tr ?? this.tr);
     this.tr = this.state.tr;
     this.tr.setMeta('APPLIED_TRX', true);
-  }
+  };
 
   private dispatch = (tr: Transaction): void => {
     this.applyTrx(tr);
-  }
+  };
 
   exec(): boolean {
     // No changes applied

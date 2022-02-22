@@ -73,7 +73,7 @@ class ImageRezieView implements NodeView {
 
     transaction.setSelection(newSelection);
     dispatch(transaction);
-  }
+  };
 
   update(node: ProseMirrorNode): boolean {
     if (node.type !== this.node.type) {

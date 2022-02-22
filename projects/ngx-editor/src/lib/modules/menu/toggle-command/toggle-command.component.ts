@@ -50,7 +50,7 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
     const command = ToggleCommands[this.name];
     this.isActive = command.isActive(state);
     this.disabled = !command.canExecute(state);
-  }
+  };
 
   getTitle(name: string): string {
     return this.ngxeService.locals.get(name);

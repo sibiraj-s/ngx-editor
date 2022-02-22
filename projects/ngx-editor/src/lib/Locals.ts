@@ -46,7 +46,7 @@ class Locals {
 
   get = (key: string):string => {
     return this.locals[key] ?? '';
-  }
+  };
 }
 
 export default Locals;

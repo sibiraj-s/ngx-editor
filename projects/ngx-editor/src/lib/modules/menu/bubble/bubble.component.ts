@@ -50,7 +50,7 @@ export class BubbleComponent implements OnInit, OnDestroy {
   }
 
   trackByIndex(index: number): number {
-    return index
+    return index;
   }
 
   onClick(e: MouseEvent, commandName: TBItems): void {

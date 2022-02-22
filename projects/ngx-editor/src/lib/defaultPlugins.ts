@@ -21,7 +21,9 @@ interface ShortcutOptions {
   history: boolean;
 }
 
-const isMacOs = typeof navigator !== 'undefined' ? /Mac/.test(navigator.platform) : false
+const isMacOs = typeof navigator !== 'undefined'
+  ? /Mac/.test(navigator.platform)
+  : false;
 
 // Input rules ref: https://github.com/ProseMirror/prosemirror-example-setup/
 
@@ -75,14 +77,14 @@ const headingRule = (nodeType: NodeType, maxLevel: number): InputRule => {
 // : (MarkType) → InputRule
 // Wraps matching text with bold mark
 const boldRule = (markType: MarkType): InputRule => {
-  return markInputRule(/(?:^|\s)((?:\*\*|__)((?:[^*_]+))(?:\*\*|__))$/, markType)
-}
+  return markInputRule(/(?:^|\s)((?:\*\*|__)((?:[^*_]+))(?:\*\*|__))$/, markType);
+};
 
 // : (MarkType) → InputRule
 // Wraps matching text with em mark
 const emRule = (markType: MarkType): InputRule => {
-  return markInputRule(/(?:^|\s)((?:\*|_)((?:[^*_]+))(?:\*|_))$/, markType)
-}
+  return markInputRule(/(?:^|\s)((?:\*|_)((?:[^*_]+))(?:\*|_))$/, markType);
+};
 
 // : (Schema) → Plugin
 // A set of input rules for creating the basic block quotes, lists,

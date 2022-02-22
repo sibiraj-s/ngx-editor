@@ -33,7 +33,7 @@ interface EditorFeatures {
 const defaultFeatures = {
   linkOnPaste: true,
   resizeImage: true
-}
+};
 
 const DEFAULT_OPTIONS: Options = {
   content: null,
@@ -76,7 +76,7 @@ class Editor {
   }
 
   get features(): EditorFeatures {
-    return { ...defaultFeatures, ...this.options.features }
+    return { ...defaultFeatures, ...this.options.features };
   }
 
   private handleTransactions(tr: Transaction): void {

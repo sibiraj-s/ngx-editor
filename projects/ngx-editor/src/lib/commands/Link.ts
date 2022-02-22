@@ -85,7 +85,7 @@ class Link {
   canExecute(state: EditorState): boolean {
     const testAttrs: LinkAttrs = {
       href: ''
-    }
+    };
 
     return this.insert('Exec', testAttrs)(state) || this.update(testAttrs)(state);
   }

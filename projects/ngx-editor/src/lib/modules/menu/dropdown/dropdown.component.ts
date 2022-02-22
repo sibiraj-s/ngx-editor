@@ -58,7 +58,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
   }
 
   trackByIndex(index: number): number {
-    return index
+    return index;
   }
 
   onClick(e: MouseEvent, item: TBHeadingItems): void {
@@ -98,7 +98,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
     } else {
       this.activeItem = null;
     }
-  }
+  };
 
   ngOnInit(): void {
     this.editorView = this.menuService.editor.view;
