@@ -268,7 +268,7 @@ export default {
           type: 'image',
           attrs: {
             src: 'https://gameranx.com/wp-content/uploads/2016/03/Rise-of-the-Tomb-Raider-4K-Wallpaper-3.jpg',
-            alt: null,
+            alt: 'Lara Croft',
             title: 'Lara Croft - Tomb Raider',
             width: '578px'
           }

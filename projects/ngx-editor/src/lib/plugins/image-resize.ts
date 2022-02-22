@@ -19,28 +19,24 @@ class ImageRezieView implements NodeView {
   updating = false;
 
   constructor(node: ProseMirrorNode, view: EditorView, getPos: () => number, injector: Injector) {
-    const dom = document.createElement('image-view');
-
     const componentFactoryResolver = injector.get(ComponentFactoryResolver);
     this.applicationRef = injector.get(ApplicationRef);
 
     // Create the component and wire it up with the element
     const factory = componentFactoryResolver.resolveComponentFactory(ImageViewComponent);
 
-    this.imageComponentRef = factory.create(injector, [], dom);
+    this.imageComponentRef = factory.create(injector, []);
     // Attach to the view so that the change detector knows to run
     this.applicationRef.attachView(this.imageComponentRef.hostView);
 
     // TODO: Possible alternate for deprecated ComponentFactoryResolver
     // const viewContainerRef = injector.get(ViewContainerRef);
     // this.imageComponentRef = viewContainerRef.createComponent(ImageViewComponent, { injector });
-    // const elementRef = this.imageComponentRef.location;
-    // this.dom = elementRef.nativeElement;
 
     this.setNodeAttributes(node.attrs);
     this.imageComponentRef.instance.view = view;
 
-    this.dom = dom;
+    this.dom = this.imageComponentRef.location.nativeElement;
     this.view = view;
     this.node = node;
     this.getPos = getPos;
