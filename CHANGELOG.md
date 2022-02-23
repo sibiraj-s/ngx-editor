@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v12.2.1 (2022-02-23)
+
+#### Bug Fixes
+
+- remove extra dom node around image component ([210824a](https://github.com/sibiraj-s/ngx-editor/commit/210824a))
+
 ## v12.2.0 (2022-02-20)
 
 ### Features
