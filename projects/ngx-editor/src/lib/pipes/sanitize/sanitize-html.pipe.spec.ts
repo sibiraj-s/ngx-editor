@@ -7,8 +7,8 @@ describe('SanitizeHtmlPipe', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
-         BrowserModule,
-      ]
+        BrowserModule,
+      ],
     }).compileComponents();
   });
 
@@ -23,7 +23,7 @@ describe('SanitizeHtmlPipe', () => {
     const pipe = new SanitizeHtmlPipe(sanitizer);
 
     const html = '<svg></svg>';
-    const result =  pipe.transform(html);
+    const result = pipe.transform(html);
     const expected = sanitizer.bypassSecurityTrustHtml(html);
     expect(result).toEqual(expected);
   });

@@ -15,9 +15,9 @@ describe('LinkComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         LinkComponent,
-        SanitizeHtmlPipe
+        SanitizeHtmlPipe,
       ],
-      providers: [MenuService]
+      providers: [MenuService],
     }).compileComponents();
   });
 

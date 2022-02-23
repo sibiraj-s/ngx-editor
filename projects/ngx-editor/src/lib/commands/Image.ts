@@ -22,7 +22,7 @@ class Image {
       const imageAttrs = {
         width: null,
         src,
-        ...attrs
+        ...attrs,
       };
 
       if (!imageAttrs.width && selection instanceof NodeSelection && selection.node.type === type) {
@@ -32,7 +32,7 @@ class Image {
       tr.replaceSelectionWith(type.createAndFill(imageAttrs));
 
       const resolvedPos = tr.doc.resolve(
-        tr.selection.anchor - tr.selection.$anchor.nodeBefore.nodeSize
+        tr.selection.anchor - tr.selection.$anchor.nodeBefore.nodeSize,
       );
 
       tr

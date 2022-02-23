@@ -15,7 +15,6 @@ class Heading {
 
   apply(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
-
       const { schema } = state;
 
       const type: NodeType = schema.nodes.heading;
@@ -29,7 +28,6 @@ class Heading {
 
   toggle(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
-
       const { schema, selection, doc } = state;
 
       const type: NodeType = schema.nodes.heading;
@@ -62,12 +60,12 @@ class Heading {
     const supportedNodes = [
       type,
       schema.nodes.text,
-      schema.nodes.blockquote
+      schema.nodes.blockquote,
     ];
 
     // heading is a text node
     // don't mark as active when it has more nodes
-    const nodes = nodesInSelection.filter(node => {
+    const nodes = nodesInSelection.filter((node) => {
       return supportedNodes.includes(node.type);
     });
 

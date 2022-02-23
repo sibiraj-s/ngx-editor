@@ -15,10 +15,16 @@
         "createDefaultProgram": true
       },
       "extends": [
+        "pegasus",
+        "pegasus/typescript",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "max-params": [
+          "error",
+          4
+        ],
         "@angular-eslint/component-selector": [
           "error",
           {

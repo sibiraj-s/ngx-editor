@@ -11,8 +11,8 @@ describe('NgxEditorComponent', () => {
   it('should set the attributes correctly to the editor', () => {
     const editor = new Editor({
       attributes: {
-        enterKeyHint: 'enter'
-      }
+        enterKeyHint: 'enter',
+      },
     });
 
     expect(editor.view.dom.getAttribute('enterKeyHint')).toBe('enter');

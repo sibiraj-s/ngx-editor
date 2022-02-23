@@ -70,8 +70,8 @@ class TextColor {
     const marks = getSelectionMarks(state);
 
     const colors = marks
-      .filter(mark => mark.type === schema.marks[this.name])
-      .map(mark => {
+      .filter((mark) => mark.type === schema.marks[this.name])
+      .map((mark) => {
         return mark.attrs[this.attrName];
       })
       .filter(Boolean);

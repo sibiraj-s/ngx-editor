@@ -2,7 +2,7 @@ import { InputRule } from 'prosemirror-inputrules';
 
 // automatically convert text to link while typing
 export const autoLink = (): InputRule => {
-  const urlRegEx = /((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)$/;
+  const urlRegEx = /(?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+\.?(?:\d+)?(?:\/\S*)?$/;
 
   return new InputRule(urlRegEx, (state, match, start, end) => {
     const { schema } = state;

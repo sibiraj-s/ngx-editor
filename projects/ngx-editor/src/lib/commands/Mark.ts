@@ -14,7 +14,6 @@ class Mark {
 
   apply(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
-
       const { schema } = state;
 
       const type: MarkType = schema.marks[this.name];
@@ -28,7 +27,6 @@ class Mark {
 
   toggle(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
-
       const { schema } = state;
 
       const type: MarkType = schema.marks[this.name];

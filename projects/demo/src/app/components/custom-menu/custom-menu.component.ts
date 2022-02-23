@@ -9,7 +9,7 @@ import { isNodeActive } from 'ngx-editor/helpers';
 @Component({
   selector: 'app-custom-menu',
   templateUrl: './custom-menu.component.html',
-  styleUrls: ['./custom-menu.component.scss']
+  styleUrls: ['./custom-menu.component.scss'],
 })
 export class CustomMenuComponent implements OnInit {
   @Input() editor: Editor;

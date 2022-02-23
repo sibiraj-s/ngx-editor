@@ -4,12 +4,12 @@ import * as sl from 'prosemirror-schema-list';
 import { toStyleString } from 'ngx-editor/utils';
 
 const doc: NodeSpec = {
-  content: 'block+'
+  content: 'block+',
 };
 
 // :: NodeSpec The text node.
 const text: NodeSpec = {
-  group: 'inline'
+  group: 'inline',
 };
 
 // :: NodeSpec A plain paragraph textblock. Represented in the DOM
@@ -20,7 +20,7 @@ const paragraph: NodeSpec = {
   attrs: {
     align: {
       default: null,
-    }
+    },
   },
   parseDOM: [
     {
@@ -30,21 +30,21 @@ const paragraph: NodeSpec = {
         const align = dom.getAttribute('align') || textAlign || null;
 
         return {
-          align
+          align,
         };
-      }
-    }
+      },
+    },
   ],
   toDOM(node): DOMOutputSpec {
     const { align } = node.attrs;
 
     const styles: Partial<CSSStyleDeclaration> = {
-      textAlign: align !== 'left' ? align : null
+      textAlign: align !== 'left' ? align : null,
     };
     const style = toStyleString(styles) || null;
 
     return ['p', { style }, 0];
-  }
+  },
 };
 
 // :: NodeSpec A blockquote (`<blockquote>`) wrapping one or more blocks.
@@ -55,7 +55,7 @@ const blockquote: NodeSpec = {
   parseDOM: [{ tag: 'blockquote' }],
   toDOM(): DOMOutputSpec {
     return ['blockquote', 0];
-  }
+  },
 };
 
 // :: NodeSpec A horizontal rule (`<hr>`).
@@ -64,7 +64,7 @@ const horizontalRule: NodeSpec = {
   parseDOM: [{ tag: 'hr' }],
   toDOM(): DOMOutputSpec {
     return ['hr'];
-  }
+  },
 };
 
 // :: NodeSpec A heading textblock, with a `level` attribute that
@@ -73,11 +73,11 @@ const horizontalRule: NodeSpec = {
 const heading: NodeSpec = {
   attrs: {
     level: {
-      default: 1
+      default: 1,
     },
     align: {
       default: null,
-    }
+    },
   },
   content: 'inline*',
   group: 'block',
@@ -91,9 +91,9 @@ const heading: NodeSpec = {
 
         return {
           level: 1,
-          align
+          align,
         };
-      }
+      },
     },
     {
       tag: 'h2',
@@ -103,9 +103,9 @@ const heading: NodeSpec = {
 
         return {
           level: 2,
-          align
+          align,
         };
-      }
+      },
     },
     {
       tag: 'h3',
@@ -115,9 +115,9 @@ const heading: NodeSpec = {
 
         return {
           level: 3,
-          align
+          align,
         };
-      }
+      },
     },
     {
       tag: 'h4',
@@ -127,9 +127,9 @@ const heading: NodeSpec = {
 
         return {
           level: 4,
-          align
+          align,
         };
-      }
+      },
     },
     {
       tag: 'h5',
@@ -139,9 +139,9 @@ const heading: NodeSpec = {
 
         return {
           level: 5,
-          align
+          align,
         };
-      }
+      },
     },
     {
       tag: 'h6',
@@ -151,21 +151,21 @@ const heading: NodeSpec = {
 
         return {
           level: 6,
-          align
+          align,
         };
-      }
+      },
     },
   ],
   toDOM(node): DOMOutputSpec {
     const { level, align } = node.attrs;
 
     const styles: Partial<CSSStyleDeclaration> = {
-      textAlign: align !== 'left' ? align : null
+      textAlign: align !== 'left' ? align : null,
     };
     const style = toStyleString(styles) || null;
 
-    return ['h' + level, { style }, 0];
-  }
+    return [`h${level}`, { style }, 0];
+  },
 };
 
 // :: NodeSpec A code listing. Disallows marks or non-text inline
@@ -180,12 +180,12 @@ const codeBlock: NodeSpec = {
   parseDOM: [
     {
       tag: 'pre',
-      preserveWhitespace: 'full'
-    }
+      preserveWhitespace: 'full',
+    },
   ],
   toDOM(): DOMOutputSpec {
     return ['pre', ['code', 0]];
-  }
+  },
 };
 
 // :: NodeSpec A hard line break, represented in the DOM as `<br>`.
@@ -196,7 +196,7 @@ const hardBreak: NodeSpec = {
   parseDOM: [{ tag: 'br' }],
   toDOM(): DOMOutputSpec {
     return ['br'];
-  }
+  },
 };
 
 // :: NodeSpec An inline image (`<img>`) node. Supports `src`,
@@ -208,7 +208,7 @@ export const image: NodeSpec = {
     src: {},
     alt: { default: null },
     title: { default: null },
-    width: { default: null }
+    width: { default: null },
   },
   group: 'inline',
   draggable: true,
@@ -220,32 +220,32 @@ export const image: NodeSpec = {
           src: dom.getAttribute('src'),
           title: dom.getAttribute('title'),
           alt: dom.getAttribute('alt'),
-          width: dom.getAttribute('width')
+          width: dom.getAttribute('width'),
         };
-      }
-    }
+      },
+    },
   ],
   toDOM(node: ProseMirrorNode): DOMOutputSpec {
     const { src, alt, title, width } = node.attrs;
     return ['img', { src, alt, title, width }];
-  }
+  },
 };
 
 const listItem = {
   ...sl.listItem,
-  content: 'paragraph block*'
+  content: 'paragraph block*',
 };
 
 const orderedList = {
   ...sl.orderedList,
   content: 'list_item+',
-  group: 'block'
+  group: 'block',
 };
 
 const bulletList = {
   ...sl.bulletList,
   content: 'list_item+',
-  group: 'block'
+  group: 'block',
 };
 
 const nodes = {
@@ -260,7 +260,7 @@ const nodes = {
   image,
   list_item: listItem,
   ordered_list: orderedList,
-  bullet_list: bulletList
+  bullet_list: bulletList,
 };
 
 export default nodes;

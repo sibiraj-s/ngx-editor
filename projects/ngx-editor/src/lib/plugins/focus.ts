@@ -8,9 +8,9 @@ const focusPlugin = (cb: () => void): Plugin => {
         focus: () => {
           cb();
           return false;
-        }
-      }
-    }
+        },
+      },
+    },
   });
 };
 

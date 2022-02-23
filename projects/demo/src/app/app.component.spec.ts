@@ -16,12 +16,12 @@ describe('AppComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        NgxEditorModule
+        NgxEditorModule,
       ],
       declarations: [
         AppComponent,
-        CustomMenuComponent
-      ]
+        CustomMenuComponent,
+      ],
     }).compileComponents();
   });
 

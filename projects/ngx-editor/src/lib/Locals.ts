@@ -41,7 +41,7 @@ class Locals {
   locals = defaults;
 
   constructor(newLocals: Partial<Record<LocalsKeys, string>> = {}) {
-    this.locals = Object.assign({}, defaults, newLocals);
+    this.locals = { ...defaults, ...newLocals };
   }
 
   get = (key: string):string => {

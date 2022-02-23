@@ -1,6 +1,6 @@
 import {
   Component, ElementRef, HostBinding,
-  HostListener, Input, OnDestroy, OnInit
+  HostListener, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
@@ -20,18 +20,17 @@ interface BubblePosition {
 @Component({
   selector: 'ngx-editor-floating-menu',
   templateUrl: './floating-menu.component.html',
-  styleUrls: ['./floating-menu.component.scss']
+  styleUrls: ['./floating-menu.component.scss'],
 })
 export class FloatingMenuComponent implements OnInit, OnDestroy {
-
   constructor(public el: ElementRef<HTMLElement>, private sanitizeHTML: SanitizeHtmlPipe) { }
 
   @HostBinding('style') get display(): Partial<CSSStyleDeclaration> {
     return {
       visibility: this.showMenu ? 'visible' : 'hidden',
       opacity: this.showMenu ? '1' : '0',
-      top: this.posTop + 'px',
-      left: this.posLeft + 'px',
+      top: `${this.posTop}px`,
+      left: `${this.posLeft}px`,
     };
   }
 
@@ -124,10 +123,8 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
           return node.getBoundingClientRect();
         }
 
-        const top = start.top;
-        const bottom = end.bottom;
-        const left = start.left;
-        const right = end.right;
+        const { top, left } = start;
+        const { bottom, right } = end;
 
         return {
           x: left,
@@ -152,7 +149,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
         this.autoPlace && autoPlacement({
           boundary: view.dom,
           padding: 5,
-          allowedPlacements: ['top', 'bottom']
+          allowedPlacements: ['top', 'bottom'],
         }),
         {
           // prevent overflow on right and left side
@@ -181,13 +178,13 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
 
             return {};
           },
-        }
-      ].filter(Boolean)
+        },
+      ].filter(Boolean),
     });
 
     return {
       left,
-      top
+      top,
     };
   }
 
@@ -216,12 +213,14 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
     const canShowMenu = this.canShowMenu(view);
 
     if (!canShowMenu) {
-      return this.hide();
+      this.hide();
+      return;
     }
 
     this.calculateBubblePosition(this.view).then(({ top, left }) => {
       if (!this.canShowMenu) {
-        return this.hide();
+        this.hide();
+        return;
       }
 
       this.posLeft = left;
@@ -242,7 +241,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
       });
 
     this.resizeSubscription = fromEvent(window, 'resize').pipe(
-      throttleTime(500, asyncScheduler, { leading: true, trailing: true })
+      throttleTime(500, asyncScheduler, { leading: true, trailing: true }),
     ).subscribe(() => {
       this.useUpdate();
     });

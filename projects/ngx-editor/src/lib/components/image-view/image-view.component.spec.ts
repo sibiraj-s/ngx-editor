@@ -7,10 +7,11 @@ describe('ImageComponent', () => {
   let fixture: ComponentFixture<ImageViewComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ImageViewComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({
+      declarations: [ImageViewComponent],
+    });
+
+    await TestBed.compileComponents();
   });
 
   beforeEach(() => {

@@ -29,7 +29,7 @@ class ImageRezieView implements NodeView {
     // Attach to the view so that the change detector knows to run
     this.applicationRef.attachView(this.imageComponentRef.hostView);
 
-    // TODO: Possible alternate for deprecated ComponentFactoryResolver
+    // Possible alternate for deprecated ComponentFactoryResolver
     // const viewContainerRef = injector.get(ViewContainerRef);
     // this.imageComponentRef = viewContainerRef.createComponent(ImageViewComponent, { injector });
 
@@ -119,8 +119,8 @@ const imageResizePlugin = (injector: Injector): Plugin => {
         image: (node: ProseMirrorNode, view: EditorView, getPos: () => number) => {
           return new ImageRezieView(node, view, getPos, injector);
         },
-      }
-    }
+      },
+    },
   });
 };
 

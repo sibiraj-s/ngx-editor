@@ -8,9 +8,9 @@ const blurPlugin = (cb: () => void):Plugin => {
         blur: () => {
           cb();
           return false;
-        }
-      }
-    }
+        },
+      },
+    },
   });
 };
 

@@ -1,6 +1,6 @@
 import {
   Component, ElementRef, HostBinding,
-  HostListener, OnDestroy, Input, OnInit
+  HostListener, OnDestroy, Input, OnInit,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ type Command = typeof TextColor | typeof TextBackgroundColor;
 @Component({
   selector: 'ngx-color-picker',
   templateUrl: './color-picker.component.html',
-  styleUrls: ['./color-picker.component.scss']
+  styleUrls: ['./color-picker.component.scss'],
 })
 export class ColorPickerComponent implements OnInit, OnDestroy {
   @Input() presets: string[][];
@@ -24,7 +24,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
   constructor(
     private el: ElementRef,
     private menuService: MenuService,
-    private ngxeService: NgxEditorService
+    private ngxeService: NgxEditorService,
   ) { }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
@@ -60,7 +60,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     const g = parseInt(color.substring(2, 4), 16);
     const b = parseInt(color.substring(4, 6), 16);
     const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-    return (yiq >= 128) ? 'black' : 'white';
+    return yiq >= 128 ? 'black' : 'white';
   }
 
   @HostListener('document:mousedown', ['$event']) onDocumentClick(e: MouseEvent): void {

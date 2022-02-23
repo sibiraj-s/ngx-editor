@@ -2,7 +2,7 @@ import { EditorState, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import {
   chainCommands, createParagraphNear, liftEmptyBlock,
-  newlineInCode, splitBlock
+  newlineInCode, splitBlock,
 } from 'prosemirror-commands';
 import { DOMParser } from 'prosemirror-model';
 

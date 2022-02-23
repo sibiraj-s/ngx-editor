@@ -15,9 +15,9 @@ describe('ToggleCommandComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         ToggleCommandComponent,
-        SanitizeHtmlPipe
+        SanitizeHtmlPipe,
       ],
-      providers: [MenuService]
+      providers: [MenuService],
     })
       .compileComponents();
   });

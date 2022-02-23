@@ -13,7 +13,7 @@ import { NgxEditorService } from '../../../editor.service';
 @Component({
   selector: 'ngx-bubble',
   templateUrl: './bubble.component.html',
-  styleUrls: ['./bubble.component.scss']
+  styleUrls: ['./bubble.component.scss'],
 })
 export class BubbleComponent implements OnInit, OnDestroy {
   constructor(private sanitizeHTML: SanitizeHtmlPipe, private ngxeService: NgxEditorService) { }
@@ -31,13 +31,22 @@ export class BubbleComponent implements OnInit, OnDestroy {
   toolbar: TBItems[][] = [
     ['bold', 'italic', 'underline', 'strike'],
     ['ordered_list', 'bullet_list', 'blockquote', 'code'],
-    ['align_left', 'align_center', 'align_right', 'align_justify']
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
 
   toggleCommands: TBItems[] = [
-    'bold', 'italic', 'underline', 'strike',
-    'ordered_list', 'bullet_list', 'blockquote', 'code',
-    'align_left', 'align_center', 'align_right', 'align_justify'
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'ordered_list',
+    'bullet_list',
+    'blockquote',
+    'code',
+    'align_left',
+    'align_center',
+    'align_right',
+    'align_justify',
   ];
 
   getIcon(name: TBItems): SafeHtml {
@@ -72,7 +81,7 @@ export class BubbleComponent implements OnInit, OnDestroy {
     this.execulableItems = [];
     const { state } = view;
 
-    this.toggleCommands.forEach(toolbarItem => {
+    this.toggleCommands.forEach((toolbarItem) => {
       const command = ToggleCommands[toolbarItem];
 
       const isActive = command.isActive(state);

@@ -13,7 +13,7 @@ describe('DropdownComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DropdownComponent],
-      providers: [MenuService]
+      providers: [MenuService],
     })
       .compileComponents();
   });

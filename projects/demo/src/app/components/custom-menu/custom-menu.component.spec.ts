@@ -10,8 +10,8 @@ describe('CustomMenuComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        CustomMenuComponent
-      ]
+        CustomMenuComponent,
+      ],
     })
       .compileComponents();
   });

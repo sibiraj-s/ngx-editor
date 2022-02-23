@@ -13,7 +13,7 @@ const isEmptyInputValue = (value: any): boolean => {
 
 const hasValidLength = (value: any): boolean => {
   // non-strict comparison is intentional, to check for both `null` and `undefined` values
-  return value != null && typeof value.length === 'number';
+  return value !== null && typeof value.length === 'number';
 };
 
 const isDocEmpty = (doc: ProseMirrorNode | null): boolean => {
@@ -27,10 +27,8 @@ const isDocEmpty = (doc: ProseMirrorNode | null): boolean => {
 
 // @dynamic
 export class Validators {
-
   static required(userSchema?: Schema): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-
       const schema = userSchema || defaultSchema;
       const doc = parseContent(control.value, schema);
 
@@ -41,7 +39,7 @@ export class Validators {
       }
 
       return {
-        required: true
+        required: true,
       };
     };
   }
@@ -57,8 +55,8 @@ export class Validators {
         return {
           maxlength: {
             requiredLength: maxLength,
-            actualLength: value.length
-          }
+            actualLength: value.length,
+          },
         };
       }
 
@@ -68,7 +66,6 @@ export class Validators {
 
   static minLength(minLength: number, userSchema?: Schema): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-
       const schema = userSchema || defaultSchema;
       const doc = parseContent(control.value, schema);
 
@@ -83,8 +80,8 @@ export class Validators {
       if (value.length < minLength) {
         return {
           minlength: {
-            requiredLength: minLength, actualLength: value.length
-          }
+            requiredLength: minLength, actualLength: value.length,
+          },
         };
       }
 

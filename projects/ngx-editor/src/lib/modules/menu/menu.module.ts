@@ -16,7 +16,7 @@ import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [
     // pipes
@@ -31,14 +31,14 @@ import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
     ColorPickerComponent,
 
     FloatingMenuComponent,
-    BubbleComponent
+    BubbleComponent,
   ],
   providers: [
     SanitizeHtmlPipe,
   ],
   exports: [
     MenuComponent,
-    FloatingMenuComponent
+    FloatingMenuComponent,
   ],
 })
 

@@ -1,6 +1,6 @@
 import {
   Component, Input,
-  OnInit, TemplateRef
+  OnInit, TemplateRef,
 } from '@angular/core';
 
 import { Toolbar, ToolbarItem, ToolbarDropdown } from '../../types';
@@ -42,14 +42,14 @@ const DEFAULT_COLOR_PRESETS = [
   '#bfdadc',
   '#c5def5',
   '#bfd4f2',
-  '#d4c5f9'
+  '#d4c5f9',
 ];
 
 @Component({
   selector: 'ngx-editor-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  providers: [MenuService]
+  providers: [MenuService],
 })
 
 export class MenuComponent implements OnInit {
@@ -61,11 +61,18 @@ export class MenuComponent implements OnInit {
   @Input() dropdownPlacement: 'top' | 'bottom' = 'bottom';
 
   toggleCommands: any[] = [
-    'bold', 'italic',
-    'underline', 'strike',
-    'code', 'blockquote',
-    'ordered_list', 'bullet_list',
-    'align_left', 'align_center', 'align_right', 'align_justify'
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'code',
+    'blockquote',
+    'ordered_list',
+    'bullet_list',
+    'align_left',
+    'align_center',
+    'align_right',
+    'align_justify',
   ];
 
   iconContainerClass = ['NgxEditor__MenuItem', 'NgxEditor__MenuItem--Icon'];

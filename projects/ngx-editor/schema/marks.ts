@@ -7,7 +7,7 @@ const link: MarkSpec = {
   attrs: {
     href: {},
     title: { default: null },
-    target: { default: '_blank' }
+    target: { default: '_blank' },
   },
   inclusive: false,
   parseDOM: [
@@ -19,13 +19,13 @@ const link: MarkSpec = {
           title: dom.getAttribute('title'),
           target: dom.getAttribute('target'),
         };
-      }
-    }
+      },
+    },
   ],
   toDOM(node): DOMOutputSpec {
     const { href, title, target } = node.attrs;
     return ['a', { href, title, target }, 0];
-  }
+  },
 };
 
 // :: MarkSpec An emphasis mark. Rendered as an `<em>` element.
@@ -34,11 +34,11 @@ const em: MarkSpec = {
   parseDOM: [
     { tag: 'i' },
     { tag: 'em' },
-    { style: 'font-style=italic' }
+    { style: 'font-style=italic' },
   ],
   toDOM(): DOMOutputSpec {
     return ['em', 0];
-  }
+  },
 };
 
 // :: MarkSpec A strong mark. Rendered as `<strong>`, parse rules
@@ -58,23 +58,23 @@ const strong: MarkSpec = {
     {
       style: 'font-weight',
       getAttrs: (value: string): Record<string, any> => {
-        return /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null;
-      }
-    }
+        return (/^(?:bold(?:er)?|[5-9]\d{2,})$/).test(value) && null;
+      },
+    },
   ],
   toDOM(): DOMOutputSpec {
     return ['strong', 0];
-  }
+  },
 };
 
 // :: MarkSpec Code font mark. Represented as a `<code>` element.
 const code: MarkSpec = {
   parseDOM: [
-    { tag: 'code' }
+    { tag: 'code' },
   ],
   toDOM(): DOMOutputSpec {
     return ['code', 0];
-  }
+  },
 };
 
 // :: MarkSpec An underline mark. Rendered as an `<u>` element.
@@ -84,12 +84,12 @@ const u: MarkSpec = {
     { tag: 'u' },
     {
       style: 'text-decoration=underline',
-      consuming: false
-    }
+      consuming: false,
+    },
   ],
   toDOM(): DOMOutputSpec {
     return ['u', 0];
-  }
+  },
 };
 
 // :: MarkSpec An underline mark. Rendered as an `<s>` element.
@@ -98,17 +98,17 @@ const s: MarkSpec = {
   parseDOM: [
     { tag: 's' },
     { tag: 'strike' },
-    { style: 'text-decoration=line-through' }
+    { style: 'text-decoration=line-through' },
   ],
   toDOM(): DOMOutputSpec {
     return ['s', 0];
-  }
+  },
 };
 
 const textColor: MarkSpec = {
   attrs: {
     color: {
-      default: null
+      default: null,
     },
   },
   parseDOM: [
@@ -116,8 +116,8 @@ const textColor: MarkSpec = {
       style: 'color',
       getAttrs: (value: string): Record<string, any> => {
         return { color: value };
-      }
-    }
+      },
+    },
   ],
   toDOM(mark: Mark): DOMOutputSpec {
     const { color } = mark.attrs;
@@ -128,7 +128,7 @@ const textColor: MarkSpec = {
 const textBackgroundColor: MarkSpec = {
   attrs: {
     backgroundColor: {
-      default: null
+      default: null,
     },
   },
   parseDOM: [
@@ -136,8 +136,8 @@ const textBackgroundColor: MarkSpec = {
       style: 'background-color',
       getAttrs: (value: string): Record<string, any> => {
         return { backgroundColor: value };
-      }
-    }
+      },
+    },
   ],
   toDOM(mark: Mark): DOMOutputSpec {
     const { backgroundColor } = mark.attrs;
@@ -153,7 +153,7 @@ const marks = {
   u,
   s,
   text_color: textColor,
-  text_background_color: textBackgroundColor
+  text_background_color: textBackgroundColor,
 };
 
 export default marks;

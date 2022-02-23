@@ -13,7 +13,7 @@ import nodeViews from './nodeviews';
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class AppComponent implements OnInit, OnDestroy {
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   toolbar: Toolbar = DEFAULT_TOOLBAR;
 
   form = new FormGroup({
-    editorContent: new FormControl({ value: jsonDoc, disabled: false }, Validators.required(schema))
+    editorContent: new FormControl({ value: jsonDoc, disabled: false }, Validators.required(schema)),
   });
 
   get doc(): AbstractControl {
@@ -43,8 +43,8 @@ export class AppComponent implements OnInit, OnDestroy {
       attributes: { enterkeyhint: 'enter' },
       features: {
         linkOnPaste: true,
-        resizeImage: true
-      }
+        resizeImage: true,
+      },
     });
   }
 

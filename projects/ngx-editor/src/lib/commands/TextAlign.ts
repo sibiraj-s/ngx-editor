@@ -15,7 +15,6 @@ class TextAlign {
 
   toggle(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
-
       const { doc, selection, tr, schema } = state;
       const { from, to } = selection;
 

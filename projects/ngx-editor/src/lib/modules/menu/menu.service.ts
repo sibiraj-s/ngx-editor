@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import Editor from '../../Editor';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MenuService {
   editor: Editor;

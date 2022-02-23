@@ -22,7 +22,7 @@ interface Options {
   plugins?: Plugin[];
   nodeViews?: EditorProps['nodeViews'];
   attributes?: Record<string, string>;
-  features?: EditorFeatures
+  features?: EditorFeatures;
 }
 
 interface EditorFeatures {
@@ -32,7 +32,7 @@ interface EditorFeatures {
 
 const defaultFeatures = {
   linkOnPaste: true,
-  resizeImage: true
+  resizeImage: true,
 };
 
 const DEFAULT_OPTIONS: Options = {
@@ -44,7 +44,7 @@ const DEFAULT_OPTIONS: Options = {
   plugins: [],
   nodeViews: {},
   attributes: {},
-  features: defaultFeatures
+  features: defaultFeatures,
 };
 
 class Editor {
@@ -52,7 +52,7 @@ class Editor {
   view: EditorView;
 
   constructor(options: Options = DEFAULT_OPTIONS) {
-    this.options = Object.assign({}, DEFAULT_OPTIONS, options);
+    this.options = { ...DEFAULT_OPTIONS, ...options };
     this.createEditor();
   }
 
@@ -94,10 +94,9 @@ class Editor {
   }
 
   private createEditor(): void {
-    const { options } = this;
+    const { options, schema } = this;
     const { content = null, nodeViews } = options;
     const { history = true, keyboardShortcuts = true, inputRules = true } = options;
-    const schema = this.schema;
 
     const doc = parseContent(content, schema);
 
@@ -107,7 +106,7 @@ class Editor {
     const defaultPlugins = getDefaultPlugins(schema, {
       history,
       keyboardShortcuts,
-      inputRules
+      inputRules,
     });
 
     this.view = new EditorView(null, {
@@ -118,7 +117,7 @@ class Editor {
       }),
       nodeViews,
       dispatchTransaction: this.handleTransactions.bind(this),
-      attributes
+      attributes,
     });
   }
 

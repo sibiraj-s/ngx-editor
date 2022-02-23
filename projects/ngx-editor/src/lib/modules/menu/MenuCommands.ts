@@ -20,7 +20,7 @@ export const ToggleCommands: Record<string, ToggleCommand> = {
   align_left: Commands.ALIGN_LEFT,
   align_center: Commands.ALIGN_CENTER,
   align_right: Commands.ALIGN_RIGHT,
-  align_justify: Commands.ALIGN_JUSTIFY
+  align_justify: Commands.ALIGN_JUSTIFY,
 };
 
 export const Link = Commands.LINK;

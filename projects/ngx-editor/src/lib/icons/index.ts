@@ -39,7 +39,7 @@ const icons: Record<string, any> = {
   align_right: alignRight,
   align_justify: alignJustify,
   text_color: textColor,
-  color_fill: colorFill
+  color_fill: colorFill,
 };
 
 class Icon {

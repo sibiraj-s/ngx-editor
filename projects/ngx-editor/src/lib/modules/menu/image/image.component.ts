@@ -1,6 +1,6 @@
 import {
   Component, ElementRef, HostBinding,
-  HostListener, OnDestroy, OnInit
+  HostListener, OnDestroy, OnInit,
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NodeSelection } from 'prosemirror-state';
@@ -15,7 +15,7 @@ import { Image as ImageCommand } from '../MenuCommands';
 @Component({
   selector: 'ngx-image',
   templateUrl: './image.component.html',
-  styleUrls: ['./image.component.scss']
+  styleUrls: ['./image.component.scss'],
 })
 export class ImageComponent implements OnInit, OnDestroy {
   showPopup = false;
@@ -25,10 +25,10 @@ export class ImageComponent implements OnInit, OnDestroy {
   form = new FormGroup({
     src: new FormControl('', [
       Validators.required,
-      Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)')
+      Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)'),
     ]),
     alt: new FormControl(''),
-    title: new FormControl('')
+    title: new FormControl(''),
   });
 
   private editorView: EditorView;
@@ -36,7 +36,7 @@ export class ImageComponent implements OnInit, OnDestroy {
   constructor(
     private el: ElementRef,
     private ngxeService: NgxEditorService,
-    private menuService: MenuService
+    private menuService: MenuService,
   ) { }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
@@ -66,7 +66,7 @@ export class ImageComponent implements OnInit, OnDestroy {
     this.form.reset({
       src: '',
       alt: '',
-      title: ''
+      title: '',
     });
   }
 
@@ -91,7 +91,7 @@ export class ImageComponent implements OnInit, OnDestroy {
       this.form.setValue({
         src,
         alt,
-        title
+        title,
       });
     }
   }
@@ -108,7 +108,7 @@ export class ImageComponent implements OnInit, OnDestroy {
 
     const attrs = {
       alt,
-      title
+      title,
     };
 
     ImageCommand.insert(src, attrs)(state, dispatch);

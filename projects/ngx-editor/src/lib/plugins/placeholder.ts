@@ -14,7 +14,7 @@ const placeholderPlugin = (text?: string): Plugin => {
       apply(tr: Transaction, previousVal: string): string {
         const placeholder = tr.getMeta('UPDATE_PLACEHOLDER') ?? previousVal;
         return placeholder;
-      }
+      },
     },
     props: {
       decorations(state: EditorState): DecorationSet {
@@ -31,10 +31,13 @@ const placeholderPlugin = (text?: string): Plugin => {
 
         const decorate = (node: ProseMirrorNode, pos: number) => {
           if (node.type.isBlock && node.childCount === 0 && textContent.length === 0) {
-            const placeholderNode = Decoration.node(pos, (pos + node.nodeSize), {
-              class: PLACEHOLDER_CLASSNAME,
+            const from = pos;
+            const to = pos + node.nodeSize;
+
+            const placeholderNode = Decoration.node(from, to, {
+              'class': PLACEHOLDER_CLASSNAME,
               'data-placeholder': placeholder,
-              'data-align': node.attrs['align'] ?? null
+              'data-align': node.attrs['align'] ?? null,
             });
 
             decorations.push(placeholderNode);
@@ -45,8 +48,8 @@ const placeholderPlugin = (text?: string): Plugin => {
 
         doc.descendants(decorate);
         return DecorationSet.create(doc, decorations);
-      }
-    }
+      },
+    },
   });
 };
 

@@ -6,7 +6,7 @@ import { splitListItem, liftListItem, sinkListItem } from 'prosemirror-schema-li
 import { history, undo, redo } from 'prosemirror-history';
 import {
   inputRules, wrappingInputRule, textblockTypeInputRule,
-  smartQuotes, emDash, ellipsis, InputRule
+  smartQuotes, emDash, ellipsis, InputRule,
 } from 'prosemirror-inputrules';
 
 import { markInputRule } from 'ngx-editor/helpers';
@@ -22,7 +22,7 @@ interface ShortcutOptions {
 }
 
 const isMacOs = typeof navigator !== 'undefined'
-  ? /Mac/.test(navigator.platform)
+  ? (/Mac/).test(navigator.platform)
   : false;
 
 // Input rules ref: https://github.com/ProseMirror/prosemirror-example-setup/
@@ -39,10 +39,10 @@ const blockQuoteRule = (nodeType: NodeType): InputRule => {
 // followed by a dot at the start of a textblock into an ordered list.
 const orderedListRule = (nodeType: NodeType): InputRule => {
   return wrappingInputRule(
-    /^(\d+)\.\s$/,
+    /^(?:\d+)\.\s$/,
     nodeType,
-    match => ({ order: +match[1] }),
-    (match, node) => node.childCount + node.attrs['order'] === +match[1]
+    (match) => ({ order: Number(match[1]) }),
+    (match, node) => node.childCount + node.attrs['order'] === Number(match[1]),
   );
 };
 
@@ -51,7 +51,7 @@ const orderedListRule = (nodeType: NodeType): InputRule => {
 // (dash, plush, or asterisk) at the start of a textblock into a
 // bullet list.
 const bulletListRule = (nodeType: NodeType): InputRule => {
-  return wrappingInputRule(/^\s*([-+*])\s$/, nodeType);
+  return wrappingInputRule(/^\s*(?:[-+*])\s$/, nodeType);
 };
 
 // : (NodeType) → InputRule
@@ -68,22 +68,22 @@ const codeBlockRule = (nodeType: NodeType): InputRule => {
 // the number of `#` signs.
 const headingRule = (nodeType: NodeType, maxLevel: number): InputRule => {
   return textblockTypeInputRule(
-    new RegExp('^(#{1,' + maxLevel + '})\\s$'),
+    new RegExp(`^(#{1,${maxLevel}})\\s$`),
     nodeType,
-    (match) => ({ level: match[1].length })
+    (match) => ({ level: match[1].length }),
   );
 };
 
 // : (MarkType) → InputRule
 // Wraps matching text with bold mark
 const boldRule = (markType: MarkType): InputRule => {
-  return markInputRule(/(?:^|\s)((?:\*\*|__)((?:[^*_]+))(?:\*\*|__))$/, markType);
+  return markInputRule(/(?:^|\s)(?:(?:\*\*|__)(?:(?:[^*_]+))(?:\*\*|__))$/, markType);
 };
 
 // : (MarkType) → InputRule
 // Wraps matching text with em mark
 const emRule = (markType: MarkType): InputRule => {
-  return markInputRule(/(?:^|\s)((?:\*|_)((?:[^*_]+))(?:\*|_))$/, markType);
+  return markInputRule(/(?:^|\s)(?:(?:\*|_)(?:(?:[^*_]+))(?:\*|_))$/, markType);
 };
 
 // : (Schema) → Plugin
@@ -121,18 +121,18 @@ const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) => {
       'Mod-`': toggleMark(schema.marks['code']),
     }),
     keymap({
-      Enter: splitListItem(schema.nodes['list_item']),
+      'Enter': splitListItem(schema.nodes['list_item']),
       'Shift-Enter': chainCommands(exitCode, (state, dispatch) => {
-        const tr = state.tr;
+        const { tr } = state;
         const br = schema.nodes['hard_break'];
         dispatch(tr.replaceSelectionWith(br.create()).scrollIntoView());
         return true;
       }),
       'Mod-[': liftListItem(schema.nodes['list_item']),
       'Mod-]': sinkListItem(schema.nodes['list_item']),
-      Tab: sinkListItem(schema.nodes['list_item'])
+      'Tab': sinkListItem(schema.nodes['list_item']),
     }),
-    keymap(baseKeymap)
+    keymap(baseKeymap),
   ];
 
   if (options.history) {

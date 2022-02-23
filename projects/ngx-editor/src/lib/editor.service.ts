@@ -1,17 +1,11 @@
 import { Injectable, Optional } from '@angular/core';
 
-import { NgxEditorConfig} from './types';
+import { NgxEditorConfig } from './types';
 import Locals from './Locals';
+import { NgxEditorServiceConfig } from './editor-config.service';
 
 @Injectable({
-  providedIn: 'root'
-})
-export class NgxEditorServiceConfig {
-  public locals = {};
-}
-
-@Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NgxEditorService {
   config: NgxEditorServiceConfig;
@@ -27,6 +21,6 @@ export class NgxEditorService {
 
 export const provideMyServiceOptions = (config?: NgxEditorConfig): NgxEditorServiceConfig => {
   return {
-    locals: config.locals ?? {}
+    locals: config.locals ?? {},
   };
 };

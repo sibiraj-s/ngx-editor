@@ -15,9 +15,9 @@ describe('ColorPickerComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         ColorPickerComponent,
-        SanitizeHtmlPipe
+        SanitizeHtmlPipe,
       ],
-      providers: [MenuService]
+      providers: [MenuService],
     })
       .compileComponents();
   });

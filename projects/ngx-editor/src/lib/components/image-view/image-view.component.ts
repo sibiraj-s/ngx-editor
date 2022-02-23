@@ -1,13 +1,13 @@
 import {
   Component, ElementRef, EventEmitter,
-  Input, Output, ViewChild
+  Input, Output, ViewChild,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 
 @Component({
   selector: 'ngx-image-view',
   templateUrl: './image-view.component.html',
-  styleUrls: ['./image-view.component.scss']
+  styleUrls: ['./image-view.component.scss'],
 })
 
 export class ImageViewComponent {

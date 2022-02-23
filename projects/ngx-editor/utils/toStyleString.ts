@@ -1,5 +1,5 @@
 const camelToDashed = (str: string): string => {
-  return str.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
+  return str.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`);
 };
 
 const cleanObject = (obj: Record<string, any>): Record<string, any> => {

@@ -14,13 +14,13 @@ import { CustomMenuComponent } from './components/custom-menu/custom-menu.compon
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxEditorModule
+    NgxEditorModule,
   ],
   declarations: [
     AppComponent,
     CustomMenuComponent,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 
 export class AppModule { }

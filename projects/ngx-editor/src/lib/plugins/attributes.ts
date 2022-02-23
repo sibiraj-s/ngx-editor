@@ -4,8 +4,8 @@ const attributesPlugin = (attributes = {}): Plugin => {
   return new Plugin({
     key: new PluginKey('attributes'),
     props: {
-      attributes
-    }
+      attributes,
+    },
   });
 };
 

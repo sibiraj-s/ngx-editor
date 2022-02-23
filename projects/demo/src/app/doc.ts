@@ -5,88 +5,88 @@ export default {
       type: 'heading',
       attrs: {
         level: 1,
-        align: null
+        align: null,
       },
       content: [
         {
           type: 'text',
-          text: 'Hello'
-        }
-      ]
+          text: 'Hello',
+        },
+      ],
     },
     {
       type: 'paragraph',
       attrs: {
-        align: null
+        align: null,
       },
       content: [
         {
           type: 'text',
-          text: 'This is editable text. You can focus it and start typing.'
-        }
-      ]
+          text: 'This is editable text. You can focus it and start typing.',
+        },
+      ],
     },
     {
       type: 'paragraph',
       attrs: {
-        align: null
+        align: null,
       },
       content: [
         {
           type: 'text',
-          text: 'To apply styling, you can select a piece of text and manipulate its styling from the menu. The basic schema supports '
+          text: 'To apply styling, you can select a piece of text and manipulate its styling from the menu. The basic schema supports ',
         },
         {
           type: 'text',
           marks: [
             {
-              type: 'em'
-            }
+              type: 'em',
+            },
           ],
-          text: 'emphasis'
+          text: 'emphasis',
         },
         {
           type: 'text',
-          text: ', '
+          text: ', ',
         },
         {
           type: 'text',
           marks: [
             {
-              type: 'strong'
-            }
+              type: 'strong',
+            },
           ],
-          text: 'strong text'
+          text: 'strong text',
         },
         {
           type: 'text',
-          text: ', '
+          text: ', ',
         },
         {
           type: 'text',
           marks: [
             {
-              type: 'u'
-            }
+              type: 'u',
+            },
           ],
-          text: 'underline'
+          text: 'underline',
         },
         {
           type: 'text',
-          text: ', '
+          text: ', ',
         },
         {
           type: 'text',
           marks: [
             {
-              type: 's'
-            }
+              type: 's',
+            },
           ],
-          text: 'strike'
+          text: 'strike',
         },
         {
           type: 'text',
-          text: ', '
+          text: ', ',
         },
         {
           type: 'text',
@@ -96,30 +96,30 @@ export default {
               attrs: {
                 href: 'http://marijnhaverbeke.nl/blog',
                 title: null,
-                target: null
-              }
-            }
+                target: null,
+              },
+            },
           ],
-          text: 'links'
+          text: 'links',
         },
         {
           type: 'text',
-          text: ', '
+          text: ', ',
         },
         {
           type: 'text',
           marks: [
             {
-              type: 'code'
-            }
+              type: 'code',
+            },
           ],
-          text: 'code font'
+          text: 'code font',
         },
         {
           type: 'text',
-          text: '.'
-        }
-      ]
+          text: '.',
+        },
+      ],
     },
     {
       type: 'blockquote',
@@ -127,21 +127,21 @@ export default {
         {
           type: 'paragraph',
           attrs: {
-            align: null
+            align: null,
           },
           content: [
             {
               type: 'text',
               marks: [
                 {
-                  type: 'strong'
-                }
+                  type: 'strong',
+                },
               ],
-              text: 'Blockquote: '
+              text: 'Blockquote: ',
             },
             {
               type: 'text',
-              text: 'Lorem Ipsum is '
+              text: 'Lorem Ipsum is ',
             },
             {
               type: 'text',
@@ -149,55 +149,55 @@ export default {
                 {
                   type: 'text_background_color',
                   attrs: {
-                    backgroundColor: '#fbca04'
-                  }
-                }
+                    backgroundColor: '#fbca04',
+                  },
+                },
               ],
-              text: 'simply dummy'
+              text: 'simply dummy',
             },
             {
               type: 'text',
-              text: ' text of the printing and typesetting industry. '
+              text: ' text of the printing and typesetting industry. ',
             },
             {
               type: 'text',
               marks: [
                 {
-                  type: 'em'
-                }
+                  type: 'em',
+                },
               ],
-              text: 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s'
+              text: 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
             },
             {
               type: 'text',
-              text: ', when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-            }
-          ]
-        }
-      ]
+              text: ', when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+            },
+          ],
+        },
+      ],
     },
     {
       type: 'heading',
       attrs: {
         level: 2,
-        align: null
+        align: null,
       },
       content: [
         {
           type: 'text',
-          text: 'The code block is a code editor'
-        }
-      ]
+          text: 'The code block is a code editor',
+        },
+      ],
     },
     {
       type: 'paragraph',
       attrs: {
-        align: null
+        align: null,
       },
       content: [
         {
           type: 'text',
-          text: 'This editor has been wired up to render code blocks as instances of the '
+          text: 'This editor has been wired up to render code blocks as instances of the ',
         },
         {
           type: 'text',
@@ -207,15 +207,15 @@ export default {
               attrs: {
                 href: 'https://codemirror.net',
                 title: 'https://codemirror.net',
-                target: '_blank'
-              }
-            }
+                target: '_blank',
+              },
+            },
           ],
-          text: 'CodeMirror'
+          text: 'CodeMirror',
         },
         {
           type: 'text',
-          text: ' code editor, which provides '
+          text: ' code editor, which provides ',
         },
         {
           type: 'text',
@@ -225,43 +225,43 @@ export default {
               attrs: {
                 href: 'https://en.wikipedia.org',
                 title: '',
-                target: '_blank'
-              }
-            }
+                target: '_blank',
+              },
+            },
           ],
-          text: 'syntax highlighting'
+          text: 'syntax highlighting',
         },
         {
           type: 'text',
-          text: ', auto-indentation, and similar.'
-        }
-      ]
+          text: ', auto-indentation, and similar.',
+        },
+      ],
     },
     {
       type: 'code_mirror',
       content: [
         {
           type: 'text',
-          text: 'function max(a, b) {\n  return a > b ? a : b;\n}'
-        }
-      ]
+          text: 'function max(a, b) {\n  return a > b ? a : b;\n}',
+        },
+      ],
     },
     {
       type: 'paragraph',
       attrs: {
-        align: null
+        align: null,
       },
       content: [
         {
           type: 'text',
-          text: 'The content of the code editor is kept in sync with the content of the code block in the rich text editor, so that it is as if you\'re directly editing the outer document, using a more convenient interface.'
-        }
-      ]
+          text: 'The content of the code editor is kept in sync with the content of the code block in the rich text editor, so that it is as if you\'re directly editing the outer document, using a more convenient interface.',
+        },
+      ],
     },
     {
       type: 'paragraph',
       attrs: {
-        align: 'center'
+        align: 'center',
       },
       content: [
         {
@@ -270,10 +270,10 @@ export default {
             src: 'https://gameranx.com/wp-content/uploads/2016/03/Rise-of-the-Tomb-Raider-4K-Wallpaper-3.jpg',
             alt: 'Lara Croft',
             title: 'Lara Croft - Tomb Raider',
-            width: '578px'
-          }
-        }
-      ]
-    }
-  ]
+            width: '578px',
+          },
+        },
+      ],
+    },
+  ],
 };

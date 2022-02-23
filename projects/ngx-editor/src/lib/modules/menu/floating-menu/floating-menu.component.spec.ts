@@ -15,11 +15,11 @@ describe('FloatingMenuComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         FloatingMenuComponent,
-        BubbleComponent
+        BubbleComponent,
       ],
       providers: [
-        SanitizeHtmlPipe
-      ]
+        SanitizeHtmlPipe,
+      ],
     })
       .compileComponents();
   });

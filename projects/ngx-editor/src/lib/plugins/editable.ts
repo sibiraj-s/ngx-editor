@@ -9,7 +9,7 @@ const editablePlugin = (editable = true): Plugin => {
       },
       apply(tr: Transaction, previousVal: boolean): string {
         return tr.getMeta('UPDATE_EDITABLE') ?? previousVal;
-      }
+      },
     },
     props: {
       editable(state: EditorState): boolean {
@@ -23,10 +23,10 @@ const editablePlugin = (editable = true): Plugin => {
         }
 
         return {
-          class: 'NgxEditor__Content--Disabled'
+          class: 'NgxEditor__Content--Disabled',
         };
-      }
-    }
+      },
+    },
   });
 };
 

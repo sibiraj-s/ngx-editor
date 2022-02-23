@@ -1,6 +1,6 @@
 import {
   Component, ElementRef, HostBinding,
-  HostListener, Input, OnDestroy, OnInit
+  HostListener, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { TBHeadingItems } from '../../../types';
 @Component({
   selector: 'ngx-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss']
+  styleUrls: ['./dropdown.component.scss'],
 })
 export class DropdownComponent implements OnInit, OnDestroy {
   private editorView: EditorView;
@@ -24,14 +24,13 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   isDropdownOpen = false;
 
-  private activeItems: TBHeadingItems[] = [];
   disabledItems: string[] = [];
   activeItem: string | null;
 
   constructor(
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
-    private el: ElementRef
+    private el: ElementRef,
   ) { }
 
   @HostBinding('class.NgxEditor__Dropdown--Selected') get isSelected(): boolean {
@@ -77,15 +76,15 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   private update = (view: EditorView) => {
     const { state } = view;
-    this.activeItems = [];
     this.disabledItems = [];
+    const activeItems = [];
 
     this.items.forEach((item: TBHeadingItems) => {
       const command = ToggleCommands[item];
       const isActive = command.isActive(state);
 
       if (isActive) {
-        this.activeItems.push(item);
+        activeItems.push(item);
       }
 
       if (!command.canExecute(state)) {
@@ -93,8 +92,8 @@ export class DropdownComponent implements OnInit, OnDestroy {
       }
     });
 
-    if (this.activeItems.length === 1) {
-      this.activeItem = this.activeItems[0];
+    if (activeItems.length === 1) {
+      [this.activeItem] = activeItems;
     } else {
       this.activeItem = null;
     }

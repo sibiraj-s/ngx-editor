@@ -11,7 +11,7 @@ import { TBItems, ToolbarItem } from '../../../types';
 @Component({
   selector: 'ngx-toggle-command',
   templateUrl: './toggle-command.component.html',
-  styleUrls: ['./toggle-command.component.scss']
+  styleUrls: ['./toggle-command.component.scss'],
 })
 
 export class ToggleCommandComponent implements OnInit, OnDestroy {
@@ -27,7 +27,7 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
 
   constructor(
     private ngxeService: NgxEditorService,
-    private menuService: MenuService
+    private menuService: MenuService,
   ) { }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') isActive = false;

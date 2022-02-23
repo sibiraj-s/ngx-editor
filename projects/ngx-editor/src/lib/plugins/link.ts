@@ -1,7 +1,7 @@
 import { Fragment, Slice, Node as ProseMirrorNode } from 'prosemirror-model';
 import { Plugin, PluginKey } from 'prosemirror-state';
 
-const HTTP_LINK_REGEX = /((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)$/;
+const HTTP_LINK_REGEX = /(?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+\.?(?:\d+)?(?:\/\S*)?$/;
 
 const linkify = (fragment: Fragment): Fragment => {
   const linkified: ProseMirrorNode[] = [];
@@ -16,7 +16,7 @@ const linkify = (fragment: Fragment): Fragment => {
       if (match) {
         const start = match.index;
         const end = start + match[0].length;
-        const link = child.type.schema.marks.link;
+        const { link } = child.type.schema.marks;
 
         if (start > 0) {
           linkified.push(child.cut(pos, start));
@@ -24,7 +24,7 @@ const linkify = (fragment: Fragment): Fragment => {
 
         const urlText = text.slice(start, end);
         linkified.push(
-          child.cut(start, end).mark(link.create({ href: urlText }).addToSet(child.marks))
+          child.cut(start, end).mark(link.create({ href: urlText }).addToSet(child.marks)),
         );
         pos = end;
       }
@@ -46,8 +46,8 @@ const linkifyPlugin = ():Plugin => {
     props: {
       transformPasted: (slice: Slice) => {
         return new Slice(linkify(slice.content), slice.openStart, slice.openEnd);
-      }
-    }
+      },
+    },
   });
 };
 

@@ -7,7 +7,7 @@ import { removeLink } from 'ngx-editor/commands';
 import { Dispatch } from './types';
 
 const defaultOptions = {
-  strict: true
+  strict: true,
 };
 
 export interface LinkAttrs {
@@ -46,7 +46,7 @@ class Link {
       const linkAttrs: LinkAttrs = {
         href: attrs.href,
         title: attrs.title ?? text,
-        target: attrs.target ?? '_blank'
+        target: attrs.target ?? '_blank',
       };
 
       const node = schema.text(text, [schema.marks.link.create(linkAttrs)]);
@@ -84,7 +84,7 @@ class Link {
 
   canExecute(state: EditorState): boolean {
     const testAttrs: LinkAttrs = {
-      href: ''
+      href: '',
     };
 
     return this.insert('Exec', testAttrs)(state) || this.update(testAttrs)(state);

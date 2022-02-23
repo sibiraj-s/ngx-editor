@@ -1,8 +1,7 @@
 import {
-  Component, ViewChild, ElementRef,
-  forwardRef, OnDestroy, ViewEncapsulation,
-  OnInit, Output, EventEmitter,
-  Input, Renderer2, SimpleChanges,
+  Component, ViewChild, ElementRef, forwardRef,
+  OnDestroy, ViewEncapsulation, OnInit, Output,
+  EventEmitter, Input, Renderer2, SimpleChanges,
   OnChanges, Injector,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
@@ -19,16 +18,16 @@ import Editor from './Editor';
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => NgxEditorComponent),
-    multi: true
+    multi: true,
   }],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
   constructor(
-    private _renderer: Renderer2,
-    private _injector: Injector,
-    private _elementRef: ElementRef<HTMLElement>
+    private renderer: Renderer2,
+    private injector: Injector,
+    private elementRef: ElementRef<HTMLElement>,
   ) { }
 
   @ViewChild('ngxEditor', { static: true }) private ngxEditor: ElementRef;
@@ -62,7 +61,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
   setDisabledState(isDisabled: boolean): void {
     this.setMeta('UPDATE_EDITABLE', !isDisabled);
-    this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
+    this.renderer.setProperty(this.elementRef.nativeElement, 'disabled', isDisabled);
   }
 
   private handleChange(jsonDoc: Record<string, any>): void {
@@ -89,7 +88,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     this.editor.registerPlugin(plugins.placeholder(this.placeholder));
 
     this.editor.registerPlugin(plugins.attributes({
-      class: 'NgxEditor__Content'
+      class: 'NgxEditor__Content',
     }));
 
     this.editor.registerPlugin(plugins.focus(() => {
@@ -106,7 +105,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     }));
 
     if (this.editor.features.resizeImage) {
-      this.editor.registerPlugin(plugins.imageResize(this._injector));
+      this.editor.registerPlugin(plugins.imageResize(this.injector));
     }
 
     if (this.editor.features.linkOnPaste) {
@@ -121,9 +120,9 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
     this.registerPlugins();
 
-    this._renderer.appendChild(this.ngxEditor.nativeElement, this.editor.view.dom);
+    this.renderer.appendChild(this.ngxEditor.nativeElement, this.editor.view.dom);
 
-    const contentChangeSubscription = this.editor.valueChanges.subscribe(jsonDoc => {
+    const contentChangeSubscription = this.editor.valueChanges.subscribe((jsonDoc) => {
       this.handleChange(jsonDoc);
     });
 
@@ -137,7 +136,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => {
+    this.subscriptions.forEach((subscription) => {
       subscription.unsubscribe();
     });
   }

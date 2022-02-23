@@ -6,7 +6,7 @@ export const getSelectionNodes = (state: EditorState): Node[] => {
 
   const { selection: { from, to } } = state;
 
-  state.doc.nodesBetween(from, to, node => {
+  state.doc.nodesBetween(from, to, (node) => {
     nodes.push(node);
   });
 

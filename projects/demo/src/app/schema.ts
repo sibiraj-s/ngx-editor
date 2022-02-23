@@ -4,12 +4,12 @@ import { node as codeMirrorNode } from 'prosemirror-codemirror-6';
 
 const nodes = {
   ...basicNodes,
-  code_mirror: codeMirrorNode
+  code_mirror: codeMirrorNode,
 };
 
 const schema = new Schema({
   nodes,
-  marks
+  marks,
 });
 
 export default schema;

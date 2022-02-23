@@ -74,7 +74,7 @@
     "@typescript-eslint/parser": "^5.12.1",
     "docsify-cli": "^4.4.3",
     "eslint": "^8.9.0",
-    "eslint-config-pegasus": "^3.2.0",
+    "eslint-config-pegasus": "^3.3.0",
     "husky": "^7.0.4",
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",

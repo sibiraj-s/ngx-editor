@@ -27,9 +27,9 @@ describe('MenuComponent', () => {
         LinkComponent,
         DropdownComponent,
         ImageComponent,
-        ColorPickerComponent
+        ColorPickerComponent,
       ],
-      providers: [MenuService]
+      providers: [MenuService],
     }).compileComponents();
   });
 

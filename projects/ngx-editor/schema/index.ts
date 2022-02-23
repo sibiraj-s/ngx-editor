@@ -5,7 +5,7 @@ import nodes from './nodes';
 
 const schema = new Schema({
   marks,
-  nodes
+  nodes,
 });
 
 export default schema;

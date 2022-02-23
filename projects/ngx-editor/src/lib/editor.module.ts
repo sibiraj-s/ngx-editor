@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { NgxEditorConfig } from './types';
 
 import { NgxEditorComponent } from './editor.component';
-import { NgxEditorService, NgxEditorServiceConfig, provideMyServiceOptions } from './editor.service';
+import { NgxEditorServiceConfig } from './editor-config.service';
+import { NgxEditorService, provideMyServiceOptions } from './editor.service';
 import { MenuModule } from './modules/menu/menu.module';
 
 import { MenuComponent } from './modules/menu/menu.component';
@@ -21,31 +22,30 @@ const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorCo
   providers: [],
   declarations: [
     NgxEditorComponent,
-    ImageViewComponent
+    ImageViewComponent,
   ],
   exports: [
     NgxEditorComponent,
     MenuComponent,
-    FloatingMenuComponent
-  ]
+    FloatingMenuComponent,
+  ],
 })
 
 export class NgxEditorModule {
   static forRoot(config: NgxEditorConfig): ModuleWithProviders<NgxEditorModule> {
-
     return {
       ngModule: NgxEditorModule,
       providers: [
         {
           provide: NGX_EDITOR_CONFIG_TOKEN,
-          useValue: config
+          useValue: config,
         },
         {
           provide: NgxEditorServiceConfig,
           useFactory: provideMyServiceOptions,
-          deps: [NGX_EDITOR_CONFIG_TOKEN]
-        }
-      ]
+          deps: [NGX_EDITOR_CONFIG_TOKEN],
+        },
+      ],
     };
   }
 
@@ -55,15 +55,15 @@ export class NgxEditorModule {
       providers: [
         {
           provide: NGX_EDITOR_CONFIG_TOKEN,
-          useValue: config
+          useValue: config,
         },
         {
           provide: NgxEditorServiceConfig,
           useFactory: provideMyServiceOptions,
-          deps: [NGX_EDITOR_CONFIG_TOKEN]
+          deps: [NGX_EDITOR_CONFIG_TOKEN],
         },
         NgxEditorService,
-      ]
+      ],
     };
   }
 }

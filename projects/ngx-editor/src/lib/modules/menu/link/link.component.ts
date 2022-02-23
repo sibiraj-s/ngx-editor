@@ -1,6 +1,6 @@
 import {
   Component, ElementRef, HostBinding,
-  HostListener, OnDestroy, OnInit
+  HostListener, OnDestroy, OnInit,
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
@@ -14,7 +14,7 @@ import { Link as LinkCommand } from '../MenuCommands';
 @Component({
   selector: 'ngx-link',
   templateUrl: './link.component.html',
-  styleUrls: ['./link.component.scss']
+  styleUrls: ['./link.component.scss'],
 })
 
 export class LinkComponent implements OnInit, OnDestroy {
@@ -27,16 +27,16 @@ export class LinkComponent implements OnInit, OnDestroy {
   form = new FormGroup({
     href: new FormControl('', [
       Validators.required,
-      Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)')
+      Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)'),
     ]),
     text: new FormControl('', [Validators.required]),
-    openInNewTab: new FormControl(true)
+    openInNewTab: new FormControl(true),
   });
 
   constructor(
     private el: ElementRef,
     private ngxeService: NgxEditorService,
-    private menuService: MenuService
+    private menuService: MenuService,
   ) { }
 
   @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
@@ -78,7 +78,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     this.form.reset({
       href: '',
       text: '',
-      openInNewTab: true
+      openInNewTab: true,
     });
     this.text.enable();
   }
@@ -127,7 +127,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     const attrs = {
       title: href,
       href,
-      target: openInNewTab ? '_blank' : '_self'
+      target: openInNewTab ? '_blank' : '_self',
     };
 
     if (selection.empty) {

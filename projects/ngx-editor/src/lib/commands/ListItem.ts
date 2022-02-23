@@ -18,7 +18,6 @@ class ListItem {
 
   toggle(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
-
       const { schema } = state;
 
       const type = this.getType(schema);

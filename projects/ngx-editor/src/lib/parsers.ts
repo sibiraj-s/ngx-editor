@@ -7,7 +7,7 @@ export const emptyDoc = {
   content: [
     {
       type: 'paragraph',
-    }
+    },
   ],
 };
 

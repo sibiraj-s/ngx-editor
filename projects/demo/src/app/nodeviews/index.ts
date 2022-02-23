@@ -13,11 +13,11 @@ const nodeViews = {
       cmOptions: {
         extensions: [
           basicSetup,
-          javascript()
-        ]
-      }
+          javascript(),
+        ],
+      },
     });
-  }
+  },
 };
 
 export default nodeViews;

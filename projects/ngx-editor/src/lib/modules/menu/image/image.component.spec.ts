@@ -15,11 +15,11 @@ describe('ImageComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         ImageComponent,
-        SanitizeHtmlPipe
+        SanitizeHtmlPipe,
       ],
       providers: [
-        MenuService
-      ]
+        MenuService,
+      ],
     })
       .compileComponents();
   });

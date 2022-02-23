@@ -28,12 +28,12 @@ const arrowHandlers = keymap({
   ArrowLeft: arrowHandler('left'),
   ArrowRight: arrowHandler('right'),
   ArrowUp: arrowHandler('up'),
-  ArrowDown: arrowHandler('down')
+  ArrowDown: arrowHandler('down'),
 });
 
 const getPlugins = (): Plugin[] => {
   const plugins = [
-    arrowHandlers
+    arrowHandlers,
   ];
 
   return plugins;
