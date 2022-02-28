@@ -6,7 +6,6 @@ import { Validators, Editor, Toolbar, DEFAULT_TOOLBAR } from 'ngx-editor';
 
 import jsonDoc from './doc';
 import schema from './schema';
-import plugins from './plugins';
 import nodeViews from './nodeviews';
 
 @Component({
@@ -35,7 +34,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.editor = new Editor({
       schema,
-      plugins,
       nodeViews,
       history: true,
       keyboardShortcuts: true,
