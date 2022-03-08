@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v12.2.2 (2022-03-08)
+
+#### Bug Fixes
+
+- wrap toolbar when it overflows the container ([9f85ea6](https://github.com/sibiraj-s/ngx-editor/commit/9f85ea6))
+
 ## v12.2.1 (2022-02-23)
 
 #### Bug Fixes
