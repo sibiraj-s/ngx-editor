@@ -23,9 +23,6 @@
   <a href="https://github.com/sibiraj-s/ngx-editor/blob/master/LICENSE">
     <img alt="licence" src="https://badgen.net/npm/license/ngx-editor">
   </a>
-  <a href="https://open.vscode.dev/sibiraj-s/ngx-editor">
-    <img alt="Open in Visual Studio Code" src="https://open.vscode.dev/badges/open-in-vscode.svg">
-  </a>
 </p>
 
 ## Getting Started
