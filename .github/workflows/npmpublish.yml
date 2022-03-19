@@ -11,9 +11,9 @@ jobs:
   test-lib:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{env.NODE_VERSION}}
           cache: npm
@@ -26,39 +26,12 @@ jobs:
       - run: npm run build:lib
       - run: npm run test:lib
 
-  # pages:
-  #   name: Publish to gh-pages
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
-
-  #     - name: Use Node.js ${{ env.NODE_VERSION }}
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: ${{ env.NODE_VERSION }}
-  #         cache: npm
-
-  #     - run: node -v
-  #     - run: npm -v
-
-  #     - name: NPM Install
-  #       run: npm ci
-
-  #     - name: Publish to gh-pages branch
-  #       uses: peaceiris/actions-gh-pages@v3
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         publish_dir: ./docs
-  #         user_name: github-actions[bot]
-  #         user_email: github-actions[bot]@users.noreply.github.com
-
   publish-npm:
     needs: test-lib
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{env.NODE_VERSION}}
           registry-url: https://registry.npmjs.org/
