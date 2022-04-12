@@ -17,8 +17,16 @@ body:
     id: version
     attributes:
       label: Version
-      description: What version of our software are you running?
+      description: What version of our editor are you running?
       placeholder: v12.0.x
+    validations:
+      required: true
+  - type: input
+    id: angular-version
+    attributes:
+      label: Angular Version
+      description: What version of angular are you using?
+      placeholder: v13.x.x
     validations:
       required: true
   - type: dropdown
