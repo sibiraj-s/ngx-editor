@@ -103,7 +103,7 @@ const buildInputRules = (schema: Schema): Plugin => {
   return inputRules({ rules });
 };
 
-const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) => {
+export const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) => {
   const historyKeyMap: Record<string, any> = {};
 
   historyKeyMap['Mod-z'] = undo;

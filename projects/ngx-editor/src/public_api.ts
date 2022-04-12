@@ -13,3 +13,4 @@ export * from './lib/validators';
 export * from './lib/types';
 export * from './lib/parsers';
 export { default as Editor } from './lib/Editor';
+export * from './lib/defaultPlugins';
