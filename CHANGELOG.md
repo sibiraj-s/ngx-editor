@@ -13,6 +13,19 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v12.2.3 (2022-04-26)
+
+#### Bug Fixes
+
+- export getDefaultPlugins and getKeyboardShortcuts methods ([953166e](https://github.com/sibiraj-s/ngx-editor/commit/953166e))
+
+#### Dependency Updates
+
+- update @floating-ui/core to v0.6.2 ([b619819](https://github.com/sibiraj-s/ngx-editor/commit/b619819))
+- update @floating-ui/dom to v0.4.5 ([b619819](https://github.com/sibiraj-s/ngx-editor/commit/b619819))
+- update prosemirror-commands to v1.2.2 ([25d5d15](https://github.com/sibiraj-s/ngx-editor/commit/25d5d15))
+- update prosemirror-view to v1.23.12 ([25d5d15](https://github.com/sibiraj-s/ngx-editor/commit/25d5d15))
+
 ## v12.2.2 (2022-03-08)
 
 #### Bug Fixes
