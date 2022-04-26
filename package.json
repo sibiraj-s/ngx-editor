@@ -86,7 +86,7 @@
     "lint-staged": "^12.4.0",
     "ng-packagr": "^13.0.0",
     "prettier": "^2.6.2",
-    "prosemirror-codemirror-6": "^0.1.0",
+    "prosemirror-codemirror-6": "^0.2.0",
     "prosemirror-commands": "^1.2.2",
     "prosemirror-history": "^1.2.0",
     "prosemirror-inputrules": "^1.1.3",
