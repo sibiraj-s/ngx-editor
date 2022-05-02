@@ -1,8 +1,17 @@
 import {
-  Component, ElementRef, HostBinding,
-  HostListener, OnDestroy, OnInit,
+  Component,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
@@ -16,7 +25,6 @@ import { Link as LinkCommand } from '../MenuCommands';
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
 })
-
 export class LinkComponent implements OnInit, OnDestroy {
   showPopup = false;
   isActive = false;
@@ -24,11 +32,12 @@ export class LinkComponent implements OnInit, OnDestroy {
   private editorView: EditorView;
   private updateSubscription: Subscription;
 
-  // Changed validators to accept correct urls https://stackoverflow.com/questions/161738/what-is-the-best-regular-expression-to-check-if-a-string-is-a-valid-url
   form = new FormGroup({
     href: new FormControl('', [
       Validators.required,
-      Validators.pattern('((([A-Za-z]{3,9}:(?://)?)(?:[-;:&=+$,w]+@)?[A-Za-z0-9.-]+|(:www.|[-;:&=+$,w]+@)[A-Za-z0-9.-]+)((?:/[+~%/.w-_]*)???(?:[-+=&;%@.w_]*)#?(?:[w]*))?)'),
+      Validators.pattern(
+        '((([A-Za-z]{3,9}:(?:\\/\\/)?)(?:[-;:&=\\+\\$,\\w]+@)?[A-Za-z0-9.-]+|(:www.|[-;:&=\\+\\$,\\w]+@)[A-Za-z0-9.-]+)((?:\\/[\\+~%\\/.\\w-_]*)?\\??(?:[-\\+=&;%@.\\w_]*)#?(?:[\\w]*))?)',
+      ),
     ]),
     text: new FormControl('', [Validators.required]),
     openInNewTab: new FormControl(true),
@@ -38,7 +47,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     private el: ElementRef,
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
-  ) { }
+  ) {}
 
   @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
     return this.isActive || this.showPopup;
@@ -53,7 +62,9 @@ export class LinkComponent implements OnInit, OnDestroy {
   }
 
   get title(): string {
-    return this.ngxeService.locals.get(this.isActive ? 'removeLink' : 'insertLink');
+    return this.ngxeService.locals.get(
+      this.isActive ? 'removeLink' : 'insertLink',
+    );
   }
 
   get href(): AbstractControl {
@@ -64,7 +75,9 @@ export class LinkComponent implements OnInit, OnDestroy {
     return this.form.get('text');
   }
 
-  @HostListener('document:mousedown', ['$event']) onDocumentClick(e: MouseEvent): void {
+  @HostListener('document:mousedown', ['$event']) onDocumentClick(
+    e: MouseEvent,
+  ): void {
     if (!this.el.nativeElement.contains(e.target) && this.showPopup) {
       this.hideForm();
     }
@@ -103,7 +116,9 @@ export class LinkComponent implements OnInit, OnDestroy {
   }
 
   private setText = () => {
-    const { state: { selection, doc } } = this.editorView;
+    const {
+      state: { selection, doc },
+    } = this.editorView;
     const { empty, from, to } = selection;
     const selectedText = !empty ? doc.textBetween(from, to) : '';
 
@@ -143,9 +158,11 @@ export class LinkComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.editorView = this.menuService.editor.view;
 
-    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
-      this.update(view);
-    });
+    this.updateSubscription = this.menuService.editor.update.subscribe(
+      (view: EditorView) => {
+        this.update(view);
+      },
+    );
   }
 
   ngOnDestroy(): void {
