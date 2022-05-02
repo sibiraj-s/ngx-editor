@@ -24,10 +24,11 @@ export class LinkComponent implements OnInit, OnDestroy {
   private editorView: EditorView;
   private updateSubscription: Subscription;
 
+  // Changed validators to accept correct urls https://stackoverflow.com/questions/161738/what-is-the-best-regular-expression-to-check-if-a-string-is-a-valid-url
   form = new FormGroup({
     href: new FormControl('', [
       Validators.required,
-      Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)'),
+      Validators.pattern('((([A-Za-z]{3,9}:(?://)?)(?:[-;:&=+$,w]+@)?[A-Za-z0-9.-]+|(:www.|[-;:&=+$,w]+@)[A-Za-z0-9.-]+)((?:/[+~%/.w-_]*)???(?:[-+=&;%@.w_]*)#?(?:[w]*))?)'),
     ]),
     text: new FormControl('', [Validators.required]),
     openInNewTab: new FormControl(true),
