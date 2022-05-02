@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v12.2.4 (2022-05-02)
+
+#### Bug Fixes
+
+- improved regex url validators ([495914ee0bb4d8cddb18a937bf69bd770079c928](https://github.com/watchity/ngx-editor/commit/495914ee0bb4d8cddb18a937bf69bd770079c928))
+
 ## v12.2.3 (2022-04-26)
 
 #### Bug Fixes
