@@ -90,7 +90,7 @@ export class LinkComponent implements OnInit, OnDestroy {
   private hideForm(): void {
     this.showPopup = false;
     this.form.reset({
-      href: '',
+      href: 'https://',
       text: '',
       openInNewTab: true,
     });
