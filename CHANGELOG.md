@@ -13,6 +13,21 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v12.3.0 (2022-05-08)
+
+#### Features
+
+- add horizontal rule menu item ([608e978](https://github.com/sibiraj-s/ngx-editor/commit/608e978))
+
+#### Bug Fixes
+
+- fix typings for attributes config ([396be73](https://github.com/sibiraj-s/ngx-editor/commit/396be73))
+
+#### Dependency Updates
+
+- update @floating-ui/core to v0.7.0 ([c86e6b0](https://github.com/sibiraj-s/ngx-editor/commit/c86e6b0))
+- update @floating-ui/dom to v0.5.0 ([fc71027](https://github.com/sibiraj-s/ngx-editor/commit/fc71027))
+
 ## v12.2.3 (2022-04-26)
 
 #### Bug Fixes
