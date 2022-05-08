@@ -95,10 +95,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
       this.focusIn.emit();
     }));
 
-    this.editor.registerPlugin(plugins.focus(() => {
-      this.focusIn.emit();
-    }));
-
     this.editor.registerPlugin(plugins.blur(() => {
       this.focusOut.emit();
       this.onTouched();
