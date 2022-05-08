@@ -3,13 +3,15 @@ import { Command } from 'prosemirror-commands';
 
 export type Dispatch = (tr: Transaction) => void | null;
 
-export interface ToggleCommand {
-  toggle: () => Command;
-  isActive: (state: EditorState) => boolean;
+interface BaseCommand {
   canExecute: (state: EditorState) => boolean;
 }
 
-export interface InsertCommand {
+export interface ToggleCommand extends BaseCommand {
+  toggle: () => Command;
+  isActive: (state: EditorState) => boolean;
+}
+
+export interface InsertCommand extends BaseCommand {
   insert: () => Command;
-  canExecute: (state: EditorState) => boolean;
 }
