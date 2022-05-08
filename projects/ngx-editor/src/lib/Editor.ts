@@ -21,7 +21,7 @@ interface Options {
   schema?: Schema;
   plugins?: Plugin[];
   nodeViews?: EditorProps['nodeViews'];
-  attributes?: Record<string, string>;
+  attributes?: EditorProps['attributes'];
   features?: EditorFeatures;
 }
 
@@ -101,7 +101,7 @@ class Editor {
     const doc = parseContent(content, schema);
 
     const plugins: Plugin[] = options.plugins ?? [];
-    const attributes: Record<string, string> = options.attributes ?? {};
+    const attributes: EditorProps['attributes'] = options.attributes ?? {};
 
     const defaultPlugins = getDefaultPlugins(schema, {
       history,
