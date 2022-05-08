@@ -5,7 +5,7 @@ import {
   OnChanges, Injector,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 import * as plugins from './plugins';
 import { toHTML } from './parsers';
@@ -39,7 +39,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   @Output() focusOut = new EventEmitter<void>();
   @Output() focusIn = new EventEmitter<void>();
 
-  private subscriptions: Subscription[] = [];
+  private unsubscribe: Subject<void> = new Subject();
   private onChange: (value: Record<string, any> | string) => void = () => { /** */ };
   private onTouched: () => void = () => { /** */ };
 
@@ -118,11 +118,11 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
     this.renderer.appendChild(this.ngxEditor.nativeElement, this.editor.view.dom);
 
-    const contentChangeSubscription = this.editor.valueChanges.subscribe((jsonDoc) => {
-      this.handleChange(jsonDoc);
-    });
-
-    this.subscriptions.push(contentChangeSubscription);
+    this.editor.valueChanges
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((jsonDoc) => {
+        this.handleChange(jsonDoc);
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -132,8 +132,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }
