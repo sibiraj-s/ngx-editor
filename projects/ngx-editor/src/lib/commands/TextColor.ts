@@ -1,11 +1,11 @@
-import { MarkType } from 'prosemirror-model';
-import { EditorState } from 'prosemirror-state';
-import { Command } from 'prosemirror-commands';
+import type { MarkType } from 'prosemirror-model';
+import type { EditorState } from 'prosemirror-state';
+import type { Command } from 'prosemirror-commands';
 
 import { getSelectionMarks, isMarkActive } from 'ngx-editor/helpers';
 import { applyMark, removeMark } from 'ngx-editor/commands';
 
-import { Dispatch } from './types';
+import type { Dispatch } from './types';
 
 type Name = 'text_color' | 'text_background_color';
 type AttrName = 'color' | 'backgroundColor';

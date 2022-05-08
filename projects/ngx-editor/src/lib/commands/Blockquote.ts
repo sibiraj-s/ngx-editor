@@ -1,6 +1,6 @@
-import { NodeType } from 'prosemirror-model';
-import { EditorState, Transaction } from 'prosemirror-state';
-import { Command, lift, wrapIn } from 'prosemirror-commands';
+import type { NodeType } from 'prosemirror-model';
+import type { EditorState, Transaction } from 'prosemirror-state';
+import { type Command, lift, wrapIn } from 'prosemirror-commands';
 
 import { isNodeActive } from 'ngx-editor/helpers';
 

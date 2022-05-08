@@ -1,6 +1,6 @@
-import { NodeType } from 'prosemirror-model';
-import { EditorState, Transaction } from 'prosemirror-state';
-import { Command } from 'prosemirror-commands';
+import type { NodeType } from 'prosemirror-model';
+import type { EditorState, Transaction } from 'prosemirror-state';
+import type { Command } from 'prosemirror-commands';
 
 import { canInsert } from 'ngx-editor/helpers';
 
