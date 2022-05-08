@@ -21,7 +21,7 @@
     "rxjs": ">=7.4.0"
   },
   "dependencies": {
-    "@floating-ui/core": "^0.6.2",
+    "@floating-ui/core": "^0.7.0",
     "@floating-ui/dom": "^0.4.5",
     "@types/prosemirror-commands": "^1.0.4",
     "@types/prosemirror-history": "^1.0.3",
