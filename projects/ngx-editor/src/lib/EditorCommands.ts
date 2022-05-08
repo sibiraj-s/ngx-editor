@@ -6,6 +6,7 @@ import {
 } from 'prosemirror-commands';
 import { DOMParser } from 'prosemirror-model';
 
+import { NgxEditorError } from 'ngx-editor/utils';
 import MarkCommand from './commands/Mark';
 import ListCommand from './commands/ListItem';
 import LinkCommand, { LinkAttrs } from './commands/Link';
@@ -33,7 +34,7 @@ class EditorCommands {
 
   constructor(view: EditorView) {
     if (!view) {
-      throw Error('NgxEditor: Required view to initialize commands.');
+      throw new NgxEditorError('Required view to initialize commands.');
     }
 
     this.view = view;

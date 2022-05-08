@@ -3,8 +3,8 @@ import {
   OnInit, TemplateRef,
 } from '@angular/core';
 
+import { NgxEditorError } from 'ngx-editor/utils';
 import { Toolbar, ToolbarItem, ToolbarDropdown } from '../../types';
-
 import { MenuService } from './menu.service';
 import Editor from '../../Editor';
 
@@ -87,7 +87,7 @@ export class MenuComponent implements OnInit {
     'align_justify',
   ];
 
-  insertCommands: ToolbarItem [] = [
+  insertCommands: ToolbarItem[] = [
     'horizontal_rule',
   ];
 
@@ -132,7 +132,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.editor) {
-      throw new Error('NgxEditor: Required editor instance');
+      throw new NgxEditorError('Required editor instance to initialize menu component');
     }
 
     this.menuService.editor = this.editor;

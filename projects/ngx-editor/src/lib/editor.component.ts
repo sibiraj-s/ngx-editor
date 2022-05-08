@@ -7,6 +7,7 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 
+import { NgxEditorError } from 'ngx-editor/utils';
 import * as plugins from './plugins';
 import { toHTML } from './parsers';
 import Editor from './Editor';
@@ -22,7 +23,6 @@ import Editor from './Editor';
   }],
   encapsulation: ViewEncapsulation.None,
 })
-
 export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
   constructor(
     private renderer: Renderer2,
@@ -111,7 +111,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
   ngOnInit(): void {
     if (!this.editor) {
-      throw new Error('NgxEditor: Required editor instance');
+      throw new NgxEditorError('Required editor instance for initializing editor component');
     }
 
     this.registerPlugins();
