@@ -1,5 +1,6 @@
 import Mark from './Mark';
 import Blockquote from './Blockquote';
+import HorizontalRule from './HorizontalRule';
 import ListItem from './ListItem';
 import Heading from './Heading';
 import TextAlign from './TextAlign';
@@ -13,6 +14,7 @@ export const CODE = new Mark('code');
 export const UNDERLINE = new Mark('u');
 export const STRIKE = new Mark('s');
 export const BLOCKQUOTE = new Blockquote();
+export const HORIZONTAL_RULE = new HorizontalRule();
 export const UL = new ListItem(true);
 export const OL = new ListItem(false);
 export const H1 = new Heading(1);

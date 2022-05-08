@@ -26,6 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ['link', 'image'],
     ['text_color', 'background_color'],
     ['align_left', 'align_center', 'align_right', 'align_justify'],
+    ['horizontal_rule'],
   ];
   colorPresets = ['red', '#FF0000', 'rgb(255, 0, 0)'];
 

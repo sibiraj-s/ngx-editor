@@ -12,6 +12,7 @@ import { FloatingMenuComponent } from './floating-menu/floating-menu.component';
 import { BubbleComponent } from './bubble/bubble.component';
 
 import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
+import { InsertCommandComponent } from './insert-command/insert-command.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
     // components
     MenuComponent,
     ToggleCommandComponent,
+    InsertCommandComponent,
     LinkComponent,
     DropdownComponent,
     ImageComponent,

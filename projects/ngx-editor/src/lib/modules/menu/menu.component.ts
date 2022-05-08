@@ -26,6 +26,18 @@ export const TOOLBAR_MINIMAL: Toolbar = [
   ['text_color', 'background_color'],
 ];
 
+export const TOOLBAR_FULL: Toolbar = [
+  ['bold', 'italic'],
+  ['code', 'blockquote'],
+  ['underline', 'strike'],
+  ['ordered_list', 'bullet_list'],
+  [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+  ['link', 'image'],
+  ['text_color', 'background_color'],
+  ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ['horizontal_rule'],
+];
+
 const DEFAULT_COLOR_PRESETS = [
   '#b60205',
   '#d93f0b',
@@ -60,7 +72,7 @@ export class MenuComponent implements OnInit {
   @Input() customMenuRef: TemplateRef<any> | null = null;
   @Input() dropdownPlacement: 'top' | 'bottom' = 'bottom';
 
-  toggleCommands: any[] = [
+  toggleCommands: ToolbarItem[] = [
     'bold',
     'italic',
     'underline',
@@ -73,6 +85,10 @@ export class MenuComponent implements OnInit {
     'align_center',
     'align_right',
     'align_justify',
+  ];
+
+  insertCommands: ToolbarItem [] = [
+    'horizontal_rule',
   ];
 
   iconContainerClass = ['NgxEditor__MenuItem', 'NgxEditor__MenuItem--Icon'];

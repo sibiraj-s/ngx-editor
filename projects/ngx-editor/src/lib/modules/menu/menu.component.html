@@ -8,6 +8,9 @@
       <ngx-toggle-command [toolbarItem]="item" [class]="iconContainerClass" *ngIf="toggleCommands.includes(item)">
       </ngx-toggle-command>
 
+      <ngx-insert-command [toolbarItem]="item" [class]="iconContainerClass" *ngIf="insertCommands.includes(item)">
+      </ngx-insert-command>
+
       <!-- link -->
       <ngx-link [class]="iconContainerClass" *ngIf="item === 'link'"></ngx-link>
 

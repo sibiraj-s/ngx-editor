@@ -8,3 +8,8 @@ export interface ToggleCommand {
   isActive: (state: EditorState) => boolean;
   canExecute: (state: EditorState) => boolean;
 }
+
+export interface InsertCommand {
+  insert: () => Command;
+  canExecute: (state: EditorState) => boolean;
+}
