@@ -130,7 +130,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes?.['placeholder'] && !changes['placeholder'].isFirstChange()) {
+    if (changes['placeholder'] && !changes['placeholder'].isFirstChange()) {
       this.setPlaceholder(changes['placeholder'].currentValue);
     }
   }
