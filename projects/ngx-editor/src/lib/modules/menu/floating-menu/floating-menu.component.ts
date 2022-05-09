@@ -11,7 +11,6 @@ import { computePosition, detectOverflow, offset, autoPlacement } from '@floatin
 
 import { NgxEditorError } from 'ngx-editor/utils';
 import Editor from '../../../Editor';
-import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 
 interface BubblePosition {
   top: number;
@@ -24,7 +23,7 @@ interface BubblePosition {
   styleUrls: ['./floating-menu.component.scss'],
 })
 export class FloatingMenuComponent implements OnInit, OnDestroy {
-  constructor(public el: ElementRef<HTMLElement>, private sanitizeHTML: SanitizeHtmlPipe) { }
+  constructor(public el: ElementRef<HTMLElement>) { }
 
   @HostBinding('style') get display(): Partial<CSSStyleDeclaration> {
     return {

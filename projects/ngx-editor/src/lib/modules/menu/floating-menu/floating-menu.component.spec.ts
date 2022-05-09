@@ -3,7 +3,6 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { FloatingMenuComponent } from './floating-menu.component';
-import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { BubbleComponent } from '../bubble/bubble.component';
 import Editor from '../../../Editor';
 
@@ -18,7 +17,6 @@ describe('FloatingMenuComponent', () => {
         BubbleComponent,
       ],
       providers: [
-        SanitizeHtmlPipe,
       ],
     })
       .compileComponents();
