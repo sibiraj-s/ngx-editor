@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostBinding,
+  Component, ElementRef,
   HostListener, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
@@ -33,11 +33,11 @@ export class DropdownComponent implements OnInit, OnDestroy {
     private el: ElementRef,
   ) { }
 
-  @HostBinding('class.NgxEditor__Dropdown--Selected') get isSelected(): boolean {
+  get isSelected(): boolean {
     return Boolean(this.activeItem || this.isDropdownOpen);
   }
 
-  @HostBinding('class.NgxEditor--Disabled') get isDropdownDisabled(): boolean {
+  get isDropdownDisabled(): boolean {
     return this.disabledItems.length === this.items.length;
   }
 

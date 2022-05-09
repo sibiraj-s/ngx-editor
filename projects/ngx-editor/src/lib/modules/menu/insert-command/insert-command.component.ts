@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
@@ -23,14 +23,13 @@ export class InsertCommandComponent implements OnInit, OnDestroy {
 
   html: string;
   editorView: EditorView;
+  disabled = false;
   private updateSubscription: Subscription;
 
   constructor(
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
   ) { }
-
-  @HostBinding('class.NgxEditor--Disabled') disabled = false;
 
   insert(e: MouseEvent): void {
     e.preventDefault();

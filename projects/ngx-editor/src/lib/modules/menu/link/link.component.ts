@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostBinding,
+  Component, ElementRef,
   HostListener, OnDestroy, OnInit,
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -20,7 +20,8 @@ import { Link as LinkCommand } from '../MenuCommands';
 export class LinkComponent implements OnInit, OnDestroy {
   showPopup = false;
   isActive = false;
-  private canExecute = true;
+  canExecute = true;
+
   private editorView: EditorView;
   private updateSubscription: Subscription;
 
@@ -38,14 +39,6 @@ export class LinkComponent implements OnInit, OnDestroy {
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
   ) { }
-
-  @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
-    return this.isActive || this.showPopup;
-  }
-
-  @HostBinding('class.NgxEditor--Disabled') get disabled(): boolean {
-    return !this.canExecute;
-  }
 
   get icon(): string {
     return Icon.get(this.isActive ? 'unlink' : 'link');

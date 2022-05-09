@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostBinding,
+  Component, ElementRef,
   HostListener, OnDestroy, Input, OnInit,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
@@ -27,14 +27,6 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     private ngxeService: NgxEditorService,
   ) { }
 
-  @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
-    return this.isActive || this.showPopup;
-  }
-
-  @HostBinding('class.NgxEditor--Disabled') get disabled(): boolean {
-    return !this.canExecute;
-  }
-
   get title(): string {
     return this.getLabel(this.type === 'text_color' ? 'text_color' : 'background_color');
   }
@@ -52,7 +44,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
   showPopup = false;
   isActive = false;
   activeColors: string[] = [];
-  private canExecute = true;
+  canExecute = true;
 
   getContrastYIQ(hexcolor: string): string {
     const color = hexcolor.replace('#', '');

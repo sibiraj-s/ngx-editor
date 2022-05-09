@@ -1,5 +1,5 @@
-<div class="NgxEditor__MenuItem--IconContainer" [innerHTML]="icon | sanitizeHtml" (mousedown)="onMouseDown($event)"
-  [title]="getLabel('insertImage')">
+<div class="NgxEditor__MenuItem--IconContainer" [class.NgxEditor__MenuItem--Active]="isActive || showPopup"
+  [innerHTML]="icon | sanitizeHtml" (mousedown)="onMouseDown($event)" [title]="getLabel('insertImage')">
 </div>
 
 <!-- popup -->

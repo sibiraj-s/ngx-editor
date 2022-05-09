@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
@@ -23,15 +23,14 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
 
   html: string;
   editorView: EditorView;
+  isActive = false;
+  disabled = false;
   private updateSubscription: Subscription;
 
   constructor(
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
   ) { }
-
-  @HostBinding('class.NgxEditor__MenuItem--Active') isActive = false;
-  @HostBinding('class.NgxEditor--Disabled') disabled = false;
 
   toggle(e: MouseEvent): void {
     e.preventDefault();

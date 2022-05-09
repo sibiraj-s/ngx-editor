@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostBinding,
+  Component, ElementRef,
   HostListener, OnDestroy, OnInit,
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -38,10 +38,6 @@ export class ImageComponent implements OnInit, OnDestroy {
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
   ) { }
-
-  @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
-    return this.isActive || this.showPopup;
-  }
 
   get icon(): string {
     return Icon.get('image');

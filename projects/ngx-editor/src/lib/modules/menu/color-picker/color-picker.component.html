@@ -1,4 +1,5 @@
-<div class="NgxEditor__MenuItem--IconContainer" [innerHTML]="icon | sanitizeHtml" (mousedown)="togglePopup($event)"
+<div class="NgxEditor__MenuItem--IconContainer" [class.NgxEditor__MenuItem--Active]="isActive || showPopup"
+  [class.NgxEditor--Disabled]="!canExecute" [innerHTML]="icon | sanitizeHtml" (mousedown)="togglePopup($event)"
   [title]="title">
 </div>
 

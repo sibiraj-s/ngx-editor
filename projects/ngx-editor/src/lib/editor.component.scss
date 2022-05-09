@@ -135,7 +135,8 @@ $menubar-text-padding: 0 $menu-item-spacing;
     padding: $menubar-text-padding;
   }
 
-  &.NgxEditor__MenuItem--Active {
+  &.NgxEditor__MenuItem--Active,
+  .NgxEditor__MenuItem--Active {
     background-color: $menu-item-active-bg-color;
     color: $menu-item-active-color;
   }
@@ -193,13 +194,10 @@ $menubar-text-padding: 0 $menu-item-spacing;
     }
   }
 
-  &.NgxEditor__Dropdown--Selected,
-  &.NgxEditor__Dropdown--Open {
+  .NgxEditor__Dropdown--Selected,
+  .NgxEditor__Dropdown--Open {
+    color: $menu-item-active-color;
     background-color: $menu-item-active-bg-color;
-
-    .NgxEditor__Dropdown--Text {
-      color: $menu-item-active-color;
-    }
   }
 
   .NgxEditor__Dropdown--Active {
