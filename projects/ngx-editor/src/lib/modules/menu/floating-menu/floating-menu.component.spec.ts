@@ -3,6 +3,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { FloatingMenuComponent } from './floating-menu.component';
+import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { BubbleComponent } from '../bubble/bubble.component';
 import Editor from '../../../Editor';
 
@@ -17,6 +18,7 @@ describe('FloatingMenuComponent', () => {
         BubbleComponent,
       ],
       providers: [
+        SanitizeHtmlPipe,
       ],
     })
       .compileComponents();
@@ -37,7 +39,7 @@ describe('FloatingMenuComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render bubble menu by defaault', () => {
+  it('should render bubble menu by default', () => {
     expect(component).toBeTruthy();
 
     const compiled: DebugElement = fixture.debugElement;
