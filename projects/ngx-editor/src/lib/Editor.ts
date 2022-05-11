@@ -23,6 +23,7 @@ interface Options {
   nodeViews?: EditorProps['nodeViews'];
   attributes?: EditorProps['attributes'];
   features?: EditorFeatures;
+  handleScrollToSelection?: EditorProps['handleScrollToSelection'];
 }
 
 interface EditorFeatures {
@@ -45,6 +46,7 @@ const DEFAULT_OPTIONS: Options = {
   nodeViews: {},
   attributes: {},
   features: defaultFeatures,
+  handleScrollToSelection: null,
 };
 
 class Editor {
@@ -118,6 +120,7 @@ class Editor {
       nodeViews,
       dispatchTransaction: this.handleTransactions.bind(this),
       attributes,
+      handleScrollToSelection: options.handleScrollToSelection,
     });
   }
 
