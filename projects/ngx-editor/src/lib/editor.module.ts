@@ -2,7 +2,7 @@ import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NgxEditorConfig } from './types';
-import { defaults } from './Locals';
+import { defaults as defaultLocals } from './Locals';
 
 import { NgxEditorComponent } from './editor.component';
 import { NgxEditorServiceConfig } from './editor-config.service';
@@ -14,6 +14,10 @@ import { ImageViewComponent } from './components/image-view/image-view.component
 import { FloatingMenuComponent } from './modules/menu/floating-menu/floating-menu.component';
 
 export const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorConfig');
+
+const defaultConfig: NgxEditorConfig = {
+  locals: defaultLocals,
+};
 
 @NgModule({
   imports: [
@@ -31,15 +35,14 @@ export const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxE
     FloatingMenuComponent,
   ],
 })
-
 export class NgxEditorModule {
-  static forRoot(config?: NgxEditorConfig): ModuleWithProviders<NgxEditorModule> {
+  static forRoot(config: NgxEditorConfig = defaultConfig): ModuleWithProviders<NgxEditorModule> {
     return {
       ngModule: NgxEditorModule,
       providers: [
         {
           provide: NGX_EDITOR_CONFIG_TOKEN,
-          useValue: config ?? { locals: defaults },
+          useValue: config,
         },
         {
           provide: NgxEditorServiceConfig,
@@ -50,13 +53,13 @@ export class NgxEditorModule {
     };
   }
 
-  static forChild(config?: NgxEditorConfig): ModuleWithProviders<NgxEditorModule> {
+  static forChild(config: NgxEditorConfig = defaultConfig): ModuleWithProviders<NgxEditorModule> {
     return {
       ngModule: NgxEditorModule,
       providers: [
         {
           provide: NGX_EDITOR_CONFIG_TOKEN,
-          useValue: config ?? { locals: defaults },
+          useValue: config,
         },
         {
           provide: NgxEditorServiceConfig,
