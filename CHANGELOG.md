@@ -13,6 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v12.4.0 (2022-05-11)
+
+#### Features
+
+- export injectionToken ([608e978](https://github.com/sibiraj-s/ngx-editor/commit/608e978))
+- add option handleScrollToSelection ([c996665](https://github.com/sibiraj-s/ngx-editor/commit/c996665))
+
+#### Bug Fixes
+
+- fix focus plugin registered twice ([9891b96](https://github.com/sibiraj-s/ngx-editor/commit/9891b96))
+
 ## v12.3.0 (2022-05-08)
 
 #### Features
