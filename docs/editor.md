@@ -59,7 +59,7 @@ editor.registerPlugin(plugin);
 
 **destroy**
 
-Destroy th editor
+Destroy the editor
 
 ```ts
 editor.destroy();
