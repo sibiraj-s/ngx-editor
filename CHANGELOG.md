@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v12.4.1 (2022-05-14)
+
+#### Bug Fixes
+
+- pin prosemirror types ([b48929b](https://github.com/sibiraj-s/ngx-editor/commit/b48929b))
+
 ## v12.4.0 (2022-05-11)
 
 #### Features
