@@ -3,7 +3,7 @@ name: Lock closed issues/pull-requests
 on:
   # 00:00 hours UTC, i.e. 16:00 hours PST or 17:00 hours PDT
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * 0'
 
   # allow manual trigger
   workflow_dispatch:
