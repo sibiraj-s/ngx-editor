@@ -13,6 +13,22 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v13.0.0 (2022-05-14)
+
+#### Features
+
+- update `prosemirror-*` dependencies ([5bfb813](https://github.com/sibiraj-s/ngx-editor/commit/5bfb813))
+- remove DefinitelyTyped `@types/prosemirror-*` dependencies ([5bfb813](https://github.com/sibiraj-s/ngx-editor/commit/5bfb813))
+- update `@floating-ui/*` dependencies ([f9282d8](https://github.com/sibiraj-s/ngx-editor/commit/f9282d8))
+
+#### Bug Fixes
+
+- pin all external dependencies ([741cd69](https://github.com/sibiraj-s/ngx-editor/commit/741cd69))
+
+#### Breaking Changes
+
+No breaking changes. Released as major version due to the nature of dependency updates
+
 ## v12.4.1 (2022-05-14)
 
 #### Bug Fixes
