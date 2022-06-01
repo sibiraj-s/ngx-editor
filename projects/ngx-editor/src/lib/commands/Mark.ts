@@ -1,6 +1,6 @@
 import type { MarkType } from 'prosemirror-model';
-import type { EditorState, Transaction } from 'prosemirror-state';
-import { type Command, toggleMark } from 'prosemirror-commands';
+import type { EditorState, Transaction, Command } from 'prosemirror-state';
+import { toggleMark } from 'prosemirror-commands';
 
 import { applyMark } from 'ngx-editor/commands';
 import { isMarkActive } from 'ngx-editor/helpers';

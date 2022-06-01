@@ -1,6 +1,5 @@
-import type { EditorState, Transaction } from 'prosemirror-state';
+import type { EditorState, Transaction, Command } from 'prosemirror-state';
 import type { Node } from 'prosemirror-model';
-import type { Command } from 'prosemirror-commands';
 
 import { getSelectionNodes } from 'ngx-editor/helpers';
 
@@ -22,7 +21,7 @@ class TextAlign {
 
       doc.nodesBetween(from, to, (node, pos) => {
         const nodeType = node.type;
-        if ([schema.nodes.paragraph, schema.nodes.heading].includes(nodeType)) {
+        if ([schema.nodes['paragraph'], schema.nodes['heading']].includes(nodeType)) {
           applicable = true;
           tr.setNodeMarkup(pos, nodeType, { ...node.attrs, align: this.align });
         }

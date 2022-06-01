@@ -1,5 +1,4 @@
-import { EditorState, Transaction } from 'prosemirror-state';
-import { Command } from 'prosemirror-commands';
+import type { EditorState, Transaction, Command } from 'prosemirror-state';
 
 export type Dispatch = (tr: Transaction) => void | null;
 

@@ -1,6 +1,5 @@
 import type { MarkType } from 'prosemirror-model';
-import type { EditorState } from 'prosemirror-state';
-import type { Command } from 'prosemirror-commands';
+import type { EditorState, Command } from 'prosemirror-state';
 
 import { getSelectionMarks, isMarkActive } from 'ngx-editor/helpers';
 import { applyMark, removeMark } from 'ngx-editor/commands';
