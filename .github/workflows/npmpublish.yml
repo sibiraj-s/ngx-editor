@@ -41,7 +41,8 @@ jobs:
       - run: npm -v
 
       - run: npm ci
+      - run: npm run build:lib
 
-      - run: npm run release
+      - run: npm publish dist/ngx-editor/
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

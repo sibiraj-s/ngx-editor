@@ -11,8 +11,6 @@
     "ng": "ng",
     "lint": "ng lint",
     "format:md": "prettier **/*.md --write",
-    "prerelease": "npm run build:lib",
-    "release": "sh ./scripts/release.sh",
     "test:demo": "ng test demo --browsers ChromeHeadless --watch false",
     "test:lib": "ng test ngx-editor --browsers ChromeHeadless --watch false",
     "test": "npm run test:lib && npm run test:demo",
