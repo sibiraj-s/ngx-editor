@@ -1,7 +1,7 @@
 import { Node as ProseMirrorNode } from 'prosemirror-model';
 import { EditorView } from 'prosemirror-view';
 import { CodeMirrorView } from 'prosemirror-codemirror-6';
-import { basicSetup } from '@codemirror/basic-setup';
+import { minimalSetup } from 'codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 
 const nodeViews = {
@@ -12,7 +12,7 @@ const nodeViews = {
       getPos,
       cmOptions: {
         extensions: [
-          basicSetup,
+          minimalSetup,
           javascript(),
         ],
       },
