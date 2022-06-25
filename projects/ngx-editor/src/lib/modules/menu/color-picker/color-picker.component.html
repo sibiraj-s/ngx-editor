@@ -11,7 +11,25 @@
       [ngClass]="{'NgxEditor__Color--Active': activeColors.includes(color)}"></button>
   </div>
 
+  <small *ngIf="customPickerColors.length > 0 ">Recent Colors</small>
+  <div class="NgxEditor__ColorContainer custom_color_container">
+    <button *ngFor="let color of customPickerColors; trackBy: trackByIndex" class="NgxEditor__Color"
+      [ngStyle]="{backgroundColor: color, color:getContrastYIQ(color)}" [title]="color"
+      (mousedown)="onColorSelect($event, color)"
+      [ngClass]="{'NgxEditor__Color--Active': activeColors.includes(color)}"></button>
+  </div>
+
+  <small class="NgxEditor_small">Use color picker</small>
+  <div class="NgxEditor__Color_buttonWrapper">
+  <input type="color" 
+        id="favcolor" 
+        name="favcolor"
+        class="NgxEditor__Color-picker"
+        (change)="pickColcor($event)" 
+        value="#00000">
+
   <button class="NgxEditor__MenuItem--Button" (mousedown)="remove($event)" [disabled]="!isActive">
     {{getLabel('remove')}}
   </button>
+  </div>
 </div>

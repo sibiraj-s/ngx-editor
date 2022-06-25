@@ -20,6 +20,31 @@
   flex-shrink: 0;
 }
 
+.NgxEditor__Color_buttonWrapper{
+    display: flex;
+    justify-content: space-between;
+    margin: 3px 0 0 0;
+}
+
+.NgxEditor_small{
+  margin: 5px 0 0 0;
+}
+
+.NgxEditor__Color-picker{
+  -webkit-appearance: none;
+  outline: none;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+}
+.custom_color_container {
+  display: block !important;
+
+  button{
+    padding: 0 5px 0 0 !important;
+  }
+}
+
 .NgxEditor__Color--Active {
   &::after {
     content: '✔';

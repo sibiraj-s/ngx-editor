@@ -21,6 +21,8 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
   @Input() presets: string[][];
   @Input() type: string;
 
+  public customPickerColors: string [] = [];
+
   constructor(
     private el: ElementRef,
     private menuService: MenuService,
@@ -87,6 +89,26 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     return index;
   }
 
+  pickColcor(event) {
+    const color = event.target.value;
+
+    const { state, dispatch } = this.editorView;
+
+    if (this.type === 'text_color') {
+      const attrs = { color };
+      this.command.apply(attrs)(state, dispatch);
+    } else {
+      const attrs = { backgroundColor: color };
+      this.command.apply(attrs)(state, dispatch);
+    }
+
+    if (!this.editorView.hasFocus()) {
+      this.editorView.focus();
+    }
+
+    this.hidePopup();
+  }
+
   onColorSelect(e: MouseEvent, color: string): void {
     e.preventDefault();
 
@@ -119,6 +141,17 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
 
     if (this.isActive) {
       this.activeColors = this.command.getActiveColors(state);
+      const colors: string[] = [];
+      for (const colorGroup of this.presets) {
+        for (const color of colorGroup) {
+          colors.push(color);
+        }
+      }
+      this.activeColors.forEach((color: string) => {
+        if (!colors.includes(color) && !this.customPickerColors.includes(color)) {
+          this.customPickerColors.push(color);
+        }
+      });
     }
   };
 
