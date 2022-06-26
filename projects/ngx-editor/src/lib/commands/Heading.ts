@@ -1,6 +1,6 @@
 import type { NodeType, Node as ProseMirrorNode } from 'prosemirror-model';
-import type { EditorState, Transaction } from 'prosemirror-state';
-import { type Command, setBlockType } from 'prosemirror-commands';
+import type { EditorState, Transaction, Command } from 'prosemirror-state';
+import { setBlockType } from 'prosemirror-commands';
 
 import { getSelectionNodes } from 'ngx-editor/helpers';
 
@@ -17,7 +17,7 @@ class Heading {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
       const { schema } = state;
 
-      const type: NodeType = schema.nodes.heading;
+      const type: NodeType = schema.nodes['heading'];
       if (!type) {
         return false;
       }
@@ -30,7 +30,7 @@ class Heading {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
       const { schema, selection, doc } = state;
 
-      const type: NodeType = schema.nodes.heading;
+      const type: NodeType = schema.nodes['heading'];
       if (!type) {
         return false;
       }
@@ -41,7 +41,7 @@ class Heading {
       const attrs = node?.attrs ?? {};
 
       if (this.isActive(state)) {
-        return setBlockType(schema.nodes.paragraph, attrs)(state, dispatch);
+        return setBlockType(schema.nodes['paragraph'], attrs)(state, dispatch);
       }
 
       return setBlockType(type, { ...attrs, level: this.level })(state, dispatch);
@@ -52,15 +52,15 @@ class Heading {
     const { schema } = state;
     const nodesInSelection = getSelectionNodes(state);
 
-    const type: NodeType = schema.nodes.heading;
+    const type: NodeType = schema.nodes['heading'];
     if (!type) {
       return false;
     }
 
     const supportedNodes = [
       type,
-      schema.nodes.text,
-      schema.nodes.blockquote,
+      schema.nodes['text'],
+      schema.nodes['blockquote'],
     ];
 
     // heading is a text node

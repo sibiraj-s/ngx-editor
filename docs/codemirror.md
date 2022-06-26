@@ -13,7 +13,7 @@ See https://sibiraj-s.github.io/ngx-editor/#/menu?id=custom-menu for implementin
 ```ts
 import { Editor } from 'ngx-editor';
 import { CodeMirrorView } from 'prosemirror-codemirror-6';
-import { basicSetup } from '@codemirror/basic-setup';
+import { minimalSetup } from 'codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 
 import schema from './schema.ts';
@@ -32,7 +32,7 @@ new Editor({
         view,
         getPos,
         cmOptions: {
-          extensions: [basicSetup, javascript()],
+          extensions: [minimalSetup, javascript()],
         },
       });
     },

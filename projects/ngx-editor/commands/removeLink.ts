@@ -1,5 +1,4 @@
-import { Command } from 'prosemirror-commands';
-import { EditorState, Transaction } from 'prosemirror-state';
+import { EditorState, Transaction, type Command } from 'prosemirror-state';
 
 export const removeLink = (): Command => {
   return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {

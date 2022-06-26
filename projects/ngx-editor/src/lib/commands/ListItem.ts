@@ -1,7 +1,6 @@
 import type { NodeType, Schema } from 'prosemirror-model';
-import type { EditorState, Transaction } from 'prosemirror-state';
+import type { EditorState, Transaction, Command } from 'prosemirror-state';
 import { liftListItem, wrapInList } from 'prosemirror-schema-list';
-import type { Command } from 'prosemirror-commands';
 
 import { isNodeActive } from 'ngx-editor/helpers';
 
@@ -26,7 +25,7 @@ class ListItem {
       }
 
       if (this.isActive(state)) {
-        return liftListItem(schema.nodes.list_item)(state, dispatch);
+        return liftListItem(schema.nodes['list_item'])(state, dispatch);
       }
 
       return wrapInList(type)(state, dispatch);

@@ -1,6 +1,5 @@
 import type { NodeType } from 'prosemirror-model';
-import type { EditorState, Transaction } from 'prosemirror-state';
-import type { Command } from 'prosemirror-commands';
+import type { EditorState, Transaction, Command } from 'prosemirror-state';
 
 import { canInsert } from 'ngx-editor/helpers';
 
@@ -9,7 +8,7 @@ class HorizontalRule {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
       const { schema, tr } = state;
 
-      const type: NodeType = schema.nodes.horizontal_rule;
+      const type: NodeType = schema.nodes['horizontal_rule'];
 
       if (!type) {
         return false;
@@ -21,7 +20,7 @@ class HorizontalRule {
   }
 
   canExecute(state: EditorState): boolean {
-    return canInsert(state, state.schema.nodes.horizontal_rule);
+    return canInsert(state, state.schema.nodes['horizontal_rule']);
   }
 }
 
