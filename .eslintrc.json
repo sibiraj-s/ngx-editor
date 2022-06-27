@@ -25,20 +25,20 @@
           "error",
           4
         ],
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "prefix": "ngx",
-            "style": "kebab-case",
-            "type": "element"
-          }
-        ],
         "@angular-eslint/directive-selector": [
           "error",
           {
             "prefix": "ngx",
             "style": "camelCase",
             "type": "attribute"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "prefix": "ngx",
+            "style": "kebab-case",
+            "type": "element"
           }
         ]
       }
