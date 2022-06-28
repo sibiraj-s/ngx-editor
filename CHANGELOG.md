@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v14.0.0 (2022-06-28)
+
+#### Breaking Changes
+
+- requires angular 14 or greater ([8092c4d](https://github.com/sibiraj-s/ngx-editor/commit/8092c4d))
+
 ## v13.0.0 (2022-06-01)
 
 #### Features

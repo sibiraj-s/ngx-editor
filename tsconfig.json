@@ -13,23 +13,18 @@
     "sourceMap": true,
     "paths": {
       "ngx-editor": [
-        "dist/ngx-editor/ngx-editor",
         "dist/ngx-editor"
       ],
       "ngx-editor/utils": [
-        "dist/ngx-editor/ngx-editor/utils",
         "dist/ngx-editor/utils"
       ],
       "ngx-editor/helpers": [
-        "dist/ngx-editor/ngx-editor/helpers",
         "dist/ngx-editor/helpers"
       ],
       "ngx-editor/schema": [
-        "dist/ngx-editor/ngx-editor/schema",
         "dist/ngx-editor/schema"
       ],
       "ngx-editor/commands": [
-        "dist/ngx-editor/ngx-editor/commands",
         "dist/ngx-editor/commands"
       ]
     },
@@ -38,7 +33,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2017",
+    "target": "es2020",
     "module": "es2020",
     "lib": [
       "es2020",
