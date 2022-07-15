@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.editor = new Editor();
   }
 
-  ngOnDestory(): void {
+  ngOnDestroy(): void {
     this.editor.destroy();
   }
 }
