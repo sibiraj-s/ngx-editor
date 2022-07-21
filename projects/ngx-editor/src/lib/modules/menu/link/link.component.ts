@@ -28,7 +28,7 @@ export class LinkComponent implements OnInit, OnDestroy {
   form = new FormGroup({
     href: new FormControl('', [
       Validators.required,
-      Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)'),
+      Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)|(mailto:.*[@].*)'),
     ]),
     text: new FormControl('', [Validators.required]),
     openInNewTab: new FormControl(true),
