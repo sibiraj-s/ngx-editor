@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v14.1.0 (2022-07-25)
+
+#### Features
+
+- support mailto links ([b9aec15](https://github.com/sibiraj-s/ngx-editor/commit/b9aec15))
+
+#### Dependency Updates
+
+- update prosemirror-view to v1.27.0 ([9adf9e7](https://github.com/sibiraj-s/ngx-editor/commit/9adf9e7))
+- update prosemirror-schema-list to v1.2.1 ([6b68cf2](https://github.com/sibiraj-s/ngx-editor/commit/6b68cf2))
+- update floating-ui to v1 ([09becd2](https://github.com/sibiraj-s/ngx-editor/commit/09becd2))
+
 ## v14.0.0 (2022-06-28)
 
 #### Breaking Changes
