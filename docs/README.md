@@ -164,3 +164,4 @@ Icons are from https://fonts.google.com/icons
 [documentation]: https://sibiraj-s.github.io/ngx-editor
 [demo]: https://ngx-editor.stackblitz.io/
 [stackblitz]: https://stackblitz.com/edit/ngx-editor
+[migration]: https://sibiraj-s.github.io/ngx-editor/#/migration

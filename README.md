@@ -168,3 +168,4 @@ All contributions are welcome. See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) 
 [documentation]: https://sibiraj-s.github.io/ngx-editor
 [demo]: https://ngx-editor.stackblitz.io/
 [stackblitz]: https://stackblitz.com/edit/ngx-editor
+[migration]: https://sibiraj-s.github.io/ngx-editor/#/migration
