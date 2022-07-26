@@ -5,7 +5,8 @@ import {
   OnChanges, Injector,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { NgxEditorError } from 'ngx-editor/utils';
 import * as plugins from './plugins';
