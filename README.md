@@ -27,7 +27,7 @@
 
 ## Getting Started
 
-[demo] | [edit on stackblitz][stackblitz] | [documentation] | [migrating from v4][migration] | [migrating from other editors][migration]
+[demo] | [edit on stackblitz][stackblitz] | [documentation] | [migrating from other editors][migration]
 
 ### Installation
 
@@ -149,7 +149,7 @@ Mostly works on all Evergreen-Browsers like
 
 ## Angular Compatibility
 
-Angular 13+.
+Angular 14+.
 
 ## Collaborative Editing
 
@@ -157,7 +157,7 @@ See https://sibiraj-s.github.io/ngx-editor/#/collab
 
 ## Icons
 
-Icons are from https://material.io/resources/icons/
+Icons are from https://fonts.google.com/icons
 
 ## Contributing
 
@@ -168,4 +168,3 @@ All contributions are welcome. See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) 
 [documentation]: https://sibiraj-s.github.io/ngx-editor
 [demo]: https://ngx-editor.stackblitz.io/
 [stackblitz]: https://stackblitz.com/edit/ngx-editor
-[migration]: https://sibiraj-s.github.io/ngx-editor/#/migration
