@@ -1,8 +1,10 @@
 import type { EditorState, Transaction, Command } from 'prosemirror-state';
 
+import { InsertCommand } from './types';
+
 const SAFE_MARKS = ['link'];
 
-class FormatClear {
+class FormatClear implements InsertCommand {
   insert(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
       const { tr } = state;

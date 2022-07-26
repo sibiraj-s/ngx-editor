@@ -4,7 +4,9 @@ import { lift, wrapIn } from 'prosemirror-commands';
 
 import { isNodeActive } from 'ngx-editor/helpers';
 
-class Blockqote {
+import { ToggleCommand } from './types';
+
+class Blockqote implements ToggleCommand {
   toggle(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
       const { schema } = state;

@@ -5,7 +5,9 @@ import { toggleMark } from 'prosemirror-commands';
 import { applyMark } from 'ngx-editor/commands';
 import { isMarkActive } from 'ngx-editor/helpers';
 
-class Mark {
+import { ToggleCommand } from './types';
+
+class Mark implements ToggleCommand {
   name: string;
 
   constructor(name: string) {

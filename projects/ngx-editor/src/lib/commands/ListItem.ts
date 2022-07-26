@@ -4,7 +4,9 @@ import { liftListItem, wrapInList } from 'prosemirror-schema-list';
 
 import { isNodeActive } from 'ngx-editor/helpers';
 
-class ListItem {
+import { ToggleCommand } from './types';
+
+class ListItem implements ToggleCommand {
   isBulletList = false;
 
   constructor(isBulletList = false) {
