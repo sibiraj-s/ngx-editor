@@ -21,6 +21,7 @@ export const defaults: Record<string, string> = {
   align_justify: 'Justify',
   text_color: 'Text Color',
   background_color: 'Background Color',
+  horizontal_rule: 'Horizontal rule',
   insertLink: 'Insert Link',
   removeLink: 'Remove Link',
   insertImage: 'Insert Image',
