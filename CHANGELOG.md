@@ -13,6 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v14.2.0 (2022-07-27)
+
+#### Features
+
+- add support for clear formatting ([8fc2647](https://github.com/sibiraj-s/ngx-editor/commit/8fc2647))
+
+#### Bug Fixes
+
+- add missing locale for horizontal rule ([40dd011](https://github.com/sibiraj-s/ngx-editor/commit/40dd011))
+- use correct import for rxjs operators ([3e0fd58](https://github.com/sibiraj-s/ngx-editor/commit/3e0fd58))
+
 ## v14.1.0 (2022-07-25)
 
 #### Features
