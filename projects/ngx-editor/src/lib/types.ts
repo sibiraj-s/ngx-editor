@@ -25,7 +25,8 @@ export type TBItems = 'bold'
 | 'align_center'
 | 'align_right'
 | 'align_justify'
-| 'horizontal_rule';
+| 'horizontal_rule'
+| 'format_clear';
 
 export type ToolbarDropdown = { heading?: TBHeadingItems[] };
 export type ToolbarCustomMenuItem = (editorView: EditorView) => TCR;

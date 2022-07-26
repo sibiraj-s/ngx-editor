@@ -17,6 +17,7 @@ export const DEFAULT_TOOLBAR: Toolbar = [
   ['link', 'image'],
   ['text_color', 'background_color'],
   ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ['format_clear'],
 ];
 
 export const TOOLBAR_MINIMAL: Toolbar = [
@@ -89,6 +90,7 @@ export class MenuComponent implements OnInit {
 
   insertCommands: ToolbarItem[] = [
     'horizontal_rule',
+    'format_clear',
   ];
 
   iconContainerClass = ['NgxEditor__MenuItem', 'NgxEditor__MenuItem--Icon'];
