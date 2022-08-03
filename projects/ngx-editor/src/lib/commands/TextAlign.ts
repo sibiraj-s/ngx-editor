@@ -3,9 +3,11 @@ import type { Node } from 'prosemirror-model';
 
 import { getSelectionNodes } from 'ngx-editor/helpers';
 
+import { ToggleCommand } from './types';
+
 export type Align = 'left' | 'center' | 'right' | 'justify';
 
-class TextAlign {
+class TextAlign implements ToggleCommand {
   align: string;
 
   constructor(align: Align) {

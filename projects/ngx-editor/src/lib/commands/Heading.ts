@@ -4,9 +4,11 @@ import { setBlockType } from 'prosemirror-commands';
 
 import { getSelectionNodes } from 'ngx-editor/helpers';
 
+import { ToggleCommand } from './types';
+
 export type HeadingLevels = 1 | 2 | 3 | 4 | 5 | 6;
 
-class Heading {
+class Heading implements ToggleCommand {
   level: number;
 
   constructor(level: HeadingLevels) {

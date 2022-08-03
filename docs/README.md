@@ -7,7 +7,7 @@
 </p>
 <p align="center">Rich Text Editor for angular using ProseMirror</p>
 <p align="center">
-  <a href="https://travis-ci.org/sibiraj-s/ngx-editor">
+  <a href="https://github.com/sibiraj-s/ngx-editor/actions">
     <img alt="Tests" src="https://github.com/sibiraj-s/ngx-editor/workflows/Tests/badge.svg">
   </a>
   <a href="https://www.npmjs.com/package/ngx-editor">
@@ -19,6 +19,7 @@
   <a href="https://www.npmjs.com/package/ngx-editor">
     <img alt="npm" src="https://badgen.net/npm/dt/ngx-editor">
   </a>
+  <br />
   <a href="https://github.com/sibiraj-s/ngx-editor/blob/master/LICENSE">
     <img alt="licence" src="https://badgen.net/npm/license/ngx-editor">
   </a>
@@ -26,7 +27,7 @@
 
 ## Getting Started
 
-[demo] | [edit on stackblitz][stackblitz] | [documentation] | [migrating from v4][migration] | [migrating from other editors][migration]
+[demo] | [edit on stackblitz][stackblitz] | [documentation] | [migrating from other editors][migration]
 
 ### Installation
 
@@ -127,37 +128,11 @@ You can specify locals to be used in the editor
 ```ts
 NgxEditorModule.forRoot({
   locals: {
-    // menu
     bold: 'Bold',
     italic: 'Italic',
     code: 'Code',
     underline: 'Underline',
-    strike: 'Strike',
-    blockquote: 'Blockquote',
-    bullet_list: 'Bullet List',
-    ordered_list: 'Ordered List',
-    heading: 'Heading',
-    h1: 'Header 1',
-    h2: 'Header 2',
-    h3: 'Header 3',
-    h4: 'Header 4',
-    h5: 'Header 5',
-    h6: 'Header 6',
-    align_left: 'Left Align',
-    align_center: 'Center Align',
-    align_right: 'Right Align',
-    align_justify: 'Justify',
-    text_color: 'Text Color',
-    background_color: 'Background Color',
-
-    // pupups, forms, others...
-    url: 'URL',
-    text: 'Text',
-    openInNewTab: 'Open in new tab',
-    insert: 'Insert',
-    altText: 'Alt Text',
-    title: 'Title',
-    remove: 'Remove',
+    // ...
   },
 });
 ```
@@ -174,7 +149,7 @@ Mostly works on all Evergreen-Browsers like
 
 ## Angular Compatibility
 
-Angular 13+.
+Angular 14+.
 
 ## Collaborative Editing
 
@@ -182,7 +157,7 @@ See https://sibiraj-s.github.io/ngx-editor/#/collab
 
 ## Icons
 
-Icons are from https://material.io/resources/icons/
+Icons are from https://fonts.google.com/icons
 
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/

@@ -18,6 +18,7 @@ import alignJustify from './align_justify';
 import textColor from './text_color';
 import colorFill from './color_fill';
 import horizontalRule from './horizontal_rule';
+import formatClear from './format_clear';
 
 const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
@@ -42,6 +43,7 @@ const icons: Record<string, any> = {
   text_color: textColor,
   color_fill: colorFill,
   horizontal_rule: horizontalRule,
+  format_clear: formatClear,
 };
 
 class Icon {

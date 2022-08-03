@@ -7,6 +7,7 @@ import TextAlign from './TextAlign';
 import Link from './Link';
 import Image from './Image';
 import TextColor from './TextColor';
+import FormatClear from './FormatClear';
 
 export const STRONG = new Mark('strong');
 export const EM = new Mark('em');
@@ -15,6 +16,7 @@ export const UNDERLINE = new Mark('u');
 export const STRIKE = new Mark('s');
 export const BLOCKQUOTE = new Blockquote();
 export const HORIZONTAL_RULE = new HorizontalRule();
+export const FORMAT_CLEAR = new FormatClear();
 export const UL = new ListItem(true);
 export const OL = new ListItem(false);
 export const H1 = new Heading(1);

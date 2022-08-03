@@ -3,7 +3,9 @@ import type { EditorState, Transaction, Command } from 'prosemirror-state';
 
 import { canInsert } from 'ngx-editor/helpers';
 
-class HorizontalRule {
+import { InsertCommand } from './types';
+
+class HorizontalRule implements InsertCommand {
   insert(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
       const { schema, tr } = state;
