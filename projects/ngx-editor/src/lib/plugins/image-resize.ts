@@ -1,4 +1,4 @@
-import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector } from '@angular/core';
+import { ApplicationRef, ComponentRef, createComponent, Injector } from '@angular/core';
 import { Node as ProseMirrorNode } from 'prosemirror-model';
 import { NodeSelection, Plugin, PluginKey } from 'prosemirror-state';
 import { EditorView, NodeView } from 'prosemirror-view';
@@ -19,19 +19,15 @@ class ImageRezieView implements NodeView {
   updating = false;
 
   constructor(node: ProseMirrorNode, view: EditorView, getPos: () => number, injector: Injector) {
-    const componentFactoryResolver = injector.get(ComponentFactoryResolver);
     this.applicationRef = injector.get(ApplicationRef);
 
-    // Create the component and wire it up with the element
-    const factory = componentFactoryResolver.resolveComponentFactory(ImageViewComponent);
+    // create component ref
+    this.imageComponentRef = createComponent(ImageViewComponent, {
+      environmentInjector: this.applicationRef.injector,
+    });
 
-    this.imageComponentRef = factory.create(injector, []);
     // Attach to the view so that the change detector knows to run
     this.applicationRef.attachView(this.imageComponentRef.hostView);
-
-    // Possible alternate for deprecated ComponentFactoryResolver
-    // const viewContainerRef = injector.get(ViewContainerRef);
-    // this.imageComponentRef = viewContainerRef.createComponent(ImageViewComponent, { injector });
 
     this.setNodeAttributes(node.attrs);
     this.imageComponentRef.instance.view = view;
