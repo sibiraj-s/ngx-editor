@@ -18,6 +18,7 @@ const editor = new Editor({
   schema, //https://prosemirror.net/examples/schema/
   nodeViews: {}, //https://prosemirror.net/docs/guide/#state,
   attributes: {}, // https://prosemirror.net/docs/ref/#view.EditorProps.attributes
+  linkValidationPattern: '',
 });
 ```
 
@@ -33,6 +34,7 @@ Some options may be overwritten by the component props
 - **keyboardShortcuts** - (`Optional`) - enables keyboard shortcuts for the inbuilt schema
 - **inputRules** - (`Optional`) - enables inputrules for the inbuilt schema
 - **attributes** - (`Optional`) - editor attributes to forward to ProseMirror
+- **linkValidationPattern** - (`Optional`) - sets the Validation Pattern in the Link Component to validate the link
 
 ## Editor Instance
 

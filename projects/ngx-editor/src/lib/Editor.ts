@@ -24,6 +24,7 @@ interface Options {
   attributes?: EditorProps['attributes'];
   features?: EditorFeatures;
   handleScrollToSelection?: EditorProps['handleScrollToSelection'];
+  linkValidationPattern?: string;
 }
 
 interface EditorFeatures {
@@ -47,6 +48,7 @@ const DEFAULT_OPTIONS: Options = {
   attributes: {},
   features: defaultFeatures,
   handleScrollToSelection: null,
+  linkValidationPattern: '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)|(mailto:.*[@].*)',
 };
 
 class Editor {
@@ -71,6 +73,10 @@ class Editor {
 
   get schema(): Schema {
     return this.options.schema || defautlSchema;
+  }
+
+  get linkValidationPattern(): string {
+    return this.options.linkValidationPattern;
   }
 
   get commands(): EditorCommands {
