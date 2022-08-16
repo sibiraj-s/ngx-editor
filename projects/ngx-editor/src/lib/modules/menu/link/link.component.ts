@@ -1,11 +1,10 @@
 import {
   Component, ElementRef,
-  HostListener, Input, OnDestroy, OnInit,
+  HostListener, OnDestroy, OnInit,
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
-import Editor from '../../../Editor';
 
 import { NgxEditorService } from '../../../editor.service';
 import Icon from '../../../icons';
@@ -22,20 +21,10 @@ export class LinkComponent implements OnInit, OnDestroy {
   showPopup = false;
   isActive = false;
   canExecute = true;
+  form: FormGroup;
 
   private editorView: EditorView;
   private updateSubscription: Subscription;
-
-  @Input() editor: Editor;
-
-  form = new FormGroup({
-    href: new FormControl('', [
-      Validators.required,
-      Validators.pattern(this.menuService.editor.linkValidationPattern),
-    ]),
-    text: new FormControl('', [Validators.required]),
-    openInNewTab: new FormControl(true),
-  });
 
   constructor(
     private el: ElementRef,
@@ -137,6 +126,15 @@ export class LinkComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.editorView = this.menuService.editor.view;
+
+    this.form = new FormGroup({
+      href: new FormControl('', [
+        Validators.required,
+        Validators.pattern(this.menuService.editor.linkValidationPattern),
+      ]),
+      text: new FormControl('', [Validators.required]),
+      openInNewTab: new FormControl(true),
+    });
 
     this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
       this.update(view);
