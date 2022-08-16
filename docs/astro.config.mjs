@@ -30,7 +30,7 @@ export default defineConfig({
     // Enable React for the Algolia search component.
     react(),
   ],
-  site: `https://sibiraj-s.github.io/ngx-editor`,
+  site: `https://sibiraj-s.github.io`,
   outDir: './dist',
   publicDir: './public',
   srcDir: './src',

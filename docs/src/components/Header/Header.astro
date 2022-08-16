@@ -9,6 +9,9 @@ import Search from './Search';
 
 const { currentPage } = Astro.props;
 const lang = currentPage && getLanguageFromURL(currentPage);
+
+const env = import.meta.env
+const base = env.MODE === 'development' ? '/': env.BASE_URL
 ---
 
 <header>
@@ -18,7 +21,7 @@ const lang = currentPage && getLanguageFromURL(currentPage);
 			<SidebarToggle client:idle />
 		</div>
 		<div class="logo flex">
-			<a href="/">
+			<a href={base}>
 				<AstroLogo size={40} />
 				<h1>{CONFIG.SITE.title ?? 'Documentation'}</h1>
 			</a>
