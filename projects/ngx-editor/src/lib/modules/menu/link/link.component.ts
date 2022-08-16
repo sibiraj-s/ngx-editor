@@ -1,14 +1,15 @@
 import {
   Component, ElementRef,
-  HostListener, OnDestroy, OnInit,
+  HostListener, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
+import Editor from '../../../Editor';
 
 import { NgxEditorService } from '../../../editor.service';
-import { MenuService } from '../menu.service';
 import Icon from '../../../icons';
+import { MenuService } from '../menu.service';
 import { Link as LinkCommand } from '../MenuCommands';
 
 @Component({
@@ -25,10 +26,12 @@ export class LinkComponent implements OnInit, OnDestroy {
   private editorView: EditorView;
   private updateSubscription: Subscription;
 
+  @Input() editor: Editor;
+
   form = new FormGroup({
     href: new FormControl('', [
       Validators.required,
-      Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)|(mailto:.*[@].*)'),
+      Validators.pattern(this.menuService.editor.linkValidationPattern),
     ]),
     text: new FormControl('', [Validators.required]),
     openInNewTab: new FormControl(true),
