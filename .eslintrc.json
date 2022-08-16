@@ -61,6 +61,32 @@
       "rules": {
         "no-console": "off"
       }
+    },
+    {
+      "files": [
+        "docs/**/*.ts",
+        "docs/**/*.tsx"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ]
+      },
+      "extends": [
+        "pegasus",
+        "pegasus/typescript",
+        "pegasus/react"
+      ]
+    },
+    {
+      "files": [
+        "docs/**/*.js"
+      ],
+      "extends": [
+        "pegasus",
+        "pegasus/node",
+        "pegasus/browser"
+      ]
     }
   ]
 }
