@@ -11,6 +11,10 @@ on:
 concurrency:
   group: lock
 
+permissions:
+  issues: write
+  pull-requests: write
+
 jobs:
   lock:
     runs-on: ubuntu-latest
