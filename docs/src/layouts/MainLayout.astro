@@ -9,7 +9,7 @@ import * as CONFIG from '../config';
 
 const { frontmatter = {}, headings } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const currentPage = Astro.url.pathname;
+const currentPage = Astro.url.pathname.replace(import.meta.env.BASE_URL, '/');
 const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 const githubEditUrl = CONFIG.GITHUB_EDIT_URL && CONFIG.GITHUB_EDIT_URL + currentFile;
 ---
