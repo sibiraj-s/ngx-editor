@@ -20,6 +20,8 @@ const sidebarSections = SIDEBAR[langCode].reduce((col, item, i) => {
 	}
 	return col;
 }, []);
+
+const baseURL = import.meta.env.BASE_URL
 ---
 
 <nav aria-labelledby="grid-left">
@@ -32,7 +34,7 @@ const sidebarSections = SIDEBAR[langCode].reduce((col, item, i) => {
 						{section.children.map((child) => (
 							<li class="nav-link">
 								<a
-									href={`${Astro.site.pathname}${child.link}`}
+									href={`${baseURL}${child.link}`}
 									aria-current={`${currentPageMatch === child.link ? 'page' : 'false'}`}
 								>
 									{child.text}

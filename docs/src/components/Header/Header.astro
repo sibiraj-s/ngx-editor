@@ -5,7 +5,7 @@ import EditorLogo from './ngx-editor.svg';
 import SkipToContent from './SkipToContent.astro';
 import SidebarToggle from './SidebarToggle';
 import LanguageSelect from './LanguageSelect';
-import Search from './Search';
+// import Search from './Search';
 
 const { currentPage } = Astro.props;
 const lang = currentPage && getLanguageFromURL(currentPage);
@@ -28,11 +28,11 @@ const base = env.MODE === 'development' ? '/': env.BASE_URL
 		</div>
 		<div style="flex-grow: 1;"></div>
 		{KNOWN_LANGUAGE_CODES.length > 1 && <LanguageSelect lang={lang} client:idle />}
-		{CONFIG.ALGOLIA && (
+		<!-- {CONFIG.ALGOLIA && (
 			<div class="search-item">
 				<Search client:idle />
 			</div>
-		)}
+		)} -->
 	</nav>
 </header>
 
