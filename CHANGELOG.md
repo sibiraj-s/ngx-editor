@@ -13,6 +13,20 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v15.0.0 (2022-08-17)
+
+#### Bug Fixes
+
+- remove deprecated ComponenetFactoryResolver ([41524f3](https://github.com/sibiraj-s/ngx-editor/commit/41524f3))
+
+#### Breaking Changes
+
+- requires angular v14.1.0 or greater ([db0c8a7](https://github.com/sibiraj-s/ngx-editor/commit/db0c8a7))
+
+#### Features
+
+- add option to set custom link validation pattern ([98ff517](https://github.com/sibiraj-s/ngx-editor/commit/98ff517))
+
 ## v14.2.0 (2022-07-27)
 
 #### Features
