@@ -15,6 +15,8 @@ All notable changes to this project will be documented in this file.
 
 ## v15.0.1 (2022-10-21)
 
+#### Dependency Updates
+
 - update prosemirror dependencies ([faa9a87](https://github.com/sibiraj-s/ngx-editor/commit/faa9a87))
 - update floating-ui dependencies ([68341dc](https://github.com/sibiraj-s/ngx-editor/commit/68341dc))
 
