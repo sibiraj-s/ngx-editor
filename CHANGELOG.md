@@ -13,6 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v15.1.0 (2022-12-14)
+
+#### Features
+
+- export NgxEditorService ([4168c6b](https://github.com/sibiraj-s/ngx-editor/commit/4168c6b))
+
+#### Dependency Updates
+
+- update prosemirror dependencies ([eb6f692](https://github.com/sibiraj-s/ngx-editor/commit/eb6f692))
+- update floating-ui dependencies ([03991ff](https://github.com/sibiraj-s/ngx-editor/commit/03991ff))
+
 ## v15.0.1 (2022-10-21)
 
 #### Dependency Updates
