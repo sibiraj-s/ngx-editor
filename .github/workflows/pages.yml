@@ -5,7 +5,7 @@ on:
     branches: master
 
 env:
-  NODE_VERSION: 16
+  NODE_VERSION: 18
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -30,9 +30,6 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
-
-      - run: node --version
-      - run: npm --version
 
       - name: NPM Install
         run: npm ci

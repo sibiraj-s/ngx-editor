@@ -1,7 +1,7 @@
 name: NPM Publish
 
 env:
-  NODE_VERSION: 16
+  NODE_VERSION: 18
 
 on:
   release:
@@ -18,9 +18,6 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
           cache: npm
 
-      - run: node -v
-      - run: npm -v
-
       - run: npm ci
 
       - run: npm run build:lib
@@ -36,9 +33,6 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
           registry-url: https://registry.npmjs.org/
           cache: npm
-
-      - run: node -v
-      - run: npm -v
 
       - run: npm ci
       - run: npm run build:lib

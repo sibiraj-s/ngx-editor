@@ -1,7 +1,7 @@
 name: Tests
 
 env:
-  NODE_VERSION: 16
+  NODE_VERSION: 18
 
 on:
   push:
@@ -23,9 +23,6 @@ jobs:
         with:
           node-version: ${{env.NODE_VERSION}}
           cache: npm
-
-      - run: node -v
-      - run: npm -v
 
       - name: NPM Install
         run: npm ci
