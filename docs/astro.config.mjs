@@ -13,6 +13,7 @@ const github = () => {
         }
 
         updateConfig({
+          site: 'https://sibiraj-s.github.io/ngx-editor/', // TODO: Remove the pathname from URL
           base: '/ngx-editor/'
         })
       }
