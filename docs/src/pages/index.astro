@@ -1,5 +1,9 @@
 <script is:inline>
   // Redirect your homepage to the first page of documentation.
   // If you have a landing page, remove this script and add it here!
-  window.location.pathname = `/en/introduction`;
+  const base = window.location.href;
+  const redirectTo = base.endsWith('/')
+    ? 'en/introduction'
+    : '/en/introduction';
+  window.location.href = base + redirectTo;
 </script>
