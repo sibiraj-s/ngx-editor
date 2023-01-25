@@ -1,13 +1,20 @@
+import type { MarkdownHeading } from 'astro';
 import type { FunctionalComponent } from 'preact';
-import { h, Fragment } from 'preact';
+import { unescape } from 'html-escaper';
 import { useState, useEffect, useRef } from 'preact/hooks';
-import { MarkdownHeading } from 'astro';
+
+type ItemOffsets = {
+	id: string;
+	topOffset: number;
+};
 
 const TableOfContents: FunctionalComponent<{ headings: MarkdownHeading[] }> = ({
 	headings = [],
 }) => {
-	const itemOffsets = useRef([]);
-	const [activeId, setActiveId] = useState<string>(undefined);
+	const toc = useRef<HTMLUListElement>();
+	const onThisPageID = 'on-this-page-heading';
+	const itemOffsets = useRef<ItemOffsets[]>([]);
+	const [currentID, setCurrentID] = useState('overview');
 	useEffect(() => {
 		const getItemOffsets = () => {
 			const titles = document.querySelectorAll('article :is(h1, h2, h3, h4)');
@@ -25,22 +32,57 @@ const TableOfContents: FunctionalComponent<{ headings: MarkdownHeading[] }> = ({
 		};
 	}, []);
 
+	useEffect(() => {
+		if (!toc.current) return;
+
+		const setCurrent: IntersectionObserverCallback = (entries) => {
+			for (const entry of entries) {
+				if (entry.isIntersecting) {
+					const { id } = entry.target;
+					if (id === onThisPageID) continue;
+					setCurrentID(entry.target.id);
+					break;
+				}
+			}
+		};
+
+		const observerOptions: IntersectionObserverInit = {
+			// Negative top margin accounts for `scroll-margin`.
+			// Negative bottom margin means heading needs to be towards top of viewport to trigger intersection.
+			rootMargin: '-100px 0% -66%',
+			threshold: 1,
+		};
+
+		const headingsObserver = new IntersectionObserver(setCurrent, observerOptions);
+
+		// Observe all the headings in the main page content.
+		document.querySelectorAll('article :is(h1,h2,h3)').forEach((h) => headingsObserver.observe(h));
+
+		// Stop observing when the component is unmounted.
+		return () => headingsObserver.disconnect();
+	}, [toc.current]);
+
+	const onLinkClick = (e) => {
+		setCurrentID(e.target.getAttribute('href').replace('#', ''));
+	};
+
 	return (
 		<>
-			<h2 class="heading">On this page</h2>
-			<ul>
-				<li class={`heading-link depth-2 ${activeId === 'overview' ? 'active' : ''}`.trim()}>
-					<a href="#overview">Overview</a>
-				</li>
+			<h2 id={onThisPageID} className="heading">
+				On this page
+			</h2>
+			<ul ref={toc}>
 				{headings
 					.filter(({ depth }) => depth > 1 && depth < 4)
 					.map((heading) => (
 						<li
-							class={`heading-link depth-${heading.depth} ${
-								activeId === heading.slug ? 'active' : ''
+							className={`header-link depth-${heading.depth} ${
+								currentID === heading.slug ? 'current-header-link' : ''
 							}`.trim()}
 						>
-							<a href={`#${heading.slug}`}>{heading.text}</a>
+							<a href={`#${heading.slug}`} onClick={onLinkClick}>
+								{unescape(heading.text)}
+							</a>
 						</li>
 					))}
 			</ul>

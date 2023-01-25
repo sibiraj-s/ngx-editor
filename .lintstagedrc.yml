@@ -2,3 +2,4 @@
 'projects/**/*.html': eslint --fix
 'docs/**/*.html': prettier --write
 '*.md': prettier --write
+'*.astro': prettier --write
