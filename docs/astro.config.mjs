@@ -7,14 +7,17 @@ const github = () => {
   const adapter = {
     name: 'github',
     hooks: {
-      'astro:config:setup': ({ command, updateConfig }) => {
+      'astro:config:setup': ({ command, config, updateConfig }) => {
         if (command !== 'build') {
+          updateConfig({
+            site: `http://localhost:${config.server.port}`,
+          })
           return
         }
 
         updateConfig({
-          site: 'https://sibiraj-s.github.io/ngx-editor/', // TODO: Remove the pathname from URL
-          base: '/ngx-editor/'
+          site: 'https://sibiraj-s.github.io/ngx-editor/',
+          base: '/ngx-editor'
         })
       }
     },
@@ -31,6 +34,5 @@ export default defineConfig({
 		// Enable React for the Algolia search component.
 		react(),
 	],
-  site: `https://sibiraj-s.github.io`,
   adapter: github()
 });
