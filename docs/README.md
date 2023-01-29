@@ -20,7 +20,7 @@ To deploy your site to production, check out our [Deploy an Astro Website](https
 
 ## New to Astro?
 
-Welcome! Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Welcome! Check out [documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
 
 ## Customize This Theme
 
@@ -66,15 +66,14 @@ The sidebar navigation is controlled by the `SIDEBAR` variable in your `src/conf
 
 ```ts
 export const SIDEBAR = {
-  en: [
-    { text: 'Section Header', header: true },
-    { text: 'Introduction', link: 'en/introduction' },
-    { text: 'Page 2', link: 'en/page-2' },
-    { text: 'Page 3', link: 'en/page-3' },
-
-    { text: 'Another Section', header: true },
-    { text: 'Page 4', link: 'en/page-4' },
-  ],
+  en: {
+    'Section Header': [
+      { text: 'Introduction', link: 'en/introduction' },
+      { text: 'Page 2', link: 'en/page-2' },
+      { text: 'Page 3', link: 'en/page-3' },
+    ],
+    'Another Section': [{ text: 'Page 4', link: 'en/page-4' }],
+  },
 };
 ```
 

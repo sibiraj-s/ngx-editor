@@ -9,7 +9,6 @@ export const OPEN_GRAPH = {
     src: 'https://github.com/sibiraj-s/ngx-editor/blob/master/sketch/ngx-editor.png?raw=true',
     alt: 'Rich text editor for angular',
   },
-  // twitter: '',
 };
 
 export const KNOWN_LANGUAGES = {
