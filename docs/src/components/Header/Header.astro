@@ -27,11 +27,7 @@ const lang = getLanguageFromURL(currentPage);
       </a>
     </div>
     <div style="flex-grow: 1;"></div>
-    {
-      KNOWN_LANGUAGE_CODES.length > 1 && (
-        <LanguageSelect lang={lang} client:idle />
-      )
-    }
+    {KNOWN_LANGUAGE_CODES.length > 1 && <LanguageSelect lang={lang} client:idle />}
   </nav>
 </header>
 

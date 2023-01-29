@@ -124,11 +124,7 @@ const githubEditUrl = `${GITHUB_EDIT_URL}/${currentFile}`;
         <LeftSidebar currentPage={currentPage} />
       </aside>
       <div id="grid-main">
-        <PageContent
-          title={data.title}
-          headings={headings}
-          githubEditUrl={githubEditUrl}
-        >
+        <PageContent title={data.title} headings={headings} githubEditUrl={githubEditUrl}>
           <slot />
         </PageContent>
       </div>

@@ -11,28 +11,28 @@ const github = () => {
         if (command !== 'build') {
           updateConfig({
             site: `http://localhost:${config.server.port}`,
-          })
-          return
+          });
+          return;
         }
 
         updateConfig({
           site: 'https://sibiraj-s.github.io/ngx-editor/',
-          base: '/ngx-editor'
-        })
-      }
+          base: '/ngx-editor',
+        });
+      },
     },
   };
 
-  return adapter
-}
+  return adapter;
+};
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [
-		// Enable Preact to support Preact JSX components.
-		preact(),
-		// Enable React for the Algolia search component.
-		react(),
-	],
-  adapter: github()
+  integrations: [
+    // Enable Preact to support Preact JSX components.
+    preact(),
+    // Enable React for the Algolia search component.
+    react(),
+  ],
+  adapter: github(),
 });

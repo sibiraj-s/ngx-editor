@@ -11,23 +11,13 @@ See https://github.com/yjs for more details
 ```ts
 import * as Y from 'yjs';
 import { WebsocketProvider } from 'y-websocket';
-import {
-  ySyncPlugin,
-  yCursorPlugin,
-  yUndoPlugin,
-  undo,
-  redo,
-} from 'y-prosemirror';
+import { ySyncPlugin, yCursorPlugin, yUndoPlugin, undo, redo } from 'y-prosemirror';
 import { Editor } from 'ngx-editor';
 import { keymap } from 'prosemirror-keymap';
 import { history } from 'prosemirror-history';
 
 const ydoc = new Y.Doc();
-const provider = new WebsocketProvider(
-  'wss://prosemirror-collab.glitch.me/',
-  'prosemirror-demo',
-  ydoc
-);
+const provider = new WebsocketProvider('wss://prosemirror-collab.glitch.me/', 'prosemirror-demo', ydoc);
 const type = ydoc.getXmlFragment('prosemirror');
 
 new Editor({
@@ -81,7 +71,5 @@ wss.on('connection', (conn, req) =>
 
 server.listen(port);
 
-console.log(
-  `Listening to http://localhost:${port} ${production ? '(production)' : ''}`
-);
+console.log(`Listening to http://localhost:${port} ${production ? '(production)' : ''}`);
 ```
