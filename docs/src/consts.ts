@@ -18,7 +18,7 @@ export const KNOWN_LANGUAGES = {
 export const KNOWN_LANGUAGE_CODES = Object.values(KNOWN_LANGUAGES);
 
 export const GITHUB_URL = 'https://github.com/sibiraj-s/ngx-editor';
-export const GITHUB_EDIT_URL = `${GITHUB_URL}/blob/master/docs/`;
+export const GITHUB_EDIT_URL = `${GITHUB_URL}/blob/master/docs`;
 
 export type Sidebar = Record<(typeof KNOWN_LANGUAGE_CODES)[number], Record<string, { text: string; link: string }[]>>;
 export const SIDEBAR: Sidebar = {
