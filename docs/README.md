@@ -1,24 +1,7 @@
-# Astro Starter Kit: Docs Site
+# Docs Site
 
-```bash
-npm create astro@latest -- --template docs
-```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/docs)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/docs)
-
-![docs](https://user-images.githubusercontent.com/4677417/186189283-0831b9ab-d6b9-485d-8955-3057e532ab31.png)
-
-## Features
-
-- ✅ **Full Markdown support**
-- ✅ **Responsive mobile-friendly design**
-- ✅ **Sidebar navigation**
-- ✅ **Search (powered by Algolia)**
-- ✅ **Multi-language i18n**
-- ✅ **Automatic table of contents**
-- ✅ **Automatic list of contributors**
-- ✅ (and, best of all) **dark mode**
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/sibiraj-s/ngx-editor/tree/master/docs)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/sibiraj-s/ngx-editor/tree/master/docs)
 
 ## Commands Cheatsheet
 
@@ -157,17 +140,3 @@ If you plan to use Spanish as the default language, you just need to modify the 
 ```
 
 You can also remove the above script and write a landing page in Spanish instead.
-
-### What if I don't plan to support multiple languages?
-
-That's totally fine! Not all projects need (or can support) multiple languages. You can continue to use this theme without ever adding a second language.
-
-If that single language is not English, you can just replace `en` in directory layouts and configurations with the preferred language.
-
-### Search (Powered by Algolia)
-
-[Algolia](https://www.algolia.com/) offers a free service to qualified open source projects called [DocSearch](https://docsearch.algolia.com/). If you are accepted to the DocSearch program, provide your API Key & index name in `src/config.ts` and a search box will automatically appear in your site header.
-
-Note that Aglolia and Astro are not affiliated. We have no say over acceptance to the DocSearch program.
-
-If you'd prefer to remove Algolia's search and replace it with your own, check out the `src/components/Header.astro` component to see where the component is added.
