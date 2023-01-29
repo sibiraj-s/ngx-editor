@@ -84,10 +84,10 @@ Note the top-level `en` key: This is needed for multi-language support. You can 
 
 The Astro docs template supports multiple languages out of the box. The default theme only shows `en` documentation, but you can enable multi-language support features by adding a second language to your project.
 
-To add a new language to your project, you'll want to extend the current `src/pages/[lang]/...` layout:
+To add a new language to your project, you'll want to extend the current `src/content/docs/[lang]/...` layout:
 
 ```diff
- 📂 src/pages
+ 📂 src/content/docs
  ┣ 📂 en
  ┃ ┣ 📜 page-1.md
  ┃ ┣ 📜 page-2.md
