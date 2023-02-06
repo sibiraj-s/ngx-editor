@@ -1,4 +1,4 @@
-import { EditorState, Transaction } from 'prosemirror-state';
+import { EditorState, Selection, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import {
   chainCommands, createParagraphNear, liftEmptyBlock,
@@ -26,6 +26,8 @@ const execMark = (name: string, toggle = false) => {
     return command.toggle()(state, dispatch);
   };
 };
+
+type FocusPosition = 'start' | 'end';
 
 class EditorCommands {
   private view: EditorView;
@@ -68,7 +70,14 @@ class EditorCommands {
     return true;
   }
 
-  focus(): this {
+  focus(position: FocusPosition = 'end'): this {
+    const selection = position === 'start'
+      ? Selection.atStart(this.state.doc)
+      : Selection.atEnd(this.state.doc);
+
+    this.tr.setSelection(selection);
+    this.applyTrx();
+
     this.view.focus();
     return this;
   }
