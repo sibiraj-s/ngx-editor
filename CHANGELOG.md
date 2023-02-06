@@ -13,6 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v15.2.0 (2023-02-06)
+
+#### Features
+
+- add option to focus command to focus at start ([92d342b](https://github.com/sibiraj-s/ngx-editor/commit/92d342b))
+
+#### Dependency Updates
+
+- update prosemirror dependencies ([8f1a35b](https://github.com/sibiraj-s/ngx-editor/commit/8f1a35b))
+- update floating-ui dependencies ([0386c3f](https://github.com/sibiraj-s/ngx-editor/commit/0386c3f))
+
 ## v15.1.0 (2022-12-14)
 
 #### Features
@@ -585,12 +596,7 @@ Refer docs for migration https://sibiraj-s.github.io/ngx-editor
 - expose commands ([dc5c8d1](https://github.com/sibiraj-s/ngx-editor/commit/dc5c8d1))
 
 ```ts
-this.editor.commands
-  .textColor('red')
-  .insertText('Hello world!')
-  .focus()
-  .scrollIntoView()
-  .exec();
+this.editor.commands.textColor('red').insertText('Hello world!').focus().scrollIntoView().exec();
 ```
 
 ## v6.0.3 (2021-01-08)
@@ -669,12 +675,7 @@ export class AppComponent implements OnInit, OnDestroy {
 HTML
 
 ```html
-<ngx-editor-menu
-  [editor]="editor"
-  [toolbar]="toolbar"
-  [colorPresets]="colorPresets"
->
-</ngx-editor-menu>
+<ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets"> </ngx-editor-menu>
 ```
 
 ### CustomMenu
