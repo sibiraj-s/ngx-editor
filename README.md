@@ -5,7 +5,7 @@
    <img src="./sketch/ngx-editor.svg" alt="ngxEditor">
   </a>
 </p>
-<p align="center">Rich Text Editor for angular using ProseMirror</p>
+<p align="center">The Rich Text Editor for Angular, Built on ProseMirror</p>
 <p align="center">
   <a href="https://github.com/sibiraj-s/ngx-editor/actions">
     <img alt="Tests" src="https://github.com/sibiraj-s/ngx-editor/workflows/Tests/badge.svg">
@@ -24,6 +24,9 @@
     <img alt="licence" src="https://badgen.net/npm/license/ngx-editor">
   </a>
 </p>
+
+> A simple rich text editor for angular applications built with ProseMirror. It is a drop in and easy-to-use editor
+> and can be easily extended using prosemirror plugins to build any additional or missing features
 
 ## Getting Started
 
@@ -79,12 +82,7 @@ Then in HTML
 ```html
 <div class="NgxEditor__Wrapper">
   <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-  <ngx-editor
-    [editor]="editor"
-    [ngModel]="html"
-    [disabled]="false"
-    [placeholder]="'Type here...'"
-  ></ngx-editor>
+  <ngx-editor [editor]="editor" [ngModel]="html" [disabled]="false" [placeholder]="'Type here...'"></ngx-editor>
 </div>
 ```
 
@@ -111,12 +109,7 @@ const jsonDoc = toDoc(html);
 ### Commands
 
 ```ts
-this.editor.commands
-  .textColor('red')
-  .insertText('Hello world!')
-  .focus()
-  .scrollIntoView()
-  .exec();
+this.editor.commands.textColor('red').insertText('Hello world!').focus().scrollIntoView().exec();
 ```
 
 Run `exec` to apply the changes to the editor.
@@ -144,8 +137,8 @@ Mostly works on all Evergreen-Browsers like
 - Google Chrome
 - Microsoft Edge
 - Mozilla Firefox
-- Opera
 - Safari
+- Opera
 
 ## Angular Compatibility
 
