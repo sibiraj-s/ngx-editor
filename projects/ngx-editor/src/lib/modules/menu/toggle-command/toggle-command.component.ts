@@ -2,11 +2,11 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
-import Icon from '../../../icons';
 import { ToggleCommands } from '../MenuCommands';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { TBItems, ToolbarItem } from '../../../types';
+import Icon from '../../../icons/index';
 
 @Component({
   selector: 'ngx-toggle-command',
@@ -56,7 +56,10 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.html = Icon.get(this.name);
+    const icon = this.ngxeService.config.icons[this.name]
+      ? this.ngxeService.config.icons[this.name]
+      : Icon.get(this.name);
+    this.html = icon;
 
     this.editorView = this.menuService.editor.view;
 

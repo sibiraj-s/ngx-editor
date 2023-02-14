@@ -4,7 +4,7 @@ import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
 import Editor from '../../../Editor';
-import Icon from '../../../icons';
+import Icon from '../../../icons/index';
 import { TBItems } from '../../../types';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { ToggleCommands } from '../MenuCommands';
@@ -50,7 +50,7 @@ export class BubbleComponent implements OnInit, OnDestroy {
   ];
 
   getIcon(name: TBItems): SafeHtml {
-    const icon = Icon.get(name);
+    const icon = this.ngxeService.config.icons[name] ? this.ngxeService.config.icons[name] : Icon.get(name);
     return this.sanitizeHTML.transform(icon);
   }
 

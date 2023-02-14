@@ -1,6 +1,7 @@
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
+import { IconsKeys } from './Icons';
 import { LocalsKeys } from './Locals';
 
 type TCR = {
@@ -37,4 +38,5 @@ export type Toolbar = Array<ToolbarItem[]>;
 
 export interface NgxEditorConfig {
   locals?: Partial<Record<LocalsKeys, string>>;
+  icons?: Partial<Record<IconsKeys, string>>;
 }
