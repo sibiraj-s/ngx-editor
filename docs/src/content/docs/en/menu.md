@@ -45,12 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
 **component.html**
 
 ```html
-<ngx-editor-menu
-  [editor]="editor"
-  [toolbar]="toolbar"
-  [colorPresets]="colorPresets"
->
-</ngx-editor-menu>
+<ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets"> </ngx-editor-menu>
 ```
 
 ## Custom Menu
@@ -62,12 +57,7 @@ Note: The input is just a `TemplateRef`, the menu component will render whatever
 #### Editor
 
 ```html
-<ngx-editor-menu
-  [editor]="editor"
-  [toolbar]="toolbar"
-  [customMenuRef]="customMenu"
->
-</ngx-editor-menu>
+<ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [customMenuRef]="customMenu"> </ngx-editor-menu>
 
 <!-- Create template reference -->
 <ng-template #customMenu>
@@ -172,3 +162,40 @@ OR
 
 - **editor** - (`Required`) editor instance
 - **autoPlace** - (`Optional`) positions automatically to the top or bottom based on the space available. `false` by default
+
+## Custom Icons in ngx-editor-menu
+
+By default ngx-editor add a list of google font icons, but have an option for replace with the icons you need.
+Support svg/img/tags/etc, have the option for modify one or more icons.
+You can specify the icons in the forRoot
+
+```ts
+NgxEditorModule.forRoot({
+  icons: {
+    bold: '<img src="https://cdn-icons-png.flaticon.com/512/1827/1827924.png " width="15" height="15" alt="" title="" class="img-small">',
+  },
+});
+```
+
+The list of icon you can change is:
+
+- align_center
+- align_justify
+- align_left
+- align_right
+- bold
+- bullet_list
+- code
+- color_fill
+- format_clear
+- horizontal_rule
+- image
+- italic
+- link
+- ordered_list
+- quote
+- strike
+- text_color
+- underline
+- unlink
+- path

@@ -6,7 +6,6 @@ import { ToggleCommands } from '../MenuCommands';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { TBItems, ToolbarItem } from '../../../types';
-import Icon from '../../../icons/index';
 
 @Component({
   selector: 'ngx-toggle-command',
@@ -56,10 +55,7 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const icon = this.ngxeService.config.icons[this.name]
-      ? this.ngxeService.config.icons[this.name]
-      : Icon.get(this.name);
-    this.html = icon;
+    this.html = this.ngxeService.geticon(this.name);
 
     this.editorView = this.menuService.editor.view;
 
