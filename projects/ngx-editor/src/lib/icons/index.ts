@@ -56,8 +56,8 @@ const icons: Record<string, any> = {
 class Icon {
   static get(name: keyof typeof icons, fill = DEFAULT_ICON_FILL): string {
     const fullPath = icons[name];
-    if (fullPath.includes('<path') || fullPath.includes('<g')) {
-      return `
+    if (fullPath && (fullPath.includes('<path') || fullPath.includes('<g'))) {
+      return `--
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
