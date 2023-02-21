@@ -103,7 +103,7 @@ NgxEditorModule.forRoot({
     // ...
   },
   icons: {
-    bold: '<img src="https://cdn-icons-png.flaticon.com/512/1827/1827924.png " width="15" height="15" alt="" title="" class="img-small">',
+    bold: '<img src="https://example.com/icon.png" width="15" height="15" alt="">',
   },
 });
 ```
