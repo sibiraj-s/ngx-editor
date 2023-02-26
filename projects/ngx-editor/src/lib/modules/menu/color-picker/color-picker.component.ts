@@ -5,7 +5,6 @@ import {
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
-import Icon from '../../../icons/index';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { TextColor, TextBackgroundColor } from '../MenuCommands';
@@ -32,7 +31,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
   }
 
   get icon(): string {
-    return Icon.get(this.type === 'text_color' ? 'text_color' : 'color_fill');
+    return this.ngxeService.getIcon(this.type === 'text_color' ? 'text_color' : 'color_fill');
   }
 
   private get command(): Command {

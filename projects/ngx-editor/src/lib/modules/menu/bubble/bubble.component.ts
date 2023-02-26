@@ -49,7 +49,7 @@ export class BubbleComponent implements OnInit, OnDestroy {
   ];
 
   getIcon(name: TBItems): SafeHtml {
-    return this.sanitizeHTML.transform(this.ngxeService.geticon(name));
+    return this.sanitizeHTML.transform(this.ngxeService.getIcon(name));
   }
 
   getTitle(name: string): string {

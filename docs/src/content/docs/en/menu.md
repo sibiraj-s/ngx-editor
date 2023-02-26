@@ -172,7 +172,7 @@ You can specify the icons in the forRoot
 ```ts
 NgxEditorModule.forRoot({
   icons: {
-    bold: '<img src="https://cdn-icons-png.flaticon.com/512/1827/1827924.png " width="15" height="15" alt="" title="" class="img-small">',
+    bold: '<img src="https://img.icons8.com/tiny-glyph/16/null/bold.png" width="15" height="15"/>',
   },
 });
 ```

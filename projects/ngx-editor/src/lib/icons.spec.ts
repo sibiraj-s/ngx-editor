@@ -1,22 +1,30 @@
+import { Component } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { NgxEditorModule } from 'ngx-editor';
 import Editor from './Editor';
-import { NgxEditorComponent } from './editor.component';
 
 describe('NgxEditorModule', () => {
-  let component: NgxEditorComponent;
-  let fixture: ComponentFixture<NgxEditorComponent>;
+  @Component({
+    template: '<ngx-editor-menu [editor]="editor"></ngx-editor-menu>',
+  })
+  class TestComponent {
+    editor!: Editor;
+  }
+
+  let component: TestComponent;
+  let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [
-        NgxEditorComponent,
+        TestComponent,
       ],
       imports: [
         NgxEditorModule.forRoot({
           icons: {
-            bold: '<img src="https://cdn-icons-png.flaticon.com/512/1827/1827924.png" id="iconBold" width="15" height="15" alt="" title="" class="img-small">',
+            bold: '<img src="https://example.com/bold.png">',
           },
         }),
       ],
@@ -25,7 +33,7 @@ describe('NgxEditorModule', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgxEditorComponent);
+    fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
     component.editor = new Editor();
     fixture.detectChanges();
@@ -38,8 +46,9 @@ describe('NgxEditorModule', () => {
   it('should create the editor component correctly', () => {
     expect(component).toBeTruthy();
   });
+
   it('should create the icon correctly', () => {
-    const icon = document.getElementsByClassName('img-small');
-    expect(icon).toBeTruthy();
+    const element = fixture.debugElement.query(By.css('img')).nativeElement as HTMLImageElement;
+    expect(element.src).toBe('https://example.com/bold.png');
   });
 });

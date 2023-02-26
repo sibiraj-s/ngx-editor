@@ -6,7 +6,7 @@ import { InsertCommands } from '../MenuCommands';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { TBItems, ToolbarItem } from '../../../types';
-import icons from '../../../icons/index';
+import icons from '../../../icons';
 
 @Component({
   selector: 'ngx-insert-command',

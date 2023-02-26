@@ -7,7 +7,6 @@ import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
-import Icon from '../../../icons/index';
 import { MenuService } from '../menu.service';
 import { Link as LinkCommand } from '../MenuCommands';
 
@@ -33,7 +32,7 @@ export class LinkComponent implements OnInit, OnDestroy {
   ) { }
 
   get icon(): string {
-    return Icon.get(this.isActive ? 'unlink' : 'link');
+    return this.ngxeService.getIcon(this.isActive ? 'unlink' : 'link');
   }
 
   get title(): string {

@@ -1,7 +1,7 @@
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
-import { IconsKeys } from './Icons';
+import { IconsKeys } from './icons';
 import { LocalsKeys } from './Locals';
 
 type TCR = {

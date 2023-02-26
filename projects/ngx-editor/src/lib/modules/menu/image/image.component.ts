@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
-import Icon from '../../../icons/index';
 import { Image as ImageCommand } from '../MenuCommands';
 
 @Component({
@@ -40,7 +39,7 @@ export class ImageComponent implements OnInit, OnDestroy {
   ) { }
 
   get icon(): string {
-    return Icon.get('image');
+    return this.ngxeService.getIcon('image');
   }
 
   get src(): AbstractControl {

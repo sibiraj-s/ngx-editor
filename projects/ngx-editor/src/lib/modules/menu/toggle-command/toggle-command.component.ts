@@ -55,7 +55,7 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.html = this.ngxeService.geticon(this.name);
+    this.html = this.ngxeService.getIcon(this.name);
 
     this.editorView = this.menuService.editor.view;
 
