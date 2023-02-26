@@ -7,7 +7,7 @@ import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
-import Icon from '../../../icons';
+import Icon from '../../../icons/index';
 import { MenuService } from '../menu.service';
 import { Link as LinkCommand } from '../MenuCommands';
 

@@ -2,7 +2,6 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
-import Icon from '../../../icons';
 import { ToggleCommands } from '../MenuCommands';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
@@ -56,7 +55,7 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.html = Icon.get(this.name);
+    this.html = this.ngxeService.geticon(this.name);
 
     this.editorView = this.menuService.editor.view;
 

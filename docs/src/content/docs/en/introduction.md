@@ -57,12 +57,7 @@ Then in HTML
 ```html
 <div class="NgxEditor__Wrapper">
   <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-  <ngx-editor
-    [editor]="editor"
-    [ngModel]="html"
-    [disabled]="false"
-    [placeholder]="'Type here...'"
-  ></ngx-editor>
+  <ngx-editor [editor]="editor" [ngModel]="html" [disabled]="false" [placeholder]="'Type here...'"></ngx-editor>
 </div>
 ```
 
@@ -89,19 +84,14 @@ const jsonDoc = toDoc(html);
 ### Commands
 
 ```ts
-this.editor.commands
-  .textColor('red')
-  .insertText('Hello world!')
-  .focus()
-  .scrollIntoView()
-  .exec();
+this.editor.commands.textColor('red').insertText('Hello world!').focus().scrollIntoView().exec();
 ```
 
 Run `exec` to apply the changes to the editor.
 
 ### Optional Configuration
 
-You can specify locals to be used in the editor
+You can specify locals and icons to be used in the editor
 
 ```ts
 NgxEditorModule.forRoot({
@@ -111,6 +101,9 @@ NgxEditorModule.forRoot({
     code: 'Code',
     underline: 'Underline',
     // ...
+  },
+  icons: {
+    bold: '<img src="https://example.com/icon.png" width="15" height="15" alt="">',
   },
 });
 ```

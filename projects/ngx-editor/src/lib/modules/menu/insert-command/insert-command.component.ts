@@ -2,11 +2,11 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
-import Icon from '../../../icons';
 import { InsertCommands } from '../MenuCommands';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { TBItems, ToolbarItem } from '../../../types';
+import icons from '../../../icons/index';
 
 @Component({
   selector: 'ngx-insert-command',
@@ -54,7 +54,7 @@ export class InsertCommandComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.html = Icon.get(this.name);
+    this.html = icons.get(this.name);
 
     this.editorView = this.menuService.editor.view;
 

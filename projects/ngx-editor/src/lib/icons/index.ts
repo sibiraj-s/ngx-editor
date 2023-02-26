@@ -1,24 +1,30 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 // Icons source: https://material.io/
 
-import bold from './bold';
-import italic from './italic';
-import code from './code';
-import underline from './underline';
-import strike from './strike';
-import orderedList from './ordered_list';
-import bulletList from './bullet_list';
-import quote from './quote';
-import link from './link';
-import unlink from './unlink';
-import image from './image';
-import alignLeft from './align_left';
-import alignCenter from './align_center';
-import alignRight from './align_right';
-import alignJustify from './align_justify';
-import textColor from './text_color';
-import colorFill from './color_fill';
-import horizontalRule from './horizontal_rule';
-import formatClear from './format_clear';
+import Icons from '../Icons';
+
+const ICON_LIST = new Icons();
+
+const bold = ICON_LIST.get('bold');
+const italic = ICON_LIST.get('italic');
+const code = ICON_LIST.get('code');
+const underline = ICON_LIST.get('underline');
+const strike = ICON_LIST.get('strike');
+const ordered_list = ICON_LIST.get('ordered_list');
+const bullet_list = ICON_LIST.get('bullet_list');
+const quote = ICON_LIST.get('quote');
+const link = ICON_LIST.get('link');
+const unlink = ICON_LIST.get('unlink');
+const image = ICON_LIST.get('image');
+const align_left = ICON_LIST.get('align_left');
+const align_center = ICON_LIST.get('align_center');
+const align_right = ICON_LIST.get('align_right');
+const align_justify = ICON_LIST.get('align_justify');
+const text_color = ICON_LIST.get('text_color');
+const color_fill = ICON_LIST.get('color_fill');
+const horizontal_rule = ICON_LIST.get('horizontal_rule');
+const format_clear = ICON_LIST.get('format_clear');
+const path = ICON_LIST.get('path');
 
 const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
@@ -30,36 +36,40 @@ const icons: Record<string, any> = {
   code,
   underline,
   strike,
-  ordered_list: orderedList,
-  bullet_list: bulletList,
+  ordered_list,
+  bullet_list,
   blockquote: quote,
   link,
   unlink,
   image,
-  align_left: alignLeft,
-  align_center: alignCenter,
-  align_right: alignRight,
-  align_justify: alignJustify,
-  text_color: textColor,
-  color_fill: colorFill,
-  horizontal_rule: horizontalRule,
-  format_clear: formatClear,
+  align_left,
+  align_center,
+  align_right,
+  align_justify,
+  text_color,
+  color_fill,
+  horizontal_rule,
+  format_clear,
+  path,
 };
 
 class Icon {
   static get(name: keyof typeof icons, fill = DEFAULT_ICON_FILL): string {
-    const path = icons[name] || '<path></path>';
-    return `
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill=${fill}
-        height=${DEFAULT_ICON_HEIGHT}
-        width=${DEFAULT_ICON_WIDTH}
-      >
-        ${path}
-      </svg>
-    `;
+    const fullPath = icons[name];
+    if (fullPath && (fullPath.includes('<path') || fullPath.includes('<g'))) {
+      return `--
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill=${fill}
+          height=${DEFAULT_ICON_HEIGHT}
+          width=${DEFAULT_ICON_WIDTH}
+        >
+          ${fullPath}
+        </svg>
+      `;
+    }
+    return fullPath;
   }
 }
 

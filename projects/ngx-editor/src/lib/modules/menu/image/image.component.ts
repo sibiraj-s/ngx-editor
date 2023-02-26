@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
-import Icon from '../../../icons';
+import Icon from '../../../icons/index';
 import { Image as ImageCommand } from '../MenuCommands';
 
 @Component({

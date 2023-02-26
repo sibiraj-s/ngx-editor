@@ -5,7 +5,7 @@ import {
 import { EditorView } from 'prosemirror-view';
 import { Subscription } from 'rxjs';
 
-import Icon from '../../../icons';
+import Icon from '../../../icons/index';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { TextColor, TextBackgroundColor } from '../MenuCommands';

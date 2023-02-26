@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { NgxEditorConfig } from './types';
 import { defaults as defaultLocals } from './Locals';
+import { defaults as icons } from './Icons';
 
 import { NgxEditorComponent } from './editor.component';
 import { NgxEditorServiceConfig } from './editor-config.service';
@@ -17,6 +18,7 @@ export const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxE
 
 const defaultConfig: NgxEditorConfig = {
   locals: defaultLocals,
+  icons,
 };
 
 @NgModule({
