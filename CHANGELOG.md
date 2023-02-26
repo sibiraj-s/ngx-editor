@@ -13,6 +13,13 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v15.3.0 (2023-02-26)
+
+#### Features
+
+- add option to use custom icons in menu component ([5706bc4](https://github.com/sibiraj-s/ngx-editor/commit/5706bc4)),
+  ([eda7f2f](https://github.com/sibiraj-s/ngx-editor/commit/eda7f2f))
+
 ## v15.2.0 (2023-02-06)
 
 #### Features
