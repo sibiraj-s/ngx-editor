@@ -1,4 +1,4 @@
 <div class="NgxEditor__MenuItem--IconContainer" [class.NgxEditor__MenuItem--Active]="isActive"
   [class.NgxEditor--Disabled]="disabled" [innerHTML]="html | sanitizeHtml" (mousedown)="toggle($event)"
-  [title]="getTitle(name)">
+  [title]="getTitle(name) | async">
 </div>

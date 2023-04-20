@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { EditorView } from 'prosemirror-view';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import Editor from '../../../Editor';
 import { TBItems } from '../../../types';
@@ -52,7 +52,7 @@ export class BubbleComponent implements OnInit, OnDestroy {
     return this.sanitizeHTML.transform(this.ngxeService.getIcon(name));
   }
 
-  getTitle(name: string): string {
+  getTitle(name: string): Observable<string> {
     return this.ngxeService.locals.get(name);
   }
 

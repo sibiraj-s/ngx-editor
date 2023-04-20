@@ -1,5 +1,5 @@
 <div class="NgxEditor__MenuItem--IconContainer" [class.NgxEditor__MenuItem--Active]="isActive || showPopup"
-  [innerHTML]="icon | sanitizeHtml" (mousedown)="onMouseDown($event)" [title]="getLabel('insertImage')">
+  [innerHTML]="icon | sanitizeHtml" (mousedown)="onMouseDown($event)" [title]="getLabel('insertImage') | async">
 </div>
 
 <!-- popup -->
@@ -8,7 +8,7 @@
 
     <div class="NgxEditor__Popup--FormGroup">
       <div class="NgxEditor__Popup--Col">
-        <label class="NgxEditor__Popup--Label">{{getLabel('url')}}</label>
+        <label class="NgxEditor__Popup--Label">{{getLabel('url') | async}}</label>
         <input type="href" id="href" formControlName="src" autofocus autocomplete="off" />
         <div *ngIf="src.touched && src.invalid" class="NgxEditor__HelpText NgxEditor__HelpText--Error">
           {{ src.errors?.['pattern'] && 'Please enter valid url.' }}
@@ -18,19 +18,19 @@
 
     <div class="NgxEditor__Popup--FormGroup">
       <div class="NgxEditor__Popup--Col">
-        <label class="NgxEditor__Popup--Label">{{getLabel('altText')}}</label>
+        <label class="NgxEditor__Popup--Label">{{getLabel('altText') | async}}</label>
         <input type="text" formControlName="alt" autocomplete="off" />
       </div>
     </div>
 
     <div class="NgxEditor__Popup--FormGroup">
       <div class="NgxEditor__Popup--Col">
-        <label class="NgxEditor__Popup--Label">{{getLabel('title')}}</label>
+        <label class="NgxEditor__Popup--Label">{{getLabel('title') | async}}</label>
         <input type="text" formControlName="title" autocomplete="off" />
       </div>
     </div>
 
-    <button type="submit" [disabled]="!form.valid || !form.dirty">{{getLabel('insert')}}</button>
+    <button type="submit" [disabled]="!form.valid || !form.dirty">{{getLabel('insert') | async}}</button>
 
   </form>
 </div>
