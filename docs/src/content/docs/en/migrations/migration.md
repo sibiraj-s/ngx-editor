@@ -4,7 +4,7 @@ title: Migration
 
 If you are migrating from older version of ngx-editor(v4 and below) or from other editors, the DOM structure might be little different.
 
-To convert them to the editors current DOM schema, you will need to write a custom scheam and run the document through that.
+To convert them to the editors current DOM schema, you will need to write a custom schema and run the document through that.
 
 An Example to convert and parse `div` into `p` tag persisting all attributes
 
