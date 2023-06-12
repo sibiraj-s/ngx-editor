@@ -4,7 +4,7 @@ import starlight from '@astrojs/starlight';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://sibiraj-s.github.io',
-  base: '/ngx-editor',
+  base: process.env.NODE_ENV === 'produciton'? '/ngx-editor': '/',
   integrations: [
     starlight({
       title: 'NgxEditor',
