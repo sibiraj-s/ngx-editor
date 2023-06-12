@@ -1,5 +1,5 @@
 ---
-title: React Forms
+title: Reactive Forms
 ---
 
 ### Configure the Module
@@ -15,13 +15,7 @@ import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxEditorModule,
-  ],
+  imports: [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, NgxEditorModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
