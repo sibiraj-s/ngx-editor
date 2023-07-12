@@ -26,6 +26,7 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/sibiraj-s/ngx-editor/tree/master/docs/',
       },
+      pagination: true,
       lastUpdated: true,
       sidebar: [
         {
