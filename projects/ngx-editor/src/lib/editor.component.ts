@@ -10,8 +10,9 @@ import { takeUntil } from 'rxjs/operators';
 
 import { NgxEditorError } from 'ngx-editor/utils';
 import * as plugins from './plugins';
-import { toHTML } from './parsers';
+import { emptyDoc, toHTML } from './parsers';
 import Editor from './Editor';
+import { HTML, isHtml } from './trustedTypesUtil';
 
 @Component({
   selector: 'ngx-editor',
@@ -44,12 +45,12 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   private onChange: (value: Record<string, any> | string) => void = () => { /** */ };
   private onTouched: () => void = () => { /** */ };
 
-  writeValue(value: Record<string, any> | string | null): void {
-    if (!this.outputFormat && typeof value === 'string') {
+  writeValue(value: Record<string, any> | HTML | null): void {
+    if (!this.outputFormat && isHtml(value)) {
       this.outputFormat = 'html';
     }
 
-    this.editor.setContent(value ?? '');
+    this.editor.setContent(value ?? emptyDoc);
   }
 
   registerOnChange(fn: () => void): void {

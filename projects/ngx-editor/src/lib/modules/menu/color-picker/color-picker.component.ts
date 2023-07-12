@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { TextColor, TextBackgroundColor } from '../MenuCommands';
+import { HTML } from '../../../trustedTypesUtil';
 
 type Command = typeof TextColor | typeof TextBackgroundColor;
 
@@ -30,7 +31,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     return this.getLabel(this.type === 'text_color' ? 'text_color' : 'background_color');
   }
 
-  get icon(): string {
+  get icon(): HTML {
     return this.ngxeService.getIcon(this.type === 'text_color' ? 'text_color' : 'color_fill');
   }
 

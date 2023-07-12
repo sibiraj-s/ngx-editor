@@ -4,6 +4,7 @@ import { NgxEditorConfig } from './types';
 import Locals from './Locals';
 import { NgxEditorServiceConfig } from './editor-config.service';
 import Icon from './icons';
+import { HTML } from './trustedTypesUtil';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class NgxEditorService {
     return new Locals(this.config.locals);
   }
 
-  getIcon(icon: string): string {
+  getIcon(icon: string): HTML {
     return this.config.icons[icon] ? this.config.icons[icon] : Icon.get(icon);
   }
 }

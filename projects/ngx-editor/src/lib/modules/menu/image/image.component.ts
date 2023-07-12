@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { Image as ImageCommand } from '../MenuCommands';
+import { HTML } from '../../../trustedTypesUtil';
 
 @Component({
   selector: 'ngx-image',
@@ -38,7 +39,7 @@ export class ImageComponent implements OnInit, OnDestroy {
     private menuService: MenuService,
   ) { }
 
-  get icon(): string {
+  get icon(): HTML {
     return this.ngxeService.getIcon('image');
   }
 

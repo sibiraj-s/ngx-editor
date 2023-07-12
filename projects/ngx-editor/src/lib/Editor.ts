@@ -9,9 +9,10 @@ import EditorCommands from './EditorCommands';
 import defautlSchema from './schema';
 import { parseContent } from './parsers';
 import getDefaultPlugins from './defaultPlugins';
+import { HTML } from './trustedTypesUtil';
 
 type JSONDoc = Record<string, any>;
-type Content = string | null | JSONDoc;
+type Content = HTML | null | JSONDoc;
 
 interface Options {
   content?: Content;

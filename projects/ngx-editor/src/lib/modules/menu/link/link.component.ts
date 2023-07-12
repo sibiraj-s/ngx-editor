@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { Link as LinkCommand } from '../MenuCommands';
+import { HTML } from '../../../trustedTypesUtil';
 
 @Component({
   selector: 'ngx-link',
@@ -31,7 +32,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     private menuService: MenuService,
   ) { }
 
-  get icon(): string {
+  get icon(): HTML {
     return this.ngxeService.getIcon(this.isActive ? 'unlink' : 'link');
   }
 
