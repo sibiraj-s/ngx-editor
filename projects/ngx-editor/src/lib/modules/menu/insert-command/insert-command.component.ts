@@ -6,7 +6,7 @@ import { InsertCommands } from '../MenuCommands';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { TBItems, ToolbarItem } from '../../../types';
-import icons from '../../../icons';
+import { HTML } from '../../../trustedTypesUtil';
 
 @Component({
   selector: 'ngx-insert-command',
@@ -21,7 +21,7 @@ export class InsertCommandComponent implements OnInit, OnDestroy {
     return this.toolbarItem as TBItems;
   }
 
-  html: string;
+  html: HTML;
   editorView: EditorView;
   disabled = false;
   private updateSubscription: Subscription;
@@ -54,7 +54,7 @@ export class InsertCommandComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.html = icons.get(this.name);
+    this.html = this.ngxeService.getIcon(this.name);
 
     this.editorView = this.menuService.editor.view;
 

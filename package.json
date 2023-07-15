@@ -57,6 +57,7 @@
     "@floating-ui/core": "^1.2.1",
     "@floating-ui/dom": "^1.2.1",
     "@types/jasmine": "~4.0.0",
+    "@types/trusted-types": "~2.0.3",
     "codemirror": "^6.0.1",
     "eslint": "^8.34.0",
     "eslint-config-pegasus": "^3.5.0",

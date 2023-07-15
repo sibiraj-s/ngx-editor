@@ -14,6 +14,8 @@ import HeadingCommand, { HeadingLevels } from './commands/Heading';
 import ImageCommand, { ImageAttrs } from './commands/Image';
 import TextColorCommand from './commands/TextColor';
 import TextAlignCommand, { Align } from './commands/TextAlign';
+import { HTML } from './trustedTypesUtil';
+import { isString } from './stringUtil';
 
 const execMark = (name: string, toggle = false) => {
   return (state: EditorState, dispatch: (tr: Transaction) => void) => {
@@ -226,12 +228,12 @@ class EditorCommands {
     return this;
   }
 
-  insertHTML(html: string): this {
+  insertHTML(html: HTML): this {
     const { selection, schema, tr } = this.state;
     const { from, to } = selection;
 
     const element = document.createElement('div');
-    element.innerHTML = html.trim();
+    element.innerHTML = isString(html) ? (html as string).trim() : html as any;
     const slice = DOMParser.fromSchema(schema).parseSlice(element);
 
     const transaction = tr.replaceRange(from, to, slice);

@@ -6,6 +6,7 @@ import { ToggleCommands } from '../MenuCommands';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { TBItems, ToolbarItem } from '../../../types';
+import { HTML } from '../../../trustedTypesUtil';
 
 @Component({
   selector: 'ngx-toggle-command',
@@ -20,7 +21,7 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
     return this.toolbarItem as TBItems;
   }
 
-  html: string;
+  html: HTML;
   editorView: EditorView;
   isActive = false;
   disabled = false;
