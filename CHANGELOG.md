@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file.
 - add support for TrustedHTML ([4a9e7d0](https://github.com/sibiraj-s/ngx-editor/commit/4a9e7d0))
 - add support to update translation with asynchronous services like ngx-translate ([4a9e7d0](https://github.com/sibiraj-s/ngx-editor/commit/4a9e7d0))
 - export ImageViewComponent ([217cfe3](https://github.com/sibiraj-s/ngx-editor/commit/217cfe3))
-- configure sideEffects for better treeshaking ([16c0668](https://github.com/sibiraj-s/ngx-editor/commit/16c0668))
+- configure sideEffects for better tree-shaking ([16c0668](https://github.com/sibiraj-s/ngx-editor/commit/16c0668))
 
 #### Documentation
 
