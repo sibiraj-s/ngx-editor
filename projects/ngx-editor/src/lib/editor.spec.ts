@@ -1,6 +1,6 @@
 import Editor from './Editor';
 
-describe('NgxEditorComponent', () => {
+describe('Editor', () => {
   it('should create the editor correctly', () => {
     const editor = new Editor();
     expect(editor).toBeTruthy();
