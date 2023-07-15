@@ -88,48 +88,6 @@ Then in HTML
 
 Note: Input can be a HTML string or a jsonDoc
 
-### Working with HTML
-
-If the Input to the component is HTML, output will be HTML. To manually convert json output from the editor to html
-
-```ts
-import { toHTML } from 'ngx-editor';
-
-const html = toHTML(jsonDoc, schema); // schema is optional
-```
-
-Or to convert HTML to json. Optional, as Editor will accept HTML input
-
-```ts
-import { toDoc } from 'ngx-editor';
-
-const jsonDoc = toDoc(html);
-```
-
-### Commands
-
-```ts
-this.editor.commands.textColor('red').insertText('Hello world!').focus().scrollIntoView().exec();
-```
-
-Run `exec` to apply the changes to the editor.
-
-### Optional Configuration
-
-You can specify locals to be used in the editor
-
-```ts
-NgxEditorModule.forRoot({
-  locals: {
-    bold: 'Bold',
-    italic: 'Italic',
-    code: 'Code',
-    underline: 'Underline',
-    // ...
-  },
-});
-```
-
 ## Browser Compatibility
 
 Mostly works on all Evergreen-Browsers like
@@ -139,10 +97,6 @@ Mostly works on all Evergreen-Browsers like
 - Mozilla Firefox
 - Safari
 - Opera
-
-## Angular Compatibility
-
-Angular 14+.
 
 ## Collaborative Editing
 
