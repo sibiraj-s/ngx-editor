@@ -13,6 +13,27 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v16.0.0-beta.0 (2023-07-15)
+
+#### Breaking Changes
+
+- requires angular v16 or greater ([4a9e7d0](https://github.com/sibiraj-s/ngx-editor/commit/4a9e7d0))
+
+#### Features
+
+- add support for TrustedHTML ([4a9e7d0](https://github.com/sibiraj-s/ngx-editor/commit/4a9e7d0))
+- add support to update translation with asynchronous services like ngx-translate ([4a9e7d0](https://github.com/sibiraj-s/ngx-editor/commit/4a9e7d0))
+- export ImageViewComponent ([217cfe3](https://github.com/sibiraj-s/ngx-editor/commit/217cfe3))
+- configure sideEffects for better treeshaking ([16c0668](https://github.com/sibiraj-s/ngx-editor/commit/16c0668))
+
+#### Documentation
+
+- refreshed documentation site ([9b9ddfb](https://github.com/sibiraj-s/ngx-editor/commit/9b9ddfb))
+
+#### Internal
+
+- add npm package provenance ([99cdbf1](https://github.com/sibiraj-s/ngx-editor/commit/99cdbf1))
+
 ## v15.3.0 (2023-02-26)
 
 #### Features
