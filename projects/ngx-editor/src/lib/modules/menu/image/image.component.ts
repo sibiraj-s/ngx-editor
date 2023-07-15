@@ -5,7 +5,7 @@ import {
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
@@ -52,7 +52,7 @@ export class ImageComponent implements OnInit, OnDestroy {
     }
   }
 
-  getLabel(key: string): string {
+  getLabel(key: string): Observable<string> {
     return this.ngxeService.locals.get(key);
   }
 

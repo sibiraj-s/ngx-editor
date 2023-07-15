@@ -3,7 +3,7 @@ import {
   HostListener, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
@@ -47,7 +47,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
     }
   }
 
-  getName(key: string): string {
+  getName(key: string): Observable<string> {
     return this.ngxeService.locals.get(key);
   }
 
