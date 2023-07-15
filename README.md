@@ -64,7 +64,7 @@ import { Editor } from 'ngx-editor';
 
 export class EditorComponent implements OnInit, OnDestroy {
   editor: Editor;
-  html: '';
+  html = '';
 
   ngOnInit(): void {
     this.editor = new Editor();
