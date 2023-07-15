@@ -18,15 +18,18 @@
       "ngx-editor/utils": [
         "dist/ngx-editor/utils"
       ],
-      "ngx-editor/helpers": [
-        "dist/ngx-editor/helpers"
-      ],
       "ngx-editor/schema": [
         "dist/ngx-editor/schema"
       ],
       "ngx-editor/commands": [
         "dist/ngx-editor/commands"
-      ]
+      ],
+      "ngx-editor/input-rules": [
+        "dist/ngx-editor/input-rules"
+      ],
+      "ngx-editor/helpers": [
+        "dist/ngx-editor/helpers"
+      ],
     },
     "declaration": false,
     "downlevelIteration": true,

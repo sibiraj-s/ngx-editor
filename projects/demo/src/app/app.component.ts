@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, isDevMode } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-import { environment } from '../environments/environment';
 
 import { Validators, Editor, Toolbar, DEFAULT_TOOLBAR } from 'ngx-editor';
 
@@ -16,7 +15,7 @@ import nodeViews from './nodeviews';
 })
 
 export class AppComponent implements OnInit, OnDestroy {
-  isProdMode = environment.production;
+  isDevMode = isDevMode();
 
   editordoc = jsonDoc;
 
