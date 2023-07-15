@@ -68,6 +68,11 @@ Validators.minLength(minLenght, schema);
 
 ### Enable or disable the editor via Forms API
 
+If using reactive forms, enabling and disabling of the component should be accomplished by enabling or disabling the form control
+rather than through the html `disabled` attribute.
+
+For example:
+
 ```ts
 this.form.get('editorContent').disable();
 this.form.get('editorContent').enable();

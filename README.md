@@ -56,6 +56,7 @@ import { NgxEditorModule } from 'ngx-editor';
 })
 export class AppModule {}
 ```
+
 Component
 
 ```ts
@@ -87,26 +88,6 @@ Then in HTML
 
 Note: Input can be a HTML string or a jsonDoc
 
-#### Reactive Form Usage
-
-If using reactive forms, enabling and disabling of the component should be accomplished by enabling or disabling the parent form control rather than through the html attribute.  For example:
-
-```ts
-if(this.canEdit) this.formControl.enable();
-else this.formControl.disable();
-```
-
-Where
-```html
-<div class="NgxEditor__Wrapper" [ngClass]="{'hide-style': hideStyle(canEdit)}">
-  <ngx-editor-menu [editor]="editor" [toolbar]='getToolbar()' *ngIf='canEdit'> </ngx-editor-menu>
-  <ngx-editor
-    [editor]="editor"
-    [formControl]='formControl'
-    [placeholder]='placeholder'
-  ></ngx-editor>
-</div>
-```
 ### Working with HTML
 
 If the Input to the component is HTML, output will be HTML. To manually convert json output from the editor to html
