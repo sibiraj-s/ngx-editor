@@ -13,6 +13,7 @@
     "ngx-editor",
     "prosemirror"
   ],
+  "sideEffects": false,
   "peerDependencies": {
     "@angular/common": ">=16.0.0",
     "@angular/core": ">=16.0.0",
