@@ -10,9 +10,6 @@ env:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
-permissions:
-  contents: read
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,6 +17,9 @@ jobs:
     defaults:
       run:
         working-directory: docs
+
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
@@ -46,7 +46,6 @@ jobs:
     needs: build
 
     permissions:
-      contents: read
       pages: write
       id-token: write
 
