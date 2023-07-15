@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { ToggleCommands } from '../MenuCommands';
 import { NgxEditorService } from '../../../editor.service';
@@ -51,7 +51,7 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
     this.disabled = !command.canExecute(state);
   };
 
-  getTitle(name: string): string {
+  getTitle(name: string): Observable<string> {
     return this.ngxeService.locals.get(name);
   }
 

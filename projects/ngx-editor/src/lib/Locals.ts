@@ -1,4 +1,6 @@
-export const defaults: Record<string, string> = {
+import { Observable, isObservable, of } from 'rxjs';
+
+export const defaults: Record<string, string | Observable<string>> = {
   // menu
   bold: 'Bold',
   italic: 'Italic',
@@ -42,12 +44,16 @@ export type LocalsKeys = keyof typeof defaults;
 class Locals {
   locals = defaults;
 
-  constructor(newLocals: Partial<Record<LocalsKeys, string>> = {}) {
+  constructor(newLocals: Partial<Record<LocalsKeys, string | Observable<string>>> = {}) {
     this.locals = { ...defaults, ...newLocals };
   }
 
-  get = (key: string):string => {
-    return this.locals[key] ?? '';
+  get = (key: string): Observable<string> => {
+    const value = this.locals[key];
+    if (value) {
+      return isObservable(value) ? value : of(value);
+    }
+    return of('');
   };
 }
 

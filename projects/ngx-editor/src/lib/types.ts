@@ -3,6 +3,7 @@ import { EditorView } from 'prosemirror-view';
 
 import { IconsKeys } from './icons';
 import { LocalsKeys } from './Locals';
+import { Observable } from 'rxjs';
 
 type TCR = {
   dom: HTMLElement;
@@ -37,6 +38,6 @@ export type ToolbarItem = TBItems | ToolbarDropdown | ToolbarCustomMenuItem;
 export type Toolbar = Array<ToolbarItem[]>;
 
 export interface NgxEditorConfig {
-  locals?: Partial<Record<LocalsKeys, string>>;
+  locals?: Partial<Record<LocalsKeys, string | Observable<string>>>;
   icons?: Partial<Record<IconsKeys, string>>;
 }

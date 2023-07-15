@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
@@ -36,7 +36,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     return this.ngxeService.getIcon(this.isActive ? 'unlink' : 'link');
   }
 
-  get title(): string {
+  get title(): Observable<string> {
     return this.ngxeService.locals.get(this.isActive ? 'removeLink' : 'insertLink');
   }
 
@@ -54,7 +54,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     }
   }
 
-  getLabel(key: string): string {
+  getLabel(key: string): Observable<string> {
     return this.ngxeService.locals.get(key);
   }
 

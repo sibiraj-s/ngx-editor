@@ -3,7 +3,7 @@ import {
   HostListener, OnDestroy, Input, OnInit,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
@@ -27,7 +27,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     private ngxeService: NgxEditorService,
   ) { }
 
-  get title(): string {
+  get title(): Observable<string> {
     return this.getLabel(this.type === 'text_color' ? 'text_color' : 'background_color');
   }
 
@@ -122,7 +122,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     }
   };
 
-  getLabel(key: string): string {
+  getLabel(key: string): Observable<string> {
     return this.ngxeService.locals.get(key);
   }
 
