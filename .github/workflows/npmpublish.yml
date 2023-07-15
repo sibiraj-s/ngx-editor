@@ -37,6 +37,6 @@ jobs:
       - run: npm ci
       - run: npm run build:lib
 
-      - run: npm publish dist/ngx-editor/
+      - run: npm publish dist/ngx-editor/ --provenance
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
