@@ -15,3 +15,6 @@ export * from './lib/types';
 export * from './lib/parsers';
 export { default as Editor } from './lib/Editor';
 export * from './lib/defaultPlugins';
+
+// other exports for convenience
+export { ImageViewComponent } from './lib/components/image-view/image-view.component';
