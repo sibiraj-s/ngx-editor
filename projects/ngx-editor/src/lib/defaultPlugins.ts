@@ -77,13 +77,13 @@ const headingRule = (nodeType: NodeType, maxLevel: number): InputRule => {
 // : (MarkType) → InputRule
 // Wraps matching text with bold mark
 const boldRule = (markType: MarkType): InputRule => {
-  return markInputRule(/(?:^|\s)(?:(?:\*\*|__)(?:(?:[^*_]+))(?:\*\*|__))$/, markType);
+  return markInputRule(/(?:^|\s)(?:(?:\*\*|__)(?<content>[^*_]+)(?:\*\*|__))$/, markType);
 };
 
 // : (MarkType) → InputRule
 // Wraps matching text with em mark
 const emRule = (markType: MarkType): InputRule => {
-  return markInputRule(/(?:^|\s)(?:(?:\*|_)(?:(?:[^*_]+))(?:\*|_))$/, markType);
+  return markInputRule(/(?:^|\s)(?:(?:\*|_)(?<content>[^*_]+)(?:\*|_))$/, markType);
 };
 
 // : (Schema) → Plugin
