@@ -1,8 +1,6 @@
 import { InputRule } from 'prosemirror-inputrules';
 import { MarkType } from 'prosemirror-model';
 
-const WHITE_SPACE_COUNT = 1;
-
 export const markInputRule = (regexp: RegExp, markType: MarkType, attrs?: Record<string, unknown>): InputRule => {
   return new InputRule(regexp, (state, match, start, end) => {
     const { tr } = state;
@@ -11,6 +9,7 @@ export const markInputRule = (regexp: RegExp, markType: MarkType, attrs?: Record
     let to = end;
 
     const [fullMatch, , content] = match;
+    const noOfStartSpaces = fullMatch.search(/\S/);
 
     if (content) {
       const textStart = start + fullMatch.indexOf(content);
@@ -21,10 +20,10 @@ export const markInputRule = (regexp: RegExp, markType: MarkType, attrs?: Record
       }
 
       if (textStart > start) {
-        tr.delete(start + WHITE_SPACE_COUNT, textStart);
+        tr.delete(start + noOfStartSpaces, textStart);
       }
 
-      to = start + content.length + WHITE_SPACE_COUNT;
+      to = start + content.length + noOfStartSpaces;
     }
 
     tr.addMark(from, to, markType.create(attrs));
