@@ -17,7 +17,7 @@ export default defineConfig({
         },
       },
       logo: {
-        src: '/src/assets/ang_edit_32.png',
+        src: '/src/assets/ngx-editor.svg',
       },
       customCss: process.env.NO_GRADIENTS ? [] : ['/src/assets/landing.css'],
       social: {
