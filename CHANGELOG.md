@@ -13,6 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v16.0.1 (2023-08-18)
+
+#### Bug Fixes
+
+- add @types/trusted-types to dependencies ([3971581](https://github.com/sibiraj-s/ngx-editor/commit/3971581))
+
+#### Dependency Updates
+
+- update prosemirror-view to v1.31.7 ([554abdb](https://github.com/sibiraj-s/ngx-editor/commit/554abdb))
+- update @floating-ui/\* dependencies ([d619a53](https://github.com/sibiraj-s/ngx-editor/commit/d619a53))
+
 ## v16.0.0 (2023-08-18)
 
 #### Bug Fixes
