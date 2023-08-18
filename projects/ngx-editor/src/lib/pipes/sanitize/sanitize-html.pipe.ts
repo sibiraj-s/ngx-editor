@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { TrustedHTML } from 'trusted-types/lib';
+import type { TrustedHTML } from 'trusted-types/lib';
 import { HTML, isTrustedHtml } from '../../trustedTypesUtil';
 
 @Pipe({

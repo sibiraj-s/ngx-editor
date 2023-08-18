@@ -1,4 +1,4 @@
-import { TrustedTypePolicyFactory, TrustedTypesWindow, TrustedHTML } from 'trusted-types/lib';
+import type { TrustedTypePolicyFactory, TrustedTypesWindow, TrustedHTML } from 'trusted-types/lib';
 import { isString } from './stringUtil';
 
 export const getTrustedTypes = (): TrustedTypePolicyFactory | undefined => {
