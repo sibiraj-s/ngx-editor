@@ -9,10 +9,12 @@ description: Docs intro
 
 ### Installation
 
-Install via Package managers such as [npm][npm] or [yarn][yarn]
+Install via Package managers such as [npm] or [pnpm] or [yarn]
 
 ```bash
-npm install ngx-editor --save
+npm install ngx-editor
+# or
+pnpm install ngx-editor
 # or
 yarn add ngx-editor
 ```
@@ -118,19 +120,8 @@ Mostly works on all Evergreen-Browsers like
 - Opera
 - Safari
 
-## Angular Compatibility
-
-Angular 14+.
-
-## Collaborative Editing
-
-See https://sibiraj-s.github.io/ngx-editor/#/collab
-
-## Icons
-
-Icons are from https://fonts.google.com/icons
-
 [npm]: https://www.npmjs.com/
+[pnpm]: https://pnpm.io/
 [yarn]: https://yarnpkg.com/lang/en/
 [documentation]: https://sibiraj-s.github.io/ngx-editor
 [demo]: https://ngx-editor.stackblitz.io/

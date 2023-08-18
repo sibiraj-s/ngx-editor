@@ -34,10 +34,12 @@
 
 ### Installation
 
-Install via Package managers such as [npm][npm] or [yarn][yarn]
+Install via Package managers such as [npm] or [pnpm] or [yarn]
 
 ```bash
-npm install ngx-editor --save
+npm install ngx-editor
+# or
+pnpm install ngx-editor
 # or
 yarn add ngx-editor
 ```
@@ -111,6 +113,7 @@ Icons are from https://fonts.google.com/icons
 All contributions are welcome. See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) to get started.
 
 [npm]: https://www.npmjs.com/
+[pnpm]: https://pnpm.io/
 [yarn]: https://yarnpkg.com/lang/en/
 [documentation]: https://sibiraj-s.github.io/ngx-editor
 [demo]: https://ngx-editor.stackblitz.io/
