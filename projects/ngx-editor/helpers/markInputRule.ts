@@ -8,22 +8,28 @@ export const markInputRule = (regexp: RegExp, markType: MarkType, attrs?: Record
     const from = start;
     let to = end;
 
-    if (match[2]) {
-      const textStart = start + match[0].indexOf(match[2]);
-      const textEnd = textStart + match[2].length;
+    const [fullMatch, , content] = match;
+    const noOfStartSpaces = fullMatch.search(/\S/);
+
+    if (content) {
+      const textStart = start + fullMatch.indexOf(content);
+      const textEnd = textStart + content.length;
 
       if (textEnd < end) {
         tr.delete(textEnd, end);
       }
 
       if (textStart > start) {
-        tr.delete(start, textStart);
+        tr.delete(start + noOfStartSpaces, textStart);
       }
 
-      to = start + match[2].length;
+      to = start + content.length + noOfStartSpaces;
     }
 
-    return tr.addMark(from, to, markType.create(attrs));
+    tr.addMark(from, to, markType.create(attrs));
+    tr.removeStoredMark(markType);
+
+    return tr;
   });
 };
 
