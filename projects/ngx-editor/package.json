@@ -19,6 +19,7 @@
     "@angular/core": ">=16.0.0",
     "@angular/forms": ">=16.0.0",
     "@angular/platform-browser": ">=16.0.0",
+    "@types/trusted-types": "~2.0.3",
     "rxjs": ">=7.8.0"
   },
   "dependencies": {
