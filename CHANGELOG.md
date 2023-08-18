@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v16.0.0 (2023-08-18)
+
+#### Bug Fixes
+
+- fix bold & em input rules ([70d5998](https://github.com/sibiraj-s/ngx-editor/commit/70d5998))
+
 ## v16.0.0-beta.0 (2023-07-15)
 
 #### Breaking Changes
