@@ -76,11 +76,7 @@ editor.blur.subscribe(() => {}); // no longer exposed
 Alternatively you can use the props on the editor component for the same
 
 ```html
-<ngx-editor
-  [editor]="editor"
-  focusOut="onBlur()"
-  focusIn="onFocus()"
-></ngx-editor>
+<ngx-editor [editor]="editor" focusOut="onBlur()" focusIn="onFocus()"></ngx-editor>
 ```
 
 #### Remvoed Editor.enable and Editor.disable methods

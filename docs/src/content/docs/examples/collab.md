@@ -66,7 +66,7 @@ const wss = new WebSocket.Server({ server });
 wss.on('connection', (conn, req) =>
   setupWSConnection(conn, req, {
     gc: req.url.slice(1) !== 'prosemirror-versions',
-  })
+  }),
 );
 
 server.listen(port);

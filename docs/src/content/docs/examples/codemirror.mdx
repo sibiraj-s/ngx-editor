@@ -31,7 +31,7 @@ new Editor({
       // first define schema `code_mirror`. see schema section
       node: ProseMirrorNode,
       view: EditorView,
-      getPos: () => number
+      getPos: () => number,
     ) => {
       return new CodeMirrorView({
         node,
