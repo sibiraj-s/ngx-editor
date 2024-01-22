@@ -13,9 +13,7 @@ Menu is not part of the editor component. Include `ngx-editor-menu` in your HTML
 - **customMenuRef** - (`Optional`) - Template reference to custom menu item
 - **dropdownPlacement** - (`Optional`) - Placement for the dropdown. Can be `top` or `bottom`
 
-**app.component.ts**
-
-```ts
+```ts title="app.component.ts"
 export class AppComponent implements OnInit, OnDestroy {
   editor: Editor;
   toolbar: Toolbar = [
@@ -44,8 +42,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
 **component.html**
 
-```html
-<ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets"> </ngx-editor-menu>
+```html title="app.component.html"
+<ngx-editor-menu
+  [editor]="editor"
+  [toolbar]="toolbar"
+  [colorPresets]="colorPresets"
+>
+</ngx-editor-menu>
 ```
 
 ## Custom Menu
@@ -57,7 +60,12 @@ Note: The input is just a `TemplateRef`, the menu component will render whatever
 #### Editor
 
 ```html
-<ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [customMenuRef]="customMenu"> </ngx-editor-menu>
+<ngx-editor-menu
+  [editor]="editor"
+  [toolbar]="toolbar"
+  [customMenuRef]="customMenu"
+>
+</ngx-editor-menu>
 
 <!-- Create template reference -->
 <ng-template #customMenu>
@@ -80,7 +88,7 @@ Note: The input is just a `TemplateRef`, the menu component will render whatever
 
 #### Custom Menu Component
 
-```ts
+```ts title="custom-menu.component.ts"
 import { Component, Input, OnInit } from '@angular/core';
 import { setBlockType } from 'prosemirror-commands';
 import { EditorState, Plugin, PluginKey, Transaction } from 'prosemirror-state';

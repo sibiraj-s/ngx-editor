@@ -15,15 +15,21 @@ import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, NgxEditorModule],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxEditorModule,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
 ```
 
-### AppComponent
+### Component
 
-```ts
+```ts title="app.component.ts"
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from 'ngx-editor';
@@ -50,7 +56,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 ### Template
 
-```html
+```html title="app.component.html"
 <form [formGroup]="form">
   <ngx-editor [editor]="editor" formControlName="editorContent"></ngx-editor>
 </form>

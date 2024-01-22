@@ -9,3 +9,6 @@ overrides:
   - files: '*.astro'
     options:
       parser: 'astro'
+  - files: '*.{md,mdx}'
+    options:
+      printWidth: 80

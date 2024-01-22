@@ -3,6 +3,8 @@ title: Introduction
 description: Docs intro
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
 ### Getting Started
 
 [demo] | [edit on stackblitz][stackblitz] | [documentation] | [migrating from other editors][migration]
@@ -11,13 +13,29 @@ description: Docs intro
 
 Install via Package managers such as [npm] or [pnpm] or [yarn]
 
+<Tabs>
+  <TabItem label="npm">
+
 ```bash
 npm install ngx-editor
-# or
+```
+
+  </TabItem>
+  <TabItem label="pnpm">
+
+```bash
 pnpm install ngx-editor
-# or
+```
+
+  </TabItem>
+  <TabItem label="yarn">
+
+```bash
 yarn add ngx-editor
 ```
+
+  </TabItem>
+</Tabs>
 
 ### Usage
 
@@ -59,7 +77,12 @@ Then in HTML
 ```html
 <div class="NgxEditor__Wrapper">
   <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-  <ngx-editor [editor]="editor" [ngModel]="html" [disabled]="false" [placeholder]="'Type here...'"></ngx-editor>
+  <ngx-editor
+    [editor]="editor"
+    [ngModel]="html"
+    [disabled]="false"
+    [placeholder]="'Type here...'"
+  ></ngx-editor>
 </div>
 ```
 
@@ -86,7 +109,12 @@ const jsonDoc = toDoc(html);
 ### Commands
 
 ```ts
-this.editor.commands.textColor('red').insertText('Hello world!').focus().scrollIntoView().exec();
+this.editor.commands
+  .textColor('red')
+  .insertText('Hello world!')
+  .focus()
+  .scrollIntoView()
+  .exec();
 ```
 
 Run `exec` to apply the changes to the editor.

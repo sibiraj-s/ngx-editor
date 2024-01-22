@@ -2,23 +2,42 @@
 title: Quick Start
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 import Stackblitz from '@Components/Stackblitz.astro';
 
 ### Installation
 
-Install via Package managers such as [npm][npm] or [yarn][yarn]
+Install via Package managers such as [npm] or [pnpm] or [yarn]
+
+<Tabs>
+  <TabItem label="npm">
 
 ```bash
-npm install ngx-editor --save
-# or
+npm install ngx-editor
+```
+
+  </TabItem>
+  <TabItem label="pnpm">
+
+```bash
+pnpm install ngx-editor
+```
+
+  </TabItem>
+  <TabItem label="yarn">
+
+```bash
 yarn add ngx-editor
 ```
+
+  </TabItem>
+</Tabs>
 
 ### Usage
 
 Import `ngx-editor` module
 
-```ts
+```ts title="app.module.ts"
 import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
@@ -29,7 +48,7 @@ export class AppModule {}
 
 Initialize editor in the component
 
-```ts
+```ts title="app.component.ts"
 import { Editor } from 'ngx-editor';
 
 export class AppComponent implements OnInit, OnDestroy {
@@ -47,7 +66,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 Then in HTML
 
-```html
+```html title="app.component.html"
 <ngx-editor [editor]="editor" [ngModel]="html"></ngx-editor>
 ```
 
@@ -57,3 +76,4 @@ For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
 
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
+[pnpm]: https://pnpm.io/

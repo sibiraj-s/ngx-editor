@@ -8,9 +8,7 @@ import Stackblitz from '@Components/Stackblitz.astro';
 
 Use the following config to created a full featured editor
 
-### app.module.ts
-
-```ts
+```ts title="app.module.ts"
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -60,9 +58,7 @@ import { schema } from 'ngx-editor/schema';
 export class AppModule {}
 ```
 
-### app.component.ts
-
-```ts
+```ts title="app.component.ts"
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { Validators, Editor, Toolbar } from 'ngx-editor';
@@ -100,9 +96,7 @@ export class AppComponent implements OnInit, OnDestroy {
 }
 ```
 
-### app.component.html
-
-```html
+```html title="app.component.html"
 <form [formGroup]="form">
   <div class="NgxEditor__Wrapper">
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>

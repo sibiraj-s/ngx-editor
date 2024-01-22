@@ -43,7 +43,9 @@ import { getMentionsPlugin } from 'prosemirror-mentions';
  */
 var getMentionSuggestionsHTML = (items) =>
   '<div class="suggestion-item-list">' +
-  items.map((i) => '<div class="suggestion-item">' + i.name + '</div>').join('') +
+  items
+    .map((i) => '<div class="suggestion-item">' + i.name + '</div>')
+    .join('') +
   '</div>';
 
 /**
@@ -52,7 +54,9 @@ var getMentionSuggestionsHTML = (items) =>
  */
 var getTagSuggestionsHTML = (items) =>
   '<div class="suggestion-item-list">' +
-  items.map((i) => '<div class="suggestion-item">' + i.tag + '</div>').join('') +
+  items
+    .map((i) => '<div class="suggestion-item">' + i.tag + '</div>')
+    .join('') +
   '</div>';
 
 const users = [
@@ -73,7 +77,11 @@ var mentionPlugin = getMentionsPlugin({
     setTimeout(() => {
       if (type === 'mention') {
         // autocomplete : filter list from text and return 5 users
-        done(users.filter((x) => x.name.toLowerCase().includes(text.toLowerCase())).splice(0, 5));
+        done(
+          users
+            .filter((x) => x.name.toLowerCase().includes(text.toLowerCase()))
+            .splice(0, 5),
+        );
       } else {
         // pass dummy tag suggestions
         done([
