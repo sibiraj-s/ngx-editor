@@ -57,11 +57,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/demo",
             "index": "projects/demo/src/index.html",
-            "main": "projects/demo/src/main.ts",
+            "browser": "projects/demo/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -93,12 +93,9 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { EditorState, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { setBlockType } from 'prosemirror-commands';
@@ -10,6 +11,10 @@ import { isNodeActive } from 'ngx-editor/helpers';
   selector: 'app-custom-menu',
   templateUrl: './custom-menu.component.html',
   styleUrls: ['./custom-menu.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+  ],
 })
 export class CustomMenuComponent implements OnInit {
   @Input() editor: Editor;
