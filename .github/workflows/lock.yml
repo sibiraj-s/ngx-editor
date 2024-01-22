@@ -36,3 +36,8 @@ jobs:
             has not been any recent activity after it was closed.
             Please open a new issue for related bugs and link to
             relevant comments in the thread.
+          discussion-comment: >
+            This discussion has been automatically locked since there
+            has not been any recent activity after it was closed.
+            Please open a new discussion for related items and link to
+            relevant comments in the thread.
