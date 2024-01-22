@@ -14,15 +14,18 @@ concurrency:
 permissions:
   issues: write
   pull-requests: write
+  discussions: write
 
 jobs:
   lock:
     runs-on: ubuntu-latest
     steps:
-      - uses: dessant/lock-threads@v4
+      - uses: dessant/lock-threads@v5
         with:
+          process-only: 'issues, prs'
           issue-inactive-days: 30
           pr-inactive-days: 30
+          discussion-inactive-days: 730
           issue-comment: >
             This issue has been automatically locked since there
             has not been any recent activity after it was closed.
