@@ -1,17 +1,25 @@
-<div class="NgxEditor__MenuItem--IconContainer" [class.NgxEditor__MenuItem--Active]="isActive || showPopup"
-  [class.NgxEditor--Disabled]="!canExecute" [innerHTML]="icon | sanitizeHtml" (mousedown)="togglePopup($event)"
-  [title]="title | async">
-</div>
+<div
+  class="NgxEditor__MenuItem--IconContainer"
+  [class.NgxEditor__MenuItem--Active]="isActive || showPopup"
+  [class.NgxEditor--Disabled]="!canExecute"
+  [innerHTML]="icon | sanitizeHtml"
+  (mousedown)="togglePopup($event)"
+  [title]="title | async"
+></div>
 
 <div *ngIf="showPopup" class="NgxEditor__Popup">
   <div *ngFor="let colorGroup of presets; trackBy: trackByIndex" class="NgxEditor__ColorContainer">
-    <button class="NgxEditor__Color" *ngFor="let color of colorGroup; trackBy: trackByIndex"
-      [ngStyle]="{backgroundColor: color, color:getContrastYIQ(color)}" [title]="color"
+    <button
+      class="NgxEditor__Color"
+      *ngFor="let color of colorGroup; trackBy: trackByIndex"
+      [ngStyle]="{ backgroundColor: color, color: getContrastYIQ(color) }"
+      [title]="color"
       (mousedown)="onColorSelect($event, color)"
-      [ngClass]="{'NgxEditor__Color--Active': activeColors.includes(color)}"></button>
+      [ngClass]="{ 'NgxEditor__Color--Active': activeColors.includes(color) }"
+    ></button>
   </div>
 
   <button class="NgxEditor__MenuItem--Button" (mousedown)="remove($event)" [disabled]="!isActive">
-    {{getLabel('remove') | async}}
+    {{ getLabel('remove') | async }}
   </button>
 </div>
