@@ -14,7 +14,7 @@
     "test:demo": "ng test demo --browsers ChromeHeadless --watch false",
     "test:lib": "ng test ngx-editor --browsers ChromeHeadless --watch false",
     "test": "npm run test:lib && npm run test:demo",
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || husky"
   },
   "engines": {
     "node": ">=18",
