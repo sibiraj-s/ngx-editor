@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v17.0.1 (2024-03-05)
+
+#### Enhancements
+
+- improve a11y for form elements in the menu component ([b9f142e](https://github.com/sibiraj-s/ngx-editor/commit/b9f142e))
+
 ## v17.0.0 (2024-03-05)
 
 #### Dependency Updates
