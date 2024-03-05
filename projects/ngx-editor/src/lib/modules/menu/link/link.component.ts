@@ -10,6 +10,7 @@ import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { Link as LinkCommand } from '../MenuCommands';
 import { HTML } from '../../../trustedTypesUtil';
+import { nanoid } from 'nanoid';
 
 @Component({
   selector: 'ngx-link',
@@ -21,6 +22,7 @@ export class LinkComponent implements OnInit, OnDestroy {
   showPopup = false;
   isActive = false;
   canExecute = true;
+  private componentId = nanoid();
   form: FormGroup;
 
   private editorView: EditorView;
@@ -52,6 +54,10 @@ export class LinkComponent implements OnInit, OnDestroy {
     if (!this.el.nativeElement.contains(e.target) && this.showPopup) {
       this.hideForm();
     }
+  }
+
+  getId(name:string): string {
+    return `${name}-${this.componentId}`;
   }
 
   getLabel(key: string): Observable<string> {

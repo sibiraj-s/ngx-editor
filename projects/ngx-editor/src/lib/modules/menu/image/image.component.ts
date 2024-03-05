@@ -6,6 +6,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
+import { nanoid } from 'nanoid';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
@@ -20,6 +21,7 @@ import { HTML } from '../../../trustedTypesUtil';
 export class ImageComponent implements OnInit, OnDestroy {
   showPopup = false;
   isActive = false;
+  private componentId = nanoid();
   private updateSubscription: Subscription;
 
   form = new FormGroup({
@@ -51,6 +53,10 @@ export class ImageComponent implements OnInit, OnDestroy {
     if (!this.el.nativeElement.contains(e.target) && this.showPopup) {
       this.hideForm();
     }
+  }
+
+  getId(name:string): string {
+    return `${name}-${this.componentId}`;
   }
 
   getLabel(key: string): Observable<string> {
