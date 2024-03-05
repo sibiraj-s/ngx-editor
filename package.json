@@ -71,6 +71,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "lint-staged": "^15.2.2",
+    "nanoid": "^5.0.6",
     "ng-packagr": "^17.1.0",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",

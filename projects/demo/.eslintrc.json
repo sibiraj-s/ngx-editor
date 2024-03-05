@@ -9,11 +9,7 @@
         "*.ts"
       ],
       "parserOptions": {
-        "project": [
-          "projects/demo/tsconfig.app.json",
-          "projects/demo/tsconfig.spec.json"
-        ],
-        "createDefaultProgram": true
+        "project": ["projects/demo/tsconfig.(app|lib|spec).json"]
       },
       "rules": {
         "@angular-eslint/directive-selector": [
