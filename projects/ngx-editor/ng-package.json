@@ -13,6 +13,7 @@
     "prosemirror-commands",
     "prosemirror-history",
     "prosemirror-inputrules",
+    "nanoid",
     "@floating-ui/core",
     "@floating-ui/dom",
     "@types/trusted-types"
