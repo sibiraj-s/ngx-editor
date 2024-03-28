@@ -31,10 +31,12 @@ export type TBItems = 'bold'
 | 'format_clear';
 
 export type ToolbarDropdown = { heading?: TBHeadingItems[] };
+export type ToolbarLinkOptions = { showOpenInNewTab?: boolean };
+export type ToolbarLink = { link: ToolbarLinkOptions };
 export type ToolbarCustomMenuItem = (editorView: EditorView) => TCR;
 export type ToolbarDropdownGroupKeys = keyof ToolbarDropdown;
 export type ToolbarDropdownGroupValues = ToolbarDropdown[ToolbarDropdownGroupKeys];
-export type ToolbarItem = TBItems | ToolbarDropdown | ToolbarCustomMenuItem;
+export type ToolbarItem = TBItems | ToolbarDropdown | ToolbarLink | ToolbarCustomMenuItem;
 export type Toolbar = Array<ToolbarItem[]>;
 
 export interface NgxEditorConfig {
