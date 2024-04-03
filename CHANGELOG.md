@@ -13,6 +13,13 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v17.0.2 (2024-04-03)
+
+#### Features
+
+- remove nanoid dependency ([3a589e1](https://github.com/sibiraj-s/ngx-editor/commit/3a589e1))
+- support options in link menu item to configure `open in new tab` feature ([aacc680](https://github.com/sibiraj-s/ngx-editor/commit/aacc680))
+
 ## v17.0.1 (2024-03-05)
 
 #### Enhancements
