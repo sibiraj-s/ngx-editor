@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { NgxEditorError } from 'ngx-editor/utils';
-import { Toolbar, ToolbarItem, ToolbarDropdown } from '../../types';
+import { Toolbar, ToolbarItem, ToolbarDropdown, ToolbarLink, ToolbarLinkOptions } from '../../types';
 import { MenuService } from './menu.service';
 import Editor from '../../Editor';
 
@@ -130,6 +130,17 @@ export class MenuComponent implements OnInit {
 
   getDropdownItems(item: ToolbarItem): ToolbarDropdown {
     return item as ToolbarDropdown;
+  }
+
+  isLinkWithOptions(item: ToolbarItem): boolean {
+    // NOTE: it is not sufficient to check for a `link` property
+    // as String.prototype.link is a valid (although deprecated) method
+    return typeof item === 'object'
+      && typeof (item as ToolbarLink)?.link === 'object';
+  }
+
+  getLinkOptions(item: ToolbarItem): ToolbarLinkOptions {
+    return (item as ToolbarLink)?.link;
   }
 
   ngOnInit(): void {

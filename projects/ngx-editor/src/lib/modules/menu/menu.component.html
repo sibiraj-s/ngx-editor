@@ -14,6 +14,13 @@
       <!-- link -->
       <ngx-link [class]="iconContainerClass" *ngIf="item === 'link'"></ngx-link>
 
+      <ng-container *ngIf="isLinkWithOptions(item)">
+        <ngx-link
+          [class]="iconContainerClass"
+          [showOpenInNewTab]="getLinkOptions(item).showOpenInNewTab ?? true"
+        ></ngx-link>
+      </ng-container>
+
       <!-- image -->
       <ngx-image [class]="iconContainerClass" *ngIf="item === 'image'"> </ngx-image>
 

@@ -1,6 +1,6 @@
 import {
   Component, ElementRef,
-  HostListener, OnDestroy, OnInit,
+  HostListener, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
@@ -19,6 +19,8 @@ import { HTML } from '../../../trustedTypesUtil';
 })
 
 export class LinkComponent implements OnInit, OnDestroy {
+  @Input() showOpenInNewTab = true;
+
   showPopup = false;
   isActive = false;
   canExecute = true;
@@ -115,10 +117,16 @@ export class LinkComponent implements OnInit, OnDestroy {
     const { dispatch, state } = this.editorView;
     const { selection } = state;
 
+    let target: string | undefined;
+
+    if (this.showOpenInNewTab) {
+      target = openInNewTab ? '_blank' : '_self';
+    }
+
     const attrs = {
       title: href,
       href,
-      target: openInNewTab ? '_blank' : '_self',
+      target,
     };
 
     if (selection.empty) {
