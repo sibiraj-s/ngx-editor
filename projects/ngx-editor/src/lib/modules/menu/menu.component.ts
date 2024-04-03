@@ -132,6 +132,17 @@ export class MenuComponent implements OnInit {
     return item as ToolbarDropdown;
   }
 
+  isLinkItem(item: ToolbarItem): boolean {
+    if (item === 'link') {
+      return true;
+    }
+
+    // NOTE: it is not sufficient to check for a `link` property
+    // as String.prototype.link is a valid (although deprecated) method
+    return typeof item === 'object'
+      && typeof (item as ToolbarLink)?.link === 'object';
+  }
+
   isLinkWithOptions(item: ToolbarItem): boolean {
     // NOTE: it is not sufficient to check for a `link` property
     // as String.prototype.link is a valid (although deprecated) method
@@ -139,7 +150,7 @@ export class MenuComponent implements OnInit {
       && typeof (item as ToolbarLink)?.link === 'object';
   }
 
-  getLinkOptions(item: ToolbarItem): ToolbarLinkOptions {
+  getLinkOptions(item: ToolbarItem): Partial<ToolbarLinkOptions> {
     return (item as ToolbarLink)?.link;
   }
 

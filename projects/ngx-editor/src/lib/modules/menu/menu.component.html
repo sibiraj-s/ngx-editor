@@ -12,13 +12,8 @@
       </ngx-insert-command>
 
       <!-- link -->
-      <ngx-link [class]="iconContainerClass" *ngIf="item === 'link'"></ngx-link>
-
-      <ng-container *ngIf="isLinkWithOptions(item)">
-        <ngx-link
-          [class]="iconContainerClass"
-          [showOpenInNewTab]="getLinkOptions(item).showOpenInNewTab ?? true"
-        ></ngx-link>
+      <ng-container *ngIf="isLinkItem(item)">
+        <ngx-link [class]="iconContainerClass" [options]="getLinkOptions(item)"></ngx-link>
       </ng-container>
 
       <!-- image -->

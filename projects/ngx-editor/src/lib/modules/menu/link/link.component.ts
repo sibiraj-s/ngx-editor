@@ -12,6 +12,14 @@ import { MenuService } from '../menu.service';
 import { Link as LinkCommand } from '../MenuCommands';
 import { HTML } from '../../../trustedTypesUtil';
 
+export interface LinkOptions {
+  showOpenInNewTab: boolean;
+}
+
+const DEFAULT_LINK_OPTIONS: LinkOptions = {
+  showOpenInNewTab: true,
+};
+
 @Component({
   selector: 'ngx-link',
   templateUrl: './link.component.html',
@@ -19,7 +27,9 @@ import { HTML } from '../../../trustedTypesUtil';
 })
 
 export class LinkComponent implements OnInit, OnDestroy {
-  @Input() showOpenInNewTab = true;
+  @Input({
+    transform: (value: Partial<LinkOptions>) => ({ ...DEFAULT_LINK_OPTIONS, ...value }),
+  }) options: Partial<LinkOptions> = DEFAULT_LINK_OPTIONS;
 
   showPopup = false;
   isActive = false;
@@ -58,7 +68,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     }
   }
 
-  getId(name:string): string {
+  getId(name: string): string {
     return `${name}-${this.componentId}`;
   }
 
@@ -119,7 +129,7 @@ export class LinkComponent implements OnInit, OnDestroy {
 
     let target: string | undefined;
 
-    if (this.showOpenInNewTab) {
+    if (this.options.showOpenInNewTab) {
       target = openInNewTab ? '_blank' : '_self';
     }
 

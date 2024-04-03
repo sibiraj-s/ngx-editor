@@ -4,6 +4,7 @@ import { EditorView } from 'prosemirror-view';
 import { IconsKeys } from './icons';
 import { LocalsKeys } from './Locals';
 import { Observable } from 'rxjs';
+import { LinkOptions } from './modules/menu/link/link.component';
 
 type TCR = {
   dom: HTMLElement;
@@ -31,7 +32,7 @@ export type TBItems = 'bold'
 | 'format_clear';
 
 export type ToolbarDropdown = { heading?: TBHeadingItems[] };
-export type ToolbarLinkOptions = { showOpenInNewTab?: boolean };
+export type ToolbarLinkOptions = Partial<LinkOptions>;
 export type ToolbarLink = { link: ToolbarLinkOptions };
 export type ToolbarCustomMenuItem = (editorView: EditorView) => TCR;
 export type ToolbarDropdownGroupKeys = keyof ToolbarDropdown;
