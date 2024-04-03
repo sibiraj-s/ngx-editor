@@ -5,12 +5,12 @@ import {
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
+import { uniq } from 'ngx-editor/utils';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { Link as LinkCommand } from '../MenuCommands';
 import { HTML } from '../../../trustedTypesUtil';
-import { nanoid } from 'nanoid';
 
 @Component({
   selector: 'ngx-link',
@@ -22,7 +22,7 @@ export class LinkComponent implements OnInit, OnDestroy {
   showPopup = false;
   isActive = false;
   canExecute = true;
-  private componentId = nanoid();
+  private componentId = uniq();
   form: FormGroup;
 
   private editorView: EditorView;

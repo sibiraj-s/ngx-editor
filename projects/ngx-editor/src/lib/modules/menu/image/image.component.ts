@@ -6,7 +6,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
-import { nanoid } from 'nanoid';
+import { uniq } from 'ngx-editor/utils';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
@@ -21,7 +21,7 @@ import { HTML } from '../../../trustedTypesUtil';
 export class ImageComponent implements OnInit, OnDestroy {
   showPopup = false;
   isActive = false;
-  private componentId = nanoid();
+  private componentId = uniq();
   private updateSubscription: Subscription;
 
   form = new FormGroup({
