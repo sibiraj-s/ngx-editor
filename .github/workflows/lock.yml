@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: dessant/lock-threads@v5
         with:
-          process-only: 'issues, prs'
+          process-only: 'issues, prs, discussions'
           issue-inactive-days: 30
           pr-inactive-days: 30
           discussion-inactive-days: 730
