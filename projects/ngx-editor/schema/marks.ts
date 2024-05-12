@@ -51,13 +51,13 @@ const strong: MarkSpec = {
     // tags with a font-weight normal.
     {
       tag: 'b',
-      getAttrs: (dom: HTMLElement): Record<string, any> => {
+      getAttrs: (dom: HTMLElement) => {
         return dom.style.fontWeight !== 'normal' && null;
       },
     },
     {
       style: 'font-weight',
-      getAttrs: (value: string): Record<string, any> => {
+      getAttrs: (value: string) => {
         return (/^(?:bold(?:er)?|[5-9]\d{2,})$/).test(value) && null;
       },
     },
