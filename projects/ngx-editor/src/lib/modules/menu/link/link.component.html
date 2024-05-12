@@ -15,7 +15,7 @@
         <label class="NgxEditor__Popup--Label" [htmlFor]="getId('link-popup-url')">{{ getLabel('url') | async }}</label>
         <input type="href" [id]="getId('link-popup-url')" formControlName="href" autocomplete="off" />
         <div *ngIf="href.touched && href.invalid" class="NgxEditor__HelpText NgxEditor__HelpText--Error">
-          {{ href.errors?.['pattern'] && 'Please enter valid url.' }}
+          {{ href.errors?.['pattern'] && getLabel('enterValidUrl') | async }}
         </div>
       </div>
     </div>

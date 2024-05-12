@@ -16,7 +16,7 @@
         }}</label>
         <input type="href" [id]="getId('image-popup-url')" formControlName="src" autocomplete="off" />
         <div *ngIf="src.touched && src.invalid" class="NgxEditor__HelpText NgxEditor__HelpText--Error">
-          {{ src.errors?.['pattern'] && 'Please enter valid url.' }}
+          {{ src.errors?.['pattern'] && getLabel('enterValidUrl') | async }}
         </div>
       </div>
     </div>

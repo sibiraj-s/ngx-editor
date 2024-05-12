@@ -61,6 +61,7 @@ NgxEditorModule.forRoot({
     altText: 'Alt Text',
     title: 'Title',
     remove: 'Remove',
+    enterValidUrl: 'Please enter a valid URL',
   },
 });
 ```

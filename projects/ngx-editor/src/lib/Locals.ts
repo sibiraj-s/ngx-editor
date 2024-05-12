@@ -37,6 +37,7 @@ export const defaults: Record<string, string | Observable<string>> = {
   altText: 'Alt Text',
   title: 'Title',
   remove: 'Remove',
+  enterValidUrl: 'Please enter a valid URL',
 };
 
 export type LocalsKeys = keyof typeof defaults;
