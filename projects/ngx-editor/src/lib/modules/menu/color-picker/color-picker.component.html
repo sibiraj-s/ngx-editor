@@ -1,11 +1,13 @@
-<div
+<button
+  type="button"
   class="NgxEditor__MenuItem--IconContainer"
   [class.NgxEditor__MenuItem--Active]="isActive || showPopup"
   [class.NgxEditor--Disabled]="!canExecute"
   [innerHTML]="icon | sanitizeHtml"
   (mousedown)="togglePopup($event)"
   [title]="title | async"
-></div>
+  [ariaLabel]="title | async"
+></button>
 
 <div *ngIf="showPopup" class="NgxEditor__Popup">
   <div *ngFor="let colorGroup of presets; trackBy: trackByIndex" class="NgxEditor__ColorContainer">

@@ -1,10 +1,14 @@
-<div
+<button
+  type="button"
   class="NgxEditor__MenuItem--IconContainer"
   [class.NgxEditor__MenuItem--Active]="isActive || showPopup"
   [innerHTML]="icon | sanitizeHtml"
   (mousedown)="onMouseDown($event)"
   [title]="getLabel('insertImage') | async"
-></div>
+  [ariaLabel]="getLabel('insertImage') | async"
+  aria-haspopup="dialog"
+  [ariaExpanded]="showPopup"
+></button>
 
 <!-- popup -->
 <div *ngIf="showPopup" class="NgxEditor__Popup">

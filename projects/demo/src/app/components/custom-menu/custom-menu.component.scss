@@ -1,3 +1,8 @@
 :host {
   display: flex;
 }
+
+.NgxEditor__MenuItem {
+  all: unset;
+  appearance: none;
+}

@@ -1,7 +1,8 @@
-<div
+<button
   class="NgxEditor__MenuItem--IconContainer"
   [class.NgxEditor--Disabled]="disabled"
   [innerHTML]="html | sanitizeHtml"
   (mousedown)="insert($event)"
   [title]="getTitle(name) | async"
-></div>
+  [ariaLabel]="getTitle(name) | async"
+></button>

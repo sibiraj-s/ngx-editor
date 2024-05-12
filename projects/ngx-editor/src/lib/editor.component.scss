@@ -21,6 +21,11 @@ $menubar-padding: 3px;
 $menu-item-spacing: 5px;
 $menubar-text-padding: 0 $menu-item-spacing;
 
+@mixin button-reset {
+  all: unset;
+  appearance: none;
+}
+
 .NgxEditor {
   background: white;
   color: black;
@@ -45,7 +50,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
     content: attr(data-placeholder);
   }
 
-  &[data-align="right"] {
+  &[data-align='right'] {
     &::before {
       position: relative;
     }
@@ -57,7 +62,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
   white-space: pre-wrap;
   outline: none;
   font-variant-ligatures: none;
-  font-feature-settings: "liga" 0;
+  font-feature-settings: 'liga' 0;
 
   p {
     margin: 0 0 10px;
@@ -124,6 +129,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
   }
 
   .NgxEditor__MenuItem--IconContainer {
+    @include button-reset;
     display: flex;
     height: 100%;
     width: 100%;
@@ -154,6 +160,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
   }
 
   .NgxEditor__Dropdown--Text {
+    @include button-reset;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -163,7 +170,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
 
     &::after {
       display: inline-block;
-      content: "";
+      content: '';
       margin-left: 24px;
       vertical-align: 4px;
       border-top: 4px solid;
@@ -182,9 +189,12 @@ $menubar-text-padding: 0 $menu-item-spacing;
     z-index: 10;
     width: 100%;
     top: calc(#{$menubar-height} + 2px);
+    display: flex;
+    flex-direction: column;
   }
 
   .NgxEditor__Dropdown--Item {
+    @include button-reset;
     padding: 8px;
     white-space: nowrap;
     color: inherit;
@@ -245,8 +255,8 @@ $menubar-text-padding: 0 $menu-item-spacing;
       margin-bottom: 3px;
     }
 
-    input[type="text"],
-    input[type="url"] {
+    input[type='text'],
+    input[type='url'] {
       padding: 2px 4px;
     }
   }

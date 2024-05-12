@@ -1,11 +1,15 @@
-<div
+<button
+  type="button"
   class="NgxEditor__MenuItem--IconContainer"
   [class.NgxEditor__MenuItem--Active]="isActive || showPopup"
   [class.NgxEditor--Disabled]="!canExecute"
   [innerHTML]="icon | sanitizeHtml"
   (mousedown)="onMouseDown($event)"
   [title]="title | async"
-></div>
+  [ariaLabel]="title | async"
+  aria-haspopup="dialog"
+  [ariaExpanded]="showPopup"
+></button>
 
 <!-- popup -->
 <div *ngIf="showPopup" class="NgxEditor__Popup">

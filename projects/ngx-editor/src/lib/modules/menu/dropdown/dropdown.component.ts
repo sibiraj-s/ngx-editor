@@ -51,6 +51,10 @@ export class DropdownComponent implements OnInit, OnDestroy {
     return this.ngxeService.locals.get(key);
   }
 
+  getIsDropdownActive(item:string): boolean {
+    return this.activeItem === item;
+  }
+
   toggleDropdown(e: MouseEvent): void {
     e.preventDefault();
     this.isDropdownOpen = !this.isDropdownOpen;
