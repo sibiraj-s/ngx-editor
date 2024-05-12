@@ -1,4 +1,4 @@
-import { Schema } from 'prosemirror-model';
+import { ParseOptions, Schema } from 'prosemirror-model';
 import { EditorState, Plugin, Transaction } from 'prosemirror-state';
 import { EditorProps, EditorView } from 'prosemirror-view';
 import { Observable, Subject } from 'rxjs';
@@ -26,6 +26,7 @@ interface Options {
   features?: EditorFeatures;
   handleScrollToSelection?: EditorProps['handleScrollToSelection'];
   linkValidationPattern?: string;
+  parseOptions?:ParseOptions;
 }
 
 interface EditorFeatures {
@@ -107,7 +108,7 @@ class Editor {
     const { content = null, nodeViews } = options;
     const { history = true, keyboardShortcuts = true, inputRules = true } = options;
 
-    const doc = parseContent(content, schema);
+    const doc = parseContent(content, schema, options.parseOptions);
 
     const plugins: Plugin[] = options.plugins ?? [];
     const attributes: EditorProps['attributes'] = options.attributes ?? {};
@@ -139,7 +140,7 @@ class Editor {
     const { state } = this.view;
     const { tr, doc } = state;
 
-    const newDoc = parseContent(content, this.schema);
+    const newDoc = parseContent(content, this.schema, this.options.parseOptions);
 
     tr.replaceWith(0, state.doc.content.size, newDoc);
 

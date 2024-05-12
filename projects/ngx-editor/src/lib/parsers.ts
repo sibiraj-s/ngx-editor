@@ -1,4 +1,4 @@
-import { DOMSerializer, Schema, DOMParser, Node as ProseMirrorNode } from 'prosemirror-model';
+import { DOMSerializer, Schema, DOMParser, Node as ProseMirrorNode, ParseOptions } from 'prosemirror-model';
 
 import defaultSchema from './schema';
 import { HTML, isHtml } from './trustedTypesUtil';
@@ -24,16 +24,20 @@ export const toHTML = (json: Record<string, any>, inputSchema?: Schema): string 
   return div.innerHTML;
 };
 
-export const toDoc = (html: HTML, inputSchema?: Schema): Record<string, any> => {
+export const toDoc = (html: HTML, inputSchema?: Schema, options?:ParseOptions): Record<string, any> => {
   const schema = inputSchema ?? defaultSchema;
 
   const el = document.createElement('div');
   el.innerHTML = html as any;
 
-  return DOMParser.fromSchema(schema).parse(el).toJSON();
+  return DOMParser.fromSchema(schema).parse(el, options).toJSON();
 };
 
-export const parseContent = (value: HTML | Record<string, any> | null, schema: Schema): ProseMirrorNode => {
+export const parseContent = (
+  value: HTML | Record<string, any> | null,
+  schema: Schema,
+  options?: ParseOptions,
+): ProseMirrorNode => {
   if (!value) {
     return schema.nodeFromJSON(emptyDoc);
   }
@@ -42,6 +46,6 @@ export const parseContent = (value: HTML | Record<string, any> | null, schema: S
     return schema.nodeFromJSON(value);
   }
 
-  const docJson = toDoc(value as HTML, schema);
+  const docJson = toDoc(value as HTML, schema, options);
   return schema.nodeFromJSON(docJson);
 };

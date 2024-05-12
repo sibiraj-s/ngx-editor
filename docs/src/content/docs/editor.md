@@ -18,6 +18,7 @@ const editor = new Editor({
   nodeViews: {}, //https://prosemirror.net/docs/guide/#state,
   attributes: {}, // https://prosemirror.net/docs/ref/#view.EditorProps.attributes
   linkValidationPattern: '',
+  parseOptions: {}, // https://prosemirror.net/docs/ref/#model.ParseOptions
 });
 ```
 
