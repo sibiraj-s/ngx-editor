@@ -13,6 +13,20 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v17.1.0 (2024-05-12)
+
+#### Features
+
+- add support for parseOptions ([3d5ac24](https://github.com/sibiraj-s/ngx-editor/commit/3d5ac24))
+- unpin prosemirror and floating ui dependencies ([22e8bc2](https://github.com/sibiraj-s/ngx-editor/commit/22e8bc2))
+- add locale for invalid URL error message ([aee35ff](https://github.com/sibiraj-s/ngx-editor/commit/aee35ff))
+- improve menu accessibility ([041c167](https://github.com/sibiraj-s/ngx-editor/commit/041c167))
+
+#### Bug Fixes
+
+- cleanup types ([7902131](https://github.com/sibiraj-s/ngx-editor/commit/7902131))
+- fix unset link removes other marks in range ([c038772](https://github.com/sibiraj-s/ngx-editor/commit/c038772))
+
 ## v17.0.2 (2024-04-03)
 
 #### Features
