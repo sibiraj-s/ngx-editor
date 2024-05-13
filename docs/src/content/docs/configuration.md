@@ -52,6 +52,8 @@ NgxEditorModule.forRoot({
     insertLink: 'Insert Link',
     removeLink: 'Remove Link',
     insertImage: 'Insert Image',
+    superscript: 'Superscript',
+    subscript: 'Subscript',
 
     // pupups, forms, others...
     url: 'URL',

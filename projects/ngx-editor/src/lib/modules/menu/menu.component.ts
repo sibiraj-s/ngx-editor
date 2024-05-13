@@ -37,6 +37,7 @@ export const TOOLBAR_FULL: Toolbar = [
   ['text_color', 'background_color'],
   ['align_left', 'align_center', 'align_right', 'align_justify'],
   ['horizontal_rule', 'format_clear', 'indent', 'outdent'],
+  ['superscript', 'subscript'],
 ];
 
 const DEFAULT_COLOR_PRESETS = [
@@ -86,6 +87,8 @@ export class MenuComponent implements OnInit {
     'align_center',
     'align_right',
     'align_justify',
+    'superscript',
+    'subscript',
   ];
 
   insertCommands: ToolbarItem[] = [

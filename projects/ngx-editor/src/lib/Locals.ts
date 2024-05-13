@@ -30,6 +30,8 @@ export const defaults: Record<string, string | Observable<string>> = {
   insertImage: 'Insert Image',
   indent: 'Increase Indent',
   outdent: 'Decrease Indent',
+  superscript: 'Superscript',
+  subscript: 'Subscript',
 
   // pupups, forms, others...
   url: 'URL',

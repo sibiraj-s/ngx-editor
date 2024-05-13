@@ -22,6 +22,8 @@ import horizontalRule from './horizontal_rule';
 import formatClear from './format_clear';
 import indent from './indent';
 import outdent from './outdent';
+import superscript from './superscript';
+import subscript from './subscript';
 
 const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
@@ -49,6 +51,8 @@ export const icons: Record<string, any> = {
   format_clear: formatClear,
   indent,
   outdent,
+  superscript,
+  subscript,
   path: '<path></path>',
 };
 

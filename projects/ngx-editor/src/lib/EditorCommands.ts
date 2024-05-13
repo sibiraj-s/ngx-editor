@@ -164,6 +164,16 @@ class EditorCommands {
     return this;
   }
 
+  superscript(): this {
+    execMark('sup')(this.state, this.dispatch);
+    return this;
+  }
+
+  subscript(): this {
+    execMark('sub')(this.state, this.dispatch);
+    return this;
+  }
+
   toggleOrderedList(): this {
     const command = new ListCommand(false);
     command.toggle()(this.state, this.dispatch);

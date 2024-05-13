@@ -145,6 +145,28 @@ const textBackgroundColor: MarkSpec = {
   },
 };
 
+const sup: MarkSpec = {
+  attrs: {},
+  parseDOM: [
+    { tag: 'sup' },
+    { style: 'vertical-align=super' },
+  ],
+  toDOM() {
+    return ['sup', 0];
+  },
+};
+
+const sub: MarkSpec = {
+  attrs: {},
+  parseDOM: [
+    { tag: 'sub' },
+    { style: 'vertical-align=sub' },
+  ],
+  toDOM() {
+    return ['sub', 0];
+  },
+};
+
 const marks = {
   link,
   em,
@@ -154,6 +176,8 @@ const marks = {
   s,
   text_color: textColor,
   text_background_color: textBackgroundColor,
+  sup,
+  sub,
 };
 
 export default marks;

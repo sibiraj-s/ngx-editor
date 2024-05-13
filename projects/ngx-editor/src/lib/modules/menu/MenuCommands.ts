@@ -21,6 +21,8 @@ export const ToggleCommands: Record<string, ToggleCommand> = {
   align_center: Commands.ALIGN_CENTER,
   align_right: Commands.ALIGN_RIGHT,
   align_justify: Commands.ALIGN_JUSTIFY,
+  superscript: Commands.SUPERSCRIPT,
+  subscript: Commands.SUBSCRIPT,
 };
 
 export const InsertCommands: Record<string, InsertCommand> = {

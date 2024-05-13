@@ -36,3 +36,5 @@ export const TEXT_COLOR = new TextColor('text_color', 'color');
 export const TEXT_BACKGROUND_COLOR = new TextColor('text_background_color', 'backgroundColor');
 export const INDENT = new Indent('increase');
 export const OUTDENT = new Indent('decrease');
+export const SUPERSCRIPT = new Mark('sup');
+export const SUBSCRIPT = new Mark('sub');
