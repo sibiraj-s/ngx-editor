@@ -28,6 +28,8 @@ export const defaults: Record<string, string | Observable<string>> = {
   insertLink: 'Insert Link',
   removeLink: 'Remove Link',
   insertImage: 'Insert Image',
+  indent: 'Increase Indent',
+  outdent: 'Decrease Indent',
 
   // pupups, forms, others...
   url: 'URL',

@@ -14,6 +14,8 @@ import HeadingCommand, { HeadingLevels } from './commands/Heading';
 import ImageCommand, { ImageAttrs } from './commands/Image';
 import TextColorCommand from './commands/TextColor';
 import TextAlignCommand, { Align } from './commands/TextAlign';
+import IndentCommand from './commands/Indent';
+
 import { HTML } from './trustedTypesUtil';
 import { isString } from './stringUtil';
 
@@ -239,6 +241,18 @@ class EditorCommands {
     const transaction = tr.replaceRange(from, to, slice);
     this.applyTrx(transaction);
 
+    return this;
+  }
+
+  indent(): this {
+    const command = new IndentCommand('increase');
+    command.insert()(this.state, this.dispatch);
+    return this;
+  }
+
+  outdent(): this {
+    const command = new IndentCommand('decrease');
+    command.insert()(this.state, this.dispatch);
     return this;
   }
 }

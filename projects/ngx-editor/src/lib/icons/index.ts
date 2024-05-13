@@ -20,6 +20,8 @@ import textColor from './text_color';
 import colorFill from './color_fill';
 import horizontalRule from './horizontal_rule';
 import formatClear from './format_clear';
+import indent from './indent';
+import outdent from './outdent';
 
 const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
@@ -45,6 +47,8 @@ export const icons: Record<string, any> = {
   color_fill: colorFill,
   horizontal_rule: horizontalRule,
   format_clear: formatClear,
+  indent,
+  outdent,
   path: '<path></path>',
 };
 

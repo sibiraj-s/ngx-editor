@@ -8,6 +8,7 @@ import Link from './Link';
 import Image from './Image';
 import TextColor from './TextColor';
 import FormatClear from './FormatClear';
+import Indent from './Indent';
 
 export const STRONG = new Mark('strong');
 export const EM = new Mark('em');
@@ -33,3 +34,5 @@ export const LINK = new Link();
 export const IMAGE = new Image();
 export const TEXT_COLOR = new TextColor('text_color', 'color');
 export const TEXT_BACKGROUND_COLOR = new TextColor('text_background_color', 'backgroundColor');
+export const INDENT = new Indent('increase');
+export const OUTDENT = new Indent('decrease');

@@ -36,7 +36,7 @@ export const TOOLBAR_FULL: Toolbar = [
   ['link', 'image'],
   ['text_color', 'background_color'],
   ['align_left', 'align_center', 'align_right', 'align_justify'],
-  ['horizontal_rule'],
+  ['horizontal_rule', 'format_clear', 'indent', 'outdent'],
 ];
 
 const DEFAULT_COLOR_PRESETS = [
@@ -91,6 +91,8 @@ export class MenuComponent implements OnInit {
   insertCommands: ToolbarItem[] = [
     'horizontal_rule',
     'format_clear',
+    'indent',
+    'outdent',
   ];
 
   iconContainerClass = ['NgxEditor__MenuItem', 'NgxEditor__MenuItem--Icon'];

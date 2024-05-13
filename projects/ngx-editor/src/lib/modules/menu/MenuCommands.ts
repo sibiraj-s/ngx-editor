@@ -26,6 +26,8 @@ export const ToggleCommands: Record<string, ToggleCommand> = {
 export const InsertCommands: Record<string, InsertCommand> = {
   horizontal_rule: Commands.HORIZONTAL_RULE,
   format_clear: Commands.FORMAT_CLEAR,
+  indent: Commands.INDENT,
+  outdent: Commands.OUTDENT,
 };
 
 export const Link = Commands.LINK;
