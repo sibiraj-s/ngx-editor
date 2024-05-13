@@ -2,7 +2,7 @@
 title: Commands
 ---
 
-Commands is a getter function, creates new transaciton whenever called.
+Commands is a getter function and each command creates new transaciton.
 
 ```ts
 this.editor.commands
@@ -13,6 +13,8 @@ this.editor.commands
   .exec();
 ```
 
+:::note
 You must invoke `exec` method at the end to apply the changes to the editor.
 
-**Note:** `exec` method is not chainable.
+And, `exec` method is not chainable.
+:::
