@@ -13,6 +13,16 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v17.3.0 (2024-05-13)
+
+#### Features
+
+- add support for css variables to customize editor styles ([9e54a20](https://github.com/sibiraj-s/ngx-editor/commit/9e54a20), [ad9e68e](https://github.com/sibiraj-s/ngx-editor/commit/ad9e68e))
+
+#### Bug Fixes
+
+- improve accessibility for clickable elements ([6ed7575](https://github.com/sibiraj-s/ngx-editor/commit/6ed7575))
+
 ## v17.2.0 (2024-05-13)
 
 #### Features
