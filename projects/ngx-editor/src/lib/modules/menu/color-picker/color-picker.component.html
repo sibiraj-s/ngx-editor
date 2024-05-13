@@ -5,7 +5,7 @@
   [class.NgxEditor--Disabled]="!canExecute"
   [disabled]="!canExecute"
   [innerHTML]="icon | sanitizeHtml"
-  (mousedown)="togglePopup($event)"
+  (click)="togglePopup($event)"
   [title]="title | async"
   [ariaLabel]="title | async"
 ></button>
@@ -17,12 +17,12 @@
       *ngFor="let color of colorGroup; trackBy: trackByIndex"
       [ngStyle]="{ backgroundColor: color, color: getContrastYIQ(color) }"
       [title]="color"
-      (mousedown)="onColorSelect($event, color)"
+      (click)="onColorSelect($event, color)"
       [ngClass]="{ 'NgxEditor__Color--Active': activeColors.includes(color) }"
     ></button>
   </div>
 
-  <button class="NgxEditor__MenuItem--Button" (mousedown)="remove($event)" [disabled]="!isActive">
+  <button class="NgxEditor__MenuItem--Button" (click)="remove($event)" [disabled]="!isActive">
     {{ getLabel('remove') | async }}
   </button>
 </div>

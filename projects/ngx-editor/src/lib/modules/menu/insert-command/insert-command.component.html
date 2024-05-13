@@ -3,7 +3,7 @@
   [disabled]="disabled"
   [class.NgxEditor--Disabled]="disabled"
   [innerHTML]="html | sanitizeHtml"
-  (mousedown)="insert($event)"
+  (click)="insert($event)"
   [title]="getTitle(name) | async"
   [ariaLabel]="getTitle(name) | async"
 ></button>

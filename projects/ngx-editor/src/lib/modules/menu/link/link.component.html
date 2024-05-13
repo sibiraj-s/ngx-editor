@@ -5,7 +5,7 @@
   [class.NgxEditor--Disabled]="!canExecute"
   [disabled]="!canExecute"
   [innerHTML]="icon | sanitizeHtml"
-  (mousedown)="onMouseDown($event)"
+  (click)="onMouseDown($event)"
   [title]="title | async"
   [ariaLabel]="title | async"
   aria-haspopup="dialog"

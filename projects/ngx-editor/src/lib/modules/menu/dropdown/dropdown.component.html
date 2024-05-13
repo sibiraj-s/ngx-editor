@@ -4,7 +4,7 @@
   [class.NgxEditor__Dropdown--Selected]="isSelected"
   [disabled]="isDropdownDisabled"
   [class.NgxEditor--Disabled]="isDropdownDisabled"
-  (mousedown)="toggleDropdown($event)"
+  (click)="toggleDropdown($event)"
   [ariaLabel]="getName(activeItem || group) | async"
   aria-haspopup="listbox"
   [ariaExpanded]="isDropdownOpen"
@@ -17,7 +17,7 @@
     type="button"
     class="NgxEditor__Dropdown--Item"
     *ngFor="let item of items; trackBy: trackByIndex"
-    (mousedown)="onClick($event, item)"
+    (click)="onClick($event, item)"
     [ngClass]="{
       'NgxEditor__Dropdown--Active': item === activeItem,
       'NgxEditor--Disabled': disabledItems.includes(item)

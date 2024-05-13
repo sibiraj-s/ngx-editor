@@ -3,7 +3,7 @@
   class="NgxEditor__MenuItem--Icon"
   [class.NgxEditor__MenuItem--Active]="isActive || showPopup"
   [innerHTML]="icon | sanitizeHtml"
-  (mousedown)="onMouseDown($event)"
+  (click)="onMouseDown($event)"
   [title]="getLabel('insertImage') | async"
   [ariaLabel]="getLabel('insertImage') | async"
   aria-haspopup="dialog"

@@ -14,6 +14,8 @@
 }
 
 .NgxBubbleMenu__Icon {
+  all: unset;
+  appearance: none;
   height: 30px;
   width: 30px;
   transition: 0.3s ease-in-out;
