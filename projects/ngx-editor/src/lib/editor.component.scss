@@ -36,8 +36,8 @@ $menubar-text-padding: 0 $menu-item-spacing;
 }
 
 .NgxEditor--Disabled {
-  opacity: 0.5;
-  pointer-events: none;
+  opacity: 0.5 !important;
+  pointer-events: none !important;
 }
 
 .NgxEditor__Placeholder {
