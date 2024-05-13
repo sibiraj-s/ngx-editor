@@ -1,5 +1,6 @@
 <button
   class="NgxEditor__MenuItem--IconContainer"
+  [disabled]="disabled"
   [class.NgxEditor--Disabled]="disabled"
   [innerHTML]="html | sanitizeHtml"
   (mousedown)="insert($event)"
