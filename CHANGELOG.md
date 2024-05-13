@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v17.2.0 (2024-05-13)
+
+#### Features
+
+- add support for indent/outdent ([1dc5443](https://github.com/sibiraj-s/ngx-editor/commit/1dc5443))
+
+#### Bug Fixes
+
+- set correct classes to menu buttons ([2352039](https://github.com/sibiraj-s/ngx-editor/commit/2352039))
+- remove hover styles on disabled state ([b2a18e0](https://github.com/sibiraj-s/ngx-editor/commit/b2a18e0))
+- set disabled atrribute to menu buttons when disabled ([825791e](https://github.com/sibiraj-s/ngx-editor/commit/825791e), [0ac482a](https://github.com/sibiraj-s/ngx-editor/commit/0ac482a))
+
 ## v17.1.0 (2024-05-12)
 
 #### Features
