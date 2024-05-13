@@ -3,6 +3,7 @@
   class="NgxEditor__MenuItem--Icon"
   [class.NgxEditor__MenuItem--Active]="isActive || showPopup"
   [class.NgxEditor--Disabled]="!canExecute"
+  [disabled]="!canExecute"
   [innerHTML]="icon | sanitizeHtml"
   (mousedown)="togglePopup($event)"
   [title]="title | async"

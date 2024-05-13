@@ -2,6 +2,7 @@
   type="button"
   class="NgxEditor__Dropdown--Text"
   [class.NgxEditor__Dropdown--Selected]="isSelected"
+  [disabled]="isDropdownDisabled"
   [class.NgxEditor--Disabled]="isDropdownDisabled"
   (mousedown)="toggleDropdown($event)"
   [ariaLabel]="getName(activeItem || group) | async"
