@@ -104,37 +104,39 @@ $menubar-text-padding: 0 $menu-item-spacing;
   padding: $menubar-padding;
   cursor: default;
   background-color: white;
+  gap: 0.25rem 0.1rem;
 }
 
 .NgxEditor__MenuItem {
-  border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   flex-shrink: 0;
 
-  &:hover {
-    background-color: $menu-item-hover-bg-color;
+  &.NgxEditor__MenuItem--IconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  &.NgxEditor__MenuItem--Icon {
+  .NgxEditor__MenuItem--Icon {
+    @include button-reset;
     height: $icon-size;
     width: $icon-size;
-    transition: 0.3s ease-in-out;
+    transition: 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $menu-item-border-radius;
 
     & + .NgxEditor__MenuItem--Icon {
       margin-left: 2px;
     }
-  }
 
-  .NgxEditor__MenuItem--IconContainer {
-    @include button-reset;
-    display: flex;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+    &:hover {
+      background-color: $menu-item-hover-bg-color;
+    }
   }
 
   &.NgxEditor__MenuItem--Text {

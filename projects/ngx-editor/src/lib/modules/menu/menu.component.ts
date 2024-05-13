@@ -95,7 +95,7 @@ export class MenuComponent implements OnInit {
     'outdent',
   ];
 
-  iconContainerClass = ['NgxEditor__MenuItem', 'NgxEditor__MenuItem--Icon'];
+  iconContainerClass = ['NgxEditor__MenuItem', 'NgxEditor__MenuItem--IconContainer'];
   dropdownContainerClass = ['NgxEditor__Dropdown'];
   seperatorClass = ['NgxEditor__Seperator'];
 
