@@ -33,7 +33,9 @@ export type TBItems = 'bold'
 | 'indent'
 | 'outdent'
 | 'superscript'
-| 'subscript';
+| 'subscript'
+| 'undo'
+| 'redo';
 
 export type ToolbarDropdown = { heading?: TBHeadingItems[] };
 export type ToolbarLinkOptions = Partial<LinkOptions>;

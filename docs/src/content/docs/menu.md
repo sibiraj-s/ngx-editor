@@ -30,6 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ['align_left', 'align_center', 'align_right', 'align_justify'],
     ['horizontal_rule', 'format_clear', 'indent', 'outdent'],
     ['superscript', 'subscript'],
+    ['undo', 'redo'],
   ];
   colorPresets = ['red', '#FF0000', 'rgb(255, 0, 0)'];
 
@@ -42,6 +43,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 }
 ```
+
+:::note
+For undo/redo, the `history` option should be enabled in the Editor. history is enabled by default.
+:::
 
 **component.html**
 

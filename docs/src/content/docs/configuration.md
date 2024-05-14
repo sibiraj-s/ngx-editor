@@ -49,11 +49,17 @@ NgxEditorModule.forRoot({
     align_justify: 'Justify',
     text_color: 'Text Color',
     background_color: 'Background Color',
+    horizontal_rule: 'Horizontal rule',
+    format_clear: 'Clear Formatting',
     insertLink: 'Insert Link',
     removeLink: 'Remove Link',
     insertImage: 'Insert Image',
+    indent: 'Increase Indent',
+    outdent: 'Decrease Indent',
     superscript: 'Superscript',
     subscript: 'Subscript',
+    undo: 'Undo',
+    redo: 'Redo',
 
     // pupups, forms, others...
     url: 'URL',

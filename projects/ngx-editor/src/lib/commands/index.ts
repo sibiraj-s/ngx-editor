@@ -9,6 +9,7 @@ import Image from './Image';
 import TextColor from './TextColor';
 import FormatClear from './FormatClear';
 import Indent from './Indent';
+import History from './History';
 
 export const STRONG = new Mark('strong');
 export const EM = new Mark('em');
@@ -38,3 +39,5 @@ export const INDENT = new Indent('increase');
 export const OUTDENT = new Indent('decrease');
 export const SUPERSCRIPT = new Mark('sup');
 export const SUBSCRIPT = new Mark('sub');
+export const UNDO = new History('undo');
+export const REDO = new History('redo');

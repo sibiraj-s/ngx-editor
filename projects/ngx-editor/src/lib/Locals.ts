@@ -32,6 +32,8 @@ export const defaults: Record<string, string | Observable<string>> = {
   outdent: 'Decrease Indent',
   superscript: 'Superscript',
   subscript: 'Subscript',
+  undo: 'Undo',
+  redo: 'Redo',
 
   // pupups, forms, others...
   url: 'URL',

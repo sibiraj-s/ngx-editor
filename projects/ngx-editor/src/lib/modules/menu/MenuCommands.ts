@@ -30,6 +30,8 @@ export const InsertCommands: Record<string, InsertCommand> = {
   format_clear: Commands.FORMAT_CLEAR,
   indent: Commands.INDENT,
   outdent: Commands.OUTDENT,
+  undo: Commands.UNDO,
+  redo: Commands.REDO,
 };
 
 export const Link = Commands.LINK;

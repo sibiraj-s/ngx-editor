@@ -38,6 +38,7 @@ export const TOOLBAR_FULL: Toolbar = [
   ['align_left', 'align_center', 'align_right', 'align_justify'],
   ['horizontal_rule', 'format_clear', 'indent', 'outdent'],
   ['superscript', 'subscript'],
+  ['undo', 'redo'],
 ];
 
 const DEFAULT_COLOR_PRESETS = [
@@ -96,6 +97,8 @@ export class MenuComponent implements OnInit {
     'format_clear',
     'indent',
     'outdent',
+    'undo',
+    'redo',
   ];
 
   iconContainerClass = ['NgxEditor__MenuItem', 'NgxEditor__MenuItem--IconContainer'];

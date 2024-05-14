@@ -24,6 +24,8 @@ import indent from './indent';
 import outdent from './outdent';
 import superscript from './superscript';
 import subscript from './subscript';
+import undo from './undo';
+import redo from './redo';
 
 const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
@@ -53,6 +55,8 @@ export const icons: Record<string, any> = {
   outdent,
   superscript,
   subscript,
+  undo,
+  redo,
   path: '<path></path>',
 };
 
