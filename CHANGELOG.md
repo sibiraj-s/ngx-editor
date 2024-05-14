@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## 17.5.0 (2024-05-14)
+
+#### Features
+
+- add support for more css variables ([df13034](https://github.com/sibiraj-s/ngx-editor/commit/df13034))
+
 ## v17.4.0 (2024-05-14)
 
 #### Features
