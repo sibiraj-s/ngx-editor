@@ -13,6 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v17.4.0 (2024-05-14)
+
+#### Features
+
+- add support for superscript, subscript ([65a95ff](https://github.com/sibiraj-s/ngx-editor/commit/65a95ff))
+- add undo, redo menu items ([dedff4a](https://github.com/sibiraj-s/ngx-editor/commit/dedff4a))
+
+#### Bug Fixes
+
+- fix regression on losing editor focus while selecting menu item ([89cca24](https://github.com/sibiraj-s/ngx-editor/commit/89cca24))
+
 ## v17.3.0 (2024-05-13)
 
 #### Features
