@@ -1,10 +1,23 @@
 :root {
   --ngx-editor-border-radius: 4px;
+  --ngx-editor-background-color: #fff;
+  --ngx-editor-text-color: #000;
+  --ngx-editor-placeholder-color: #6c757d;
+  --ngx-editor-border-color: rgba(0, 0, 0, 0.2);
+  --ngx-editor-wrapper-border-color: rgba(0, 0, 0, 0.2);
+
+  --ngx-editor-menubar-bg-color: #fff;
   --ngx-editor-menubar-padding: 3px;
   --ngx-editor-menubar-height: 30px;
 
+  --ngx-editor-blockquote-color: #ddd;
+  --ngx-editor-blockquote-border-width: 3px;
+
   --ngx-editor-icon-size: 30px;
+  --ngx-editor-popup-bg-color: #fff;
   --ngx-editor-popup-border-radius: 4px;
+  --ngx-editor-popup-shadow: rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
   --ngx-editor-menu-item-border-radius: 2px;
   --ngx-editor-menu-item-active-color: #1a73e8;
   --ngx-editor-menu-item-hover-bg-color: #f1f1f1;
@@ -17,15 +30,27 @@
   --ngx-editor-bubble-seperator-color: #fff;
 
   --ngx-editor-focus-ring-color: #5e9ed6;
+  --ngx-editor-error-color: red;
+  --ngx-editor-click-pointer: pointer;
 }
 
 $border-radius: var(--ngx-editor-border-radius);
+$editor-bg-color: var(--ngx-editor-background-color);
+$editor-text-color: var(--ngx-editor-text-color);
+$editor-border-color: var(--ngx-editor-border-color);
+$editor-wrapper-border-color: var(--ngx-editor-wrapper-border-color);
+$placeholder-color: var(--ngx-editor-placeholder-color);
+$blockquote-color: var(--ngx-editor-blockquote-color);
+$blockquote-border-width: var(--ngx-editor-blockquote-border-width);
 
+$menubar-bg-color: var(--ngx-editor-menubar-bg-color);
 $menubar-height: var(--ngx-editor-menubar-height);
 $menubar-padding: var(--ngx-editor-menubar-padding);
 
 $icon-size: var(--ngx-editor-icon-size);
+$popup-bg-color: var(--ngx-editor-popup-bg-color);
 $popup-border-radius: var(--ngx-editor-popup-border-radius);
+$popup-shadow: var(--ngx-editor-popup-shadow);
 
 $menu-item-border-radius: var(--ngx-editor-menu-item-border-radius);
 $menu-item-hover-bg-color: var(--ngx-editor-menu-item-hover-bg-color);
@@ -41,6 +66,8 @@ $menu-item-spacing: 5px;
 $menubar-text-padding: 0 $menu-item-spacing;
 
 $focus-ring-color: var(--ngx-editor-focus-ring-color);
+$error-color: var(--ngx-editor-error-color);
+$pointer-style: var(--ngx-editor-click-pointer, default);
 
 @mixin button-reset {
   all: unset;
@@ -48,11 +75,11 @@ $focus-ring-color: var(--ngx-editor-focus-ring-color);
 }
 
 .NgxEditor {
-  background: white;
-  color: black;
+  background: $editor-bg-color;
+  color: $editor-text-color;
   background-clip: padding-box;
   border-radius: $border-radius;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid $editor-border-color;
   position: relative;
 }
 
@@ -63,7 +90,7 @@ $focus-ring-color: var(--ngx-editor-focus-ring-color);
 
 .NgxEditor__Placeholder {
   &::before {
-    color: #6c757d;
+    color: $placeholder-color;
     opacity: 1;
     user-select: none;
     position: absolute;
@@ -91,7 +118,7 @@ $focus-ring-color: var(--ngx-editor-focus-ring-color);
 
   blockquote {
     padding-left: 16px;
-    border-left: 3px solid #ddd;
+    border-left: $blockquote-border-width solid $blockquote-color;
     margin-left: 0;
     margin-right: 0;
   }
@@ -103,13 +130,13 @@ $focus-ring-color: var(--ngx-editor-focus-ring-color);
 }
 
 .NgxEditor__Wrapper {
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  border: 1px solid $editor-wrapper-border-color;
   border-radius: $border-radius;
 
   .NgxEditor__MenuBar {
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid $editor-border-color;
   }
 
   .NgxEditor {
@@ -124,8 +151,15 @@ $focus-ring-color: var(--ngx-editor-focus-ring-color);
   flex-wrap: wrap;
   padding: $menubar-padding;
   cursor: default;
-  background-color: white;
+  background-color: $menubar-bg-color;
   gap: 0.25rem 0.1rem;
+}
+
+.NgxEditor__MenuBar {
+  button,
+  [role='button'] {
+    cursor: $pointer-style !important;
+  }
 }
 
 .NgxEditor__MenuItem {
@@ -214,9 +248,9 @@ $focus-ring-color: var(--ngx-editor-focus-ring-color);
   .NgxEditor__Dropdown--DropdownMenu {
     position: absolute;
     left: 0;
-    box-shadow: rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    box-shadow: $popup-shadow;
     border-radius: $popup-border-radius;
-    background-color: #fff;
+    background-color: $popup-bg-color;
     z-index: 10;
     width: 100%;
     top: calc(#{$menubar-height} + 2px);
@@ -276,9 +310,9 @@ $focus-ring-color: var(--ngx-editor-focus-ring-color);
   $self: &;
   position: absolute;
   top: calc(#{$menubar-height} + 2px);
-  box-shadow: rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: $popup-shadow;
   border-radius: $popup-border-radius;
-  background-color: white;
+  background-color: $popup-bg-color;
   z-index: 10;
   min-width: 192px;
   padding: 8px;
@@ -316,6 +350,6 @@ $focus-ring-color: var(--ngx-editor-focus-ring-color);
   font-size: 80%;
 
   &.NgxEditor__HelpText--Error {
-    color: red;
+    color: $error-color;
   }
 }
