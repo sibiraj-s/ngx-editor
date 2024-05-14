@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## 17.5.1 (2024-05-14)
+
+#### Bug Fixes
+
+- fix parsing data-indent attribute ([0feb81c](https://github.com/sibiraj-s/ngx-editor/commit/0feb81c))
+
 ## 17.5.0 (2024-05-14)
 
 #### Features
