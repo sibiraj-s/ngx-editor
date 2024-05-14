@@ -72,16 +72,24 @@ export class ImageComponent implements OnInit, OnDestroy {
     });
   }
 
-  onMouseDown(e: MouseEvent): void {
-    if (e.button !== 0) {
-      return;
-    }
-
+  togglePopup(): void {
     this.showPopup = !this.showPopup;
 
     if (this.showPopup) {
       this.fillForm();
     }
+  }
+
+  onTogglePopupMouseClick(e:MouseEvent): void {
+    if (e.button !== 0) {
+      return;
+    }
+
+    this.togglePopup();
+  }
+
+  onTogglePopupKeydown(): void {
+    this.togglePopup();
   }
 
   private fillForm(): void {

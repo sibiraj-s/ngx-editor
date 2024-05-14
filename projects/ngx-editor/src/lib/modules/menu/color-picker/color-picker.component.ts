@@ -65,35 +65,50 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     this.showPopup = false;
   }
 
-  togglePopup(e: MouseEvent): void {
+  togglePopup(): void {
+    this.showPopup = !this.showPopup;
+  }
+
+  onTogglePopupMouseClick(e: MouseEvent): void {
     e.preventDefault();
 
     if (e.button !== 0) {
       return;
     }
 
-    this.showPopup = !this.showPopup;
+    this.togglePopup();
   }
 
-  remove(e: MouseEvent): void {
-    e.preventDefault();
+  onTogglePopupKeydown(): void {
+    this.togglePopup();
+  }
+
+  remove(): void {
     const { state, dispatch } = this.editorView;
 
     this.command.remove()(state, dispatch);
     this.hidePopup();
   }
 
-  trackByIndex(index: number): number {
-    return index;
-  }
-
-  onColorSelect(e: MouseEvent, color: string): void {
+  onRemoveMouseClick(e: MouseEvent): void {
     e.preventDefault();
 
     if (e.button !== 0) {
       return;
     }
 
+    e.preventDefault();
+  }
+
+  onRemoveKeydown(): void {
+    this.remove();
+  }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  selectColor(color:string):void {
     const { state, dispatch } = this.editorView;
 
     if (this.type === 'text_color') {
@@ -109,6 +124,20 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     }
 
     this.hidePopup();
+  }
+
+  onColorSelectMouseClick(e: MouseEvent, color: string): void {
+    e.preventDefault();
+
+    if (e.button !== 0) {
+      return;
+    }
+
+    this.selectColor(color);
+  }
+
+  onColorSelectKeydown(color: string): void {
+    this.selectColor(color);
   }
 
   private update = (view: EditorView) => {

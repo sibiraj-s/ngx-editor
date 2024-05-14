@@ -8,7 +8,7 @@
         'NgxBubbleMenu__Icon--Active': this.activeItems.includes(item),
         'NgxEditor--Disabled': !this.execulableItems.includes(item)
       }"
-      (click)="onClick($event, item)"
+      (mousedown)="onClick($event, item)"
       [title]="getTitle(item) | async"
       [innerHTML]="getIcon(item)"
     ></button>

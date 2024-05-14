@@ -5,7 +5,9 @@
   [class.NgxEditor--Disabled]="disabled"
   [disabled]="disabled"
   [innerHTML]="html | sanitizeHtml"
-  (click)="toggle($event)"
+  (mousedown)="onMouseClick($event)"
+  (keydown.enter)="onKeydown()"
+  (keydown.space)="onKeydown()"
   [title]="getTitle(name) | async"
   [ariaLabel]="getTitle(name) | async"
 ></button>

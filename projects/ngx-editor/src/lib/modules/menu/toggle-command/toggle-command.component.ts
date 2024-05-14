@@ -32,16 +32,24 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
     private menuService: MenuService,
   ) { }
 
-  toggle(e: MouseEvent): void {
+  toggle(): void {
+    const { state, dispatch } = this.editorView;
+    const command = ToggleCommands[this.name];
+    command.toggle()(state, dispatch);
+  }
+
+  onMouseClick(e: MouseEvent): void {
     e.preventDefault();
 
     if (e.button !== 0) {
       return;
     }
 
-    const { state, dispatch } = this.editorView;
-    const command = ToggleCommands[this.name];
-    command.toggle()(state, dispatch);
+    this.toggle();
+  }
+
+  onKeydown(): void {
+    this.toggle();
   }
 
   update = (view: EditorView): void => {

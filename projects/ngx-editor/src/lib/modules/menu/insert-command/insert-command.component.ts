@@ -31,13 +31,21 @@ export class InsertCommandComponent implements OnInit, OnDestroy {
     private menuService: MenuService,
   ) { }
 
-  insert(e: MouseEvent): void {
+  onMouseClick(e: MouseEvent): void {
     e.preventDefault();
 
     if (e.button !== 0) {
       return;
     }
 
+    this.insert();
+  }
+
+  onKeydown(): void {
+    this.insert();
+  }
+
+  insert(): void {
     const { state, dispatch } = this.editorView;
     const command = InsertCommands[this.name];
     command.insert()(state, dispatch);

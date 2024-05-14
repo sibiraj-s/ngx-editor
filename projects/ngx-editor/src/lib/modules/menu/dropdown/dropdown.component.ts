@@ -51,20 +51,40 @@ export class DropdownComponent implements OnInit, OnDestroy {
     return this.ngxeService.locals.get(key);
   }
 
-  getIsDropdownActive(item:string): boolean {
+  getIsDropdownActive(item: string): boolean {
     return this.activeItem === item;
   }
 
-  toggleDropdown(e: MouseEvent): void {
-    e.preventDefault();
+  toggleDropdown(): void {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  onToggleDropdownMouseClick(e: MouseEvent): void {
+    e.preventDefault();
+
+    if (e.button !== 0) {
+      return;
+    }
+
+    this.toggleDropdown();
+  }
+
+  onToggleDropdownKeydown(): void {
+    this.toggleDropdown();
   }
 
   trackByIndex(index: number): number {
     return index;
   }
 
-  onClick(e: MouseEvent, item: TBHeadingItems): void {
+  selectItem(item: TBHeadingItems): void {
+    const command = ToggleCommands[item];
+    const { state, dispatch } = this.editorView;
+    command.toggle()(state, dispatch);
+    this.isDropdownOpen = false;
+  }
+
+  onDropdownItemMouseClick(e: MouseEvent, item: TBHeadingItems): void {
     e.preventDefault();
 
     // consider only left click
@@ -72,10 +92,13 @@ export class DropdownComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const command = ToggleCommands[item];
-    const { state, dispatch } = this.editorView;
-    command.toggle()(state, dispatch);
-    this.isDropdownOpen = false;
+    this.selectItem(item);
+  }
+
+  onDropdownItemKeydown(event: Event, item: TBHeadingItems): void {
+    const e = event as KeyboardEvent;
+    e.preventDefault();
+    this.selectItem(item);
   }
 
   private update = (view: EditorView) => {

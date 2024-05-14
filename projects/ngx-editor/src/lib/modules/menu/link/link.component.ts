@@ -64,7 +64,7 @@ export class LinkComponent implements OnInit, OnDestroy {
 
   @HostListener('document:mousedown', ['$event']) onDocumentClick(e: MouseEvent): void {
     if (!this.el.nativeElement.contains(e.target) && this.showPopup) {
-      this.hideForm();
+      this.hidePopup();
     }
   }
 
@@ -76,7 +76,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     return this.ngxeService.locals.get(key);
   }
 
-  private hideForm(): void {
+  private hidePopup(): void {
     this.showPopup = false;
     this.form.reset({
       href: '',
@@ -86,11 +86,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     this.text.enable();
   }
 
-  onMouseDown(e: MouseEvent): void {
-    if (e.button !== 0) {
-      return;
-    }
-
+  togglePopup(): void {
     const { state, dispatch } = this.editorView;
 
     if (this.isActive) {
@@ -102,6 +98,18 @@ export class LinkComponent implements OnInit, OnDestroy {
     if (this.showPopup) {
       this.setText();
     }
+  }
+
+  onTogglePopupMouseClick(e:MouseEvent): void {
+    if (e.button !== 0) {
+      return;
+    }
+
+    this.togglePopup();
+  }
+
+  onTogglePopupKeydown(): void {
+    this.togglePopup();
   }
 
   private setText = () => {
@@ -145,7 +153,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     } else {
       LinkCommand.update(attrs)(state, dispatch);
     }
-    this.hideForm();
+    this.hidePopup();
   }
 
   ngOnInit(): void {
