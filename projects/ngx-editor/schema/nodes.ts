@@ -31,11 +31,11 @@ const paragraph: NodeSpec = {
       getAttrs(dom: HTMLElement) {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
-        const indent = dom.getAttribute('indent') || null;
+        const indent = dom.getAttribute('data-indent') || null;
 
         return {
           align,
-          indent,
+          indent: parseInt(indent, 10) || null,
         };
       },
     },
@@ -72,8 +72,10 @@ const blockquote: NodeSpec = {
     {
       tag: 'blockquote',
       getAttrs(dom: HTMLElement) {
-        const indent = dom.getAttribute('indent') || null;
-        return { indent };
+        const indent = dom.getAttribute('data-indent') || null;
+        return {
+          indent: parseInt(indent, 10) || null,
+        };
       },
     },
   ],
@@ -128,12 +130,12 @@ const heading: NodeSpec = {
       getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
-        const indent = dom.getAttribute('indent') || null;
+        const indent = dom.getAttribute('data-indent') || null;
 
         return {
           level: 1,
           align,
-          indent,
+          indent: parseInt(indent, 10) || null,
         };
       },
     },
@@ -142,12 +144,12 @@ const heading: NodeSpec = {
       getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
-        const indent = dom.getAttribute('indent') || null;
+        const indent = dom.getAttribute('data-indent') || null;
 
         return {
           level: 2,
           align,
-          indent,
+          indent: parseInt(indent, 10) || null,
         };
       },
     },
@@ -156,12 +158,12 @@ const heading: NodeSpec = {
       getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
-        const indent = dom.getAttribute('indent') || null;
+        const indent = dom.getAttribute('data-indent') || null;
 
         return {
           level: 3,
           align,
-          indent,
+          indent: parseInt(indent, 10) || null,
         };
       },
     },
@@ -170,12 +172,12 @@ const heading: NodeSpec = {
       getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
-        const indent = dom.getAttribute('indent') || null;
+        const indent = dom.getAttribute('data-indent') || null;
 
         return {
           level: 4,
           align,
-          indent,
+          indent: parseInt(indent, 10) || null,
         };
       },
     },
@@ -184,12 +186,12 @@ const heading: NodeSpec = {
       getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
-        const indent = dom.getAttribute('indent') || null;
+        const indent = dom.getAttribute('data-indent') || null;
 
         return {
           level: 5,
           align,
-          indent,
+          indent: parseInt(indent, 10) || null,
         };
       },
     },
@@ -198,12 +200,12 @@ const heading: NodeSpec = {
       getAttrs(dom: HTMLElement): Record<string, any> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
-        const indent = dom.getAttribute('indent') || null;
+        const indent = dom.getAttribute('data-indent') || null;
 
         return {
           level: 6,
           align,
-          indent,
+          indent: parseInt(indent, 10) || null,
         };
       },
     },
