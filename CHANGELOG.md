@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## 17.5.4 (2024-05-15)
+
+#### Bug Fixes
+
+- restore curstor style to default (a regression introduced in v17.5.0) ([19d951b](https://github.com/sibiraj-s/ngx-editor/commit/19d951b))
+
 ## 17.5.3 (2024-05-15)
 
 #### Bug Fixes
