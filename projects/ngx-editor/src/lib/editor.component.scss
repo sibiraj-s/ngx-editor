@@ -31,7 +31,7 @@
 
   --ngx-editor-focus-ring-color: #5e9ed6;
   --ngx-editor-error-color: red;
-  --ngx-editor-click-pointer: pointer;
+  --ngx-editor-click-pointer: default;
 }
 
 $border-radius: var(--ngx-editor-border-radius);
@@ -150,15 +150,14 @@ $pointer-style: var(--ngx-editor-click-pointer, default);
   display: flex;
   flex-wrap: wrap;
   padding: $menubar-padding;
-  cursor: default;
   background-color: $menubar-bg-color;
   gap: 0.25rem 0.1rem;
 }
 
 .NgxEditor__MenuBar {
-  button,
-  [role='button'] {
-    cursor: $pointer-style !important;
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: $pointer-style;
   }
 }
 
