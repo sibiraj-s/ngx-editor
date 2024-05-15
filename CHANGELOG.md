@@ -13,11 +13,17 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## 17.5.3 (2024-05-15)
+
+#### Bug Fixes
+
+- fix toggle text align action via editor menu ([617ab34](https://github.com/sibiraj-s/ngx-editor/commit/617ab34))
+
 ## 17.5.2 (2024-05-15)
 
 #### Bug Fixes
 
-- fix remove color action ([0feb81c](https://github.com/sibiraj-s/ngx-editor/commit/0feb81c))
+- fix remove color action ([e3c60eb](https://github.com/sibiraj-s/ngx-editor/commit/e3c60eb))
 
 ## 17.5.1 (2024-05-14)
 
