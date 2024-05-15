@@ -19,7 +19,7 @@ body:
     validations:
       required: true
   - type: textarea
-    id: justify
+    id: additional-info
     attributes:
       label: Additional Information
       description: What resources (links, screenshots, etc.) do you have to assist this effort?
