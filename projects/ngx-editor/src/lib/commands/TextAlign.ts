@@ -25,7 +25,8 @@ class TextAlign implements ToggleCommand {
         const nodeType = node.type;
         if ([schema.nodes['paragraph'], schema.nodes['heading']].includes(nodeType)) {
           applicable = true;
-          tr.setNodeMarkup(pos, nodeType, { ...node.attrs, align: this.align });
+          const align = node.attrs['align'] === this.align ? null : this.align;
+          tr.setNodeMarkup(pos, nodeType, { ...node.attrs, align });
         }
         return true;
       });
