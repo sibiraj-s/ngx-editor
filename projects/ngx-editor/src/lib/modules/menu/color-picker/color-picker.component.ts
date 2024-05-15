@@ -98,6 +98,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     }
 
     e.preventDefault();
+    this.remove();
   }
 
   onRemoveKeydown(): void {
