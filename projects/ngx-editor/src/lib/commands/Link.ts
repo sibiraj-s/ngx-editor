@@ -1,10 +1,10 @@
-import { MarkType } from 'prosemirror-model';
-import { EditorState } from 'prosemirror-state';
-import { Command, toggleMark } from 'prosemirror-commands';
+import type { MarkType } from 'prosemirror-model';
+import type { EditorState, Command } from 'prosemirror-state';
+import { toggleMark } from 'prosemirror-commands';
 
 import { isMarkActive } from 'ngx-editor/helpers';
 import { removeLink } from 'ngx-editor/commands';
-import { Dispatch } from './types';
+import type { Dispatch } from './types';
 
 const defaultOptions = {
   strict: true,
@@ -21,7 +21,7 @@ class Link {
     return (state: EditorState, dispatch?: Dispatch): boolean => {
       const { schema, selection } = state;
 
-      const type: MarkType = schema.marks.link;
+      const type: MarkType = schema.marks['link'];
       if (!type) {
         return false;
       }
@@ -38,7 +38,7 @@ class Link {
     return (state: EditorState, dispatch?: Dispatch): boolean => {
       const { schema, tr } = state;
 
-      const type: MarkType = schema.marks.link;
+      const type: MarkType = schema.marks['link'];
       if (!type) {
         return false;
       }
@@ -49,7 +49,7 @@ class Link {
         target: attrs.target ?? '_blank',
       };
 
-      const node = schema.text(text, [schema.marks.link.create(linkAttrs)]);
+      const node = schema.text(text, [schema.marks['link'].create(linkAttrs)]);
 
       tr.replaceSelectionWith(node, false)
         .scrollIntoView();
@@ -69,7 +69,7 @@ class Link {
     }
 
     const { schema } = state;
-    const type = schema.marks.link;
+    const type = schema.marks['link'];
 
     if (!type) {
       return false;

@@ -1,34 +1,50 @@
-<div class="NgxEditor__MenuBar"
-  [ngClass]="{'NgxEditor--Disabled': disabled, 'NgxEditor__MenuBar--Reverse': dropdownPlacement === 'top'}">
-
+<div
+  class="NgxEditor__MenuBar"
+  [ngClass]="{ 'NgxEditor--Disabled': disabled, 'NgxEditor__MenuBar--Reverse': dropdownPlacement === 'top' }"
+>
   <ng-container *ngFor="let toolbarItem of toolbar; let lastToolbarItem = last; trackBy: trackByIndex">
     <ng-container *ngFor="let item of toolbarItem; let lastItem = last; trackBy: trackByIndex">
-
       <!-- toggle icons -->
       <ngx-toggle-command [toolbarItem]="item" [class]="iconContainerClass" *ngIf="toggleCommands.includes(item)">
       </ngx-toggle-command>
 
+      <ngx-insert-command [toolbarItem]="item" [class]="iconContainerClass" *ngIf="insertCommands.includes(item)">
+      </ngx-insert-command>
+
       <!-- link -->
-      <ngx-link [class]="iconContainerClass" *ngIf="item === 'link'"></ngx-link>
+      <ng-container *ngIf="isLinkItem(item)">
+        <ngx-link [class]="iconContainerClass" [options]="getLinkOptions(item)"></ngx-link>
+      </ng-container>
 
       <!-- image -->
-      <ngx-image [class]="iconContainerClass" *ngIf="item === 'image'">
-      </ngx-image>
+      <ngx-image [class]="iconContainerClass" *ngIf="item === 'image'"> </ngx-image>
 
       <!-- dropdown -->
       <ng-container *ngIf="isDropDown(item)">
-        <ngx-dropdown *ngFor="let dropdownItem of getDropdownItems(item) | keyvalue; trackBy: trackByIndex"
-          [class]="dropdownContainerClass" [group]="dropdownItem.key" [items]="dropdownItem.value">
+        <ngx-dropdown
+          *ngFor="let dropdownItem of getDropdownItems(item) | keyvalue; trackBy: trackByIndex"
+          [class]="dropdownContainerClass"
+          [group]="dropdownItem.key"
+          [items]="dropdownItem.value"
+        >
         </ngx-dropdown>
       </ng-container>
 
       <!-- text color picker -->
-      <ngx-color-picker [class]="iconContainerClass" *ngIf="item === 'text_color'" type="text_color"
-        [presets]="presets">
+      <ngx-color-picker
+        [class]="iconContainerClass"
+        *ngIf="item === 'text_color'"
+        type="text_color"
+        [presets]="presets"
+      >
       </ngx-color-picker>
       <!-- background color picker -->
-      <ngx-color-picker [class]="iconContainerClass" *ngIf="item === 'background_color'" type="background_color"
-        [presets]="presets">
+      <ngx-color-picker
+        [class]="iconContainerClass"
+        *ngIf="item === 'background_color'"
+        type="background_color"
+        [presets]="presets"
+      >
       </ngx-color-picker>
 
       <!-- seperator -->
@@ -40,5 +56,4 @@
   <ng-container *ngIf="customMenuRef">
     <ng-container [ngTemplateOutlet]="customMenuRef"></ng-container>
   </ng-container>
-
 </div>

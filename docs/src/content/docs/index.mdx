@@ -1,0 +1,39 @@
+---
+title: NgxEditor
+description: The Rich Text Editor for Angular, Built on ProseMirror
+template: splash
+hero:
+  tagline: The Rich Text Editor for Angular, Built on ProseMirror
+  image:
+    file: ../../assets/ngx-editor.svg
+  actions:
+    - text: Documentation
+      link: /ngx-editor/introduction/
+      icon: right-arrow
+      variant: primary
+    - text: Source Code
+      link: https://github.com/sibiraj-s/ngx-editor
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Next steps
+
+<CardGrid stagger>
+  <Card title="Built with prosemirror" icon="rocket">
+    The editor is built on top of [prosemirror](https://prosemirror.net/), which
+    enables more flexiblity using custom components, plugins, etc.
+  </Card>
+  <Card title="Easy to integrate" icon="pencil">
+    The editor is meant to be drop in and easy-to-use editor and can be easily
+    extended using prosemirror plugins to build any additional or missing
+    features
+  </Card>
+  <Card title="Install" icon="setting">
+    Run `npm install ngx-editor` to get started
+  </Card>
+  <Card title="Read the docs" icon="open-book">
+    Learn more in the [docs](/ngx-editor/introduction).
+  </Card>
+</CardGrid>

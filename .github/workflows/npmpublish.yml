@@ -1,7 +1,7 @@
 name: NPM Publish
 
 env:
-  NODE_VERSION: 16
+  NODE_VERSION: 20
 
 on:
   release:
@@ -11,15 +11,12 @@ jobs:
   test-lib:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{env.NODE_VERSION}}
           cache: npm
-
-      - run: node -v
-      - run: npm -v
 
       - run: npm ci
 
@@ -29,19 +26,22 @@ jobs:
   publish-npm:
     needs: test-lib
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{env.NODE_VERSION}}
           registry-url: https://registry.npmjs.org/
           cache: npm
 
-      - run: node -v
-      - run: npm -v
-
       - run: npm ci
+      - run: npm run build:lib
 
-      - run: npm run release
+      - run: npm publish dist/ngx-editor/ --provenance
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

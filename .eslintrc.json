@@ -8,12 +8,6 @@
       "files": [
         "*.ts"
       ],
-      "parserOptions": {
-        "project": [
-          "tsconfig.json"
-        ],
-        "createDefaultProgram": true
-      },
       "extends": [
         "pegasus",
         "pegasus/typescript",
@@ -25,20 +19,20 @@
           "error",
           4
         ],
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "prefix": "ngx",
-            "style": "kebab-case",
-            "type": "element"
-          }
-        ],
         "@angular-eslint/directive-selector": [
           "error",
           {
+            "type": "attribute",
             "prefix": "ngx",
-            "style": "camelCase",
-            "type": "attribute"
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "ngx",
+            "style": "kebab-case"
           }
         ]
       }
@@ -48,7 +42,8 @@
         "*.html"
       ],
       "extends": [
-        "plugin:@angular-eslint/template/recommended"
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
       ],
       "rules": {}
     },
@@ -61,6 +56,32 @@
       "rules": {
         "no-console": "off"
       }
+    },
+    {
+      "files": [
+        "docs/**/*.ts",
+        "docs/**/*.tsx"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ]
+      },
+      "extends": [
+        "pegasus",
+        "pegasus/typescript",
+        "pegasus/react"
+      ]
+    },
+    {
+      "files": [
+        "docs/**/*.js"
+      ],
+      "extends": [
+        "pegasus",
+        "pegasus/node",
+        "pegasus/browser"
+      ]
     }
   ]
 }

@@ -9,8 +9,8 @@ import { throttleTime } from 'rxjs/operators';
 import type { VirtualElement } from '@floating-ui/core';
 import { computePosition, detectOverflow, offset, autoPlacement } from '@floating-ui/dom';
 
+import { NgxEditorError } from 'ngx-editor/utils';
 import Editor from '../../../Editor';
-import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 
 interface BubblePosition {
   top: number;
@@ -23,7 +23,7 @@ interface BubblePosition {
   styleUrls: ['./floating-menu.component.scss'],
 })
 export class FloatingMenuComponent implements OnInit, OnDestroy {
-  constructor(public el: ElementRef<HTMLElement>, private sanitizeHTML: SanitizeHtmlPipe) { }
+  constructor(public el: ElementRef<HTMLElement>) { }
 
   @HostBinding('style') get display(): Partial<CSSStyleDeclaration> {
     return {
@@ -232,7 +232,7 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (!this.editor) {
-      throw new Error('NgxEditor: Required editor instance');
+      throw new NgxEditorError('Required editor instance to initialize floating menu component');
     }
 
     this.updateSubscription = this.editor.update

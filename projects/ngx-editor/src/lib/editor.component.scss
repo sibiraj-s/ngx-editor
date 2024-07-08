@@ -1,43 +1,96 @@
-$menubar-height: 30px;
-$icon-size: 30px;
+:root {
+  --ngx-editor-border-radius: 4px;
+  --ngx-editor-background-color: #fff;
+  --ngx-editor-text-color: #000;
+  --ngx-editor-placeholder-color: #6c757d;
+  --ngx-editor-border-color: rgba(0, 0, 0, 0.2);
+  --ngx-editor-wrapper-border-color: rgba(0, 0, 0, 0.2);
 
-$border-radius: 4px;
+  --ngx-editor-menubar-bg-color: #fff;
+  --ngx-editor-menubar-padding: 3px;
+  --ngx-editor-menubar-height: 30px;
 
-$blue: #1a73e8;
-$light-gray: #f1f1f1;
-$light-gray-1: #e8f0fe;
-$medium-gray: #ddd;
-$medium-gray-2: #ccc;
+  --ngx-editor-blockquote-color: #ddd;
+  --ngx-editor-blockquote-border-width: 3px;
 
-$menu-item-border-radius: 2px;
-$menu-item-hover-bg-color: $light-gray;
-$menu-item-active-bg-color: $light-gray-1;
-$menu-item-active-color: $blue;
+  --ngx-editor-icon-size: 30px;
+  --ngx-editor-popup-bg-color: #fff;
+  --ngx-editor-popup-border-radius: 4px;
+  --ngx-editor-popup-shadow: rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
-$dropdown-menu-hover-bg-color: $light-gray;
-$dropdown-item-active-bg-color: $light-gray;
+  --ngx-editor-menu-item-border-radius: 2px;
+  --ngx-editor-menu-item-active-color: #1a73e8;
+  --ngx-editor-menu-item-hover-bg-color: #f1f1f1;
+  --ngx-editor-menu-item-active-bg-color: #e8f0fe;
+  --ngx-editor-seperator-color: #ccc;
 
-$menubar-padding: 3px;
+  --ngx-editor-bubble-bg-color: #000;
+  --ngx-editor-bubble-text-color: #fff;
+  --ngx-editor-bubble-item-hover-color: #636262;
+  --ngx-editor-bubble-seperator-color: #fff;
+
+  --ngx-editor-focus-ring-color: #5e9ed6;
+  --ngx-editor-error-color: red;
+  --ngx-editor-click-pointer: default;
+}
+
+$border-radius: var(--ngx-editor-border-radius);
+$editor-bg-color: var(--ngx-editor-background-color);
+$editor-text-color: var(--ngx-editor-text-color);
+$editor-border-color: var(--ngx-editor-border-color);
+$editor-wrapper-border-color: var(--ngx-editor-wrapper-border-color);
+$placeholder-color: var(--ngx-editor-placeholder-color);
+$blockquote-color: var(--ngx-editor-blockquote-color);
+$blockquote-border-width: var(--ngx-editor-blockquote-border-width);
+
+$menubar-bg-color: var(--ngx-editor-menubar-bg-color);
+$menubar-height: var(--ngx-editor-menubar-height);
+$menubar-padding: var(--ngx-editor-menubar-padding);
+
+$icon-size: var(--ngx-editor-icon-size);
+$popup-bg-color: var(--ngx-editor-popup-bg-color);
+$popup-border-radius: var(--ngx-editor-popup-border-radius);
+$popup-shadow: var(--ngx-editor-popup-shadow);
+
+$menu-item-border-radius: var(--ngx-editor-menu-item-border-radius);
+$menu-item-hover-bg-color: var(--ngx-editor-menu-item-hover-bg-color);
+$menu-item-active-bg-color: var(--ngx-editor-menu-item-active-bg-color);
+$menu-item-active-color: var(--ngx-editor-menu-item-active-color);
+
+$dropdown-item-hover-bg-color: var(--ngx-editor-menu-item-hover-bg-color);
+$dropdown-item-active-bg-color: var(--ngx-editor-menu-item-active-bg-color);
+
+$seperator-color: var(--ngx-editor-seperator-color);
+
 $menu-item-spacing: 5px;
 $menubar-text-padding: 0 $menu-item-spacing;
 
+$focus-ring-color: var(--ngx-editor-focus-ring-color);
+$error-color: var(--ngx-editor-error-color);
+$pointer-style: var(--ngx-editor-click-pointer, default);
+
+@mixin button-reset {
+  all: unset;
+  appearance: none;
+}
+
 .NgxEditor {
-  background: white;
-  color: black;
+  background: $editor-bg-color;
+  color: $editor-text-color;
   background-clip: padding-box;
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: $border-radius;
+  border: 1px solid $editor-border-color;
   position: relative;
 }
 
 .NgxEditor--Disabled {
-  opacity: 0.5;
-  pointer-events: none;
+  opacity: 0.5 !important;
+  pointer-events: none !important;
 }
 
 .NgxEditor__Placeholder {
   &::before {
-    color: #6c757d;
+    color: $placeholder-color;
     opacity: 1;
     user-select: none;
     position: absolute;
@@ -45,7 +98,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
     content: attr(data-placeholder);
   }
 
-  &[data-align="right"] {
+  &[data-align='right'] {
     &::before {
       position: relative;
     }
@@ -57,7 +110,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
   white-space: pre-wrap;
   outline: none;
   font-variant-ligatures: none;
-  font-feature-settings: "liga" 0;
+  font-feature-settings: 'liga' 0;
 
   p {
     margin: 0 0 10px;
@@ -65,7 +118,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
 
   blockquote {
     padding-left: 16px;
-    border-left: 3px solid #ddd;
+    border-left: $blockquote-border-width solid $blockquote-color;
     margin-left: 0;
     margin-right: 0;
   }
@@ -77,13 +130,13 @@ $menubar-text-padding: 0 $menu-item-spacing;
 }
 
 .NgxEditor__Wrapper {
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  border-radius: 4px;
+  border: 1px solid $editor-wrapper-border-color;
+  border-radius: $border-radius;
 
   .NgxEditor__MenuBar {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    border-bottom: 1px solid $editor-border-color;
   }
 
   .NgxEditor {
@@ -97,45 +150,59 @@ $menubar-text-padding: 0 $menu-item-spacing;
   display: flex;
   flex-wrap: wrap;
   padding: $menubar-padding;
-  cursor: default;
-  background-color: white;
+  background-color: $menubar-bg-color;
+  gap: 0.25rem 0.1rem;
+}
+
+.NgxEditor__MenuBar {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: $pointer-style;
+  }
 }
 
 .NgxEditor__MenuItem {
-  border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   flex-shrink: 0;
 
-  &:hover {
-    background-color: $menu-item-hover-bg-color;
+  &.NgxEditor__MenuItem--IconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  &.NgxEditor__MenuItem--Icon {
+  .NgxEditor__MenuItem--Icon {
+    @include button-reset;
     height: $icon-size;
     width: $icon-size;
-    transition: 0.3s ease-in-out;
+    transition: 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $menu-item-border-radius;
 
     & + .NgxEditor__MenuItem--Icon {
       margin-left: 2px;
     }
-  }
 
-  .NgxEditor__MenuItem--IconContainer {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+    &:focus-visible {
+      outline: 1px solid $focus-ring-color;
+    }
+
+    &:hover {
+      background-color: $menu-item-hover-bg-color;
+    }
   }
 
   &.NgxEditor__MenuItem--Text {
     padding: $menubar-text-padding;
   }
 
-  &.NgxEditor__MenuItem--Active {
+  &.NgxEditor__MenuItem--Active,
+  .NgxEditor__MenuItem--Active {
     background-color: $menu-item-active-bg-color;
     color: $menu-item-active-color;
   }
@@ -149,10 +216,11 @@ $menubar-text-padding: 0 $menu-item-spacing;
   flex-shrink: 0;
 
   &:hover {
-    background-color: $dropdown-menu-hover-bg-color;
+    background-color: $dropdown-item-hover-bg-color;
   }
 
   .NgxEditor__Dropdown--Text {
+    @include button-reset;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -160,9 +228,13 @@ $menubar-text-padding: 0 $menu-item-spacing;
     height: 100%;
     width: 100%;
 
+    &:focus-visible {
+      outline: 1px solid $focus-ring-color;
+    }
+
     &::after {
       display: inline-block;
-      content: "";
+      content: '';
       margin-left: 24px;
       vertical-align: 4px;
       border-top: 4px solid;
@@ -175,38 +247,42 @@ $menubar-text-padding: 0 $menu-item-spacing;
   .NgxEditor__Dropdown--DropdownMenu {
     position: absolute;
     left: 0;
-    box-shadow: rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    border-radius: $border-radius;
-    background-color: #fff;
+    box-shadow: $popup-shadow;
+    border-radius: $popup-border-radius;
+    background-color: $popup-bg-color;
     z-index: 10;
     width: 100%;
     top: calc(#{$menubar-height} + 2px);
+    display: flex;
+    flex-direction: column;
   }
 
   .NgxEditor__Dropdown--Item {
+    @include button-reset;
     padding: 8px;
     white-space: nowrap;
     color: inherit;
 
+    &:focus-visible {
+      outline: 1px solid $focus-ring-color;
+    }
+
     &:hover {
-      background-color: darken($dropdown-item-active-bg-color, 2%);
+      background-color: $dropdown-item-hover-bg-color;
     }
   }
 
-  &.NgxEditor__Dropdown--Selected,
-  &.NgxEditor__Dropdown--Open {
+  .NgxEditor__Dropdown--Selected,
+  .NgxEditor__Dropdown--Open {
+    color: $menu-item-active-color;
     background-color: $menu-item-active-bg-color;
-
-    .NgxEditor__Dropdown--Text {
-      color: $menu-item-active-color;
-    }
   }
 
   .NgxEditor__Dropdown--Active {
     background-color: $dropdown-item-active-bg-color;
 
     &:hover {
-      background-color: darken($dropdown-item-active-bg-color, 4%);
+      background-color: $dropdown-item-hover-bg-color;
     }
   }
 }
@@ -233,9 +309,9 @@ $menubar-text-padding: 0 $menu-item-spacing;
   $self: &;
   position: absolute;
   top: calc(#{$menubar-height} + 2px);
-  box-shadow: rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  border-radius: $border-radius;
-  background-color: white;
+  box-shadow: $popup-shadow;
+  border-radius: $popup-border-radius;
+  background-color: $popup-bg-color;
   z-index: 10;
   min-width: 192px;
   padding: 8px;
@@ -247,8 +323,8 @@ $menubar-text-padding: 0 $menu-item-spacing;
       margin-bottom: 3px;
     }
 
-    input[type="text"],
-    input[type="url"] {
+    input[type='text'],
+    input[type='url'] {
       padding: 2px 4px;
     }
   }
@@ -265,7 +341,7 @@ $menubar-text-padding: 0 $menu-item-spacing;
 }
 
 .NgxEditor__Seperator {
-  border-left: 1px solid $medium-gray-2;
+  border-left: 1px solid $seperator-color;
   margin: 0 $menu-item-spacing;
 }
 
@@ -273,6 +349,6 @@ $menubar-text-padding: 0 $menu-item-spacing;
   font-size: 80%;
 
   &.NgxEditor__HelpText--Error {
-    color: red;
+    color: $error-color;
   }
 }

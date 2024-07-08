@@ -1,4 +1,4 @@
-import { DOMOutputSpec, Mark, MarkSpec } from 'prosemirror-model';
+import { Mark, MarkSpec } from 'prosemirror-model';
 
 // :: MarkSpec A link. Has `href` and `title` attributes. `title`
 // defaults to the empty string. Rendered and parsed as an `<a>`
@@ -13,7 +13,7 @@ const link: MarkSpec = {
   parseDOM: [
     {
       tag: 'a[href]',
-      getAttrs(dom: HTMLElement): Record<string, any> {
+      getAttrs(dom) {
         return {
           href: dom.getAttribute('href'),
           title: dom.getAttribute('title'),
@@ -22,7 +22,7 @@ const link: MarkSpec = {
       },
     },
   ],
-  toDOM(node): DOMOutputSpec {
+  toDOM(node) {
     const { href, title, target } = node.attrs;
     return ['a', { href, title, target }, 0];
   },
@@ -36,7 +36,7 @@ const em: MarkSpec = {
     { tag: 'em' },
     { style: 'font-style=italic' },
   ],
-  toDOM(): DOMOutputSpec {
+  toDOM() {
     return ['em', 0];
   },
 };
@@ -51,18 +51,18 @@ const strong: MarkSpec = {
     // tags with a font-weight normal.
     {
       tag: 'b',
-      getAttrs: (dom: HTMLElement): Record<string, any> => {
+      getAttrs: (dom: HTMLElement) => {
         return dom.style.fontWeight !== 'normal' && null;
       },
     },
     {
       style: 'font-weight',
-      getAttrs: (value: string): Record<string, any> => {
+      getAttrs: (value: string) => {
         return (/^(?:bold(?:er)?|[5-9]\d{2,})$/).test(value) && null;
       },
     },
   ],
-  toDOM(): DOMOutputSpec {
+  toDOM() {
     return ['strong', 0];
   },
 };
@@ -72,7 +72,7 @@ const code: MarkSpec = {
   parseDOM: [
     { tag: 'code' },
   ],
-  toDOM(): DOMOutputSpec {
+  toDOM() {
     return ['code', 0];
   },
 };
@@ -87,7 +87,7 @@ const u: MarkSpec = {
       consuming: false,
     },
   ],
-  toDOM(): DOMOutputSpec {
+  toDOM() {
     return ['u', 0];
   },
 };
@@ -100,7 +100,7 @@ const s: MarkSpec = {
     { tag: 'strike' },
     { style: 'text-decoration=line-through' },
   ],
-  toDOM(): DOMOutputSpec {
+  toDOM() {
     return ['s', 0];
   },
 };
@@ -114,12 +114,12 @@ const textColor: MarkSpec = {
   parseDOM: [
     {
       style: 'color',
-      getAttrs: (value: string): Record<string, any> => {
+      getAttrs: (value: string) => {
         return { color: value };
       },
     },
   ],
-  toDOM(mark: Mark): DOMOutputSpec {
+  toDOM(mark: Mark) {
     const { color } = mark.attrs;
     return ['span', { style: `color:${color};` }, 0];
   },
@@ -134,14 +134,36 @@ const textBackgroundColor: MarkSpec = {
   parseDOM: [
     {
       style: 'background-color',
-      getAttrs: (value: string): Record<string, any> => {
+      getAttrs: (value: string) => {
         return { backgroundColor: value };
       },
     },
   ],
-  toDOM(mark: Mark): DOMOutputSpec {
+  toDOM(mark: Mark) {
     const { backgroundColor } = mark.attrs;
     return ['span', { style: `background-color:${backgroundColor};` }, 0];
+  },
+};
+
+const sup: MarkSpec = {
+  attrs: {},
+  parseDOM: [
+    { tag: 'sup' },
+    { style: 'vertical-align=super' },
+  ],
+  toDOM() {
+    return ['sup', 0];
+  },
+};
+
+const sub: MarkSpec = {
+  attrs: {},
+  parseDOM: [
+    { tag: 'sub' },
+    { style: 'vertical-align=sub' },
+  ],
+  toDOM() {
+    return ['sub', 0];
   },
 };
 
@@ -154,6 +176,8 @@ const marks = {
   s,
   text_color: textColor,
   text_background_color: textBackgroundColor,
+  sup,
+  sub,
 };
 
 export default marks;

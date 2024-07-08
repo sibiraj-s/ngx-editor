@@ -1,16 +1,38 @@
-<div class="NgxEditor__MenuItem--IconContainer" [innerHTML]="icon | sanitizeHtml" (mousedown)="togglePopup($event)"
-  [title]="title">
-</div>
+<button
+  type="button"
+  class="NgxEditor__MenuItem--Icon"
+  [class.NgxEditor__MenuItem--Active]="isActive || showPopup"
+  [class.NgxEditor--Disabled]="!canExecute"
+  [disabled]="!canExecute"
+  [innerHTML]="icon | sanitizeHtml"
+  (mousedown)="onTogglePopupMouseClick($event)"
+  (keydown.enter)="onTogglePopupKeydown()"
+  (keydown.space)="onTogglePopupKeydown()"
+  [title]="title | async"
+  [ariaLabel]="title | async"
+></button>
 
 <div *ngIf="showPopup" class="NgxEditor__Popup">
   <div *ngFor="let colorGroup of presets; trackBy: trackByIndex" class="NgxEditor__ColorContainer">
-    <button class="NgxEditor__Color" *ngFor="let color of colorGroup; trackBy: trackByIndex"
-      [ngStyle]="{backgroundColor: color, color:getContrastYIQ(color)}" [title]="color"
-      (mousedown)="onColorSelect($event, color)"
-      [ngClass]="{'NgxEditor__Color--Active': activeColors.includes(color)}"></button>
+    <button
+      class="NgxEditor__Color"
+      *ngFor="let color of colorGroup; trackBy: trackByIndex"
+      [ngStyle]="{ backgroundColor: color, color: getContrastYIQ(color) }"
+      [title]="color"
+      (mousedown)="onColorSelectMouseClick($event, color)"
+      (keydown.enter)="onColorSelectKeydown(color)"
+      (keydown.space)="onColorSelectKeydown(color)"
+      [ngClass]="{ 'NgxEditor__Color--Active': activeColors.includes(color) }"
+    ></button>
   </div>
 
-  <button class="NgxEditor__MenuItem--Button" (mousedown)="remove($event)" [disabled]="!isActive">
-    {{getLabel('remove')}}
+  <button
+    class="NgxEditor__MenuItem--Button"
+    (mousedown)="onRemoveMouseClick($event)"
+    (keydown.enter)="onRemoveKeydown()"
+    (keydown.space)="onRemoveKeydown()"
+    [disabled]="!isActive"
+  >
+    {{ getLabel('remove') | async }}
   </button>
 </div>

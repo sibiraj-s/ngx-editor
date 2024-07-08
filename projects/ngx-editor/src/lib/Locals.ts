@@ -1,4 +1,6 @@
-const defaults: Record<string, string> = {
+import { Observable, isObservable, of } from 'rxjs';
+
+export const defaults: Record<string, string | Observable<string>> = {
   // menu
   bold: 'Bold',
   italic: 'Italic',
@@ -21,9 +23,17 @@ const defaults: Record<string, string> = {
   align_justify: 'Justify',
   text_color: 'Text Color',
   background_color: 'Background Color',
+  horizontal_rule: 'Horizontal rule',
+  format_clear: 'Clear Formatting',
   insertLink: 'Insert Link',
   removeLink: 'Remove Link',
   insertImage: 'Insert Image',
+  indent: 'Increase Indent',
+  outdent: 'Decrease Indent',
+  superscript: 'Superscript',
+  subscript: 'Subscript',
+  undo: 'Undo',
+  redo: 'Redo',
 
   // pupups, forms, others...
   url: 'URL',
@@ -33,6 +43,7 @@ const defaults: Record<string, string> = {
   altText: 'Alt Text',
   title: 'Title',
   remove: 'Remove',
+  enterValidUrl: 'Please enter a valid URL',
 };
 
 export type LocalsKeys = keyof typeof defaults;
@@ -40,12 +51,16 @@ export type LocalsKeys = keyof typeof defaults;
 class Locals {
   locals = defaults;
 
-  constructor(newLocals: Partial<Record<LocalsKeys, string>> = {}) {
+  constructor(newLocals: Partial<Record<LocalsKeys, string | Observable<string>>> = {}) {
     this.locals = { ...defaults, ...newLocals };
   }
 
-  get = (key: string):string => {
-    return this.locals[key] ?? '';
+  get = (key: string): Observable<string> => {
+    const value = this.locals[key];
+    if (value) {
+      return isObservable(value) ? value : of(value);
+    }
+    return of('');
   };
 }
 

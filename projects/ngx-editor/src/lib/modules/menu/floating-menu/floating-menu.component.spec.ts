@@ -39,7 +39,7 @@ describe('FloatingMenuComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render bubble menu by defaault', () => {
+  it('should render bubble menu by default', () => {
     expect(component).toBeTruthy();
 
     const compiled: DebugElement = fixture.debugElement;

@@ -1,7 +1,7 @@
 name: Tests
 
 env:
-  NODE_VERSION: 16
+  NODE_VERSION: 20
 
 on:
   push:
@@ -16,16 +16,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Using node v-${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{env.NODE_VERSION}}
           cache: npm
-
-      - run: node -v
-      - run: npm -v
 
       - name: NPM Install
         run: npm ci

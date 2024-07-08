@@ -1,14 +1,14 @@
 import {
-  Component, ElementRef, HostBinding,
+  Component, ElementRef,
   HostListener, OnDestroy, Input, OnInit,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
-import Icon from '../../../icons';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { TextColor, TextBackgroundColor } from '../MenuCommands';
+import { HTML } from '../../../trustedTypesUtil';
 
 type Command = typeof TextColor | typeof TextBackgroundColor;
 
@@ -27,20 +27,12 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     private ngxeService: NgxEditorService,
   ) { }
 
-  @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
-    return this.isActive || this.showPopup;
-  }
-
-  @HostBinding('class.NgxEditor--Disabled') get disabled(): boolean {
-    return !this.canExecute;
-  }
-
-  get title(): string {
+  get title(): Observable<string> {
     return this.getLabel(this.type === 'text_color' ? 'text_color' : 'background_color');
   }
 
-  get icon(): string {
-    return Icon.get(this.type === 'text_color' ? 'text_color' : 'color_fill');
+  get icon(): HTML {
+    return this.ngxeService.getIcon(this.type === 'text_color' ? 'text_color' : 'color_fill');
   }
 
   private get command(): Command {
@@ -52,7 +44,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
   showPopup = false;
   isActive = false;
   activeColors: string[] = [];
-  private canExecute = true;
+  canExecute = true;
 
   getContrastYIQ(hexcolor: string): string {
     const color = hexcolor.replace('#', '');
@@ -73,35 +65,51 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     this.showPopup = false;
   }
 
-  togglePopup(e: MouseEvent): void {
+  togglePopup(): void {
+    this.showPopup = !this.showPopup;
+  }
+
+  onTogglePopupMouseClick(e: MouseEvent): void {
     e.preventDefault();
 
     if (e.button !== 0) {
       return;
     }
 
-    this.showPopup = !this.showPopup;
+    this.togglePopup();
   }
 
-  remove(e: MouseEvent): void {
-    e.preventDefault();
+  onTogglePopupKeydown(): void {
+    this.togglePopup();
+  }
+
+  remove(): void {
     const { state, dispatch } = this.editorView;
 
     this.command.remove()(state, dispatch);
     this.hidePopup();
   }
 
-  trackByIndex(index: number): number {
-    return index;
-  }
-
-  onColorSelect(e: MouseEvent, color: string): void {
+  onRemoveMouseClick(e: MouseEvent): void {
     e.preventDefault();
 
     if (e.button !== 0) {
       return;
     }
 
+    e.preventDefault();
+    this.remove();
+  }
+
+  onRemoveKeydown(): void {
+    this.remove();
+  }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  selectColor(color:string):void {
     const { state, dispatch } = this.editorView;
 
     if (this.type === 'text_color') {
@@ -119,6 +127,20 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     this.hidePopup();
   }
 
+  onColorSelectMouseClick(e: MouseEvent, color: string): void {
+    e.preventDefault();
+
+    if (e.button !== 0) {
+      return;
+    }
+
+    this.selectColor(color);
+  }
+
+  onColorSelectKeydown(color: string): void {
+    this.selectColor(color);
+  }
+
   private update = (view: EditorView) => {
     const { state } = view;
     this.canExecute = this.command.canExecute(state);
@@ -130,7 +152,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     }
   };
 
-  getLabel(key: string): string {
+  getLabel(key: string): Observable<string> {
     return this.ngxeService.locals.get(key);
   }
 

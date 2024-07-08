@@ -5,7 +5,6 @@ import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule } from '@a
 
 import Editor from './Editor';
 import { NgxEditorComponent } from './editor.component';
-import { FloatingMenuComponent } from './modules/menu/floating-menu/floating-menu.component';
 
 describe('NgxEditorComponent', () => {
   let component: NgxEditorComponent;
@@ -15,7 +14,6 @@ describe('NgxEditorComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         NgxEditorComponent,
-        FloatingMenuComponent,
       ],
     });
 

@@ -1,4 +1,4 @@
-import { EditorState, Transaction } from 'prosemirror-state';
+import { EditorState, Selection, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import {
   chainCommands, createParagraphNear, liftEmptyBlock,
@@ -6,6 +6,7 @@ import {
 } from 'prosemirror-commands';
 import { DOMParser } from 'prosemirror-model';
 
+import { NgxEditorError } from 'ngx-editor/utils';
 import MarkCommand from './commands/Mark';
 import ListCommand from './commands/ListItem';
 import LinkCommand, { LinkAttrs } from './commands/Link';
@@ -13,6 +14,10 @@ import HeadingCommand, { HeadingLevels } from './commands/Heading';
 import ImageCommand, { ImageAttrs } from './commands/Image';
 import TextColorCommand from './commands/TextColor';
 import TextAlignCommand, { Align } from './commands/TextAlign';
+import IndentCommand from './commands/Indent';
+
+import { HTML } from './trustedTypesUtil';
+import { isString } from './stringUtil';
 
 const execMark = (name: string, toggle = false) => {
   return (state: EditorState, dispatch: (tr: Transaction) => void) => {
@@ -26,6 +31,8 @@ const execMark = (name: string, toggle = false) => {
   };
 };
 
+type FocusPosition = 'start' | 'end';
+
 class EditorCommands {
   private view: EditorView;
   private state: EditorState;
@@ -33,7 +40,7 @@ class EditorCommands {
 
   constructor(view: EditorView) {
     if (!view) {
-      throw Error('NgxEditor: Required view to initialize commands.');
+      throw new NgxEditorError('Required view to initialize commands.');
     }
 
     this.view = view;
@@ -67,7 +74,14 @@ class EditorCommands {
     return true;
   }
 
-  focus(): this {
+  focus(position: FocusPosition = 'end'): this {
+    const selection = position === 'start'
+      ? Selection.atStart(this.state.doc)
+      : Selection.atEnd(this.state.doc);
+
+    this.tr.setSelection(selection);
+    this.applyTrx();
+
     this.view.focus();
     return this;
   }
@@ -150,6 +164,16 @@ class EditorCommands {
     return this;
   }
 
+  superscript(): this {
+    execMark('sup')(this.state, this.dispatch);
+    return this;
+  }
+
+  subscript(): this {
+    execMark('sub')(this.state, this.dispatch);
+    return this;
+  }
+
   toggleOrderedList(): this {
     const command = new ListCommand(false);
     command.toggle()(this.state, this.dispatch);
@@ -216,17 +240,29 @@ class EditorCommands {
     return this;
   }
 
-  insertHTML(html: string): this {
+  insertHTML(html: HTML): this {
     const { selection, schema, tr } = this.state;
     const { from, to } = selection;
 
     const element = document.createElement('div');
-    element.innerHTML = html.trim();
+    element.innerHTML = isString(html) ? (html as string).trim() : html as any;
     const slice = DOMParser.fromSchema(schema).parseSlice(element);
 
     const transaction = tr.replaceRange(from, to, slice);
     this.applyTrx(transaction);
 
+    return this;
+  }
+
+  indent(): this {
+    const command = new IndentCommand('increase');
+    command.insert()(this.state, this.dispatch);
+    return this;
+  }
+
+  outdent(): this {
+    const command = new IndentCommand('decrease');
+    command.insert()(this.state, this.dispatch);
     return this;
   }
 }

@@ -2,46 +2,44 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
     "strict": false,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
+    "skipLibCheck": true,
     "paths": {
       "ngx-editor": [
-        "dist/ngx-editor/ngx-editor",
-        "dist/ngx-editor"
+        "./dist/ngx-editor"
       ],
       "ngx-editor/utils": [
-        "dist/ngx-editor/ngx-editor/utils",
-        "dist/ngx-editor/utils"
-      ],
-      "ngx-editor/helpers": [
-        "dist/ngx-editor/ngx-editor/helpers",
-        "dist/ngx-editor/helpers"
+        "./dist/ngx-editor/utils"
       ],
       "ngx-editor/schema": [
-        "dist/ngx-editor/ngx-editor/schema",
-        "dist/ngx-editor/schema"
+        "./dist/ngx-editor/schema"
       ],
       "ngx-editor/commands": [
-        "dist/ngx-editor/ngx-editor/commands",
-        "dist/ngx-editor/commands"
-      ]
+        "./dist/ngx-editor/commands"
+      ],
+      "ngx-editor/input-rules": [
+        "./dist/ngx-editor/input-rules"
+      ],
+      "ngx-editor/helpers": [
+        "./dist/ngx-editor/helpers"
+      ],
     },
+    "esModuleInterop": true,
+    "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2017",
-    "module": "es2020",
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
     "lib": [
-      "es2020",
+      "ES2022",
       "dom"
     ]
   },

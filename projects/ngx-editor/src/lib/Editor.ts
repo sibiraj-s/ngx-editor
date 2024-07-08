@@ -1,4 +1,4 @@
-import { Schema } from 'prosemirror-model';
+import { ParseOptions, Schema } from 'prosemirror-model';
 import { EditorState, Plugin, Transaction } from 'prosemirror-state';
 import { EditorProps, EditorView } from 'prosemirror-view';
 import { Observable, Subject } from 'rxjs';
@@ -9,9 +9,10 @@ import EditorCommands from './EditorCommands';
 import defautlSchema from './schema';
 import { parseContent } from './parsers';
 import getDefaultPlugins from './defaultPlugins';
+import { HTML } from './trustedTypesUtil';
 
 type JSONDoc = Record<string, any>;
-type Content = string | null | JSONDoc;
+type Content = HTML | null | JSONDoc;
 
 interface Options {
   content?: Content;
@@ -21,8 +22,11 @@ interface Options {
   schema?: Schema;
   plugins?: Plugin[];
   nodeViews?: EditorProps['nodeViews'];
-  attributes?: Record<string, string>;
+  attributes?: EditorProps['attributes'];
   features?: EditorFeatures;
+  handleScrollToSelection?: EditorProps['handleScrollToSelection'];
+  linkValidationPattern?: string;
+  parseOptions?:ParseOptions;
 }
 
 interface EditorFeatures {
@@ -45,6 +49,8 @@ const DEFAULT_OPTIONS: Options = {
   nodeViews: {},
   attributes: {},
   features: defaultFeatures,
+  handleScrollToSelection: null,
+  linkValidationPattern: '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)|(mailto:.*[@].*)',
 };
 
 class Editor {
@@ -69,6 +75,10 @@ class Editor {
 
   get schema(): Schema {
     return this.options.schema || defautlSchema;
+  }
+
+  get linkValidationPattern(): string {
+    return this.options.linkValidationPattern;
   }
 
   get commands(): EditorCommands {
@@ -98,10 +108,10 @@ class Editor {
     const { content = null, nodeViews } = options;
     const { history = true, keyboardShortcuts = true, inputRules = true } = options;
 
-    const doc = parseContent(content, schema);
+    const doc = parseContent(content, schema, options.parseOptions);
 
     const plugins: Plugin[] = options.plugins ?? [];
-    const attributes: Record<string, string> = options.attributes ?? {};
+    const attributes: EditorProps['attributes'] = options.attributes ?? {};
 
     const defaultPlugins = getDefaultPlugins(schema, {
       history,
@@ -118,6 +128,7 @@ class Editor {
       nodeViews,
       dispatchTransaction: this.handleTransactions.bind(this),
       attributes,
+      handleScrollToSelection: options.handleScrollToSelection,
     });
   }
 
@@ -129,7 +140,7 @@ class Editor {
     const { state } = this.view;
     const { tr, doc } = state;
 
-    const newDoc = parseContent(content, this.schema);
+    const newDoc = parseContent(content, this.schema, this.options.parseOptions);
 
     tr.replaceWith(0, state.doc.content.size, newDoc);
 

@@ -5,11 +5,14 @@ import {
   OnChanges, Injector,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
+import { NgxEditorError } from 'ngx-editor/utils';
 import * as plugins from './plugins';
-import { toHTML } from './parsers';
+import { emptyDoc, toHTML } from './parsers';
 import Editor from './Editor';
+import { HTML, isHtml } from './trustedTypesUtil';
 
 @Component({
   selector: 'ngx-editor',
@@ -22,7 +25,6 @@ import Editor from './Editor';
   }],
   encapsulation: ViewEncapsulation.None,
 })
-
 export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
   constructor(
     private renderer: Renderer2,
@@ -39,16 +41,16 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   @Output() focusOut = new EventEmitter<void>();
   @Output() focusIn = new EventEmitter<void>();
 
-  private subscriptions: Subscription[] = [];
+  private unsubscribe: Subject<void> = new Subject();
   private onChange: (value: Record<string, any> | string) => void = () => { /** */ };
   private onTouched: () => void = () => { /** */ };
 
-  writeValue(value: Record<string, any> | string | null): void {
-    if (!this.outputFormat && typeof value === 'string') {
+  writeValue(value: Record<string, any> | HTML | null): void {
+    if (!this.outputFormat && isHtml(value)) {
       this.outputFormat = 'html';
     }
 
-    this.editor.setContent(value ?? '');
+    this.editor.setContent(value ?? emptyDoc);
   }
 
   registerOnChange(fn: () => void): void {
@@ -95,10 +97,6 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
       this.focusIn.emit();
     }));
 
-    this.editor.registerPlugin(plugins.focus(() => {
-      this.focusIn.emit();
-    }));
-
     this.editor.registerPlugin(plugins.blur(() => {
       this.focusOut.emit();
       this.onTouched();
@@ -115,29 +113,28 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
   ngOnInit(): void {
     if (!this.editor) {
-      throw new Error('NgxEditor: Required editor instance');
+      throw new NgxEditorError('Required editor instance for initializing editor component');
     }
 
     this.registerPlugins();
 
     this.renderer.appendChild(this.ngxEditor.nativeElement, this.editor.view.dom);
 
-    const contentChangeSubscription = this.editor.valueChanges.subscribe((jsonDoc) => {
-      this.handleChange(jsonDoc);
-    });
-
-    this.subscriptions.push(contentChangeSubscription);
+    this.editor.valueChanges
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((jsonDoc) => {
+        this.handleChange(jsonDoc);
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes?.['placeholder'] && !changes['placeholder'].isFirstChange()) {
+    if (changes['placeholder'] && !changes['placeholder'].isFirstChange()) {
       this.setPlaceholder(changes['placeholder'].currentValue);
     }
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

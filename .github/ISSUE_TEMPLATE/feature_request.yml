@@ -1,13 +1,29 @@
 name: Feature Request
 description: Submit a feature request
-title: "[Feature request]: "
+title: '[Feature request]: '
 body:
   - type: textarea
     id: request
     attributes:
-      label: Proposal
-      description: If you have a solution in mind, please explain that too.
+      label: Description
+      description: Please describe the feature you would like to see.
       placeholder: Explain your proposal
+    validations:
+      required: true
+  - type: textarea
+    id: justify
+    attributes:
+      label: Problem Statement/Justification
+      description: If you have a solution in mind, please explain that too.
+      placeholder: Why do you need this feature?
+    validations:
+      required: true
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: What resources (links, screenshots, etc.) do you have to assist this effort?
+      placeholder: Any additional information you would like to provide?
     validations:
       required: true
   - type: dropdown
@@ -17,3 +33,5 @@ body:
       options:
         - 'Yes'
         - 'No'
+    validations:
+      required: true

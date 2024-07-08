@@ -17,8 +17,6 @@ describe('AppComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         NgxEditorModule,
-      ],
-      declarations: [
         AppComponent,
         CustomMenuComponent,
       ],

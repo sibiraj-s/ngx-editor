@@ -3,8 +3,8 @@ import {
   OnInit, TemplateRef,
 } from '@angular/core';
 
-import { Toolbar, ToolbarItem, ToolbarDropdown } from '../../types';
-
+import { NgxEditorError } from 'ngx-editor/utils';
+import { Toolbar, ToolbarItem, ToolbarDropdown, ToolbarLink, ToolbarLinkOptions } from '../../types';
 import { MenuService } from './menu.service';
 import Editor from '../../Editor';
 
@@ -17,6 +17,7 @@ export const DEFAULT_TOOLBAR: Toolbar = [
   ['link', 'image'],
   ['text_color', 'background_color'],
   ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ['format_clear'],
 ];
 
 export const TOOLBAR_MINIMAL: Toolbar = [
@@ -24,6 +25,20 @@ export const TOOLBAR_MINIMAL: Toolbar = [
   [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
   ['link', 'image'],
   ['text_color', 'background_color'],
+];
+
+export const TOOLBAR_FULL: Toolbar = [
+  ['bold', 'italic'],
+  ['code', 'blockquote'],
+  ['underline', 'strike'],
+  ['ordered_list', 'bullet_list'],
+  [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+  ['link', 'image'],
+  ['text_color', 'background_color'],
+  ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ['horizontal_rule', 'format_clear', 'indent', 'outdent'],
+  ['superscript', 'subscript'],
+  ['undo', 'redo'],
 ];
 
 const DEFAULT_COLOR_PRESETS = [
@@ -60,7 +75,7 @@ export class MenuComponent implements OnInit {
   @Input() customMenuRef: TemplateRef<any> | null = null;
   @Input() dropdownPlacement: 'top' | 'bottom' = 'bottom';
 
-  toggleCommands: any[] = [
+  toggleCommands: ToolbarItem[] = [
     'bold',
     'italic',
     'underline',
@@ -73,9 +88,20 @@ export class MenuComponent implements OnInit {
     'align_center',
     'align_right',
     'align_justify',
+    'superscript',
+    'subscript',
   ];
 
-  iconContainerClass = ['NgxEditor__MenuItem', 'NgxEditor__MenuItem--Icon'];
+  insertCommands: ToolbarItem[] = [
+    'horizontal_rule',
+    'format_clear',
+    'indent',
+    'outdent',
+    'undo',
+    'redo',
+  ];
+
+  iconContainerClass = ['NgxEditor__MenuItem', 'NgxEditor__MenuItem--IconContainer'];
   dropdownContainerClass = ['NgxEditor__Dropdown'];
   seperatorClass = ['NgxEditor__Seperator'];
 
@@ -114,9 +140,31 @@ export class MenuComponent implements OnInit {
     return item as ToolbarDropdown;
   }
 
+  isLinkItem(item: ToolbarItem): boolean {
+    if (item === 'link') {
+      return true;
+    }
+
+    // NOTE: it is not sufficient to check for a `link` property
+    // as String.prototype.link is a valid (although deprecated) method
+    return typeof item === 'object'
+      && typeof (item as ToolbarLink)?.link === 'object';
+  }
+
+  isLinkWithOptions(item: ToolbarItem): boolean {
+    // NOTE: it is not sufficient to check for a `link` property
+    // as String.prototype.link is a valid (although deprecated) method
+    return typeof item === 'object'
+      && typeof (item as ToolbarLink)?.link === 'object';
+  }
+
+  getLinkOptions(item: ToolbarItem): Partial<ToolbarLinkOptions> {
+    return (item as ToolbarLink)?.link;
+  }
+
   ngOnInit(): void {
     if (!this.editor) {
-      throw new Error('NgxEditor: Required editor instance');
+      throw new NgxEditorError('Required editor instance to initialize menu component');
     }
 
     this.menuService.editor = this.editor;

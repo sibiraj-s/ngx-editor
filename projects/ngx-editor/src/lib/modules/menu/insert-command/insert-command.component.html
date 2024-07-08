@@ -1,0 +1,11 @@
+<button
+  class="NgxEditor__MenuItem--Icon"
+  [disabled]="disabled"
+  [class.NgxEditor--Disabled]="disabled"
+  [innerHTML]="html | sanitizeHtml"
+  (mousedown)="onMouseClick($event)"
+  (keydown.enter)="onKeydown()"
+  (keydown.space)="onKeydown()"
+  [title]="getTitle(name) | async"
+  [ariaLabel]="getTitle(name) | async"
+></button>

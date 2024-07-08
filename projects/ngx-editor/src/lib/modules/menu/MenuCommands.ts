@@ -1,6 +1,6 @@
 import * as Commands from '../../commands';
 
-import { ToggleCommand } from '../../commands/types';
+import { InsertCommand, ToggleCommand } from '../../commands/types';
 
 export const ToggleCommands: Record<string, ToggleCommand> = {
   bold: Commands.STRONG,
@@ -21,6 +21,17 @@ export const ToggleCommands: Record<string, ToggleCommand> = {
   align_center: Commands.ALIGN_CENTER,
   align_right: Commands.ALIGN_RIGHT,
   align_justify: Commands.ALIGN_JUSTIFY,
+  superscript: Commands.SUPERSCRIPT,
+  subscript: Commands.SUBSCRIPT,
+};
+
+export const InsertCommands: Record<string, InsertCommand> = {
+  horizontal_rule: Commands.HORIZONTAL_RULE,
+  format_clear: Commands.FORMAT_CLEAR,
+  indent: Commands.INDENT,
+  outdent: Commands.OUTDENT,
+  undo: Commands.UNDO,
+  redo: Commands.REDO,
 };
 
 export const Link = Commands.LINK;

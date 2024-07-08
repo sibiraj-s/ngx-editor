@@ -77,13 +77,15 @@ const headingRule = (nodeType: NodeType, maxLevel: number): InputRule => {
 // : (MarkType) → InputRule
 // Wraps matching text with bold mark
 const boldRule = (markType: MarkType): InputRule => {
-  return markInputRule(/(?:^|\s)(?:(?:\*\*|__)(?:(?:[^*_]+))(?:\*\*|__))$/, markType);
+  // eslint-disable-next-line prefer-named-capture-group
+  return markInputRule(/(?:^|\s)(?:(\*\*|__)(?:([^*_]+))(\*\*|__))$/, markType);
 };
 
 // : (MarkType) → InputRule
 // Wraps matching text with em mark
 const emRule = (markType: MarkType): InputRule => {
-  return markInputRule(/(?:^|\s)(?:(?:\*|_)(?:(?:[^*_]+))(?:\*|_))$/, markType);
+  // eslint-disable-next-line prefer-named-capture-group
+  return markInputRule(/(?:^|\s)(?:(\*|_)(?:([^*_]+))(\*|_))$/, markType);
 };
 
 // : (Schema) → Plugin

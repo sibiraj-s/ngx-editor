@@ -13,12 +13,21 @@ import {
   Validators,
 } from '@angular/forms';
 import { EditorView } from 'prosemirror-view';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { uniq } from 'ngx-editor/utils';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
-import Icon from '../../../icons';
 import { Link as LinkCommand } from '../MenuCommands';
+import { HTML } from '../../../trustedTypesUtil';
+
+export interface LinkOptions {
+  showOpenInNewTab: boolean;
+}
+
+const DEFAULT_LINK_OPTIONS: LinkOptions = {
+  showOpenInNewTab: true,
+};
 
 @Component({
   selector: 'ngx-link',
@@ -26,9 +35,16 @@ import { Link as LinkCommand } from '../MenuCommands';
   styleUrls: ['./link.component.scss'],
 })
 export class LinkComponent implements OnInit, OnDestroy {
+  @Input({
+    transform: (value: Partial<LinkOptions>) => ({ ...DEFAULT_LINK_OPTIONS, ...value }),
+  }) options: Partial<LinkOptions> = DEFAULT_LINK_OPTIONS;
+
   showPopup = false;
   isActive = false;
-  private canExecute = true;
+  canExecute = true;
+  private componentId = uniq();
+  form: FormGroup;
+
   private editorView: EditorView;
   private updateSubscription: Subscription;
 
@@ -49,12 +65,8 @@ export class LinkComponent implements OnInit, OnDestroy {
     private menuService: MenuService,
   ) {}
 
-  @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
-    return this.isActive || this.showPopup;
-  }
-
-  @HostBinding('class.NgxEditor--Disabled') get disabled(): boolean {
-    return !this.canExecute;
+  get icon(): HTML {
+    return this.ngxeService.getIcon(this.isActive ? 'unlink' : 'link');
   }
 
   get icon(): string {
@@ -79,15 +91,19 @@ export class LinkComponent implements OnInit, OnDestroy {
     e: MouseEvent,
   ): void {
     if (!this.el.nativeElement.contains(e.target) && this.showPopup) {
-      this.hideForm();
+      this.hidePopup();
     }
   }
 
-  getLabel(key: string): string {
+  getId(name: string): string {
+    return `${name}-${this.componentId}`;
+  }
+
+  getLabel(key: string): Observable<string> {
     return this.ngxeService.locals.get(key);
   }
 
-  private hideForm(): void {
+  private hidePopup(): void {
     this.showPopup = false;
     this.form.reset({
       href: 'https://',
@@ -97,11 +113,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     this.text.enable();
   }
 
-  onMouseDown(e: MouseEvent): void {
-    if (e.button !== 0) {
-      return;
-    }
-
+  togglePopup(): void {
     const { state, dispatch } = this.editorView;
 
     if (this.isActive) {
@@ -113,6 +125,18 @@ export class LinkComponent implements OnInit, OnDestroy {
     if (this.showPopup) {
       this.setText();
     }
+  }
+
+  onTogglePopupMouseClick(e:MouseEvent): void {
+    if (e.button !== 0) {
+      return;
+    }
+
+    this.togglePopup();
+  }
+
+  onTogglePopupKeydown(): void {
+    this.togglePopup();
   }
 
   private setText = () => {
@@ -140,10 +164,16 @@ export class LinkComponent implements OnInit, OnDestroy {
     const { dispatch, state } = this.editorView;
     const { selection } = state;
 
+    let target: string | undefined;
+
+    if (this.options.showOpenInNewTab) {
+      target = openInNewTab ? '_blank' : '_self';
+    }
+
     const attrs = {
       title: href,
       href,
-      target: openInNewTab ? '_blank' : '_self',
+      target,
     };
 
     if (selection.empty) {
@@ -152,7 +182,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     } else {
       LinkCommand.update(attrs)(state, dispatch);
     }
-    this.hideForm();
+    this.hidePopup();
   }
 
   ngOnInit(): void {
@@ -163,6 +193,18 @@ export class LinkComponent implements OnInit, OnDestroy {
         this.update(view);
       },
     );
+    this.form = new FormGroup({
+      href: new FormControl('', [
+        Validators.required,
+        Validators.pattern(this.menuService.editor.linkValidationPattern),
+      ]),
+      text: new FormControl('', [Validators.required]),
+      openInNewTab: new FormControl(true),
+    });
+
+    this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
+      this.update(view);
+    });
   }
 
   ngOnDestroy(): void {

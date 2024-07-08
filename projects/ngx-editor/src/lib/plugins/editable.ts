@@ -7,7 +7,7 @@ const editablePlugin = (editable = true): Plugin => {
       init(): boolean {
         return editable;
       },
-      apply(tr: Transaction, previousVal: boolean): string {
+      apply(tr: Transaction, previousVal: boolean): boolean {
         return tr.getMeta('UPDATE_EDITABLE') ?? previousVal;
       },
     },

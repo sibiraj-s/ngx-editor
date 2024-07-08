@@ -18,6 +18,11 @@
   width: 24px;
   height: 24px;
   flex-shrink: 0;
+
+  &:focus-visible {
+    outline: 1px solid var(--ngx-editor-focus-ring-color);
+    outline-offset: 1px;
+  }
 }
 
 .NgxEditor__Color--Active {

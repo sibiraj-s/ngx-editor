@@ -1,4 +1,6 @@
-'*.md': prettier --write
-'docs/**/*.html': prettier --write
 '*.{js,ts}': eslint --fix
-'projects/**/*.html': eslint --fix
+'projects/**/*.html':
+  - eslint --fix
+  - prettier --write
+'docs/**/*.html': prettier --write
+'*.{md,mdx,css,scss,astro,yaml,yml}': prettier --write

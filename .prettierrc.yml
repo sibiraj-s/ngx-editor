@@ -1,1 +1,17 @@
 singleQuote: true
+printWidth: 120
+semi: true
+
+plugins:
+  - prettier-plugin-astro
+
+overrides:
+  - files: '*.astro'
+    options:
+      parser: 'astro'
+  - files: '*.{md,mdx}'
+    options:
+      printWidth: 80
+  - files: 'projects/**/*.html'
+    options:
+      parser: angular

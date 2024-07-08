@@ -1,5 +1,4 @@
-import { EditorState, NodeSelection } from 'prosemirror-state';
-import { Command } from 'prosemirror-commands';
+import { type EditorState, NodeSelection, type Command } from 'prosemirror-state';
 
 import { Dispatch } from './types';
 
@@ -14,7 +13,7 @@ class Image {
     return (state: EditorState, dispatch?: Dispatch): boolean => {
       const { schema, tr, selection } = state;
 
-      const type = schema.nodes.image;
+      const type = schema.nodes['image'];
       if (!type) {
         return false;
       }

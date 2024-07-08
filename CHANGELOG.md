@@ -13,11 +13,271 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
-## v12.2.4 (2022-05-02)
+## 17.5.4 (2024-05-15)
 
 #### Bug Fixes
 
-- improved regex url validators ([495914ee0bb4d8cddb18a937bf69bd770079c928](https://github.com/watchity/ngx-editor/commit/495914ee0bb4d8cddb18a937bf69bd770079c928))
+- restore curstor style to default (a regression introduced in v17.5.0) ([19d951b](https://github.com/sibiraj-s/ngx-editor/commit/19d951b))
+
+## 17.5.3 (2024-05-15)
+
+#### Bug Fixes
+
+- fix toggle text align action via editor menu ([617ab34](https://github.com/sibiraj-s/ngx-editor/commit/617ab34))
+
+## 17.5.2 (2024-05-15)
+
+#### Bug Fixes
+
+- fix remove color action ([e3c60eb](https://github.com/sibiraj-s/ngx-editor/commit/e3c60eb))
+
+## 17.5.1 (2024-05-14)
+
+#### Bug Fixes
+
+- fix parsing data-indent attribute ([0feb81c](https://github.com/sibiraj-s/ngx-editor/commit/0feb81c))
+
+## 17.5.0 (2024-05-14)
+
+#### Features
+
+- add support for more css variables ([df13034](https://github.com/sibiraj-s/ngx-editor/commit/df13034))
+
+## v17.4.0 (2024-05-14)
+
+#### Features
+
+- add support for superscript, subscript ([65a95ff](https://github.com/sibiraj-s/ngx-editor/commit/65a95ff))
+- add undo, redo menu items ([dedff4a](https://github.com/sibiraj-s/ngx-editor/commit/dedff4a))
+
+#### Bug Fixes
+
+- fix regression on losing editor focus while selecting menu item ([89cca24](https://github.com/sibiraj-s/ngx-editor/commit/89cca24))
+
+## v17.3.0 (2024-05-13)
+
+#### Features
+
+- add support for css variables to customize editor styles ([9e54a20](https://github.com/sibiraj-s/ngx-editor/commit/9e54a20), [ad9e68e](https://github.com/sibiraj-s/ngx-editor/commit/ad9e68e))
+
+#### Bug Fixes
+
+- improve accessibility for clickable elements ([6ed7575](https://github.com/sibiraj-s/ngx-editor/commit/6ed7575))
+
+## v17.2.0 (2024-05-13)
+
+#### Features
+
+- add support for indent/outdent ([1dc5443](https://github.com/sibiraj-s/ngx-editor/commit/1dc5443))
+
+#### Bug Fixes
+
+- set correct classes to menu buttons ([2352039](https://github.com/sibiraj-s/ngx-editor/commit/2352039))
+- remove hover styles on disabled state ([b2a18e0](https://github.com/sibiraj-s/ngx-editor/commit/b2a18e0))
+- set disabled atrribute to menu buttons when disabled ([825791e](https://github.com/sibiraj-s/ngx-editor/commit/825791e), [0ac482a](https://github.com/sibiraj-s/ngx-editor/commit/0ac482a))
+
+## v17.1.0 (2024-05-12)
+
+#### Features
+
+- add support for parseOptions ([3d5ac24](https://github.com/sibiraj-s/ngx-editor/commit/3d5ac24))
+- unpin prosemirror and floating ui dependencies ([22e8bc2](https://github.com/sibiraj-s/ngx-editor/commit/22e8bc2))
+- add locale for invalid URL error message ([aee35ff](https://github.com/sibiraj-s/ngx-editor/commit/aee35ff))
+- improve menu accessibility ([041c167](https://github.com/sibiraj-s/ngx-editor/commit/041c167))
+
+#### Bug Fixes
+
+- cleanup types ([7902131](https://github.com/sibiraj-s/ngx-editor/commit/7902131))
+- fix unset link removes other marks in range ([c038772](https://github.com/sibiraj-s/ngx-editor/commit/c038772))
+
+## v17.0.2 (2024-04-03)
+
+#### Features
+
+- remove nanoid dependency ([3a589e1](https://github.com/sibiraj-s/ngx-editor/commit/3a589e1))
+- support options in link menu item to configure `open in new tab` feature ([aacc680](https://github.com/sibiraj-s/ngx-editor/commit/aacc680))
+
+## v17.0.1 (2024-03-05)
+
+#### Enhancements
+
+- improve a11y for form elements in the menu component ([b9f142e](https://github.com/sibiraj-s/ngx-editor/commit/b9f142e))
+
+## v17.0.0 (2024-03-05)
+
+#### Dependency Updates
+
+- update prosemirror dependencies ([ea7656c](https://github.com/sibiraj-s/ngx-editor/commit/ea7656c))
+- update floating-ui dependencies ([ea7656c](https://github.com/sibiraj-s/ngx-editor/commit/ea7656c))
+
+#### Breaking Changes
+
+- requires angular v17 or greater ([9bc0ff9](https://github.com/sibiraj-s/ngx-editor/commit/9bc0ff9))
+
+## v16.0.1 (2023-08-18)
+
+#### Bug Fixes
+
+- add @types/trusted-types to dependencies ([3971581](https://github.com/sibiraj-s/ngx-editor/commit/3971581))
+
+#### Dependency Updates
+
+- update prosemirror-view to v1.31.7 ([554abdb](https://github.com/sibiraj-s/ngx-editor/commit/554abdb))
+- update @floating-ui/\* dependencies ([d619a53](https://github.com/sibiraj-s/ngx-editor/commit/d619a53))
+
+## v16.0.0 (2023-08-18)
+
+#### Bug Fixes
+
+- fix bold & em input rules ([70d5998](https://github.com/sibiraj-s/ngx-editor/commit/70d5998))
+
+## v16.0.0-beta.0 (2023-07-15)
+
+#### Breaking Changes
+
+- requires angular v16 or greater ([4a9e7d0](https://github.com/sibiraj-s/ngx-editor/commit/4a9e7d0))
+
+#### Features
+
+- add support for TrustedHTML ([4a9e7d0](https://github.com/sibiraj-s/ngx-editor/commit/4a9e7d0))
+- add support to update translation with asynchronous services like ngx-translate ([4a9e7d0](https://github.com/sibiraj-s/ngx-editor/commit/4a9e7d0))
+- export ImageViewComponent ([217cfe3](https://github.com/sibiraj-s/ngx-editor/commit/217cfe3))
+- configure sideEffects for better tree-shaking ([16c0668](https://github.com/sibiraj-s/ngx-editor/commit/16c0668))
+
+#### Documentation
+
+- refreshed documentation site ([9b9ddfb](https://github.com/sibiraj-s/ngx-editor/commit/9b9ddfb))
+
+#### Internal
+
+- add npm package provenance ([99cdbf1](https://github.com/sibiraj-s/ngx-editor/commit/99cdbf1))
+
+## v15.3.0 (2023-02-26)
+
+#### Features
+
+- add option to use custom icons in menu component ([5706bc4](https://github.com/sibiraj-s/ngx-editor/commit/5706bc4)),
+  ([eda7f2f](https://github.com/sibiraj-s/ngx-editor/commit/eda7f2f))
+
+## v15.2.0 (2023-02-06)
+
+#### Features
+
+- add option to focus command to focus at start ([92d342b](https://github.com/sibiraj-s/ngx-editor/commit/92d342b))
+
+#### Dependency Updates
+
+- update prosemirror dependencies ([8f1a35b](https://github.com/sibiraj-s/ngx-editor/commit/8f1a35b))
+- update floating-ui dependencies ([0386c3f](https://github.com/sibiraj-s/ngx-editor/commit/0386c3f))
+
+## v15.1.0 (2022-12-14)
+
+#### Features
+
+- export NgxEditorService ([4168c6b](https://github.com/sibiraj-s/ngx-editor/commit/4168c6b))
+
+#### Dependency Updates
+
+- update prosemirror dependencies ([eb6f692](https://github.com/sibiraj-s/ngx-editor/commit/eb6f692))
+- update floating-ui dependencies ([03991ff](https://github.com/sibiraj-s/ngx-editor/commit/03991ff))
+
+## v15.0.1 (2022-10-21)
+
+#### Dependency Updates
+
+- update prosemirror dependencies ([faa9a87](https://github.com/sibiraj-s/ngx-editor/commit/faa9a87))
+- update floating-ui dependencies ([68341dc](https://github.com/sibiraj-s/ngx-editor/commit/68341dc))
+
+## v15.0.0 (2022-08-17)
+
+#### Bug Fixes
+
+- remove deprecated ComponenetFactoryResolver ([41524f3](https://github.com/sibiraj-s/ngx-editor/commit/41524f3))
+
+#### Breaking Changes
+
+- requires angular v14.1.0 or greater ([db0c8a7](https://github.com/sibiraj-s/ngx-editor/commit/db0c8a7))
+
+#### Features
+
+- add option to set custom link validation pattern ([98ff517](https://github.com/sibiraj-s/ngx-editor/commit/98ff517))
+
+## v14.2.0 (2022-07-27)
+
+#### Features
+
+- add support for clear formatting ([8fc2647](https://github.com/sibiraj-s/ngx-editor/commit/8fc2647))
+
+#### Bug Fixes
+
+- add missing locale for horizontal rule ([40dd011](https://github.com/sibiraj-s/ngx-editor/commit/40dd011))
+- use correct import for rxjs operators ([3e0fd58](https://github.com/sibiraj-s/ngx-editor/commit/3e0fd58))
+
+## v14.1.0 (2022-07-25)
+
+#### Features
+
+- support mailto links ([b9aec15](https://github.com/sibiraj-s/ngx-editor/commit/b9aec15))
+
+#### Dependency Updates
+
+- update prosemirror-view to v1.27.0 ([9adf9e7](https://github.com/sibiraj-s/ngx-editor/commit/9adf9e7))
+- update prosemirror-schema-list to v1.2.1 ([6b68cf2](https://github.com/sibiraj-s/ngx-editor/commit/6b68cf2))
+- update floating-ui to v1 ([09becd2](https://github.com/sibiraj-s/ngx-editor/commit/09becd2))
+
+## v14.0.0 (2022-06-28)
+
+#### Breaking Changes
+
+- requires angular 14 or greater ([8092c4d](https://github.com/sibiraj-s/ngx-editor/commit/8092c4d))
+
+## v13.0.0 (2022-06-01)
+
+#### Features
+
+- update `prosemirror-*` dependencies ([5bfb813](https://github.com/sibiraj-s/ngx-editor/commit/5bfb813))
+- remove DefinitelyTyped `@types/prosemirror-*` dependencies ([5bfb813](https://github.com/sibiraj-s/ngx-editor/commit/5bfb813))
+- update `@floating-ui/*` dependencies ([f9282d8](https://github.com/sibiraj-s/ngx-editor/commit/f9282d8))
+
+#### Bug Fixes
+
+- pin all external dependencies ([741cd69](https://github.com/sibiraj-s/ngx-editor/commit/741cd69))
+
+#### Breaking Changes
+
+No breaking changes. Released as major version due to the nature of dependency updates
+
+## v12.4.1 (2022-05-14)
+
+#### Bug Fixes
+
+- pin prosemirror types ([b48929b](https://github.com/sibiraj-s/ngx-editor/commit/b48929b))
+
+## v12.4.0 (2022-05-11)
+
+#### Features
+
+- export injectionToken ([608e978](https://github.com/sibiraj-s/ngx-editor/commit/608e978))
+- add option handleScrollToSelection ([c996665](https://github.com/sibiraj-s/ngx-editor/commit/c996665))
+
+#### Bug Fixes
+
+- fix focus plugin registered twice ([9891b96](https://github.com/sibiraj-s/ngx-editor/commit/9891b96))
+
+## v12.3.0 (2022-05-08)
+
+#### Features
+
+- add horizontal rule menu item ([608e978](https://github.com/sibiraj-s/ngx-editor/commit/608e978))
+
+#### Bug Fixes
+
+- fix typings for attributes config ([396be73](https://github.com/sibiraj-s/ngx-editor/commit/396be73))
+
+#### Dependency Updates
+
+- update @floating-ui/core to v0.7.0 ([c86e6b0](https://github.com/sibiraj-s/ngx-editor/commit/c86e6b0))
+- update @floating-ui/dom to v0.5.0 ([fc71027](https://github.com/sibiraj-s/ngx-editor/commit/fc71027))
 
 ## v12.2.3 (2022-04-26)
 

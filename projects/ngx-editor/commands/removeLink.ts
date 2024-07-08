@@ -1,10 +1,11 @@
-import { Command } from 'prosemirror-commands';
-import { EditorState, Transaction } from 'prosemirror-state';
+import { EditorState, Transaction, type Command } from 'prosemirror-state';
 
 export const removeLink = (): Command => {
   return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
-    const { doc, selection, tr } = state;
+    const { doc, selection, tr, schema } = state;
     const { $head: { pos }, from, to } = selection;
+
+    const linkMark = schema.marks['link'];
 
     // if the cursor is on the link without any selection
     if (from === to) {
@@ -12,9 +13,9 @@ export const removeLink = (): Command => {
       const linkStart = pos - $pos.textOffset;
       const linkEnd = linkStart + $pos.parent.child($pos.index()).nodeSize;
 
-      tr.removeMark(linkStart, linkEnd);
+      tr.removeMark(linkStart, linkEnd, linkMark);
     } else {
-      tr.removeMark(from, to);
+      tr.removeMark(from, to, linkMark);
     }
 
     if (!tr.docChanged) {

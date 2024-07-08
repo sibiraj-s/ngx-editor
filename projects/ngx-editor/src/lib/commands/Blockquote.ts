@@ -1,15 +1,17 @@
-import { NodeType } from 'prosemirror-model';
-import { EditorState, Transaction } from 'prosemirror-state';
-import { Command, lift, wrapIn } from 'prosemirror-commands';
+import type { NodeType } from 'prosemirror-model';
+import type { EditorState, Transaction, Command } from 'prosemirror-state';
+import { lift, wrapIn } from 'prosemirror-commands';
 
 import { isNodeActive } from 'ngx-editor/helpers';
 
-class Blockqote {
+import { ToggleCommand } from './types';
+
+class Blockqote implements ToggleCommand {
   toggle(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
       const { schema } = state;
 
-      const type: NodeType = schema.nodes.blockquote;
+      const type: NodeType = schema.nodes['blockquote'];
       if (!type) {
         return false;
       }
@@ -25,7 +27,7 @@ class Blockqote {
   isActive(state: EditorState): boolean {
     const { schema } = state;
 
-    const type: NodeType = schema.nodes.blockquote;
+    const type: NodeType = schema.nodes['blockquote'];
     if (!type) {
       return false;
     }

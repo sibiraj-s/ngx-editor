@@ -1,9 +1,9 @@
 import {
-  Component, ElementRef, HostBinding,
+  Component, ElementRef,
   HostListener, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
@@ -33,11 +33,11 @@ export class DropdownComponent implements OnInit, OnDestroy {
     private el: ElementRef,
   ) { }
 
-  @HostBinding('class.NgxEditor__Dropdown--Selected') get isSelected(): boolean {
+  get isSelected(): boolean {
     return Boolean(this.activeItem || this.isDropdownOpen);
   }
 
-  @HostBinding('class.NgxEditor--Disabled') get isDropdownDisabled(): boolean {
+  get isDropdownDisabled(): boolean {
     return this.disabledItems.length === this.items.length;
   }
 
@@ -47,20 +47,44 @@ export class DropdownComponent implements OnInit, OnDestroy {
     }
   }
 
-  getName(key: string): string {
+  getName(key: string): Observable<string> {
     return this.ngxeService.locals.get(key);
   }
 
-  toggleDropdown(e: MouseEvent): void {
-    e.preventDefault();
+  getIsDropdownActive(item: string): boolean {
+    return this.activeItem === item;
+  }
+
+  toggleDropdown(): void {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  onToggleDropdownMouseClick(e: MouseEvent): void {
+    e.preventDefault();
+
+    if (e.button !== 0) {
+      return;
+    }
+
+    this.toggleDropdown();
+  }
+
+  onToggleDropdownKeydown(): void {
+    this.toggleDropdown();
   }
 
   trackByIndex(index: number): number {
     return index;
   }
 
-  onClick(e: MouseEvent, item: TBHeadingItems): void {
+  selectItem(item: TBHeadingItems): void {
+    const command = ToggleCommands[item];
+    const { state, dispatch } = this.editorView;
+    command.toggle()(state, dispatch);
+    this.isDropdownOpen = false;
+  }
+
+  onDropdownItemMouseClick(e: MouseEvent, item: TBHeadingItems): void {
     e.preventDefault();
 
     // consider only left click
@@ -68,10 +92,13 @@ export class DropdownComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const command = ToggleCommands[item];
-    const { state, dispatch } = this.editorView;
-    command.toggle()(state, dispatch);
-    this.isDropdownOpen = false;
+    this.selectItem(item);
+  }
+
+  onDropdownItemKeydown(event: Event, item: TBHeadingItems): void {
+    const e = event as KeyboardEvent;
+    e.preventDefault();
+    this.selectItem(item);
   }
 
   private update = (view: EditorView) => {

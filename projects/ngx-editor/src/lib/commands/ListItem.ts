@@ -1,11 +1,12 @@
-import { NodeType, Schema } from 'prosemirror-model';
-import { EditorState, Transaction } from 'prosemirror-state';
+import type { NodeType, Schema } from 'prosemirror-model';
+import type { EditorState, Transaction, Command } from 'prosemirror-state';
 import { liftListItem, wrapInList } from 'prosemirror-schema-list';
-import { Command } from 'prosemirror-commands';
 
 import { isNodeActive } from 'ngx-editor/helpers';
 
-class ListItem {
+import { ToggleCommand } from './types';
+
+class ListItem implements ToggleCommand {
   isBulletList = false;
 
   constructor(isBulletList = false) {
@@ -26,7 +27,7 @@ class ListItem {
       }
 
       if (this.isActive(state)) {
-        return liftListItem(schema.nodes.list_item)(state, dispatch);
+        return liftListItem(schema.nodes['list_item'])(state, dispatch);
       }
 
       return wrapInList(type)(state, dispatch);

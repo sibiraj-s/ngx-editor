@@ -1,41 +1,53 @@
-<div class="NgxEditor__MenuItem--IconContainer" [innerHTML]="icon | sanitizeHtml" (mousedown)="onMouseDown($event)"
-  [title]="title">
-</div>
+<button
+  type="button"
+  class="NgxEditor__MenuItem--Icon"
+  [class.NgxEditor__MenuItem--Active]="isActive || showPopup"
+  [class.NgxEditor--Disabled]="!canExecute"
+  [disabled]="!canExecute"
+  [innerHTML]="icon | sanitizeHtml"
+  (mousedown)="onTogglePopupMouseClick($event)"
+  (keydown.enter)="onTogglePopupKeydown()"
+  (keydown.space)="onTogglePopupKeydown()"
+  [title]="title | async"
+  [ariaLabel]="title | async"
+  aria-haspopup="dialog"
+  [ariaExpanded]="showPopup"
+></button>
 
 <!-- popup -->
 <div *ngIf="showPopup" class="NgxEditor__Popup">
   <form class="NgxEditor__Popup--Form" [formGroup]="form" (ngSubmit)="insertLink($event)">
-
     <div class="NgxEditor__Popup--FormGroup">
       <div class="NgxEditor__Popup--Col">
-        <label class="NgxEditor__Popup--Label">{{getLabel('url')}}</label>
-        <input type="href" id="href" formControlName="href" autofocus autocomplete="off" />
+        <label class="NgxEditor__Popup--Label" [htmlFor]="getId('link-popup-url')">{{ getLabel('url') | async }}</label>
+        <input type="url" [id]="getId('link-popup-url')" formControlName="href" autocomplete="off" />
         <div *ngIf="href.touched && href.invalid" class="NgxEditor__HelpText NgxEditor__HelpText--Error">
-          {{ href.errors?.['pattern'] && 'Please enter valid url.' }}
+          {{ href.errors?.['pattern'] && getLabel('enterValidUrl') | async }}
         </div>
       </div>
     </div>
 
     <div class="NgxEditor__Popup--FormGroup">
       <div class="NgxEditor__Popup--Col">
-        <label class="NgxEditor__Popup--Label">{{getLabel('text')}}</label>
-        <input type="text" formControlName="text" autocomplete="off" />
+        <label class="NgxEditor__Popup--Label" [htmlFor]="getId('link-popup-label')">{{
+          getLabel('text') | async
+        }}</label>
+        <input type="text" [id]="getId('link-popup-label')" formControlName="text" autocomplete="off" />
         <div *ngIf="text.touched && text.invalid" class="NgxEditor__HelpText NgxEditor__HelpText--Error">
           {{ text.errors?.['required'] && 'This is required' }}
         </div>
       </div>
     </div>
 
-    <div class="NgxEditor__Popup--FormGroup">
+    <div class="NgxEditor__Popup--FormGroup" *ngIf="this.options.showOpenInNewTab">
       <div class="NgxEditor__Popup--Col">
         <label>
           <input type="checkbox" formControlName="openInNewTab" />
-          {{getLabel('openInNewTab')}}
+          {{ getLabel('openInNewTab') | async }}
         </label>
       </div>
     </div>
 
-    <button type="submit" [disabled]="!form.valid">{{getLabel('insert')}}</button>
-
+    <button type="submit" [disabled]="!form.valid">{{ getLabel('insert') | async }}</button>
   </form>
 </div>

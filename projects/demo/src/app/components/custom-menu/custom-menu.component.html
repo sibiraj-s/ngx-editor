@@ -1,5 +1,10 @@
 <div class="NgxEditor__Seperator"></div>
-<div class="NgxEditor__MenuItem NgxEditor__MenuItem--Text" (mousedown)="onClick($event)"
-  [ngClass]="{'NgxEditor__MenuItem--Active': isActive, 'NgxEditor--Disabled': isDisabled}">
+<div
+  role="button"
+  tabindex="0"
+  class="NgxEditor__MenuItem NgxEditor__MenuItem--Text"
+  (mousedown)="onClick($event)"
+  [ngClass]="{ 'NgxEditor__MenuItem--Active': isActive, 'NgxEditor--Disabled': isDisabled }"
+>
   CodeMirror
 </div>

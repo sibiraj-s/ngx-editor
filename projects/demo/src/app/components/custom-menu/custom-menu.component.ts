@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { EditorState, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { setBlockType } from 'prosemirror-commands';
@@ -10,6 +11,10 @@ import { isNodeActive } from 'ngx-editor/helpers';
   selector: 'app-custom-menu',
   templateUrl: './custom-menu.component.html',
   styleUrls: ['./custom-menu.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+  ],
 })
 export class CustomMenuComponent implements OnInit {
   @Input() editor: Editor;
@@ -26,16 +31,16 @@ export class CustomMenuComponent implements OnInit {
     const { schema } = state;
 
     if (this.isActive) {
-      return setBlockType(schema.nodes.paragraph)(state, dispatch);
+      return setBlockType(schema.nodes['paragraph'])(state, dispatch);
     }
 
-    return setBlockType(schema.nodes.code_mirror)(state, dispatch);
+    return setBlockType(schema.nodes['code_mirror'])(state, dispatch);
   }
 
   update = (view: EditorView):void => {
     const { state } = view;
     const { schema } = state;
-    this.isActive = isNodeActive(state, schema.nodes.code_mirror);
+    this.isActive = isNodeActive(state, schema.nodes['code_mirror']);
     this.isDisabled = !this.execute(state, null); // returns true if executable
   };
 

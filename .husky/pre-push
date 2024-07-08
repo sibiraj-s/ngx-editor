@@ -1,6 +1,3 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-rm -rf dist/
+rm -rf dist/ .angular/
 npm run build:lib
 npm run test:lib

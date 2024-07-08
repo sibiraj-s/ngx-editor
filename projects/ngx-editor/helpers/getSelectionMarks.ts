@@ -1,8 +1,8 @@
 import { EditorState } from 'prosemirror-state';
 import { Mark } from 'prosemirror-model';
 
-export const getSelectionMarks = (state: EditorState): Mark[] => {
-  let marks: Mark[] = [];
+export const getSelectionMarks = (state: EditorState): readonly Mark[] => {
+  let marks: readonly Mark[] = [];
 
   const { selection, storedMarks } = state;
   const { from, to, empty, $from } = selection;

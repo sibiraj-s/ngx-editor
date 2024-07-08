@@ -1,0 +1,5 @@
+---
+const { id, view = 'preview' } = Astro.props;
+---
+
+<iframe id="stackblitz-iframe" src={`https://stackblitz.com/edit/${id}?embed=1&hideExplorer=1&view=${view}`}></iframe>

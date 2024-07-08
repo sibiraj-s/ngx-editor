@@ -1,3 +1,13 @@
-<div class="NgxEditor__MenuItem--IconContainer" [innerHTML]="html | sanitizeHtml" (mousedown)="toggle($event)"
-  [title]="getTitle(name)">
-</div>
+<button
+  type="button"
+  class="NgxEditor__MenuItem--Icon"
+  [class.NgxEditor__MenuItem--Active]="isActive"
+  [class.NgxEditor--Disabled]="disabled"
+  [disabled]="disabled"
+  [innerHTML]="html | sanitizeHtml"
+  (mousedown)="onMouseClick($event)"
+  (keydown.enter)="onKeydown()"
+  (keydown.space)="onKeydown()"
+  [title]="getTitle(name) | async"
+  [ariaLabel]="getTitle(name) | async"
+></button>

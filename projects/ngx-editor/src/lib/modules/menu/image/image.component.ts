@@ -1,16 +1,17 @@
 import {
-  Component, ElementRef, HostBinding,
+  Component, ElementRef,
   HostListener, OnDestroy, OnInit,
 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { uniq } from 'ngx-editor/utils';
 
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
-import Icon from '../../../icons';
 import { Image as ImageCommand } from '../MenuCommands';
+import { HTML } from '../../../trustedTypesUtil';
 
 @Component({
   selector: 'ngx-image',
@@ -20,6 +21,7 @@ import { Image as ImageCommand } from '../MenuCommands';
 export class ImageComponent implements OnInit, OnDestroy {
   showPopup = false;
   isActive = false;
+  private componentId = uniq();
   private updateSubscription: Subscription;
 
   form = new FormGroup({
@@ -39,12 +41,8 @@ export class ImageComponent implements OnInit, OnDestroy {
     private menuService: MenuService,
   ) { }
 
-  @HostBinding('class.NgxEditor__MenuItem--Active') get valid(): boolean {
-    return this.isActive || this.showPopup;
-  }
-
-  get icon(): string {
-    return Icon.get('image');
+  get icon(): HTML {
+    return this.ngxeService.getIcon('image');
   }
 
   get src(): AbstractControl {
@@ -57,7 +55,11 @@ export class ImageComponent implements OnInit, OnDestroy {
     }
   }
 
-  getLabel(key: string): string {
+  getId(name:string): string {
+    return `${name}-${this.componentId}`;
+  }
+
+  getLabel(key: string): Observable<string> {
     return this.ngxeService.locals.get(key);
   }
 
@@ -70,16 +72,24 @@ export class ImageComponent implements OnInit, OnDestroy {
     });
   }
 
-  onMouseDown(e: MouseEvent): void {
-    if (e.button !== 0) {
-      return;
-    }
-
+  togglePopup(): void {
     this.showPopup = !this.showPopup;
 
     if (this.showPopup) {
       this.fillForm();
     }
+  }
+
+  onTogglePopupMouseClick(e:MouseEvent): void {
+    if (e.button !== 0) {
+      return;
+    }
+
+    this.togglePopup();
+  }
+
+  onTogglePopupKeydown(): void {
+    this.togglePopup();
   }
 
   private fillForm(): void {

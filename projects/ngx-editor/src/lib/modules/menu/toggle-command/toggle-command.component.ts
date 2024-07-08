@@ -1,12 +1,12 @@
-import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
-import Icon from '../../../icons';
 import { ToggleCommands } from '../MenuCommands';
 import { NgxEditorService } from '../../../editor.service';
 import { MenuService } from '../menu.service';
 import { TBItems, ToolbarItem } from '../../../types';
+import { HTML } from '../../../trustedTypesUtil';
 
 @Component({
   selector: 'ngx-toggle-command',
@@ -21,8 +21,10 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
     return this.toolbarItem as TBItems;
   }
 
-  html: string;
+  html: HTML;
   editorView: EditorView;
+  isActive = false;
+  disabled = false;
   private updateSubscription: Subscription;
 
   constructor(
@@ -30,19 +32,24 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
     private menuService: MenuService,
   ) { }
 
-  @HostBinding('class.NgxEditor__MenuItem--Active') isActive = false;
-  @HostBinding('class.NgxEditor--Disabled') disabled = false;
+  toggle(): void {
+    const { state, dispatch } = this.editorView;
+    const command = ToggleCommands[this.name];
+    command.toggle()(state, dispatch);
+  }
 
-  toggle(e: MouseEvent): void {
+  onMouseClick(e: MouseEvent): void {
     e.preventDefault();
 
     if (e.button !== 0) {
       return;
     }
 
-    const { state, dispatch } = this.editorView;
-    const command = ToggleCommands[this.name];
-    command.toggle()(state, dispatch);
+    this.toggle();
+  }
+
+  onKeydown(): void {
+    this.toggle();
   }
 
   update = (view: EditorView): void => {
@@ -52,12 +59,12 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
     this.disabled = !command.canExecute(state);
   };
 
-  getTitle(name: string): string {
+  getTitle(name: string): Observable<string> {
     return this.ngxeService.locals.get(name);
   }
 
   ngOnInit(): void {
-    this.html = Icon.get(this.name);
+    this.html = this.ngxeService.getIcon(this.name);
 
     this.editorView = this.menuService.editor.view;
 
