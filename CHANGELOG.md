@@ -13,6 +13,16 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## 18.0.0 (2024-09-01)
+
+#### Breaking Changes
+
+- requires angular v18 or greater ([44bb5c1](https://github.com/sibiraj-s/ngx-editor/commit/44bb5c1))
+
+#### Bug Fixes
+
+- fix incorrect input type in menu dropdowns ([7f40093](https://github.com/sibiraj-s/ngx-editor/commit/7f40093))
+
 ## 17.5.4 (2024-05-15)
 
 #### Bug Fixes
