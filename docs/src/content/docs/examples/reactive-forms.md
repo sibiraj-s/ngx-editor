@@ -68,8 +68,8 @@ export class AppComponent implements OnInit, OnDestroy {
 import { Validators } from 'ngx-editor';
 
 Validators.required(schema); // pass schema if you are using a custom schema else leave it empty
-Validators.maxLength(maxLenght, schema);
-Validators.minLength(minLenght, schema);
+Validators.maxLength(maxLength, schema);
+Validators.minLength(minLength, schema);
 ```
 
 ### Enable or disable the editor via Forms API
