@@ -1,6 +1,6 @@
 {
   "name": "ngx-editor",
-  "version": "17.5.4",
+  "version": "18.0.0",
   "description": "The Rich Text Editor for Angular, Built on ProseMirror",
   "license": "MIT",
   "repository": "https://github.com/sibiraj-s/ngx-editor.git",
@@ -15,24 +15,24 @@
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": ">=17.1.0",
-    "@angular/core": ">=17.1.0",
-    "@angular/forms": ">=17.1.0",
-    "@angular/platform-browser": ">=17.1.0",
+    "@angular/common": ">=18.2.0",
+    "@angular/core": ">=18.2.0",
+    "@angular/forms": ">=18.2.0",
+    "@angular/platform-browser": ">=18.2.0",
     "rxjs": ">=7.8.0"
   },
   "dependencies": {
-    "@floating-ui/core": "^1.6.0",
-    "@floating-ui/dom": "^1.6.0",
+    "@floating-ui/core": "^1.6.7",
+    "@floating-ui/dom": "^1.6.10",
     "@types/trusted-types": "~2.0.7",
-    "prosemirror-commands": "^1.5.2",
-    "prosemirror-history": "^1.4.0",
+    "prosemirror-commands": "^1.6.0",
+    "prosemirror-history": "^1.4.1",
     "prosemirror-inputrules":"^1.4.0",
     "prosemirror-keymap": "^1.2.2",
-    "prosemirror-model": "^1.21.0",
-    "prosemirror-schema-list": "^1.3.0",
+    "prosemirror-model": "^1.22.3",
+    "prosemirror-schema-list": "^1.4.1",
     "prosemirror-state": "^1.4.3",
-    "prosemirror-view": "^1.33.6",
+    "prosemirror-view": "^1.34.1",
     "tslib": "^2.3.0"
   }
 }

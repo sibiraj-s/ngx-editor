@@ -6,6 +6,7 @@ on:
 
 env:
   NODE_VERSION: 20
+  ASTRO_TELEMETRY_DISABLED: 1
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
