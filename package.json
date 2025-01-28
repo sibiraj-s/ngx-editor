@@ -72,6 +72,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "lint-staged": "^15.2.9",
     "ng-packagr": "^18.2.0",
+    "picocolors": "^1.1.1",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "prosemirror-codemirror-6": "^1.0.1",
