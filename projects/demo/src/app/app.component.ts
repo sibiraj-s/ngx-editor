@@ -2,13 +2,21 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewEncapsulation, isDevMode } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { Validators, Editor, Toolbar, DEFAULT_TOOLBAR, NgxEditorModule } from 'ngx-editor';
+import {
+  DEFAULT_TOOLBAR,
+  Editor,
+  NgxEditorComponent,
+  NgxFloatingMenuComponent,
+  NgxMenuComponent,
+  Toolbar,
+  Validators,
+} from 'ngx-editor';
 
-import jsonDoc from './doc';
-import schema from './schema';
-import nodeViews from './nodeviews';
-import { CustomMenuComponent } from './components/custom-menu/custom-menu.component';
 import { RouterOutlet } from '@angular/router';
+import { CustomMenuComponent } from './components/custom-menu/custom-menu.component';
+import jsonDoc from './doc';
+import nodeViews from './nodeviews';
+import schema from './schema';
 
 @Component({
   selector: 'app-root',
@@ -21,11 +29,12 @@ import { RouterOutlet } from '@angular/router';
     RouterOutlet,
     FormsModule,
     ReactiveFormsModule,
-    NgxEditorModule,
+    NgxEditorComponent,
+    NgxMenuComponent,
+    NgxFloatingMenuComponent,
     CustomMenuComponent,
   ],
 })
-
 export class AppComponent implements OnInit, OnDestroy {
   isDevMode = isDevMode();
 

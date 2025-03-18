@@ -1,14 +1,15 @@
 import {
-  Component, ElementRef,
-  HostListener, OnDestroy, Input, OnInit,
+  Component, ElementRef, HostListener, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
+import { AsyncPipe, CommonModule } from '@angular/common';
 
 import { NgxEditorService } from '../../../editor.service';
-import { MenuService } from '../menu.service';
-import { TextColor, TextBackgroundColor } from '../MenuCommands';
+import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { HTML } from '../../../trustedTypesUtil';
+import { MenuService } from '../menu.service';
+import { TextBackgroundColor, TextColor } from '../MenuCommands';
 
 type Command = typeof TextColor | typeof TextBackgroundColor;
 
@@ -16,6 +17,7 @@ type Command = typeof TextColor | typeof TextBackgroundColor;
   selector: 'ngx-color-picker',
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.scss'],
+  imports: [AsyncPipe, CommonModule, SanitizeHtmlPipe],
 })
 export class ColorPickerComponent implements OnInit, OnDestroy {
   @Input() presets: string[][];
@@ -25,7 +27,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     private el: ElementRef,
     private menuService: MenuService,
     private ngxeService: NgxEditorService,
-  ) { }
+  ) {}
 
   get title(): Observable<string> {
     return this.getLabel(this.type === 'text_color' ? 'text_color' : 'background_color');
@@ -109,7 +111,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     return index;
   }
 
-  selectColor(color:string):void {
+  selectColor(color: string): void {
     const { state, dispatch } = this.editorView;
 
     if (this.type === 'text_color') {

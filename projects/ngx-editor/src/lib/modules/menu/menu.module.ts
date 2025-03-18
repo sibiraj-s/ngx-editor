@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MenuComponent } from './menu.component';
-import { ToggleCommandComponent } from './toggle-command/toggle-command.component';
-import { LinkComponent } from './link/link.component';
-import { DropdownComponent } from './dropdown/dropdown.component';
-import { ImageComponent } from './image/image.component';
-import { ColorPickerComponent } from './color-picker/color-picker.component';
-import { FloatingMenuComponent } from './floating-menu/floating-menu.component';
 import { BubbleComponent } from './bubble/bubble.component';
+import { ColorPickerComponent } from './color-picker/color-picker.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
+import { NgxFloatingMenuComponent } from './floating-menu/floating-menu.component';
+import { ImageComponent } from './image/image.component';
+import { LinkComponent } from './link/link.component';
+import { NgxMenuComponent } from './menu.component';
+import { ToggleCommandComponent } from './toggle-command/toggle-command.component';
 
 import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
 import { InsertCommandComponent } from './insert-command/insert-command.component';
@@ -18,30 +18,20 @@ import { InsertCommandComponent } from './insert-command/insert-command.componen
   imports: [
     CommonModule,
     ReactiveFormsModule,
-  ],
-  declarations: [
     // pipes
     SanitizeHtmlPipe,
-
     // components
-    MenuComponent,
+    NgxMenuComponent,
     ToggleCommandComponent,
     InsertCommandComponent,
     LinkComponent,
     DropdownComponent,
     ImageComponent,
     ColorPickerComponent,
-
-    FloatingMenuComponent,
+    NgxFloatingMenuComponent,
     BubbleComponent,
   ],
-  providers: [
-    SanitizeHtmlPipe,
-  ],
-  exports: [
-    MenuComponent,
-    FloatingMenuComponent,
-  ],
+  providers: [SanitizeHtmlPipe],
+  exports: [NgxMenuComponent, NgxFloatingMenuComponent],
 })
-
-export class MenuModule { }
+export class MenuModule {}

@@ -1,31 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { FloatingMenuComponent } from './floating-menu.component';
+import Editor from '../../../Editor';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { BubbleComponent } from '../bubble/bubble.component';
-import Editor from '../../../Editor';
+import { NgxFloatingMenuComponent } from './floating-menu.component';
 
 describe('FloatingMenuComponent', () => {
-  let component: FloatingMenuComponent;
-  let fixture: ComponentFixture<FloatingMenuComponent>;
+  let component: NgxFloatingMenuComponent;
+  let fixture: ComponentFixture<NgxFloatingMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        FloatingMenuComponent,
-        BubbleComponent,
-      ],
-      providers: [
-        SanitizeHtmlPipe,
-      ],
-    })
-      .compileComponents();
+      imports: [NgxFloatingMenuComponent, BubbleComponent],
+      providers: [SanitizeHtmlPipe],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FloatingMenuComponent);
+    fixture = TestBed.createComponent(NgxFloatingMenuComponent);
     component = fixture.componentInstance;
     component.editor = new Editor();
     fixture.detectChanges();

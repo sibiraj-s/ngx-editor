@@ -1,7 +1,7 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import Editor from './Editor';
 import { NgxEditorComponent } from './editor.component';
@@ -12,9 +12,7 @@ describe('NgxEditorComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        NgxEditorComponent,
-      ],
+      imports: [NgxEditorComponent],
     });
 
     await TestBed.compileComponents();
@@ -71,7 +69,8 @@ describe('EditorComponent: Reactive Forms API', () => {
       <form [formGroup]="form">
         <ngx-editor [editor]="editor" formControlName="content"></ngx-editor>
       </form>
-      `,
+    `,
+    imports: [ReactiveFormsModule, NgxEditorComponent],
   })
   class TestComponent {
     editor!: Editor;
@@ -90,13 +89,7 @@ describe('EditorComponent: Reactive Forms API', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule,
-      ],
-      declarations: [
-        TestComponent,
-        NgxEditorComponent,
-      ],
+      imports: [ReactiveFormsModule, TestComponent, NgxEditorComponent],
     });
 
     await TestBed.compileComponents();

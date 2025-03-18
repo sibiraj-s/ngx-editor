@@ -1,22 +1,22 @@
-import {
-  Component, ElementRef,
-  HostListener, OnDestroy, OnInit,
-} from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { uniq } from 'ngx-editor/utils';
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
-import { uniq } from 'ngx-editor/utils';
 
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { NgxEditorService } from '../../../editor.service';
+import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
+import { HTML } from '../../../trustedTypesUtil';
 import { MenuService } from '../menu.service';
 import { Image as ImageCommand } from '../MenuCommands';
-import { HTML } from '../../../trustedTypesUtil';
 
 @Component({
   selector: 'ngx-image',
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
+  imports: [AsyncPipe, SanitizeHtmlPipe, ReactiveFormsModule, CommonModule],
 })
 export class ImageComponent implements OnInit, OnDestroy {
   showPopup = false;
@@ -39,7 +39,7 @@ export class ImageComponent implements OnInit, OnDestroy {
     private el: ElementRef,
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
-  ) { }
+  ) {}
 
   get icon(): HTML {
     return this.ngxeService.getIcon('image');
@@ -55,7 +55,7 @@ export class ImageComponent implements OnInit, OnDestroy {
     }
   }
 
-  getId(name:string): string {
+  getId(name: string): string {
     return `${name}-${this.componentId}`;
   }
 
@@ -80,7 +80,7 @@ export class ImageComponent implements OnInit, OnDestroy {
     }
   }
 
-  onTogglePopupMouseClick(e:MouseEvent): void {
+  onTogglePopupMouseClick(e: MouseEvent): void {
     if (e.button !== 0) {
       return;
     }

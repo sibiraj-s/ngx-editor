@@ -1,16 +1,17 @@
 import {
-  Component, ElementRef,
-  HostListener, Input, OnDestroy, OnInit,
+  Component, ElementRef, HostListener, Input, OnDestroy, OnInit,
 } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { uniq } from 'ngx-editor/utils';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
-import { uniq } from 'ngx-editor/utils';
 
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { NgxEditorService } from '../../../editor.service';
+import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
+import { HTML } from '../../../trustedTypesUtil';
 import { MenuService } from '../menu.service';
 import { Link as LinkCommand } from '../MenuCommands';
-import { HTML } from '../../../trustedTypesUtil';
 
 export interface LinkOptions {
   showOpenInNewTab: boolean;
@@ -24,12 +25,13 @@ const DEFAULT_LINK_OPTIONS: LinkOptions = {
   selector: 'ngx-link',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
+  imports: [AsyncPipe, CommonModule, ReactiveFormsModule, SanitizeHtmlPipe],
 })
-
 export class LinkComponent implements OnInit, OnDestroy {
   @Input({
     transform: (value: Partial<LinkOptions>) => ({ ...DEFAULT_LINK_OPTIONS, ...value }),
-  }) options: Partial<LinkOptions> = DEFAULT_LINK_OPTIONS;
+  })
+    options: Partial<LinkOptions> = DEFAULT_LINK_OPTIONS;
 
   showPopup = false;
   isActive = false;
@@ -44,7 +46,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     private el: ElementRef,
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
-  ) { }
+  ) {}
 
   get icon(): HTML {
     return this.ngxeService.getIcon(this.isActive ? 'unlink' : 'link');
@@ -100,7 +102,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     }
   }
 
-  onTogglePopupMouseClick(e:MouseEvent): void {
+  onTogglePopupMouseClick(e: MouseEvent): void {
     if (e.button !== 0) {
       return;
     }
@@ -113,7 +115,9 @@ export class LinkComponent implements OnInit, OnDestroy {
   }
 
   private setText = () => {
-    const { state: { selection, doc } } = this.editorView;
+    const {
+      state: { selection, doc },
+    } = this.editorView;
     const { empty, from, to } = selection;
     const selectedText = !empty ? doc.textBetween(from, to) : '';
 
