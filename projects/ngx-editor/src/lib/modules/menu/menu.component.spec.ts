@@ -13,7 +13,7 @@ import { NgxMenuComponent } from './menu.component';
 import { MenuService } from './menu.service';
 import { ToggleCommandComponent } from './toggle-command/toggle-command.component';
 
-describe('MenuComponent', () => {
+describe('NgxMenuComponent', () => {
   let component: NgxMenuComponent;
   let fixture: ComponentFixture<NgxMenuComponent>;
 

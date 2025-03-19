@@ -13,7 +13,7 @@ import {
 } from 'ngx-editor';
 
 import { RouterOutlet } from '@angular/router';
-import { CustomMenuComponent } from './components/custom-menu/custom-menu.component';
+import { NgxCustomMenuComponent } from './components/custom-menu/custom-menu.component';
 import jsonDoc from './doc';
 import nodeViews from './nodeviews';
 import schema from './schema';
@@ -32,7 +32,7 @@ import schema from './schema';
     NgxEditorComponent,
     NgxMenuComponent,
     NgxFloatingMenuComponent,
-    CustomMenuComponent,
+    NgxCustomMenuComponent,
   ],
 })
 export class AppComponent implements OnInit, OnDestroy {

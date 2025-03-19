@@ -63,7 +63,7 @@ describe('NgxEditorComponent', () => {
   });
 });
 
-describe('EditorComponent: Reactive Forms API', () => {
+describe('NgxEditorComponent: Reactive Forms API', () => {
   @Component({
     template: `
       <form [formGroup]="form">

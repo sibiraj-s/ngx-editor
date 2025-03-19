@@ -7,7 +7,7 @@ import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { BubbleComponent } from '../bubble/bubble.component';
 import { NgxFloatingMenuComponent } from './floating-menu.component';
 
-describe('FloatingMenuComponent', () => {
+describe('NgxFloatingMenuComponent', () => {
   let component: NgxFloatingMenuComponent;
   let fixture: ComponentFixture<NgxFloatingMenuComponent>;
 

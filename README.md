@@ -48,31 +48,26 @@ yarn add ngx-editor
 
 **Note**: By default the editor comes with minimal features. Refer the [demo] and [documentation] for more details and examples.
 
-Import `ngx-editor` module
-
-```ts
-import { NgxEditorModule } from 'ngx-editor';
-
-@NgModule({
-  imports: [NgxEditorModule],
-})
-export class AppModule {}
-```
-
 Component
 
 ```ts
-import { Editor } from 'ngx-editor';
+import { NgxEditorComponent, NgxMenuComponent, Editor } from 'ngx-editor';
+import { FormsModule } from '@angular/forms';
 
-export class EditorComponent implements OnInit, OnDestroy {
-  editor: Editor;
+@Component({
+  selector: 'editor-component',
+  templateUrl: 'editor.component.html',
+  styleUrls: ['editor.component.scss'],
+  standalone: true,
+  imports: [NgxEditorComponent, NgxMenuComponent, FormsModule],
+})
+export class NgxEditorComponent implements OnInit, OnDestroy {
   html = '';
-
+  editor: Editor;
   ngOnInit(): void {
     this.editor = new Editor();
   }
 
-  // make sure to destory the editor
   ngOnDestroy(): void {
     this.editor.destroy();
   }
@@ -84,7 +79,12 @@ Then in HTML
 ```html
 <div class="NgxEditor__Wrapper">
   <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-  <ngx-editor [editor]="editor" [ngModel]="html" [disabled]="false" [placeholder]="'Type here...'"></ngx-editor>
+  <ngx-editor
+    [editor]="editor"
+    [ngModel]="html"
+    [disabled]="false"
+    [placeholder]="'Type here...'"
+  ></ngx-editor>
 </div>
 ```
 
