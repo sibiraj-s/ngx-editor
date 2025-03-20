@@ -2,7 +2,7 @@
 title: Quick Start
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { TabItem, Tabs } from '@astrojs/starlight/components';
 import Stackblitz from '@Components/Stackblitz.astro';
 
 ### Installation
@@ -35,22 +35,18 @@ yarn add ngx-editor
 
 ### Usage
 
-Import `ngx-editor` module
-
-```ts title="app.module.ts"
-import { NgxEditorModule } from 'ngx-editor';
-
-@NgModule({
-  imports: [NgxEditorModule],
-})
-export class AppModule {}
-```
-
-Initialize editor in the component
+Import `NgxEditorComponent` and initialize the editor
 
 ```ts title="app.component.ts"
-import { Editor } from 'ngx-editor';
+import { NgxEditorComponent, Editor } from 'ngx-editor';
 
+@Component({
+  selector: 'app-component',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss'],
+  standalone: true,
+  imports: [NgxEditorComponent],
+})
 export class AppComponent implements OnInit, OnDestroy {
   html = 'Hello world!';
   editor: Editor;

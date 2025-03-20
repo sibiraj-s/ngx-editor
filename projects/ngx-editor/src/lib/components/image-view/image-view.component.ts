@@ -1,6 +1,6 @@
+import { CommonModule } from '@angular/common';
 import {
-  Component, ElementRef, EventEmitter,
-  Input, Output, ViewChild,
+  Component, ElementRef, EventEmitter, Input, Output, ViewChild,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 
@@ -8,8 +8,8 @@ import { EditorView } from 'prosemirror-view';
   selector: 'ngx-image-view',
   templateUrl: './image-view.component.html',
   styleUrls: ['./image-view.component.scss'],
+  imports: [CommonModule],
 })
-
 export class ImageViewComponent {
   @Input() src: string;
   @Input() alt = '';

@@ -1,18 +1,18 @@
-import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 
-import { NgxEditorConfig } from './types';
 import { defaults as defaultLocals } from './Locals';
 import { icons } from './icons';
+import { NgxEditorConfig } from './types';
 
-import { NgxEditorComponent } from './editor.component';
 import { NgxEditorServiceConfig } from './editor-config.service';
+import { NgxEditorComponent } from './editor.component';
 import { NgxEditorService, provideMyServiceOptions } from './editor.service';
 import { MenuModule } from './modules/menu/menu.module';
 
-import { MenuComponent } from './modules/menu/menu.component';
 import { ImageViewComponent } from './components/image-view/image-view.component';
-import { FloatingMenuComponent } from './modules/menu/floating-menu/floating-menu.component';
+import { NgxFloatingMenuComponent } from './modules/menu/floating-menu/floating-menu.component';
+import { NgxMenuComponent } from './modules/menu/menu.component';
 
 export const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorConfig');
 
@@ -22,20 +22,9 @@ const defaultConfig: NgxEditorConfig = {
 };
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MenuModule,
-  ],
+  imports: [CommonModule, MenuModule, NgxEditorComponent, ImageViewComponent],
   providers: [],
-  declarations: [
-    NgxEditorComponent,
-    ImageViewComponent,
-  ],
-  exports: [
-    NgxEditorComponent,
-    MenuComponent,
-    FloatingMenuComponent,
-  ],
+  exports: [NgxEditorComponent, NgxMenuComponent, NgxFloatingMenuComponent],
 })
 export class NgxEditorModule {
   static forRoot(config: NgxEditorConfig = defaultConfig): ModuleWithProviders<NgxEditorModule> {

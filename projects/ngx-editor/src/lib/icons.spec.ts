@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { NgxEditorModule } from 'ngx-editor';
+import { NgxEditorModule, NgxMenuComponent } from 'ngx-editor';
 import Editor from './Editor';
 
 describe('NgxEditorModule', () => {
   @Component({
     template: '<ngx-editor-menu [editor]="editor"></ngx-editor-menu>',
+    imports: [NgxMenuComponent],
   })
   class TestComponent {
     editor!: Editor;
@@ -18,15 +19,13 @@ describe('NgxEditorModule', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestComponent,
-      ],
       imports: [
         NgxEditorModule.forRoot({
           icons: {
             bold: '<img src="https://example.com/bold.png">',
           },
         }),
+        TestComponent,
       ],
     });
     await TestBed.compileComponents();

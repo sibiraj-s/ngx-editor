@@ -1,19 +1,20 @@
 import {
-  Component, ElementRef,
-  HostListener, Input, OnDestroy, OnInit,
+  Component, ElementRef, HostListener, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
 
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { NgxEditorService } from '../../../editor.service';
+import { TBHeadingItems } from '../../../types';
 import { MenuService } from '../menu.service';
 import { ToggleCommands } from '../MenuCommands';
-import { TBHeadingItems } from '../../../types';
 
 @Component({
   selector: 'ngx-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
+  imports: [AsyncPipe, CommonModule],
 })
 export class DropdownComponent implements OnInit, OnDestroy {
   private editorView: EditorView;
@@ -31,7 +32,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
     private el: ElementRef,
-  ) { }
+  ) {}
 
   get isSelected(): boolean {
     return Boolean(this.activeItem || this.isDropdownOpen);

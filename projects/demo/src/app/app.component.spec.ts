@@ -1,11 +1,11 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NgxEditorModule } from 'ngx-editor';
 
 import { AppComponent } from './app.component';
-import { CustomMenuComponent } from './components/custom-menu/custom-menu.component';
+import { NgxCustomMenuComponent } from './components/custom-menu/custom-menu.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -13,13 +13,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        NgxEditorModule,
-        AppComponent,
-        CustomMenuComponent,
-      ],
+      imports: [FormsModule, ReactiveFormsModule, NgxEditorModule, AppComponent, NgxCustomMenuComponent],
     }).compileComponents();
   });
 

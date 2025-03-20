@@ -13,10 +13,8 @@ describe('ToggleCommandComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        ToggleCommandComponent,
-        SanitizeHtmlPipe,
-      ],
+      imports: [ToggleCommandComponent,
+        SanitizeHtmlPipe],
       providers: [MenuService],
     })
       .compileComponents();

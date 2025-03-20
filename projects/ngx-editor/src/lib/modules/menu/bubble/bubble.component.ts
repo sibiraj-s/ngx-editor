@@ -3,19 +3,24 @@ import { SafeHtml } from '@angular/platform-browser';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
 
+import { AsyncPipe, CommonModule } from '@angular/common';
 import Editor from '../../../Editor';
-import { TBItems } from '../../../types';
-import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
-import { ToggleCommands } from '../MenuCommands';
 import { NgxEditorService } from '../../../editor.service';
+import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
+import { TBItems } from '../../../types';
+import { ToggleCommands } from '../MenuCommands';
 
 @Component({
   selector: 'ngx-bubble',
   templateUrl: './bubble.component.html',
   styleUrls: ['./bubble.component.scss'],
+  imports: [AsyncPipe, CommonModule],
 })
 export class BubbleComponent implements OnInit, OnDestroy {
-  constructor(private sanitizeHTML: SanitizeHtmlPipe, private ngxeService: NgxEditorService) { }
+  constructor(
+    private sanitizeHTML: SanitizeHtmlPipe,
+    private ngxeService: NgxEditorService,
+  ) {}
 
   private get view(): EditorView {
     return this.editor.view;
@@ -96,10 +101,9 @@ export class BubbleComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.updateSubscription = this.editor.update
-      .subscribe((view) => {
-        this.update(view);
-      });
+    this.updateSubscription = this.editor.update.subscribe((view) => {
+      this.update(view);
+    });
   }
 
   ngOnDestroy(): void {

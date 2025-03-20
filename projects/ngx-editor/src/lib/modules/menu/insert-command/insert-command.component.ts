@@ -2,18 +2,20 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
 
-import { InsertCommands } from '../MenuCommands';
+import { AsyncPipe } from '@angular/common';
 import { NgxEditorService } from '../../../editor.service';
-import { MenuService } from '../menu.service';
-import { TBItems, ToolbarItem } from '../../../types';
+import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { HTML } from '../../../trustedTypesUtil';
+import { TBItems, ToolbarItem } from '../../../types';
+import { MenuService } from '../menu.service';
+import { InsertCommands } from '../MenuCommands';
 
 @Component({
   selector: 'ngx-insert-command',
   templateUrl: './insert-command.component.html',
   styleUrls: ['./insert-command.component.scss'],
+  imports: [AsyncPipe, SanitizeHtmlPipe],
 })
-
 export class InsertCommandComponent implements OnInit, OnDestroy {
   @Input() toolbarItem: ToolbarItem;
 
@@ -29,7 +31,7 @@ export class InsertCommandComponent implements OnInit, OnDestroy {
   constructor(
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
-  ) { }
+  ) {}
 
   onMouseClick(e: MouseEvent): void {
     e.preventDefault();

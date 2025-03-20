@@ -24,7 +24,7 @@
     (keydown.space)="onDropdownItemKeydown($event, item)"
     [ngClass]="{
       'NgxEditor__Dropdown--Active': item === activeItem,
-      'NgxEditor--Disabled': disabledItems.includes(item)
+      'NgxEditor--Disabled': disabledItems.includes(item),
     }"
     [ariaLabel]="getName(item) | async"
     role="option"

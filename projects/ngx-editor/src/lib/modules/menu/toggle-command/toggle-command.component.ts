@@ -2,18 +2,20 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
 
-import { ToggleCommands } from '../MenuCommands';
+import { AsyncPipe } from '@angular/common';
 import { NgxEditorService } from '../../../editor.service';
-import { MenuService } from '../menu.service';
-import { TBItems, ToolbarItem } from '../../../types';
+import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { HTML } from '../../../trustedTypesUtil';
+import { TBItems, ToolbarItem } from '../../../types';
+import { MenuService } from '../menu.service';
+import { ToggleCommands } from '../MenuCommands';
 
 @Component({
   selector: 'ngx-toggle-command',
   templateUrl: './toggle-command.component.html',
   styleUrls: ['./toggle-command.component.scss'],
+  imports: [AsyncPipe, SanitizeHtmlPipe],
 })
-
 export class ToggleCommandComponent implements OnInit, OnDestroy {
   @Input() toolbarItem: ToolbarItem;
 
@@ -30,7 +32,7 @@ export class ToggleCommandComponent implements OnInit, OnDestroy {
   constructor(
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
-  ) { }
+  ) {}
 
   toggle(): void {
     const { state, dispatch } = this.editorView;
