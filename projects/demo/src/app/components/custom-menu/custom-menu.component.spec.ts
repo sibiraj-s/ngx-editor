@@ -3,7 +3,7 @@ import { Editor } from 'ngx-editor';
 
 import { AppCustomMenuComponent } from './custom-menu.component';
 
-describe('NgxCustomMenuComponent', () => {
+describe('AppCustomMenuComponent', () => {
   let component: AppCustomMenuComponent;
   let fixture: ComponentFixture<AppCustomMenuComponent>;
 

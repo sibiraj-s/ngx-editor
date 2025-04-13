@@ -6,7 +6,7 @@ plugins:
   - prettier-plugin-astro
 
 overrides:
-  - files: '*.astro'
+  - files: '*.{astro,mdx}'
     options:
       parser: 'astro'
   - files: '*.{md,mdx}'
