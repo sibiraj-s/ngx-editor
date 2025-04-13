@@ -13,8 +13,10 @@ describe('ImageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImageComponent,
-        SanitizeHtmlPipe],
+      imports: [
+        ImageComponent,
+        SanitizeHtmlPipe,
+      ],
       providers: [
         MenuService,
       ],
