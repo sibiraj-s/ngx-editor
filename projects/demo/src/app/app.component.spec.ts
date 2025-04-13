@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { NgxEditorModule } from 'ngx-editor';
 
 import { AppComponent } from './app.component';
-import { NgxCustomMenuComponent } from './components/custom-menu/custom-menu.component';
+import { AppCustomMenuComponent } from './components/custom-menu/custom-menu.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -13,7 +13,13 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, NgxEditorModule, AppComponent, NgxCustomMenuComponent],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        AppComponent,
+        NgxEditorModule,
+        AppCustomMenuComponent,
+      ],
     }).compileComponents();
   });
 

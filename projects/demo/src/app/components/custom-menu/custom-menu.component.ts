@@ -14,7 +14,7 @@ import { isNodeActive } from 'ngx-editor/helpers';
   standalone: true,
   imports: [CommonModule],
 })
-export class NgxCustomMenuComponent implements OnInit {
+export class AppCustomMenuComponent implements OnInit {
   @Input() editor: Editor;
   isActive = false;
   isDisabled = false;

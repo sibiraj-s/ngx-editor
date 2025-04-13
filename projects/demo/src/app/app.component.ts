@@ -12,8 +12,7 @@ import {
   Validators,
 } from 'ngx-editor';
 
-import { RouterOutlet } from '@angular/router';
-import { NgxCustomMenuComponent } from './components/custom-menu/custom-menu.component';
+import { AppCustomMenuComponent } from './components/custom-menu/custom-menu.component';
 import jsonDoc from './doc';
 import nodeViews from './nodeviews';
 import schema from './schema';
@@ -26,13 +25,12 @@ import schema from './schema';
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet,
     FormsModule,
     ReactiveFormsModule,
     NgxEditorComponent,
     NgxMenuComponent,
     NgxFloatingMenuComponent,
-    NgxCustomMenuComponent,
+    AppCustomMenuComponent,
   ],
 })
 export class AppComponent implements OnInit, OnDestroy {
