@@ -77,7 +77,12 @@
             "styles": [
               "projects/demo/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "projects/demo/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/demo/src/server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -85,12 +90,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1.5MB"
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
                 }
               ],
               "outputHashing": "all"

@@ -15,6 +15,7 @@ import { ToggleCommands } from '../MenuCommands';
   templateUrl: './bubble.component.html',
   styleUrls: ['./bubble.component.scss'],
   imports: [AsyncPipe, CommonModule],
+  providers: [SanitizeHtmlPipe],
 })
 export class BubbleComponent implements OnInit, OnDestroy {
   constructor(

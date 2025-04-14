@@ -2,6 +2,10 @@ import type { TrustedTypePolicyFactory, TrustedTypesWindow, TrustedHTML } from '
 import { isString } from './stringUtil';
 
 export const getTrustedTypes = (): TrustedTypePolicyFactory | undefined => {
+  if (typeof window === 'undefined') {
+    return undefined;
+  }
+
   return (window as unknown as TrustedTypesWindow).trustedTypes;
 };
 

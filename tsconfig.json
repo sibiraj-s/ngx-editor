@@ -9,8 +9,6 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
     "paths": {
       "ngx-editor": [
         "./dist/ngx-editor"
@@ -31,18 +29,14 @@
         "./dist/ngx-editor/helpers"
       ],
     },
+    "skipLibCheck": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
-    "sourceMap": true,
-    "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022",
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "module": "ES2022"
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
