@@ -102,15 +102,21 @@ import { setBlockType } from 'prosemirror-commands';
 import { EditorState, Plugin, PluginKey, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
-import { Editor } from 'ngx-editor';
+import {
+  NgxEditorComponent,
+  NgxFloatingMenuComponent,
+  Editor,
+} from 'ngx-editor';
 import { isNodeActive } from 'ngx-editor/helpers';
 
 @Component({
-  selector: 'app-custom-menu',
+  selector: 'custom-menu',
   templateUrl: './custom-menu.component.html',
   styleUrls: ['./custom-menu.component.scss'],
+  standalone: true,
+  imports: [NgxEditorComponent, NgxFloatingMenuComponent],
 })
-export class CustomMenuComponent implements OnInit {
+export class NgxCustomMenuComponent implements OnInit {
   constructor() {}
 
   @Input() editor: Editor;

@@ -1,16 +1,17 @@
+import { CommonModule } from '@angular/common';
 import {
-  Component, ElementRef, HostBinding,
-  HostListener, Input, OnDestroy, OnInit,
+  Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit,
 } from '@angular/core';
+import type { VirtualElement } from '@floating-ui/core';
+import { autoPlacement, computePosition, detectOverflow, offset } from '@floating-ui/dom';
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { asyncScheduler, fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
-import type { VirtualElement } from '@floating-ui/core';
-import { computePosition, detectOverflow, offset, autoPlacement } from '@floating-ui/dom';
 
 import { NgxEditorError } from 'ngx-editor/utils';
 import Editor from '../../../Editor';
+import { BubbleComponent } from '../bubble/bubble.component';
 
 interface BubblePosition {
   top: number;
@@ -21,9 +22,10 @@ interface BubblePosition {
   selector: 'ngx-editor-floating-menu',
   templateUrl: './floating-menu.component.html',
   styleUrls: ['./floating-menu.component.scss'],
+  imports: [BubbleComponent, CommonModule],
 })
-export class FloatingMenuComponent implements OnInit, OnDestroy {
-  constructor(public el: ElementRef<HTMLElement>) { }
+export class NgxFloatingMenuComponent implements OnInit, OnDestroy {
+  constructor(public el: ElementRef<HTMLElement>) {}
 
   @HostBinding('style') get display(): Partial<CSSStyleDeclaration> {
     return {
@@ -110,7 +112,9 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   private async calculateBubblePosition(view: EditorView): Promise<BubblePosition> {
-    const { state: { selection } } = view;
+    const {
+      state: { selection },
+    } = view;
     const { from, to } = selection;
 
     const start = view.coordsAtPos(from);
@@ -146,11 +150,12 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
       placement: 'top',
       middleware: [
         offset(5),
-        this.autoPlace && autoPlacement({
-          boundary: view.dom,
-          padding: 5,
-          allowedPlacements: ['top', 'bottom'],
-        }),
+        this.autoPlace
+          && autoPlacement({
+            boundary: view.dom,
+            padding: 5,
+            allowedPlacements: ['top', 'bottom'],
+          }),
         {
           // prevent overflow on right and left side
           // since only top and bottom placements are allowed
@@ -235,16 +240,15 @@ export class FloatingMenuComponent implements OnInit, OnDestroy {
       throw new NgxEditorError('Required editor instance to initialize floating menu component');
     }
 
-    this.updateSubscription = this.editor.update
-      .subscribe((view) => {
-        this.update(view);
-      });
-
-    this.resizeSubscription = fromEvent(window, 'resize').pipe(
-      throttleTime(500, asyncScheduler, { leading: true, trailing: true }),
-    ).subscribe(() => {
-      this.useUpdate();
+    this.updateSubscription = this.editor.update.subscribe((view) => {
+      this.update(view);
     });
+
+    this.resizeSubscription = fromEvent(window, 'resize')
+      .pipe(throttleTime(500, asyncScheduler, { leading: true, trailing: true }))
+      .subscribe(() => {
+        this.useUpdate();
+      });
   }
 
   ngOnDestroy(): void {

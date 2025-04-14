@@ -1,23 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Editor } from 'ngx-editor';
 
-import { CustomMenuComponent } from './custom-menu.component';
+import { AppCustomMenuComponent } from './custom-menu.component';
 
-describe('CustomMenuComponent', () => {
-  let component: CustomMenuComponent;
-  let fixture: ComponentFixture<CustomMenuComponent>;
+describe('AppCustomMenuComponent', () => {
+  let component: AppCustomMenuComponent;
+  let fixture: ComponentFixture<AppCustomMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        CustomMenuComponent,
-      ],
-    })
-      .compileComponents();
+      imports: [AppCustomMenuComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CustomMenuComponent);
+    fixture = TestBed.createComponent(AppCustomMenuComponent);
     component = fixture.componentInstance;
     component.editor = new Editor();
     fixture.detectChanges();

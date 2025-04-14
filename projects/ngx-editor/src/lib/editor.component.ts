@@ -1,28 +1,40 @@
 import {
-  Component, ViewChild, ElementRef, forwardRef,
-  OnDestroy, ViewEncapsulation, OnInit, Output,
-  EventEmitter, Input, Renderer2, SimpleChanges,
-  OnChanges, Injector,
+  Component,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  Injector,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  SimpleChanges,
+  ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { NgxEditorError } from 'ngx-editor/utils';
-import * as plugins from './plugins';
-import { emptyDoc, toHTML } from './parsers';
 import Editor from './Editor';
+import { emptyDoc, toHTML } from './parsers';
+import * as plugins from './plugins';
 import { HTML, isHtml } from './trustedTypesUtil';
 
 @Component({
   selector: 'ngx-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => NgxEditorComponent),
-    multi: true,
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NgxEditorComponent),
+      multi: true,
+    },
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
@@ -30,7 +42,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     private renderer: Renderer2,
     private injector: Injector,
     private elementRef: ElementRef<HTMLElement>,
-  ) { }
+  ) {}
 
   @ViewChild('ngxEditor', { static: true }) private ngxEditor: ElementRef;
 
@@ -42,8 +54,13 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   @Output() focusIn = new EventEmitter<void>();
 
   private unsubscribe: Subject<void> = new Subject();
-  private onChange: (value: Record<string, any> | string) => void = () => { /** */ };
-  private onTouched: () => void = () => { /** */ };
+  private onChange: (value: Record<string, any> | string) => void = () => {
+    /** */
+  };
+
+  private onTouched: () => void = () => {
+    /** */
+  };
 
   writeValue(value: Record<string, any> | HTML | null): void {
     if (!this.outputFormat && isHtml(value)) {
@@ -77,7 +94,10 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   }
 
   private setMeta(key: string, value: any): void {
-    const { dispatch, state: { tr } } = this.editor.view;
+    const {
+      dispatch,
+      state: { tr },
+    } = this.editor.view;
     dispatch(tr.setMeta(key, value));
   }
 
@@ -89,18 +109,24 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     this.editor.registerPlugin(plugins.editable());
     this.editor.registerPlugin(plugins.placeholder(this.placeholder));
 
-    this.editor.registerPlugin(plugins.attributes({
-      class: 'NgxEditor__Content',
-    }));
+    this.editor.registerPlugin(
+      plugins.attributes({
+        class: 'NgxEditor__Content',
+      }),
+    );
 
-    this.editor.registerPlugin(plugins.focus(() => {
-      this.focusIn.emit();
-    }));
+    this.editor.registerPlugin(
+      plugins.focus(() => {
+        this.focusIn.emit();
+      }),
+    );
 
-    this.editor.registerPlugin(plugins.blur(() => {
-      this.focusOut.emit();
-      this.onTouched();
-    }));
+    this.editor.registerPlugin(
+      plugins.blur(() => {
+        this.focusOut.emit();
+        this.onTouched();
+      }),
+    );
 
     if (this.editor.features.resizeImage) {
       this.editor.registerPlugin(plugins.imageResize(this.injector));
@@ -120,11 +146,9 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
     this.renderer.appendChild(this.ngxEditor.nativeElement, this.editor.view.dom);
 
-    this.editor.valueChanges
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe((jsonDoc) => {
-        this.handleChange(jsonDoc);
-      });
+    this.editor.valueChanges.pipe(takeUntil(this.unsubscribe)).subscribe((jsonDoc) => {
+      this.handleChange(jsonDoc);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

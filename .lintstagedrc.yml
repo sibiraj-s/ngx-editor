@@ -3,4 +3,4 @@
   - eslint --fix
   - prettier --write
 'docs/**/*.html': prettier --write
-'*.{md,mdx,css,scss,astro,yaml,yml}': prettier --write
+'*.{md,css,scss,astro,yaml,yml}': prettier --write
