@@ -193,7 +193,7 @@ export class NgxFloatingMenuComponent implements OnInit, OnDestroy {
     };
   }
 
-  private canShowMenu(view: EditorView): Boolean {
+  private canShowMenu(view: EditorView): boolean {
     const { state } = view;
     const { selection } = state;
     const { empty } = selection;

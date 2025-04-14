@@ -11,7 +11,7 @@ import { parseContent } from './parsers';
 import getDefaultPlugins from './defaultPlugins';
 import { HTML } from './trustedTypesUtil';
 
-type JSONDoc = Record<string, any>;
+type JSONDoc = Record<string, unknown>;
 type Content = HTML | null | JSONDoc;
 
 interface Options {

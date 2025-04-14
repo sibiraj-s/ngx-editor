@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 // Icons source: https://material.io/
 
 import bold from './bold';
@@ -31,7 +30,7 @@ const DEFAULT_ICON_HEIGHT = 20;
 const DEFAULT_ICON_WIDTH = 20;
 const DEFAULT_ICON_FILL = 'currentColor';
 
-export const icons: Record<string, any> = {
+export const icons: Record<string, string> = {
   bold,
   italic,
   code,

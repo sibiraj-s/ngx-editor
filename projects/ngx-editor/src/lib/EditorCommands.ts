@@ -245,7 +245,7 @@ class EditorCommands {
     const { from, to } = selection;
 
     const element = document.createElement('div');
-    element.innerHTML = isString(html) ? (html as string).trim() : html as any;
+    element.innerHTML = isString(html) ? html.trim() : String(html);
     const slice = DOMParser.fromSchema(schema).parseSlice(element);
 
     const transaction = tr.replaceRange(from, to, slice);

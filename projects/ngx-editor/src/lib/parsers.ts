@@ -13,7 +13,7 @@ export const emptyDoc = {
 };
 
 // https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment
-export const toHTML = (json: Record<string, any>, inputSchema?: Schema): string => {
+export const toHTML = (json: Record<string, unknown>, inputSchema?: Schema): string => {
   const schema = inputSchema ?? defaultSchema;
 
   const contentNode = schema.nodeFromJSON(json);
@@ -24,17 +24,17 @@ export const toHTML = (json: Record<string, any>, inputSchema?: Schema): string 
   return div.innerHTML;
 };
 
-export const toDoc = (html: HTML, inputSchema?: Schema, options?:ParseOptions): Record<string, any> => {
+export const toDoc = (html: HTML, inputSchema?: Schema, options?:ParseOptions): Record<string, unknown> => {
   const schema = inputSchema ?? defaultSchema;
 
   const el = document.createElement('div');
-  el.innerHTML = html as any;
+  el.innerHTML = html as string;
 
   return DOMParser.fromSchema(schema).parse(el, options).toJSON();
 };
 
 export const parseContent = (
-  value: HTML | Record<string, any> | null,
+  value: HTML | Record<string, unknown> | null,
   schema: Schema,
   options?: ParseOptions,
 ): ProseMirrorNode => {

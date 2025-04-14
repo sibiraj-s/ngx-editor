@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
     "build:demo": "ng build demo",
     "build:lib": "ng build ngx-editor",
@@ -45,11 +46,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.3",
-    "@angular-eslint/builder": "^19.2.1",
-    "@angular-eslint/eslint-plugin": "^19.2.1",
-    "@angular-eslint/eslint-plugin-template": "^19.2.1",
-    "@angular-eslint/schematics": "^19.2.1",
-    "@angular-eslint/template-parser": "^19.2.1",
     "@angular/cli": "^19.2.2",
     "@angular/compiler-cli": "^19.2.2",
     "@codemirror/lang-javascript": "^6.2.3",
@@ -61,9 +57,10 @@
     "@floating-ui/dom": "^1.6.13",
     "@types/jasmine": "~5.1.7",
     "@types/trusted-types": "~2.0.7",
+    "angular-eslint": "19.3.0",
     "codemirror": "^6.0.1",
-    "eslint": "^8.57.1",
-    "eslint-config-pegasus": "^5.0.0",
+    "eslint": "^9.23.0",
+    "eslint-config-pegasus": "^6.0.2",
     "husky": "^9.1.7",
     "is-ci": "^4.1.0",
     "jasmine-core": "~5.6.0",
@@ -86,6 +83,7 @@
     "prosemirror-schema-list": "^1.5.1",
     "prosemirror-state": "^1.4.3",
     "prosemirror-view": "^1.38.1",
-    "typescript": "~5.8.2"
+    "typescript": "~5.8.2",
+    "typescript-eslint": "8.27.0"
   }
 }

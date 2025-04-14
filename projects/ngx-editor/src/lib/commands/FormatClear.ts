@@ -20,7 +20,7 @@ class FormatClear implements InsertCommand {
         }
 
         ranges.forEach((range) => {
-          tr.removeMark(range.$from.pos, range.$to.pos, mark as any);
+          tr.removeMark(range.$from.pos, range.$to.pos, mark);
         });
       });
 

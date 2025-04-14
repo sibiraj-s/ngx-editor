@@ -40,7 +40,8 @@
             "lintFilePatterns": [
               "projects/ngx-editor/**/*.ts",
               "projects/ngx-editor/**/*.html"
-            ]
+            ],
+            "eslintConfig": "projects/ngx-editor/eslint.config.js"
           }
         }
       }
@@ -144,7 +145,8 @@
             "lintFilePatterns": [
               "projects/demo/**/*.ts",
               "projects/demo/**/*.html"
-            ]
+            ],
+            "eslintConfig": "projects/demo/eslint.config.js"
           }
         }
       }
@@ -152,7 +154,7 @@
   },
   "cli": {
     "schematicCollections": [
-      "@angular-eslint/schematics"
+      "angular-eslint"
     ],
     "analytics": false
   }

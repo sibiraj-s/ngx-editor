@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 
@@ -44,7 +45,7 @@ export type ToolbarCustomMenuItem = (editorView: EditorView) => TCR;
 export type ToolbarDropdownGroupKeys = keyof ToolbarDropdown;
 export type ToolbarDropdownGroupValues = ToolbarDropdown[ToolbarDropdownGroupKeys];
 export type ToolbarItem = TBItems | ToolbarDropdown | ToolbarLink | ToolbarCustomMenuItem;
-export type Toolbar = Array<ToolbarItem[]>;
+export type Toolbar = ToolbarItem[][];
 
 export interface NgxEditorConfig {
   locals?: Partial<Record<LocalsKeys, string | Observable<string>>>;

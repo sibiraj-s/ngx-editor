@@ -127,7 +127,7 @@ const heading: NodeSpec = {
   parseDOM: [
     {
       tag: 'h1',
-      getAttrs(dom: HTMLElement): Record<string, any> {
+      getAttrs(dom: HTMLElement): Record<string, string | number | null> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
         const indent = dom.getAttribute('data-indent') || null;
@@ -141,7 +141,7 @@ const heading: NodeSpec = {
     },
     {
       tag: 'h2',
-      getAttrs(dom: HTMLElement): Record<string, any> {
+      getAttrs(dom: HTMLElement): Record<string, string | number | null> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
         const indent = dom.getAttribute('data-indent') || null;
@@ -155,7 +155,7 @@ const heading: NodeSpec = {
     },
     {
       tag: 'h3',
-      getAttrs(dom: HTMLElement): Record<string, any> {
+      getAttrs(dom: HTMLElement): Record<string, string | number | null> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
         const indent = dom.getAttribute('data-indent') || null;
@@ -169,7 +169,7 @@ const heading: NodeSpec = {
     },
     {
       tag: 'h4',
-      getAttrs(dom: HTMLElement): Record<string, any> {
+      getAttrs(dom: HTMLElement): Record<string, string | number | null> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
         const indent = dom.getAttribute('data-indent') || null;
@@ -183,7 +183,7 @@ const heading: NodeSpec = {
     },
     {
       tag: 'h5',
-      getAttrs(dom: HTMLElement): Record<string, any> {
+      getAttrs(dom: HTMLElement): Record<string, string | number | null> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
         const indent = dom.getAttribute('data-indent') || null;
@@ -197,7 +197,7 @@ const heading: NodeSpec = {
     },
     {
       tag: 'h6',
-      getAttrs(dom: HTMLElement): Record<string, any> {
+      getAttrs(dom: HTMLElement): Record<string, string | number | null> {
         const { textAlign } = dom.style;
         const align = dom.getAttribute('align') || textAlign || null;
         const indent = dom.getAttribute('data-indent') || null;
@@ -275,7 +275,7 @@ export const image: NodeSpec = {
   parseDOM: [
     {
       tag: 'img[src]',
-      getAttrs(dom: HTMLElement): Record<string, any> {
+      getAttrs(dom: HTMLElement): Record<string, string> {
         return {
           src: dom.getAttribute('src'),
           title: dom.getAttribute('title'),

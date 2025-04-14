@@ -9,11 +9,11 @@ import type { Dispatch } from './types';
 type Name = 'text_color' | 'text_background_color';
 type AttrName = 'color' | 'backgroundColor';
 
-interface ColorAttrs {
+interface ColorAttrs extends Record<string, string> {
   color: string;
 }
 
-interface BackgroundColorAttrs {
+interface BackgroundColorAttrs extends Record<string, string> {
   backgroundColor: string;
 }
 

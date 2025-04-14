@@ -1,5 +1,5 @@
 import { MarkType, NodeType, Schema } from 'prosemirror-model';
-import { Plugin } from 'prosemirror-state';
+import { Command, Plugin } from 'prosemirror-state';
 import { keymap } from 'prosemirror-keymap';
 import { toggleMark, baseKeymap, chainCommands, exitCode } from 'prosemirror-commands';
 import { splitListItem, liftListItem, sinkListItem } from 'prosemirror-schema-list';
@@ -106,7 +106,7 @@ const buildInputRules = (schema: Schema): Plugin => {
 };
 
 export const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) => {
-  const historyKeyMap: Record<string, any> = {};
+  const historyKeyMap: Record<string, Command> = {};
 
   historyKeyMap['Mod-z'] = undo;
   if (isMacOs) {

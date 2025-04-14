@@ -4,14 +4,14 @@ import { Schema, Node as ProseMirrorNode } from 'prosemirror-model';
 import { parseContent } from './parsers';
 import defaultSchema from './schema';
 
-type ValidationErrors = Record<string, any>;
+type ValidationErrors = Record<string, unknown>;
 
-const isEmptyInputValue = (value: any): boolean => {
+const isEmptyInputValue = (value: string | null): boolean => {
   // we don't check for string here so it also works with arrays
   return value === null || value.length === 0;
 };
 
-const hasValidLength = (value: any): boolean => {
+const hasValidLength = (value: string | null): boolean => {
   // non-strict comparison is intentional, to check for both `null` and `undefined` values
   return value !== null && typeof value.length === 'number';
 };

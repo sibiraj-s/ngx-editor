@@ -53,8 +53,8 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   @Output() focusOut = new EventEmitter<void>();
   @Output() focusIn = new EventEmitter<void>();
 
-  private unsubscribe: Subject<void> = new Subject();
-  private onChange: (value: Record<string, any> | string) => void = () => {
+  private unsubscribe = new Subject<void>();
+  private onChange: (value: Record<string, unknown> | string) => void = () => {
     /** */
   };
 
@@ -62,7 +62,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     /** */
   };
 
-  writeValue(value: Record<string, any> | HTML | null): void {
+  writeValue(value: Record<string, unknown> | HTML | null): void {
     if (!this.outputFormat && isHtml(value)) {
       this.outputFormat = 'html';
     }
@@ -83,7 +83,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     this.renderer.setProperty(this.elementRef.nativeElement, 'disabled', isDisabled);
   }
 
-  private handleChange(jsonDoc: Record<string, any>): void {
+  private handleChange(jsonDoc: Record<string, unknown>): void {
     if (this.outputFormat === 'html') {
       const html = toHTML(jsonDoc, this.editor.schema);
       this.onChange(html);
@@ -93,7 +93,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
     this.onChange(jsonDoc);
   }
 
-  private setMeta(key: string, value: any): void {
+  private setMeta(key: string, value: unknown): void {
     const {
       dispatch,
       state: { tr },

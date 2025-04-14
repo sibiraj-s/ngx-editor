@@ -84,7 +84,7 @@ export class NgxMenuComponent implements OnInit {
   @Input() colorPresets: string[] = DEFAULT_COLOR_PRESETS;
   @Input() disabled = false;
   @Input() editor: Editor;
-  @Input() customMenuRef: TemplateRef<any> | null = null;
+  @Input() customMenuRef: TemplateRef<unknown> | null = null;
   @Input() dropdownPlacement: 'top' | 'bottom' = 'bottom';
 
   toggleCommands: ToolbarItem[] = [

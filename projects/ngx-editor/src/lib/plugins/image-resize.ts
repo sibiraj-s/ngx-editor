@@ -42,11 +42,11 @@ class ImageRezieView implements NodeView {
     });
   }
 
-  private computeChanges(prevAttrs: Record<string, any>, newAttrs: Record<string, any>): boolean {
+  private computeChanges(prevAttrs: Record<string, unknown>, newAttrs: Record<string, unknown>): boolean {
     return JSON.stringify(prevAttrs) === JSON.stringify(newAttrs);
   }
 
-  private setNodeAttributes(attrs: Record<string, any>): void {
+  private setNodeAttributes(attrs: Record<string, string>): void {
     this.imageComponentRef.instance.src = attrs['src'];
     this.imageComponentRef.instance.alt = attrs['alt'];
     this.imageComponentRef.instance.title = attrs['title'];

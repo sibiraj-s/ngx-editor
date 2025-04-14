@@ -1,6 +1,6 @@
-const fs = require('node:fs/promises');
-const path = require('node:path');
-const pc = require('picocolors');
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import pc from 'picocolors';
 
 const copyFile = async function (srcFilePath, destFilePath) {
   const fileName = path.basename(srcFilePath);

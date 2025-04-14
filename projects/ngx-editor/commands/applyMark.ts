@@ -4,7 +4,7 @@ import { EditorState, TextSelection, Transaction, type Command } from 'prosemirr
 import { markApplies } from 'ngx-editor/helpers';
 
 // Ref: https://github.com/ProseMirror/prosemirror-commands/blob/master/src/commands.js
-export const applyMark = (type: MarkType, attrs: Record<string, any> = {}): Command => {
+export const applyMark = (type: MarkType, attrs: Record<string, unknown> = {}): Command => {
   return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
     const { tr, selection } = state;
     const { empty, ranges, $from, $to } = selection;

@@ -3,6 +3,7 @@
   "version": "18.0.0",
   "description": "The Rich Text Editor for Angular, Built on ProseMirror",
   "license": "MIT",
+  "type": "module",
   "repository": "https://github.com/sibiraj-s/ngx-editor.git",
   "bugs": "https://github.com/sibiraj-s/ngx-editor/issues",
   "homepage": "https://github.com/sibiraj-s/ngx-editor",

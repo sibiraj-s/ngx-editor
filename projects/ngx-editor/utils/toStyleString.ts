@@ -2,11 +2,11 @@ const camelToDashed = (str: string): string => {
   return str.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`);
 };
 
-const cleanObject = (obj: Record<string, any>): Record<string, any> => {
+const cleanObject = (obj: Record<string, unknown>): Record<string, string> => {
   const cleanObj: Record<string, string> = {};
 
   Object.keys(obj).forEach((prop) => {
-    if (obj[prop]) {
+    if (obj[prop] && typeof obj[prop] === 'string') {
       cleanObj[prop] = obj[prop];
     }
   });
