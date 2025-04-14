@@ -13,9 +13,13 @@ export default defineConfig({
         src: '/src/assets/ngx-editor.svg',
       },
       customCss: process.env.NO_GRADIENTS ? [] : ['/src/assets/landing.css'],
-      social: {
-        github: 'https://github.com/sibiraj-s/ngx-editor',
-      },
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/sibiraj-s/ngx-editor',
+        },
+      ],
       editLink: {
         baseUrl: 'https://github.com/sibiraj-s/ngx-editor/tree/master/docs/',
       },
