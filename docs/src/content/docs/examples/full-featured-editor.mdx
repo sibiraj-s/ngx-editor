@@ -125,7 +125,7 @@ import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import {
   Validators,
   NgxEditorComponent,
-  NgxMenuComponent,
+  NgxEditorMenuComponent,
   Editor,
   Toolbar,
 } from 'ngx-editor';
@@ -136,7 +136,7 @@ import {
   styleUrls: ['app.component.scss'],
   encapsulation: ViewEncapsulation.None,
   standalone: true,
-  imports: [NgxEditorComponent, NgxMenuComponent],
+  imports: [NgxEditorComponent, NgxEditorMenuComponent],
 })
 export class AppComponent implements OnInit, OnDestroy {
   editor: Editor;

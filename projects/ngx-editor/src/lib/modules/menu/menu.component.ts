@@ -79,7 +79,7 @@ const DEFAULT_COLOR_PRESETS = [
     ImageComponent,
   ],
 })
-export class NgxMenuComponent implements OnInit {
+export class NgxEditorMenuComponent implements OnInit {
   @Input() toolbar: Toolbar = TOOLBAR_MINIMAL;
   @Input() colorPresets: string[] = DEFAULT_COLOR_PRESETS;
   @Input() disabled = false;
@@ -104,7 +104,14 @@ export class NgxMenuComponent implements OnInit {
     'subscript',
   ];
 
-  insertCommands: ToolbarItem[] = ['horizontal_rule', 'format_clear', 'indent', 'outdent', 'undo', 'redo'];
+  insertCommands: ToolbarItem[] = [
+    'horizontal_rule',
+    'format_clear',
+    'indent',
+    'outdent',
+    'undo',
+    'redo',
+  ];
 
   iconContainerClass = ['NgxEditor__MenuItem', 'NgxEditor__MenuItem--IconContainer'];
   dropdownContainerClass = ['NgxEditor__Dropdown'];

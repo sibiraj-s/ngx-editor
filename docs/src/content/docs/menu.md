@@ -104,7 +104,7 @@ import { EditorView } from 'prosemirror-view';
 
 import {
   NgxEditorComponent,
-  NgxFloatingMenuComponent,
+  NgxEditorFloatingMenuComponent,
   Editor,
 } from 'ngx-editor';
 import { isNodeActive } from 'ngx-editor/helpers';
@@ -114,7 +114,7 @@ import { isNodeActive } from 'ngx-editor/helpers';
   templateUrl: './custom-menu.component.html',
   styleUrls: ['./custom-menu.component.scss'],
   standalone: true,
-  imports: [NgxEditorComponent, NgxFloatingMenuComponent],
+  imports: [NgxEditorComponent, NgxEditorFloatingMenuComponent],
 })
 export class NgxCustomMenuComponent implements OnInit {
   constructor() {}

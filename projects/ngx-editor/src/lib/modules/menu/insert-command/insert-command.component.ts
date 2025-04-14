@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
 
-import { AsyncPipe } from '@angular/common';
 import { NgxEditorService } from '../../../editor.service';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { HTML } from '../../../trustedTypesUtil';

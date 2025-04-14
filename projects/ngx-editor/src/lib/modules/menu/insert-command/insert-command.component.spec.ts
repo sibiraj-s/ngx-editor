@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InsertCommandComponent } from './insert-command.component';
+import Editor from '../../../Editor';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { MenuService } from '../menu.service';
-import Editor from '../../../Editor';
+import { InsertCommandComponent } from './insert-command.component';
 
 describe('InsertCommandComponent', () => {
   let component: InsertCommandComponent;
@@ -12,12 +12,17 @@ describe('InsertCommandComponent', () => {
   let editor: Editor;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [InsertCommandComponent,
-        SanitizeHtmlPipe],
-      providers: [MenuService],
-    })
-      .compileComponents();
+    TestBed.configureTestingModule({
+      imports: [
+        InsertCommandComponent,
+        SanitizeHtmlPipe,
+      ],
+      providers: [
+        MenuService,
+      ],
+    });
+
+    await TestBed.compileComponents();
   });
 
   beforeEach(() => {

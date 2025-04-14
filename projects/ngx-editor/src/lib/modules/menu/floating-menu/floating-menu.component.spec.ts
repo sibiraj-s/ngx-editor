@@ -5,21 +5,28 @@ import { By } from '@angular/platform-browser';
 import Editor from '../../../Editor';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { BubbleComponent } from '../bubble/bubble.component';
-import { NgxFloatingMenuComponent } from './floating-menu.component';
+import { NgxEditorFloatingMenuComponent } from './floating-menu.component';
 
-describe('NgxFloatingMenuComponent', () => {
-  let component: NgxFloatingMenuComponent;
-  let fixture: ComponentFixture<NgxFloatingMenuComponent>;
+describe('NgxEditorFloatingMenuComponent', () => {
+  let component: NgxEditorFloatingMenuComponent;
+  let fixture: ComponentFixture<NgxEditorFloatingMenuComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [NgxFloatingMenuComponent, BubbleComponent],
-      providers: [SanitizeHtmlPipe],
-    }).compileComponents();
+    TestBed.configureTestingModule({
+      imports: [
+        NgxEditorFloatingMenuComponent,
+        BubbleComponent,
+      ],
+      providers: [
+        SanitizeHtmlPipe,
+      ],
+    });
+
+    await TestBed.compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgxFloatingMenuComponent);
+    fixture = TestBed.createComponent(NgxEditorFloatingMenuComponent);
     component = fixture.componentInstance;
     component.editor = new Editor();
     fixture.detectChanges();

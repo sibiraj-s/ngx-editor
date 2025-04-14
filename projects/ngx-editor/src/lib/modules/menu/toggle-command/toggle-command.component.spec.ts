@@ -12,12 +12,17 @@ describe('ToggleCommandComponent', () => {
   let editor: Editor;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ToggleCommandComponent,
-        SanitizeHtmlPipe],
-      providers: [MenuService],
-    })
-      .compileComponents();
+    TestBed.configureTestingModule({
+      imports: [
+        ToggleCommandComponent,
+        SanitizeHtmlPipe,
+      ],
+      providers: [
+        MenuService,
+      ],
+    });
+
+    await TestBed.compileComponents();
   });
 
   beforeEach(() => {

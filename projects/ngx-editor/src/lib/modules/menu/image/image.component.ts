@@ -1,11 +1,11 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { uniq } from 'ngx-editor/utils';
 import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
 
-import { AsyncPipe, CommonModule } from '@angular/common';
 import { NgxEditorService } from '../../../editor.service';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { HTML } from '../../../trustedTypesUtil';

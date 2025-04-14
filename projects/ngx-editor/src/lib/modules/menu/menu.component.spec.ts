@@ -9,31 +9,35 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { ImageComponent } from './image/image.component';
 import { LinkComponent } from './link/link.component';
-import { NgxMenuComponent } from './menu.component';
+import { NgxEditorMenuComponent } from './menu.component';
 import { MenuService } from './menu.service';
 import { ToggleCommandComponent } from './toggle-command/toggle-command.component';
 
-describe('NgxMenuComponent', () => {
-  let component: NgxMenuComponent;
-  let fixture: ComponentFixture<NgxMenuComponent>;
+describe('NgxEditorMenuComponent', () => {
+  let component: NgxEditorMenuComponent;
+  let fixture: ComponentFixture<NgxEditorMenuComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [
         SanitizeHtmlPipe,
-        NgxMenuComponent,
+        NgxEditorMenuComponent,
         ToggleCommandComponent,
         LinkComponent,
         DropdownComponent,
         ImageComponent,
         ColorPickerComponent,
       ],
-      providers: [MenuService],
-    }).compileComponents();
+      providers: [
+        MenuService,
+      ],
+    });
+
+    await TestBed.compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgxMenuComponent);
+    fixture = TestBed.createComponent(NgxEditorMenuComponent);
     component = fixture.componentInstance;
     component.editor = new Editor();
     fixture.detectChanges();

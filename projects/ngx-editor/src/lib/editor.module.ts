@@ -11,8 +11,8 @@ import { NgxEditorService, provideMyServiceOptions } from './editor.service';
 import { MenuModule } from './modules/menu/menu.module';
 
 import { ImageViewComponent } from './components/image-view/image-view.component';
-import { NgxFloatingMenuComponent } from './modules/menu/floating-menu/floating-menu.component';
-import { NgxMenuComponent } from './modules/menu/menu.component';
+import { NgxEditorFloatingMenuComponent } from './modules/menu/floating-menu/floating-menu.component';
+import { NgxEditorMenuComponent } from './modules/menu/menu.component';
 
 export const NGX_EDITOR_CONFIG_TOKEN = new InjectionToken<NgxEditorConfig>('NgxEditorConfig');
 
@@ -22,9 +22,18 @@ const defaultConfig: NgxEditorConfig = {
 };
 
 @NgModule({
-  imports: [CommonModule, MenuModule, NgxEditorComponent, ImageViewComponent],
+  imports: [
+    CommonModule,
+    MenuModule,
+    NgxEditorComponent,
+    ImageViewComponent,
+  ],
   providers: [],
-  exports: [NgxEditorComponent, NgxMenuComponent, NgxFloatingMenuComponent],
+  exports: [
+    NgxEditorComponent,
+    NgxEditorMenuComponent,
+    NgxEditorFloatingMenuComponent,
+  ],
 })
 export class NgxEditorModule {
   static forRoot(config: NgxEditorConfig = defaultConfig): ModuleWithProviders<NgxEditorModule> {

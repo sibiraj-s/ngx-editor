@@ -1,18 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
+import { provideRouter } from '@angular/router';
+import { provideLocationMocks } from '@angular/common/testing';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let app: AppComponent;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
+    TestBed.configureTestingModule({
+      providers: [
+        provideRouter([]),
+        provideLocationMocks(),
       ],
-    }).compileComponents();
+    });
+
+    await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.componentInstance;

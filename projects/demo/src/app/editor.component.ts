@@ -6,8 +6,8 @@ import {
   DEFAULT_TOOLBAR,
   Editor,
   NgxEditorComponent,
-  NgxFloatingMenuComponent,
-  NgxMenuComponent,
+  NgxEditorFloatingMenuComponent,
+  NgxEditorMenuComponent,
   Toolbar,
   Validators,
 } from 'ngx-editor';
@@ -28,16 +28,14 @@ import schema from './schema';
     FormsModule,
     ReactiveFormsModule,
     NgxEditorComponent,
-    NgxMenuComponent,
-    NgxFloatingMenuComponent,
+    NgxEditorMenuComponent,
+    NgxEditorFloatingMenuComponent,
     AppCustomMenuComponent,
   ],
 })
 export class EditorComponent implements OnInit, OnDestroy {
   isDevMode = isDevMode();
-
   editordoc = jsonDoc;
-
   editor: Editor;
   toolbar: Toolbar = DEFAULT_TOOLBAR;
 

@@ -41,17 +41,17 @@ yarn add ngx-editor
 
 **Note**: By default the editor comes with minimal features. Refer the [demo](#demo) and [documentation] for more details and examples.
 
-Import `NgxEditorComponent` and `NgxMenuComponent`, then initialize the editor:
+Import `NgxEditorComponent` and `NgxEditorMenuComponent`, then initialize the editor:
 
 ```ts
-import { NgxEditorComponent, NgxMenuComponent, Editor } from 'ngx-editor';
+import { NgxEditorComponent, NgxEditorMenuComponent, Editor } from 'ngx-editor';
 
 @Component({
   selector: 'editor-component',
   templateUrl: 'editor.component.html',
   styleUrls: ['editor.component.scss'],
   standalone: true,
-  imports: [NgxEditorComponent, NgxMenuComponent],
+  imports: [NgxEditorComponent, NgxEditorMenuComponent],
 })
 export class NgxEditorComponent implements OnInit, OnDestroy {
   editor: Editor;

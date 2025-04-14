@@ -8,9 +8,13 @@ describe('AppCustomMenuComponent', () => {
   let fixture: ComponentFixture<AppCustomMenuComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppCustomMenuComponent],
-    }).compileComponents();
+    TestBed.configureTestingModule({
+      imports: [
+        AppCustomMenuComponent,
+      ],
+    });
+
+    await TestBed.compileComponents();
   });
 
   beforeEach(() => {

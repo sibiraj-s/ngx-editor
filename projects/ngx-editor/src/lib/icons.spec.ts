@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { NgxEditorModule, NgxMenuComponent } from 'ngx-editor';
 import Editor from './Editor';
+import { NgxEditorModule } from './editor.module';
+import { NgxEditorMenuComponent } from './modules/menu/menu.component';
 
 describe('NgxEditorModule', () => {
   @Component({
     template: '<ngx-editor-menu [editor]="editor"></ngx-editor-menu>',
-    imports: [NgxMenuComponent],
+    imports: [NgxEditorMenuComponent],
   })
   class TestComponent {
     editor!: Editor;

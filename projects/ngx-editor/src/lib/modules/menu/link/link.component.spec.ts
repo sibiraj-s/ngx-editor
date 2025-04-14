@@ -12,11 +12,17 @@ describe('LinkComponent', () => {
   let editor: Editor;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LinkComponent,
-        SanitizeHtmlPipe],
-      providers: [MenuService],
-    }).compileComponents();
+    TestBed.configureTestingModule({
+      imports: [
+        LinkComponent,
+        SanitizeHtmlPipe,
+      ],
+      providers: [
+        MenuService,
+      ],
+    });
+
+    await TestBed.compileComponents();
   });
 
   beforeEach(() => {

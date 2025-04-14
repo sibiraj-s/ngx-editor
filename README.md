@@ -51,7 +51,7 @@ yarn add ngx-editor
 Component
 
 ```ts
-import { NgxEditorComponent, NgxMenuComponent, Editor } from 'ngx-editor';
+import { NgxEditorComponent, NgxEditorMenuComponent, Editor } from 'ngx-editor';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -59,7 +59,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: 'editor.component.html',
   styleUrls: ['editor.component.scss'],
   standalone: true,
-  imports: [NgxEditorComponent, NgxMenuComponent, FormsModule],
+  imports: [NgxEditorComponent, NgxEditorMenuComponent, FormsModule],
 })
 export class NgxEditorComponent implements OnInit, OnDestroy {
   html = '';

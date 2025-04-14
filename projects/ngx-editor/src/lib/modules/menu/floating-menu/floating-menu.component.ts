@@ -24,7 +24,7 @@ interface BubblePosition {
   styleUrls: ['./floating-menu.component.scss'],
   imports: [BubbleComponent, CommonModule],
 })
-export class NgxFloatingMenuComponent implements OnInit, OnDestroy {
+export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   constructor(public el: ElementRef<HTMLElement>) {}
 
   @HostBinding('style') get display(): Partial<CSSStyleDeclaration> {

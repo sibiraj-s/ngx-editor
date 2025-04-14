@@ -12,12 +12,15 @@ describe('ColorPickerComponent', () => {
   let editor: Editor;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ColorPickerComponent,
-        SanitizeHtmlPipe],
+    TestBed.configureTestingModule({
+      imports: [
+        ColorPickerComponent,
+        SanitizeHtmlPipe,
+      ],
       providers: [MenuService],
-    })
-      .compileComponents();
+    });
+
+    await TestBed.compileComponents();
   });
 
   beforeEach(() => {

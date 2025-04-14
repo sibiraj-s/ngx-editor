@@ -5,10 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BubbleComponent } from './bubble/bubble.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
-import { NgxFloatingMenuComponent } from './floating-menu/floating-menu.component';
+import { NgxEditorFloatingMenuComponent } from './floating-menu/floating-menu.component';
 import { ImageComponent } from './image/image.component';
 import { LinkComponent } from './link/link.component';
-import { NgxMenuComponent } from './menu.component';
+import { NgxEditorMenuComponent } from './menu.component';
 import { ToggleCommandComponent } from './toggle-command/toggle-command.component';
 
 import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
@@ -21,17 +21,22 @@ import { InsertCommandComponent } from './insert-command/insert-command.componen
     // pipes
     SanitizeHtmlPipe,
     // components
-    NgxMenuComponent,
+    NgxEditorMenuComponent,
     ToggleCommandComponent,
     InsertCommandComponent,
     LinkComponent,
     DropdownComponent,
     ImageComponent,
     ColorPickerComponent,
-    NgxFloatingMenuComponent,
+    NgxEditorFloatingMenuComponent,
     BubbleComponent,
   ],
-  providers: [SanitizeHtmlPipe],
-  exports: [NgxMenuComponent, NgxFloatingMenuComponent],
+  providers: [
+    SanitizeHtmlPipe,
+  ],
+  exports: [
+    NgxEditorMenuComponent,
+    NgxEditorFloatingMenuComponent,
+  ],
 })
 export class MenuModule {}
