@@ -71,7 +71,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "lint-staged": "^15.5.0",
+    "lint-staged": "^15.5.1",
     "ng-packagr": "^19.2.0",
     "picocolors": "^1.1.1",
     "prettier": "^3.5.3",
@@ -81,10 +81,10 @@
     "prosemirror-history": "^1.4.1",
     "prosemirror-inputrules": "^1.5.0",
     "prosemirror-keymap": "^1.2.2",
-    "prosemirror-model": "^1.25.0",
+    "prosemirror-model": "^1.25.1",
     "prosemirror-schema-list": "^1.5.1",
     "prosemirror-state": "^1.4.3",
-    "prosemirror-view": "^1.39.1",
+    "prosemirror-view": "^1.39.2",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.30.0"
   }
