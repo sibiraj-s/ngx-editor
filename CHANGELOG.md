@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## 19.0.0-beta.1 (2025-04-26)
+
+#### Breaking Changes
+
+- requires angular v19 or greater ([ec8f932](https://github.com/sibiraj-s/ngx-editor/commit/ec8f932))
+
 ## 18.0.0 (2024-09-01)
 
 #### Breaking Changes

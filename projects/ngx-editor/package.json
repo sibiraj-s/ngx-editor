@@ -1,6 +1,6 @@
 {
   "name": "ngx-editor",
-  "version": "18.0.0",
+  "version": "19.0.0-beta.1",
   "description": "The Rich Text Editor for Angular, Built on ProseMirror",
   "license": "MIT",
   "type": "module",
