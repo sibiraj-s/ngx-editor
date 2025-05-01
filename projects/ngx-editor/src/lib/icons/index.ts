@@ -11,6 +11,7 @@ import quote from './quote';
 import link from './link';
 import unlink from './unlink';
 import image from './image';
+import table from './table';
 import alignLeft from './align_left';
 import alignCenter from './align_center';
 import alignRight from './align_right';
@@ -42,6 +43,7 @@ export const icons: Record<string, string> = {
   link,
   unlink,
   image,
+  table,
   align_left: alignLeft,
   align_center: alignCenter,
   align_right: alignRight,
