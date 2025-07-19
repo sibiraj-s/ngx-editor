@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import {
-  Component, ElementRef, EventEmitter, Output, ViewChild,
+  Component, ElementRef, ViewChild,
   input,
-  model
+  model,
+  output
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 
@@ -22,7 +23,7 @@ export class ImageViewComponent {
   // should it be model??
   readonly outerWidth = model('');
 
-  @Output() imageResize = new EventEmitter();
+  readonly imageResize = output();
 
   @ViewChild('imgEl', { static: true }) imgEl: ElementRef;
 

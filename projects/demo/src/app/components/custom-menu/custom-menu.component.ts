@@ -21,7 +21,7 @@ export class AppCustomMenuComponent implements OnInit {
 
   onClick(e: MouseEvent): void {
     e.preventDefault();
-    const { state, dispatch } = this.editor()().view;
+    const { state, dispatch } = this.editor().view;
     this.execute(state, dispatch);
   }
 
@@ -43,6 +43,6 @@ export class AppCustomMenuComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.editor()().update.subscribe((view) => this.update(view));
+    this.editor().update.subscribe((view) => this.update(view));
   }
 }

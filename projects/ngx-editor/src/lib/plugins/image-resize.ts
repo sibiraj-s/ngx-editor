@@ -1,8 +1,7 @@
-import { ApplicationRef, ComponentRef, createComponent, Injector } from '@angular/core';
+import { ApplicationRef, ComponentRef, createComponent, Injector, OutputRefSubscription } from '@angular/core';
 import { Node as ProseMirrorNode } from 'prosemirror-model';
 import { NodeSelection, Plugin, PluginKey } from 'prosemirror-state';
 import { EditorView, NodeView } from 'prosemirror-view';
-import { Subscription } from 'rxjs';
 
 import { ImageViewComponent } from '../components/image-view/image-view.component';
 
@@ -13,7 +12,7 @@ class ImageRezieView implements NodeView {
 
   applicationRef: ApplicationRef;
   imageComponentRef: ComponentRef<ImageViewComponent>;
-  resizeSubscription: Subscription;
+  resizeSubscription: OutputRefSubscription;
 
   node: ProseMirrorNode;
   updating = false;

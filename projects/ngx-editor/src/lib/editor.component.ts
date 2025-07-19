@@ -1,19 +1,18 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
   forwardRef,
   Injector,
   OnChanges,
   OnDestroy,
   OnInit,
-  Output,
   Renderer2,
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
   input,
-  model
+  model,
+  output
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -52,8 +51,8 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
   readonly outputFormat = model<'doc' | 'html'>(undefined);
 
-  @Output() focusOut = new EventEmitter<void>();
-  @Output() focusIn = new EventEmitter<void>();
+  readonly focusOut = output<void>();
+  readonly focusIn = output<void>();
 
   private unsubscribe = new Subject<void>();
   private onChange: (value: Record<string, unknown> | string) => void = () => { /** */ };
