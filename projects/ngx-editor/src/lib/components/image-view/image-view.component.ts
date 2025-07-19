@@ -20,7 +20,6 @@ export class ImageViewComponent {
   readonly selected = input(false);
   readonly view = input<EditorView>(undefined);
 
-  // should it be model??
   readonly outerWidth = model('');
 
   readonly imageResize = output();
