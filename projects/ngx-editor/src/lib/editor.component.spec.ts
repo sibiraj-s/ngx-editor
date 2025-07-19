@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -8,6 +8,7 @@ import { NgxEditorComponent } from './editor.component';
 
 describe('NgxEditorComponent', () => {
   let component: NgxEditorComponent;
+  let componentRef: ComponentRef<NgxEditorComponent>;
   let fixture: ComponentFixture<NgxEditorComponent>;
 
   beforeEach(async () => {
@@ -20,8 +21,10 @@ describe('NgxEditorComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NgxEditorComponent);
-    component = fixture.componentInstance;
-    component.editor = new Editor();
+    const { componentRef: ref, componentInstance: instance } = fixture;
+    component = instance;
+    componentRef = ref;
+    componentRef.setInput('editor', new Editor());
     fixture.detectChanges();
   });
 
