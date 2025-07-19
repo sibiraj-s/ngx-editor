@@ -13,7 +13,7 @@
 ></button>
 
 <div *ngIf="showPopup" class="NgxEditor__Popup">
-  <div *ngFor="let colorGroup of presets; trackBy: trackByIndex" class="NgxEditor__ColorContainer">
+  <div *ngFor="let colorGroup of presets(); trackBy: trackByIndex" class="NgxEditor__ColorContainer">
     <button
       class="NgxEditor__Color"
       *ngFor="let color of colorGroup; trackBy: trackByIndex"

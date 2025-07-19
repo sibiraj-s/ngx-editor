@@ -26,7 +26,7 @@ describe('NgxEditorComponent', () => {
   });
 
   afterEach(() => {
-    component.editor.destroy();
+    component.editor().destroy();
   });
 
   it('should create the editor component correctly', () => {
@@ -55,11 +55,11 @@ describe('NgxEditorComponent', () => {
   it('should be able to reset the editor with FormsAPI', () => {
     component.writeValue('Hello world!');
     fixture.detectChanges();
-    expect(component.editor.view.state.doc.textContent).toBe('Hello world!');
+    expect(component.editor().view.state.doc.textContent).toBe('Hello world!');
 
     component.writeValue(null);
     fixture.detectChanges();
-    expect(component.editor.view.state.doc.textContent).toBe('');
+    expect(component.editor().view.state.doc.textContent).toBe('');
   });
 });
 

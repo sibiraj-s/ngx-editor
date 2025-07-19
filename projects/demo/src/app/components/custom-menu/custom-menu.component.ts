@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, input } from '@angular/core';
 import { setBlockType } from 'prosemirror-commands';
 import { EditorState, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
@@ -15,13 +15,13 @@ import { isNodeActive } from 'ngx-editor/helpers';
   imports: [CommonModule],
 })
 export class AppCustomMenuComponent implements OnInit {
-  @Input() editor: Editor;
+  readonly editor = input<Editor>(undefined);
   isActive = false;
   isDisabled = false;
 
   onClick(e: MouseEvent): void {
     e.preventDefault();
-    const { state, dispatch } = this.editor.view;
+    const { state, dispatch } = this.editor()().view;
     this.execute(state, dispatch);
   }
 
@@ -43,6 +43,6 @@ export class AppCustomMenuComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.editor.update.subscribe((view) => this.update(view));
+    this.editor()().update.subscribe((view) => this.update(view));
   }
 }

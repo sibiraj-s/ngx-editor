@@ -1,8 +1,8 @@
 <div
   class="NgxEditor__MenuBar"
-  [ngClass]="{ 'NgxEditor--Disabled': disabled, 'NgxEditor__MenuBar--Reverse': dropdownPlacement === 'top' }"
+  [ngClass]="{ 'NgxEditor--Disabled': disabled(), 'NgxEditor__MenuBar--Reverse': dropdownPlacement() === 'top' }"
 >
-  <ng-container *ngFor="let toolbarItem of toolbar; let lastToolbarItem = last; trackBy: trackByIndex">
+  <ng-container *ngFor="let toolbarItem of toolbar(); let lastToolbarItem = last; trackBy: trackByIndex">
     <ng-container *ngFor="let item of toolbarItem; let lastItem = last; trackBy: trackByIndex">
       <!-- toggle icons -->
       <ngx-toggle-command [toolbarItem]="item" [class]="iconContainerClass" *ngIf="toggleCommands.includes(item)">
@@ -53,7 +53,7 @@
   </ng-container>
 
   <!-- custom menu -->
-  <ng-container *ngIf="customMenuRef">
-    <ng-container [ngTemplateOutlet]="customMenuRef"></ng-container>
+  <ng-container *ngIf="customMenuRef()">
+    <ng-container [ngTemplateOutlet]="customMenuRef()"></ng-container>
   </ng-container>
 </div>

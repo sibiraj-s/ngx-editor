@@ -33,7 +33,7 @@ describe('NgxEditorFloatingMenuComponent', () => {
   });
 
   afterEach(() => {
-    component.editor.destroy();
+    component.editor().destroy();
   });
 
   it('should create', () => {

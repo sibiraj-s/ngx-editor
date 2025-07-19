@@ -1,5 +1,6 @@
 import {
-  Component, ElementRef, HostListener, Input, OnDestroy, OnInit,
+  Component, ElementRef, HostListener, OnDestroy, OnInit,
+  input
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
@@ -20,8 +21,8 @@ export class DropdownComponent implements OnInit, OnDestroy {
   private editorView: EditorView;
   private updateSubscription: Subscription;
 
-  @Input() group: string;
-  @Input() items: TBHeadingItems[];
+  readonly group = input<string>(undefined);
+  readonly items = input<TBHeadingItems[]>(undefined);
 
   isDropdownOpen = false;
 
@@ -32,14 +33,14 @@ export class DropdownComponent implements OnInit, OnDestroy {
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
     private el: ElementRef,
-  ) {}
+  ) { }
 
   get isSelected(): boolean {
     return Boolean(this.activeItem || this.isDropdownOpen);
   }
 
   get isDropdownDisabled(): boolean {
-    return this.disabledItems.length === this.items.length;
+    return this.disabledItems.length === this.items().length;
   }
 
   @HostListener('document:mousedown', ['$event.target']) onDocumentClick(target: Node): void {
@@ -107,7 +108,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
     this.disabledItems = [];
     const activeItems = [];
 
-    this.items.forEach((item: TBHeadingItems) => {
+    this.items().forEach((item: TBHeadingItems) => {
       const command = ToggleCommands[item];
       const isActive = command.isActive(state);
 

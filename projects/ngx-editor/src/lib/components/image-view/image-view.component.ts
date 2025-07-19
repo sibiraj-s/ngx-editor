@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import {
-  Component, ElementRef, EventEmitter, Input, Output, ViewChild,
+  Component, ElementRef, EventEmitter, Output, ViewChild,
+  input,
+  model
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 
@@ -11,12 +13,14 @@ import { EditorView } from 'prosemirror-view';
   imports: [CommonModule],
 })
 export class ImageViewComponent {
-  @Input() src: string;
-  @Input() alt = '';
-  @Input() title = '';
-  @Input() outerWidth = '';
-  @Input() selected = false;
-  @Input() view: EditorView;
+  readonly src = input<string>(undefined);
+  readonly alt = input('');
+  readonly title = input('');
+  readonly selected = input(false);
+  readonly view = input<EditorView>(undefined);
+
+  // should it be model??
+  readonly outerWidth = model('');
 
   @Output() imageResize = new EventEmitter();
 
@@ -33,7 +37,7 @@ export class ImageViewComponent {
 
     const isLeftResize = direction === 'left';
 
-    const { width } = window.getComputedStyle(this.view.dom);
+    const { width } = window.getComputedStyle(this.view().dom);
     const editorWidth = parseInt(width, 10);
 
     const onMouseMove = (e: MouseEvent) => {
@@ -47,7 +51,7 @@ export class ImageViewComponent {
         return;
       }
 
-      this.outerWidth = `${computedWidth}px`;
+      this.outerWidth.set(`${computedWidth}px`);
     };
 
     const onMouseUp = (e: MouseEvent) => {
