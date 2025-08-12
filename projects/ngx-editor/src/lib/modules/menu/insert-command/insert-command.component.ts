@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, input } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
@@ -17,10 +17,10 @@ import { InsertCommands } from '../MenuCommands';
   imports: [AsyncPipe, SanitizeHtmlPipe],
 })
 export class InsertCommandComponent implements OnInit, OnDestroy {
-  @Input() toolbarItem: ToolbarItem;
+  readonly toolbarItem = input<ToolbarItem>(undefined);
 
   get name(): TBItems {
-    return this.toolbarItem as TBItems;
+    return this.toolbarItem() as TBItems;
   }
 
   html: HTML;
@@ -31,7 +31,7 @@ export class InsertCommandComponent implements OnInit, OnDestroy {
   constructor(
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
-  ) {}
+  ) { }
 
   onMouseClick(e: MouseEvent): void {
     e.preventDefault();
