@@ -50,7 +50,7 @@ const DEFAULT_OPTIONS: Options = {
   attributes: {},
   features: defaultFeatures,
   handleScrollToSelection: null,
-  linkValidationPattern: '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)|(mailto:.*[@].*)',
+  linkValidationPattern: '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)|(mailto:.*[@].*)|(tel:(?=.*[0-9])[- +()0-9]+)',
 };
 
 class Editor {
