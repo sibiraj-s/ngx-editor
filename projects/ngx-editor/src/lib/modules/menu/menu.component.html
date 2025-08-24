@@ -18,6 +18,9 @@
 
       <!-- image -->
       <ngx-image [class]="iconContainerClass" *ngIf="item === 'image'"> </ngx-image>
+     
+      <!-- table -->
+      <ngx-table [class]="iconContainerClass" *ngIf="item === 'table'"> </ngx-table>
 
       <!-- dropdown -->
       <ng-container *ngIf="isDropDown(item)">

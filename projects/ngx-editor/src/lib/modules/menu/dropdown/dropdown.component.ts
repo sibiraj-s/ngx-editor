@@ -2,13 +2,18 @@ import {
   Component, ElementRef, HostListener, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
+import { EditorState, Transaction } from 'prosemirror-state';
 import { Observable, Subscription } from 'rxjs';
 
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { NgxEditorService } from '../../../editor.service';
-import { TBHeadingItems } from '../../../types';
+import { TBHeadingItems, TBTableItems } from '../../../types';
 import { MenuService } from '../menu.service';
 import { ToggleCommands } from '../MenuCommands';
+import {
+  addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
+  mergeCells, splitCell, setCellAttr, toggleHeaderRow, toggleHeaderColumn, toggleHeaderCell, deleteTable
+} from 'prosemirror-tables';
 
 @Component({
   selector: 'ngx-dropdown',
@@ -21,12 +26,12 @@ export class DropdownComponent implements OnInit, OnDestroy {
   private updateSubscription: Subscription;
 
   @Input() group: string;
-  @Input() items: TBHeadingItems[];
+  @Input() items: (TBHeadingItems | TBTableItems)[] = [];
 
   isDropdownOpen = false;
 
-  disabledItems: string[] = [];
-  activeItem: string | null;
+  disabledItems: (TBHeadingItems | TBTableItems)[] = [];
+  activeItem: TBHeadingItems | TBTableItems | null;
 
   constructor(
     private ngxeService: NgxEditorService,
@@ -52,7 +57,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
     return this.ngxeService.locals.get(key);
   }
 
-  getIsDropdownActive(item: string): boolean {
+  getIsDropdownActive(item: TBHeadingItems | TBTableItems): boolean {
     return this.activeItem === item;
   }
 
@@ -78,14 +83,38 @@ export class DropdownComponent implements OnInit, OnDestroy {
     return index;
   }
 
-  selectItem(item: TBHeadingItems): void {
-    const command = ToggleCommands[item];
-    const { state, dispatch } = this.editorView;
-    command.toggle()(state, dispatch);
+  selectItem(item: TBHeadingItems | TBTableItems): void {
+    if (this.group === 'table') {
+        const tableCommands: { [key in TBTableItems]: (state: EditorState, dispatch?: (tr: Transaction) => void) => boolean } = {
+        addColumnBefore,
+        addColumnAfter,
+        deleteColumn,
+        addRowBefore,
+        addRowAfter,
+        deleteRow,
+        deleteTable,
+        mergeCells,
+        splitCell,
+        toggleHeaderRow,
+        toggleHeaderColumn,
+        toggleHeaderCell,
+        setCellBackgroundGreen: setCellAttr('background', '#dfd'),
+        clearCellBackground: setCellAttr('background', null),
+      };
+       const command = tableCommands[item as TBTableItems];
+       const { state, dispatch } = this.editorView;
+       command(state, dispatch)
+    }else{
+        const command = ToggleCommands[item as TBHeadingItems];
+        const { state, dispatch } = this.editorView;
+        command.toggle()(state, dispatch);
+    }
+
+
     this.isDropdownOpen = false;
   }
 
-  onDropdownItemMouseClick(e: MouseEvent, item: TBHeadingItems): void {
+  onDropdownItemMouseClick(e: MouseEvent, item: TBHeadingItems | TBTableItems): void {
     e.preventDefault();
 
     // consider only left click
@@ -96,7 +125,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
     this.selectItem(item);
   }
 
-  onDropdownItemKeydown(event: Event, item: TBHeadingItems): void {
+  onDropdownItemKeydown(event: Event, item: TBHeadingItems | TBTableItems): void {
     const e = event as KeyboardEvent;
     e.preventDefault();
     this.selectItem(item);
@@ -105,21 +134,51 @@ export class DropdownComponent implements OnInit, OnDestroy {
   private update = (view: EditorView) => {
     const { state } = view;
     this.disabledItems = [];
-    const activeItems = [];
+    const activeItems: (TBHeadingItems | TBTableItems)[] = [];
 
-    this.items.forEach((item: TBHeadingItems) => {
-      const command = ToggleCommands[item];
-      const isActive = command.isActive(state);
+    this.items.forEach((item: TBHeadingItems | TBTableItems) => {
+      let isActive = false;
+      let canExecute = false;
+
+      if(this.group === 'table'){
+          const tableCommands: { [key in TBTableItems]: (state: EditorState, dispatch?: (tr: Transaction) => void) => boolean } = {
+          addColumnBefore,
+          addColumnAfter,
+          deleteColumn,
+          addRowBefore,
+          addRowAfter,
+          deleteRow,
+          deleteTable,
+          mergeCells,
+          splitCell,
+          toggleHeaderRow,
+          toggleHeaderColumn,
+          toggleHeaderCell,
+          setCellBackgroundGreen: setCellAttr('background', '#dfd'),
+          clearCellBackground: setCellAttr('background', null),
+        };
+        const command = tableCommands[item as TBTableItems];
+        if (command) {
+          // Table commands lack 'isActive', so defaulting to false.
+          isActive = false; 
+          canExecute = command(state);
+        }
+      }else{
+        const command = ToggleCommands[item as TBHeadingItems];
+        if(command){
+          isActive = command.isActive(state);
+          canExecute = command.canExecute(state);
+        }
+      }
 
       if (isActive) {
         activeItems.push(item);
       }
 
-      if (!command.canExecute(state)) {
+      if (!canExecute) {
         this.disabledItems.push(item);
       }
     });
-
     if (activeItems.length === 1) {
       [this.activeItem] = activeItems;
     } else {
@@ -129,7 +188,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.editorView = this.menuService.editor.view;
-
+    this.update(this.editorView);
     this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
       this.update(view);
     });
