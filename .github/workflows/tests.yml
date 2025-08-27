@@ -12,6 +12,8 @@ on:
 jobs:
   test:
     name: Karma unit tests
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     steps:
