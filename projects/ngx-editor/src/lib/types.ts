@@ -13,6 +13,20 @@ type TCR = {
 };
 
 export type TBHeadingItems = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+export type TBTableItems='addColumnBefore'
+| 'addColumnAfter'
+| 'deleteColumn'
+| 'addRowBefore'
+| 'addRowAfter'
+| 'deleteRow'
+| 'deleteTable'
+| 'mergeCells'
+| 'splitCell'
+| 'toggleHeaderRow'
+| 'toggleHeaderColumn'
+| 'toggleHeaderCell'
+| 'setCellBackgroundGreen'
+| 'clearCellBackground';
 export type TBItems = 'bold'
 | 'italic'
 | 'code'
@@ -23,6 +37,7 @@ export type TBItems = 'bold'
 | 'bullet_list'
 | 'link'
 | 'image'
+| 'table'
 | 'text_color'
 | 'background_color'
 | 'align_left'
@@ -38,7 +53,7 @@ export type TBItems = 'bold'
 | 'undo'
 | 'redo';
 
-export type ToolbarDropdown = { heading?: TBHeadingItems[] };
+export type ToolbarDropdown = { heading?: TBHeadingItems[]; table?: TBTableItems[] };
 export type ToolbarLinkOptions = Partial<LinkOptions>;
 export type ToolbarLink = { link: ToolbarLinkOptions };
 export type ToolbarCustomMenuItem = (editorView: EditorView) => TCR;

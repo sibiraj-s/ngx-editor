@@ -1,4 +1,5 @@
 import { DOMOutputSpec, Node as ProseMirrorNode, NodeSpec } from 'prosemirror-model';
+import { tableNodes } from 'prosemirror-tables';
 import * as sl from 'prosemirror-schema-list';
 
 import { toStyleString } from 'ngx-editor/utils';
@@ -291,6 +292,36 @@ export const image: NodeSpec = {
   },
 };
 
+
+const tableNodeSpecs = tableNodes({
+  tableGroup: 'block',
+  cellContent: 'block+',
+  cellAttributes: {
+    background: {
+      default: null,
+      getFromDOM(dom: HTMLElement) {
+        return (dom.style && dom.style.backgroundColor) || null;
+      },
+      setDOMAttr(value: unknown, attrs: Record<string, any>) {
+        if (typeof value === 'string' && value) {
+          attrs['style'] = (attrs['style'] || '') + `background-color: ${value};`;
+        }
+      },
+    },
+      colwidth: {
+      default: null,
+      getFromDOM(dom: HTMLElement) {
+        return dom.dataset['colwidth'] ? dom.dataset['colwidth'].split(',').map(Number) : null;
+      },
+      setDOMAttr(value: unknown, attrs: Record<string, any>) {
+        if (Array.isArray(value)) {
+          attrs['data-colwidth'] = value.join(',');
+        }
+      },
+    },
+  },
+});
+
 const listItem = {
   ...sl.listItem,
   content: 'paragraph block*',
@@ -318,6 +349,7 @@ const nodes = {
   hard_break: hardBreak,
   code_block: codeBlock,
   image,
+  ...tableNodeSpecs,
   list_item: listItem,
   ordered_list: orderedList,
   bullet_list: bulletList,
