@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -8,6 +8,7 @@ import { NgxEditorComponent } from './editor.component';
 
 describe('NgxEditorComponent', () => {
   let component: NgxEditorComponent;
+  let componentRef: ComponentRef<NgxEditorComponent>;
   let fixture: ComponentFixture<NgxEditorComponent>;
 
   beforeEach(async () => {
@@ -20,13 +21,15 @@ describe('NgxEditorComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NgxEditorComponent);
-    component = fixture.componentInstance;
-    component.editor = new Editor();
+    const { componentRef: ref, componentInstance: instance } = fixture;
+    component = instance;
+    componentRef = ref;
+    componentRef.setInput('editor', new Editor());
     fixture.detectChanges();
   });
 
   afterEach(() => {
-    component.editor.destroy();
+    component.editor().destroy();
   });
 
   it('should create the editor component correctly', () => {
@@ -55,11 +58,11 @@ describe('NgxEditorComponent', () => {
   it('should be able to reset the editor with FormsAPI', () => {
     component.writeValue('Hello world!');
     fixture.detectChanges();
-    expect(component.editor.view.state.doc.textContent).toBe('Hello world!');
+    expect(component.editor().view.state.doc.textContent).toBe('Hello world!');
 
     component.writeValue(null);
     fixture.detectChanges();
-    expect(component.editor.view.state.doc.textContent).toBe('');
+    expect(component.editor().view.state.doc.textContent).toBe('');
   });
 });
 
