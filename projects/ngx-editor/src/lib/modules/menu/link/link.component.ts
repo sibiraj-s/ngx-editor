@@ -1,5 +1,6 @@
 import {
-  Component, ElementRef, HostListener, Input, OnDestroy, OnInit,
+  Component, ElementRef, HostListener, OnDestroy, OnInit,
+  input
 } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -28,10 +29,7 @@ const DEFAULT_LINK_OPTIONS: LinkOptions = {
   imports: [AsyncPipe, CommonModule, ReactiveFormsModule, SanitizeHtmlPipe],
 })
 export class LinkComponent implements OnInit, OnDestroy {
-  @Input({
-    transform: (value: Partial<LinkOptions>) => ({ ...DEFAULT_LINK_OPTIONS, ...value }),
-  })
-    options: Partial<LinkOptions> = DEFAULT_LINK_OPTIONS;
+  readonly options = input<Partial<LinkOptions>, Partial<LinkOptions>>(DEFAULT_LINK_OPTIONS, { transform: (value: Partial<LinkOptions>) => ({ ...DEFAULT_LINK_OPTIONS, ...value }) });
 
   showPopup = false;
   isActive = false;
@@ -46,7 +44,7 @@ export class LinkComponent implements OnInit, OnDestroy {
     private el: ElementRef,
     private ngxeService: NgxEditorService,
     private menuService: MenuService,
-  ) {}
+  ) { }
 
   get icon(): HTML {
     return this.ngxeService.getIcon(this.isActive ? 'unlink' : 'link');
@@ -139,7 +137,7 @@ export class LinkComponent implements OnInit, OnDestroy {
 
     let target: string | undefined;
 
-    if (this.options.showOpenInNewTab) {
+    if (this.options().showOpenInNewTab) {
       target = openInNewTab ? '_blank' : '_self';
     }
 
