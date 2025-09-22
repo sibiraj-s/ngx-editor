@@ -10,7 +10,8 @@ export const getTrustedTypes = (): TrustedTypePolicyFactory | undefined => {
 };
 
 export const isTrustedHtml = (value: unknown): boolean => {
-  return getTrustedTypes()?.isHTML(value) ?? false;
+  const tt = getTrustedTypes();
+  return !!(tt && typeof tt.isHTML === 'function' && tt.isHTML(value));
 };
 
 export const isHtml = (value: unknown): boolean => {
