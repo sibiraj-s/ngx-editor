@@ -44,6 +44,7 @@ export const defaults: Record<string, string | Observable<string>> = {
   title: 'Title',
   remove: 'Remove',
   enterValidUrl: 'Please enter a valid URL',
+  required: 'This is required',
 };
 
 export type LocalsKeys = keyof typeof defaults;

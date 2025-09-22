@@ -34,7 +34,7 @@
         }}</label>
         <input type="text" [id]="getId('link-popup-label')" formControlName="text" autocomplete="off" />
         <div *ngIf="text.touched && text.invalid" class="NgxEditor__HelpText NgxEditor__HelpText--Error">
-          {{ text.errors?.['required'] && 'This is required' }}
+          {{ text.errors?.['required'] && getLabel('required') | async }}
         </div>
       </div>
     </div>
