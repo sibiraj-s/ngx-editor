@@ -67,6 +67,7 @@ export const defaults: Record<string, string | Observable<string>> = {
   toggleHeaderCell: 'Toggle Header Cells',
   setCellBackgroundGreen: 'Make Cell Green',
   clearCellBackground: 'Clear Cell Background',
+  required: 'This is required',
 };
 
 export type LocalsKeys = keyof typeof defaults;
