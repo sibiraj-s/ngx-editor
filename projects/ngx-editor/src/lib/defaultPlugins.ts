@@ -8,7 +8,7 @@ import {
   inputRules, wrappingInputRule, textblockTypeInputRule,
   smartQuotes, emDash, ellipsis, InputRule,
 } from 'prosemirror-inputrules';
-
+import { columnResizing, tableEditing, goToNextCell } from 'prosemirror-tables';
 import { markInputRule } from 'ngx-editor/helpers';
 
 interface Options {
@@ -137,6 +137,15 @@ export const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) =
     keymap(baseKeymap),
   ];
 
+    if (schema.nodes['table']) {
+    plugins.push(
+      keymap({
+        'Tab': goToNextCell(1),
+        'Shift-Tab': goToNextCell(-1),
+      })
+    );
+  }
+
   if (options.history) {
     plugins.push(keymap(historyKeyMap));
   }
@@ -157,6 +166,10 @@ const getDefaultPlugins = (schema: Schema, options: Options): Plugin[] => {
 
   if (options.inputRules) {
     plugins.push(buildInputRules(schema));
+  }
+  
+  if (schema.nodes['table']) {
+    plugins.push(columnResizing(), tableEditing());
   }
 
   return plugins;
