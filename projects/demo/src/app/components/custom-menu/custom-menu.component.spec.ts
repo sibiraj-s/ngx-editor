@@ -20,7 +20,7 @@ describe('AppCustomMenuComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AppCustomMenuComponent);
     component = fixture.componentInstance;
-    component.editor = new Editor();
+    fixture.componentRef.setInput('editor', new Editor());
     fixture.detectChanges();
   });
 

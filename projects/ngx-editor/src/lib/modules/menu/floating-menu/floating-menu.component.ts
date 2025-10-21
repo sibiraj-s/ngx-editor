@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
-  Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit,
+  Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit,
+  input
 } from '@angular/core';
 import type { VirtualElement } from '@floating-ui/core';
 import { autoPlacement, computePosition, detectOverflow, offset } from '@floating-ui/dom';
@@ -25,7 +26,7 @@ interface BubblePosition {
   imports: [BubbleComponent, CommonModule],
 })
 export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
-  constructor(public el: ElementRef<HTMLElement>) {}
+  constructor(public el: ElementRef<HTMLElement>) { }
 
   @HostBinding('style') get display(): Partial<CSSStyleDeclaration> {
     return {
@@ -37,11 +38,11 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   private get view(): EditorView {
-    return this.editor.view;
+    return this.editor().view;
   }
 
-  @Input() editor: Editor;
-  @Input() autoPlace = false;
+  readonly editor = input<Editor>(undefined);
+  readonly autoPlace = input(false);
 
   private posLeft = 0;
   private posTop = 0;
@@ -150,12 +151,12 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
       placement: 'top',
       middleware: [
         offset(5),
-        this.autoPlace
-          && autoPlacement({
-            boundary: view.dom,
-            padding: 5,
-            allowedPlacements: ['top', 'bottom'],
-          }),
+        this.autoPlace()
+        && autoPlacement({
+          boundary: view.dom,
+          padding: 5,
+          allowedPlacements: ['top', 'bottom'],
+        }),
         {
           // prevent overflow on right and left side
           // since only top and bottom placements are allowed
@@ -236,11 +237,12 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (!this.editor) {
+    const editor = this.editor();
+    if (!editor) {
       throw new NgxEditorError('Required editor instance to initialize floating menu component');
     }
 
-    this.updateSubscription = this.editor.update.subscribe((view) => {
+    this.updateSubscription = editor.update.subscribe((view) => {
       this.update(view);
     });
 

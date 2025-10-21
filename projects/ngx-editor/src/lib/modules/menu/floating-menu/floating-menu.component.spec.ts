@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { ComponentRef, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -10,6 +10,7 @@ import { NgxEditorFloatingMenuComponent } from './floating-menu.component';
 describe('NgxEditorFloatingMenuComponent', () => {
   let component: NgxEditorFloatingMenuComponent;
   let fixture: ComponentFixture<NgxEditorFloatingMenuComponent>;
+  let componentRef: ComponentRef<NgxEditorFloatingMenuComponent>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
@@ -27,13 +28,15 @@ describe('NgxEditorFloatingMenuComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NgxEditorFloatingMenuComponent);
-    component = fixture.componentInstance;
-    component.editor = new Editor();
+    const { componentRef: ref, componentInstance: instance } = fixture;
+    component = instance;
+    componentRef = ref;
+    componentRef.setInput('editor', new Editor());
     fixture.detectChanges();
   });
 
   afterEach(() => {
-    component.editor.destroy();
+    component.editor().destroy();
   });
 
   it('should create', () => {
