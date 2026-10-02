@@ -1,6 +1,6 @@
 import Editor from './Editor';
 import { HORIZONTAL_RULE } from './commands';
-import { TextSelection } from 'prosemirror-state';
+import { NodeSelection, TextSelection } from 'prosemirror-state';
 
 describe('Editor', () => {
   it('should create the editor correctly', () => {
@@ -167,5 +167,57 @@ describe('Editor: HorizontalRule', () => {
     expect(doc.child(1).type.name).toBe('horizontal_rule');
     expect(doc.child(2).type.name).toBe('paragraph');
     expect(doc.child(2).textContent).toBe(' World');
+  });
+
+  it('should place the cursor right after the rule when splitting a paragraph', () => {
+    const editor = new Editor({ content: 'Hello World' });
+    editor.view.dispatch(editor.view.state.tr.setSelection(TextSelection.create(editor.view.state.doc, 6)));
+
+    HORIZONTAL_RULE.insert()(editor.view.state, editor.view.dispatch.bind(editor.view));
+
+    const { doc, selection } = editor.view.state;
+    // start of " World" paragraph: "Hello" paragraph (7) + rule (1) + 1
+    expect(selection.from).toBe(9);
+    expect(doc.resolve(selection.from).parent.textContent).toBe(' World');
+  });
+
+  it('should replace the selected text', () => {
+    const editor = new Editor({ content: 'Hello' });
+    editor.view.dispatch(editor.view.state.tr.setSelection(TextSelection.create(editor.view.state.doc, 2, 5)));
+
+    HORIZONTAL_RULE.insert()(editor.view.state, editor.view.dispatch.bind(editor.view));
+
+    expect(editor.view.state.doc.toString()).toBe('doc(paragraph("H"), horizontal_rule, paragraph("o"))');
+  });
+
+  it('should replace a selected top-level node', () => {
+    const editor = new Editor({ content: '<p>a</p><hr><p>b</p>' });
+    editor.view.dispatch(editor.view.state.tr.setSelection(NodeSelection.create(editor.view.state.doc, 3)));
+
+    HORIZONTAL_RULE.insert()(editor.view.state, editor.view.dispatch.bind(editor.view));
+
+    expect(editor.view.state.doc.toString()).toBe('doc(paragraph("a"), horizontal_rule, paragraph("b"))');
+  });
+
+  it('should keep the rule inside an empty list item', () => {
+    const editor = new Editor({ content: '<ul><li><p></p></li></ul>' });
+    editor.view.dispatch(editor.view.state.tr.setSelection(TextSelection.create(editor.view.state.doc, 3)));
+
+    HORIZONTAL_RULE.insert()(editor.view.state, editor.view.dispatch.bind(editor.view));
+
+    const { doc, selection } = editor.view.state;
+    expect(doc.toString()).toBe('doc(bullet_list(list_item(paragraph, horizontal_rule, paragraph)))');
+    expect(selection.$from.parent.type.name).toBe('paragraph');
+    expect(selection.from).toBe(6);
+  });
+
+  it('should keep the rule inside the list item when the cursor is at its start', () => {
+    const editor = new Editor({ content: '<ul><li><p>a</p></li><li><p>bc</p></li></ul>' });
+    editor.view.dispatch(editor.view.state.tr.setSelection(TextSelection.create(editor.view.state.doc, 7)));
+
+    HORIZONTAL_RULE.insert()(editor.view.state, editor.view.dispatch.bind(editor.view));
+
+    expect(editor.view.state.doc.toString())
+      .toBe('doc(bullet_list(list_item(paragraph("a")), list_item(paragraph, horizontal_rule, paragraph("bc"))))');
   });
 });
