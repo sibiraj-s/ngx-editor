@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
 import {
-  Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit,
+  Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
 } from '@angular/core';
 import type { VirtualElement } from '@floating-ui/core';
 import { autoPlacement, computePosition, detectOverflow, offset } from '@floating-ui/dom';
@@ -22,10 +21,11 @@ interface BubblePosition {
   selector: 'ngx-editor-floating-menu',
   templateUrl: './floating-menu.component.html',
   styleUrls: ['./floating-menu.component.scss'],
-  imports: [BubbleComponent, CommonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [BubbleComponent],
 })
 export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
-  constructor(public el: ElementRef<HTMLElement>) {}
+  el = inject<ElementRef<HTMLElement>>(ElementRef);
 
   @HostBinding('style') get display(): Partial<CSSStyleDeclaration> {
     return {
