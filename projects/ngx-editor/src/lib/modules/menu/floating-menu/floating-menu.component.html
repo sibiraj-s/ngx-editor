@@ -1,6 +1,6 @@
 <div #ref>
   <ng-content></ng-content>
 </div>
-<ng-container *ngIf="ref.children.length === 0">
+@if (ref.children.length === 0) {
   <ngx-bubble [editor]="editor"></ngx-bubble>
-</ng-container>
+}

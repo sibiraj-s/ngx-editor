@@ -15,39 +15,46 @@
 ></button>
 
 <!-- popup -->
-<div *ngIf="showPopup" class="NgxEditor__Popup">
-  <form class="NgxEditor__Popup--Form" [formGroup]="form" (ngSubmit)="insertLink($event)">
-    <div class="NgxEditor__Popup--FormGroup">
-      <div class="NgxEditor__Popup--Col">
-        <label class="NgxEditor__Popup--Label" [htmlFor]="getId('link-popup-url')">{{ getLabel('url') | async }}</label>
-        <input type="url" [id]="getId('link-popup-url')" formControlName="href" autocomplete="off" />
-        <div *ngIf="href.touched && href.invalid" class="NgxEditor__HelpText NgxEditor__HelpText--Error">
-          {{ href.errors?.['pattern'] && getLabel('enterValidUrl') | async }}
+@if (showPopup) {
+  <div class="NgxEditor__Popup">
+    <form class="NgxEditor__Popup--Form" [formGroup]="form" (ngSubmit)="insertLink($event)">
+      <div class="NgxEditor__Popup--FormGroup">
+        <div class="NgxEditor__Popup--Col">
+          <label class="NgxEditor__Popup--Label" [htmlFor]="getId('link-popup-url')">{{
+            getLabel('url') | async
+          }}</label>
+          <input type="url" [id]="getId('link-popup-url')" formControlName="href" autocomplete="off" />
+          @if (href.touched && href.invalid) {
+            <div class="NgxEditor__HelpText NgxEditor__HelpText--Error">
+              {{ href.errors?.['pattern'] && getLabel('enterValidUrl') | async }}
+            </div>
+          }
         </div>
       </div>
-    </div>
-
-    <div class="NgxEditor__Popup--FormGroup">
-      <div class="NgxEditor__Popup--Col">
-        <label class="NgxEditor__Popup--Label" [htmlFor]="getId('link-popup-label')">{{
-          getLabel('text') | async
-        }}</label>
-        <input type="text" [id]="getId('link-popup-label')" formControlName="text" autocomplete="off" />
-        <div *ngIf="text.touched && text.invalid" class="NgxEditor__HelpText NgxEditor__HelpText--Error">
-          {{ text.errors?.['required'] && getLabel('required') | async }}
+      <div class="NgxEditor__Popup--FormGroup">
+        <div class="NgxEditor__Popup--Col">
+          <label class="NgxEditor__Popup--Label" [htmlFor]="getId('link-popup-label')">{{
+            getLabel('text') | async
+          }}</label>
+          <input type="text" [id]="getId('link-popup-label')" formControlName="text" autocomplete="off" />
+          @if (text.touched && text.invalid) {
+            <div class="NgxEditor__HelpText NgxEditor__HelpText--Error">
+              {{ text.errors?.['required'] && getLabel('required') | async }}
+            </div>
+          }
         </div>
       </div>
-    </div>
-
-    <div class="NgxEditor__Popup--FormGroup" *ngIf="this.options.showOpenInNewTab">
-      <div class="NgxEditor__Popup--Col">
-        <label>
-          <input type="checkbox" formControlName="openInNewTab" />
-          {{ getLabel('openInNewTab') | async }}
-        </label>
-      </div>
-    </div>
-
-    <button type="submit" [disabled]="!form.valid">{{ getLabel('insert') | async }}</button>
-  </form>
-</div>
+      @if (this.options.showOpenInNewTab) {
+        <div class="NgxEditor__Popup--FormGroup">
+          <div class="NgxEditor__Popup--Col">
+            <label>
+              <input type="checkbox" formControlName="openInNewTab" />
+              {{ getLabel('openInNewTab') | async }}
+            </label>
+          </div>
+        </div>
+      }
+      <button type="submit" [disabled]="!form.valid">{{ getLabel('insert') | async }}</button>
+    </form>
+  </div>
+}

@@ -4,8 +4,9 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/spec",
+    "rootDir": ".",
     "types": [
-      "jasmine"
+      "vitest/globals"
     ]
   },
   "include": [

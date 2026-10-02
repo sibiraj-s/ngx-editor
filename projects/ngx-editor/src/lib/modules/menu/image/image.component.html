@@ -13,38 +13,39 @@
 ></button>
 
 <!-- popup -->
-<div *ngIf="showPopup" class="NgxEditor__Popup">
-  <form class="NgxEditor__Popup--Form" [formGroup]="form" (ngSubmit)="insertLink($event)">
-    <div class="NgxEditor__Popup--FormGroup">
-      <div class="NgxEditor__Popup--Col">
-        <label class="NgxEditor__Popup--Label" [htmlFor]="getId('image-popup-url')">{{
-          getLabel('url') | async
-        }}</label>
-        <input type="url" [id]="getId('image-popup-url')" formControlName="src" autocomplete="off" />
-        <div *ngIf="src.touched && src.invalid" class="NgxEditor__HelpText NgxEditor__HelpText--Error">
-          {{ src.errors?.['pattern'] && getLabel('enterValidUrl') | async }}
+@if (showPopup) {
+  <div class="NgxEditor__Popup">
+    <form class="NgxEditor__Popup--Form" [formGroup]="form" (ngSubmit)="insertLink($event)">
+      <div class="NgxEditor__Popup--FormGroup">
+        <div class="NgxEditor__Popup--Col">
+          <label class="NgxEditor__Popup--Label" [htmlFor]="getId('image-popup-url')">{{
+            getLabel('url') | async
+          }}</label>
+          <input type="url" [id]="getId('image-popup-url')" formControlName="src" autocomplete="off" />
+          @if (src.touched && src.invalid) {
+            <div class="NgxEditor__HelpText NgxEditor__HelpText--Error">
+              {{ src.errors?.['pattern'] && getLabel('enterValidUrl') | async }}
+            </div>
+          }
         </div>
       </div>
-    </div>
-
-    <div class="NgxEditor__Popup--FormGroup">
-      <div class="NgxEditor__Popup--Col">
-        <label class="NgxEditor__Popup--Label" [htmlFor]="getId('image-popup-label')">{{
-          getLabel('altText') | async
-        }}</label>
-        <input type="text" [id]="getId('image-popup-label')" formControlName="alt" autocomplete="off" />
+      <div class="NgxEditor__Popup--FormGroup">
+        <div class="NgxEditor__Popup--Col">
+          <label class="NgxEditor__Popup--Label" [htmlFor]="getId('image-popup-label')">{{
+            getLabel('altText') | async
+          }}</label>
+          <input type="text" [id]="getId('image-popup-label')" formControlName="alt" autocomplete="off" />
+        </div>
       </div>
-    </div>
-
-    <div class="NgxEditor__Popup--FormGroup">
-      <div class="NgxEditor__Popup--Col">
-        <label class="NgxEditor__Popup--Label" [htmlFor]="getId('image-popup-title')">{{
-          getLabel('title') | async
-        }}</label>
-        <input type="text" [id]="getId('image-popup-title')" formControlName="title" autocomplete="off" />
+      <div class="NgxEditor__Popup--FormGroup">
+        <div class="NgxEditor__Popup--Col">
+          <label class="NgxEditor__Popup--Label" [htmlFor]="getId('image-popup-title')">{{
+            getLabel('title') | async
+          }}</label>
+          <input type="text" [id]="getId('image-popup-title')" formControlName="title" autocomplete="off" />
+        </div>
       </div>
-    </div>
-
-    <button type="submit" [disabled]="!form.valid || !form.dirty">{{ getLabel('insert') | async }}</button>
-  </form>
-</div>
+      <button type="submit" [disabled]="!form.valid || !form.dirty">{{ getLabel('insert') | async }}</button>
+    </form>
+  </div>
+}
