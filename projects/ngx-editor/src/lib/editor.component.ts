@@ -13,6 +13,8 @@ import {
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
+  inject,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -35,14 +37,13 @@ import { HTML, isHtml } from './trustedTypesUtil';
       multi: true,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
-  constructor(
-    private renderer: Renderer2,
-    private injector: Injector,
-    private elementRef: ElementRef<HTMLElement>,
-  ) { }
+  private renderer = inject(Renderer2);
+  private injector = inject(Injector);
+  private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   @ViewChild('ngxEditor', { static: true }) private ngxEditor: ElementRef;
 

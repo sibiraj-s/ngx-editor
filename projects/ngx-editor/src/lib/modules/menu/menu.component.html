@@ -2,58 +2,47 @@
   class="NgxEditor__MenuBar"
   [ngClass]="{ 'NgxEditor--Disabled': disabled, 'NgxEditor__MenuBar--Reverse': dropdownPlacement === 'top' }"
 >
-  <ng-container *ngFor="let toolbarItem of toolbar; let lastToolbarItem = last; trackBy: trackByIndex">
-    <ng-container *ngFor="let item of toolbarItem; let lastItem = last; trackBy: trackByIndex">
+  @for (toolbarItem of toolbar; track $index; let lastToolbarItem = $last) {
+    @for (item of toolbarItem; track $index; let lastItem = $last) {
       <!-- toggle icons -->
-      <ngx-toggle-command [toolbarItem]="item" [class]="iconContainerClass" *ngIf="toggleCommands.includes(item)">
-      </ngx-toggle-command>
-
-      <ngx-insert-command [toolbarItem]="item" [class]="iconContainerClass" *ngIf="insertCommands.includes(item)">
-      </ngx-insert-command>
-
+      @if (toggleCommands.includes(item)) {
+        <ngx-toggle-command [toolbarItem]="item" [class]="iconContainerClass"> </ngx-toggle-command>
+      }
+      @if (insertCommands.includes(item)) {
+        <ngx-insert-command [toolbarItem]="item" [class]="iconContainerClass"> </ngx-insert-command>
+      }
       <!-- link -->
-      <ng-container *ngIf="isLinkItem(item)">
+      @if (isLinkItem(item)) {
         <ngx-link [class]="iconContainerClass" [options]="getLinkOptions(item)"></ngx-link>
-      </ng-container>
-
+      }
       <!-- image -->
-      <ngx-image [class]="iconContainerClass" *ngIf="item === 'image'"> </ngx-image>
-
+      @if (item === 'image') {
+        <ngx-image [class]="iconContainerClass"> </ngx-image>
+      }
       <!-- dropdown -->
-      <ng-container *ngIf="isDropDown(item)">
-        <ngx-dropdown
-          *ngFor="let dropdownItem of getDropdownItems(item) | keyvalue; trackBy: trackByIndex"
-          [class]="dropdownContainerClass"
-          [group]="dropdownItem.key"
-          [items]="dropdownItem.value"
-        >
-        </ngx-dropdown>
-      </ng-container>
-
+      @if (isDropDown(item)) {
+        @for (dropdownItem of getDropdownItems(item) | keyvalue; track $index) {
+          <ngx-dropdown [class]="dropdownContainerClass" [group]="dropdownItem.key" [items]="dropdownItem.value">
+          </ngx-dropdown>
+        }
+      }
       <!-- text color picker -->
-      <ngx-color-picker
-        [class]="iconContainerClass"
-        *ngIf="item === 'text_color'"
-        type="text_color"
-        [presets]="presets"
-      >
-      </ngx-color-picker>
+      @if (item === 'text_color') {
+        <ngx-color-picker [class]="iconContainerClass" type="text_color" [presets]="presets"> </ngx-color-picker>
+      }
       <!-- background color picker -->
-      <ngx-color-picker
-        [class]="iconContainerClass"
-        *ngIf="item === 'background_color'"
-        type="background_color"
-        [presets]="presets"
-      >
-      </ngx-color-picker>
-
+      @if (item === 'background_color') {
+        <ngx-color-picker [class]="iconContainerClass" type="background_color" [presets]="presets"> </ngx-color-picker>
+      }
       <!-- seperator -->
-      <div [class]="seperatorClass" *ngIf="lastItem && !lastToolbarItem"></div>
-    </ng-container>
-  </ng-container>
+      @if (lastItem && !lastToolbarItem) {
+        <div [class]="seperatorClass"></div>
+      }
+    }
+  }
 
   <!-- custom menu -->
-  <ng-container *ngIf="customMenuRef">
+  @if (customMenuRef) {
     <ng-container [ngTemplateOutlet]="customMenuRef"></ng-container>
-  </ng-container>
+  }
 </div>

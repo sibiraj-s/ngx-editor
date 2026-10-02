@@ -32,7 +32,7 @@ export class AppModule {}
 ```ts title="app.component.ts"
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Validators } from 'ngx-editor';
+import { NgxEditorValidators } from 'ngx-editor';
 
 @Component({
   selector: 'app-root',
@@ -41,7 +41,7 @@ import { Validators } from 'ngx-editor';
 })
 export class AppComponent implements OnInit, OnDestroy {
   form = new FormGroup({
-    editorContent: new FormControl(null, [Validators.required()]),
+    editorContent: new FormControl(null, [NgxEditorValidators.required()]),
   });
 
   ngOnInit(): void {
@@ -65,12 +65,14 @@ export class AppComponent implements OnInit, OnDestroy {
 ### Validators
 
 ```ts
-import { Validators } from 'ngx-editor';
+import { NgxEditorValidators } from 'ngx-editor';
 
-Validators.required(schema); // pass schema if you are using a custom schema else leave it empty
-Validators.maxLength(maxLength, schema);
-Validators.minLength(minLength, schema);
+NgxEditorValidators.required(schema); // pass schema if you are using a custom schema else leave it empty
+NgxEditorValidators.maxLength(maxLength, schema);
+NgxEditorValidators.minLength(minLength, schema);
 ```
+
+`Validators` is still available as a backwards-compatible export, but `NgxEditorValidators` avoids name conflicts with Angular's own `Validators` helper.
 
 ### Enable or disable the editor via Forms API
 
