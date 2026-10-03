@@ -1,5 +1,6 @@
 import {
-  Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
+  Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
+  input
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import type { Command } from 'prosemirror-state';
@@ -30,8 +31,8 @@ export class DropdownComponent implements OnInit, OnDestroy {
   private editorView: EditorView;
   private updateSubscription: Subscription;
 
-  @Input() group: string;
-  @Input() items: (TBHeadingItems | TBTableItems)[] = [];
+  readonly group = input<string>(undefined);
+  readonly items = input<(TBHeadingItems | TBTableItems)[]>([]);
 
   isDropdownOpen = false;
 
@@ -43,7 +44,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
   }
 
   get isDropdownDisabled(): boolean {
-    return this.disabledItems.length === this.items.length;
+    return this.disabledItems.length === this.items().length;
   }
 
   @HostListener('document:mousedown', ['$event.target']) onDocumentClick(target: EventTarget): void {
@@ -79,7 +80,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
   }
 
   selectItem(item: TBHeadingItems | TBTableItems): void {
-    if (this.group === 'table') {
+    if (this.group() === 'table') {
       const tableCommands: Record<TBTableItems, Command> = {
         addColumnBefore,
         addColumnAfter,
@@ -130,11 +131,11 @@ export class DropdownComponent implements OnInit, OnDestroy {
     this.disabledItems = [];
     const activeItems: (TBHeadingItems | TBTableItems)[] = [];
 
-    this.items.forEach((item: TBHeadingItems | TBTableItems) => {
+    this.items().forEach((item: TBHeadingItems | TBTableItems) => {
       let isActive = false;
       let canExecute = false;
 
-      if(this.group === 'table'){
+      if(this.group() === 'table'){
           const tableCommands: Record<TBTableItems, Command> = {
           addColumnBefore,
           addColumnAfter,

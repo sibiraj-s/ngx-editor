@@ -1,5 +1,6 @@
 import {
-  Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
+  Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
+  input
 } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -33,10 +34,7 @@ export class LinkComponent implements OnInit, OnDestroy {
   private ngxeService = inject(NgxEditorService);
   private menuService = inject(MenuService);
 
-  @Input({
-    transform: (value: Partial<LinkOptions>) => ({ ...DEFAULT_LINK_OPTIONS, ...value }),
-  })
-    options: Partial<LinkOptions> = DEFAULT_LINK_OPTIONS;
+  readonly options = input<Partial<LinkOptions>, Partial<LinkOptions>>(DEFAULT_LINK_OPTIONS, { transform: (value: Partial<LinkOptions>) => ({ ...DEFAULT_LINK_OPTIONS, ...value }) });
 
   showPopup = false;
   isActive = false;
@@ -138,7 +136,7 @@ export class LinkComponent implements OnInit, OnDestroy {
 
     let target: string | undefined;
 
-    if (this.options.showOpenInNewTab) {
+    if (this.options().showOpenInNewTab) {
       target = openInNewTab ? '_blank' : '_self';
     }
 

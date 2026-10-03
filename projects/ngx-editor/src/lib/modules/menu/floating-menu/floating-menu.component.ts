@@ -1,5 +1,6 @@
 import {
-  Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
+  Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
+  input
 } from '@angular/core';
 import type { VirtualElement } from '@floating-ui/core';
 import { autoPlacement, computePosition, detectOverflow, offset } from '@floating-ui/dom';
@@ -37,11 +38,11 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   private get view(): EditorView {
-    return this.editor.view;
+    return this.editor().view;
   }
 
-  @Input() editor: Editor;
-  @Input() autoPlace = false;
+  readonly editor = input<Editor>(undefined);
+  readonly autoPlace = input(false);
 
   private posLeft = 0;
   private posTop = 0;
@@ -155,7 +156,7 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
       placement: 'top',
       middleware: [
         offset(5),
-        this.autoPlace
+        this.autoPlace()
           && autoPlacement({
             boundary: view.dom,
             padding: 5,
@@ -241,11 +242,12 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (!this.editor) {
+    const editor = this.editor();
+    if (!editor) {
       throw new NgxEditorError('Required editor instance to initialize floating menu component');
     }
 
-    this.updateSubscription = this.editor.update.subscribe((view) => {
+    this.updateSubscription = editor.update.subscribe((view) => {
       this.update(view);
     });
 

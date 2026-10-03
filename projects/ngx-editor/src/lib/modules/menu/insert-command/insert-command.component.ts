@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, inject, input } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
@@ -21,10 +21,10 @@ export class InsertCommandComponent implements OnInit, OnDestroy {
   private ngxeService = inject(NgxEditorService);
   private menuService = inject(MenuService);
 
-  @Input() toolbarItem: ToolbarItem;
+  readonly toolbarItem = input<ToolbarItem>(undefined);
 
   get name(): TBItems {
-    return this.toolbarItem as TBItems;
+    return this.toolbarItem() as TBItems;
   }
 
   html: HTML;

@@ -2,5 +2,5 @@
   <ng-content></ng-content>
 </div>
 @if (ref.children.length === 0) {
-  <ngx-bubble [editor]="editor"></ngx-bubble>
+  <ngx-bubble [editor]="editor()"></ngx-bubble>
 }

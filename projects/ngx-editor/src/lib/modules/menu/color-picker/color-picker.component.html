@@ -14,7 +14,7 @@
 
 @if (showPopup) {
   <div class="NgxEditor__Popup">
-    @for (colorGroup of presets; track $index) {
+    @for (colorGroup of presets(); track $index) {
       <div class="NgxEditor__ColorContainer">
         @for (color of colorGroup; track $index) {
           <button

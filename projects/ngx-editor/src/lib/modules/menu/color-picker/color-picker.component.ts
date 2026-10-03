@@ -1,5 +1,6 @@
 import {
-  Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
+  Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
+  input
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
@@ -25,19 +26,19 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
   private menuService = inject(MenuService);
   private ngxeService = inject(NgxEditorService);
 
-  @Input() presets: string[][];
-  @Input() type: string;
+  readonly presets = input<string[][]>(undefined);
+  readonly type = input<string>(undefined);
 
   get title(): Observable<string> {
-    return this.getLabel(this.type === 'text_color' ? 'text_color' : 'background_color');
+    return this.getLabel(this.type() === 'text_color' ? 'text_color' : 'background_color');
   }
 
   get icon(): HTML {
-    return this.ngxeService.getIcon(this.type === 'text_color' ? 'text_color' : 'color_fill');
+    return this.ngxeService.getIcon(this.type() === 'text_color' ? 'text_color' : 'color_fill');
   }
 
   private get command(): Command {
-    return this.type === 'text_color' ? TextColor : TextBackgroundColor;
+    return this.type() === 'text_color' ? TextColor : TextBackgroundColor;
   }
 
   private updateSubscription: Subscription;
@@ -109,7 +110,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
   selectColor(color: string): void {
     const { state, dispatch } = this.editorView;
 
-    if (this.type === 'text_color') {
+    if (this.type() === 'text_color') {
       const attrs = { color };
       this.command.apply(attrs)(state, dispatch);
     } else {

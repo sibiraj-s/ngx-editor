@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, OnInit, TemplateRef, ChangeDetectionStrategy, inject, input } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { NgxEditorError } from 'ngx-editor/utils';
@@ -155,12 +155,12 @@ const DEFAULT_COLOR_PRESETS = [
 export class NgxEditorMenuComponent implements OnInit {
   private menuService = inject(MenuService);
 
-  @Input() toolbar: Toolbar = TOOLBAR_MINIMAL;
-  @Input() colorPresets: string[] = DEFAULT_COLOR_PRESETS;
-  @Input() disabled = false;
-  @Input() editor: Editor;
-  @Input() customMenuRef: TemplateRef<unknown> | null = null;
-  @Input() dropdownPlacement: 'top' | 'bottom' = 'bottom';
+  readonly toolbar = input<Toolbar>(TOOLBAR_MINIMAL);
+  readonly colorPresets = input<string[]>(DEFAULT_COLOR_PRESETS);
+  readonly disabled = input(false);
+  readonly editor = input<Editor>(undefined);
+  readonly customMenuRef = input<TemplateRef<unknown> | null>(null);
+  readonly dropdownPlacement = input<'top' | 'bottom'>('bottom');
 
   toggleCommands: ToolbarItem[] = [
     'bold',
@@ -205,7 +205,7 @@ export class NgxEditorMenuComponent implements OnInit {
     const col = 8;
     const colors: string[][] = [];
 
-    this.colorPresets.forEach((color, index) => {
+    this.colorPresets().forEach((color, index) => {
       const row = Math.floor(index / col);
 
       if (!colors[row]) {
@@ -251,10 +251,11 @@ export class NgxEditorMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.editor) {
+    const editor = this.editor();
+    if (!editor) {
       throw new NgxEditorError('Required editor instance to initialize menu component');
     }
 
-    this.menuService.editor = this.editor;
+    this.menuService.editor = editor;
   }
 }

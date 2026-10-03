@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, inject, input } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
@@ -23,10 +23,10 @@ export class BubbleComponent implements OnInit, OnDestroy {
   private ngxeService = inject(NgxEditorService);
 
   private get view(): EditorView {
-    return this.editor.view;
+    return this.editor().view;
   }
 
-  @Input() editor: Editor;
+  readonly editor = input<Editor>(undefined);
 
   private updateSubscription: Subscription;
   execulableItems: TBItems[] = [];
@@ -97,7 +97,7 @@ export class BubbleComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.updateSubscription = this.editor.update.subscribe((view) => {
+    this.updateSubscription = this.editor().update.subscribe((view) => {
       this.update(view);
     });
   }
