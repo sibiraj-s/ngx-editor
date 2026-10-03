@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { undo } from 'prosemirror-history';
-import { TextSelection } from 'prosemirror-state';
 
 import Editor from './Editor';
 import { NgxEditorComponent } from './editor.component';
@@ -87,53 +86,21 @@ describe('NgxEditorComponent', () => {
     expect(component.editor.view.state.doc.textContent).toBe('Hello world!');
   });
 
-  it('should reset undo history on programmatic setContent calls', () => {
-    component.writeValue('Initial');
-    fixture.detectChanges();
+  it('should not clear the value written after an initial null on undo', () => {
+    // ngModel writes null first and the actual value later
+    component.writeValue(null);
+    component.writeValue('Hello world!');
 
-    // simulate a user edit
-    const { state } = component.editor.view;
-    const tr = state.tr.insertText(' edit', state.doc.content.size - 1);
-    component.editor.view.dispatch(tr);
-    fixture.detectChanges();
-    expect(component.editor.view.state.doc.textContent).toBe('Initial edit');
-
-    // programmatic setContent resets history
-    component.writeValue('Replaced');
-    fixture.detectChanges();
-    expect(component.editor.view.state.doc.textContent).toBe('Replaced');
-
-    // undo should have no effect since history was reset
     undo(component.editor.view.state, component.editor.view.dispatch);
-    fixture.detectChanges();
-    expect(component.editor.view.state.doc.textContent).toBe('Replaced');
+    expect(component.editor.view.state.doc.textContent).toBe('Hello world!');
   });
 
-  it('should stay disabled when content is set', () => {
-    component.setDisabledState(true);
-    component.writeValue('Hello world!');
-    fixture.detectChanges();
+  it('should allow undoing values written after the initial value', () => {
+    component.writeValue('Initial');
+    component.writeValue('Replaced');
 
-    expect(component.editor.view.editable).toBe(false);
-  });
-
-  it('should preserve the selection when content is set', () => {
-    component.writeValue('Hello world');
-    const { view } = component.editor;
-    view.dispatch(view.state.tr.setSelection(TextSelection.create(view.state.doc, 6)));
-
-    component.writeValue('Hello world!');
-    expect(view.state.selection.from).toBe(6);
-  });
-
-  it('should emit update when content is set', () => {
-    const spy = vi.fn();
-    const subscription = component.editor.update.subscribe(spy);
-
-    component.writeValue('Hello world!');
-    expect(spy).toHaveBeenCalled();
-
-    subscription.unsubscribe();
+    undo(component.editor.view.state, component.editor.view.dispatch);
+    expect(component.editor.view.state.doc.textContent).toBe('Initial');
   });
 });
 

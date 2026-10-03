@@ -1,6 +1,7 @@
 import Editor from './Editor';
 import { HORIZONTAL_RULE } from './commands';
 import { NodeSelection, TextSelection } from 'prosemirror-state';
+import { undo } from 'prosemirror-history';
 
 describe('Editor', () => {
   it('should create the editor correctly', () => {
@@ -18,6 +19,22 @@ describe('Editor', () => {
     });
 
     expect(editor.view.dom.getAttribute('enterKeyHint')).toBe('enter');
+  });
+
+  it('should allow undoing setContent', () => {
+    const editor = new Editor({ content: '<p>Hello</p>' });
+    editor.setContent('<p>Hello world</p>');
+
+    undo(editor.view.state, editor.view.dispatch);
+    expect(editor.view.state.doc.textContent).toBe('Hello');
+  });
+
+  it('should not allow undoing setContent when addToHistory is false', () => {
+    const editor = new Editor({ content: '<p>Hello</p>' });
+    editor.setContent('<p>Hello world</p>', { addToHistory: false });
+
+    undo(editor.view.state, editor.view.dispatch);
+    expect(editor.view.state.doc.textContent).toBe('Hello world');
   });
 });
 

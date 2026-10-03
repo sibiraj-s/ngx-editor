@@ -20,7 +20,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { NgxEditorError } from 'ngx-editor/utils';
+import { isNil, NgxEditorError } from 'ngx-editor/utils';
 import Editor from './Editor';
 import { emptyDoc, toHTML } from './parsers';
 import * as plugins from './plugins';
@@ -55,6 +55,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   @Output() focusIn = new EventEmitter<void>();
 
   private unsubscribe = new Subject<void>();
+  private initialValueSet = false;
   private onChange: (value: Record<string, unknown> | string) => void = () => { /** */ };
   private onTouched: () => void = () => { /** */ };
 
@@ -63,7 +64,13 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
       this.outputFormat = 'html';
     }
 
-    this.editor.setContent(value ?? emptyDoc);
+    // the initial value should not be undoable, else undo clears the editor.
+    // ngModel writes null before the actual value, so the first non-null value is the initial value
+    this.editor.setContent(value ?? emptyDoc, { addToHistory: this.initialValueSet });
+
+    if (!isNil(value)) {
+      this.initialValueSet = true;
+    }
   }
 
   registerOnChange(fn: () => void): void {

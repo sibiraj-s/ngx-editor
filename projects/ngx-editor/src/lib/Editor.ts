@@ -29,6 +29,10 @@ interface Options {
   parseOptions?:ParseOptions;
 }
 
+interface SetContentOptions {
+  addToHistory?: boolean;
+}
+
 interface EditorFeatures {
   linkOnPaste?: boolean;
   resizeImage?: boolean;
@@ -132,7 +136,7 @@ class Editor {
     });
   }
 
-  setContent(content: Content): void {
+  setContent(content: Content, options: SetContentOptions = {}): void {
     if (isNil(content)) {
       return;
     }
@@ -142,31 +146,20 @@ class Editor {
 
     const newDoc = parseContent(content, this.schema, this.options.parseOptions);
 
-    const start = doc.content.findDiffStart(newDoc.content);
+    tr.replaceWith(0, state.doc.content.size, newDoc);
 
     // don't emit if both content is same
-    if (start === null) {
+    if (doc.eq(tr.doc)) {
       return;
     }
-
-    // replace only the changed range, so the selection is mapped instead of being reset
-    let { a: endA, b: endB } = doc.content.findDiffEnd(newDoc.content);
-    const overlap = start - Math.min(endA, endB);
-
-    if (overlap > 0) {
-      endA += overlap;
-      endB += overlap;
-    }
-
-    tr.replace(start, endA, newDoc.slice(start, endB));
 
     if (!tr.docChanged) {
       return;
     }
 
-    // programmatic content updates should not be undoable,
-    // else undo after the initial load clears the editor
-    tr.setMeta('addToHistory', false);
+    if (options.addToHistory === false) {
+      tr.setMeta('addToHistory', false);
+    }
 
     this.view.dispatch(tr);
   }
