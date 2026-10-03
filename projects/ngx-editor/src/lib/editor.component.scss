@@ -252,7 +252,7 @@ $pointer-style: var(--ngx-editor-click-pointer, default);
     border-radius: $popup-border-radius;
     background-color: $popup-bg-color;
     z-index: 10;
-    width: max-content; 
+    width: max-content;
     min-width: 100%;
     top: calc(#{$menubar-height} + 2px);
     display: flex;
@@ -359,7 +359,7 @@ $pointer-style: var(--ngx-editor-click-pointer, default);
   }
 }
 
-.ProseMirror {
+.NgxEditor .ProseMirror {
   table {
     margin: 0;
     border-collapse: collapse;
@@ -368,7 +368,8 @@ $pointer-style: var(--ngx-editor-click-pointer, default);
     overflow: hidden;
     border: 1px solid $editor-border-color;
   }
-  th, td {
+  th,
+  td {
     min-width: 1em;
     border: 1px solid $editor-border-color;
     padding: 3px 5px;
@@ -402,7 +403,7 @@ $pointer-style: var(--ngx-editor-click-pointer, default);
   .selectedCell:after {
     z-index: 2;
     position: absolute;
-    content: "";
+    content: '';
     left: 0;
     right: 0;
     top: 0;

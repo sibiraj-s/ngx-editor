@@ -1,6 +1,6 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import {  FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { uniq } from 'ngx-editor/utils';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
@@ -18,23 +18,21 @@ import { Table as TableCommand } from '../MenuCommands';
   styleUrl: './table.component.scss',
 })
 export class TableComponent implements OnInit, OnDestroy {
+  private el = inject(ElementRef);
+  private ngxeService = inject(NgxEditorService);
+  private menuService = inject(MenuService);
+
   showPopup = false;
   isActive = false;
   private componentId = uniq();
   private updateSubscription: Subscription;
 
   form = new FormGroup({
-    rows: new FormControl(2, [Validators.required, Validators.min(1)]),
-    cols: new FormControl(3, [Validators.required, Validators.min(1)]),
+    rows: new FormControl(2, [Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)]),
+    cols: new FormControl(3, [Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)]),
   });
 
   private editorView: EditorView;
-
-  constructor(
-    private el: ElementRef,
-    private ngxeService: NgxEditorService,
-    private menuService: MenuService,
-  ) {}
 
   get icon(): HTML {
     return this.ngxeService.getIcon('table');
@@ -99,17 +97,10 @@ export class TableComponent implements OnInit, OnDestroy {
     const { rows, cols } = this.form.getRawValue();
     const { dispatch, state } = this.editorView;
 
-    if (!state || !dispatch) {
-      console.error('Editor state or dispatch not available');
-      return;
-    }
-
     const success = TableCommand.insert(rows, cols)(state, dispatch);
     if (success) {
       this.editorView.focus();
       this.hideForm();
-    } else {
-      console.error('Failed to insert table');
     }
   }
 

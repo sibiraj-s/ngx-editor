@@ -18,6 +18,7 @@ export default tseslint.config(
       // components update state from ProseMirror callbacks outside Angular's knowledge,
       // so they are explicitly `Eager` until they are refactored to signals
       "@angular-eslint/prefer-on-push-component-change-detection": "off",
+      "no-plusplus": "off",
       "@typescript-eslint/max-params": [
         "error",
         {

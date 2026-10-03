@@ -11,6 +11,10 @@ class Table {
       const cellType = schema.nodes['table_cell'];
       const headerType = schema.nodes['table_header'];
 
+      if (!tableType || !rowType || !cellType || !headerType) {
+        return false;
+      }
+
       const tableRows: ProseMirrorNode[] = [];
 
       const headerAttrs = {

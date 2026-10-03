@@ -137,12 +137,12 @@ export const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) =
     keymap(baseKeymap),
   ];
 
-    if (schema.nodes['table']) {
+  if (schema.nodes['table']) {
     plugins.push(
       keymap({
         'Tab': goToNextCell(1),
         'Shift-Tab': goToNextCell(-1),
-      })
+      }),
     );
   }
 
