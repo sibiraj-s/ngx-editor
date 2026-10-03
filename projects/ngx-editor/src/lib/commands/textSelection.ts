@@ -1,6 +1,6 @@
 import { AllSelection, EditorState, TextSelection } from 'prosemirror-state';
 
-// ctrl+a creates an AllSelection, which has no parent nodes to lift,
+// ctrl+a creates an AllSelection, which has no parent nodes to wrap or lift,
 // so use a text selection over the same content instead
 export const withTextSelection = (state: EditorState): EditorState => {
   if (!(state.selection instanceof AllSelection)) {
