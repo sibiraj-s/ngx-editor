@@ -19,8 +19,7 @@ class ListItem implements ToggleCommand {
   }
 
   toggle(): Command {
-    return (editorState: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
-      const state = withTextSelection(editorState);
+    return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
       const { schema } = state;
 
       const type = this.getType(schema);
@@ -29,7 +28,7 @@ class ListItem implements ToggleCommand {
       }
 
       if (this.isActive(state)) {
-        return liftListItem(schema.nodes['list_item'])(state, dispatch);
+        return liftListItem(schema.nodes['list_item'])(withTextSelection(state), dispatch);
       }
 
       return wrapInList(type)(state, dispatch);

@@ -9,8 +9,7 @@ import { ToggleCommand } from './types';
 
 class Blockqote implements ToggleCommand {
   toggle(): Command {
-    return (editorState: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
-      const state = withTextSelection(editorState);
+    return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
       const { schema } = state;
 
       const type: NodeType = schema.nodes['blockquote'];
@@ -19,7 +18,7 @@ class Blockqote implements ToggleCommand {
       }
 
       if (this.isActive(state)) {
-        return lift(state, dispatch);
+        return lift(withTextSelection(state), dispatch);
       }
 
       return wrapIn(type)(state, dispatch);

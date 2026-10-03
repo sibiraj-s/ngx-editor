@@ -54,4 +54,13 @@ describe('toggle commands with select all', () => {
 
     expect(getHTML()).toBe('<p>a</p><p>b</p>');
   });
+
+  it('should wrap horizontal rules at the edges in the blockquote', () => {
+    editor = new Editor({ content: '<hr><p>a</p><hr>' });
+    selectAll();
+
+    toggle(new Blockquote());
+
+    expect(getHTML()).toBe('<blockquote><hr><p>a</p><hr></blockquote>');
+  });
 });
