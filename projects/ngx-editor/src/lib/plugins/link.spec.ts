@@ -25,6 +25,30 @@ describe('linkifyPlugin', () => {
     expect(getHTML()).toBe('<p><a href="https://example.com" target="_blank">https://example.com</a></p>');
   });
 
+  it('should convert pasted urls with a port to links', () => {
+    editor = new Editor({ plugins: [linkifyPlugin()] });
+
+    paste('http://localhost:4200/path');
+
+    expect(getHTML()).toBe('<p><a href="http://localhost:4200/path" target="_blank">http://localhost:4200/path</a></p>');
+  });
+
+  it('should convert pasted domains without a protocol to links', () => {
+    editor = new Editor({ plugins: [linkifyPlugin()] });
+
+    paste('visit www.example.co.uk');
+
+    expect(getHTML()).toBe('<p>visit <a href="www.example.co.uk" target="_blank">www.example.co.uk</a></p>');
+  });
+
+  it('should not convert pasted numbers to links', () => {
+    editor = new Editor({ plugins: [linkifyPlugin()] });
+
+    paste('price 10.50, version 1.2.3, about 12.5kg and 192.168.1.1');
+
+    expect(getHTML()).toBe('<p>price 10.50, version 1.2.3, about 12.5kg and 192.168.1.1</p>');
+  });
+
   it('should paste urls as text when the schema has no link mark', () => {
     const schema = new Schema({
       nodes,
