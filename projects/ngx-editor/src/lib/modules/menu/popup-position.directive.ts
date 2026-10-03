@@ -13,6 +13,9 @@ export class PopupPositionDirective implements AfterViewInit, OnDestroy {
   // make the popup at least as wide as the menu item
   readonly ngxPopupMatchWidth = input(false, { transform: booleanAttribute });
 
+  // align the popup to the center or the start of the menu item
+  readonly ngxPopupAlign = input<'center' | 'start'>('center');
+
   ngAfterViewInit(): void {
     const floating = this.el.nativeElement;
     const reference = floating.parentElement;
@@ -26,10 +29,11 @@ export class PopupPositionDirective implements AfterViewInit, OnDestroy {
 
   private async updatePosition(reference: HTMLElement, floating: HTMLElement): Promise<void> {
     const reverse = Boolean(reference.closest('.NgxEditor__MenuBar--Reverse'));
+    const side = reverse ? 'top' : 'bottom';
 
     const { x, y } = await computePosition(reference, floating, {
       strategy: 'fixed',
-      placement: reverse ? 'top-start' : 'bottom-start',
+      placement: this.ngxPopupAlign() === 'start' ? `${side}-start` : side,
       middleware: [offset(2), flip(), shift({ padding: 5 })],
     });
 
