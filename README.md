@@ -61,7 +61,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [NgxEditorComponent, NgxEditorMenuComponent, FormsModule],
 })
-export class NgxEditorComponent implements OnInit, OnDestroy {
+export class EditorComponent implements OnInit, OnDestroy {
   html = '';
   editor: Editor;
   ngOnInit(): void {
@@ -81,7 +81,7 @@ Then in HTML
   <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
   <ngx-editor
     [editor]="editor"
-    [ngModel]="html"
+    [(ngModel)]="html"
     [disabled]="false"
     [placeholder]="'Type here...'"
   ></ngx-editor>

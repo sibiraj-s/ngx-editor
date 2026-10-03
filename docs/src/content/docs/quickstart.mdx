@@ -38,6 +38,8 @@ yarn add ngx-editor
 Import `NgxEditorComponent` and initialize the editor
 
 ```ts title="app.component.ts"
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { NgxEditorComponent, Editor } from 'ngx-editor';
 
 @Component({
@@ -45,7 +47,7 @@ import { NgxEditorComponent, Editor } from 'ngx-editor';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [NgxEditorComponent],
+  imports: [FormsModule, NgxEditorComponent],
 })
 export class AppComponent implements OnInit, OnDestroy {
   html = 'Hello world!';
@@ -63,12 +65,63 @@ export class AppComponent implements OnInit, OnDestroy {
 Then in HTML
 
 ```html title="app.component.html"
-<ngx-editor [editor]="editor" [ngModel]="html"></ngx-editor>
+<ngx-editor [editor]="editor" [(ngModel)]="html"></ngx-editor>
 ```
 
 <Stackblitz id="ngx-editor-quickstart" />
 
 For `ngModel` to work, You must import `FormsModule` from `@angular/forms`
+
+### Server-side rendering
+
+The editor needs the browser DOM, so it can't be rendered on the server. Creating it on the server throws `document is not defined`.
+
+Render the routes that use the editor on the client:
+
+```ts title="app.routes.server.ts"
+import { RenderMode, ServerRoute } from '@angular/ssr';
+
+export const serverRoutes: ServerRoute[] = [
+  {
+    path: 'editor',
+    renderMode: RenderMode.Client,
+  },
+  {
+    path: '**',
+    renderMode: RenderMode.Prerender,
+  },
+];
+```
+
+If the rest of the page should still be rendered on the server, create the editor only in the browser and render it once it exists.
+
+```ts title="app.component.ts"
+import { Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
+export class AppComponent implements OnInit, OnDestroy {
+  private platformId = inject(PLATFORM_ID);
+
+  html = 'Hello world!';
+  editor: Editor;
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.editor = new Editor();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.editor?.destroy();
+  }
+}
+```
+
+```html title="app.component.html"
+@if (editor) {
+  <ngx-editor [editor]="editor" [(ngModel)]="html"></ngx-editor>
+}
+```
 
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
