@@ -77,7 +77,11 @@ describe('NgxEditorMenuComponent', () => {
 
 @Component({
   imports: [NgxEditorMenuComponent, NgxEditorComponent],
-  template: '<ngx-editor-menu [editor]="editor" /><ngx-editor [editor]="editor" />',
+  template: `
+    <ngx-editor-menu [editor]="editor" [customMenuRef]="customMenu" />
+    <ngx-editor [editor]="editor" />
+    <ng-template #customMenu><button class="custom-item">Custom</button></ng-template>
+  `,
 })
 class HostComponent {
   editor = new Editor();
@@ -118,5 +122,13 @@ describe('NgxEditorMenuComponent (zoneless)', () => {
     view.dispatch(view.state.tr.setSelection(TextSelection.create(view.state.doc, 8)));
     await fixture.whenStable();
     expect(bold.classList.contains('NgxEditor__MenuItem--Active')).toBe(false);
+  });
+
+  it('should render the custom menu template after the toolbar items', () => {
+    const menubar: HTMLElement = fixture.nativeElement.querySelector('.NgxEditor__MenuBar');
+    const custom = menubar.querySelector('.custom-item');
+
+    expect(custom).toBeTruthy();
+    expect(menubar.lastElementChild).toBe(custom);
   });
 });
