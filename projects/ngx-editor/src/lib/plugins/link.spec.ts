@@ -49,12 +49,38 @@ describe('linkifyPlugin', () => {
     expect(getHTML()).toBe('<p>price 10.50, version 1.2.3, about 12.5kg and 192.168.1.1</p>');
   });
 
-  it('should not convert pasted urls followed by punctuation or without a host to links', () => {
+  it('should leave trailing punctuation out of pasted links', () => {
     editor = new Editor({ plugins: [linkifyPlugin()] });
 
-    paste('see https://example.com, or https://!');
+    paste('visit example.com.');
 
-    expect(getHTML()).toBe('<p>see https://example.com, or https://!</p>');
+    expect(getHTML()).toBe('<p>visit <a href="example.com" target="_blank">example.com</a>.</p>');
+  });
+
+  it('should convert pasted urls with a query or a fragment to links', () => {
+    editor = new Editor({ plugins: [linkifyPlugin()] });
+
+    paste('https://example.com?q=foo.bar#intro');
+
+    expect(getHTML()).toBe(
+      '<p><a href="https://example.com?q=foo.bar#intro" target="_blank">https://example.com?q=foo.bar#intro</a></p>',
+    );
+  });
+
+  it('should not convert pasted urls without a host to links', () => {
+    editor = new Editor({ plugins: [linkifyPlugin()] });
+
+    paste('see https://!');
+
+    expect(getHTML()).toBe('<p>see https://!</p>');
+  });
+
+  it('should not convert part of a word to a link', () => {
+    editor = new Editor({ plugins: [linkifyPlugin()] });
+
+    paste('mail@example.com or https://user:pass@example.com/path');
+
+    expect(getHTML()).toBe('<p>mail@example.com or https://user:pass@example.com/path</p>');
   });
 
   it('should paste urls as text when the schema has no link mark', () => {

@@ -38,6 +38,12 @@ describe('autoLink', () => {
     expect(getHTML()).toContain('<a href="https://example.com"');
   });
 
+  it('should convert typed urls with a fragment to links', () => {
+    type('see https://example.com#intro');
+
+    expect(getHTML()).toContain('<a href="https://example.com#intro"');
+  });
+
   it('should not convert typed numbers to links', () => {
     type('price 10.50 and version 1.2.3');
 
