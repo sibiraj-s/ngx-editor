@@ -42,8 +42,13 @@ export class PopupPositionDirective implements AfterViewInit, OnDestroy {
         size({
           padding: 5,
           apply({ availableHeight }) {
+            // max-height doesn't include the padding and border of the popup
+            const style = getComputedStyle(floating);
+            const spacing = [style.paddingTop, style.paddingBottom, style.borderTopWidth, style.borderBottomWidth]
+              .reduce((total, value) => total + (parseFloat(value) || 0), 0);
+
             Object.assign(floating.style, {
-              maxHeight: `${Math.max(0, availableHeight)}px`,
+              maxHeight: `${Math.max(0, availableHeight - spacing)}px`,
               overflowY: 'auto',
             });
           },
