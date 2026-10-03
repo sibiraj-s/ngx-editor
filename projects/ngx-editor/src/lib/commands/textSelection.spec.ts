@@ -45,6 +45,15 @@ describe('toggle commands with select all', () => {
     expect(getHTML()).toBe('<ol><li><p>a</p></li><li><p>b</p></li></ol>');
   });
 
+  it('should wrap the paragraph in a list when there is a horizontal rule at the edge', () => {
+    editor = new Editor({ content: '<hr><p>a</p>' });
+    selectAll();
+
+    toggle(new ListItem(false));
+
+    expect(getHTML()).toBe('<hr><ol><li><p>a</p></li></ol>');
+  });
+
   it('should remove the blockquote', () => {
     editor = new Editor({ content: '<blockquote><p>a</p><p>b</p></blockquote>' });
     selectAll();
@@ -53,5 +62,14 @@ describe('toggle commands with select all', () => {
     toggle(new Blockquote());
 
     expect(getHTML()).toBe('<p>a</p><p>b</p>');
+  });
+
+  it('should wrap horizontal rules at the edges in the blockquote', () => {
+    editor = new Editor({ content: '<hr><p>a</p><hr>' });
+    selectAll();
+
+    toggle(new Blockquote());
+
+    expect(getHTML()).toBe('<blockquote><hr><p>a</p><hr></blockquote>');
   });
 });
