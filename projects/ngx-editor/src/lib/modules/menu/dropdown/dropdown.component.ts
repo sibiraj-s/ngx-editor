@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostListener, Input, OnDestroy, OnInit,
+  Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
@@ -14,9 +14,14 @@ import { ToggleCommands } from '../MenuCommands';
   selector: 'ngx-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [AsyncPipe, CommonModule],
 })
 export class DropdownComponent implements OnInit, OnDestroy {
+  private ngxeService = inject(NgxEditorService);
+  private menuService = inject(MenuService);
+  private el = inject(ElementRef);
+
   private editorView: EditorView;
   private updateSubscription: Subscription;
 
@@ -28,12 +33,6 @@ export class DropdownComponent implements OnInit, OnDestroy {
   disabledItems: string[] = [];
   activeItem: string | null;
 
-  constructor(
-    private ngxeService: NgxEditorService,
-    private menuService: MenuService,
-    private el: ElementRef,
-  ) {}
-
   get isSelected(): boolean {
     return Boolean(this.activeItem || this.isDropdownOpen);
   }
@@ -42,8 +41,8 @@ export class DropdownComponent implements OnInit, OnDestroy {
     return this.disabledItems.length === this.items.length;
   }
 
-  @HostListener('document:mousedown', ['$event.target']) onDocumentClick(target: Node): void {
-    if (!this.el.nativeElement.contains(target) && this.isDropdownOpen) {
+  @HostListener('document:mousedown', ['$event.target']) onDocumentClick(target: EventTarget): void {
+    if (!this.el.nativeElement.contains(target as Node) && this.isDropdownOpen) {
       this.isDropdownOpen = false;
     }
   }
@@ -72,10 +71,6 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   onToggleDropdownKeydown(): void {
     this.toggleDropdown();
-  }
-
-  trackByIndex(index: number): number {
-    return index;
   }
 
   selectItem(item: TBHeadingItems): void {

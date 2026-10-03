@@ -5,12 +5,14 @@
         <img src="/ngx-editor.svg" alt="ngx-editor" />
         <div class="subtitle">Rich Text Editor for angular using ProseMirror</div>
       </div>
-      <div class="badges" *ngIf="!isDevMode">
-        <img src="https://badgen.net/npm/v/ngx-editor" alt="version" />
-        <img src="https://badgen.net/npm/dm/ngx-editor" alt="downloads per month " />
-        <img src="https://badgen.net/npm/dt/ngx-editor" alt="total downloads" />
-        <img src="https://badgen.net/npm/license/ngx-editor" alt="license" />
-      </div>
+      @if (!isDevMode) {
+        <div class="badges">
+          <img src="https://badgen.net/npm/v/ngx-editor" alt="version" />
+          <img src="https://badgen.net/npm/dm/ngx-editor" alt="downloads per month " />
+          <img src="https://badgen.net/npm/dt/ngx-editor" alt="total downloads" />
+          <img src="https://badgen.net/npm/license/ngx-editor" alt="license" />
+        </div>
+      }
     </div>
 
     <div>

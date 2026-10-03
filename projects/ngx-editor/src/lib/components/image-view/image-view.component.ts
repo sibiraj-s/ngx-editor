@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component, ElementRef, EventEmitter, Input, Output, ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 
 @Component({
   selector: 'ngx-image-view',
   templateUrl: './image-view.component.html',
   styleUrls: ['./image-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule],
 })
 export class ImageViewComponent {
