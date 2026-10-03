@@ -16,7 +16,7 @@ import TextColorCommand from './commands/TextColor';
 import TextAlignCommand, { Align } from './commands/TextAlign';
 import IndentCommand from './commands/Indent';
 
-import { HTML } from './trustedTypesUtil';
+import { HTML, parseHTML } from './trustedTypesUtil';
 import { isString } from './stringUtil';
 
 const execMark = (name: string, toggle = false) => {
@@ -244,8 +244,7 @@ class EditorCommands {
     const { selection, schema, tr } = this.state;
     const { from, to } = selection;
 
-    const element = document.createElement('div');
-    element.innerHTML = isString(html) ? html.trim() : String(html);
+    const element = parseHTML(isString(html) ? html.trim() : html);
     const slice = DOMParser.fromSchema(schema).parseSlice(element);
 
     const transaction = tr.replaceRange(from, to, slice);
