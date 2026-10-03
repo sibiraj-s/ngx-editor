@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { uniq } from 'ngx-editor/utils';
@@ -21,6 +21,7 @@ export class TableComponent implements OnInit, OnDestroy {
   private el = inject(ElementRef);
   private ngxeService = inject(NgxEditorService);
   private menuService = inject(MenuService);
+  private cdr = inject(ChangeDetectorRef);
 
   showPopup = false;
   isActive = false;
@@ -109,6 +110,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
     this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
       this.update(view);
+      this.cdr.markForCheck();
     });
   }
 

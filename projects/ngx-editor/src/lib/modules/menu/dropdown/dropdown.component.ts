@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
+  Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, inject,
   input
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
@@ -27,6 +27,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
   private ngxeService = inject(NgxEditorService);
   private menuService = inject(MenuService);
   private el = inject(ElementRef);
+  private cdr = inject(ChangeDetectorRef);
 
   private editorView: EditorView;
   private updateSubscription: Subscription;
@@ -186,6 +187,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
     this.update(this.editorView);
     this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
       this.update(view);
+      this.cdr.markForCheck();
     });
   }
 

@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
+  Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, inject,
   input
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
@@ -25,6 +25,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
   private el = inject(ElementRef);
   private menuService = inject(MenuService);
   private ngxeService = inject(NgxEditorService);
+  private cdr = inject(ChangeDetectorRef);
 
   readonly presets = input<string[][]>(undefined);
   readonly type = input<string>(undefined);
@@ -159,6 +160,7 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
 
     this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
       this.update(view);
+      this.cdr.markForCheck();
     });
   }
 

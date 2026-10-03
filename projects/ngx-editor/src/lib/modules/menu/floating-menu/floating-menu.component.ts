@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
+  Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, inject,
   input
 } from '@angular/core';
 import type { VirtualElement } from '@floating-ui/core';
@@ -27,6 +27,7 @@ interface BubblePosition {
 })
 export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   el = inject<ElementRef<HTMLElement>>(ElementRef);
+  private cdr = inject(ChangeDetectorRef);
 
   @HostBinding('style') get display(): Partial<CSSStyleDeclaration> {
     return {
@@ -111,10 +112,12 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
 
   private hide(): void {
     this.showMenu = false;
+    this.cdr.markForCheck();
   }
 
   private show(): void {
     this.showMenu = true;
+    this.cdr.markForCheck();
   }
 
   private async calculateBubblePosition(view: EditorView): Promise<BubblePosition> {
@@ -229,7 +232,7 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
     }
 
     this.calculateBubblePosition(this.view).then(({ top, left }) => {
-      if (!this.canShowMenu) {
+      if (!this.canShowMenu(this.view)) {
         this.hide();
         return;
       }

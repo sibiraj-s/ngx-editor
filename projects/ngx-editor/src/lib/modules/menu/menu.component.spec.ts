@@ -1,10 +1,12 @@
-import { ComponentRef, DebugElement } from '@angular/core';
+import { Component, ComponentRef, DebugElement, provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { TextSelection } from 'prosemirror-state';
 
 import { SanitizeHtmlPipe } from '../../pipes/sanitize/sanitize-html.pipe';
 
 import Editor from '../../Editor';
+import { NgxEditorComponent } from '../../editor.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { ImageComponent } from './image/image.component';
@@ -70,5 +72,51 @@ describe('NgxEditorMenuComponent', () => {
     componentRef.setInput('dropdownPlacement', 'bottom');
     fixture.detectChanges();
     expect(compiled.query(By.css('.NgxEditor__MenuBar.NgxEditor__MenuBar--Reverse'))).toBeFalsy();
+  });
+});
+
+@Component({
+  imports: [NgxEditorMenuComponent, NgxEditorComponent],
+  template: '<ngx-editor-menu [editor]="editor" /><ngx-editor [editor]="editor" />',
+})
+class HostComponent {
+  editor = new Editor();
+}
+
+describe('NgxEditorMenuComponent (zoneless)', () => {
+  let fixture: ComponentFixture<HostComponent>;
+
+  beforeEach(async () => {
+    TestBed.configureTestingModule({
+      imports: [HostComponent],
+      providers: [provideZonelessChangeDetection()],
+    });
+
+    fixture = TestBed.createComponent(HostComponent);
+    await fixture.whenStable();
+  });
+
+  afterEach(() => {
+    fixture.componentInstance.editor.destroy();
+  });
+
+  it('should update the active state when the selection changes', async () => {
+    const { editor } = fixture.componentInstance;
+    const el: HTMLElement = fixture.nativeElement;
+
+    editor.setContent('<p><strong>Bold</strong> text</p>');
+    await fixture.whenStable();
+
+    const bold = el.querySelector('button[title="Bold"]');
+
+    // move the cursor outside of change detection, like a user click
+    const { view } = editor;
+    view.dispatch(view.state.tr.setSelection(TextSelection.create(view.state.doc, 3)));
+    await fixture.whenStable();
+    expect(bold.classList.contains('NgxEditor__MenuItem--Active')).toBe(true);
+
+    view.dispatch(view.state.tr.setSelection(TextSelection.create(view.state.doc, 8)));
+    await fixture.whenStable();
+    expect(bold.classList.contains('NgxEditor__MenuItem--Active')).toBe(false);
   });
 });
