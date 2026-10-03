@@ -1,4 +1,4 @@
-import { Injectable, Optional } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { NgxEditorConfig } from './types';
 import Locals from './Locals';
@@ -10,11 +10,7 @@ import { HTML } from './trustedTypesUtil';
   providedIn: 'root',
 })
 export class NgxEditorService {
-  config: NgxEditorServiceConfig;
-
-  constructor(@Optional() config?: NgxEditorServiceConfig) {
-    this.config = config;
-  }
+  config = inject(NgxEditorServiceConfig, { optional: true });
 
   get locals(): Locals {
     return new Locals(this.config.locals);

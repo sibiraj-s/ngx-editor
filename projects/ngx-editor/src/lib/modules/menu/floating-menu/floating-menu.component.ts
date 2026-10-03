@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
 import {
-  Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit,
+  Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
   input
 } from '@angular/core';
 import type { VirtualElement } from '@floating-ui/core';
@@ -23,10 +22,11 @@ interface BubblePosition {
   selector: 'ngx-editor-floating-menu',
   templateUrl: './floating-menu.component.html',
   styleUrls: ['./floating-menu.component.scss'],
-  imports: [BubbleComponent, CommonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [BubbleComponent],
 })
 export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
-  constructor(public el: ElementRef<HTMLElement>) { }
+  el = inject<ElementRef<HTMLElement>>(ElementRef);
 
   @HostBinding('style') get display(): Partial<CSSStyleDeclaration> {
     return {
@@ -76,7 +76,12 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   @HostListener('document:mouseup', ['$event']) onMouseUp(e: MouseEvent): void {
     const target = e.target as Node;
 
-    if (this.el.nativeElement.contains(target) || target.nodeName === 'INPUT') {
+    if (target.nodeName === 'INPUT') {
+      // preventing mouseup on number inputs leaves the browser spinner pressed
+      return;
+    }
+
+    if (this.el.nativeElement.contains(target)) {
       e.preventDefault();
       return;
     }
@@ -152,11 +157,11 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
       middleware: [
         offset(5),
         this.autoPlace()
-        && autoPlacement({
-          boundary: view.dom,
-          padding: 5,
-          allowedPlacements: ['top', 'bottom'],
-        }),
+          && autoPlacement({
+            boundary: view.dom,
+            padding: 5,
+            allowedPlacements: ['top', 'bottom'],
+          }),
         {
           // prevent overflow on right and left side
           // since only top and bottom placements are allowed

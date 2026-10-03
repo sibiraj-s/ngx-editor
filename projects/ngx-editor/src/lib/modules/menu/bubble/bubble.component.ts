@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, input } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, inject, input } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
@@ -15,13 +15,12 @@ import { ToggleCommands } from '../MenuCommands';
   templateUrl: './bubble.component.html',
   styleUrls: ['./bubble.component.scss'],
   imports: [AsyncPipe, CommonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [SanitizeHtmlPipe],
 })
 export class BubbleComponent implements OnInit, OnDestroy {
-  constructor(
-    private sanitizeHTML: SanitizeHtmlPipe,
-    private ngxeService: NgxEditorService,
-  ) { }
+  private sanitizeHTML = inject(SanitizeHtmlPipe);
+  private ngxeService = inject(NgxEditorService);
 
   private get view(): EditorView {
     return this.editor().view;
@@ -60,10 +59,6 @@ export class BubbleComponent implements OnInit, OnDestroy {
 
   getTitle(name: string): Observable<string> {
     return this.ngxeService.locals.get(name);
-  }
-
-  trackByIndex(index: number): number {
-    return index;
   }
 
   onClick(e: MouseEvent, commandName: TBItems): void {

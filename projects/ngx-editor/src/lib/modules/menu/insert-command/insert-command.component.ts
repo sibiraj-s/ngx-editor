@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, input } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, inject, input } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
@@ -14,9 +14,13 @@ import { InsertCommands } from '../MenuCommands';
   selector: 'ngx-insert-command',
   templateUrl: './insert-command.component.html',
   styleUrls: ['./insert-command.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [AsyncPipe, SanitizeHtmlPipe],
 })
 export class InsertCommandComponent implements OnInit, OnDestroy {
+  private ngxeService = inject(NgxEditorService);
+  private menuService = inject(MenuService);
+
   readonly toolbarItem = input<ToolbarItem>(undefined);
 
   get name(): TBItems {
@@ -27,11 +31,6 @@ export class InsertCommandComponent implements OnInit, OnDestroy {
   editorView: EditorView;
   disabled = false;
   private updateSubscription: Subscription;
-
-  constructor(
-    private ngxeService: NgxEditorService,
-    private menuService: MenuService,
-  ) { }
 
   onMouseClick(e: MouseEvent): void {
     e.preventDefault();

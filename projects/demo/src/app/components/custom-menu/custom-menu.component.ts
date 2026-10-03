@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, input } from '@angular/core';
 import { setBlockType } from 'prosemirror-commands';
 import { EditorState, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
@@ -11,7 +11,7 @@ import { isNodeActive } from 'ngx-editor/helpers';
   selector: 'app-custom-menu',
   templateUrl: './custom-menu.component.html',
   styleUrls: ['./custom-menu.component.scss'],
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule],
 })
 export class AppCustomMenuComponent implements OnInit {

@@ -80,7 +80,8 @@ export class Validators {
       if (value.length < minLength) {
         return {
           minlength: {
-            requiredLength: minLength, actualLength: value.length,
+            requiredLength: minLength,
+            actualLength: value.length,
           },
         };
       }
@@ -89,3 +90,5 @@ export class Validators {
     };
   }
 }
+
+export { Validators as NgxEditorValidators };

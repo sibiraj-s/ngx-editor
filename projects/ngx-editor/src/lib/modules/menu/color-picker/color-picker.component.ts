@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostListener, OnDestroy, OnInit,
+  Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
   input
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
@@ -18,17 +18,16 @@ type Command = typeof TextColor | typeof TextBackgroundColor;
   selector: 'ngx-color-picker',
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [AsyncPipe, CommonModule, SanitizeHtmlPipe],
 })
 export class ColorPickerComponent implements OnInit, OnDestroy {
+  private el = inject(ElementRef);
+  private menuService = inject(MenuService);
+  private ngxeService = inject(NgxEditorService);
+
   readonly presets = input<string[][]>(undefined);
   readonly type = input<string>(undefined);
-
-  constructor(
-    private el: ElementRef,
-    private menuService: MenuService,
-    private ngxeService: NgxEditorService,
-  ) { }
 
   get title(): Observable<string> {
     return this.getLabel(this.type() === 'text_color' ? 'text_color' : 'background_color');
@@ -106,10 +105,6 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
 
   onRemoveKeydown(): void {
     this.remove();
-  }
-
-  trackByIndex(index: number): number {
-    return index;
   }
 
   selectColor(color: string): void {

@@ -1,25 +1,23 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { uniq } from 'ngx-editor/utils';
-import { NodeSelection } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
-
 import { NgxEditorService } from '../../../editor.service';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { HTML } from '../../../trustedTypesUtil';
 import { MenuService } from '../menu.service';
-import { Image as ImageCommand } from '../MenuCommands';
+
+import { Table as TableCommand } from '../MenuCommands';
 
 @Component({
-  selector: 'ngx-image',
-  templateUrl: './image.component.html',
-  styleUrls: ['./image.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  selector: 'ngx-table',
   imports: [AsyncPipe, SanitizeHtmlPipe, ReactiveFormsModule, CommonModule],
+  templateUrl: './table.component.html',
+  styleUrl: './table.component.scss',
 })
-export class ImageComponent implements OnInit, OnDestroy {
+export class TableComponent implements OnInit, OnDestroy {
   private el = inject(ElementRef);
   private ngxeService = inject(NgxEditorService);
   private menuService = inject(MenuService);
@@ -30,22 +28,14 @@ export class ImageComponent implements OnInit, OnDestroy {
   private updateSubscription: Subscription;
 
   form = new FormGroup({
-    src: new FormControl('', [
-      Validators.required,
-      Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/??([^#\n\r]*)?#?([^\n\r]*)'),
-    ]),
-    alt: new FormControl(''),
-    title: new FormControl(''),
+    rows: new FormControl(2, [Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)]),
+    cols: new FormControl(3, [Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)]),
   });
 
   private editorView: EditorView;
 
   get icon(): HTML {
-    return this.ngxeService.getIcon('image');
-  }
-
-  get src(): AbstractControl {
-    return this.form.get('src');
+    return this.ngxeService.getIcon('table');
   }
 
   @HostListener('document:mousedown', ['$event']) onDocumentClick(e: MouseEvent): void {
@@ -65,9 +55,8 @@ export class ImageComponent implements OnInit, OnDestroy {
   private hideForm(): void {
     this.showPopup = false;
     this.form.reset({
-      src: '',
-      alt: '',
-      title: '',
+      rows: 2,
+      cols: 3,
     });
   }
 
@@ -92,37 +81,27 @@ export class ImageComponent implements OnInit, OnDestroy {
   }
 
   private fillForm(): void {
-    const { state } = this.editorView;
-    const { selection } = state;
-    if (selection instanceof NodeSelection && this.isActive) {
-      const { src, alt = '', title = '' } = selection.node.attrs;
-
-      this.form.setValue({
-        src,
-        alt,
-        title,
-      });
-    }
+    this.form.setValue({
+      rows: 2,
+      cols: 3,
+    });
   }
 
   private update = (view: EditorView) => {
     const { state } = view;
-    this.isActive = ImageCommand.isActive(state);
+    this.isActive = TableCommand.isActive(state);
   };
 
-  insertLink(e: MouseEvent): void {
+  insertTable(e: MouseEvent): void {
     e.preventDefault();
-    const { src, alt, title } = this.form.getRawValue();
+    const { rows, cols } = this.form.getRawValue();
     const { dispatch, state } = this.editorView;
 
-    const attrs = {
-      alt,
-      title,
-    };
-
-    ImageCommand.insert(src, attrs)(state, dispatch);
-    this.editorView.focus();
-    this.hideForm();
+    const success = TableCommand.insert(rows, cols)(state, dispatch);
+    if (success) {
+      this.editorView.focus();
+      this.hideForm();
+    }
   }
 
   ngOnInit(): void {

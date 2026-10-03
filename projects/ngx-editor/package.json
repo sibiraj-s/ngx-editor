@@ -16,24 +16,25 @@
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": ">=19.2.0",
-    "@angular/core": ">=19.2.0",
-    "@angular/forms": ">=19.2.0",
-    "@angular/platform-browser": ">=19.2.0",
+    "@angular/common": ">=22.0.0",
+    "@angular/core": ">=22.0.0",
+    "@angular/forms": ">=22.0.0",
+    "@angular/platform-browser": ">=22.0.0",
     "rxjs": ">=7.8.0"
   },
   "dependencies": {
-    "@floating-ui/core": "^1.6.9",
-    "@floating-ui/dom": "^1.6.13",
+    "@floating-ui/core": "^1.8.0",
+    "@floating-ui/dom": "^1.8.0",
     "@types/trusted-types": "~2.0.7",
-    "prosemirror-commands": "^1.7.1",
-    "prosemirror-history": "^1.4.1",
-    "prosemirror-inputrules": "^1.5.0",
-    "prosemirror-keymap": "^1.2.2",
-    "prosemirror-model": "^1.25.0",
+    "prosemirror-commands": "^1.7.2",
+    "prosemirror-history": "^1.5.1",
+    "prosemirror-inputrules": "^1.5.1",
+    "prosemirror-keymap": "^1.2.3",
+    "prosemirror-model": "^1.25.12",
     "prosemirror-schema-list": "^1.5.1",
-    "prosemirror-state": "^1.4.3",
-    "prosemirror-view": "^1.39.1",
+    "prosemirror-state": "^1.4.4",
+    "prosemirror-tables": "^1.7.1",
+    "prosemirror-view": "^1.42.6",
     "tslib": "^2.3.0"
   }
 }

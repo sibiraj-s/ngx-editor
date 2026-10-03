@@ -70,6 +70,7 @@ NgxEditorModule.forRoot({
     title: 'Title',
     remove: 'Remove',
     enterValidUrl: 'Please enter a valid URL',
+    required: 'This is required'
   },
 });
 ```
