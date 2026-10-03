@@ -10,7 +10,6 @@ import {
   ToolbarLink,
   ToolbarLinkOptions,
   TBTableItems,
-  TBHeadingItems,
 } from '../../types';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
@@ -20,7 +19,6 @@ import { LinkComponent } from './link/link.component';
 import { MenuService } from './menu.service';
 import { ToggleCommandComponent } from './toggle-command/toggle-command.component';
 import { TableComponent } from './table/table.component';
-import { EditorState } from 'prosemirror-state';
 
 export const DEFAULT_TOOLBAR: Toolbar = [
   ['bold', 'italic'],

@@ -1,5 +1,5 @@
 import { DOMOutputSpec, Node as ProseMirrorNode, NodeSpec } from 'prosemirror-model';
-import { tableNodes } from 'prosemirror-tables';
+import { type MutableAttrs, tableNodes } from 'prosemirror-tables';
 import * as sl from 'prosemirror-schema-list';
 
 import { toStyleString } from 'ngx-editor/utils';
@@ -302,18 +302,18 @@ const tableNodeSpecs = tableNodes({
       getFromDOM(dom: HTMLElement) {
         return (dom.style && dom.style.backgroundColor) || null;
       },
-      setDOMAttr(value: unknown, attrs: Record<string, any>) {
+      setDOMAttr(value: unknown, attrs: MutableAttrs) {
         if (typeof value === 'string' && value) {
-          attrs['style'] = (attrs['style'] || '') + `background-color: ${value};`;
+          attrs['style'] = `${attrs['style'] ?? ''}background-color: ${value};`;
         }
       },
     },
-      colwidth: {
+    colwidth: {
       default: null,
       getFromDOM(dom: HTMLElement) {
         return dom.dataset['colwidth'] ? dom.dataset['colwidth'].split(',').map(Number) : null;
       },
-      setDOMAttr(value: unknown, attrs: Record<string, any>) {
+      setDOMAttr(value: unknown, attrs: MutableAttrs) {
         if (Array.isArray(value)) {
           attrs['data-colwidth'] = value.join(',');
         }

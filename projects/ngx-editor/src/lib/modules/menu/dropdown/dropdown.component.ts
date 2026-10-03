@@ -2,7 +2,7 @@ import {
   Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
-import { EditorState, Transaction } from 'prosemirror-state';
+import type { Command } from 'prosemirror-state';
 import { Observable, Subscription } from 'rxjs';
 
 import { AsyncPipe, CommonModule } from '@angular/common';
@@ -80,7 +80,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   selectItem(item: TBHeadingItems | TBTableItems): void {
     if (this.group === 'table') {
-      const tableCommands: { [key in TBTableItems]: (state: EditorState, dispatch?: (tr: Transaction) => void) => boolean } = {
+      const tableCommands: Record<TBTableItems, Command> = {
         addColumnBefore,
         addColumnAfter,
         deleteColumn,
@@ -135,7 +135,7 @@ export class DropdownComponent implements OnInit, OnDestroy {
       let canExecute = false;
 
       if(this.group === 'table'){
-          const tableCommands: { [key in TBTableItems]: (state: EditorState, dispatch?: (tr: Transaction) => void) => boolean } = {
+          const tableCommands: Record<TBTableItems, Command> = {
           addColumnBefore,
           addColumnAfter,
           deleteColumn,

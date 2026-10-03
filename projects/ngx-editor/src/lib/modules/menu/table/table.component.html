@@ -12,54 +12,54 @@
   [ariaExpanded]="showPopup"
 ></button>
 
-<div *ngIf="showPopup" class="NgxEditor__Popup">
-  <form class="NgxEditor__Popup--Form" [formGroup]="form" (ngSubmit)="insertTable($event)">
-    <div class="NgxEditor__Popup--FormGroup">
-      <div class="NgxEditor__Popup--Col">
-        <label class="NgxEditor__Popup--Label" [htmlFor]="getId('table-popup-rows')">
-          {{ getLabel('rows') | async }}
-        </label>
-        <input
-          type="number"
-          [id]="getId('table-popup-rows')"
-          formControlName="rows"
-          min="1"
-          placeholder="2"
-          autocomplete="off"
-        />
-        <div
-          *ngIf="form.get('rows').touched && form.get('rows').invalid"
-          class="NgxEditor__HelpText NgxEditor__HelpText--Error"
-        >
-          {{ form.get('rows').errors?.['required'] && getLabel('rowsRequired') | async }}
-          {{ form.get('rows').errors?.['min'] && getLabel('rowsMin') | async }}
+@if (showPopup) {
+  <div class="NgxEditor__Popup">
+    <form class="NgxEditor__Popup--Form" [formGroup]="form" (ngSubmit)="insertTable($event)">
+      <div class="NgxEditor__Popup--FormGroup">
+        <div class="NgxEditor__Popup--Col">
+          <label class="NgxEditor__Popup--Label" [htmlFor]="getId('table-popup-rows')">
+            {{ getLabel('rows') | async }}
+          </label>
+          <input
+            type="number"
+            [id]="getId('table-popup-rows')"
+            formControlName="rows"
+            min="1"
+            placeholder="2"
+            autocomplete="off"
+          />
+          @if (form.get('rows').touched && form.get('rows').invalid) {
+            <div class="NgxEditor__HelpText NgxEditor__HelpText--Error">
+              {{ form.get('rows').errors?.['required'] && getLabel('rowsRequired') | async }}
+              {{ form.get('rows').errors?.['min'] && getLabel('rowsMin') | async }}
+            </div>
+          }
         </div>
       </div>
-    </div>
 
-    <div class="NgxEditor__Popup--FormGroup">
-      <div class="NgxEditor__Popup--Col">
-        <label class="NgxEditor__Popup--Label" [htmlFor]="getId('table-popup-cols')">
-          {{ getLabel('cols') | async }}
-        </label>
-        <input
-          type="number"
-          [id]="getId('table-popup-cols')"
-          formControlName="cols"
-          min="1"
-          placeholder="3"
-          autocomplete="off"
-        />
-        <div
-          *ngIf="form.get('cols').touched && form.get('cols').invalid"
-          class="NgxEditor__HelpText NgxEditor__HelpText--Error"
-        >
-          {{ form.get('cols').errors?.['required'] && getLabel('colsRequired') | async }}
-          {{ form.get('cols').errors?.['min'] && getLabel('colsMin') | async }}
+      <div class="NgxEditor__Popup--FormGroup">
+        <div class="NgxEditor__Popup--Col">
+          <label class="NgxEditor__Popup--Label" [htmlFor]="getId('table-popup-cols')">
+            {{ getLabel('cols') | async }}
+          </label>
+          <input
+            type="number"
+            [id]="getId('table-popup-cols')"
+            formControlName="cols"
+            min="1"
+            placeholder="3"
+            autocomplete="off"
+          />
+          @if (form.get('cols').touched && form.get('cols').invalid) {
+            <div class="NgxEditor__HelpText NgxEditor__HelpText--Error">
+              {{ form.get('cols').errors?.['required'] && getLabel('colsRequired') | async }}
+              {{ form.get('cols').errors?.['min'] && getLabel('colsMin') | async }}
+            </div>
+          }
         </div>
       </div>
-    </div>
 
-    <button type="submit" [disabled]="!form.valid">{{ getLabel('insert') | async }}</button>
-  </form>
-</div>
+      <button type="submit" [disabled]="!form.valid">{{ getLabel('insert') | async }}</button>
+    </form>
+  </div>
+}
