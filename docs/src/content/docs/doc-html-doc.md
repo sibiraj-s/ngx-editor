@@ -42,3 +42,15 @@ const jsonDoc = toDoc(htmlString);
 // schema is optional, use it if you modified the default schema
 const jsonDoc = toDoc(htmlString, schema);
 ```
+
+### Trusted Types
+
+If your app enforces [Trusted Types](https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API) via the `require-trusted-types-for 'script'` CSP, allow the `ngx-editor` policy. Without it, passing HTML to the editor throws `This document requires 'TrustedHTML' assignment`.
+
+```
+Content-Security-Policy: require-trusted-types-for 'script'; trusted-types angular ngx-editor
+```
+
+If the page loads more than one copy of ngx-editor (e.g. independently built micro frontends), also add `'allow-duplicates'`, as policy names must otherwise be unique.
+
+The editor accepts HTML as a plain string or a `TrustedHTML` value. Don't pass the `SafeHtml` returned by Angular's `DomSanitizer`, it is not recognised as HTML. The HTML is parsed in an inert document, so scripts and event handlers in it never run, and only the content allowed by the schema is kept.

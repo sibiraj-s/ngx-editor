@@ -1,7 +1,7 @@
 import { DOMSerializer, Schema, DOMParser, Node as ProseMirrorNode, ParseOptions } from 'prosemirror-model';
 
 import defaultSchema from './schema';
-import { HTML, isHtml } from './trustedTypesUtil';
+import { HTML, isHtml, parseHTML } from './trustedTypesUtil';
 
 export const emptyDoc = {
   type: 'doc',
@@ -27,9 +27,7 @@ export const toHTML = (json: Record<string, unknown>, inputSchema?: Schema): str
 export const toDoc = (html: HTML, inputSchema?: Schema, options?:ParseOptions): Record<string, unknown> => {
   const schema = inputSchema ?? defaultSchema;
 
-  const el = document.createElement('div');
-  el.innerHTML = html as string;
-
+  const el = parseHTML(html);
   return DOMParser.fromSchema(schema).parse(el, options).toJSON();
 };
 
