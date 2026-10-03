@@ -19,6 +19,10 @@
       @if (item === 'image') {
         <ngx-image [class]="iconContainerClass"> </ngx-image>
       }
+      <!-- table -->
+      @if (item === 'table') {
+        <ngx-table [class]="iconContainerClass"> </ngx-table>
+      }
       <!-- dropdown -->
       @if (isDropDown(item)) {
         @for (dropdownItem of getDropdownItems(item) | keyvalue; track $index) {

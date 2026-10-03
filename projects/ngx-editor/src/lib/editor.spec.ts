@@ -4,7 +4,7 @@ import { NodeSelection, TextSelection } from 'prosemirror-state';
 import { undo } from 'prosemirror-history';
 import { Schema } from 'prosemirror-model';
 
-import { parseContent } from './parsers';
+import { parseContent, toHTML } from './parsers';
 import schema from './schema';
 
 describe('Editor', () => {
@@ -285,5 +285,79 @@ describe('Editor: HorizontalRule', () => {
 
     expect(editor.view.state.doc.toString())
       .toBe('doc(bullet_list(list_item(paragraph("a")), list_item(paragraph, horizontal_rule, paragraph("bc"))))');
+  });
+});
+
+describe('Editor: Table', () => {
+  const tableHTML = '<table><tbody>'
+    + '<tr><th><p>Head</p></th><th><p>Head 2</p></th></tr>'
+    + '<tr><td style="background-color: #dfd;"><p>A1</p></td><td data-colwidth="120"><p>B1</p></td></tr>'
+    + '</tbody></table>';
+
+  const pressKey = (editor: Editor, key: string, shiftKey = false): boolean => {
+    const event = new KeyboardEvent('keydown', { key, shiftKey });
+    return Boolean(editor.view.someProp('handleKeyDown', (f) => f(editor.view, event)));
+  };
+
+  const placeCursorIn = (editor: Editor, text: string): void => {
+    const { view } = editor;
+    let pos = -1;
+    view.state.doc.descendants((node, nodePos) => {
+      if (node.isText && node.text === text) {
+        pos = nodePos;
+      }
+      return pos === -1;
+    });
+    view.dispatch(view.state.tr.setSelection(TextSelection.create(view.state.doc, pos)));
+  };
+
+  const cursorText = (editor: Editor): string => editor.view.state.selection.$from.parent.textContent;
+
+  it('should parse table cells and their attributes from HTML', () => {
+    const editor = new Editor({ content: tableHTML });
+    const table = editor.view.state.doc.firstChild;
+
+    expect(table.type.name).toBe('table');
+    expect(table.child(0).child(0).type.name).toBe('table_header');
+    expect(table.child(1).child(0).attrs['background']).toBe('rgb(221, 255, 221)');
+    expect(table.child(1).child(1).attrs['colwidth']).toEqual([120]);
+  });
+
+  it('should keep table cell attributes when converting back to HTML', () => {
+    const editor = new Editor({ content: tableHTML });
+    const html = toHTML(editor.view.state.doc.toJSON());
+
+    expect(html).toContain('<th');
+    expect(html).toContain('background-color: rgb(221, 255, 221);');
+    expect(html).toContain('data-colwidth="120"');
+
+    const reparsed = new Editor({ content: html });
+    expect(reparsed.view.state.doc.eq(editor.view.state.doc)).toBe(true);
+  });
+
+  it('should move to the next and previous cell with Tab and Shift-Tab', () => {
+    const editor = new Editor({ content: tableHTML });
+
+    placeCursorIn(editor, 'A1');
+    expect(pressKey(editor, 'Tab')).toBe(true);
+    expect(cursorText(editor)).toBe('B1');
+
+    expect(pressKey(editor, 'Tab', true)).toBe(true);
+    expect(cursorText(editor)).toBe('A1');
+  });
+
+  it('should indent a list item inside a table cell with Tab', () => {
+    const editor = new Editor({
+      content: '<table><tbody><tr>'
+        + '<td><ul><li><p>one</p></li><li><p>two</p></li></ul></td><td><p>next</p></td>'
+        + '</tr></tbody></table>',
+    });
+
+    placeCursorIn(editor, 'two');
+    expect(pressKey(editor, 'Tab')).toBe(true);
+    expect(cursorText(editor)).toBe('two');
+    expect(editor.view.state.doc.firstChild.toString()).toContain(
+      'list_item(paragraph("one"), bullet_list(list_item(paragraph("two"))))',
+    );
   });
 });

@@ -33,6 +33,7 @@
     "prosemirror-model": "^1.25.12",
     "prosemirror-schema-list": "^1.5.1",
     "prosemirror-state": "^1.4.4",
+    "prosemirror-tables": "^1.7.1",
     "prosemirror-view": "^1.42.6",
     "tslib": "^2.3.0"
   }

@@ -75,7 +75,12 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   @HostListener('document:mouseup', ['$event']) onMouseUp(e: MouseEvent): void {
     const target = e.target as Node;
 
-    if (this.el.nativeElement.contains(target) || target.nodeName === 'INPUT') {
+    if (target.nodeName === 'INPUT') {
+      // preventing mouseup on number inputs leaves the browser spinner pressed
+      return;
+    }
+
+    if (this.el.nativeElement.contains(target)) {
       e.preventDefault();
       return;
     }
