@@ -44,7 +44,12 @@ const linkifyPlugin = ():Plugin => {
   return new Plugin({
     key: new PluginKey('linkify'),
     props: {
-      transformPasted: (slice: Slice) => {
+      transformPasted: (slice: Slice, view) => {
+        // custom schemas may not have the link mark
+        if (!view.state.schema.marks['link']) {
+          return slice;
+        }
+
         return new Slice(linkify(slice.content), slice.openStart, slice.openEnd);
       },
     },
