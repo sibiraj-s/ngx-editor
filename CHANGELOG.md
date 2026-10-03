@@ -13,6 +13,49 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## 19.0.0 (2026-10-03)
+
+#### Breaking Changes
+
+- requires angular v22 or greater ([42fac70](https://github.com/sibiraj-s/ngx-editor/commit/42fac70))
+- component inputs and outputs are migrated to signals, inputs can no longer be set directly on the component instance ([a1ebe8c](https://github.com/sibiraj-s/ngx-editor/commit/a1ebe8c))
+- remove unimplemented `ToolbarCustomMenuItem` type ([2125d5a](https://github.com/sibiraj-s/ngx-editor/commit/2125d5a))
+
+#### Features
+
+- add support for tables ([ea9da2c](https://github.com/sibiraj-s/ngx-editor/commit/ea9da2c))
+- export validators as `NgxEditorValidators` ([dc8427c](https://github.com/sibiraj-s/ngx-editor/commit/dc8427c))
+
+#### Bug Fixes
+
+- allow `tel:` urls in the link menu ([7a046c2](https://github.com/sibiraj-s/ngx-editor/commit/7a046c2))
+- fix crash in Firefox and Safari when checking for trusted html ([7edd138](https://github.com/sibiraj-s/ngx-editor/commit/7edd138))
+- add missing locale for the link component ([c191b1d](https://github.com/sibiraj-s/ngx-editor/commit/c191b1d))
+- fix horizontal rule not allowing input on an empty editor ([7e07fc5](https://github.com/sibiraj-s/ngx-editor/commit/7e07fc5))
+- fix undo clearing the editor after initial load ([8405edd](https://github.com/sibiraj-s/ngx-editor/commit/8405edd))
+- allow clicking links when the editor is disabled ([2e32062](https://github.com/sibiraj-s/ngx-editor/commit/2e32062))
+- support Trusted Types CSP and parse html in an inert document ([9d1ae44](https://github.com/sibiraj-s/ngx-editor/commit/9d1ae44))
+- update active menu items in zoneless apps ([8fe8e73](https://github.com/sibiraj-s/ngx-editor/commit/8fe8e73))
+- set the ordered list start number when typing "1. " ([a372d92](https://github.com/sibiraj-s/ngx-editor/commit/a372d92))
+- make the toolbar a single tab stop with arrow key navigation ([3a6a502](https://github.com/sibiraj-s/ngx-editor/commit/3a6a502))
+- skip linkify on paste when the schema has no link mark ([5aebae5](https://github.com/sibiraj-s/ngx-editor/commit/5aebae5))
+- keep popups and dropdowns within the viewport ([6c0e770](https://github.com/sibiraj-s/ngx-editor/commit/6c0e770))
+- keep popups open when used inside a shadow root ([63efdaa](https://github.com/sibiraj-s/ngx-editor/commit/63efdaa))
+- don't convert decimal numbers to links on paste ([e934f0a](https://github.com/sibiraj-s/ngx-editor/commit/e934f0a))
+- render default icons when `forRoot` has no config ([b1579f5](https://github.com/sibiraj-s/ngx-editor/commit/b1579f5))
+- toggle lists and blockquotes after select all ([30335bb](https://github.com/sibiraj-s/ngx-editor/commit/30335bb))
+
+#### Documentation
+
+- fix floating menu example ([fb8fd68](https://github.com/sibiraj-s/ngx-editor/commit/fb8fd68))
+- update get editor content and ngModel examples ([7b37c10](https://github.com/sibiraj-s/ngx-editor/commit/7b37c10))
+- add server-side rendering section and fix usage examples ([47c811c](https://github.com/sibiraj-s/ngx-editor/commit/47c811c))
+- add troubleshooting page for duplicate prosemirror packages ([c736fe3](https://github.com/sibiraj-s/ngx-editor/commit/c736fe3))
+
+#### Internal
+
+- publish to npm with trusted publishing ([c54c9d0](https://github.com/sibiraj-s/ngx-editor/commit/c54c9d0))
+
 ## 19.0.0-beta.1 (2025-04-26)
 
 #### Breaking Changes
