@@ -8,12 +8,13 @@ import { NgxEditorService } from '../../../editor.service';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { HTML } from '../../../trustedTypesUtil';
 import { MenuService } from '../menu.service';
+import { PopupPositionDirective } from '../popup-position.directive';
 
 import { Table as TableCommand } from '../MenuCommands';
 
 @Component({
   selector: 'ngx-table',
-  imports: [AsyncPipe, SanitizeHtmlPipe, ReactiveFormsModule, CommonModule],
+  imports: [AsyncPipe, SanitizeHtmlPipe, ReactiveFormsModule, CommonModule, PopupPositionDirective],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })

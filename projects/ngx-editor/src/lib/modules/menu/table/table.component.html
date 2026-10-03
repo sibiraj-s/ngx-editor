@@ -13,7 +13,7 @@
 ></button>
 
 @if (showPopup) {
-  <div class="NgxEditor__Popup">
+  <div class="NgxEditor__Popup" ngxPopupPosition>
     <form class="NgxEditor__Popup--Form" [formGroup]="form" (ngSubmit)="insertTable($event)">
       <div class="NgxEditor__Popup--FormGroup">
         <div class="NgxEditor__Popup--Col">

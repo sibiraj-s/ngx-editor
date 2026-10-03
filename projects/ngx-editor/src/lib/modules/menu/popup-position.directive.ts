@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, OnDestroy, booleanAttribute, inject, input } from '@angular/core';
-import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
+import { autoUpdate, computePosition, flip, offset, shift, size } from '@floating-ui/dom';
 
 // positions menu popups and dropdowns relative to their menu item,
 // so that they flip or shift instead of being clipped by the container
@@ -34,7 +34,21 @@ export class PopupPositionDirective implements AfterViewInit, OnDestroy {
     const { x, y } = await computePosition(reference, floating, {
       strategy: 'fixed',
       placement: this.ngxPopupAlign() === 'start' ? `${side}-start` : side,
-      middleware: [offset(2), flip(), shift({ padding: 5 })],
+      middleware: [
+        offset(2),
+        flip(),
+        shift({ padding: 5 }),
+        // scroll the popup when it is taller than the available space
+        size({
+          padding: 5,
+          apply({ availableHeight }) {
+            Object.assign(floating.style, {
+              maxHeight: `${Math.max(0, availableHeight)}px`,
+              overflowY: 'auto',
+            });
+          },
+        }),
+      ],
     });
 
     Object.assign(floating.style, {
