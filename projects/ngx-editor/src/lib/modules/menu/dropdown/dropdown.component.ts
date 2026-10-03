@@ -49,8 +49,11 @@ export class DropdownComponent implements OnInit, OnDestroy {
     return this.disabledItems.length === this.items().length;
   }
 
-  @HostListener('document:mousedown', ['$event.target']) onDocumentClick(target: EventTarget): void {
-    if (!this.el.nativeElement.contains(target as Node) && this.isDropdownOpen) {
+  @HostListener('document:mousedown', ['$event']) onDocumentClick(e: MouseEvent): void {
+    // inside a shadow root, the target is retargeted to the shadow host
+    const target = e.composedPath()[0] as Node;
+
+    if (!this.el.nativeElement.contains(target) && this.isDropdownOpen) {
       this.isDropdownOpen = false;
     }
   }

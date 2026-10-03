@@ -64,7 +64,10 @@ export class LinkComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:mousedown', ['$event']) onDocumentClick(e: MouseEvent): void {
-    if (!this.el.nativeElement.contains(e.target) && this.showPopup) {
+    // inside a shadow root, the target is retargeted to the shadow host
+    const target = e.composedPath()[0] as Node;
+
+    if (!this.el.nativeElement.contains(target) && this.showPopup) {
       this.hidePopup();
     }
   }

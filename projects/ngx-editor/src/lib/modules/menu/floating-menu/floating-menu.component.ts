@@ -53,7 +53,7 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   private resizeSubscription: Subscription;
 
   @HostListener('document:mousedown', ['$event']) onMouseDown(e: MouseEvent): void {
-    const target = e.target as Node;
+    const target = e.composedPath()[0] as Node;
 
     if (this.el.nativeElement.contains(target) && target.nodeName !== 'INPUT') {
       e.preventDefault();
@@ -64,7 +64,7 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:keydown', ['$event']) onKeyDown(e: KeyboardEvent): void {
-    const target = e.target as Node;
+    const target = e.composedPath()[0] as Node;
 
     if (target.nodeName === 'INPUT') {
       return;
@@ -75,7 +75,7 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:mouseup', ['$event']) onMouseUp(e: MouseEvent): void {
-    const target = e.target as Node;
+    const target = e.composedPath()[0] as Node;
 
     if (target.nodeName === 'INPUT') {
       // preventing mouseup on number inputs leaves the browser spinner pressed
@@ -92,7 +92,7 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:keyup', ['$event']) onKeyUp(e: KeyboardEvent): void {
-    const target = e.target as Node;
+    const target = e.composedPath()[0] as Node;
 
     if (target.nodeName === 'INPUT') {
       return;
