@@ -39,10 +39,10 @@ const blockQuoteRule = (nodeType: NodeType): InputRule => {
 // followed by a dot at the start of a textblock into an ordered list.
 const orderedListRule = (nodeType: NodeType): InputRule => {
   return wrappingInputRule(
-    /^(?:\d+)\.\s$/,
+    /^(?<order>\d+)\.\s$/,
     nodeType,
-    (match) => ({ order: Number(match[1]) }),
-    (match, node) => node.childCount + node.attrs['order'] === Number(match[1]),
+    (match) => ({ order: Number(match.groups['order']) }),
+    (match, node) => node.childCount + node.attrs['order'] === Number(match.groups['order']),
   );
 };
 
