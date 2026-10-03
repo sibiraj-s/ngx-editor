@@ -80,7 +80,10 @@ describe('NgxEditorMenuComponent', () => {
   template: `
     <ngx-editor-menu [editor]="editor" [customMenuRef]="customMenu" />
     <ngx-editor [editor]="editor" />
-    <ng-template #customMenu><button class="custom-item">Custom</button></ng-template>
+    <ng-template #customMenu>
+      <button class="custom-item">Custom</button>
+      <div class="custom-role-item" role="button" tabindex="0">Custom</div>
+    </ng-template>
   `,
 })
 class HostComponent {
@@ -129,6 +132,97 @@ describe('NgxEditorMenuComponent (zoneless)', () => {
     const custom = menubar.querySelector('.custom-item');
 
     expect(custom).toBeTruthy();
-    expect(menubar.lastElementChild).toBe(custom);
+    expect(custom.nextElementSibling).toBe(menubar.lastElementChild);
+  });
+
+  describe('keyboard navigation', () => {
+    let buttons: HTMLElement[];
+
+    const getFocusable = (): HTMLElement[] => buttons.filter((button) => button.tabIndex === 0);
+
+    const press = (key: string): void => {
+      document.activeElement.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
+    };
+
+    beforeEach(() => {
+      const menubar: HTMLElement = fixture.nativeElement.querySelector('.NgxEditor__MenuBar');
+      buttons = Array.from(menubar.querySelectorAll('button, [role="button"]'));
+    });
+
+    it('should have the toolbar role', () => {
+      const menubar: HTMLElement = fixture.nativeElement.querySelector('.NgxEditor__MenuBar');
+      expect(menubar.getAttribute('role')).toBe('toolbar');
+    });
+
+    it('should only have one item in the tab order', () => {
+      expect(getFocusable()).toEqual([buttons[0]]);
+    });
+
+    it('should move focus with the arrow keys', () => {
+      buttons[0].focus();
+
+      press('ArrowRight');
+      expect(document.activeElement).toBe(buttons[1]);
+      expect(getFocusable()).toEqual([buttons[1]]);
+
+      press('ArrowLeft');
+      expect(document.activeElement).toBe(buttons[0]);
+
+      press('ArrowLeft');
+      expect(document.activeElement).toBe(buttons.at(-1));
+
+      press('ArrowRight');
+      expect(document.activeElement).toBe(buttons[0]);
+    });
+
+    it('should move focus to the first and last item with Home and End', () => {
+      buttons[0].focus();
+
+      press('End');
+      expect(document.activeElement).toBe(buttons.at(-1));
+
+      press('Home');
+      expect(document.activeElement).toBe(buttons[0]);
+    });
+
+    it('should include custom menu items with the button role', () => {
+      const custom: HTMLElement = fixture.nativeElement.querySelector('.custom-role-item');
+      expect(custom.tabIndex).toBe(-1);
+
+      buttons[0].focus();
+      press('ArrowLeft');
+      expect(document.activeElement).toBe(custom);
+      expect(getFocusable()).toEqual([custom]);
+    });
+
+    it('should skip disabled custom menu items', () => {
+      const custom: HTMLElement = fixture.nativeElement.querySelector('.custom-role-item');
+      custom.setAttribute('aria-disabled', 'true');
+
+      buttons[0].focus();
+      press('ArrowLeft');
+      expect(document.activeElement).toBe(fixture.nativeElement.querySelector('.custom-item'));
+    });
+
+    it('should move focus from a custom menu item that was disabled', () => {
+      const custom: HTMLElement = fixture.nativeElement.querySelector('.custom-role-item');
+      custom.focus();
+      custom.setAttribute('aria-disabled', 'true');
+
+      press('ArrowLeft');
+      expect(document.activeElement).toBe(fixture.nativeElement.querySelector('.custom-item'));
+    });
+
+    it('should skip disabled items', () => {
+      // table actions are disabled outside of a table
+      const disabled = buttons.find((button) => (button as HTMLButtonElement).disabled);
+      expect(disabled).toBeTruthy();
+
+      const index = buttons.indexOf(disabled);
+      buttons[index - 1].focus();
+
+      press('ArrowRight');
+      expect(document.activeElement).toBe(buttons[index + 1]);
+    });
   });
 });
