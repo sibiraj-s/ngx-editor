@@ -41,9 +41,11 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: npm
 
+      # staged publishing requires npm 11.15.0 or later
+      - run: npm install -g npm@^11.15.0
+
       - run: npm ci
       - run: npm run build:lib
 
-      - run: npm publish dist/ngx-editor/ --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      # the release waits on npmjs.com until a maintainer approves it with 2FA
+      - run: npm stage publish dist/ngx-editor/ --tag ${{ github.event.release.prerelease && 'next' || 'latest' }}
