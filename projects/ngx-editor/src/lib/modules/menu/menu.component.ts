@@ -270,8 +270,14 @@ export class NgxEditorMenuComponent implements OnInit {
     return buttons.filter((button) => !button.closest(POPUP_SELECTOR));
   }
 
+  private isDisabled(button: HTMLElement): boolean {
+    return (button as HTMLButtonElement).disabled
+      || button.getAttribute('aria-disabled') === 'true'
+      || button.classList.contains('NgxEditor--Disabled');
+  }
+
   private getEnabledButtons(): HTMLElement[] {
-    return this.getButtons().filter((button) => !(button as HTMLButtonElement).disabled);
+    return this.getButtons().filter((button) => !this.isDisabled(button));
   }
 
   private updateTabIndex(): void {
