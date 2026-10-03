@@ -37,6 +37,7 @@ export default defineConfig({
             { label: 'Commands', link: '/commands' },
             { label: 'Menu', link: '/menu' },
             { label: 'Convert JSON doc to HTML', link: '/doc-html-doc' },
+            { label: 'Troubleshooting', link: '/troubleshooting' },
           ],
         },
         {
