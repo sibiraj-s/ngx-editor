@@ -360,4 +360,29 @@ describe('Editor: Table', () => {
       'list_item(paragraph("one"), bullet_list(list_item(paragraph("two"))))',
     );
   });
+
+});
+
+describe('Editor: HTML parsing', () => {
+  const html = '<p style="text-align: center"><span style="color: red">Hello</span></p>';
+
+  it('should keep style based attributes and marks when setting HTML content', () => {
+    const editor = new Editor();
+    editor.setContent(html);
+
+    const paragraph = editor.view.state.doc.firstChild;
+    expect(paragraph.attrs['align']).toBe('center');
+    expect(paragraph.firstChild.marks[0].type.name).toBe('text_color');
+    expect(paragraph.firstChild.marks[0].attrs['color']).toBe('red');
+  });
+
+  it('should keep style based marks when inserting HTML', () => {
+    const editor = new Editor();
+    editor.commands.insertHTML(html).exec();
+
+    const paragraph = editor.view.state.doc.firstChild;
+    expect(paragraph.textContent).toBe('Hello');
+    expect(paragraph.firstChild.marks[0].type.name).toBe('text_color');
+    expect(paragraph.firstChild.marks[0].attrs['color']).toBe('red');
+  });
 });
