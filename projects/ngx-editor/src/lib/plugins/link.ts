@@ -10,12 +10,16 @@ const count = (text: string, char: string): number => text.split(char).length - 
 // but keep closing parentheses that are part of the url, like in wikipedia links
 const trimTrailingPunctuation = (url: string): string => {
   let end = url.length;
+  const open = count(url, '(');
+  let close = count(url, ')');
 
   while (end > 0) {
     const char = url[end - 1];
-    const value = url.slice(0, end);
 
-    if ('.,;:!?'.includes(char) || (char === ')' && count(value, ')') > count(value, '('))) {
+    if ('.,;:!?'.includes(char)) {
+      end--;
+    } else if (char === ')' && close > open) {
+      close--;
       end--;
     } else {
       break;
