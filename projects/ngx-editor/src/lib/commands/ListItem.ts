@@ -4,6 +4,7 @@ import { liftListItem, wrapInList } from 'prosemirror-schema-list';
 
 import { isNodeActive } from 'ngx-editor/helpers';
 
+import { withTextSelection } from './textSelection';
 import { ToggleCommand } from './types';
 
 class ListItem implements ToggleCommand {
@@ -18,7 +19,8 @@ class ListItem implements ToggleCommand {
   }
 
   toggle(): Command {
-    return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
+    return (editorState: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
+      const state = withTextSelection(editorState);
       const { schema } = state;
 
       const type = this.getType(schema);
@@ -42,7 +44,7 @@ class ListItem implements ToggleCommand {
       return false;
     }
 
-    return isNodeActive(state, type);
+    return isNodeActive(withTextSelection(state), type);
   }
 
   canExecute(state: EditorState): boolean {
