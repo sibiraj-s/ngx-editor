@@ -1,16 +1,8 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
-import { EditorState } from 'prosemirror-state';
-import { EditorView } from 'prosemirror-view';
-
 import { IconsKeys } from './icons';
 import { LocalsKeys } from './Locals';
 import { Observable } from 'rxjs';
 import { LinkOptions } from './modules/menu/link/link.component';
-
-type TCR = {
-  dom: HTMLElement;
-  update: (state: EditorState) => void;
-};
 
 export type TBHeadingItems = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 export type TBTableItems='addColumnBefore'
@@ -56,10 +48,9 @@ export type TBItems = 'bold'
 export type ToolbarDropdown = { heading?: TBHeadingItems[]; table?: TBTableItems[] };
 export type ToolbarLinkOptions = Partial<LinkOptions>;
 export type ToolbarLink = { link: ToolbarLinkOptions };
-export type ToolbarCustomMenuItem = (editorView: EditorView) => TCR;
 export type ToolbarDropdownGroupKeys = keyof ToolbarDropdown;
 export type ToolbarDropdownGroupValues = ToolbarDropdown[ToolbarDropdownGroupKeys];
-export type ToolbarItem = TBItems | ToolbarDropdown | ToolbarLink | ToolbarCustomMenuItem;
+export type ToolbarItem = TBItems | ToolbarDropdown | ToolbarLink;
 export type Toolbar = ToolbarItem[][];
 
 export interface NgxEditorConfig {
