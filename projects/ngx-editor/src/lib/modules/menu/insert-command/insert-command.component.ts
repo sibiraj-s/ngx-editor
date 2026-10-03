@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, inject, input } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, inject, input } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { EditorView } from 'prosemirror-view';
 import { Observable, Subscription } from 'rxjs';
@@ -20,6 +20,7 @@ import { InsertCommands } from '../MenuCommands';
 export class InsertCommandComponent implements OnInit, OnDestroy {
   private ngxeService = inject(NgxEditorService);
   private menuService = inject(MenuService);
+  private cdr = inject(ChangeDetectorRef);
 
   readonly toolbarItem = input<ToolbarItem>(undefined);
 
@@ -69,6 +70,7 @@ export class InsertCommandComponent implements OnInit, OnDestroy {
 
     this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
       this.update(view);
+      this.cdr.markForCheck();
     });
   }
 

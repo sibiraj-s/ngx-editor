@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
+  Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, inject,
   input
 } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
@@ -33,6 +33,7 @@ export class LinkComponent implements OnInit, OnDestroy {
   private el = inject(ElementRef);
   private ngxeService = inject(NgxEditorService);
   private menuService = inject(MenuService);
+  private cdr = inject(ChangeDetectorRef);
 
   readonly options = input<Partial<LinkOptions>, Partial<LinkOptions>>(DEFAULT_LINK_OPTIONS, { transform: (value: Partial<LinkOptions>) => ({ ...DEFAULT_LINK_OPTIONS, ...value }) });
 
@@ -169,6 +170,7 @@ export class LinkComponent implements OnInit, OnDestroy {
 
     this.updateSubscription = this.menuService.editor.update.subscribe((view: EditorView) => {
       this.update(view);
+      this.cdr.markForCheck();
     });
   }
 
