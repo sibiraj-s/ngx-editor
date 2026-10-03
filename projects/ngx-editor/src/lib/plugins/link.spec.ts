@@ -57,6 +57,23 @@ describe('linkifyPlugin', () => {
     expect(getHTML()).toBe('<p>visit <a href="example.com" target="_blank">example.com</a>.</p>');
   });
 
+  it('should keep closing parentheses that are part of pasted links', () => {
+    editor = new Editor({ plugins: [linkifyPlugin()] });
+
+    const url = 'https://en.wikipedia.org/wiki/Function_(mathematics)';
+    paste(`(see ${url})`);
+
+    expect(getHTML()).toBe(`<p>(see <a href="${url}" target="_blank">${url}</a>)</p>`);
+  });
+
+  it('should leave closing parentheses around pasted domains out of the link', () => {
+    editor = new Editor({ plugins: [linkifyPlugin()] });
+
+    paste('(see example.com)');
+
+    expect(getHTML()).toBe('<p>(see <a href="example.com" target="_blank">example.com</a>)</p>');
+  });
+
   it('should convert pasted urls with a query or a fragment to links', () => {
     editor = new Editor({ plugins: [linkifyPlugin()] });
 
