@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import Editor from './Editor';
 import { NgxEditorModule } from './editor.module';
+import { NgxEditorService } from './editor.service';
 import { NgxEditorMenuComponent } from './modules/menu/menu.component';
 
 describe('NgxEditorModule', () => {
@@ -50,5 +51,16 @@ describe('NgxEditorModule', () => {
   it('should create the icon correctly', () => {
     const element = fixture.debugElement.query(By.css('img')).nativeElement as HTMLImageElement;
     expect(element.src).toBe('https://example.com/bold.png');
+  });
+});
+
+describe('NgxEditorModule (default config)', () => {
+  it('should render the default icons as svg', () => {
+    TestBed.configureTestingModule({
+      imports: [NgxEditorModule.forRoot()],
+    });
+
+    const service = TestBed.inject(NgxEditorService);
+    expect(service.getIcon('bold')).toContain('<svg');
   });
 });
