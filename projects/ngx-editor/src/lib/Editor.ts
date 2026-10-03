@@ -29,6 +29,10 @@ interface Options {
   parseOptions?:ParseOptions;
 }
 
+interface SetContentOptions {
+  addToHistory?: boolean;
+}
+
 interface EditorFeatures {
   linkOnPaste?: boolean;
   resizeImage?: boolean;
@@ -132,7 +136,7 @@ class Editor {
     });
   }
 
-  setContent(content: Content): void {
+  setContent(content: Content, options: SetContentOptions = {}): void {
     if (isNil(content)) {
       return;
     }
@@ -142,15 +146,40 @@ class Editor {
 
     const newDoc = parseContent(content, this.schema, this.options.parseOptions);
 
-    tr.replaceWith(0, state.doc.content.size, newDoc);
+    const start = doc.content.findDiffStart(newDoc.content);
+    const attrsChanged = !doc.hasMarkup(newDoc.type, newDoc.attrs);
 
     // don't emit if both content is same
-    if (doc.eq(tr.doc)) {
+    if (start === null && !attrsChanged) {
       return;
+    }
+
+    if (start !== null) {
+      // replace only the changed range, so the selection is mapped instead of being moved to the end
+      let { a: endA, b: endB } = doc.content.findDiffEnd(newDoc.content);
+      const overlap = start - Math.min(endA, endB);
+
+      if (overlap > 0) {
+        endA += overlap;
+        endB += overlap;
+      }
+
+      tr.replace(start, endA, newDoc.slice(start, endB));
+    }
+
+    if (attrsChanged) {
+      // replacing the content keeps the existing root node, so update its attributes separately
+      Object.entries(newDoc.attrs).forEach(([name, value]) => {
+        tr.setDocAttribute(name, value);
+      });
     }
 
     if (!tr.docChanged) {
       return;
+    }
+
+    if (options.addToHistory === false) {
+      tr.setMeta('addToHistory', false);
     }
 
     this.view.dispatch(tr);

@@ -1,17 +1,20 @@
-<ng-container *ngFor="let toolbarItem of toolbar; let lastToolbarItem = last; trackBy: trackByIndex">
-  <ng-container *ngFor="let item of toolbarItem; let lastItem = last; trackBy: trackByIndex">
-    <button
-      type="button"
-      class="NgxBubbleMenu__Icon"
-      *ngIf="toggleCommands.includes(item)"
-      [ngClass]="{
-        'NgxBubbleMenu__Icon--Active': this.activeItems.includes(item),
-        'NgxEditor--Disabled': !this.execulableItems.includes(item)
-      }"
-      (mousedown)="onClick($event, item)"
-      [title]="getTitle(item) | async"
-      [innerHTML]="getIcon(item)"
-    ></button>
-    <div class="NgxBubbleMenu__Seperator" *ngIf="lastItem && !lastToolbarItem"></div>
-  </ng-container>
-</ng-container>
+@for (toolbarItem of toolbar; track $index; let lastToolbarItem = $last) {
+  @for (item of toolbarItem; track $index; let lastItem = $last) {
+    @if (toggleCommands.includes(item)) {
+      <button
+        type="button"
+        class="NgxBubbleMenu__Icon"
+        [ngClass]="{
+          'NgxBubbleMenu__Icon--Active': this.activeItems.includes(item),
+          'NgxEditor--Disabled': !this.execulableItems.includes(item),
+        }"
+        (mousedown)="onClick($event, item)"
+        [title]="getTitle(item) | async"
+        [innerHTML]="getIcon(item)"
+      ></button>
+    }
+    @if (lastItem && !lastToolbarItem) {
+      <div class="NgxBubbleMenu__Seperator"></div>
+    }
+  }
+}

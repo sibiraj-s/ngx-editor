@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostListener, Input, OnDestroy, OnInit,
+  Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
 import { EditorState, Transaction } from 'prosemirror-state';
@@ -19,9 +19,14 @@ import {
   selector: 'ngx-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [AsyncPipe, CommonModule],
 })
 export class DropdownComponent implements OnInit, OnDestroy {
+  private ngxeService = inject(NgxEditorService);
+  private menuService = inject(MenuService);
+  private el = inject(ElementRef);
+
   private editorView: EditorView;
   private updateSubscription: Subscription;
 
@@ -33,12 +38,6 @@ export class DropdownComponent implements OnInit, OnDestroy {
   disabledItems: (TBHeadingItems | TBTableItems)[] = [];
   activeItem: TBHeadingItems | TBTableItems | null;
 
-  constructor(
-    private ngxeService: NgxEditorService,
-    private menuService: MenuService,
-    private el: ElementRef,
-  ) {}
-
   get isSelected(): boolean {
     return Boolean(this.activeItem || this.isDropdownOpen);
   }
@@ -47,8 +46,8 @@ export class DropdownComponent implements OnInit, OnDestroy {
     return this.disabledItems.length === this.items.length;
   }
 
-  @HostListener('document:mousedown', ['$event.target']) onDocumentClick(target: Node): void {
-    if (!this.el.nativeElement.contains(target) && this.isDropdownOpen) {
+  @HostListener('document:mousedown', ['$event.target']) onDocumentClick(target: EventTarget): void {
+    if (!this.el.nativeElement.contains(target as Node) && this.isDropdownOpen) {
       this.isDropdownOpen = false;
     }
   }
@@ -79,13 +78,9 @@ export class DropdownComponent implements OnInit, OnDestroy {
     this.toggleDropdown();
   }
 
-  trackByIndex(index: number): number {
-    return index;
-  }
-
   selectItem(item: TBHeadingItems | TBTableItems): void {
     if (this.group === 'table') {
-        const tableCommands: { [key in TBTableItems]: (state: EditorState, dispatch?: (tr: Transaction) => void) => boolean } = {
+      const tableCommands: { [key in TBTableItems]: (state: EditorState, dispatch?: (tr: Transaction) => void) => boolean } = {
         addColumnBefore,
         addColumnAfter,
         deleteColumn,
@@ -101,15 +96,14 @@ export class DropdownComponent implements OnInit, OnDestroy {
         setCellBackgroundGreen: setCellAttr('background', '#dfd'),
         clearCellBackground: setCellAttr('background', null),
       };
-       const command = tableCommands[item as TBTableItems];
-       const { state, dispatch } = this.editorView;
-       command(state, dispatch)
-    }else{
-        const command = ToggleCommands[item as TBHeadingItems];
-        const { state, dispatch } = this.editorView;
-        command.toggle()(state, dispatch);
+      const command = tableCommands[item as TBTableItems];
+      const { state, dispatch } = this.editorView;
+      command(state, dispatch);
+    } else {
+      const command = ToggleCommands[item as TBHeadingItems];
+      const { state, dispatch } = this.editorView;
+      command.toggle()(state, dispatch);
     }
-
 
     this.isDropdownOpen = false;
   }

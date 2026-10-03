@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { undo } from 'prosemirror-history';
 
 import Editor from './Editor';
 import { NgxEditorComponent } from './editor.component';
@@ -60,6 +61,46 @@ describe('NgxEditorComponent', () => {
     component.writeValue(null);
     fixture.detectChanges();
     expect(component.editor.view.state.doc.textContent).toBe('');
+  });
+
+  it('should not clear initial value on undo', () => {
+    component.writeValue('Hello world!');
+    fixture.detectChanges();
+    expect(component.editor.view.state.doc.textContent).toBe('Hello world!');
+
+    // undo with no user edits should not clear content
+    undo(component.editor.view.state, component.editor.view.dispatch);
+    fixture.detectChanges();
+    expect(component.editor.view.state.doc.textContent).toBe('Hello world!');
+
+    // simulate a user edit by inserting text via a transaction
+    const { state } = component.editor.view;
+    const tr = state.tr.insertText(' Goodbye!', state.doc.content.size - 1);
+    component.editor.view.dispatch(tr);
+    fixture.detectChanges();
+    expect(component.editor.view.state.doc.textContent).toBe('Hello world! Goodbye!');
+
+    // undo should revert the user edit back to the initial value
+    undo(component.editor.view.state, component.editor.view.dispatch);
+    fixture.detectChanges();
+    expect(component.editor.view.state.doc.textContent).toBe('Hello world!');
+  });
+
+  it('should not clear the value written after an initial null on undo', () => {
+    // ngModel writes null first and the actual value later
+    component.writeValue(null);
+    component.writeValue('Hello world!');
+
+    undo(component.editor.view.state, component.editor.view.dispatch);
+    expect(component.editor.view.state.doc.textContent).toBe('Hello world!');
+  });
+
+  it('should allow undoing values written after the initial value', () => {
+    component.writeValue('Initial');
+    component.writeValue('Replaced');
+
+    undo(component.editor.view.state, component.editor.view.dispatch);
+    expect(component.editor.view.state.doc.textContent).toBe('Initial');
   });
 });
 
@@ -126,5 +167,19 @@ describe('NgxEditorComponent: Reactive Forms API', () => {
     component.doc.reset();
     fixture.detectChanges();
     expect(component.editor.view.state.doc.textContent).toBe('');
+  });
+
+  it('should not undo the initial value but allow undoing later values', () => {
+    const { view } = component.editor;
+
+    undo(view.state, view.dispatch);
+    expect(view.state.doc.textContent).toBe('Hello world!');
+
+    component.doc.setValue('Hey.');
+    fixture.detectChanges();
+    expect(view.state.doc.textContent).toBe('Hey.');
+
+    undo(view.state, view.dispatch);
+    expect(view.state.doc.textContent).toBe('Hello world!');
   });
 });
