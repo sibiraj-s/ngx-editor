@@ -10,6 +10,7 @@ import { NgxEditorService } from '../../../editor.service';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { HTML } from '../../../trustedTypesUtil';
 import { MenuService } from '../menu.service';
+import { PopupPositionDirective } from '../popup-position.directive';
 import { TextBackgroundColor, TextColor } from '../MenuCommands';
 
 type Command = typeof TextColor | typeof TextBackgroundColor;
@@ -19,7 +20,7 @@ type Command = typeof TextColor | typeof TextBackgroundColor;
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.scss'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AsyncPipe, CommonModule, SanitizeHtmlPipe],
+  imports: [AsyncPipe, CommonModule, SanitizeHtmlPipe, PopupPositionDirective],
 })
 export class ColorPickerComponent implements OnInit, OnDestroy {
   private el = inject(ElementRef);
