@@ -53,9 +53,11 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   private resizeSubscription: Subscription;
 
   @HostListener('document:mousedown', ['$event']) onMouseDown(e: MouseEvent): void {
-    const target = e.composedPath()[0] as Node;
+    // e.target is retargeted to the shadow host when used inside a shadow root
+    const path = e.composedPath();
+    const target = path[0] as Node;
 
-    if (this.el.nativeElement.contains(target) && target.nodeName !== 'INPUT') {
+    if (path.includes(this.el.nativeElement) && target.nodeName !== 'INPUT') {
       e.preventDefault();
       return;
     }
@@ -75,14 +77,15 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:mouseup', ['$event']) onMouseUp(e: MouseEvent): void {
-    const target = e.composedPath()[0] as Node;
+    const path = e.composedPath();
+    const target = path[0] as Node;
 
     if (target.nodeName === 'INPUT') {
       // preventing mouseup on number inputs leaves the browser spinner pressed
       return;
     }
 
-    if (this.el.nativeElement.contains(target)) {
+    if (path.includes(this.el.nativeElement)) {
       e.preventDefault();
       return;
     }
