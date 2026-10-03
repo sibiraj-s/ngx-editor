@@ -10,6 +10,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { NgxEditorService } from '../../../editor.service';
 import { TBHeadingItems, TBTableItems } from '../../../types';
 import { MenuService } from '../menu.service';
+import { PopupPositionDirective } from '../popup-position.directive';
 import { ToggleCommands } from '../MenuCommands';
 import {
   addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
@@ -21,7 +22,7 @@ import {
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AsyncPipe, CommonModule],
+  imports: [AsyncPipe, CommonModule, PopupPositionDirective],
 })
 export class DropdownComponent implements OnInit, OnDestroy {
   private ngxeService = inject(NgxEditorService);

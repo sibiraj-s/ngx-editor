@@ -10,6 +10,7 @@ import { NgxEditorService } from '../../../editor.service';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { HTML } from '../../../trustedTypesUtil';
 import { MenuService } from '../menu.service';
+import { PopupPositionDirective } from '../popup-position.directive';
 import { Image as ImageCommand } from '../MenuCommands';
 
 @Component({
@@ -17,7 +18,7 @@ import { Image as ImageCommand } from '../MenuCommands';
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AsyncPipe, SanitizeHtmlPipe, ReactiveFormsModule, CommonModule],
+  imports: [AsyncPipe, SanitizeHtmlPipe, ReactiveFormsModule, CommonModule, PopupPositionDirective],
 })
 export class ImageComponent implements OnInit, OnDestroy {
   private el = inject(ElementRef);

@@ -12,6 +12,7 @@ import { NgxEditorService } from '../../../editor.service';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { HTML } from '../../../trustedTypesUtil';
 import { MenuService } from '../menu.service';
+import { PopupPositionDirective } from '../popup-position.directive';
 import { Link as LinkCommand } from '../MenuCommands';
 
 export interface LinkOptions {
@@ -27,7 +28,7 @@ const DEFAULT_LINK_OPTIONS: LinkOptions = {
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [AsyncPipe, CommonModule, ReactiveFormsModule, SanitizeHtmlPipe],
+  imports: [AsyncPipe, CommonModule, ReactiveFormsModule, SanitizeHtmlPipe, PopupPositionDirective],
 })
 export class LinkComponent implements OnInit, OnDestroy {
   private el = inject(ElementRef);

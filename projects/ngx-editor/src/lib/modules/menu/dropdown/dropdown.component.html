@@ -15,7 +15,13 @@
 </button>
 
 @if (isDropdownOpen) {
-  <div class="NgxEditor__Dropdown--DropdownMenu" role="listbox">
+  <div
+    class="NgxEditor__Dropdown--DropdownMenu"
+    role="listbox"
+    ngxPopupPosition
+    ngxPopupMatchWidth
+    ngxPopupAlign="start"
+  >
     @for (item of items(); track $index) {
       <button
         type="button"
