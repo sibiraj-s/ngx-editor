@@ -43,4 +43,10 @@ describe('Input rules', () => {
     expect(list.attrs.order).toBe(3);
     expect(toHTML(editor.view.state.doc.toJSON())).toBe('<ol start="3"><li><p>Hello</p></li></ol>');
   });
+
+  it('should not create an ordered list for very long numbers', () => {
+    type('1234567890. Hello');
+
+    expect(toHTML(editor.view.state.doc.toJSON())).toBe('<p>1234567890. Hello</p>');
+  });
 });
