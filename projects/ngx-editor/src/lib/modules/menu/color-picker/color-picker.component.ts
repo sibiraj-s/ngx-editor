@@ -60,7 +60,8 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:mousedown', ['$event']) onDocumentClick(e: MouseEvent): void {
-    if (!this.el.nativeElement.contains(e.target) && this.showPopup) {
+    // e.target is retargeted to the shadow host when used inside a shadow root
+    if (!e.composedPath().includes(this.el.nativeElement) && this.showPopup) {
       this.hidePopup();
     }
   }
