@@ -45,6 +45,14 @@ export class EditorComponent implements OnInit, OnDestroy {
     return this.form.get('editorContent');
   }
 
+  toggleDisabled(): void {
+    if (this.doc.disabled) {
+      this.doc.enable();
+    } else {
+      this.doc.disable();
+    }
+  }
+
   ngOnInit(): void {
     this.editor = new Editor({
       schema,

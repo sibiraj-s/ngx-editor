@@ -124,11 +124,6 @@ $pointer-style: var(--ngx-editor-click-pointer, default);
   }
 }
 
-.NgxEditor__Content--Disabled {
-  user-select: none;
-  pointer-events: none;
-}
-
 .NgxEditor__Wrapper {
   border: 1px solid $editor-wrapper-border-color;
   border-radius: $border-radius;

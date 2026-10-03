@@ -41,6 +41,12 @@
   }
 }
 
+.options {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
 .editor {
   .cm-editor {
     border: 1px solid #ddd;

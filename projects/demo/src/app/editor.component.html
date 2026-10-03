@@ -16,9 +16,21 @@
     </div>
 
     <div>
+      <div class="options">
+        <label>
+          <input type="checkbox" [checked]="doc.disabled" (change)="toggleDisabled()" />
+          Disabled
+        </label>
+      </div>
+
       <form [formGroup]="form">
         <div class="editor NgxEditor__Wrapper">
-          <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [customMenuRef]="customMenu"> </ngx-editor-menu>
+          <ngx-editor-menu
+            [editor]="editor"
+            [toolbar]="toolbar"
+            [customMenuRef]="customMenu"
+            [disabled]="doc.disabled"
+          ></ngx-editor-menu>
           <ngx-editor [editor]="editor" formControlName="editorContent">
             <ngx-editor-floating-menu [editor]="editor"></ngx-editor-floating-menu>
           </ngx-editor>
