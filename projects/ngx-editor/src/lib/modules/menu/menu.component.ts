@@ -118,6 +118,8 @@ export const TOOLBAR_FULL: Toolbar = [
   ['undo', 'redo'],
 ];
 
+const TOOLBAR_ITEM_SELECTOR = 'button, [role="button"]';
+
 // buttons inside popups and dropdown menus are not part of the toolbar navigation
 const POPUP_SELECTOR = '.NgxEditor__Popup, .NgxEditor__Dropdown--DropdownMenu';
 
@@ -162,7 +164,7 @@ export class NgxEditorMenuComponent implements OnInit {
   private el = inject(ElementRef<HTMLElement>);
 
   // the toolbar item that is reachable with Tab (roving tabindex)
-  private activeButton: HTMLButtonElement | null = null;
+  private activeButton: HTMLElement | null = null;
 
   readonly toolbar = input<Toolbar>(TOOLBAR_MINIMAL);
   readonly colorPresets = input<string[]>(DEFAULT_COLOR_PRESETS);
@@ -263,14 +265,18 @@ export class NgxEditorMenuComponent implements OnInit {
     afterEveryRender(() => this.updateTabIndex());
   }
 
-  private getButtons(): HTMLButtonElement[] {
-    const buttons: HTMLButtonElement[] = Array.from(this.el.nativeElement.querySelectorAll('button'));
+  private getButtons(): HTMLElement[] {
+    const buttons: HTMLElement[] = Array.from(this.el.nativeElement.querySelectorAll(TOOLBAR_ITEM_SELECTOR));
     return buttons.filter((button) => !button.closest(POPUP_SELECTOR));
+  }
+
+  private getEnabledButtons(): HTMLElement[] {
+    return this.getButtons().filter((button) => !(button as HTMLButtonElement).disabled);
   }
 
   private updateTabIndex(): void {
     const buttons = this.getButtons();
-    const enabled = buttons.filter((button) => !button.disabled);
+    const enabled = this.getEnabledButtons();
 
     if (!enabled.includes(this.activeButton)) {
       [this.activeButton = null] = enabled;
@@ -282,7 +288,7 @@ export class NgxEditorMenuComponent implements OnInit {
   }
 
   @HostListener('focusin', ['$event']) onFocusIn(e: FocusEvent): void {
-    const target = e.target as HTMLButtonElement;
+    const target = e.target as HTMLElement;
 
     if (this.getButtons().includes(target)) {
       this.activeButton = target;
@@ -291,8 +297,8 @@ export class NgxEditorMenuComponent implements OnInit {
   }
 
   @HostListener('keydown', ['$event']) onKeydown(e: KeyboardEvent): void {
-    const buttons = this.getButtons().filter((button) => !button.disabled);
-    const index = buttons.indexOf(e.target as HTMLButtonElement);
+    const buttons = this.getEnabledButtons();
+    const index = buttons.indexOf(e.target as HTMLElement);
 
     if (index === -1) {
       return;
