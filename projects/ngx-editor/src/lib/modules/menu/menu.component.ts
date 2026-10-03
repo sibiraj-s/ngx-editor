@@ -303,28 +303,33 @@ export class NgxEditorMenuComponent implements OnInit {
   }
 
   @HostListener('keydown', ['$event']) onKeydown(e: KeyboardEvent): void {
-    const buttons = this.getEnabledButtons();
+    const buttons = this.getButtons();
     const index = buttons.indexOf(e.target as HTMLElement);
 
     if (index === -1) {
       return;
     }
 
-    const lastIndex = buttons.length - 1;
-    const nextIndex: Record<string, number> = {
-      ArrowRight: index === lastIndex ? 0 : index + 1,
-      ArrowLeft: index === 0 ? lastIndex : index - 1,
-      Home: 0,
-      End: lastIndex,
+    // the focused item may have been disabled, so only the destination has to be enabled
+    const enabled = this.getEnabledButtons();
+    const before = enabled.filter((button) => buttons.indexOf(button) < index);
+    const after = enabled.filter((button) => buttons.indexOf(button) > index);
+
+    const next: Record<string, HTMLElement | undefined> = {
+      ArrowRight: after[0] ?? enabled[0],
+      ArrowLeft: before.at(-1) ?? enabled.at(-1),
+      Home: enabled[0],
+      End: enabled.at(-1),
     };
 
-    if (!(e.key in nextIndex)) {
+    if (!next[e.key]) {
       return;
     }
 
     e.preventDefault();
-    buttons[nextIndex[e.key]].focus();
+    next[e.key].focus();
   }
+
 
   ngOnInit(): void {
     const editor = this.editor();

@@ -204,6 +204,15 @@ describe('NgxEditorMenuComponent (zoneless)', () => {
       expect(document.activeElement).toBe(fixture.nativeElement.querySelector('.custom-item'));
     });
 
+    it('should move focus from a custom menu item that was disabled', () => {
+      const custom: HTMLElement = fixture.nativeElement.querySelector('.custom-role-item');
+      custom.focus();
+      custom.setAttribute('aria-disabled', 'true');
+
+      press('ArrowLeft');
+      expect(document.activeElement).toBe(fixture.nativeElement.querySelector('.custom-item'));
+    });
+
     it('should skip disabled items', () => {
       // table actions are disabled outside of a table
       const disabled = buttons.find((button) => (button as HTMLButtonElement).disabled);
