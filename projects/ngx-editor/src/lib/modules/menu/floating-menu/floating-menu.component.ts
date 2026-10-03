@@ -232,7 +232,7 @@ export class NgxEditorFloatingMenuComponent implements OnInit, OnDestroy {
     }
 
     this.calculateBubblePosition(this.view).then(({ top, left }) => {
-      if (!this.canShowMenu) {
+      if (!this.canShowMenu(this.view)) {
         this.hide();
         return;
       }
