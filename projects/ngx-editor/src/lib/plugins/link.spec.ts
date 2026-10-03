@@ -49,6 +49,14 @@ describe('linkifyPlugin', () => {
     expect(getHTML()).toBe('<p>price 10.50, version 1.2.3, about 12.5kg and 192.168.1.1</p>');
   });
 
+  it('should not convert pasted urls followed by punctuation or without a host to links', () => {
+    editor = new Editor({ plugins: [linkifyPlugin()] });
+
+    paste('see https://example.com, or https://!');
+
+    expect(getHTML()).toBe('<p>see https://example.com, or https://!</p>');
+  });
+
   it('should paste urls as text when the schema has no link mark', () => {
     const schema = new Schema({
       nodes,

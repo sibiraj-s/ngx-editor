@@ -1,8 +1,8 @@
 import { Fragment, Slice, Node as ProseMirrorNode } from 'prosemirror-model';
 import { Plugin, PluginKey } from 'prosemirror-state';
 
-// links with a protocol, or domains ending with an alphabetic tld (so numbers like 3.14 are skipped)
-const HTTP_LINK_REGEX = /(?:https?:\/\/\S+|(?:[\w-]+\.)+[a-z]{2,}(?::\d+)?(?:\/\S*)?)$/i;
+// urls with a protocol and a host, or domains ending with an alphabetic tld (so numbers like 3.14 are skipped)
+const HTTP_LINK_REGEX = /(?:https?:\/\/[\w-]+(?:\.[\w-]+)*(?::\d+)?|(?:[\w-]+\.)+[a-z]{2,}(?::\d+)?)(?:\/\S*)?$/i;
 
 const linkify = (fragment: Fragment): Fragment => {
   const linkified: ProseMirrorNode[] = [];
