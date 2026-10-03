@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { undo } from 'prosemirror-history';
+import { TextSelection } from 'prosemirror-state';
 
 import Editor from './Editor';
 import { NgxEditorComponent } from './editor.component';
@@ -106,6 +107,33 @@ describe('NgxEditorComponent', () => {
     undo(component.editor.view.state, component.editor.view.dispatch);
     fixture.detectChanges();
     expect(component.editor.view.state.doc.textContent).toBe('Replaced');
+  });
+
+  it('should stay disabled when content is set', () => {
+    component.setDisabledState(true);
+    component.writeValue('Hello world!');
+    fixture.detectChanges();
+
+    expect(component.editor.view.editable).toBe(false);
+  });
+
+  it('should preserve the selection when content is set', () => {
+    component.writeValue('Hello world');
+    const { view } = component.editor;
+    view.dispatch(view.state.tr.setSelection(TextSelection.create(view.state.doc, 6)));
+
+    component.writeValue('Hello world!');
+    expect(view.state.selection.from).toBe(6);
+  });
+
+  it('should emit update when content is set', () => {
+    const spy = vi.fn();
+    const subscription = component.editor.update.subscribe(spy);
+
+    component.writeValue('Hello world!');
+    expect(spy).toHaveBeenCalled();
+
+    subscription.unsubscribe();
   });
 });
 

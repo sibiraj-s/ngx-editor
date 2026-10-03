@@ -138,25 +138,37 @@ class Editor {
     }
 
     const { state } = this.view;
+    const { tr, doc } = state;
 
     const newDoc = parseContent(content, this.schema, this.options.parseOptions);
 
+    const start = doc.content.findDiffStart(newDoc.content);
+
     // don't emit if both content is same
-    if (state.doc.eq(newDoc)) {
+    if (start === null) {
       return;
     }
 
-    // Create a new state to avoid recording this change in the undo history.
-    // This prevents Ctrl/Cmd+Z from clearing the initial content.
-    const newState = EditorState.create({
-      doc: newDoc,
-      schema: this.schema,
-      plugins: state.plugins,
-    });
-    this.view.updateState(newState);
+    // replace only the changed range, so the selection is mapped instead of being reset
+    let { a: endA, b: endB } = doc.content.findDiffEnd(newDoc.content);
+    const overlap = start - Math.min(endA, endB);
 
-    const json = newState.doc.toJSON();
-    this.valueChangesSubject.next(json);
+    if (overlap > 0) {
+      endA += overlap;
+      endB += overlap;
+    }
+
+    tr.replace(start, endA, newDoc.slice(start, endB));
+
+    if (!tr.docChanged) {
+      return;
+    }
+
+    // programmatic content updates should not be undoable,
+    // else undo after the initial load clears the editor
+    tr.setMeta('addToHistory', false);
+
+    this.view.dispatch(tr);
   }
 
   registerPlugin(plugin: Plugin): void {
