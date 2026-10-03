@@ -48,6 +48,42 @@ Set value to the editor. value can be a `html` or a `json doc`
 editor.setContent(value);
 ```
 
+**valueChanges**
+
+Observable that emits the content as a JSON doc whenever it changes. Use [toHTML](/ngx-editor/doc-html-doc/) to convert it to HTML.
+
+```ts
+editor.valueChanges.subscribe((jsonDoc) => {});
+```
+
+**update**
+
+Observable that emits the prosemirror [EditorView](https://prosemirror.net/docs/ref/#view.EditorView) on every transaction, including selection changes. Useful for building custom menus.
+
+```ts
+editor.update.subscribe((view) => {});
+```
+
+**view**
+
+The underlying prosemirror [EditorView](https://prosemirror.net/docs/ref/#view.EditorView). Use it for anything not covered by the editor API, e.g. reading the current content.
+
+```ts
+const jsonDoc = editor.view.state.doc.toJSON();
+```
+
+**commands**
+
+Chainable commands to programmatically format the content. See [Commands](/ngx-editor/commands/).
+
+```ts
+editor.commands.toggleBold().exec();
+```
+
+**schema**
+
+The prosemirror schema used by the editor.
+
 **registerPlugin**
 
 Register a new plugin to the editor
