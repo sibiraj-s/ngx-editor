@@ -13,7 +13,7 @@ import {
   ChangeDetectionStrategy,
   inject,
   input,
-  model,
+  linkedSignal,
   output,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -50,7 +50,9 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   readonly editor = input<Editor>(undefined);
   readonly placeholder = input('Type Here...');
 
-  readonly outputFormat = model<'doc' | 'html'>(undefined);
+  readonly outputFormat = input<'doc' | 'html'>(undefined);
+  // inferred from the first html value when no format is given
+  private format = linkedSignal(() => this.outputFormat());
 
   readonly focusOut = output<void>();
   readonly focusIn = output<void>();
@@ -61,8 +63,8 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   private onTouched: () => void = () => { /** */ };
 
   writeValue(value: Record<string, unknown> | HTML | null): void {
-    if (!this.outputFormat() && isHtml(value)) {
-      this.outputFormat.set('html');
+    if (!this.format() && isHtml(value)) {
+      this.format.set('html');
     }
 
     // the initial value should not be undoable, else undo clears the editor.
@@ -88,7 +90,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   }
 
   private handleChange(jsonDoc: Record<string, unknown>): void {
-    if (this.outputFormat() === 'html') {
+    if (this.format() === 'html') {
       const html = toHTML(jsonDoc, this.editor().schema);
       this.onChange(html);
       return;

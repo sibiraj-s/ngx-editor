@@ -105,6 +105,46 @@ describe('NgxEditorComponent', () => {
     undo(component.editor().view.state, component.editor().view.dispatch);
     expect(component.editor().view.state.doc.textContent).toBe('Initial');
   });
+
+  describe('output format', () => {
+    const typeText = (text: string): void => {
+      const { view } = component.editor();
+      view.dispatch(view.state.tr.insertText(text, view.state.doc.content.size - 1));
+    };
+
+    it('should output html when the value is html and no format is given', () => {
+      const onChange = vi.fn();
+      component.registerOnChange(onChange);
+
+      component.writeValue('<p>Hello</p>');
+      typeText('!');
+
+      expect(onChange).toHaveBeenLastCalledWith('<p>Hello!</p>');
+    });
+
+    it('should output a json doc when the value is a json doc and no format is given', () => {
+      const onChange = vi.fn();
+      component.registerOnChange(onChange);
+
+      component.writeValue(component.editor().view.state.doc.toJSON());
+      typeText('Hello');
+
+      expect(onChange).toHaveBeenLastCalledWith(expect.objectContaining({ type: 'doc' }));
+    });
+
+    it('should prefer the given format over the inferred one', () => {
+      componentRef.setInput('outputFormat', 'doc');
+      fixture.detectChanges();
+
+      const onChange = vi.fn();
+      component.registerOnChange(onChange);
+
+      component.writeValue('<p>Hello</p>');
+      typeText('!');
+
+      expect(onChange).toHaveBeenLastCalledWith(expect.objectContaining({ type: 'doc' }));
+    });
+  });
 });
 
 describe('NgxEditorComponent: Reactive Forms API', () => {
