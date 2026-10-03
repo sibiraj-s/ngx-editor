@@ -168,4 +168,18 @@ describe('NgxEditorComponent: Reactive Forms API', () => {
     fixture.detectChanges();
     expect(component.editor.view.state.doc.textContent).toBe('');
   });
+
+  it('should not undo the initial value but allow undoing later values', () => {
+    const { view } = component.editor;
+
+    undo(view.state, view.dispatch);
+    expect(view.state.doc.textContent).toBe('Hello world!');
+
+    component.doc.setValue('Hey.');
+    fixture.detectChanges();
+    expect(view.state.doc.textContent).toBe('Hey.');
+
+    undo(view.state, view.dispatch);
+    expect(view.state.doc.textContent).toBe('Hello world!');
+  });
 });

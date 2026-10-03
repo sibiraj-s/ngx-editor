@@ -2,6 +2,10 @@ import Editor from './Editor';
 import { HORIZONTAL_RULE } from './commands';
 import { NodeSelection, TextSelection } from 'prosemirror-state';
 import { undo } from 'prosemirror-history';
+import { Schema } from 'prosemirror-model';
+
+import { parseContent } from './parsers';
+import schema from './schema';
 
 describe('Editor', () => {
   it('should create the editor correctly', () => {
@@ -27,6 +31,51 @@ describe('Editor', () => {
 
     undo(editor.view.state, editor.view.dispatch);
     expect(editor.view.state.doc.textContent).toBe('Hello');
+  });
+
+  it('should preserve the selection when content is set', () => {
+    const editor = new Editor({ content: '<p>Hello world</p>' });
+    const { view } = editor;
+    view.dispatch(view.state.tr.setSelection(TextSelection.create(view.state.doc, 6)));
+
+    editor.setContent('<p>Hello world!</p>');
+    expect(view.state.selection.from).toBe(6);
+
+    editor.setContent('<p>Hey, Hello world!</p>');
+    expect(view.state.selection.from).toBe(11);
+  });
+
+  it('should replace the whole content when it is entirely different', () => {
+    const editor = new Editor({ content: '<p>Hello</p><p>world</p>' });
+    editor.setContent('<h1>Title</h1>');
+
+    const expected = parseContent('<h1>Title</h1>', editor.schema);
+    expect(editor.view.state.doc.eq(expected)).toBe(true);
+  });
+
+  it('should update the document attributes when content is set', () => {
+    const docSchema = new Schema({
+      nodes: schema.spec.nodes.update('doc', { ...schema.spec.nodes.get('doc'), attrs: { lang: { default: 'en' } } }),
+      marks: schema.spec.marks,
+    });
+
+    const json = (lang: string, text: string): Record<string, unknown> => ({
+      type: 'doc',
+      attrs: { lang },
+      content: [{ type: 'paragraph', content: [{ type: 'text', text }] }],
+    });
+
+    const editor = new Editor({ schema: docSchema, content: json('en', 'Hi') });
+    const { view } = editor;
+
+    // only the attributes change
+    editor.setContent(json('fr', 'Hi'));
+    expect(view.state.doc.attrs['lang']).toBe('fr');
+
+    // both the attributes and the content change
+    editor.setContent(json('de', 'Hallo'));
+    expect(view.state.doc.attrs['lang']).toBe('de');
+    expect(view.state.doc.textContent).toBe('Hallo');
   });
 
   it('should not allow undoing setContent when addToHistory is false', () => {
