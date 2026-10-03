@@ -1,7 +1,33 @@
 import { Fragment, Slice, Node as ProseMirrorNode } from 'prosemirror-model';
 import { Plugin, PluginKey } from 'prosemirror-state';
 
-const HTTP_LINK_REGEX = /(?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+\.?(?:\d+)?(?:\/\S*)?$/;
+// urls with a protocol and a host, or domains ending with an alphabetic tld (so numbers like 3.14 are skipped)
+const HTTP_LINK_REGEX = /(?<=^|[\s(])(?:https?:\/\/[\w-]+(?:\.[\w-]+)*(?::\d+)?|(?:[\w-]+\.)+[a-z]{2,}(?::\d+)?)(?:[/?#]\S*)?[.,;:!?)]*$/i;
+
+const count = (text: string, char: string): number => text.split(char).length - 1;
+
+// leave trailing punctuation like the period ending a sentence out of the link,
+// but keep closing parentheses that are part of the url, like in wikipedia links
+const trimTrailingPunctuation = (url: string): string => {
+  let end = url.length;
+  const open = count(url, '(');
+  let close = count(url, ')');
+
+  while (end > 0) {
+    const char = url[end - 1];
+
+    if ('.,;:!?'.includes(char)) {
+      end--;
+    } else if (char === ')' && close > open) {
+      close--;
+      end--;
+    } else {
+      break;
+    }
+  }
+
+  return url.slice(0, end);
+};
 
 const linkify = (fragment: Fragment): Fragment => {
   const linkified: ProseMirrorNode[] = [];
@@ -15,7 +41,7 @@ const linkify = (fragment: Fragment): Fragment => {
 
       if (match) {
         const start = match.index;
-        const end = start + match[0].length;
+        const end = start + trimTrailingPunctuation(match[0]).length;
         const { link } = child.type.schema.marks;
 
         if (start > 0) {
