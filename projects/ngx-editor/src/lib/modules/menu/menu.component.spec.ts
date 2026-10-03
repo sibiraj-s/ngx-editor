@@ -131,4 +131,67 @@ describe('NgxEditorMenuComponent (zoneless)', () => {
     expect(custom).toBeTruthy();
     expect(menubar.lastElementChild).toBe(custom);
   });
+
+  describe('keyboard navigation', () => {
+    let buttons: HTMLButtonElement[];
+
+    const getFocusable = (): HTMLButtonElement[] => buttons.filter((button) => button.tabIndex === 0);
+
+    const press = (key: string): void => {
+      document.activeElement.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
+    };
+
+    beforeEach(() => {
+      const menubar: HTMLElement = fixture.nativeElement.querySelector('.NgxEditor__MenuBar');
+      buttons = Array.from(menubar.querySelectorAll('button'));
+    });
+
+    it('should have the toolbar role', () => {
+      const menubar: HTMLElement = fixture.nativeElement.querySelector('.NgxEditor__MenuBar');
+      expect(menubar.getAttribute('role')).toBe('toolbar');
+    });
+
+    it('should only have one item in the tab order', () => {
+      expect(getFocusable()).toEqual([buttons[0]]);
+    });
+
+    it('should move focus with the arrow keys', () => {
+      buttons[0].focus();
+
+      press('ArrowRight');
+      expect(document.activeElement).toBe(buttons[1]);
+      expect(getFocusable()).toEqual([buttons[1]]);
+
+      press('ArrowLeft');
+      expect(document.activeElement).toBe(buttons[0]);
+
+      press('ArrowLeft');
+      expect(document.activeElement).toBe(buttons.at(-1));
+
+      press('ArrowRight');
+      expect(document.activeElement).toBe(buttons[0]);
+    });
+
+    it('should move focus to the first and last item with Home and End', () => {
+      buttons[0].focus();
+
+      press('End');
+      expect(document.activeElement).toBe(buttons.at(-1));
+
+      press('Home');
+      expect(document.activeElement).toBe(buttons[0]);
+    });
+
+    it('should skip disabled items', () => {
+      // table actions are disabled outside of a table
+      const disabled = buttons.find((button) => button.disabled);
+      expect(disabled).toBeTruthy();
+
+      const index = buttons.indexOf(disabled);
+      buttons[index - 1].focus();
+
+      press('ArrowRight');
+      expect(document.activeElement).toBe(buttons[index + 1]);
+    });
+  });
 });

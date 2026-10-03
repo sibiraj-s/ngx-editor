@@ -1,5 +1,6 @@
 <div
   class="NgxEditor__MenuBar"
+  role="toolbar"
   [ngClass]="{ 'NgxEditor--Disabled': disabled(), 'NgxEditor__MenuBar--Reverse': dropdownPlacement() === 'top' }"
 >
   @for (toolbarItem of toolbar(); track $index; let lastToolbarItem = $last) {

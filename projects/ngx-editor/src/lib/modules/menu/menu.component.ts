@@ -1,4 +1,6 @@
-import { Component, OnInit, TemplateRef, ChangeDetectionStrategy, inject, input } from '@angular/core';
+import {
+  Component, ElementRef, HostListener, OnInit, TemplateRef, ChangeDetectionStrategy, afterEveryRender, inject, input,
+} from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { NgxEditorError } from 'ngx-editor/utils';
@@ -116,6 +118,9 @@ export const TOOLBAR_FULL: Toolbar = [
   ['undo', 'redo'],
 ];
 
+// buttons inside popups and dropdown menus are not part of the toolbar navigation
+const POPUP_SELECTOR = '.NgxEditor__Popup, .NgxEditor__Dropdown--DropdownMenu';
+
 const DEFAULT_COLOR_PRESETS = [
   '#b60205',
   '#d93f0b',
@@ -154,6 +159,10 @@ const DEFAULT_COLOR_PRESETS = [
 })
 export class NgxEditorMenuComponent implements OnInit {
   private menuService = inject(MenuService);
+  private el = inject(ElementRef<HTMLElement>);
+
+  // the toolbar item that is reachable with Tab (roving tabindex)
+  private activeButton: HTMLButtonElement | null = null;
 
   readonly toolbar = input<Toolbar>(TOOLBAR_MINIMAL);
   readonly colorPresets = input<string[]>(DEFAULT_COLOR_PRESETS);
@@ -248,6 +257,61 @@ export class NgxEditorMenuComponent implements OnInit {
 
   getLinkOptions(item: ToolbarItem): Partial<ToolbarLinkOptions> {
     return (item as ToolbarLink)?.link;
+  }
+
+  constructor() {
+    afterEveryRender(() => this.updateTabIndex());
+  }
+
+  private getButtons(): HTMLButtonElement[] {
+    const buttons: HTMLButtonElement[] = Array.from(this.el.nativeElement.querySelectorAll('button'));
+    return buttons.filter((button) => !button.closest(POPUP_SELECTOR));
+  }
+
+  private updateTabIndex(): void {
+    const buttons = this.getButtons();
+    const enabled = buttons.filter((button) => !button.disabled);
+
+    if (!enabled.includes(this.activeButton)) {
+      [this.activeButton = null] = enabled;
+    }
+
+    buttons.forEach((button) => {
+      button.tabIndex = button === this.activeButton ? 0 : -1;
+    });
+  }
+
+  @HostListener('focusin', ['$event']) onFocusIn(e: FocusEvent): void {
+    const target = e.target as HTMLButtonElement;
+
+    if (this.getButtons().includes(target)) {
+      this.activeButton = target;
+      this.updateTabIndex();
+    }
+  }
+
+  @HostListener('keydown', ['$event']) onKeydown(e: KeyboardEvent): void {
+    const buttons = this.getButtons().filter((button) => !button.disabled);
+    const index = buttons.indexOf(e.target as HTMLButtonElement);
+
+    if (index === -1) {
+      return;
+    }
+
+    const lastIndex = buttons.length - 1;
+    const nextIndex: Record<string, number> = {
+      ArrowRight: index === lastIndex ? 0 : index + 1,
+      ArrowLeft: index === 0 ? lastIndex : index - 1,
+      Home: 0,
+      End: lastIndex,
+    };
+
+    if (!(e.key in nextIndex)) {
+      return;
+    }
+
+    e.preventDefault();
+    buttons[nextIndex[e.key]].focus();
   }
 
   ngOnInit(): void {
