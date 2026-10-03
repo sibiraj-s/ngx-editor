@@ -13,14 +13,13 @@ describe('SanitizeHtmlPipe', () => {
   });
 
   it('create an instance', () => {
-    const sanitizer = TestBed.inject(DomSanitizer);
-    const pipe = new SanitizeHtmlPipe(sanitizer);
+    const pipe = TestBed.runInInjectionContext(() => new SanitizeHtmlPipe());
     expect(pipe).toBeTruthy();
   });
 
   it('should sanitize html', () => {
     const sanitizer = TestBed.inject(DomSanitizer);
-    const pipe = new SanitizeHtmlPipe(sanitizer);
+    const pipe = TestBed.runInInjectionContext(() => new SanitizeHtmlPipe());
 
     const html = '<svg></svg>';
     const result = pipe.transform(html);

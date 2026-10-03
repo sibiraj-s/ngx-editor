@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostListener, Input, OnDestroy, OnInit,
+  Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ChangeDetectionStrategy, inject,
 } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -25,9 +25,14 @@ const DEFAULT_LINK_OPTIONS: LinkOptions = {
   selector: 'ngx-link',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [AsyncPipe, CommonModule, ReactiveFormsModule, SanitizeHtmlPipe],
 })
 export class LinkComponent implements OnInit, OnDestroy {
+  private el = inject(ElementRef);
+  private ngxeService = inject(NgxEditorService);
+  private menuService = inject(MenuService);
+
   @Input({
     transform: (value: Partial<LinkOptions>) => ({ ...DEFAULT_LINK_OPTIONS, ...value }),
   })
@@ -41,12 +46,6 @@ export class LinkComponent implements OnInit, OnDestroy {
 
   private editorView: EditorView;
   private updateSubscription: Subscription;
-
-  constructor(
-    private el: ElementRef,
-    private ngxeService: NgxEditorService,
-    private menuService: MenuService,
-  ) {}
 
   get icon(): HTML {
     return this.ngxeService.getIcon(this.isActive ? 'unlink' : 'link');

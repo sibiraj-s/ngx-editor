@@ -14,22 +14,25 @@
   {{ getName(activeItem || group) | async }}
 </button>
 
-<div class="NgxEditor__Dropdown--DropdownMenu" *ngIf="isDropdownOpen" role="listbox">
-  <button
-    type="button"
-    class="NgxEditor__Dropdown--Item"
-    *ngFor="let item of items; trackBy: trackByIndex"
-    (mousedown)="onDropdownItemMouseClick($event, item)"
-    (keydown.enter)="onDropdownItemKeydown($event, item)"
-    (keydown.space)="onDropdownItemKeydown($event, item)"
-    [ngClass]="{
-      'NgxEditor__Dropdown--Active': item === activeItem,
-      'NgxEditor--Disabled': disabledItems.includes(item),
-    }"
-    [ariaLabel]="getName(item) | async"
-    role="option"
-    [attr.aria-selected]="item === activeItem"
-  >
-    {{ getName(item) | async }}
-  </button>
-</div>
+@if (isDropdownOpen) {
+  <div class="NgxEditor__Dropdown--DropdownMenu" role="listbox">
+    @for (item of items; track $index) {
+      <button
+        type="button"
+        class="NgxEditor__Dropdown--Item"
+        (mousedown)="onDropdownItemMouseClick($event, item)"
+        (keydown.enter)="onDropdownItemKeydown($event, item)"
+        (keydown.space)="onDropdownItemKeydown($event, item)"
+        [ngClass]="{
+          'NgxEditor__Dropdown--Active': item === activeItem,
+          'NgxEditor--Disabled': disabledItems.includes(item),
+        }"
+        [ariaLabel]="getName(item) | async"
+        role="option"
+        [attr.aria-selected]="item === activeItem"
+      >
+        {{ getName(item) | async }}
+      </button>
+    }
+  </div>
+}
