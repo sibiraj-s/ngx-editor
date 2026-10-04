@@ -1,4 +1,4 @@
-import { TextSelection } from 'prosemirror-state';
+import { NodeSelection, TextSelection } from 'prosemirror-state';
 
 import Editor from '../Editor';
 import { toHTML } from '../parsers';
@@ -55,6 +55,34 @@ describe('Paragraph', () => {
 
     expect(command.isActive(editor.view.state)).toBe(true);
     expect(command.canExecute(editor.view.state)).toBe(false);
+  });
+
+  it('should keep the attributes of each heading in the selection', () => {
+    editor = new Editor({
+      content: '<h1 align="center">One</h1><h2 align="right" data-indent="2">Two</h2>',
+    });
+
+    select(1, 9);
+    toggle();
+
+    const { doc } = editor.view.state;
+    expect(doc.child(0).type.name).toBe('paragraph');
+    expect(doc.child(0).attrs).toEqual({ align: 'center', indent: null });
+    expect(doc.child(1).type.name).toBe('paragraph');
+    expect(doc.child(1).attrs).toEqual({ align: 'right', indent: 2 });
+  });
+
+  it('should keep the attributes of a selected heading node', () => {
+    editor = new Editor({ content: '<h1 align="center">Hello</h1>' });
+
+    const { view } = editor;
+    view.dispatch(view.state.tr.setSelection(NodeSelection.create(view.state.doc, 0)));
+
+    expect(toggle()).toBe(true);
+
+    const block = editor.view.state.doc.firstChild;
+    expect(block.type.name).toBe('paragraph');
+    expect(block.attrs['align']).toBe('center');
   });
 
   it('should convert all headings in the selection', () => {
