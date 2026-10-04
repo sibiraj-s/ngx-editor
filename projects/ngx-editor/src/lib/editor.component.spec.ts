@@ -359,6 +359,23 @@ describe('NgxEditorComponent: Reactive Forms API', () => {
       expect(component.doc.value).toBe('<p>Hey</p>');
     });
 
+    it('should mark the control dirty when an update listener dispatches during an edit', () => {
+      component.doc.setValue('<p>Hello world!</p>');
+
+      let dispatched = false;
+      component.editor.update.subscribe((view) => {
+        if (!dispatched) {
+          dispatched = true;
+          view.dispatch(view.state.tr.setMeta('sync', true));
+        }
+      });
+
+      typeText('!');
+
+      expect(component.doc.dirty).toBe(true);
+      expect(component.doc.value).toBe('<p>Hello world!!</p>');
+    });
+
     it('should mark the control dirty when a written value is undone', () => {
       component.doc.setValue('<p>Hey</p>');
       expect(component.doc.pristine).toBe(true);

@@ -105,8 +105,8 @@ class Editor {
 
     this.updateSubject.next(this.view);
 
-    // an update listener dispatched another transaction, which already emitted the newer doc
-    if (this.view.state !== state) {
+    // an update listener dispatched a doc change, which already emitted the newer doc
+    if (this.view.state.doc !== state.doc) {
       return;
     }
 
