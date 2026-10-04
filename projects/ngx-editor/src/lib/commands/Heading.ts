@@ -4,6 +4,7 @@ import { setBlockType } from 'prosemirror-commands';
 
 import { getSelectionNodes } from 'ngx-editor/helpers';
 
+import { setBlockTypeWithAttrs } from './blockType';
 import { ToggleCommand } from './types';
 
 export type HeadingLevels = 1 | 2 | 3 | 4 | 5 | 6;
@@ -30,23 +31,19 @@ class Heading implements ToggleCommand {
 
   toggle(): Command {
     return (state: EditorState, dispatch?: (tr: Transaction) => void): boolean => {
-      const { schema, selection, doc } = state;
+      const { schema } = state;
 
       const type: NodeType = schema.nodes['heading'];
       if (!type) {
         return false;
       }
 
-      const nodePos = selection.$from.before(1);
-      const node = doc.nodeAt(nodePos);
-
-      const attrs = node?.attrs ?? {};
-
+      // keep attributes like align and indent of each converted block
       if (this.isActive(state)) {
-        return setBlockType(schema.nodes['paragraph'], attrs)(state, dispatch);
+        return setBlockTypeWithAttrs(schema.nodes['paragraph'], (node) => node.attrs)(state, dispatch);
       }
 
-      return setBlockType(type, { ...attrs, level: this.level })(state, dispatch);
+      return setBlockTypeWithAttrs(type, (node) => ({ ...node.attrs, level: this.level }))(state, dispatch);
     };
   }
 
