@@ -37,6 +37,7 @@ NgxEditorModule.forRoot({
     bullet_list: 'Bullet List',
     ordered_list: 'Ordered List',
     heading: 'Heading',
+    paragraph: 'Paragraph',
     h1: 'Header 1',
     h2: 'Header 2',
     h3: 'Header 3',
@@ -70,7 +71,7 @@ NgxEditorModule.forRoot({
     title: 'Title',
     remove: 'Remove',
     enterValidUrl: 'Please enter a valid URL',
-    required: 'This is required'
+    required: 'This is required',
   },
 });
 ```

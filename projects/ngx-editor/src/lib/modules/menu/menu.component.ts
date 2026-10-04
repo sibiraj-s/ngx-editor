@@ -27,7 +27,7 @@ export const DEFAULT_TOOLBAR: Toolbar = [
   ['code', 'blockquote'],
   ['underline', 'strike'],
   ['ordered_list', 'bullet_list'],
-  [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+  [{ heading: ['paragraph', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
   ['link', 'image'],
   [
     'table',
@@ -57,7 +57,7 @@ export const DEFAULT_TOOLBAR: Toolbar = [
 
 export const TOOLBAR_MINIMAL: Toolbar = [
   ['bold', 'italic'],
-  [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+  [{ heading: ['paragraph', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
   ['link', 'image'],
   [
     'table',
@@ -88,7 +88,7 @@ export const TOOLBAR_FULL: Toolbar = [
   ['code', 'blockquote'],
   ['underline', 'strike'],
   ['ordered_list', 'bullet_list'],
-  [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+  [{ heading: ['paragraph', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
   ['link', 'image'],
   [
     'table',
