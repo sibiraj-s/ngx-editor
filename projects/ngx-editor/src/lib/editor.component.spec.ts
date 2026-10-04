@@ -136,28 +136,33 @@ describe('NgxEditorComponent', () => {
       expect(onChange).toHaveBeenCalledWith('<p>Hello!</p>');
     });
 
-    it('should still emit editor value changes for written values', () => {
+    it('should not emit editor value changes for written values', () => {
       const valueChanges = vi.fn();
       const subscription = component.editor().valueChanges.subscribe(valueChanges);
 
       component.writeValue('<p>Hello</p>');
       subscription.unsubscribe();
 
-      expect(valueChanges).toHaveBeenCalledTimes(1);
+      expect(valueChanges).not.toHaveBeenCalled();
     });
 
-    it('should report edits after a write that throws', () => {
+    it('should report edits dispatched while a value is written', () => {
       const onChange = vi.fn();
       component.registerOnChange(onChange);
 
-      vi.spyOn(component.editor(), 'setContent').mockImplementationOnce(() => {
-        throw new Error('invalid content');
+      // appends to the written value once, from within the write
+      const subscription = component.editor().update.subscribe((view) => {
+        if (view.state.doc.textContent === 'Hello') {
+          view.dispatch(view.state.tr.insertText('!', view.state.doc.content.size - 1));
+        }
       });
 
-      expect(() => component.writeValue('<p>Hello</p>')).toThrow('invalid content');
+      component.writeValue('<p>Hello</p>');
+      subscription.unsubscribe();
 
-      typeText('Hello');
-      expect(onChange).toHaveBeenCalledWith('<p>Hello</p>');
+      expect(component.editor().view.state.doc.textContent).toBe('Hello!');
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith('<p>Hello!</p>');
     });
   });
 

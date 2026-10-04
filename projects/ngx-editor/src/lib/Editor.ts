@@ -31,6 +31,7 @@ interface Options {
 
 interface SetContentOptions {
   addToHistory?: boolean;
+  emitEvent?: boolean;
 }
 
 interface EditorFeatures {
@@ -100,6 +101,10 @@ class Editor {
     this.updateSubject.next(this.view);
 
     if (!tr.docChanged && !tr.getMeta('FORCE_EMIT')) {
+      return;
+    }
+
+    if (tr.getMeta('SKIP_EMIT')) {
       return;
     }
 
@@ -180,6 +185,10 @@ class Editor {
 
     if (options.addToHistory === false) {
       tr.setMeta('addToHistory', false);
+    }
+
+    if (options.emitEvent === false) {
+      tr.setMeta('SKIP_EMIT', true);
     }
 
     this.view.dispatch(tr);
