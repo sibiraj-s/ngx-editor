@@ -113,6 +113,35 @@ const forListItems = (schema: Schema, command: (itemType: NodeType) => Command):
   return chainCommands(...itemTypes.map(command));
 };
 
+// splitting inside the text of an item copies its attributes to the new item,
+// so uncheck the new item when splitting a checked task item
+const splitItem = (itemType: NodeType): Command => {
+  return (state, dispatch) => {
+    const { $from } = state.selection;
+
+    // an empty item is lifted out of the list instead of split
+    const isSplit = $from.parent.content.size > 0;
+
+    // at the start of the item, the text moves to the new item below
+    // and keeps the checked state, so the empty item above is the new one
+    const atStart = $from.parentOffset === 0 && $from.index(-1) === 0;
+
+    return splitListItem(itemType)(state, dispatch && ((tr) => {
+      const $pos = tr.selection.$from;
+      const depth = $pos.depth - 1;
+      const item = $pos.node(depth);
+
+      if (isSplit && item.type === itemType && item.attrs['checked']) {
+        const itemPos = $pos.before(depth);
+        const newItemPos = atStart ? itemPos - tr.doc.resolve(itemPos).nodeBefore.nodeSize : itemPos;
+        tr.setNodeAttribute(newItemPos, 'checked', false);
+      }
+
+      dispatch(tr);
+    }));
+  };
+};
+
 export const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) => {
   const historyKeyMap: Record<string, Command> = {};
 
@@ -131,7 +160,7 @@ export const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) =
       'Mod-`': toggleMark(schema.marks['code']),
     }),
     keymap({
-      'Enter': forListItems(schema, splitListItem),
+      'Enter': forListItems(schema, splitItem),
       'Shift-Enter': chainCommands(exitCode, (state, dispatch) => {
         const { tr } = state;
         const br = schema.nodes['hard_break'];

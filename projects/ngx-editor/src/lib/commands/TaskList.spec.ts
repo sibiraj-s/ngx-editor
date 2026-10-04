@@ -105,6 +105,32 @@ describe('TaskList', () => {
     expect(editor.view.state.doc.firstChild.child(1).attrs['checked']).toBe(false);
   });
 
+  it('should create an unchecked item when splitting a checked item', () => {
+    editor = new Editor({ content: '<ul data-type="task_list"><li data-type="task_item" data-checked="true"><p>buy milk</p></li></ul>' });
+
+    select(6, 6);
+
+    expect(pressKey('Enter')).toBe(true);
+
+    const list = editor.view.state.doc.firstChild;
+    expect(list.toString()).toBe('task_list(task_item(paragraph("buy")), task_item(paragraph(" milk")))');
+    expect(list.child(0).attrs['checked']).toBe(true);
+    expect(list.child(1).attrs['checked']).toBe(false);
+  });
+
+  it('should keep the text checked when splitting at the start of a checked item', () => {
+    editor = new Editor({ content: '<ul data-type="task_list"><li data-type="task_item" data-checked="true"><p>buy</p></li></ul>' });
+
+    select(3, 3);
+
+    expect(pressKey('Enter')).toBe(true);
+
+    const list = editor.view.state.doc.firstChild;
+    expect(list.toString()).toBe('task_list(task_item(paragraph), task_item(paragraph("buy")))');
+    expect(list.child(0).attrs['checked']).toBe(false);
+    expect(list.child(1).attrs['checked']).toBe(true);
+  });
+
   it('should nest the item on tab', () => {
     editor = new Editor({
       content: '<ul data-type="task_list">'
