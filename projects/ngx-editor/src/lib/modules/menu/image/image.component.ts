@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, inject } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { uniq } from 'ngx-editor/utils';
@@ -10,6 +10,7 @@ import { NgxEditorService } from '../../../editor.service';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { HTML } from '../../../trustedTypesUtil';
 import { MenuService } from '../menu.service';
+import { outsideClick } from '../outside-click';
 import { PopupPositionDirective } from '../popup-position.directive';
 import { Image as ImageCommand } from '../MenuCommands';
 
@@ -21,12 +22,22 @@ import { Image as ImageCommand } from '../MenuCommands';
   imports: [AsyncPipe, SanitizeHtmlPipe, ReactiveFormsModule, CommonModule, PopupPositionDirective],
 })
 export class ImageComponent implements OnInit, OnDestroy {
-  private el = inject(ElementRef);
   private ngxeService = inject(NgxEditorService);
   private menuService = inject(MenuService);
   private cdr = inject(ChangeDetectorRef);
 
-  showPopup = false;
+  private outsideClick = outsideClick(() => this.hideForm());
+  private popupOpen = false;
+
+  get showPopup(): boolean {
+    return this.popupOpen;
+  }
+
+  set showPopup(value: boolean) {
+    this.popupOpen = value;
+    this.outsideClick.toggle(value);
+  }
+
   isActive = false;
   private componentId = uniq();
   private updateSubscription: Subscription;
@@ -48,13 +59,6 @@ export class ImageComponent implements OnInit, OnDestroy {
 
   get src(): AbstractControl {
     return this.form.get('src');
-  }
-
-  @HostListener('document:mousedown', ['$event']) onDocumentClick(e: MouseEvent): void {
-    // e.target is retargeted to the shadow host when used inside a shadow root
-    if (!e.composedPath().includes(this.el.nativeElement) && this.showPopup) {
-      this.hideForm();
-    }
   }
 
   getId(name: string): string {

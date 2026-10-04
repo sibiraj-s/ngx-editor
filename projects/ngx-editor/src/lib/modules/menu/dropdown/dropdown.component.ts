@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, inject,
+  Component, OnDestroy, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, inject,
   input
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
@@ -10,6 +10,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { NgxEditorService } from '../../../editor.service';
 import { TBHeadingItems, TBTableItems } from '../../../types';
 import { MenuService } from '../menu.service';
+import { outsideClick } from '../outside-click';
 import { PopupPositionDirective } from '../popup-position.directive';
 import { ToggleCommands } from '../MenuCommands';
 import {
@@ -27,7 +28,6 @@ import {
 export class DropdownComponent implements OnInit, OnDestroy {
   private ngxeService = inject(NgxEditorService);
   private menuService = inject(MenuService);
-  private el = inject(ElementRef);
   private cdr = inject(ChangeDetectorRef);
 
   private editorView: EditorView;
@@ -36,7 +36,19 @@ export class DropdownComponent implements OnInit, OnDestroy {
   readonly group = input<string>(undefined);
   readonly items = input<(TBHeadingItems | TBTableItems)[]>([]);
 
-  isDropdownOpen = false;
+  private outsideClick = outsideClick(() => {
+    this.isDropdownOpen = false;
+  });
+  private popupOpen = false;
+
+  get isDropdownOpen(): boolean {
+    return this.popupOpen;
+  }
+
+  set isDropdownOpen(value: boolean) {
+    this.popupOpen = value;
+    this.outsideClick.toggle(value);
+  }
 
   disabledItems: (TBHeadingItems | TBTableItems)[] = [];
   activeItem: TBHeadingItems | TBTableItems | null;
@@ -47,13 +59,6 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   get isDropdownDisabled(): boolean {
     return this.disabledItems.length === this.items().length;
-  }
-
-  @HostListener('document:mousedown', ['$event']) onDocumentClick(e: MouseEvent): void {
-    // e.target is retargeted to the shadow host when used inside a shadow root
-    if (!e.composedPath().includes(this.el.nativeElement) && this.isDropdownOpen) {
-      this.isDropdownOpen = false;
-    }
   }
 
   getName(key: string): Observable<string> {

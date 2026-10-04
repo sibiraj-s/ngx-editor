@@ -45,9 +45,18 @@ describe('NgxEditorMenuComponent (shadow dom)', () => {
   });
 
   afterEach(() => {
+    vi.restoreAllMocks();
     fixture.componentInstance.editor.destroy();
     fixture.nativeElement.remove();
   });
+
+  const spyOnMousedownListeners = () => {
+    const add = vi.spyOn(document, 'addEventListener');
+    const remove = vi.spyOn(document, 'removeEventListener');
+    const calls = (spy: typeof add) => spy.mock.calls.filter(([type]) => type === 'mousedown');
+
+    return { added: () => calls(add), removed: () => calls(remove) };
+  };
 
   const popups = [
     { name: 'link', toggle: 'ngx-link button', popup: 'ngx-link .NgxEditor__Popup' },
@@ -72,6 +81,30 @@ describe('NgxEditorMenuComponent (shadow dom)', () => {
       mousedown(document.body);
       await fixture.whenStable();
       expect(root.querySelector(popup)).toBeFalsy();
+    });
+
+    it(`should only listen for document clicks while the ${name} popup is open`, async () => {
+      const listeners = spyOnMousedownListeners();
+
+      mousedown(root.querySelector(toggle));
+      await fixture.whenStable();
+      expect(listeners.added()).toHaveLength(1);
+
+      mousedown(document.body);
+      await fixture.whenStable();
+      expect(listeners.removed()).toHaveLength(1);
+      expect(listeners.removed()[0][1]).toBe(listeners.added()[0][1]);
+    });
+
+    it(`should stop listening for document clicks when destroyed with the ${name} popup open`, async () => {
+      const listeners = spyOnMousedownListeners();
+
+      mousedown(root.querySelector(toggle));
+      await fixture.whenStable();
+      expect(listeners.added()).toHaveLength(1);
+
+      fixture.destroy();
+      expect(listeners.removed().map(([, listener]) => listener)).toContain(listeners.added()[0][1]);
     });
   });
 
