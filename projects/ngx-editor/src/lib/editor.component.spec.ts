@@ -33,6 +33,11 @@ describe('NgxEditorComponent', () => {
     component.editor().destroy();
   });
 
+  const typeText = (text: string): void => {
+    const { view } = component.editor();
+    view.dispatch(view.state.tr.insertText(text, view.state.doc.content.size - 1));
+  };
+
   it('should create the editor component correctly', () => {
     expect(component).toBeTruthy();
   });
@@ -106,12 +111,67 @@ describe('NgxEditorComponent', () => {
     expect(component.editor().view.state.doc.textContent).toBe('Initial');
   });
 
-  describe('output format', () => {
-    const typeText = (text: string): void => {
-      const { view } = component.editor();
-      view.dispatch(view.state.tr.insertText(text, view.state.doc.content.size - 1));
-    };
+  describe('writing values', () => {
+    it('should not report written values back as changes', () => {
+      const onChange = vi.fn();
+      component.registerOnChange(onChange);
 
+      component.writeValue(null);
+      component.writeValue('<p>Hello</p>');
+      component.writeValue('<p>Hello world</p>');
+      component.writeValue(component.editor().view.state.doc.toJSON());
+      component.writeValue(null);
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it('should report edits made after a value is written', () => {
+      const onChange = vi.fn();
+      component.registerOnChange(onChange);
+
+      component.writeValue('<p>Hello</p>');
+      typeText('!');
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith('<p>Hello!</p>');
+    });
+
+    it('should emit editor value changes for written values', () => {
+      const valueChanges = vi.fn();
+      const subscription = component.editor().valueChanges.subscribe(valueChanges);
+
+      component.writeValue('<p>Hello</p>');
+      subscription.unsubscribe();
+
+      expect(valueChanges).toHaveBeenCalledTimes(1);
+    });
+
+    it('should report edits dispatched while a value is written', () => {
+      const onChange = vi.fn();
+      component.registerOnChange(onChange);
+
+      // appends to the written value once, from within the write
+      const subscription = component.editor().update.subscribe((view) => {
+        if (view.state.doc.textContent === 'Hello') {
+          view.dispatch(view.state.tr.insertText('!', view.state.doc.content.size - 1));
+        }
+      });
+
+      const valueChanges = vi.fn();
+      const valueSubscription = component.editor().valueChanges.subscribe(valueChanges);
+
+      component.writeValue('<p>Hello</p>');
+      subscription.unsubscribe();
+      valueSubscription.unsubscribe();
+
+      expect(component.editor().view.state.doc.textContent).toBe('Hello!');
+      expect(valueChanges).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith('<p>Hello!</p>');
+    });
+  });
+
+  describe('output format', () => {
     it('should output html when the value is html and no format is given', () => {
       const onChange = vi.fn();
       component.registerOnChange(onChange);
@@ -224,5 +284,107 @@ describe('NgxEditorComponent: Reactive Forms API', () => {
 
     undo(view.state, view.dispatch);
     expect(view.state.doc.textContent).toBe('Hello world!');
+  });
+  describe('control state', () => {
+    const typeText = (text: string): void => {
+      const { view } = component.editor;
+      view.dispatch(view.state.tr.insertText(text, view.state.doc.content.size - 1));
+    };
+
+    it('should keep the control pristine and its value unchanged on load', () => {
+      expect(component.editor.view.state.doc.textContent).toBe('Hello world!');
+      expect(component.doc.pristine).toBe(true);
+      // the editor wraps the text in a paragraph, the control keeps the original value
+      expect(component.doc.value).toBe('Hello world!');
+    });
+
+    it('should keep the control pristine when the value is set by the form', () => {
+      component.doc.setValue('<p>Hey</p>');
+      expect(component.doc.pristine).toBe(true);
+
+      component.form.patchValue({ content: '<p>Hey there</p>' });
+      expect(component.doc.pristine).toBe(true);
+      expect(component.editor.view.state.doc.textContent).toBe('Hey there');
+
+      component.doc.setValue(null);
+      expect(component.doc.pristine).toBe(true);
+      expect(component.editor.view.state.doc.textContent).toBe('');
+    });
+
+    it('should emit the control value once when set by the form', () => {
+      const valueChanges = vi.fn();
+      component.doc.valueChanges.subscribe(valueChanges);
+
+      component.doc.setValue('<p>Hey</p>');
+
+      expect(valueChanges).toHaveBeenCalledTimes(1);
+      expect(valueChanges).toHaveBeenCalledWith('<p>Hey</p>');
+    });
+
+    it('should mark the control dirty and update the value on edit', () => {
+      component.doc.setValue('<p>Hello world!</p>');
+      typeText('!');
+
+      expect(component.doc.dirty).toBe(true);
+      expect(component.doc.value).toBe('<p>Hello world!!</p>');
+    });
+
+    it('should keep the control dirty when the form sets a value after an edit', () => {
+      typeText('!');
+      component.doc.setValue('<p>Hey</p>');
+
+      expect(component.doc.dirty).toBe(true);
+      expect(component.doc.value).toBe('<p>Hey</p>');
+    });
+
+    it('should keep the control pristine after reset', () => {
+      typeText('!');
+      expect(component.doc.dirty).toBe(true);
+
+      component.doc.reset('<p>Hello world!</p>');
+      expect(component.doc.pristine).toBe(true);
+      expect(component.editor.view.state.doc.textContent).toBe('Hello world!');
+
+      component.form.reset();
+      expect(component.doc.pristine).toBe(true);
+      expect(component.doc.value).toBeNull();
+      expect(component.editor.view.state.doc.textContent).toBe('');
+    });
+
+    it('should mark the control dirty on edits after reset', () => {
+      component.doc.reset('<p></p>');
+      typeText('Hey');
+
+      expect(component.doc.dirty).toBe(true);
+      expect(component.doc.value).toBe('<p>Hey</p>');
+    });
+
+    it('should mark the control dirty when an update listener dispatches during an edit', () => {
+      component.doc.setValue('<p>Hello world!</p>');
+
+      let dispatched = false;
+      component.editor.update.subscribe((view) => {
+        if (!dispatched) {
+          dispatched = true;
+          view.dispatch(view.state.tr.setMeta('sync', true));
+        }
+      });
+
+      typeText('!');
+
+      expect(component.doc.dirty).toBe(true);
+      expect(component.doc.value).toBe('<p>Hello world!!</p>');
+    });
+
+    it('should mark the control dirty when a written value is undone', () => {
+      component.doc.setValue('<p>Hey</p>');
+      expect(component.doc.pristine).toBe(true);
+
+      const { view } = component.editor;
+      undo(view.state, view.dispatch);
+
+      expect(component.doc.dirty).toBe(true);
+      expect(component.editor.view.state.doc.textContent).toBe('Hello world!');
+    });
   });
 });

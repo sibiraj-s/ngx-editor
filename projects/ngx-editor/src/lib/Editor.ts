@@ -33,6 +33,12 @@ interface SetContentOptions {
   addToHistory?: boolean;
 }
 
+// marks the transaction of a value written by the form control
+const FORM_WRITE = 'FORM_WRITE';
+
+// docs emitted for values written by the form control
+const formWrites = new WeakSet<JSONDoc>();
+
 interface EditorFeatures {
   linkOnPaste?: boolean;
   resizeImage?: boolean;
@@ -99,11 +105,21 @@ class Editor {
 
     this.updateSubject.next(this.view);
 
+    // an update listener dispatched a doc change, which already emitted the newer doc
+    if (this.view.state.doc !== state.doc) {
+      return;
+    }
+
     if (!tr.docChanged && !tr.getMeta('FORCE_EMIT')) {
       return;
     }
 
     const json = state.doc.toJSON();
+
+    if (tr.getMeta(FORM_WRITE)) {
+      formWrites.add(json);
+    }
+
     this.valueChangesSubject.next(json);
   }
 
@@ -137,8 +153,16 @@ class Editor {
   }
 
   setContent(content: Content, options: SetContentOptions = {}): void {
+    const tr = this.createContentTransaction(content, options);
+
+    if (tr) {
+      this.view.dispatch(tr);
+    }
+  }
+
+  private createContentTransaction(content: Content, options: SetContentOptions): Transaction | null {
     if (isNil(content)) {
-      return;
+      return null;
     }
 
     const { state } = this.view;
@@ -151,7 +175,7 @@ class Editor {
 
     // don't emit if both content is same
     if (start === null && !attrsChanged) {
-      return;
+      return null;
     }
 
     if (start !== null) {
@@ -175,14 +199,14 @@ class Editor {
     }
 
     if (!tr.docChanged) {
-      return;
+      return null;
     }
 
     if (options.addToHistory === false) {
       tr.setMeta('addToHistory', false);
     }
 
-    this.view.dispatch(tr);
+    return tr;
   }
 
   registerPlugin(plugin: Plugin): void {
@@ -197,5 +221,19 @@ class Editor {
     this.view.destroy();
   }
 }
+
+// internal, used by the editor component to set the value written by the form
+export const writeFormValue = (editor: Editor, content: Content, options: SetContentOptions = {}): void => {
+  // the method is private to keep it out of the public api
+  // eslint-disable-next-line @typescript-eslint/dot-notation
+  const tr = editor['createContentTransaction'](content, options);
+
+  if (tr) {
+    editor.view.dispatch(tr.setMeta(FORM_WRITE, true));
+  }
+};
+
+// internal, whether the emitted doc is from a value written by the form
+export const isFormWrite = (jsonDoc: JSONDoc): boolean => formWrites.has(jsonDoc);
 
 export default Editor;

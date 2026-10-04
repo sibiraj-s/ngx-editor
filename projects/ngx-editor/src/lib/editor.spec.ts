@@ -85,6 +85,75 @@ describe('Editor', () => {
     undo(editor.view.state, editor.view.dispatch);
     expect(editor.view.state.doc.textContent).toBe('Hello world');
   });
+
+  it('should emit the latest doc last when an update listener dispatches', () => {
+    const editor = new Editor({ content: '<p>Hello</p>' });
+    const valueChanges = vi.fn();
+    editor.valueChanges.subscribe(valueChanges);
+
+    // appends to the content once, from within the update
+    editor.update.subscribe((view) => {
+      if (view.state.doc.textContent === 'Hello world') {
+        view.dispatch(view.state.tr.insertText('!', view.state.doc.content.size - 1));
+      }
+    });
+
+    editor.setContent('<p>Hello world</p>');
+
+    expect(editor.view.state.doc.textContent).toBe('Hello world!');
+    expect(valueChanges).toHaveBeenCalledTimes(1);
+    expect(toHTML(valueChanges.mock.lastCall[0], schema)).toBe('<p>Hello world!</p>');
+  });
+
+  it('should emit the doc when an update listener dispatches a meta-only transaction', () => {
+    const editor = new Editor({ content: '<p>Hello</p>' });
+    const valueChanges = vi.fn();
+    editor.valueChanges.subscribe(valueChanges);
+
+    let dispatched = false;
+    editor.update.subscribe((view) => {
+      if (!dispatched) {
+        dispatched = true;
+        view.dispatch(view.state.tr.setMeta('sync', true));
+      }
+    });
+
+    editor.setContent('<p>Hello world</p>');
+
+    expect(valueChanges).toHaveBeenCalledTimes(1);
+    expect(toHTML(valueChanges.mock.lastCall[0], schema)).toBe('<p>Hello world</p>');
+  });
+
+  it('should emit the doc when an update listener changes the selection', () => {
+    const editor = new Editor({ content: '<p>Hello</p>' });
+    const valueChanges = vi.fn();
+    editor.valueChanges.subscribe(valueChanges);
+
+    let dispatched = false;
+    editor.update.subscribe((view) => {
+      if (!dispatched) {
+        dispatched = true;
+        view.dispatch(view.state.tr.setSelection(TextSelection.create(view.state.doc, 1)));
+      }
+    });
+
+    editor.setContent('<p>Hello world</p>');
+
+    expect(editor.view.state.selection.from).toBe(1);
+    expect(valueChanges).toHaveBeenCalledTimes(1);
+    expect(toHTML(valueChanges.mock.lastCall[0], schema)).toBe('<p>Hello world</p>');
+  });
+
+  it('should emit value changes on setContent', () => {
+    const editor = new Editor({ content: '<p>Hello</p>' });
+    const valueChanges = vi.fn();
+    editor.valueChanges.subscribe(valueChanges);
+
+    editor.setContent('<p>Hello world</p>');
+
+    expect(valueChanges).toHaveBeenCalledTimes(1);
+    expect(toHTML(valueChanges.mock.calls[0][0], schema)).toBe('<p>Hello world</p>');
+  });
 });
 
 describe('Editor: Commands', () => {
