@@ -13,6 +13,21 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## 19.1.0 (2026-10-04)
+
+#### Features
+
+- add paragraph option to the heading dropdown ([8ed4e6c](https://github.com/sibiraj-s/ngx-editor/commit/8ed4e6c))
+- add task list with checkable items ([8d5d2e2](https://github.com/sibiraj-s/ngx-editor/commit/8d5d2e2))
+
+#### Bug Fixes
+
+- keep horizontal rules at the edges when wrapping after select all ([c8f82f5](https://github.com/sibiraj-s/ngx-editor/commit/c8f82f5))
+- listen for outside clicks only while a popup is open ([ce59f2e](https://github.com/sibiraj-s/ngx-editor/commit/ce59f2e))
+- keep each block's attributes when toggling headings ([caefe60](https://github.com/sibiraj-s/ngx-editor/commit/caefe60))
+- apply css variables consistently across the editor ([4a9ed58](https://github.com/sibiraj-s/ngx-editor/commit/4a9ed58))
+- keep the form control pristine when a value is written ([90dfcaa](https://github.com/sibiraj-s/ngx-editor/commit/90dfcaa))
+
 ## 19.0.0 (2026-10-03)
 
 #### Breaking Changes
