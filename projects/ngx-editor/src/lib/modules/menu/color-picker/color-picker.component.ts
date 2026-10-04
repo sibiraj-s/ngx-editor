@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, HostListener, OnDestroy, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, inject,
+  Component, OnDestroy, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, inject,
   input
 } from '@angular/core';
 import { EditorView } from 'prosemirror-view';
@@ -10,6 +10,7 @@ import { NgxEditorService } from '../../../editor.service';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize/sanitize-html.pipe';
 import { HTML } from '../../../trustedTypesUtil';
 import { MenuService } from '../menu.service';
+import { outsideClick } from '../outside-click';
 import { PopupPositionDirective } from '../popup-position.directive';
 import { TextBackgroundColor, TextColor } from '../MenuCommands';
 
@@ -23,7 +24,6 @@ type Command = typeof TextColor | typeof TextBackgroundColor;
   imports: [AsyncPipe, CommonModule, SanitizeHtmlPipe, PopupPositionDirective],
 })
 export class ColorPickerComponent implements OnInit, OnDestroy {
-  private el = inject(ElementRef);
   private menuService = inject(MenuService);
   private ngxeService = inject(NgxEditorService);
   private cdr = inject(ChangeDetectorRef);
@@ -45,7 +45,18 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
 
   private updateSubscription: Subscription;
   private editorView: EditorView;
-  showPopup = false;
+  private outsideClick = outsideClick(() => this.hidePopup());
+  private popupOpen = false;
+
+  get showPopup(): boolean {
+    return this.popupOpen;
+  }
+
+  set showPopup(value: boolean) {
+    this.popupOpen = value;
+    this.outsideClick.toggle(value);
+  }
+
   isActive = false;
   activeColors: string[] = [];
   canExecute = true;
@@ -57,13 +68,6 @@ export class ColorPickerComponent implements OnInit, OnDestroy {
     const b = parseInt(color.substring(4, 6), 16);
     const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
     return yiq >= 128 ? 'black' : 'white';
-  }
-
-  @HostListener('document:mousedown', ['$event']) onDocumentClick(e: MouseEvent): void {
-    // e.target is retargeted to the shadow host when used inside a shadow root
-    if (!e.composedPath().includes(this.el.nativeElement) && this.showPopup) {
-      this.hidePopup();
-    }
   }
 
   private hidePopup(): void {

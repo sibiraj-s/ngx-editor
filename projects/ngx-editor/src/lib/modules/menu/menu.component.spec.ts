@@ -127,6 +127,18 @@ describe('NgxEditorMenuComponent (zoneless)', () => {
     expect(bold.classList.contains('NgxEditor__MenuItem--Active')).toBe(false);
   });
 
+  it('should not listen for document clicks while popups are closed', async () => {
+    const add = vi.spyOn(document, 'addEventListener');
+
+    const other = TestBed.createComponent(HostComponent);
+    await other.whenStable();
+
+    expect(add.mock.calls.filter(([type]) => type === 'mousedown')).toHaveLength(0);
+
+    add.mockRestore();
+    other.componentInstance.editor.destroy();
+  });
+
   it('should render the custom menu template after the toolbar items', () => {
     const menubar: HTMLElement = fixture.nativeElement.querySelector('.NgxEditor__MenuBar');
     const custom = menubar.querySelector('.custom-item');
