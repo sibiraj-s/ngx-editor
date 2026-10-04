@@ -11,6 +11,8 @@ import {
 import { columnResizing, tableEditing, goToNextCell } from 'prosemirror-tables';
 import { markInputRule } from 'ngx-editor/helpers';
 
+import taskList from './plugins/task-list';
+
 interface Options {
   history: boolean;
   keyboardShortcuts: boolean;
@@ -105,6 +107,41 @@ const buildInputRules = (schema: Schema): Plugin => {
   return inputRules({ rules });
 };
 
+// runs a list item command for each list item type in the schema
+const forListItems = (schema: Schema, command: (itemType: NodeType) => Command): Command => {
+  const itemTypes = [schema.nodes['list_item'], schema.nodes['task_item']].filter(Boolean);
+  return chainCommands(...itemTypes.map(command));
+};
+
+// splitting inside the text of an item copies its attributes to the new item,
+// so uncheck the new item when splitting a checked task item
+const splitItem = (itemType: NodeType): Command => {
+  return (state, dispatch) => {
+    const { $from } = state.selection;
+
+    // an empty item is lifted out of the list instead of split
+    const isSplit = $from.parent.content.size > 0;
+
+    // at the start of the item, the text moves to the new item below
+    // and keeps the checked state, so the empty item above is the new one
+    const atStart = $from.parentOffset === 0 && $from.index(-1) === 0;
+
+    return splitListItem(itemType)(state, dispatch && ((tr) => {
+      const $pos = tr.selection.$from;
+      const depth = $pos.depth - 1;
+      const item = $pos.node(depth);
+
+      if (isSplit && item.type === itemType && item.attrs['checked']) {
+        const itemPos = $pos.before(depth);
+        const newItemPos = atStart ? itemPos - tr.doc.resolve(itemPos).nodeBefore.nodeSize : itemPos;
+        tr.setNodeAttribute(newItemPos, 'checked', false);
+      }
+
+      dispatch(tr);
+    }));
+  };
+};
+
 export const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) => {
   const historyKeyMap: Record<string, Command> = {};
 
@@ -123,16 +160,16 @@ export const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) =
       'Mod-`': toggleMark(schema.marks['code']),
     }),
     keymap({
-      'Enter': splitListItem(schema.nodes['list_item']),
+      'Enter': forListItems(schema, splitItem),
       'Shift-Enter': chainCommands(exitCode, (state, dispatch) => {
         const { tr } = state;
         const br = schema.nodes['hard_break'];
         dispatch(tr.replaceSelectionWith(br.create()).scrollIntoView());
         return true;
       }),
-      'Mod-[': liftListItem(schema.nodes['list_item']),
-      'Mod-]': sinkListItem(schema.nodes['list_item']),
-      'Tab': sinkListItem(schema.nodes['list_item']),
+      'Mod-[': forListItems(schema, liftListItem),
+      'Mod-]': forListItems(schema, sinkListItem),
+      'Tab': forListItems(schema, sinkListItem),
     }),
     keymap(baseKeymap),
   ];
@@ -170,6 +207,10 @@ const getDefaultPlugins = (schema: Schema, options: Options): Plugin[] => {
   
   if (schema.nodes['table']) {
     plugins.push(columnResizing(), tableEditing());
+  }
+
+  if (schema.nodes['task_item']) {
+    plugins.push(taskList());
   }
 
   return plugins;

@@ -10,6 +10,7 @@ export const defaults: Record<string, string | Observable<string>> = {
   blockquote: 'Blockquote',
   bullet_list: 'Bullet List',
   ordered_list: 'Ordered List',
+  task_list: 'Task List',
   heading: 'Heading',
   paragraph: 'Paragraph',
   h1: 'Header 1',
