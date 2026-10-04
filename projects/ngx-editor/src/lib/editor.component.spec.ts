@@ -33,6 +33,11 @@ describe('NgxEditorComponent', () => {
     component.editor().destroy();
   });
 
+  const typeText = (text: string): void => {
+    const { view } = component.editor();
+    view.dispatch(view.state.tr.insertText(text, view.state.doc.content.size - 1));
+  };
+
   it('should create the editor component correctly', () => {
     expect(component).toBeTruthy();
   });
@@ -107,11 +112,6 @@ describe('NgxEditorComponent', () => {
   });
 
   describe('writing values', () => {
-    const typeText = (text: string): void => {
-      const { view } = component.editor();
-      view.dispatch(view.state.tr.insertText(text, view.state.doc.content.size - 1));
-    };
-
     it('should not report written values back as changes', () => {
       const onChange = vi.fn();
       component.registerOnChange(onChange);
@@ -157,21 +157,21 @@ describe('NgxEditorComponent', () => {
         }
       });
 
+      const valueChanges = vi.fn();
+      const valueSubscription = component.editor().valueChanges.subscribe(valueChanges);
+
       component.writeValue('<p>Hello</p>');
       subscription.unsubscribe();
+      valueSubscription.unsubscribe();
 
       expect(component.editor().view.state.doc.textContent).toBe('Hello!');
+      expect(valueChanges).toHaveBeenCalledTimes(1);
       expect(onChange).toHaveBeenCalledTimes(1);
       expect(onChange).toHaveBeenCalledWith('<p>Hello!</p>');
     });
   });
 
   describe('output format', () => {
-    const typeText = (text: string): void => {
-      const { view } = component.editor();
-      view.dispatch(view.state.tr.insertText(text, view.state.doc.content.size - 1));
-    };
-
     it('should output html when the value is html and no format is given', () => {
       const onChange = vi.fn();
       component.registerOnChange(onChange);

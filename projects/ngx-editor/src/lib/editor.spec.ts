@@ -86,6 +86,25 @@ describe('Editor', () => {
     expect(editor.view.state.doc.textContent).toBe('Hello world');
   });
 
+  it('should emit the latest doc last when an update listener dispatches', () => {
+    const editor = new Editor({ content: '<p>Hello</p>' });
+    const valueChanges = vi.fn();
+    editor.valueChanges.subscribe(valueChanges);
+
+    // appends to the content once, from within the update
+    editor.update.subscribe((view) => {
+      if (view.state.doc.textContent === 'Hello world') {
+        view.dispatch(view.state.tr.insertText('!', view.state.doc.content.size - 1));
+      }
+    });
+
+    editor.setContent('<p>Hello world</p>');
+
+    expect(editor.view.state.doc.textContent).toBe('Hello world!');
+    expect(valueChanges).toHaveBeenCalledTimes(1);
+    expect(toHTML(valueChanges.mock.lastCall[0], schema)).toBe('<p>Hello world!</p>');
+  });
+
   it('should emit value changes on setContent', () => {
     const editor = new Editor({ content: '<p>Hello</p>' });
     const valueChanges = vi.fn();

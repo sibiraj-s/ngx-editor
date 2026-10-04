@@ -105,6 +105,11 @@ class Editor {
 
     this.updateSubject.next(this.view);
 
+    // an update listener dispatched another transaction, which already emitted the newer doc
+    if (this.view.state !== state) {
+      return;
+    }
+
     if (!tr.docChanged && !tr.getMeta('FORCE_EMIT')) {
       return;
     }
