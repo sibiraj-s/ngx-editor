@@ -59,9 +59,6 @@
             "outputPath": "dist/demo",
             "index": "projects/demo/src/index.html",
             "browser": "projects/demo/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
             "tsConfig": "projects/demo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -109,11 +106,7 @@
             "testing": {
               "aot": false,
               "optimization": false,
-              "extractLicenses": false,
-              "polyfills": [
-                "zone.js",
-                "zone.js/testing"
-              ]
+              "extractLicenses": false
             }
           },
           "defaultConfiguration": "production"
