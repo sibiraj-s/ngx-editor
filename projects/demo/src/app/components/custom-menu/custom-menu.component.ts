@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy, input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, input, signal } from '@angular/core';
 import { setBlockType } from 'prosemirror-commands';
 import { EditorState, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
@@ -16,8 +16,8 @@ import { isNodeActive } from 'ngx-editor/helpers';
 })
 export class AppCustomMenuComponent implements OnInit {
   readonly editor = input<Editor>(undefined);
-  isActive = false;
-  isDisabled = false;
+  readonly isActive = signal(false);
+  readonly isDisabled = signal(false);
 
   onClick(e: MouseEvent): void {
     e.preventDefault();
@@ -28,7 +28,7 @@ export class AppCustomMenuComponent implements OnInit {
   execute(state: EditorState, dispatch?: (tr: Transaction) => void): boolean {
     const { schema } = state;
 
-    if (this.isActive) {
+    if (this.isActive()) {
       return setBlockType(schema.nodes['paragraph'])(state, dispatch);
     }
 
@@ -38,8 +38,8 @@ export class AppCustomMenuComponent implements OnInit {
   update = (view: EditorView): void => {
     const { state } = view;
     const { schema } = state;
-    this.isActive = isNodeActive(state, schema.nodes['code_mirror']);
-    this.isDisabled = !this.execute(state, null); // returns true if executable
+    this.isActive.set(isNodeActive(state, schema.nodes['code_mirror']));
+    this.isDisabled.set(!this.execute(state, null)); // returns true if executable
   };
 
   ngOnInit(): void {
