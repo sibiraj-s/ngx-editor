@@ -11,6 +11,7 @@ export const ToggleCommands: Record<string, ToggleCommand> = {
   blockquote: Commands.BLOCKQUOTE,
   bullet_list: Commands.UL,
   ordered_list: Commands.OL,
+  task_list: Commands.TASK_LIST,
   paragraph: Commands.PARAGRAPH,
   h1: Commands.H1,
   h2: Commands.H2,

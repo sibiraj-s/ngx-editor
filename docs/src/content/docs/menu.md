@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ['bold', 'italic'],
     ['underline', 'strike'],
     ['code', 'blockquote'],
-    ['ordered_list', 'bullet_list'],
+    ['ordered_list', 'bullet_list', 'task_list'],
     [{ heading: ['paragraph', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
     ['link', 'image'],
     // or, set options for link:
@@ -217,6 +217,7 @@ The list of icon you can change is:
 - ordered_list
 - quote
 - strike
+- task_list
 - text_color
 - underline
 - unlink

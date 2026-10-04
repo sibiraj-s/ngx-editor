@@ -11,6 +11,8 @@ import {
 import { columnResizing, tableEditing, goToNextCell } from 'prosemirror-tables';
 import { markInputRule } from 'ngx-editor/helpers';
 
+import taskList from './plugins/task-list';
+
 interface Options {
   history: boolean;
   keyboardShortcuts: boolean;
@@ -105,6 +107,12 @@ const buildInputRules = (schema: Schema): Plugin => {
   return inputRules({ rules });
 };
 
+// runs a list item command for each list item type in the schema
+const forListItems = (schema: Schema, command: (itemType: NodeType) => Command): Command => {
+  const itemTypes = [schema.nodes['list_item'], schema.nodes['task_item']].filter(Boolean);
+  return chainCommands(...itemTypes.map(command));
+};
+
 export const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) => {
   const historyKeyMap: Record<string, Command> = {};
 
@@ -123,16 +131,16 @@ export const getKeyboardShortcuts = (schema: Schema, options: ShortcutOptions) =
       'Mod-`': toggleMark(schema.marks['code']),
     }),
     keymap({
-      'Enter': splitListItem(schema.nodes['list_item']),
+      'Enter': forListItems(schema, splitListItem),
       'Shift-Enter': chainCommands(exitCode, (state, dispatch) => {
         const { tr } = state;
         const br = schema.nodes['hard_break'];
         dispatch(tr.replaceSelectionWith(br.create()).scrollIntoView());
         return true;
       }),
-      'Mod-[': liftListItem(schema.nodes['list_item']),
-      'Mod-]': sinkListItem(schema.nodes['list_item']),
-      'Tab': sinkListItem(schema.nodes['list_item']),
+      'Mod-[': forListItems(schema, liftListItem),
+      'Mod-]': forListItems(schema, sinkListItem),
+      'Tab': forListItems(schema, sinkListItem),
     }),
     keymap(baseKeymap),
   ];
@@ -170,6 +178,10 @@ const getDefaultPlugins = (schema: Schema, options: Options): Plugin[] => {
   
   if (schema.nodes['table']) {
     plugins.push(columnResizing(), tableEditing());
+  }
+
+  if (schema.nodes['task_item']) {
+    plugins.push(taskList());
   }
 
   return plugins;

@@ -26,7 +26,7 @@ export const DEFAULT_TOOLBAR: Toolbar = [
   ['bold', 'italic'],
   ['code', 'blockquote'],
   ['underline', 'strike'],
-  ['ordered_list', 'bullet_list'],
+  ['ordered_list', 'bullet_list', 'task_list'],
   [{ heading: ['paragraph', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
   ['link', 'image'],
   [
@@ -87,7 +87,7 @@ export const TOOLBAR_FULL: Toolbar = [
   ['bold', 'italic'],
   ['code', 'blockquote'],
   ['underline', 'strike'],
-  ['ordered_list', 'bullet_list'],
+  ['ordered_list', 'bullet_list', 'task_list'],
   [{ heading: ['paragraph', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
   ['link', 'image'],
   [
@@ -182,6 +182,7 @@ export class NgxEditorMenuComponent implements OnInit {
     'blockquote',
     'ordered_list',
     'bullet_list',
+    'task_list',
     'align_left',
     'align_center',
     'align_right',

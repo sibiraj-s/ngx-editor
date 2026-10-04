@@ -355,6 +355,25 @@ $pointer-style: var(--ngx-editor-click-pointer, default);
 }
 
 .NgxEditor .ProseMirror {
+  ul[data-type='task_list'] {
+    list-style: none;
+    padding-left: 0;
+  }
+  li[data-type='task_item'] {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+
+    > label {
+      flex: 0 0 auto;
+      user-select: none;
+    }
+
+    > div {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+  }
   table {
     margin: 0;
     border-collapse: collapse;

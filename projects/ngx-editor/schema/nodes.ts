@@ -339,6 +339,53 @@ const bulletList = {
   group: 'block',
 };
 
+// :: NodeSpec A list of checkable items, represented in the DOM
+// as `<ul data-type="task_list">`.
+const taskList: NodeSpec = {
+  content: 'task_item+',
+  group: 'block',
+  parseDOM: [
+    {
+      tag: 'ul[data-type="task_list"]',
+      priority: 51, // before the bullet list
+    },
+  ],
+  toDOM(): DOMOutputSpec {
+    return ['ul', { 'data-type': 'task_list' }, 0];
+  },
+};
+
+// :: NodeSpec An item of a task list with a `checked` attribute,
+// represented in the DOM as `<li data-type="task_item">`.
+const taskItem: NodeSpec = {
+  content: 'paragraph block*',
+  defining: true,
+  attrs: {
+    checked: {
+      default: false,
+    },
+  },
+  parseDOM: [
+    {
+      tag: 'li[data-type="task_item"]',
+      priority: 51, // before the list item
+      getAttrs(dom: HTMLElement) {
+        return {
+          checked: dom.getAttribute('data-checked') === 'true',
+        };
+      },
+    },
+  ],
+  toDOM(node): DOMOutputSpec {
+    const attrs = {
+      'data-type': 'task_item',
+      'data-checked': String(node.attrs['checked']),
+    };
+
+    return ['li', attrs, 0];
+  },
+};
+
 const nodes = {
   doc,
   text,
@@ -353,6 +400,8 @@ const nodes = {
   list_item: listItem,
   ordered_list: orderedList,
   bullet_list: bulletList,
+  task_list: taskList,
+  task_item: taskItem,
 };
 
 export default nodes;

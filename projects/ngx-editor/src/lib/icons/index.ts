@@ -7,6 +7,7 @@ import underline from './underline';
 import strike from './strike';
 import orderedList from './ordered_list';
 import bulletList from './bullet_list';
+import taskList from './task_list';
 import quote from './quote';
 import link from './link';
 import unlink from './unlink';
@@ -39,6 +40,7 @@ export const icons: Record<string, string> = {
   strike,
   ordered_list: orderedList,
   bullet_list: bulletList,
+  task_list: taskList,
   blockquote: quote,
   link,
   unlink,
