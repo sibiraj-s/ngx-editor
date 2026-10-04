@@ -1,10 +1,10 @@
 *,
 *::before,
-*::after{
+*::after {
   box-sizing: border-box;
 }
 
-$primary: #1a73e8;
+$primary: var(--ngx-editor-menu-item-active-color);
 
 img {
   width: 100%;
@@ -35,7 +35,7 @@ img {
       width: 7px;
       height: 7px;
       background-color: $primary;
-      border: 1px solid white;
+      border: 1px solid var(--ngx-editor-background-color);
     }
 
     .NgxEditor__ResizeHandle--BR {

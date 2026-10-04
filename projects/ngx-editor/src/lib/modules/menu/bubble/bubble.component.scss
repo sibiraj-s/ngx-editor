@@ -10,7 +10,7 @@
   background-color: var(--ngx-editor-bubble-bg-color);
   color: var(--ngx-editor-bubble-text-color);
   padding: 5px;
-  border-radius: 4px;
+  border-radius: var(--ngx-editor-popup-border-radius);
 }
 
 .NgxBubbleMenu__Icon {
@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: inherit;
 
   &:hover {
     background-color: var(--ngx-editor-bubble-item-hover-color);
@@ -40,6 +40,6 @@
 }
 
 .NgxBubbleMenu__Seperator {
-  border-left: 1px solid var(--ngx-editor-seperator-color);
+  border-left: 1px solid var(--ngx-editor-bubble-seperator-color);
   margin: 0 5px;
 }

@@ -29,6 +29,10 @@
   --ngx-editor-bubble-item-hover-color: #636262;
   --ngx-editor-bubble-seperator-color: #fff;
 
+  --ngx-editor-table-header-bg-color: #f5f5f5;
+  --ngx-editor-table-resize-handle-color: #adf;
+  --ngx-editor-table-selected-cell-bg-color: rgba(200, 200, 255, 0.4);
+
   --ngx-editor-focus-ring-color: #5e9ed6;
   --ngx-editor-error-color: red;
   --ngx-editor-click-pointer: default;
@@ -146,6 +150,7 @@ $pointer-style: var(--ngx-editor-click-pointer, default);
   flex-wrap: wrap;
   padding: $menubar-padding;
   background-color: $menubar-bg-color;
+  color: $editor-text-color;
   gap: 0.25rem 0.1rem;
 }
 
@@ -398,7 +403,7 @@ $pointer-style: var(--ngx-editor-click-pointer, default);
   th {
     font-weight: bold;
     text-align: left;
-    background-color: #f5f5f5;
+    background-color: var(--ngx-editor-table-header-bg-color);
   }
   .column-resize-handle {
     position: absolute;
@@ -407,7 +412,7 @@ $pointer-style: var(--ngx-editor-click-pointer, default);
     bottom: 0;
     width: 4px;
     z-index: 20;
-    background-color: #adf;
+    background-color: var(--ngx-editor-table-resize-handle-color);
     pointer-events: none;
   }
   &.resize-cursor {
@@ -422,7 +427,7 @@ $pointer-style: var(--ngx-editor-click-pointer, default);
     right: 0;
     top: 0;
     bottom: 0;
-    background: rgba(200, 200, 255, 0.4);
+    background: var(--ngx-editor-table-selected-cell-bg-color);
     pointer-events: none;
   }
 }
