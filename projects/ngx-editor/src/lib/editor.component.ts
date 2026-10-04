@@ -59,6 +59,8 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
   private unsubscribe = new Subject<void>();
   private initialValueSet = false;
+  // set while the form writes a value, so the write isn't reported back as a change
+  private writingValue = false;
   private onChange: (value: Record<string, unknown> | string) => void = () => { /** */ };
   private onTouched: () => void = () => { /** */ };
 
@@ -69,7 +71,13 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
     // the initial value should not be undoable, else undo clears the editor.
     // ngModel writes null before the actual value, so the first non-null value is the initial value
-    this.editor().setContent(value ?? emptyDoc, { addToHistory: this.initialValueSet });
+    this.writingValue = true;
+
+    try {
+      this.editor().setContent(value ?? emptyDoc, { addToHistory: this.initialValueSet });
+    } finally {
+      this.writingValue = false;
+    }
 
     if (!isNil(value)) {
       this.initialValueSet = true;
@@ -90,6 +98,10 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   }
 
   private handleChange(jsonDoc: Record<string, unknown>): void {
+    if (this.writingValue) {
+      return;
+    }
+
     if (this.format() === 'html') {
       const html = toHTML(jsonDoc, this.editor().schema);
       this.onChange(html);

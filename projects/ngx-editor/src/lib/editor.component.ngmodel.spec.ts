@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { undo } from 'prosemirror-history';
 
 import Editor from './Editor';
@@ -15,7 +15,8 @@ describe('NgxEditorComponent: Template Driven Forms API', () => {
   })
   class TestComponent {
     editor!: Editor;
-    content = 'Hello world!';
+    content: unknown = 'Hello world!';
+    model = viewChild.required(NgModel);
   }
 
   let component: TestComponent;
@@ -56,5 +57,35 @@ describe('NgxEditorComponent: Template Driven Forms API', () => {
 
     undo(view.state, view.dispatch);
     expect(view.state.doc.textContent).toBe('Hello world!');
+  });
+
+  describe('control state', () => {
+    it('should keep the model pristine and unchanged on load', () => {
+      expect(component.editor.view.state.doc.textContent).toBe('Hello world!');
+      expect(component.model().pristine).toBe(true);
+      expect(component.content).toBe('Hello world!');
+    });
+
+    it('should keep the model pristine when the bound value changes', async () => {
+      component.content = '<p>Hey</p>';
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.editor.view.state.doc.textContent).toBe('Hey');
+      expect(component.model().pristine).toBe(true);
+      expect(component.content).toBe('<p>Hey</p>');
+    });
+
+    it('should mark the model dirty and update the bound value on edit', async () => {
+      component.content = '<p>Hello world!</p>';
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const { view } = component.editor;
+      view.dispatch(view.state.tr.insertText('!', view.state.doc.content.size - 1));
+
+      expect(component.model().dirty).toBe(true);
+      expect(component.content).toBe('<p>Hello world!!</p>');
+    });
   });
 });
