@@ -136,14 +136,14 @@ describe('NgxEditorComponent', () => {
       expect(onChange).toHaveBeenCalledWith('<p>Hello!</p>');
     });
 
-    it('should not emit editor value changes for written values', () => {
+    it('should emit editor value changes for written values', () => {
       const valueChanges = vi.fn();
       const subscription = component.editor().valueChanges.subscribe(valueChanges);
 
       component.writeValue('<p>Hello</p>');
       subscription.unsubscribe();
 
-      expect(valueChanges).not.toHaveBeenCalled();
+      expect(valueChanges).toHaveBeenCalledTimes(1);
     });
 
     it('should report edits dispatched while a value is written', () => {

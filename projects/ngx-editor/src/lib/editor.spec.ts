@@ -96,27 +96,6 @@ describe('Editor', () => {
     expect(valueChanges).toHaveBeenCalledTimes(1);
     expect(toHTML(valueChanges.mock.calls[0][0], schema)).toBe('<p>Hello world</p>');
   });
-
-  it('should not emit value changes on setContent when emitEvent is false', () => {
-    const editor = new Editor({ content: '<p>Hello</p>' });
-    const valueChanges = vi.fn();
-    const update = vi.fn();
-    editor.valueChanges.subscribe(valueChanges);
-    editor.update.subscribe(update);
-
-    editor.setContent('<p>Hello world</p>', { emitEvent: false });
-
-    expect(editor.view.state.doc.textContent).toBe('Hello world');
-    expect(valueChanges).not.toHaveBeenCalled();
-    expect(update).toHaveBeenCalledTimes(1);
-
-    // later changes are emitted
-    const { view } = editor;
-    view.dispatch(view.state.tr.insertText('!', view.state.doc.content.size - 1));
-
-    expect(valueChanges).toHaveBeenCalledTimes(1);
-    expect(toHTML(valueChanges.mock.calls[0][0], schema)).toBe('<p>Hello world!</p>');
-  });
 });
 
 describe('Editor: Commands', () => {

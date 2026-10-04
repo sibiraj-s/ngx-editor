@@ -21,7 +21,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { isNil, NgxEditorError } from 'ngx-editor/utils';
-import Editor from './Editor';
+import Editor, { isFormWrite, writeFormValue } from './Editor';
 import { emptyDoc, toHTML } from './parsers';
 import * as plugins from './plugins';
 import { HTML, isHtml } from './trustedTypesUtil';
@@ -69,8 +69,7 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
 
     // the initial value should not be undoable, else undo clears the editor.
     // ngModel writes null before the actual value, so the first non-null value is the initial value
-    // values written by the form are not reported back as changes, else the control is marked dirty
-    this.editor().setContent(value ?? emptyDoc, { addToHistory: this.initialValueSet, emitEvent: false });
+    writeFormValue(this.editor(), value ?? emptyDoc, { addToHistory: this.initialValueSet });
 
     if (!isNil(value)) {
       this.initialValueSet = true;
@@ -91,6 +90,11 @@ export class NgxEditorComponent implements ControlValueAccessor, OnInit, OnChang
   }
 
   private handleChange(jsonDoc: Record<string, unknown>): void {
+    // values written by the form are not reported back as changes, else the control is marked dirty
+    if (isFormWrite(jsonDoc)) {
+      return;
+    }
+
     if (this.format() === 'html') {
       const html = toHTML(jsonDoc, this.editor().schema);
       this.onChange(html);
