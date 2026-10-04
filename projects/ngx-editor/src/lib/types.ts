@@ -4,7 +4,7 @@ import { LocalsKeys } from './Locals';
 import { Observable } from 'rxjs';
 import { LinkOptions } from './modules/menu/link/link.component';
 
-export type TBHeadingItems = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+export type TBHeadingItems = 'paragraph' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 export type TBTableItems='addColumnBefore'
 | 'addColumnAfter'
 | 'deleteColumn'

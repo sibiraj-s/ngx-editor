@@ -43,4 +43,17 @@ describe('DropdownComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should switch a heading back to a paragraph', () => {
+    editor.setContent('<h1>Hello</h1>');
+    componentRef.setInput('items', ['paragraph', 'h1', 'h2']);
+    fixture.detectChanges();
+
+    expect(component.activeItem).toBe('h1');
+
+    component.selectItem('paragraph');
+
+    expect(editor.view.state.doc.firstChild.type.name).toBe('paragraph');
+    expect(component.activeItem).toBe('paragraph');
+  });
 });
