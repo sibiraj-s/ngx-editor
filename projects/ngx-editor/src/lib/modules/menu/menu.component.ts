@@ -283,7 +283,8 @@ export class NgxEditorMenuComponent implements OnInit {
 
   private updateTabIndex(): void {
     const buttons = this.getButtons();
-    const enabled = this.getEnabledButtons();
+    // a disabled toolbar is removed from the tab order entirely
+    const enabled = this.disabled() ? [] : this.getEnabledButtons();
 
     if (!enabled.includes(this.activeButton)) {
       [this.activeButton = null] = enabled;
@@ -304,6 +305,10 @@ export class NgxEditorMenuComponent implements OnInit {
   }
 
   @HostListener('keydown', ['$event']) onKeydown(e: KeyboardEvent): void {
+    if (this.disabled()) {
+      return;
+    }
+
     const buttons = this.getButtons();
     const index = buttons.indexOf(e.target as HTMLElement);
 

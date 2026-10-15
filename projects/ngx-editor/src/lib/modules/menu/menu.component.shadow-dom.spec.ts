@@ -83,6 +83,34 @@ describe('NgxEditorMenuComponent (shadow dom)', () => {
       expect(root.querySelector(popup)).toBeFalsy();
     });
 
+    it(`should close the ${name} popup when focus moves outside of it`, async () => {
+      mousedown(root.querySelector(toggle));
+      await fixture.whenStable();
+
+      root.querySelector<HTMLElement>(toggle).focus();
+      await fixture.whenStable();
+      expect(root.querySelector(popup)).toBeTruthy();
+
+      // another toolbar item, like moving with the arrow keys
+      root.querySelector<HTMLElement>('ngx-toggle-command button').focus();
+      await fixture.whenStable();
+      expect(root.querySelector(popup)).toBeFalsy();
+    });
+
+    it(`should only listen for focus changes while the ${name} popup is open`, async () => {
+      const add = vi.spyOn(document, 'addEventListener');
+      const remove = vi.spyOn(document, 'removeEventListener');
+      const calls = (spy: typeof add) => spy.mock.calls.filter(([type]) => type === 'focusin');
+
+      mousedown(root.querySelector(toggle));
+      await fixture.whenStable();
+      expect(calls(add)).toHaveLength(1);
+
+      mousedown(document.body);
+      await fixture.whenStable();
+      expect(calls(remove).map(([, listener]) => listener)).toEqual(calls(add).map(([, listener]) => listener));
+    });
+
     it(`should only listen for document clicks while the ${name} popup is open`, async () => {
       const listeners = spyOnMousedownListeners();
 

@@ -1,4 +1,4 @@
-import { Component, ComponentRef, DebugElement, provideZonelessChangeDetection } from '@angular/core';
+import { Component, ComponentRef, DebugElement, provideZonelessChangeDetection, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TextSelection } from 'prosemirror-state';
@@ -78,7 +78,7 @@ describe('NgxEditorMenuComponent', () => {
 @Component({
   imports: [NgxEditorMenuComponent, NgxEditorComponent],
   template: `
-    <ngx-editor-menu [editor]="editor" [customMenuRef]="customMenu" />
+    <ngx-editor-menu [editor]="editor" [customMenuRef]="customMenu" [disabled]="disabled()" />
     <ngx-editor [editor]="editor" />
     <ng-template #customMenu>
       <button class="custom-item">Custom</button>
@@ -88,6 +88,7 @@ describe('NgxEditorMenuComponent', () => {
 })
 class HostComponent {
   editor = new Editor();
+  disabled = signal(false);
 }
 
 describe('NgxEditorMenuComponent (zoneless)', () => {
@@ -235,6 +236,51 @@ describe('NgxEditorMenuComponent (zoneless)', () => {
 
       press('ArrowRight');
       expect(document.activeElement).toBe(buttons[index + 1]);
+    });
+
+    it('should close an open popup when moving to another item with the arrow keys', async () => {
+      const link: HTMLElement = fixture.nativeElement.querySelector('ngx-link button');
+      link.focus();
+      press('Enter');
+      await fixture.whenStable();
+      expect(fixture.nativeElement.querySelector('ngx-link .NgxEditor__Popup')).toBeTruthy();
+
+      press('ArrowRight');
+      await fixture.whenStable();
+      expect(fixture.nativeElement.querySelector('ngx-link .NgxEditor__Popup')).toBeFalsy();
+    });
+
+    describe('when the menu is disabled', () => {
+      beforeEach(async () => {
+        buttons[0].focus();
+        fixture.componentInstance.disabled.set(true);
+        await fixture.whenStable();
+      });
+
+      it('should make the toolbar inert', () => {
+        const menubar: HTMLElement = fixture.nativeElement.querySelector('.NgxEditor__MenuBar');
+        expect(menubar.inert).toBe(true);
+        expect(menubar.getAttribute('aria-disabled')).toBe('true');
+      });
+
+      it('should remove all items from the tab order', () => {
+        expect(getFocusable()).toEqual([]);
+      });
+
+      it('should not move focus with the arrow keys', () => {
+        press('ArrowRight');
+        expect(document.activeElement).not.toBe(buttons[1]);
+      });
+
+      it('should restore the tab order when enabled again', async () => {
+        fixture.componentInstance.disabled.set(false);
+        await fixture.whenStable();
+
+        const menubar: HTMLElement = fixture.nativeElement.querySelector('.NgxEditor__MenuBar');
+        expect(menubar.inert).toBe(false);
+        expect(menubar.hasAttribute('aria-disabled')).toBe(false);
+        expect(getFocusable()).toHaveLength(1);
+      });
     });
   });
 });
