@@ -13,6 +13,13 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## 19.1.1 (2026-10-15)
+
+#### Bug Fixes
+
+- prevent keyboard access to the toolbar when the menu is disabled ([50f2702](https://github.com/sibiraj-s/ngx-editor/commit/50f2702))
+- close menu popups when focus moves outside, so only one is open while navigating with the keyboard ([50f2702](https://github.com/sibiraj-s/ngx-editor/commit/50f2702))
+
 ## 19.1.0 (2026-10-04)
 
 #### Features
