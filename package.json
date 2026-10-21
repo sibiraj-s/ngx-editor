@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@angular/build": "^22.2.1",
-    "@angular/cli": "^22.2.1",
+    "@angular/cli": "^22.2.3",
     "@angular/compiler-cli": "^22.2.1",
     "@codemirror/lang-javascript": "^6.2.5",
     "@commitlint/cli": "^21.2.3",
