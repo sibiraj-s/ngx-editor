@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0-docs",
   "type": "module",
+  "engines": {
+    "node": "^22.23.4 || >=24.15.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -12,6 +15,6 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.42.6",
-    "astro": "^7.3.8"
+    "astro": "^7.4.12"
   }
 }
